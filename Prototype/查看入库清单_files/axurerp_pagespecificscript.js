@@ -4,7 +4,51 @@ $axure.eventManager.pageLoad(
 function (e) {
 
 });
-gv_vAlignTable['u32'] = 'top';gv_vAlignTable['u243'] = 'top';gv_vAlignTable['u45'] = 'top';gv_vAlignTable['u79'] = 'top';gv_vAlignTable['u161'] = 'center';gv_vAlignTable['u203'] = 'center';gv_vAlignTable['u42'] = 'top';gv_vAlignTable['u159'] = 'top';gv_vAlignTable['u102'] = 'top';gv_vAlignTable['u55'] = 'top';gv_vAlignTable['u186'] = 'top';gv_vAlignTable['u5'] = 'center';gv_vAlignTable['u105'] = 'top';gv_vAlignTable['u27'] = 'center';gv_vAlignTable['u235'] = 'top';gv_vAlignTable['u138'] = 'center';gv_vAlignTable['u192'] = 'top';gv_vAlignTable['u241'] = 'top';gv_vAlignTable['u65'] = 'top';gv_vAlignTable['u236'] = 'top';gv_vAlignTable['u24'] = 'center';gv_vAlignTable['u58'] = 'top';gv_vAlignTable['u150'] = 'center';gv_vAlignTable['u238'] = 'top';gv_vAlignTable['u30'] = 'top';gv_vAlignTable['u62'] = 'top';gv_vAlignTable['u21'] = 'center';gv_vAlignTable['u75'] = 'top';gv_vAlignTable['u230'] = 'top';gv_vAlignTable['u88'] = 'top';gv_vAlignTable['u176'] = 'top';gv_vAlignTable['u208'] = 'center';gv_vAlignTable['u47'] = 'top';gv_vAlignTable['u72'] = 'top';gv_vAlignTable['u31'] = 'top';gv_vAlignTable['u233'] = 'top';gv_vAlignTable['u44'] = 'top';gv_vAlignTable['u78'] = 'top';gv_vAlignTable['u179'] = 'center';gv_vAlignTable['u57'] = 'top';gv_vAlignTable['u8'] = 'center';gv_vAlignTable['u16'] = 'top';gv_vAlignTable['u212'] = 'center';gv_vAlignTable['u6'] = 'top';document.getElementById('u202_img').tabIndex = 0;
+gv_vAlignTable['u32'] = 'top';gv_vAlignTable['u243'] = 'top';gv_vAlignTable['u45'] = 'top';gv_vAlignTable['u79'] = 'top';gv_vAlignTable['u161'] = 'center';document.getElementById('u17_img').tabIndex = 0;
+
+u17.style.cursor = 'pointer';
+$axure.eventManager.click('u17', function(e) {
+
+if (true) {
+
+	self.location.href=$axure.globalVariableProvider.getLinkUrl('销售管理.html');
+
+}
+});
+gv_vAlignTable['u203'] = 'center';gv_vAlignTable['u42'] = 'top';gv_vAlignTable['u159'] = 'top';gv_vAlignTable['u102'] = 'top';gv_vAlignTable['u55'] = 'top';gv_vAlignTable['u186'] = 'top';document.getElementById('u14_img').tabIndex = 0;
+
+u14.style.cursor = 'pointer';
+$axure.eventManager.click('u14', function(e) {
+
+if (true) {
+
+	self.location.href=$axure.globalVariableProvider.getLinkUrl('产品管理.html');
+
+}
+});
+gv_vAlignTable['u5'] = 'center';gv_vAlignTable['u105'] = 'top';gv_vAlignTable['u27'] = 'center';gv_vAlignTable['u235'] = 'top';gv_vAlignTable['u138'] = 'center';gv_vAlignTable['u192'] = 'top';gv_vAlignTable['u241'] = 'top';gv_vAlignTable['u65'] = 'top';gv_vAlignTable['u236'] = 'top';gv_vAlignTable['u24'] = 'center';gv_vAlignTable['u58'] = 'top';gv_vAlignTable['u150'] = 'center';gv_vAlignTable['u238'] = 'top';gv_vAlignTable['u30'] = 'top';gv_vAlignTable['u62'] = 'top';gv_vAlignTable['u21'] = 'center';gv_vAlignTable['u75'] = 'top';gv_vAlignTable['u230'] = 'top';gv_vAlignTable['u88'] = 'top';gv_vAlignTable['u176'] = 'top';gv_vAlignTable['u208'] = 'center';gv_vAlignTable['u47'] = 'top';gv_vAlignTable['u72'] = 'top';gv_vAlignTable['u31'] = 'top';gv_vAlignTable['u233'] = 'top';gv_vAlignTable['u44'] = 'top';gv_vAlignTable['u78'] = 'top';gv_vAlignTable['u179'] = 'center';gv_vAlignTable['u57'] = 'top';document.getElementById('u23_img').tabIndex = 0;
+
+u23.style.cursor = 'pointer';
+$axure.eventManager.click('u23', function(e) {
+
+if (true) {
+
+	self.location.href=$axure.globalVariableProvider.getLinkUrl('客户信息.html');
+
+}
+});
+gv_vAlignTable['u8'] = 'center';u16.tabIndex = 0;
+
+u16.style.cursor = 'pointer';
+$axure.eventManager.click('u16', function(e) {
+
+if (true) {
+
+	self.location.href=$axure.globalVariableProvider.getLinkUrl('销售管理.html');
+
+}
+});
+gv_vAlignTable['u16'] = 'top';gv_vAlignTable['u212'] = 'center';gv_vAlignTable['u6'] = 'top';document.getElementById('u202_img').tabIndex = 0;
 
 u202.style.cursor = 'pointer';
 $axure.eventManager.click('u202', function(e) {
@@ -15,7 +59,18 @@ if (true) {
 
 }
 });
-gv_vAlignTable['u41'] = 'top';gv_vAlignTable['u119'] = 'center';gv_vAlignTable['u54'] = 'top';gv_vAlignTable['u210'] = 'center';gv_vAlignTable['u223'] = 'top';gv_vAlignTable['u174'] = 'top';gv_vAlignTable['u216'] = 'center';gv_vAlignTable['u128'] = 'center';gv_vAlignTable['u94'] = 'top';gv_vAlignTable['u99'] = 'top';gv_vAlignTable['u182'] = 'center';gv_vAlignTable['u249'] = 'center';gv_vAlignTable['u51'] = 'top';gv_vAlignTable['u226'] = 'top';gv_vAlignTable['u77'] = 'center';gv_vAlignTable['u82'] = 'top';gv_vAlignTable['u36'] = 'center';gv_vAlignTable['u101'] = 'center';gv_vAlignTable['u95'] = 'top';gv_vAlignTable['u61'] = 'center';gv_vAlignTable['u143'] = 'center';gv_vAlignTable['u240'] = 'top';gv_vAlignTable['u180'] = 'top';gv_vAlignTable['u74'] = 'top';gv_vAlignTable['u244'] = 'top';gv_vAlignTable['u228'] = 'top';gv_vAlignTable['u104'] = 'top';gv_vAlignTable['u46'] = 'top';gv_vAlignTable['u34'] = 'center';gv_vAlignTable['u71'] = 'top';gv_vAlignTable['u198'] = 'center';gv_vAlignTable['u98'] = 'top';gv_vAlignTable['u214'] = 'center';gv_vAlignTable['u43'] = 'top';gv_vAlignTable['u245'] = 'top';gv_vAlignTable['u169'] = 'top';gv_vAlignTable['u171'] = 'center';gv_vAlignTable['u56'] = 'top';document.getElementById('u142_img').tabIndex = 0;
+gv_vAlignTable['u41'] = 'top';gv_vAlignTable['u119'] = 'center';gv_vAlignTable['u54'] = 'top';gv_vAlignTable['u210'] = 'center';gv_vAlignTable['u223'] = 'top';gv_vAlignTable['u174'] = 'top';gv_vAlignTable['u216'] = 'center';gv_vAlignTable['u128'] = 'center';gv_vAlignTable['u94'] = 'top';gv_vAlignTable['u99'] = 'top';gv_vAlignTable['u182'] = 'center';gv_vAlignTable['u249'] = 'center';gv_vAlignTable['u51'] = 'top';gv_vAlignTable['u226'] = 'top';gv_vAlignTable['u77'] = 'center';gv_vAlignTable['u82'] = 'top';gv_vAlignTable['u36'] = 'center';gv_vAlignTable['u101'] = 'center';gv_vAlignTable['u95'] = 'top';gv_vAlignTable['u61'] = 'center';gv_vAlignTable['u143'] = 'center';gv_vAlignTable['u240'] = 'top';gv_vAlignTable['u180'] = 'top';gv_vAlignTable['u74'] = 'top';document.getElementById('u20_img').tabIndex = 0;
+
+u20.style.cursor = 'pointer';
+$axure.eventManager.click('u20', function(e) {
+
+if (true) {
+
+	self.location.href=$axure.globalVariableProvider.getLinkUrl('财务管理.html');
+
+}
+});
+gv_vAlignTable['u244'] = 'top';gv_vAlignTable['u228'] = 'top';gv_vAlignTable['u104'] = 'top';gv_vAlignTable['u46'] = 'top';gv_vAlignTable['u34'] = 'center';gv_vAlignTable['u71'] = 'top';gv_vAlignTable['u198'] = 'center';gv_vAlignTable['u98'] = 'top';gv_vAlignTable['u214'] = 'center';gv_vAlignTable['u43'] = 'top';gv_vAlignTable['u245'] = 'top';gv_vAlignTable['u169'] = 'top';gv_vAlignTable['u171'] = 'center';gv_vAlignTable['u56'] = 'top';document.getElementById('u142_img').tabIndex = 0;
 
 u142.style.cursor = 'pointer';
 $axure.eventManager.click('u142', function(e) {

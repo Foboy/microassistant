@@ -1,0 +1,862 @@
+﻿body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+#main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0_normal {
+    background-image: url('../销售管理流程_files/u0_normal.png');
+}
+
+.u0_container {
+    position:absolute;
+    left:377px;
+    top:142px;
+    width:116px;
+    height:35px;
+}
+
+#u0_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:122px;
+    height:41px;
+}
+
+.u1 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:112px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u2_normal {
+    background-image: url('../销售管理流程_files/u0_normal.png');
+}
+
+.u2_container {
+    position:absolute;
+    left:377px;
+    top:196px;
+    width:116px;
+    height:35px;
+}
+
+#u2_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:122px;
+    height:41px;
+}
+
+.u3 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:112px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u4_normal {
+    background-image: url('../销售管理流程_files/u0_normal.png');
+}
+
+.u4_container {
+    position:absolute;
+    left:377px;
+    top:242px;
+    width:116px;
+    height:35px;
+}
+
+#u4_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:122px;
+    height:41px;
+}
+
+.u5 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:112px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u6_normal {
+    background-image: url('../销售管理流程_files/u0_normal.png');
+}
+
+.u6_container {
+    position:absolute;
+    left:377px;
+    top:305px;
+    width:116px;
+    height:35px;
+}
+
+#u6_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:122px;
+    height:41px;
+}
+
+.u7 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:112px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u8_normal {
+    background-image: url('../销售管理流程_files/u0_normal.png');
+}
+
+.u8_container {
+    position:absolute;
+    left:377px;
+    top:359px;
+    width:116px;
+    height:35px;
+}
+
+#u8_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:122px;
+    height:41px;
+}
+
+.u9 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:112px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u10_normal {
+    background-image: url('../销售管理流程_files/u0_normal.png');
+}
+
+.u10_container {
+    position:absolute;
+    left:548px;
+    top:142px;
+    width:116px;
+    height:35px;
+}
+
+#u10_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:122px;
+    height:41px;
+}
+
+.u11 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:112px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u12_normal {
+    background-image: url('../销售管理流程_files/u0_normal.png');
+}
+
+.u12_container {
+    position:absolute;
+    left:559px;
+    top:334px;
+    width:116px;
+    height:35px;
+}
+
+#u12_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:122px;
+    height:41px;
+}
+
+.u13 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:112px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u14_normal {
+    background-image: url('../销售管理流程_files/u0_normal.png');
+}
+
+.u14_container {
+    position:absolute;
+    left:559px;
+    top:379px;
+    width:116px;
+    height:35px;
+}
+
+#u14_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:122px;
+    height:41px;
+}
+
+.u15 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:112px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u16_normal {
+    background-image: url('../销售管理流程_files/u16_normal.png');
+}
+
+.u16_container {
+    position:absolute;
+    left:107px;
+    top:71px;
+    width:147px;
+    height:44px;
+}
+
+#u16_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:153px;
+    height:50px;
+}
+
+.u17 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:143px;
+    height:24px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u18_normal {
+    background-image: url('../销售管理流程_files/u16_normal.png');
+}
+
+.u18_container {
+    position:absolute;
+    left:107px;
+    top:238px;
+    width:147px;
+    height:44px;
+}
+
+#u18_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:153px;
+    height:50px;
+}
+
+.u19 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:143px;
+    height:24px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u20_normal {
+    background-image: url('../销售管理流程_files/u16_normal.png');
+}
+
+.u20_container {
+    position:absolute;
+    left:107px;
+    top:404px;
+    width:147px;
+    height:44px;
+}
+
+#u20_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:153px;
+    height:50px;
+}
+
+.u21 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:143px;
+    height:24px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u22_normal {
+    background-image: url('../销售管理流程_files/u16_normal.png');
+}
+
+.u22_container {
+    position:absolute;
+    left:107px;
+    top:571px;
+    width:147px;
+    height:44px;
+}
+
+#u22_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:153px;
+    height:50px;
+}
+
+.u23 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:143px;
+    height:24px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u24c0 {
+    background-image: url('../销售管理流程_files/u24c0.png');
+}
+
+.u24c0 {
+    position:absolute;
+    left:170px;
+    top:111px;
+    width:20px;
+    height:137px;
+}
+
+.u25 {
+    position:absolute;
+    left:-50px;
+    top:54px;
+    width:100px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u26c0 {
+    background-image: url('../销售管理流程_files/u26c0.png');
+}
+
+.u26c0 {
+    position:absolute;
+    left:170px;
+    top:278px;
+    width:20px;
+    height:136px;
+}
+
+.u27 {
+    position:absolute;
+    left:-50px;
+    top:53px;
+    width:100px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u28c0 {
+    background-image: url('../销售管理流程_files/u28c0.png');
+}
+
+.u28c0 {
+    position:absolute;
+    left:170px;
+    top:444px;
+    width:20px;
+    height:137px;
+}
+
+.u29 {
+    position:absolute;
+    left:-50px;
+    top:54px;
+    width:100px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u30c0 {
+    background-image: url('../销售管理流程_files/u30c0.png');
+}
+
+.u30c0 {
+    position:absolute;
+    left:250px;
+    top:250px;
+    width:80px;
+    height:20px;
+}
+
+.u30c1 {
+    background-image: url('../销售管理流程_files/u30c1.png');
+}
+
+.u30c1 {
+    position:absolute;
+    left:310px;
+    top:150px;
+    width:20px;
+    height:120px;
+}
+
+.u30c2 {
+    background-image: url('../销售管理流程_files/u30c2.png');
+}
+
+.u30c2 {
+    position:absolute;
+    left:310px;
+    top:150px;
+    width:71px;
+    height:20px;
+}
+
+.u31 {
+    position:absolute;
+    left:16px;
+    top:-54px;
+    width:100px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u32c0 {
+    background-image: url('../销售管理流程_files/u32c0.png');
+}
+
+.u32c0 {
+    position:absolute;
+    left:250px;
+    top:250px;
+    width:80px;
+    height:20px;
+}
+
+.u32c1 {
+    background-image: url('../销售管理流程_files/u32c1.png');
+}
+
+.u32c1 {
+    position:absolute;
+    left:310px;
+    top:204px;
+    width:20px;
+    height:66px;
+}
+
+.u32c2 {
+    background-image: url('../销售管理流程_files/u32c2.png');
+}
+
+.u32c2 {
+    position:absolute;
+    left:310px;
+    top:204px;
+    width:71px;
+    height:20px;
+}
+
+.u33 {
+    position:absolute;
+    left:16px;
+    top:-26px;
+    width:100px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u34c0 {
+    background-image: url('../销售管理流程_files/u34c0.png');
+}
+
+.u34c0 {
+    position:absolute;
+    left:250px;
+    top:250px;
+    width:137px;
+    height:20px;
+}
+
+.u35 {
+    position:absolute;
+    left:12px;
+    top:-8px;
+    width:100px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u36c0 {
+    background-image: url('../销售管理流程_files/u36c0.png');
+}
+
+.u36c0 {
+    position:absolute;
+    left:250px;
+    top:250px;
+    width:82px;
+    height:20px;
+}
+
+.u36c1 {
+    background-image: url('../销售管理流程_files/u36c1.png');
+}
+
+.u36c1 {
+    position:absolute;
+    left:312px;
+    top:250px;
+    width:20px;
+    height:82px;
+}
+
+.u36c2 {
+    background-image: url('../销售管理流程_files/u36c2.png');
+}
+
+.u36c2 {
+    position:absolute;
+    left:312px;
+    top:312px;
+    width:69px;
+    height:20px;
+}
+
+.u37 {
+    position:absolute;
+    left:18px;
+    top:16px;
+    width:100px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u38c0 {
+    background-image: url('../销售管理流程_files/u38c0.png');
+}
+
+.u38c0 {
+    position:absolute;
+    left:250px;
+    top:250px;
+    width:82px;
+    height:20px;
+}
+
+.u38c1 {
+    background-image: url('../销售管理流程_files/u38c1.png');
+}
+
+.u38c1 {
+    position:absolute;
+    left:312px;
+    top:250px;
+    width:20px;
+    height:136px;
+}
+
+.u38c2 {
+    background-image: url('../销售管理流程_files/u38c2.png');
+}
+
+.u38c2 {
+    position:absolute;
+    left:312px;
+    top:366px;
+    width:69px;
+    height:20px;
+}
+
+.u39 {
+    position:absolute;
+    left:18px;
+    top:44px;
+    width:100px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u40c0 {
+    background-image: url('../销售管理流程_files/u40c0.png');
+}
+
+.u40c0 {
+    position:absolute;
+    left:489px;
+    top:150px;
+    width:69px;
+    height:20px;
+}
+
+.u41 {
+    position:absolute;
+    left:-22px;
+    top:-8px;
+    width:100px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u42c0 {
+    background-image: url('../销售管理流程_files/u42c0.png');
+}
+
+.u42c0 {
+    position:absolute;
+    left:489px;
+    top:366px;
+    width:55px;
+    height:20px;
+}
+
+.u42c1 {
+    background-image: url('../销售管理流程_files/u42c1.png');
+}
+
+.u42c1 {
+    position:absolute;
+    left:524px;
+    top:342px;
+    width:20px;
+    height:44px;
+}
+
+.u42c2 {
+    background-image: url('../销售管理流程_files/u42c2.png');
+}
+
+.u42c2 {
+    position:absolute;
+    left:524px;
+    top:342px;
+    width:39px;
+    height:20px;
+}
+
+.u43 {
+    position:absolute;
+    left:-9px;
+    top:-12px;
+    width:100px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u44c0 {
+    background-image: url('../销售管理流程_files/u44c0.png');
+}
+
+.u44c0 {
+    position:absolute;
+    left:489px;
+    top:366px;
+    width:57px;
+    height:20px;
+}
+
+.u44c1 {
+    background-image: url('../销售管理流程_files/u44c1.png');
+}
+
+.u44c1 {
+    position:absolute;
+    left:526px;
+    top:366px;
+    width:20px;
+    height:40px;
+}
+
+.u44c2 {
+    background-image: url('../销售管理流程_files/u44c2.png');
+}
+
+.u44c2 {
+    position:absolute;
+    left:526px;
+    top:386px;
+    width:37px;
+    height:20px;
+}
+
+.u45 {
+    position:absolute;
+    left:-7px;
+    top:-8px;
+    width:100px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
