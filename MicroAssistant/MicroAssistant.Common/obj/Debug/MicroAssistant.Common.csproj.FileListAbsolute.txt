@@ -1,0 +1,11 @@
+E:\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\MicroAssistant.Common.dll
+E:\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\MicroAssistant.Common.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\MicroAssistant.Cache.dll
+E:\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\MicroAssistant.DataStructure.dll
+E:\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\CachemanAPI.dll
+E:\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\MicroAssistant.Cache.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\MicroAssistant.DataStructure.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.Common\obj\Debug\ResolveAssemblyReference.cache
+E:\microassistant\MicroAssistant\MicroAssistant.Common\obj\Debug\MicroAssistant.Common.dll
+E:\microassistant\MicroAssistant\MicroAssistant.Common\obj\Debug\MicroAssistant.Common.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\Newtonsoft.Json.dll

@@ -1,0 +1,16 @@
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\MicroAssistant.DataAccess.dll
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\MicroAssistant.DataAccess.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\MicroAssistant.Common.dll
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\MicroAssistant.DataStructure.dll
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\MicroAssistant.Meta.dll
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\Newtonsoft.Json.dll
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\MicroAssistant.Cache.dll
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\CachemanAPI.dll
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\MicroAssistant.Common.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\MicroAssistant.DataStructure.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\MicroAssistant.Meta.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\MicroAssistant.Cache.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\obj\Debug\ResolveAssemblyReference.cache
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\obj\Debug\MicroAssistant.DataAccess.dll
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\obj\Debug\MicroAssistant.DataAccess.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.DataAccess\bin\Debug\MySql.Data.dll

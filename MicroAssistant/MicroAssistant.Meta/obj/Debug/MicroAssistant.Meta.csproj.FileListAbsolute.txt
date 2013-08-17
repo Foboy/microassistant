@@ -1,0 +1,13 @@
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Meta.dll
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Meta.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Common.dll
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.DataStructure.dll
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\Newtonsoft.Json.dll
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Cache.dll
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\CachemanAPI.dll
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Common.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.DataStructure.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Cache.pdb
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\ResolveAssemblyReference.cache
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.dll
+E:\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.pdb

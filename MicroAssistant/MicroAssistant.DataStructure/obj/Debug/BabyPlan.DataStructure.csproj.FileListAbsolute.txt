@@ -1,0 +1,5 @@
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.DataStructure\bin\Debug\BabyPlan.DataStructure.dll
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.DataStructure\bin\Debug\BabyPlan.DataStructure.pdb
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.DataStructure\obj\Debug\ResolveAssemblyReference.cache
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.DataStructure\obj\Debug\BabyPlan.DataStructure.dll
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.DataStructure\obj\Debug\BabyPlan.DataStructure.pdb

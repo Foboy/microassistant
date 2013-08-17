@@ -1,0 +1,15 @@
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\bin\Debug\BabyPlan.Meta.dll
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\bin\Debug\BabyPlan.Meta.pdb
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\bin\Debug\BabyPlan.Common.dll
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\bin\Debug\BabyPlan.DataStructure.dll
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\bin\Debug\BabyPlan.Cache.dll
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\bin\Debug\Newtonsoft.Json.dll
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\bin\Debug\CachemanAPI.dll
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\bin\Debug\BabyPlan.Common.pdb
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\bin\Debug\BabyPlan.DataStructure.pdb
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\bin\Debug\BabyPlan.Cache.pdb
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\bin\Debug\Newtonsoft.Json.pdb
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\bin\Debug\Newtonsoft.Json.xml
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\obj\Debug\ResolveAssemblyReference.cache
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\obj\Debug\BabyPlan.Meta.dll
+E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Meta\obj\Debug\BabyPlan.Meta.pdb
