@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.Cache", "MicroAssistant.Cache\MicroAssistant.Cache.csproj", "{4DC26C0C-A269-4189-B5AC-739F957E2068}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.Common", "MicroAssistant.Common\MicroAssistant.Common.csproj", "{1EBF64EA-0FDE-4408-9513-A7F3C4C5FB0E}"

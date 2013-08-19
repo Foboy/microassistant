@@ -33,7 +33,7 @@ namespace MicroAssistant.WcfService
                 SysUser user = new SysUser();
                 user.UserName = account;
                 user.Pwd = pwd;
-                user.Email=
+                user.Email = string.Empty;
                 bool i = SysUserAccessor.Instance.Insert(user);
 
                 if (i)
@@ -304,23 +304,23 @@ namespace MicroAssistant.WcfService
 /// </summary>
 /// <param name="e"></param>
 /// <returns></returns>
-        public bool Insert(SysUser e)
+        public bool Insert(SysUser user)
         {
              AdvancedResult<string> result = new AdvancedResult<string>();
             try
             {
-                AdvancedResult<bool> dr = CheckAccout(account);
+                AdvancedResult<bool> dr = CheckAccout(user.UserName);
                 if (dr.Data)
                 {
                     result.Error = AppError.ERROR_PERSON_FOUND;
-                    return result;
+                    return false;
                 }
 
-                SysUser user = new SysUser();
-                user.UserName = account;
-                user.Pwd = pwd;
-                user.Email=
-                bool i = SysUserAccessor.Instance.Insert(user);
+                SysUser newuser = new SysUser();
+                newuser.UserName = user.UserName;
+                newuser.Pwd = user.Pwd;
+                newuser.Email = user.Email;
+                bool i = SysUserAccessor.Instance.Insert(newuser);
 
                 if (i)
                 {
@@ -333,7 +333,7 @@ namespace MicroAssistant.WcfService
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            return true;
         }
 
         /// <summary>
@@ -343,7 +343,8 @@ namespace MicroAssistant.WcfService
         /// </summary>
         public bool Delete(int UserId)
         {
-           
+            return false;
+
         }
 
         /// <summary>
@@ -365,8 +366,8 @@ namespace MicroAssistant.WcfService
         /// </summary>
         public PageEntity<SysUser> Search(Int32 UserId, String UserName, String Pwd, String Mobile, String Email, DateTime CreateTime, DateTime EndTime, Int32 FatherId, int pageIndex, int pageSize)
         {
-           
 
+            return null;
         }
 
         /// <summary>
@@ -374,7 +375,7 @@ namespace MicroAssistant.WcfService
         /// </summary>
         public List<SysUser> Search()
         {
-          
+            return null;
         }
 
         /// <summary>
@@ -383,8 +384,8 @@ namespace MicroAssistant.WcfService
         /// </summary>
         public SysUser Get(int UserId)
         {
-            
 
+            return null;
         }
     }
 }

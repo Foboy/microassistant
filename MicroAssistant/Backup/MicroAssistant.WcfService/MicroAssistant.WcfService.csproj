@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B7CA0DE1-A13A-4220-8EAB-C3CAAD5C4F9C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MicroAssistant.WcfService</RootNamespace>
+    <AssemblyName>MicroAssistant.WcfService</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IPermissionController.cs" />
+    <Compile Include="IProductionController.cs" />
+    <Compile Include="IUserController.cs" />
+    <Compile Include="PermissionController.svc.cs">
+      <DependentUpon>PermissionController.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ProductionController.svc.cs">
+      <DependentUpon>ProductionController.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserController.svc.cs">
+      <DependentUpon>UserController.svc</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\Cache.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PermissionController.svc" />
+    <Content Include="ProductionController.svc" />
+    <Content Include="UserController.svc" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MicroAssistant.Cache\MicroAssistant.Cache.csproj">
+      <Project>{4DC26C0C-A269-4189-B5AC-739F957E2068}</Project>
+      <Name>MicroAssistant.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MicroAssistant.Common\MicroAssistant.Common.csproj">
+      <Project>{1EBF64EA-0FDE-4408-9513-A7F3C4C5FB0E}</Project>
+      <Name>MicroAssistant.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MicroAssistant.DataAccess\MicroAssistant.DataAccess.csproj">
+      <Project>{F9E29E2D-30C2-4B33-92F8-5876B40ABDE9}</Project>
+      <Name>MicroAssistant.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MicroAssistant.DataStructure\MicroAssistant.DataStructure.csproj">
+      <Project>{BAD691E1-98E4-4130-9696-0832DD8949D9}</Project>
+      <Name>MicroAssistant.DataStructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MicroAssistant.Meta\MicroAssistant.Meta.csproj">
+      <Project>{626060A8-1116-4E49-A252-D3FB4503E096}</Project>
+      <Name>MicroAssistant.Meta</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>11211</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1937/BabyPlan.WcfService</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>http://loaclhost:1937/BabyPlan.WcfService</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <EnableWcfTestClientForSVCDefaultValue>True</EnableWcfTestClientForSVCDefaultValue>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

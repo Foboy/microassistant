@@ -3,3 +3,8 @@ E:\microassistant\MicroAssistant\MicroAssistant.DataStructure\bin\Debug\MicroAss
 E:\microassistant\MicroAssistant\MicroAssistant.DataStructure\obj\Debug\ResolveAssemblyReference.cache
 E:\microassistant\MicroAssistant\MicroAssistant.DataStructure\obj\Debug\MicroAssistant.DataStructure.dll
 E:\microassistant\MicroAssistant\MicroAssistant.DataStructure\obj\Debug\MicroAssistant.DataStructure.pdb
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.DataStructure\bin\Debug\MicroAssistant.DataStructure.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.DataStructure\bin\Debug\MicroAssistant.DataStructure.pdb
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.DataStructure\obj\Debug\MicroAssistant.DataStructure.csprojResolveAssemblyReference.cache
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.DataStructure\obj\Debug\MicroAssistant.DataStructure.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.DataStructure\obj\Debug\MicroAssistant.DataStructure.pdb

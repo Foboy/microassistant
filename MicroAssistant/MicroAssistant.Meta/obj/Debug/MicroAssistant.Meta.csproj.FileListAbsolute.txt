@@ -11,3 +11,16 @@ E:\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Ca
 E:\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\ResolveAssemblyReference.cache
 E:\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.dll
 E:\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.pdb
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Meta.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Meta.pdb
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Common.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.DataStructure.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Cache.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\Newtonsoft.Json.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\CachemanAPI.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Common.pdb
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.DataStructure.pdb
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Cache.pdb
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.csprojResolveAssemblyReference.cache
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.pdb

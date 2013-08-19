@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="MicroAssistant.WcfService.PermissionController" CodeBehind="PermissionController.svc.cs" %>

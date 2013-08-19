@@ -9,3 +9,14 @@ E:\microassistant\MicroAssistant\MicroAssistant.Common\obj\Debug\ResolveAssembly
 E:\microassistant\MicroAssistant\MicroAssistant.Common\obj\Debug\MicroAssistant.Common.dll
 E:\microassistant\MicroAssistant\MicroAssistant.Common\obj\Debug\MicroAssistant.Common.pdb
 E:\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\Newtonsoft.Json.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\MicroAssistant.Common.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\MicroAssistant.Common.pdb
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\MicroAssistant.Cache.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\MicroAssistant.DataStructure.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\Newtonsoft.Json.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\CachemanAPI.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\MicroAssistant.Cache.pdb
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Common\bin\Debug\MicroAssistant.DataStructure.pdb
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Common\obj\Debug\MicroAssistant.Common.csprojResolveAssemblyReference.cache
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Common\obj\Debug\MicroAssistant.Common.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Common\obj\Debug\MicroAssistant.Common.pdb
