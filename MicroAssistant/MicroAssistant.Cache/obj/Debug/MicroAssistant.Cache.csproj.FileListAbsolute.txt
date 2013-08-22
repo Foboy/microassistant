@@ -4,3 +4,8 @@ E:\microassistant\MicroAssistant\MicroAssistant.Cache\obj\Debug\ResolveAssemblyR
 E:\microassistant\MicroAssistant\MicroAssistant.Cache\obj\Debug\MicroAssistant.Cache.dll
 E:\microassistant\MicroAssistant\MicroAssistant.Cache\obj\Debug\MicroAssistant.Cache.pdb
 E:\microassistant\MicroAssistant\MicroAssistant.Cache\bin\Debug\CachemanAPI.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Cache\bin\Debug\MicroAssistant.Cache.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Cache\bin\Debug\MicroAssistant.Cache.pdb
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Cache\bin\Debug\CachemanAPI.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Cache\obj\Debug\MicroAssistant.Cache.dll
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Cache\obj\Debug\MicroAssistant.Cache.pdb

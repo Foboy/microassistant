@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.Cache", "MicroAssistant.Cache\MicroAssistant.Cache.csproj", "{4DC26C0C-A269-4189-B5AC-739F957E2068}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.Common", "MicroAssistant.Common\MicroAssistant.Common.csproj", "{1EBF64EA-0FDE-4408-9513-A7F3C4C5FB0E}"
@@ -11,7 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.DataStructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.Meta", "MicroAssistant.Meta\MicroAssistant.Meta.csproj", "{626060A8-1116-4E49-A252-D3FB4503E096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.WcfService", "MicroAssistant.WcfService\MicroAssistant.WcfService.csproj", "{B7CA0DE1-A13A-4220-8EAB-C3CAAD5C4F9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistantMvc", "MicroAssistantMvc\MicroAssistantMvc.csproj", "{B2A3FC67-3077-447A-BBD1-DCA801094DC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistantMvc.Tests", "MicroAssistantMvc.Tests\MicroAssistantMvc.Tests.csproj", "{E43DC235-8381-4DA0-B702-D1386D1FBBBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +41,14 @@ Global
 		{626060A8-1116-4E49-A252-D3FB4503E096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{626060A8-1116-4E49-A252-D3FB4503E096}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{626060A8-1116-4E49-A252-D3FB4503E096}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7CA0DE1-A13A-4220-8EAB-C3CAAD5C4F9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7CA0DE1-A13A-4220-8EAB-C3CAAD5C4F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7CA0DE1-A13A-4220-8EAB-C3CAAD5C4F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7CA0DE1-A13A-4220-8EAB-C3CAAD5C4F9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A3FC67-3077-447A-BBD1-DCA801094DC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A3FC67-3077-447A-BBD1-DCA801094DC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A3FC67-3077-447A-BBD1-DCA801094DC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A3FC67-3077-447A-BBD1-DCA801094DC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E43DC235-8381-4DA0-B702-D1386D1FBBBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E43DC235-8381-4DA0-B702-D1386D1FBBBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E43DC235-8381-4DA0-B702-D1386D1FBBBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E43DC235-8381-4DA0-B702-D1386D1FBBBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
