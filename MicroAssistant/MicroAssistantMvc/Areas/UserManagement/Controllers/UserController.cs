@@ -11,7 +11,7 @@ using MicroAssistant.Meta;
 
 namespace MicroAssistantMvc.Controllers
 {
-    public class MicUserController : Controller
+    public class UserController : Controller
     {
         //
         // GET: /MicUser/

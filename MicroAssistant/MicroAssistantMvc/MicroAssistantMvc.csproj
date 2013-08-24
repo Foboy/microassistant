@@ -161,11 +161,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\CustomerManagement\ClientManageAreaRegistration.cs" />
+    <Compile Include="Areas\FinancialManagement\FinanceManageAreaRegistration.cs" />
+    <Compile Include="Areas\MarketingManagement\MarketingManagementAreaRegistration.cs" />
+    <Compile Include="Areas\ProductManagement\ProductManagementAreaRegistration.cs" />
+    <Compile Include="Areas\SystemManagement\SystemManagementAreaRegistration.cs" />
+    <Compile Include="Areas\UserManagement\UserAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MicUserController.cs" />
-    <Compile Include="Controllers\PermissionController.cs" />
-    <Compile Include="Controllers\ProductionController.cs" />
+    <Compile Include="Areas\UserManagement\Controllers\UserController.cs" />
+    <Compile Include="Areas\SystemManagement\Controllers\PermissionController.cs" />
+    <Compile Include="Areas\ProductManagement\Controllers\ProductionController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,6 +236,12 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Areas\UserManagement\Views\Web.config" />
+    <Content Include="Areas\CustomerManagement\Views\Web.config" />
+    <Content Include="Areas\FinancialManagement\Views\Web.config" />
+    <Content Include="Areas\MarketingManagement\Views\Web.config" />
+    <Content Include="Areas\ProductManagement\Views\Web.config" />
+    <Content Include="Areas\SystemManagement\Views\Web.config" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -287,6 +299,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\CustomerManagement\Controllers\" />
+    <Folder Include="Areas\CustomerManagement\Models\" />
+    <Folder Include="Areas\CustomerManagement\Views\Shared\" />
+    <Folder Include="Areas\FinancialManagement\Controllers\" />
+    <Folder Include="Areas\FinancialManagement\Models\" />
+    <Folder Include="Areas\FinancialManagement\Views\Shared\" />
+    <Folder Include="Areas\MarketingManagement\Controllers\" />
+    <Folder Include="Areas\MarketingManagement\Models\" />
+    <Folder Include="Areas\MarketingManagement\Views\Shared\" />
+    <Folder Include="Areas\ProductManagement\Models\" />
+    <Folder Include="Areas\ProductManagement\Views\Shared\" />
+    <Folder Include="Areas\SystemManagement\Models\" />
+    <Folder Include="Areas\SystemManagement\Views\Shared\" />
+    <Folder Include="Areas\UserManagement\Models\" />
+    <Folder Include="Areas\UserManagement\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
