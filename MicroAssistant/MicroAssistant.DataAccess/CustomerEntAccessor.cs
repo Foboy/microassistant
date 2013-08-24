@@ -1,7 +1,7 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/8/24 14:57:16
+ * @date: 2013/8/24 15:54:47
  */
 using System;
 using System.Collections.Generic;
@@ -31,9 +31,8 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertCustomerEnt
 
-            cmdInsertCustomerEnt = new MySqlCommand("INSERT INTO customer_ent(customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,owner_id) values (@CustomerEntId,@EntName,@Industy,@ContactUsername,@ContactMobile,@ContactPhone,@ContactEmail,@ContactQq,@Address,@Detail,@OwnerId)");
+            cmdInsertCustomerEnt = new MySqlCommand("INSERT INTO customer_ent(ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,ent_id) values (@EntName,@Industy,@ContactUsername,@ContactMobile,@ContactPhone,@ContactEmail,@ContactQq,@Address,@Detail,@EntId)");
 
-            cmdInsertCustomerEnt.Parameters.Add("@CustomerEntId", MySqlDbType.Int32);
             cmdInsertCustomerEnt.Parameters.Add("@EntName", MySqlDbType.String);
             cmdInsertCustomerEnt.Parameters.Add("@Industy", MySqlDbType.String);
             cmdInsertCustomerEnt.Parameters.Add("@ContactUsername", MySqlDbType.String);
@@ -43,12 +42,12 @@ namespace MicroAssistant.DataAccess
             cmdInsertCustomerEnt.Parameters.Add("@ContactQq", MySqlDbType.String);
             cmdInsertCustomerEnt.Parameters.Add("@Address", MySqlDbType.String);
             cmdInsertCustomerEnt.Parameters.Add("@Detail", MySqlDbType.String);
-            cmdInsertCustomerEnt.Parameters.Add("@OwnerId", MySqlDbType.Int32);
+            cmdInsertCustomerEnt.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateCustomerEnt
 
-            cmdUpdateCustomerEnt = new MySqlCommand(" update customer_ent set customer_ent_id = @CustomerEntId,ent_name = @EntName,industy = @Industy,contact_username = @ContactUsername,contact_mobile = @ContactMobile,contact_phone = @ContactPhone,contact_email = @ContactEmail,contact_qq = @ContactQq,address = @Address,detail = @Detail,owner_id = @OwnerId where customer_ent_id = @CustomerEntId");
+            cmdUpdateCustomerEnt = new MySqlCommand(" update customer_ent set customer_ent_id = @CustomerEntId,ent_name = @EntName,industy = @Industy,contact_username = @ContactUsername,contact_mobile = @ContactMobile,contact_phone = @ContactPhone,contact_email = @ContactEmail,contact_qq = @ContactQq,address = @Address,detail = @Detail,ent_id = @EntId where customer_ent_id = @CustomerEntId");
             cmdUpdateCustomerEnt.Parameters.Add("@CustomerEntId", MySqlDbType.Int32);
             cmdUpdateCustomerEnt.Parameters.Add("@EntName", MySqlDbType.String);
             cmdUpdateCustomerEnt.Parameters.Add("@Industy", MySqlDbType.String);
@@ -59,7 +58,7 @@ namespace MicroAssistant.DataAccess
             cmdUpdateCustomerEnt.Parameters.Add("@ContactQq", MySqlDbType.String);
             cmdUpdateCustomerEnt.Parameters.Add("@Address", MySqlDbType.String);
             cmdUpdateCustomerEnt.Parameters.Add("@Detail", MySqlDbType.String);
-            cmdUpdateCustomerEnt.Parameters.Add("@OwnerId", MySqlDbType.Int32);
+            cmdUpdateCustomerEnt.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
 
@@ -71,7 +70,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadCustomerEnt
 
-            cmdLoadCustomerEnt = new MySqlCommand(@" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,owner_id from customer_ent limit @PageIndex,@PageSize");
+            cmdLoadCustomerEnt = new MySqlCommand(@" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,ent_id from customer_ent limit @PageIndex,@PageSize");
             cmdLoadCustomerEnt.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadCustomerEnt.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -85,13 +84,13 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllCustomerEnt
 
-            cmdLoadAllCustomerEnt = new MySqlCommand(" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,owner_id from customer_ent");
+            cmdLoadAllCustomerEnt = new MySqlCommand(" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,ent_id from customer_ent");
 
             #endregion
 
             #region cmdGetCustomerEnt
 
-            cmdGetCustomerEnt = new MySqlCommand(" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,owner_id from customer_ent where customer_ent_id = @CustomerEntId");
+            cmdGetCustomerEnt = new MySqlCommand(" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,ent_id from customer_ent where customer_ent_id = @CustomerEntId");
             cmdGetCustomerEnt.Parameters.Add("@CustomerEntId", MySqlDbType.Int32);
 
             #endregion
@@ -122,7 +121,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertCustomerEnt.Parameters["@ContactQq"].Value = e.ContactQq;
                 _cmdInsertCustomerEnt.Parameters["@Address"].Value = e.Address;
                 _cmdInsertCustomerEnt.Parameters["@Detail"].Value = e.Detail;
-                _cmdInsertCustomerEnt.Parameters["@OwnerId"].Value = e.OwnerId;
+                _cmdInsertCustomerEnt.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdInsertCustomerEnt.ExecuteNonQuery();
                 return returnValue;
@@ -194,7 +193,7 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateCustomerEnt.Parameters["@ContactQq"].Value = e.ContactQq;
                 _cmdUpdateCustomerEnt.Parameters["@Address"].Value = e.Address;
                 _cmdUpdateCustomerEnt.Parameters["@Detail"].Value = e.Detail;
-                _cmdUpdateCustomerEnt.Parameters["@OwnerId"].Value = e.OwnerId;
+                _cmdUpdateCustomerEnt.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdUpdateCustomerEnt.ExecuteNonQuery();
 
@@ -217,7 +216,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<CustomerEnt> Search(Int32 CustomerEntId, String EntName, String Industy, String ContactUsername, String ContactMobile, String ContactPhone, String ContactEmail, String ContactQq, String Address, String Detail, Int32 OwnerId, int pageIndex, int pageSize)
+        public PageEntity<CustomerEnt> Search(Int32 CustomerEntId, String EntName, String Industy, String ContactUsername, String ContactMobile, String ContactPhone, String ContactEmail, String ContactQq, String Address, String Detail, Int32 EntId, int pageIndex, int pageSize)
         {
             PageEntity<CustomerEnt> returnValue = new PageEntity<CustomerEnt>();
             MySqlConnection oc = ConnectManager.Create();
@@ -240,7 +239,7 @@ namespace MicroAssistant.DataAccess
                 _cmdLoadCustomerEnt.Parameters["@ContactQq"].Value = ContactQq;
                 _cmdLoadCustomerEnt.Parameters["@Address"].Value = Address;
                 _cmdLoadCustomerEnt.Parameters["@Detail"].Value = Detail;
-                _cmdLoadCustomerEnt.Parameters["@OwnerId"].Value = OwnerId;
+                _cmdLoadCustomerEnt.Parameters["@EntId"].Value = EntId;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
