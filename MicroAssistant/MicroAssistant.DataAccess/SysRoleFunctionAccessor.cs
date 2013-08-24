@@ -21,6 +21,7 @@ namespace MicroAssistant.DataAccess
     {
         private MySqlCommand cmdInsertSysRoleFunction;
         private MySqlCommand cmdDeleteSysRoleFunction;
+        private MySqlCommand cmdDeleteSysRoleFunctionByRoleId;
         private MySqlCommand cmdUpdateSysRoleFunction;
         private MySqlCommand cmdLoadSysRoleFunction;
         private MySqlCommand cmdLoadAllSysRoleFunction;
@@ -51,6 +52,12 @@ namespace MicroAssistant.DataAccess
 
             cmdDeleteSysRoleFunction = new MySqlCommand(" delete from sys_role_function where sys_role_function_id = @SysRoleFunctionId");
             cmdDeleteSysRoleFunction.Parameters.Add("@SysRoleFunctionId", MySqlDbType.Int32);
+            #endregion
+
+            #region cmdDeleteSysRoleFunctionByRoleId
+
+            cmdDeleteSysRoleFunctionByRoleId = new MySqlCommand(" delete from sys_role_function where role_id = @RoleId");
+            cmdDeleteSysRoleFunctionByRoleId.Parameters.Add("@RoleId", MySqlDbType.Int32);
             #endregion
 
             #region cmdLoadSysRoleFunction 选择条件查询
@@ -120,6 +127,32 @@ namespace MicroAssistant.DataAccess
         }
 
         /// <summary>
+        /// 为某个角色添加权限
+        /// <param name="es">数据实体对象数组</param>
+        /// <returns></returns>
+        /// </summary>
+        public bool Insert(int roleid, List<int> functionids)
+        {
+            bool returnValue = false;
+            try
+            {
+                for (int i = 0; i < functionids.Count; i++)
+                {
+                    SysRoleFunction srf = new SysRoleFunction();
+                    srf.FunctionId=functionids[i];
+                    srf.RoleId=roleid;
+                    Insert(srf);
+                }
+                returnValue = true;
+            }
+            catch
+            {
+
+            }
+            return returnValue;
+        }
+
+        /// <summary>
         /// 删除数据
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
@@ -147,6 +180,37 @@ namespace MicroAssistant.DataAccess
                 oc = null;
                 _cmdDeleteSysRoleFunction.Dispose();
                 _cmdDeleteSysRoleFunction = null;
+            }
+        }
+
+        /// <summary>
+        /// 删除数据
+        /// <param name="es">数据实体对象数组</param>
+        /// <returns></returns>
+        /// </summary>
+        public bool DeleteByRoleId(int roleId)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdDeleteSysRoleFunctionByRoleId = cmdDeleteSysRoleFunctionByRoleId.Clone() as MySqlCommand;
+            bool returnValue = false;
+            _cmdDeleteSysRoleFunctionByRoleId.Connection = oc;
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+                _cmdDeleteSysRoleFunctionByRoleId.Parameters["@RoleId"].Value = roleId;
+
+
+                _cmdDeleteSysRoleFunctionByRoleId.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdDeleteSysRoleFunctionByRoleId.Dispose();
+                _cmdDeleteSysRoleFunctionByRoleId = null;
             }
         }
 

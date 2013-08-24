@@ -7,3 +7,4 @@ E:\GitHub\microassistant\MicroAssistant\MicroAssistant.DataStructure\bin\Debug\M
 E:\GitHub\microassistant\MicroAssistant\MicroAssistant.DataStructure\bin\Debug\MicroAssistant.DataStructure.pdb
 E:\GitHub\microassistant\MicroAssistant\MicroAssistant.DataStructure\obj\Debug\MicroAssistant.DataStructure.dll
 E:\GitHub\microassistant\MicroAssistant\MicroAssistant.DataStructure\obj\Debug\MicroAssistant.DataStructure.pdb
+E:\GitHub\microassistant\MicroAssistant\MicroAssistant.DataStructure\obj\Debug\MicroAssistant.DataStructure.csprojResolveAssemblyReference.cache

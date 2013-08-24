@@ -67,7 +67,19 @@ namespace MicroAssistantMvc.Controllers
         /// <returns></returns>
         public RespResult UpdateRoleFunction(int roleId, List<int> functionids)
         {
-            throw new NotImplementedException(); ;
+            RespResult result = new RespResult();
+            try
+            {
+                SysRoleFunctionAccessor.Instance.DeleteByRoleId(roleId);
+                SysRoleFunctionAccessor.Instance.Insert(roleId, functionids);
+                result.Error = AppError.ERROR_SUCCESS;
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            return result;
         }
         /// <summary>
         /// 修改一个用户的角色（清除原有角色）
@@ -238,8 +250,14 @@ namespace MicroAssistantMvc.Controllers
             RespResult result = new RespResult();
             try
             {
+                List<SysFunction> list = new List<SysFunction>();
+                list = SysFunctionAccessor.Instance.SearchSysUserRolePermisson(userId);
 
-                result.Error = AppError.ERROR_SUCCESS;
+                foreach (SysFunction fuc in list)
+                {
+                    if (string.Equals(functionCode.Trim(), fuc.FunctionCode.Trim()))
+                        result.Error = AppError.ERROR_SUCCESS;
+                }
             }
             catch (Exception e)
             {

@@ -21,22 +21,6 @@ namespace MicroAssistantMvc.Controllers
             return View();
         }
 
-        public JsonResult UpdateSingle(int id, string actionName, string actionValue)
-        {
-            var res = new JsonResult();
-          
-
-            var name = "小华";
-            var age = "12";
-            var name1 = "小华1";
-            var age1 = "121";
-            res.Data = new object[] { new { name, age }, new { name1, age1 } };//返回一个自定义的object数组
-
-
-            res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;//允许使用GET方式获取，否则用GET获取是会报错。
-            return res;
-        }
-
         #region IUserService 成员
         public AdvancedResult<string> Register(string account, string pwd)
         {
