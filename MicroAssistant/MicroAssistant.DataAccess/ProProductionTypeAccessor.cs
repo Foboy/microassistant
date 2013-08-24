@@ -53,7 +53,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadProProductionType
 
-            cmdLoadProProductionType = new MySqlCommand(@"select p_type_id,p_type_name,user_id from pro_production_type where (@PTypeId=0 or PTypeId=@PTypeId) and (@PTypeName =0 or PTypeName=@PTypeName) and (@UserId=0 or user_id=@UserId)  limit @PageIndex,@PageSize");
+            cmdLoadProProductionType = new MySqlCommand(@"select p_type_id,p_type_name,user_id from pro_production_type where (@PTypeId=0 or PTypeId=@PTypeId) and (@PTypeName ='' or PTypeName=@PTypeName) and (@UserId=0 or user_id=@UserId)  limit @PageIndex,@PageSize");
             cmdLoadProProductionType.Parameters.Add("@PageIndex", MySqlDbType.Int32);
             cmdLoadProProductionType.Parameters.Add("@PageSize", MySqlDbType.Int32);
             cmdLoadProProductionType.Parameters.Add("@PTypeId",MySqlDbType.Int32);
@@ -63,7 +63,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadProProductionTypeCount
 
-            cmdLoadProProductionTypeCount = new MySqlCommand(" select count(*)  from pro_production_type where (@PTypeId=0 or PTypeId=@PTypeId) and (@PTypeName =0 or PTypeName=@PTypeName) and (@UserId=0 or UserId=@UserId) ");
+            cmdLoadProProductionTypeCount = new MySqlCommand(" select count(*)  from pro_production_type where (@PTypeId=0 or PTypeId=@PTypeId) and (@PTypeName ='' or PTypeName=@PTypeName) and (@UserId=0 or UserId=@UserId) ");
             cmdLoadProProductionTypeCount.Parameters.Add("@PTypeId", MySqlDbType.Int32);
             cmdLoadProProductionTypeCount.Parameters.Add("@PTypeName", MySqlDbType.String);
             cmdLoadProProductionTypeCount.Parameters.Add("@UserId", MySqlDbType.Int32);
