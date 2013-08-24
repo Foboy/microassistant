@@ -38,9 +38,9 @@ namespace MicroAssistantMvc.Controllers
                 user.UserName = account;
                 user.Pwd = pwd;
                 user.Email = string.Empty;
-                bool i = SysUserAccessor.Instance.Insert(user);
+                int i = SysUserAccessor.Instance.Insert(user);
 
-                if (i)
+                if (i>0)
                 {
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = SecurityHelper.GetToken(i.ToString());
@@ -327,9 +327,9 @@ namespace MicroAssistantMvc.Controllers
                 newuser.UserName = user.UserName;
                 newuser.Pwd = user.Pwd;
                 newuser.Email = user.Email;
-                bool i = SysUserAccessor.Instance.Insert(newuser);
+                int i = SysUserAccessor.Instance.Insert(newuser);
 
-                if (i)
+                if (i>0)
                 {
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = SecurityHelper.GetToken(i.ToString());

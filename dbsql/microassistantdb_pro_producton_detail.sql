@@ -31,6 +31,7 @@ CREATE TABLE `pro_producton_detail` (
   `p_code` varchar(45) NOT NULL COMMENT '采购批次号',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_id` int(11) DEFAULT NULL,
+  `p_id` int(11) NOT NULL,
   PRIMARY KEY (`p_d_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品入库单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-15 10:55:29
+-- Dump completed on 2013-08-24 15:19:58

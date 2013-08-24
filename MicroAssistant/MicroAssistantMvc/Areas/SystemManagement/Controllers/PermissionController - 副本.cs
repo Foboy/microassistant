@@ -13,7 +13,7 @@ namespace MicroAssistantMvc.Controllers
     public class PermissionController : Controller
     {
         //
-        // GET: /SystemManagement/Permission/
+        // GET: /Permission/
         #region IPermissionController 成员
         /// <summary>
         /// 获取所有权限列表
@@ -268,10 +268,6 @@ namespace MicroAssistantMvc.Controllers
         }
 
         #endregion
-
-
-
-
 
     }
 }
