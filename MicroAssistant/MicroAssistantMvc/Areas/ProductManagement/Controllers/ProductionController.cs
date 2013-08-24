@@ -13,7 +13,7 @@ namespace MicroAssistantMvc.Controllers
     public class ProductionController : Controller
     {
         //
-        // GET: /Production/
+        // GET: /ProductManagement/Production/
 
         #region IProductionController 成员
         /// <summary>

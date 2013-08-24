@@ -161,8 +161,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\CustomerManagement\ClientManageAreaRegistration.cs" />
-    <Compile Include="Areas\FinancialManagement\FinanceManageAreaRegistration.cs" />
+    <Compile Include="Areas\CustomerManagement\CustomerManagementAreaRegistration.cs" />
+    <Compile Include="Areas\CustomerManagement\Controllers\CustomerController.cs" />
+    <Compile Include="Areas\FinancialManagement\FinancialManagementAreaRegistration.cs" />
     <Compile Include="Areas\MarketingManagement\MarketingManagementAreaRegistration.cs" />
     <Compile Include="Areas\ProductManagement\ProductManagementAreaRegistration.cs" />
     <Compile Include="Areas\SystemManagement\SystemManagementAreaRegistration.cs" />
@@ -299,7 +300,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\CustomerManagement\Controllers\" />
     <Folder Include="Areas\CustomerManagement\Models\" />
     <Folder Include="Areas\CustomerManagement\Views\Shared\" />
     <Folder Include="Areas\FinancialManagement\Controllers\" />

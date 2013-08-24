@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace MicroAssistantMvc.Areas.ClientManage
+namespace MicroAssistantMvc.Areas.FinancialManagement
 {
-    public class ClientManageAreaRegistration : AreaRegistration
+    public class FinancialManagementAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
             get
             {
-                return "ClientManage";
+                return "FinancialManagement";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "ClientManage_default",
-                "ClientManage/{controller}/{action}/{id}",
+                "FinancialManagement_default",
+                "FinancialManagement/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }
