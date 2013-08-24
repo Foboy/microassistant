@@ -12,6 +12,8 @@ namespace MicroAssistantMvc.Controllers
 {
     public class PermissionController : Controller
     {
+        
+
         //
         // GET: /Permission/
         #region IPermissionController 成员
@@ -19,8 +21,9 @@ namespace MicroAssistantMvc.Controllers
         /// 获取所有权限列表
         /// </summary>
         /// <returns></returns>
-        public AdvancedResult<List<SysFunction>> SearchAllFunctionList()
+        public JsonResult SearchAllFunctionList()
         {
+            var Res = new JsonResult();
             AdvancedResult<List<SysFunction>> result = new AdvancedResult<List<SysFunction>>();
             try
             {
@@ -33,15 +36,18 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 获取一个角色的页面权限列表
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        public AdvancedResult<List<SysRoleFunction>> SearchFunctionListByRole(int roleId)
+        public JsonResult  SearchFunctionListByRole(int roleId)
         {
+            var Res = new JsonResult();
             AdvancedResult<List<SysRoleFunction>> result = new AdvancedResult<List<SysRoleFunction>>();
             try
             {
@@ -57,7 +63,9 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior=JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 修改一个角色的页面权限
@@ -67,19 +75,7 @@ namespace MicroAssistantMvc.Controllers
         /// <returns></returns>
         public RespResult UpdateRoleFunction(int roleId, List<int> functionids)
         {
-            RespResult result = new RespResult();
-            try
-            {
-                SysRoleFunctionAccessor.Instance.DeleteByRoleId(roleId);
-                SysRoleFunctionAccessor.Instance.Insert(roleId, functionids);
-                result.Error = AppError.ERROR_SUCCESS;
-            }
-            catch (Exception e)
-            {
-                result.Error = AppError.ERROR_FAILED;
-                result.ExMessage = e.ToString();
-            }
-            return result;
+            throw new NotImplementedException(); ;
         }
         /// <summary>
         /// 修改一个用户的角色（清除原有角色）
@@ -87,8 +83,9 @@ namespace MicroAssistantMvc.Controllers
         /// <param name="userId"></param>
         /// <param name="roleIds"></param>
         /// <returns></returns>
-        public RespResult UpdateUserRole(int userId, List<int> roleIds)
+        public JsonResult UpdateUserRole(int userId, List<int> roleIds)
         {
+            var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
@@ -113,7 +110,9 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 添加用户到某个角色(不删除原有角色)
@@ -121,8 +120,9 @@ namespace MicroAssistantMvc.Controllers
         /// <param name="userId"></param>
         /// <param name="roleIds"></param>
         /// <returns></returns>
-        public RespResult AddRolesToUser(int userId, List<int> roleIds)
+        public JsonResult AddRolesToUser(int userId, List<int> roleIds)
         {
+            var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
@@ -140,7 +140,9 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 为角色添加用户
@@ -148,8 +150,9 @@ namespace MicroAssistantMvc.Controllers
         /// <param name="roleId"></param>
         /// <param name="userIds"></param>
         /// <returns></returns>
-        public RespResult AddUsersToRole(int roleId, List<int> userIds)
+        public JsonResult AddUsersToRole(int roleId, List<int> userIds)
         {
+            var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
@@ -168,7 +171,9 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 移除用户角色
@@ -176,8 +181,9 @@ namespace MicroAssistantMvc.Controllers
         /// <param name="userId"></param>
         /// <param name="roleIds"></param>
         /// <returns></returns>
-        public RespResult RemoveUserRole(int userId, List<int> roleIds)
+        public JsonResult RemoveUserRole(int userId, List<int> roleIds)
         {
+            var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
@@ -192,15 +198,18 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 获取某个用户的角色信息列表
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public AdvancedResult<List<SysRoleUser>> SearchRolesByUserID(int userId)
+        public JsonResult SearchRolesByUserID(int userId)
         {
+            var Res = new JsonResult();
             AdvancedResult<List<SysRoleUser>> result = new AdvancedResult<List<SysRoleUser>>();
             try
             {
@@ -215,15 +224,18 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 加载某个用户所有权限列表（包括所有级）
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public AdvancedResult<List<SysFunction>> SearchUserAllFunction(int userId)
+        public JsonResult SearchUserAllFunction(int userId)
         {
+            var Res = new JsonResult();
             AdvancedResult<List<SysFunction>> result = new AdvancedResult<List<SysFunction>>();
             try
             {
@@ -237,7 +249,9 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 判断用户是否有此页面权限(暂未实现)
@@ -245,26 +259,23 @@ namespace MicroAssistantMvc.Controllers
         /// <param name="userId"></param>
         /// <param name="functionCode"></param>
         /// <returns></returns>
-        public RespResult CheckUserFunction(int userId, string functionCode)
+        public JsonResult CheckUserFunction(int userId, string functionCode)
         {
+            var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
-                List<SysFunction> list = new List<SysFunction>();
-                list = SysFunctionAccessor.Instance.SearchSysUserRolePermisson(userId);
 
-                foreach (SysFunction fuc in list)
-                {
-                    if (string.Equals(functionCode.Trim(), fuc.FunctionCode.Trim()))
-                        result.Error = AppError.ERROR_SUCCESS;
-                }
+                result.Error = AppError.ERROR_SUCCESS;
             }
             catch (Exception e)
             {
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
 
         #endregion
