@@ -24,3 +24,16 @@ E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssis
 E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.csprojResolveAssemblyReference.cache
 E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.dll
 E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.pdb
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Meta.dll
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Meta.pdb
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Common.dll
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.DataStructure.dll
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Cache.dll
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\Newtonsoft.Json.dll
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\CachemanAPI.dll
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Common.pdb
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.DataStructure.pdb
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\bin\Debug\MicroAssistant.Cache.pdb
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.csprojResolveAssemblyReference.cache
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.dll
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Meta\obj\Debug\MicroAssistant.Meta.pdb

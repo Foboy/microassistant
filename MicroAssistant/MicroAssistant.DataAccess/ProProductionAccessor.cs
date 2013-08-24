@@ -64,7 +64,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadProProduction
 
-            cmdLoadProProduction = new MySqlCommand(@"select p_id,p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id from pro_production where (@PName=0 or PName=@PName) and (@PTypeId=0 or PTypeId=@PTypeId) and (@UserId=0 or UserId=@UserId) limit @PageIndex,@PageSize");
+            cmdLoadProProduction = new MySqlCommand(@"select p_id,p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id from pro_production where (@PName='' or PName=@PName) and (@PTypeId=0 or PTypeId=@PTypeId) and (@UserId=0 or UserId=@UserId) limit @PageIndex,@PageSize");
             cmdLoadProProduction.Parameters.Add("@PName", MySqlDbType.String);
             cmdLoadProProduction.Parameters.Add("@PTypeId", MySqlDbType.Int32);
             cmdLoadProProduction.Parameters.Add("@UserId", MySqlDbType.Int32);

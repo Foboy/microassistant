@@ -23,8 +23,9 @@ namespace MicroAssistantMvc.Controllers
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public AdvancedResult<PageEntity<ProProduction>> SearchProductionSByType(string pName, int typeid, int pageIndex, int pageSize)
+        public JsonResult SearchProductionSByType(string pName, int typeid, int pageIndex, int pageSize)
         {
+            var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProduction>> result = new AdvancedResult<PageEntity<ProProduction>>();
             try
             {
@@ -40,15 +41,18 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 根据用户获取分类列表
         /// </summary>
         /// <param name="userid"></param>
         /// <returns></returns>
-        public AdvancedResult<PageEntity<ProProductionType>> SearchProductTypeListByuserID(int userid, int pageIndex, int pageSize)
+        public JsonResult  SearchProductTypeListByuserID(int userid, int pageIndex, int pageSize)
         {
+            var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProductionType>> result = new AdvancedResult<PageEntity<ProProductionType>>();
             try
             {
@@ -64,15 +68,18 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 根据产品ID获取产品信息
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
-        public AdvancedResult<ProProduction> GetProductInfoByPID(int pid)
+        public JsonResult GetProductInfoByPID(int pid)
         {
+            var Res = new JsonResult();
             AdvancedResult<ProProduction> result = new AdvancedResult<ProProduction>();
             try
             {
@@ -84,15 +91,18 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 添加入库单
         /// </summary>
         /// <param name="ppd"></param>
         /// <returns></returns>
-        public RespResult AddProductonDetail(ProProductonDetail ppd)
+        public JsonResult AddProductonDetail(ProProductonDetail ppd)
         {
+            var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
@@ -103,15 +113,18 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 获取产品入库单列表
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
-        public AdvancedResult<PageEntity<ProProductonDetail>> SearchProductonDetailList(int pid, string startTime, string endTime, int pageIndex, int pageSize)
+        public JsonResult SearchProductonDetailList(int pid, string startTime, string endTime, int pageIndex, int pageSize)
         {
+            var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProductonDetail>> result = new AdvancedResult<PageEntity<ProProductonDetail>>();
             try
             {
@@ -127,15 +140,18 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         ///添加产品
         /// </summary>
         /// <param name="pro"></param>
         /// <returns></returns>
-        public RespResult AddProduction(ProProduction pro)
+        public JsonResult AddProduction(ProProduction pro)
         {
+            var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
@@ -146,15 +162,18 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         ///添加产品分类
         /// </summary>
         /// <param name="ptype"></param>
         /// <returns></returns>
-        public RespResult AddProductionType(ProProductionType ptype)
+        public JsonResult AddProductionType(ProProductionType ptype)
         {
+            var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
@@ -165,15 +184,18 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 删除产品
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
-        public RespResult DeleteProduction(int pid)
+        public JsonResult DeleteProduction(int pid)
         {
+            var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
@@ -184,7 +206,9 @@ namespace MicroAssistantMvc.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
 
         #endregion
