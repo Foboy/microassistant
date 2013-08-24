@@ -98,11 +98,11 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Insert(ProProduction e)
+        public int Insert(ProProduction e)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdInsertProProduction = cmdInsertProProduction.Clone() as MySqlCommand;
-            bool returnValue = false;
+            int returnValue = 0;
             _cmdInsertProProduction.Connection = oc;
             try
             {
@@ -115,7 +115,8 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertProProduction.Parameters["@LowestPrice"].Value = e.LowestPrice;
                 _cmdInsertProProduction.Parameters["@MarketPrice"].Value = e.MarketPrice;
                 _cmdInsertProProduction.Parameters["@UserId"].Value = e.UserId;
-                returnValue = _cmdInsertProProduction.ExecuteNonQuery() > 0 ? true : returnValue;
+                _cmdInsertProProduction.ExecuteNonQuery();
+                returnValue = Convert.ToInt32(_cmdInsertProProduction.LastInsertedId);
                 return returnValue;
             }
             finally

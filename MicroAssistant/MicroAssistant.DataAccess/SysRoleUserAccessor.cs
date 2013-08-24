@@ -96,11 +96,11 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Insert(SysRoleUser e)
+        public int Insert(SysRoleUser e)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdInsertSysRoleUser = cmdInsertSysRoleUser.Clone() as MySqlCommand;
-            bool returnValue = false;
+            int returnValue = 0;
             _cmdInsertSysRoleUser.Connection = oc;
             try
             {
@@ -111,6 +111,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertSysRoleUser.Parameters["@UserId"].Value = e.UserId;
 
                 _cmdInsertSysRoleUser.ExecuteNonQuery();
+                returnValue = Convert.ToInt32(_cmdInsertSysRoleUser.LastInsertedId);
                 return returnValue;
             }
             finally

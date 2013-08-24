@@ -100,11 +100,11 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Insert(SysFunction e)
+        public int Insert(SysFunction e)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdInsertSysFunction = cmdInsertSysFunction.Clone() as MySqlCommand;
-            bool returnValue = false;
+            int returnValue = 0;
             _cmdInsertSysFunction.Connection = oc;
             try
             {
@@ -117,8 +117,8 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertSysFunction.Parameters["@FunctionUrl"].Value = e.FunctionUrl;
                 _cmdInsertSysFunction.Parameters["@FunctionCode"].Value = e.FunctionCode;
                 _cmdInsertSysFunction.Parameters["@Level"].Value = e.Level;
-
                 _cmdInsertSysFunction.ExecuteNonQuery();
+                returnValue = Convert.ToInt32(_cmdInsertSysFunction.LastInsertedId);
                 return returnValue;
             }
             finally

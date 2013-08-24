@@ -102,11 +102,11 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Insert(CustomerEnt e)
+        public int Insert(CustomerEnt e)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdInsertCustomerEnt = cmdInsertCustomerEnt.Clone() as MySqlCommand;
-            bool returnValue = false;
+            int returnValue = 0;
             _cmdInsertCustomerEnt.Connection = oc;
             try
             {
@@ -125,6 +125,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertCustomerEnt.Parameters["@OwnerId"].Value = e.OwnerId;
 
                 _cmdInsertCustomerEnt.ExecuteNonQuery();
+                returnValue = Convert.ToInt32(_cmdInsertCustomerEnt.LastInsertedId);
                 return returnValue;
             }
             finally

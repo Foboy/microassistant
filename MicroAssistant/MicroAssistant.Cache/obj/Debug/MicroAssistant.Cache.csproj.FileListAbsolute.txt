@@ -13,6 +13,6 @@ E:\GitHub\microassistant\MicroAssistant\MicroAssistant.Cache\obj\Debug\MicroAssi
 H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Cache\bin\Debug\MicroAssistant.Cache.dll
 H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Cache\bin\Debug\MicroAssistant.Cache.pdb
 H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Cache\bin\Debug\CachemanAPI.dll
-H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Cache\obj\Debug\MicroAssistant.Cache.csprojResolveAssemblyReference.cache
 H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Cache\obj\Debug\MicroAssistant.Cache.dll
 H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Cache\obj\Debug\MicroAssistant.Cache.pdb
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistant.Cache\obj\Debug\MicroAssistant.Cache.csprojResolveAssemblyReference.cache
