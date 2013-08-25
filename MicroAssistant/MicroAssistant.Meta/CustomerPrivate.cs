@@ -1,29 +1,42 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/8/24 15:53:57
+ * @date: 2013/8/24 16:01:37
  */
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using MicroAssistant.Common;
 
 namespace MicroAssistant.Meta
 {
     [Serializable]
-    public class CustomerEnt
+    public class CustomerPrivate
     {
         /// <summary>
         /// 
         /// </summary>
-        public Int32 CustomerEntId
+        public Int32 CustomerPrivateId
         { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public String EntName
+        public String Name
+        { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Int32 Sex
+        { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime Birthday
         { get; set; }
 
         /// <summary>
@@ -35,31 +48,25 @@ namespace MicroAssistant.Meta
         /// <summary>
         /// 
         /// </summary>
-        public String ContactUsername
+        public String Mobile
         { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public String ContactMobile
+        public String Email
         { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public String ContactPhone
+        public String Qq
         { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public String ContactEmail
-        { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public String ContactQq
+        public String Phone
         { get; set; }
 
         /// <summary>
@@ -85,16 +92,17 @@ namespace MicroAssistant.Meta
         /// 从读取器向完整实例对象赋值
         /// </summary>/// <param name="reader">数据读取器</param>
         /// <returns>返回本对象实例</returns>
-        public CustomerEnt BuildSampleEntity(IDataReader reader)
+        public CustomerPrivate BuildSampleEntity(IDataReader reader)
         {
-            this.CustomerEntId = DBConvert.ToInt32(reader["customer_ent_id"]);
-            this.EntName = DBConvert.ToString(reader["ent_name"]);
+            this.CustomerPrivateId = DBConvert.ToInt32(reader["customer_private_id"]);
+            this.Name = DBConvert.ToString(reader["name"]);
+            this.Sex = DBConvert.ToInt32(reader["sex"]);
+            this.Birthday = DBConvert.ToDateTime(reader["birthday"]);
             this.Industy = DBConvert.ToString(reader["industy"]);
-            this.ContactUsername = DBConvert.ToString(reader["contact_username"]);
-            this.ContactMobile = DBConvert.ToString(reader["contact_mobile"]);
-            this.ContactPhone = DBConvert.ToString(reader["contact_phone"]);
-            this.ContactEmail = DBConvert.ToString(reader["contact_email"]);
-            this.ContactQq = DBConvert.ToString(reader["contact_qq"]);
+            this.Mobile = DBConvert.ToString(reader["mobile"]);
+            this.Email = DBConvert.ToString(reader["email"]);
+            this.Qq = DBConvert.ToString(reader["qq"]);
+            this.Phone = DBConvert.ToString(reader["phone"]);
             this.Address = DBConvert.ToString(reader["address"]);
             this.Detail = DBConvert.ToString(reader["detail"]);
             this.EntId = DBConvert.ToInt32(reader["ent_id"]);

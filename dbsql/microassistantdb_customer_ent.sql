@@ -35,7 +35,7 @@ CREATE TABLE `customer_ent` (
   `contact_qq` varchar(45) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
   `detail` varchar(100) DEFAULT NULL,
-  `owner_id` int(11) NOT NULL COMMENT '所属销售ID',
+  `ent_id` int(11) NOT NULL COMMENT '所属企业ID',
   PRIMARY KEY (`customer_ent_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='企业客户';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-24 15:19:57
+-- Dump completed on 2013-08-24 16:15:28
