@@ -90,6 +90,7 @@ namespace MicroAssistantMvc.Controllers
             {
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
+             
             }
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
@@ -106,7 +107,8 @@ namespace MicroAssistantMvc.Controllers
             RespResult result = new RespResult();
             try
             {
-                result.Error = ProProductonDetailAccessor.Instance.Insert(ppd)>0 ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
+                result.Id=ProProductonDetailAccessor.Instance.Insert(ppd);
+                result.Error =result.Id >0 ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
             }
             catch (Exception e)
             {
@@ -152,11 +154,11 @@ namespace MicroAssistantMvc.Controllers
         public JsonResult AddProduction(ProProduction pro)
         {
             var Res = new JsonResult();
-            AdvancedResult<int> result =new AdvancedResult<int>();
+            RespResult result = new RespResult();
             try
             {
-                result.Data = ProProductionAccessor.Instance.Insert(pro);
-                result.Error = result.Data > 0 ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
+                result.Id = ProProductionAccessor.Instance.Insert(pro);
+                result.Error = result.Id > 0 ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
             }
             catch (Exception e)
             {
@@ -175,11 +177,11 @@ namespace MicroAssistantMvc.Controllers
         public JsonResult AddProductionType(ProProductionType ptype)
         {
             var Res = new JsonResult();
-            AdvancedResult<int> result = new AdvancedResult<int>();
+            RespResult result = new RespResult();
             try
             {
-                result.Data = ProProductionTypeAccessor.Instance.Insert(ptype);
-                result.Error = result.Data > 0 ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
+                result.Id = ProProductionTypeAccessor.Instance.Insert(ptype);
+                result.Error = result.Id > 0 ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
             }
             catch (Exception e)
             {

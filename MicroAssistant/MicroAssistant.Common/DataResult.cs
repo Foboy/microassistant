@@ -12,6 +12,9 @@ namespace MicroAssistant.Common
         [DataMember]
         public AppError Error { get; set; }
 
+        [DataMember]
+        public int Id { get; set; }
+
         public String ExMessage {get;set;}
 
         [DataMember(Name="ErrMsg")]
