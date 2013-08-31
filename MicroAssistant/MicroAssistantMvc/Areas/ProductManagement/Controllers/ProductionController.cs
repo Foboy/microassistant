@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MicroAssistant.Cache;
 using MicroAssistant.Common;
 using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
@@ -17,23 +18,23 @@ namespace MicroAssistantMvc.Controllers
 
         #region IProductionController 成员
         /// <summary>
-        /// 根据分类获取产品列表
+        /// 根据分类获取产品列表(Ok)
         /// </summary>
-        /// <param name="typeid"></param>
+        /// <param name="typeid">分类ID	</param>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
-        /// <returns></returns>
-        public JsonResult SearchProductionSByType(string pName, int typeid, int pageIndex, int pageSize)
+        /// <returns>产品列表（产品名称，售价，最低售价，库存。。。)</returns>
+        public JsonResult SearchProductionSByType(int typeid,string token,int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProduction>> result = new AdvancedResult<PageEntity<ProProduction>>();
             try
             {
                 PageEntity<ProProduction> list = new PageEntity<ProProduction>();
-                list = ProProductionAccessor.Instance.Search(pName, typeid, 0, pageIndex, pageSize);
+                int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                list = ProProductionAccessor.Instance.Search(string.Empty, typeid, userid, pageIndex, pageSize);
                 result.Error = AppError.ERROR_SUCCESS;
                 result.Data = list;
-
             }
             catch (Exception e)
             {
@@ -50,12 +51,13 @@ namespace MicroAssistantMvc.Controllers
         /// </summary>
         /// <param name="userid"></param>
         /// <returns></returns>
-        public JsonResult  SearchProductTypeListByuserID(int userid, int pageIndex, int pageSize)
+        public JsonResult SearchProductTypeListByuserID(string token, int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProductionType>> result = new AdvancedResult<PageEntity<ProProductionType>>();
             try
             {
+                int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 PageEntity<ProProductionType> list = new PageEntity<ProProductionType>();
                 list = ProProductionTypeAccessor.Instance.Search(0, string.Empty, userid, pageIndex, pageSize);
                 result.Error = AppError.ERROR_SUCCESS;
