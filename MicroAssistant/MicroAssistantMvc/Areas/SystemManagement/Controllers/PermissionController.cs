@@ -134,11 +134,13 @@ namespace MicroAssistantMvc.Controllers
                     SysRoleUserAccessor.Instance.Insert(item);
                 }
                 result.Error = AppError.ERROR_SUCCESS;
+                result.Id = userId;
             }
             catch (Exception e)
             {
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
+               
             }
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;

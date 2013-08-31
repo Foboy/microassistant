@@ -71,9 +71,9 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
                 CustomerEnt ce = new CustomerEnt();
                 //通过CustomerEntModel序列化为实体
                 ce.OwnerId = Convert.ToInt32(ownerId);
-                bool check = CustomerEntAccessor.Instance.Insert(ce);
-                if (check)
-                    result.Error = AppError.ERROR_SUCCESS;
+                //bool check =(bool) CustomerEntAccessor.Instance.Insert(ce);
+                //if (check)
+                //    result.Error = AppError.ERROR_SUCCESS;
 
             }
             catch (Exception e)
