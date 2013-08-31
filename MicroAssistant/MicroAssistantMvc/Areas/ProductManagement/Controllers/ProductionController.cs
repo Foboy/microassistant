@@ -47,11 +47,15 @@ namespace MicroAssistantMvc.Controllers
             return Res;
         }
         /// <summary>
-        /// 根据用户获取分类列表
+        /// 根据企业id获取分类列表
         /// </summary>
-        /// <param name="userid"></param>
+        /// <param name="entid"></param>
         /// <returns></returns>
+<<<<<<< HEAD
         public JsonResult SearchProductTypeListByuserID(string token, int pageIndex, int pageSize)
+=======
+        public JsonResult  SearchProductTypeListByuserID(int entid, int pageIndex, int pageSize)
+>>>>>>> eb61f4badf2d8756e4603e514f3f8deb5c44baf1
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProductionType>> result = new AdvancedResult<PageEntity<ProProductionType>>();
@@ -59,7 +63,7 @@ namespace MicroAssistantMvc.Controllers
             {
                 int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 PageEntity<ProProductionType> list = new PageEntity<ProProductionType>();
-                list = ProProductionTypeAccessor.Instance.Search(0, string.Empty, userid, pageIndex, pageSize);
+                list = ProProductionTypeAccessor.Instance.Search(0, string.Empty, entid,0,0,pageIndex, pageSize);
                 result.Error = AppError.ERROR_SUCCESS;
                 result.Data = list;
 

@@ -1,7 +1,7 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/8/31 14:51:39
+ * @date: 2013/8/31 14:46:33
  */
 using System;
 using System.Collections.Generic;
@@ -13,36 +13,42 @@ using MicroAssistant.Common;
 namespace MicroAssistant.Meta
 {
     [Serializable]
-    public class ProProductionType
+    public class ContractHowtopay
     {
         /// <summary>
         /// 
         /// </summary>
-        public Int32 PTypeId
+        public Int32 HowtopayId
         { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public String PTypeName
+        public Int32 InstalmentsNo
         { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Int32 EntId
+        public Double Amount
         { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Int32 FatherId
+        public DateTime PayTime
         { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public Int32 PicId
+        public DateTime ReceivedTime
+        { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Int32 Isreceived
         { get; set; }
 
 
@@ -50,13 +56,14 @@ namespace MicroAssistant.Meta
         /// 从读取器向完整实例对象赋值
         /// </summary>/// <param name="reader">数据读取器</param>
         /// <returns>返回本对象实例</returns>
-        public ProProductionType BuildSampleEntity(IDataReader reader)
+        public ContractHowtopay BuildSampleEntity(IDataReader reader)
         {
-            this.PTypeId = DBConvert.ToInt32(reader["p_type_id"]);
-            this.PTypeName = DBConvert.ToString(reader["p_type_name"]);
-            this.EntId = DBConvert.ToInt32(reader["ent_id"]);
-            this.FatherId = DBConvert.ToInt32(reader["father_id"]);
-            this.PicId = DBConvert.ToInt32(reader["pic_id"]);
+            this.HowtopayId = DBConvert.ToInt32(reader["howtopay_id"]);
+            this.InstalmentsNo = DBConvert.ToInt32(reader["instalments_no"]);
+            this.Amount = DBConvert.ToDouble(reader["amount"]);
+            this.PayTime = DBConvert.ToDateTime(reader["pay_time"]);
+            this.ReceivedTime = DBConvert.ToDateTime(reader["received_time"]);
+            this.Isreceived = DBConvert.ToInt32(reader["IsReceived"]);
             return this;
         }
     }

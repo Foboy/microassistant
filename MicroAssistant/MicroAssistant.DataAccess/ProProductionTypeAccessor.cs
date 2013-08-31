@@ -1,7 +1,7 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/6/14 18:58:12
+ * @date: 2013/8/31 14:50:55
  */
 using System;
 using System.Collections.Generic;
@@ -24,24 +24,29 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdUpdateProProductionType;
         private MySqlCommand cmdLoadProProductionType;
         private MySqlCommand cmdLoadAllProProductionType;
-        private MySqlCommand cmdLoadProProductionTypeCount;
+        private MySqlCommand cmdGetProProductionTypeCount;
         private MySqlCommand cmdGetProProductionType;
 
         private ProProductionTypeAccessor()
         {
-            #region cmdInsertProProductionType 添加产品分类
+            #region cmdInsertProProductionType
 
-            cmdInsertProProductionType = new MySqlCommand("INSERT INTO pro_production_type(p_type_name,user_id) values (@PTypeName,@UserId)");
+            cmdInsertProProductionType = new MySqlCommand("INSERT INTO pro_production_type(p_type_name,ent_id,father_id,pic_id) values (@PTypeName,@EntId,@FatherId,@PicId)");
+
             cmdInsertProProductionType.Parameters.Add("@PTypeName", MySqlDbType.String);
-            cmdInsertProProductionType.Parameters.Add("@UserId", MySqlDbType.Int32);
-            #endregion 添加产品分类
+            cmdInsertProProductionType.Parameters.Add("@EntId", MySqlDbType.Int32);
+            cmdInsertProProductionType.Parameters.Add("@FatherId", MySqlDbType.Int32);
+            cmdInsertProProductionType.Parameters.Add("@PicId", MySqlDbType.Int32);
+            #endregion
 
             #region cmdUpdateProProductionType
 
-            cmdUpdateProProductionType = new MySqlCommand("update pro_production_type set p_type_id = @PTypeId,p_type_name = @PTypeName,user_id = @UserId where p_type_id = @PTypeId");
+            cmdUpdateProProductionType = new MySqlCommand(" update pro_production_type set p_type_name = @PTypeName,ent_id = @EntId,father_id = @FatherId,pic_id = @PicId where p_type_id = @PTypeId");
             cmdUpdateProProductionType.Parameters.Add("@PTypeId", MySqlDbType.Int32);
             cmdUpdateProProductionType.Parameters.Add("@PTypeName", MySqlDbType.String);
-            cmdUpdateProProductionType.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdUpdateProProductionType.Parameters.Add("@EntId", MySqlDbType.Int32);
+            cmdUpdateProProductionType.Parameters.Add("@FatherId", MySqlDbType.Int32);
+            cmdUpdateProProductionType.Parameters.Add("@PicId", MySqlDbType.Int32);
 
             #endregion
 
@@ -53,38 +58,34 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadProProductionType
 
-            cmdLoadProProductionType = new MySqlCommand(@"select p_type_id,p_type_name,user_id from pro_production_type where (@PTypeId=0 or PTypeId=@PTypeId) and (@PTypeName ='' or PTypeName=@PTypeName) and (@UserId=0 or user_id=@UserId)  limit @PageIndex,@PageSize");
-            cmdLoadProProductionType.Parameters.Add("@PageIndex", MySqlDbType.Int32);
-            cmdLoadProProductionType.Parameters.Add("@PageSize", MySqlDbType.Int32);
-            cmdLoadProProductionType.Parameters.Add("@PTypeId", MySqlDbType.Int32);
-            cmdLoadProProductionType.Parameters.Add("@PTypeName", MySqlDbType.String);
-            cmdLoadProProductionType.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdLoadProProductionType = new MySqlCommand(@" select p_type_id,p_type_name,ent_id,father_id,pic_id from pro_production_type limit @PageIndex,@PageSize");
+            cmdLoadProProductionType.Parameters.Add("@pageIndex", MySqlDbType.Int32);
+            cmdLoadProProductionType.Parameters.Add("@pageSize", MySqlDbType.Int32);
+
             #endregion
 
-            #region cmdLoadProProductionTypeCount
+            #region cmdGetProProductionTypeCount
 
-            cmdLoadProProductionTypeCount = new MySqlCommand(" select count(*)  from pro_production_type where (@PTypeId=0 or PTypeId=@PTypeId) and (@PTypeName ='' or PTypeName=@PTypeName) and (@UserId=0 or UserId=@UserId) ");
-            cmdLoadProProductionTypeCount.Parameters.Add("@PTypeId", MySqlDbType.Int32);
-            cmdLoadProProductionTypeCount.Parameters.Add("@PTypeName", MySqlDbType.String);
-            cmdLoadProProductionTypeCount.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdGetProProductionTypeCount = new MySqlCommand(" select count(*)  from pro_production_type ");
+
             #endregion
 
             #region cmdLoadAllProProductionType
 
-            cmdLoadAllProProductionType = new MySqlCommand(" select p_type_id,p_type_name,user_id from pro_production_type");
+            cmdLoadAllProProductionType = new MySqlCommand(" select p_type_id,p_type_name,ent_id,father_id,pic_id from pro_production_type");
 
             #endregion
 
             #region cmdGetProProductionType
 
-            cmdGetProProductionType = new MySqlCommand(" select p_type_id,p_type_name,user_id from pro_production_type where p_type_id = @PTypeId");
+            cmdGetProProductionType = new MySqlCommand(" select p_type_id,p_type_name,ent_id,father_id,pic_id from pro_production_type where p_type_id = @PTypeId");
             cmdGetProProductionType.Parameters.Add("@PTypeId", MySqlDbType.Int32);
 
             #endregion
         }
 
         /// <summary>
-        /// 添加产品分类
+        /// 添加数据
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
@@ -98,13 +99,15 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
+
                 _cmdInsertProProductionType.Parameters["@PTypeName"].Value = e.PTypeName;
-                _cmdInsertProProductionType.Parameters["@UserId"].Value = e.UserId;
+                _cmdInsertProProductionType.Parameters["@EntId"].Value = e.EntId;
+                _cmdInsertProProductionType.Parameters["@FatherId"].Value = e.FatherId;
+                _cmdInsertProProductionType.Parameters["@PicId"].Value = e.PicId;
 
                 _cmdInsertProProductionType.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertProProductionType.LastInsertedId);
                 return returnValue;
-                
             }
             finally
             {
@@ -165,7 +168,9 @@ namespace MicroAssistant.DataAccess
 
                 _cmdUpdateProProductionType.Parameters["@PTypeId"].Value = e.PTypeId;
                 _cmdUpdateProProductionType.Parameters["@PTypeName"].Value = e.PTypeName;
-                _cmdUpdateProProductionType.Parameters["@UserId"].Value = e.UserId;
+                _cmdUpdateProProductionType.Parameters["@EntId"].Value = e.EntId;
+                _cmdUpdateProProductionType.Parameters["@FatherId"].Value = e.FatherId;
+                _cmdUpdateProProductionType.Parameters["@PicId"].Value = e.PicId;
 
                 _cmdUpdateProProductionType.ExecuteNonQuery();
 
@@ -188,14 +193,14 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<ProProductionType> Search(Int32 PTypeId, String PTypeName, Int32 UserId, int pageIndex, int pageSize)
+        public PageEntity<ProProductionType> Search(Int32 PTypeId, String PTypeName, Int32 EntId, Int32 FatherId, Int32 PicId, int pageIndex, int pageSize)
         {
             PageEntity<ProProductionType> returnValue = new PageEntity<ProProductionType>();
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdLoadProProductionType = cmdLoadProProductionType.Clone() as MySqlCommand;
-            MySqlCommand _cmdLoadProProductionTypeCount = cmdLoadProProductionTypeCount.Clone() as MySqlCommand;
+            MySqlCommand _cmdGetProProductionTypeCount = cmdGetProProductionTypeCount.Clone() as MySqlCommand;
             _cmdLoadProProductionType.Connection = oc;
-            _cmdLoadProProductionTypeCount.Connection = oc;
+            _cmdGetProProductionTypeCount.Connection = oc;
 
             try
             {
@@ -203,7 +208,9 @@ namespace MicroAssistant.DataAccess
                 _cmdLoadProProductionType.Parameters["@PageSize"].Value = pageSize;
                 _cmdLoadProProductionType.Parameters["@PTypeId"].Value = PTypeId;
                 _cmdLoadProProductionType.Parameters["@PTypeName"].Value = PTypeName;
-                _cmdLoadProProductionType.Parameters["@UserId"].Value = UserId;
+                _cmdLoadProProductionType.Parameters["@EntId"].Value = EntId;
+                _cmdLoadProProductionType.Parameters["@FatherId"].Value = FatherId;
+                _cmdLoadProProductionType.Parameters["@PicId"].Value = PicId;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
@@ -213,10 +220,7 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new ProProductionType().BuildSampleEntity(reader));
                 }
-                _cmdLoadProProductionTypeCount.Parameters["@PTypeId"].Value = PTypeId;
-                _cmdLoadProProductionTypeCount.Parameters["@PTypeName"].Value = PTypeName;
-                _cmdLoadProProductionTypeCount.Parameters["@UserId"].Value = UserId;
-                returnValue.RecordsCount = (int)_cmdLoadProProductionTypeCount.ExecuteScalar();
+                returnValue.RecordsCount = (int)_cmdGetProProductionTypeCount.ExecuteScalar();
             }
             finally
             {
@@ -225,8 +229,8 @@ namespace MicroAssistant.DataAccess
                 oc = null;
                 _cmdLoadProProductionType.Dispose();
                 _cmdLoadProProductionType = null;
-                _cmdLoadProProductionTypeCount.Dispose();
-                _cmdLoadProProductionTypeCount = null;
+                _cmdGetProProductionTypeCount.Dispose();
+                _cmdGetProProductionTypeCount = null;
                 GC.Collect();
             }
             return returnValue;
@@ -240,8 +244,7 @@ namespace MicroAssistant.DataAccess
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdLoadAllProProductionType = cmdLoadAllProProductionType.Clone() as MySqlCommand;
-            _cmdLoadAllProProductionType.Connection = oc;
-            List<ProProductionType> returnValue = new List<ProProductionType>();
+            _cmdLoadAllProProductionType.Connection = oc; List<ProProductionType> returnValue = new List<ProProductionType>();
             try
             {
                 _cmdLoadAllProProductionType.CommandText = string.Format(_cmdLoadAllProProductionType.CommandText, string.Empty);
