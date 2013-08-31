@@ -16,31 +16,31 @@ namespace MicroAssistant.Meta
     public class ProProductionType
     {
         /// <summary>
-        /// 
+        /// 产品类型ID
         /// </summary>
         public Int32 PTypeId
         { get; set; }
 
         /// <summary>
-        /// 
+        ///产品类型名称 
         /// </summary>
         public String PTypeName
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 企业ID
         /// </summary>
         public Int32 EntId
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 产品分类父类ID
         /// </summary>
         public Int32 FatherId
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 产品分类图片
         /// </summary>
         public Int32 PicId
         { get; set; }
