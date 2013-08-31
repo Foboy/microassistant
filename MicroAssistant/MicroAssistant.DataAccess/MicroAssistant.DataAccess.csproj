@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContractHowtopayAccessor.cs" />
+    <Compile Include="ContractInfoAccessor.cs" />
     <Compile Include="CustomerEntAccessor.cs" />
     <Compile Include="CustomerPrivateAccessor.cs" />
     <Compile Include="DataBase.cs" />
@@ -50,6 +52,7 @@
     <Compile Include="ProProductionAccessor.cs" />
     <Compile Include="ProProductionTypeAccessor.cs" />
     <Compile Include="ProProductonDetailAccessor.cs" />
+    <Compile Include="ResPicAccessor.cs" />
     <Compile Include="SysFunctionAccessor.cs" />
     <Compile Include="SysRoleAccessor.cs" />
     <Compile Include="SysRoleFunctionAccessor.cs" />

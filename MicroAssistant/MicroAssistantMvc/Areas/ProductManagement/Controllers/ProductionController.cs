@@ -46,18 +46,18 @@ namespace MicroAssistantMvc.Controllers
             return Res;
         }
         /// <summary>
-        /// 根据用户获取分类列表
+        /// 根据企业id获取分类列表
         /// </summary>
-        /// <param name="userid"></param>
+        /// <param name="entid"></param>
         /// <returns></returns>
-        public JsonResult  SearchProductTypeListByuserID(int userid, int pageIndex, int pageSize)
+        public JsonResult  SearchProductTypeListByuserID(int entid, int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProductionType>> result = new AdvancedResult<PageEntity<ProProductionType>>();
             try
             {
                 PageEntity<ProProductionType> list = new PageEntity<ProProductionType>();
-                list = ProProductionTypeAccessor.Instance.Search(0, string.Empty, userid, pageIndex, pageSize);
+                list = ProProductionTypeAccessor.Instance.Search(0, string.Empty, entid,0,0,pageIndex, pageSize);
                 result.Error = AppError.ERROR_SUCCESS;
                 result.Data = list;
 
