@@ -56,9 +56,9 @@ namespace MicroAssistant.DataAccess
             cmdLoadProProductionType = new MySqlCommand(@"select p_type_id,p_type_name,user_id from pro_production_type where (@PTypeId=0 or PTypeId=@PTypeId) and (@PTypeName ='' or PTypeName=@PTypeName) and (@UserId=0 or user_id=@UserId)  limit @PageIndex,@PageSize");
             cmdLoadProProductionType.Parameters.Add("@PageIndex", MySqlDbType.Int32);
             cmdLoadProProductionType.Parameters.Add("@PageSize", MySqlDbType.Int32);
-            cmdLoadProProductionType.Parameters.Add("@PTypeId",MySqlDbType.Int32);
-            cmdLoadProProductionType.Parameters.Add("@PTypeName",MySqlDbType.String);
-            cmdLoadProProductionType.Parameters.Add("@UserId",MySqlDbType.Int32);
+            cmdLoadProProductionType.Parameters.Add("@PTypeId", MySqlDbType.Int32);
+            cmdLoadProProductionType.Parameters.Add("@PTypeName", MySqlDbType.String);
+            cmdLoadProProductionType.Parameters.Add("@UserId", MySqlDbType.Int32);
             #endregion
 
             #region cmdLoadProProductionTypeCount
@@ -88,11 +88,11 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Insert(ProProductionType e)
+        public int Insert(ProProductionType e)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdInsertProProductionType = cmdInsertProProductionType.Clone() as MySqlCommand;
-            bool returnValue = false;
+            int returnValue = 0;
             _cmdInsertProProductionType.Connection = oc;
             try
             {
@@ -101,8 +101,10 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertProProductionType.Parameters["@PTypeName"].Value = e.PTypeName;
                 _cmdInsertProProductionType.Parameters["@UserId"].Value = e.UserId;
 
-                returnValue = _cmdInsertProProductionType.ExecuteNonQuery() > 0 ? true : returnValue;
+                _cmdInsertProProductionType.ExecuteNonQuery();
+                returnValue = Convert.ToInt32(_cmdInsertProProductionType.LastInsertedId);
                 return returnValue;
+                
             }
             finally
             {
@@ -238,11 +240,11 @@ namespace MicroAssistant.DataAccess
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdLoadAllProProductionType = cmdLoadAllProProductionType.Clone() as MySqlCommand;
-            _cmdLoadAllProProductionType.Connection = oc; 
+            _cmdLoadAllProProductionType.Connection = oc;
             List<ProProductionType> returnValue = new List<ProProductionType>();
             try
             {
-                _cmdLoadAllProProductionType.CommandText =string.Format(_cmdLoadAllProProductionType.CommandText, string.Empty);
+                _cmdLoadAllProProductionType.CommandText = string.Format(_cmdLoadAllProProductionType.CommandText, string.Empty);
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
 

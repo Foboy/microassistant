@@ -1,6 +1,0 @@
-E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Cache\bin\Debug\BabyPlan.Cache.dll
-E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Cache\bin\Debug\BabyPlan.Cache.pdb
-E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Cache\bin\Debug\CachemanAPI.dll
-E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Cache\obj\Debug\ResolveAssemblyReference.cache
-E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Cache\obj\Debug\BabyPlan.Cache.dll
-E:\baby\source\baby-plan\BabyPlanProject\BabyPlan.Cache\obj\Debug\BabyPlan.Cache.pdb

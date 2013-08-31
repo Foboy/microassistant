@@ -106,11 +106,11 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Insert(ProProductonDetail e)
+        public int Insert(ProProductonDetail e)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdInsertProProductonDetail = cmdInsertProProductonDetail.Clone() as MySqlCommand;
-            bool returnValue = false;
+            int returnValue = 0;
             _cmdInsertProProductonDetail.Connection = oc;
             try
             {
@@ -122,7 +122,8 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertProProductonDetail.Parameters["@CreateTime"].Value = e.CreateTime;
                 _cmdInsertProProductonDetail.Parameters["@UserId"].Value = e.UserId;
                 _cmdInsertProProductonDetail.Parameters["@PId"].Value = e.Pid;
-                returnValue = _cmdInsertProProductonDetail.ExecuteNonQuery() > 0 ? true : returnValue;
+                _cmdInsertProProductonDetail.ExecuteNonQuery();
+                returnValue = Convert.ToInt32(_cmdInsertProProductonDetail.LastInsertedId);
                 return returnValue;
             }
             finally

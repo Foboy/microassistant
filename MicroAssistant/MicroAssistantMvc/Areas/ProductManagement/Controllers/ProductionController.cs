@@ -106,7 +106,7 @@ namespace MicroAssistantMvc.Controllers
             RespResult result = new RespResult();
             try
             {
-                result.Error = ProProductonDetailAccessor.Instance.Insert(ppd) ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
+                result.Error = ProProductonDetailAccessor.Instance.Insert(ppd)>0 ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
             }
             catch (Exception e)
             {
@@ -152,10 +152,11 @@ namespace MicroAssistantMvc.Controllers
         public JsonResult AddProduction(ProProduction pro)
         {
             var Res = new JsonResult();
-            RespResult result = new RespResult();
+            AdvancedResult<int> result =new AdvancedResult<int>();
             try
             {
-                result.Error = ProProductionAccessor.Instance.Insert(pro) ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
+                result.Data = ProProductionAccessor.Instance.Insert(pro);
+                result.Error = result.Data > 0 ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
             }
             catch (Exception e)
             {
@@ -174,10 +175,11 @@ namespace MicroAssistantMvc.Controllers
         public JsonResult AddProductionType(ProProductionType ptype)
         {
             var Res = new JsonResult();
-            RespResult result = new RespResult();
+            AdvancedResult<int> result = new AdvancedResult<int>();
             try
             {
-                result.Error = ProProductionTypeAccessor.Instance.Insert(ptype) ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
+                result.Data = ProProductionTypeAccessor.Instance.Insert(ptype);
+                result.Error = result.Data > 0 ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
             }
             catch (Exception e)
             {
