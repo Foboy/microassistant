@@ -1,0 +1,1025 @@
+﻿body {
+    margin: 0px;
+    text-align: center;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+#main_container {
+    position: relative;
+    left: -70px;
+    width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0_normal {
+    background-image: url('../老板模式_files/u0_normal.png');
+}
+
+.u0_container {
+    position:absolute;
+    left:70px;
+    top:0px;
+    width:1024px;
+    height:900px;
+}
+
+#u0_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:1030px;
+    height:906px;
+}
+
+.u1 {
+    position:absolute;
+    left:2px;
+    top:442px;
+    width:1020px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u2_normal {
+    background-image: url('../老板模式_files/u2_normal.png');
+}
+
+.u2_container {
+    position:absolute;
+    left:1060px;
+    top:9px;
+    width:25px;
+    height:25px;
+}
+
+#u2_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:25px;
+    height:25px;
+}
+
+.u3 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:21px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u4 {
+    position:absolute;
+    left:93px;
+    top:14px;
+    width:150px;
+    height:22px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u5_normal {
+    background-image: url('../老板模式_files/u5_normal.png');
+}
+
+.u5_container {
+    position:absolute;
+    left:70px;
+    top:92px;
+    width:1024px;
+    height:392px;
+}
+
+#u5_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:1030px;
+    height:398px;
+}
+
+.u6 {
+    position:absolute;
+    left:2px;
+    top:188px;
+    width:1020px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u7_normal {
+    background-image: url('../老板模式_files/u7_normal.png');
+}
+
+.u7_container {
+    position:absolute;
+    left:295px;
+    top:139px;
+    width:284px;
+    height:327px;-webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+
+}
+
+#u7_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:290px;
+    height:333px;
+}
+
+.u8 {
+    position:absolute;
+    left:2px;
+    top:156px;
+    width:280px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u9 {
+    position:absolute;
+    left:657px;
+    top:171px;
+    width:162px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u10 {
+    position:absolute;
+    left:657px;
+    top:212px;
+    width:162px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u11 {
+    position:absolute;
+    left:657px;
+    top:252px;
+    width:162px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u12 {
+    position:absolute;
+    left:683px;
+    top:293px;
+    width:136px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u13 {
+    position:absolute;
+    left:657px;
+    top:334px;
+    width:162px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u14_normal {
+    background-image: url('../老板模式_files/u14_normal.png');
+}
+
+.u14_container {
+    position:absolute;
+    left:908px;
+    top:113px;
+    width:147px;
+    height:32px;
+}
+
+#u14_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:153px;
+    height:38px;
+}
+
+.u15 {
+    position:absolute;
+    left:2px;
+    top:8px;
+    width:143px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u16_normal {
+    background-image: url('../老板模式_files/u16_normal.png');
+}
+
+.u16_container {
+    position:absolute;
+    left:1038px;
+    top:126px;
+    width:8px;
+    height:5px;
+}
+
+#u16_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:14px;
+    height:11px;
+}
+
+.u17 {
+    position:absolute;
+    left:2px;
+    top:-6px;
+    width:4px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u18_normal {
+    background-image: url('../老板模式_files/u14_normal.png');
+}
+
+.u18_container {
+    position:absolute;
+    left:908px;
+    top:145px;
+    width:147px;
+    height:32px;
+}
+
+#u18_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:153px;
+    height:38px;
+}
+
+.u19 {
+    position:absolute;
+    left:2px;
+    top:8px;
+    width:143px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u20_normal {
+    background-image: url('../老板模式_files/u14_normal.png');
+}
+
+.u20_container {
+    position:absolute;
+    left:908px;
+    top:177px;
+    width:147px;
+    height:32px;
+}
+
+#u20_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:153px;
+    height:38px;
+}
+
+.u21 {
+    position:absolute;
+    left:2px;
+    top:8px;
+    width:143px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u22_line {
+    background-image: url('../老板模式_files/u22_line.png');
+}
+
+.u22_line {
+    position:absolute;
+    left:0px;
+    top:4px;
+    width:411px;
+    height:3px;
+}
+
+.u22 {
+    position:absolute;
+    left:188px;
+    top:560px;
+    width:411px;
+    height:10px;
+    
+}
+
+.u23_line {
+    background-image: url('../老板模式_files/u23_line.png');
+}
+
+.u23_line {
+    position:absolute;
+    left:0px;
+    top:4px;
+    width:411px;
+    height:3px;
+}
+
+.u23 {
+    position:absolute;
+    left:188px;
+    top:645px;
+    width:411px;
+    height:10px;
+    
+}
+
+.u24_line {
+    background-image: url('../老板模式_files/u24_line.png');
+}
+
+.u24_line {
+    position:absolute;
+    left:0px;
+    top:4px;
+    width:411px;
+    height:3px;
+}
+
+.u24 {
+    position:absolute;
+    left:188px;
+    top:730px;
+    width:411px;
+    height:10px;
+    
+}
+
+.u25_line {
+    background-image: url('../老板模式_files/u25_line.png');
+}
+
+.u25_line {
+    position:absolute;
+    left:0px;
+    top:4px;
+    width:411px;
+    height:3px;
+}
+
+.u25 {
+    position:absolute;
+    left:188px;
+    top:815px;
+    width:411px;
+    height:10px;
+    
+}
+
+.u26_normal {
+    background-image: url('../老板模式_files/u26_normal.png');
+}
+
+.u26_container {
+    position:absolute;
+    left:492px;
+    top:730px;
+    width:74px;
+    height:90px;
+}
+
+#u26_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:80px;
+    height:96px;
+}
+
+.u27 {
+    position:absolute;
+    left:2px;
+    top:37px;
+    width:70px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u28_normal {
+    background-image: url('../老板模式_files/u28_normal.png');
+}
+
+.u28_container {
+    position:absolute;
+    left:492px;
+    top:596px;
+    width:74px;
+    height:134px;
+}
+
+#u28_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:80px;
+    height:140px;
+}
+
+.u29 {
+    position:absolute;
+    left:2px;
+    top:59px;
+    width:70px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u30 {
+    position:absolute;
+    left:505px;
+    top:831px;
+    width:61px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u31_normal {
+    background-image: url('../老板模式_files/u31_normal.png');
+}
+
+.u31_container {
+    position:absolute;
+    left:356px;
+    top:683px;
+    width:74px;
+    height:137px;
+}
+
+#u31_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:80px;
+    height:143px;
+}
+
+.u32 {
+    position:absolute;
+    left:2px;
+    top:60px;
+    width:70px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u33_normal {
+    background-image: url('../老板模式_files/u33_normal.png');
+}
+
+.u33_container {
+    position:absolute;
+    left:356px;
+    top:645px;
+    width:74px;
+    height:38px;
+}
+
+#u33_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:80px;
+    height:44px;
+}
+
+.u34 {
+    position:absolute;
+    left:2px;
+    top:11px;
+    width:70px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u35_normal {
+    background-image: url('../老板模式_files/u35_normal.png');
+}
+
+.u35_container {
+    position:absolute;
+    left:223px;
+    top:628px;
+    width:74px;
+    height:192px;
+}
+
+#u35_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:80px;
+    height:198px;
+}
+
+.u36 {
+    position:absolute;
+    left:2px;
+    top:88px;
+    width:70px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u37 {
+    position:absolute;
+    left:363px;
+    top:831px;
+    width:61px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u38 {
+    position:absolute;
+    left:230px;
+    top:831px;
+    width:61px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u39_normal {
+    background-image: url('../老板模式_files/u39_normal.png');
+}
+
+.u39_container {
+    position:absolute;
+    left:401px;
+    top:874px;
+    width:25px;
+    height:10px;
+}
+
+#u39_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:31px;
+    height:16px;
+}
+
+.u40 {
+    position:absolute;
+    left:2px;
+    top:-3px;
+    width:21px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u41_normal {
+    background-image: url('../老板模式_files/u41_normal.png');
+}
+
+.u41_container {
+    position:absolute;
+    left:315px;
+    top:873px;
+    width:25px;
+    height:10px;
+}
+
+#u41_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:31px;
+    height:16px;
+}
+
+.u42 {
+    position:absolute;
+    left:2px;
+    top:-3px;
+    width:21px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u43 {
+    position:absolute;
+    left:344px;
+    top:873px;
+    width:44px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u44 {
+    position:absolute;
+    left:431px;
+    top:873px;
+    width:44px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u45 {
+    position:absolute;
+    left:325px;
+    top:516px;
+    width:151px;
+    height:22px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u46 {
+    position:absolute;
+    left:396px;
+    top:107px;
+    width:92px;
+    height:22px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u47_normal {
+    background-image: url('../老板模式_files/u47_normal.png');
+}
+
+.u47_container {
+    position:absolute;
+    left:515px;
+    top:510px;
+    width:78px;
+    height:25px;
+}
+
+#u47_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:84px;
+    height:31px;
+}
+
+.u48 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:74px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u49_normal {
+    background-image: url('../老板模式_files/u49_normal.png');
+}
+
+.u49_container {
+    position:absolute;
+    left:581px;
+    top:519px;
+    width:6px;
+    height:5px;
+}
+
+#u49_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:12px;
+    height:11px;
+}
+
+.u50 {
+    position:absolute;
+    left:2px;
+    top:-6px;
+    width:2px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u51 {
+    position:absolute;
+    left:496px;
+    top:656px;
+    width:67px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u52 {
+    position:absolute;
+    left:496px;
+    top:769px;
+    width:67px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u53 {
+    position:absolute;
+    left:360px;
+    top:661px;
+    width:67px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u54 {
+    position:absolute;
+    left:360px;
+    top:746px;
+    width:67px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u55 {
+    position:absolute;
+    left:227px;
+    top:708px;
+    width:67px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u56 {
+    position:absolute;
+    left:226px;
+    top:612px;
+    width:67px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u57 {
+    position:absolute;
+    left:360px;
+    top:627px;
+    width:67px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u58 {
+    position:absolute;
+    left:496px;
+    top:580px;
+    width:67px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u59_normal {
+    background-image: url('../老板模式_files/u5_normal.png');
+}
+
+.u59_container {
+    position:absolute;
+    left:70px;
+    top:900px;
+    width:1024px;
+    height:392px;
+}
+
+#u59_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:1030px;
+    height:398px;
+}
+
+.u60 {
+    position:absolute;
+    left:2px;
+    top:188px;
+    width:1020px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+

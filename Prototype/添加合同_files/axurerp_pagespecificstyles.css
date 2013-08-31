@@ -1710,25 +1710,25 @@ div {
 
 .u101_container {
     position:absolute;
-    left:271px;
+    left:108px;
     top:55px;
-    width:555px;
-    height:810px;
+    width:890px;
+    height:675px;
 }
 
 #u101_img {
     position:absolute;
     left:-3px;
     top:-3px;
-    width:561px;
-    height:816px;
+    width:896px;
+    height:681px;
 }
 
 .u102 {
     position:absolute;
     left:2px;
-    top:397px;
-    width:551px;
+    top:330px;
+    width:886px;
     height:16px;
     ;
     ;
@@ -1744,7 +1744,7 @@ div {
 
 .u103_container {
     position:absolute;
-    left:806px;
+    left:978px;
     top:44px;
     width:32px;
     height:32px;
@@ -1774,8 +1774,8 @@ div {
 
 .u105 {
     position:absolute;
-    left:293px;
-    top:65px;
+    left:124px;
+    top:69px;
     width:171px;
     height:24px;
     ;
@@ -1792,9 +1792,9 @@ div {
 
 .u106_container {
     position:absolute;
-    left:397px;
-    top:126px;
-    width:281px;
+    left:263px;
+    top:123px;
+    width:230px;
     height:40px;
 }
 
@@ -1802,7 +1802,7 @@ div {
     position:absolute;
     left:-3px;
     top:-3px;
-    width:287px;
+    width:236px;
     height:46px;
 }
 
@@ -1810,7 +1810,7 @@ div {
     position:absolute;
     left:2px;
     top:12px;
-    width:277px;
+    width:226px;
     height:16px;
     ;
     ;
@@ -1822,10 +1822,1228 @@ div {
 
 .u108 {
     position:absolute;
-    left:308px;
-    top:135px;
+    left:174px;
+    top:132px;
     width:112px;
     height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u109_normal {
+    background-image: url('../添加合同_files/机会类型_u106_normal.png');
+}
+
+.u109_container {
+    position:absolute;
+    left:263px;
+    top:192px;
+    width:230px;
+    height:40px;
+}
+
+#u109_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:236px;
+    height:46px;
+}
+
+.u110 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u111 {
+    position:absolute;
+    left:174px;
+    top:201px;
+    width:112px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u112_normal {
+    background-image: url('../添加合同_files/机会类型_u106_normal.png');
+}
+
+.u112_container {
+    position:absolute;
+    left:263px;
+    top:257px;
+    width:230px;
+    height:40px;
+}
+
+#u112_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:236px;
+    height:46px;
+}
+
+.u113 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u114 {
+    position:absolute;
+    left:174px;
+    top:266px;
+    width:112px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u115_normal {
+    background-image: url('../添加合同_files/机会类型_u115_normal.png');
+}
+
+.u115_container {
+    position:absolute;
+    left:668px;
+    top:123px;
+    width:254px;
+    height:40px;
+}
+
+#u115_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:260px;
+    height:46px;
+}
+
+.u116 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:250px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u117 {
+    position:absolute;
+    left:579px;
+    top:132px;
+    width:112px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u118 {
+    position:absolute;
+    left:931px;
+    top:135px;
+    width:30px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u119_normal {
+    background-image: url('../添加合同_files/机会类型_u119_normal.png');
+}
+
+.u119_container {
+    position:absolute;
+    left:668px;
+    top:190px;
+    width:179px;
+    height:40px;
+}
+
+#u119_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:185px;
+    height:46px;
+}
+
+.u120 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:175px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u121 {
+    position:absolute;
+    left:579px;
+    top:199px;
+    width:112px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u122_normal {
+    background-image: url('../添加合同_files/机会类型_u122_normal.png');
+}
+
+.u122_container {
+    position:absolute;
+    left:831px;
+    top:206px;
+    width:10px;
+    height:6px;
+}
+
+#u122_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:16px;
+    height:12px;
+}
+
+.u123 {
+    position:absolute;
+    left:2px;
+    top:-5px;
+    width:6px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u124_normal {
+    background-image: url('../添加合同_files/机会类型_u124_normal.png');
+}
+
+.u124_container {
+    position:absolute;
+    left:857px;
+    top:190px;
+    width:91px;
+    height:40px;
+}
+
+#u124_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:97px;
+    height:46px;
+}
+
+.u125 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:87px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u126_normal {
+    background-image: url('../添加合同_files/机会类型_u122_normal.png');
+}
+
+.u126_container {
+    position:absolute;
+    left:931px;
+    top:206px;
+    width:10px;
+    height:6px;
+}
+
+#u126_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:16px;
+    height:12px;
+}
+
+.u127 {
+    position:absolute;
+    left:2px;
+    top:-5px;
+    width:6px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u128_normal {
+    background-image: url('../添加合同_files/机会类型_u106_normal.png');
+}
+
+.u128_container {
+    position:absolute;
+    left:261px;
+    top:321px;
+    width:230px;
+    height:40px;
+}
+
+#u128_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:236px;
+    height:46px;
+}
+
+.u129 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u130 {
+    position:absolute;
+    left:158px;
+    top:330px;
+    width:112px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u131_normal {
+    background-image: url('../添加合同_files/机会类型_u106_normal.png');
+}
+
+.u131_container {
+    position:absolute;
+    left:261px;
+    top:386px;
+    width:230px;
+    height:40px;
+}
+
+#u131_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:236px;
+    height:46px;
+}
+
+.u132 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u133 {
+    position:absolute;
+    left:363px;
+    top:366px;
+    width:33px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u134_normal {
+    background-image: url('../添加合同_files/机会类型_u106_normal.png');
+}
+
+.u134_container {
+    position:absolute;
+    left:260px;
+    top:451px;
+    width:230px;
+    height:40px;
+}
+
+#u134_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:236px;
+    height:46px;
+}
+
+.u135 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u136 {
+    position:absolute;
+    left:142px;
+    top:460px;
+    width:112px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u137_normal {
+    background-image: url('../添加合同_files/机会类型_u106_normal.png');
+}
+
+.u137_container {
+    position:absolute;
+    left:260px;
+    top:515px;
+    width:230px;
+    height:40px;
+}
+
+#u137_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:236px;
+    height:46px;
+}
+
+.u138 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u139 {
+    position:absolute;
+    left:136px;
+    top:524px;
+    width:148px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u140_normal {
+    background-image: url('../添加合同_files/u140_normal.png');
+}
+
+.u140_container {
+    position:absolute;
+    left:579px;
+    top:240px;
+    width:369px;
+    height:182px;
+}
+
+#u140_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:375px;
+    height:188px;
+}
+
+.u141 {
+    position:absolute;
+    left:2px;
+    top:83px;
+    width:365px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u142_normal {
+    background-image: url('../添加合同_files/机会类型_u142_normal.png');
+}
+
+.u142_container {
+    position:absolute;
+    left:644px;
+    top:260px;
+    width:100px;
+    height:30px;
+}
+
+#u142_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:36px;
+}
+
+.u143 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u144 {
+    position:absolute;
+    left:594px;
+    top:269px;
+    width:67px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u145 {
+    position:absolute;
+    left:750px;
+    top:269px;
+    width:30px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u146_normal {
+    background-image: url('../添加合同_files/机会类型_u142_normal.png');
+}
+
+.u146_container {
+    position:absolute;
+    left:646px;
+    top:304px;
+    width:100px;
+    height:30px;
+}
+
+#u146_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:36px;
+}
+
+.u147 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u148 {
+    position:absolute;
+    left:596px;
+    top:313px;
+    width:67px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u149 {
+    position:absolute;
+    left:752px;
+    top:313px;
+    width:30px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u150_normal {
+    background-image: url('../添加合同_files/机会类型_u142_normal.png');
+}
+
+.u150_container {
+    position:absolute;
+    left:646px;
+    top:353px;
+    width:100px;
+    height:30px;
+}
+
+#u150_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:36px;
+}
+
+.u151 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u152 {
+    position:absolute;
+    left:596px;
+    top:362px;
+    width:67px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u153 {
+    position:absolute;
+    left:757px;
+    top:362px;
+    width:30px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u154_normal {
+    background-image: url('../添加合同_files/机会类型_u154_normal.png');
+}
+
+.u154_container {
+    position:absolute;
+    left:783px;
+    top:262px;
+    width:153px;
+    height:30px;
+}
+
+#u154_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:159px;
+    height:36px;
+}
+
+.u155 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:149px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u156_normal {
+    background-image: url('../添加合同_files/机会类型_u154_normal.png');
+}
+
+.u156_container {
+    position:absolute;
+    left:783px;
+    top:306px;
+    width:153px;
+    height:30px;
+}
+
+#u156_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:159px;
+    height:36px;
+}
+
+.u157 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:149px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u158_normal {
+    background-image: url('../添加合同_files/机会类型_u154_normal.png');
+}
+
+.u158_container {
+    position:absolute;
+    left:783px;
+    top:354px;
+    width:153px;
+    height:30px;
+}
+
+#u158_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:159px;
+    height:36px;
+}
+
+.u159 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:149px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u160_normal {
+    background-image: url('../添加合同_files/u160_normal.png');
+}
+
+.u160_container {
+    position:absolute;
+    left:815px;
+    top:653px;
+    width:145px;
+    height:40px;
+}
+
+#u160_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:151px;
+    height:46px;
+}
+
+.u161 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:141px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u162_normal {
+    background-image: url('../添加合同_files/u162_normal.png');
+}
+
+.u162_container {
+    position:absolute;
+    left:142px;
+    top:595px;
+    width:106px;
+    height:35px;
+}
+
+#u162_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:112px;
+    height:41px;
+}
+
+.u163 {
+    position:absolute;
+    left:2px;
+    top:9px;
+    width:102px;
+    height:17px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u164_normal {
+    background-image: url('../添加合同_files/u164_normal.png');
+}
+
+.u164_container {
+    position:absolute;
+    left:273px;
+    top:595px;
+    width:192px;
+    height:39px;
+}
+
+#u164_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:198px;
+    height:45px;
+}
+
+.u165 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:188px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u166 {
+    position:absolute;
+    left:301px;
+    top:608px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u167_normal {
+    background-image: url('../添加合同_files/u167_normal.png');
+}
+
+.u167_container {
+    position:absolute;
+    left:282px;
+    top:606px;
+    width:16px;
+    height:16px;
+}
+
+#u167_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:16px;
+    height:16px;
+}
+
+.u168 {
+    position:absolute;
+    left:2px;
+    top:0px;
+    width:12px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u169_normal {
+    background-image: url('../添加合同_files/u164_normal.png');
+}
+
+.u169_container {
+    position:absolute;
+    left:492px;
+    top:595px;
+    width:192px;
+    height:39px;
+}
+
+#u169_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:198px;
+    height:45px;
+}
+
+.u170 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:188px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u171 {
+    position:absolute;
+    left:520px;
+    top:608px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u172_normal {
+    background-image: url('../添加合同_files/u167_normal.png');
+}
+
+.u172_container {
+    position:absolute;
+    left:500px;
+    top:606px;
+    width:16px;
+    height:16px;
+}
+
+#u172_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:16px;
+    height:16px;
+}
+
+.u173 {
+    position:absolute;
+    left:2px;
+    top:0px;
+    width:12px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u174_normal {
+    background-image: url('../添加合同_files/u164_normal.png');
+}
+
+.u174_container {
+    position:absolute;
+    left:707px;
+    top:595px;
+    width:192px;
+    height:39px;
+}
+
+#u174_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:198px;
+    height:45px;
+}
+
+.u175 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:188px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u176 {
+    position:absolute;
+    left:735px;
+    top:608px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u177_normal {
+    background-image: url('../添加合同_files/u167_normal.png');
+}
+
+.u177_container {
+    position:absolute;
+    left:716px;
+    top:606px;
+    width:16px;
+    height:16px;
+}
+
+#u177_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:16px;
+    height:16px;
+}
+
+.u178 {
+    position:absolute;
+    left:2px;
+    top:0px;
+    width:12px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u179_normal {
+    background-image: url('../添加合同_files/u164_normal.png');
+}
+
+.u179_container {
+    position:absolute;
+    left:273px;
+    top:653px;
+    width:192px;
+    height:39px;
+}
+
+#u179_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:198px;
+    height:45px;
+}
+
+.u180 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:188px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u181 {
+    position:absolute;
+    left:301px;
+    top:666px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u182_normal {
+    background-image: url('../添加合同_files/u167_normal.png');
+}
+
+.u182_container {
+    position:absolute;
+    left:282px;
+    top:664px;
+    width:16px;
+    height:16px;
+}
+
+#u182_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:16px;
+    height:16px;
+}
+
+.u183 {
+    position:absolute;
+    left:2px;
+    top:0px;
+    width:12px;
+    height:16px;
     ;
     ;
     ;

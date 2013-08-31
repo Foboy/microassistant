@@ -2649,3 +2649,37 @@ div {
     word-wrap:break-word;
 }
 
+.u160_normal {
+    background-image: url('../销售管理_files/u160_normal.png');
+}
+
+.u160_container {
+    position:absolute;
+    left:1060px;
+    top:9px;
+    width:25px;
+    height:25px;
+}
+
+#u160_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:25px;
+    height:25px;
+}
+
+.u161 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:21px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+

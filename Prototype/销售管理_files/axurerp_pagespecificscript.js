@@ -1,4 +1,4 @@
-﻿for(var i = 0; i < 160; i++) { var scriptId = 'u' + i; window[scriptId] = document.getElementById(scriptId); }
+﻿for(var i = 0; i < 162; i++) { var scriptId = 'u' + i; window[scriptId] = document.getElementById(scriptId); }
 
 $axure.eventManager.pageLoad(
 function (e) {
@@ -15,7 +15,7 @@ if (true) {
 
 }
 });
-document.getElementById('u17_img').tabIndex = 0;
+gv_vAlignTable['u161'] = 'center';document.getElementById('u17_img').tabIndex = 0;
 
 u17.style.cursor = 'pointer';
 $axure.eventManager.click('u17', function(e) {
