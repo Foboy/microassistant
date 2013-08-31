@@ -51,11 +51,9 @@ namespace MicroAssistantMvc.Controllers
         /// </summary>
         /// <param name="entid"></param>
         /// <returns></returns>
-<<<<<<< HEAD
-        public JsonResult SearchProductTypeListByuserID(string token, int pageIndex, int pageSize)
-=======
-        public JsonResult  SearchProductTypeListByuserID(int entid, int pageIndex, int pageSize)
->>>>>>> eb61f4badf2d8756e4603e514f3f8deb5c44baf1
+
+        public JsonResult  SearchProductTypeListByuserID(int entid,string token, int pageIndex, int pageSize)
+
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProductionType>> result = new AdvancedResult<PageEntity<ProProductionType>>();
