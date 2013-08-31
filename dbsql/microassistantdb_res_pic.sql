@@ -18,30 +18,34 @@ USE `microassistantdb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `contract_howtopay`
+-- Table structure for table `res_pic`
 --
 
-DROP TABLE IF EXISTS `contract_howtopay`;
+DROP TABLE IF EXISTS `res_pic`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `contract_howtopay` (
-  `howtopay_id` int(11) NOT NULL AUTO_INCREMENT,
-  `instalments_no` int(11) NOT NULL COMMENT '分期序号',
-  `amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `pay_time` datetime NOT NULL COMMENT '分期付款时间',
-  `received_time` datetime DEFAULT NULL COMMENT '实际收款时间',
-  `IsReceived` int(11) NOT NULL DEFAULT '0' COMMENT '0:没确认收款 1：已收款',
-  PRIMARY KEY (`howtopay_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='付款方式';
+CREATE TABLE `res_pic` (
+  `pic_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pic_description` varchar(150) DEFAULT NULL,
+  `obj_id` int(11) DEFAULT NULL COMMENT '图片所属ID',
+  `obj_type` int(11) NOT NULL DEFAULT '1' COMMENT '1：宝贝 2：用户3：投票 4:微印书',
+  `pic_url` varchar(128) NOT NULL,
+  `pic_height` int(11) NOT NULL DEFAULT '0',
+  `pic_width` int(11) NOT NULL DEFAULT '0',
+  `state` int(11) NOT NULL DEFAULT '1' COMMENT '2:禁止 1：可用',
+  `pic_type` int(11) NOT NULL DEFAULT '0' COMMENT '0:头像 1：产品照片',
+  `create_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`pic_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contract_howtopay`
+-- Dumping data for table `res_pic`
 --
 
-LOCK TABLES `contract_howtopay` WRITE;
-/*!40000 ALTER TABLE `contract_howtopay` DISABLE KEYS */;
-/*!40000 ALTER TABLE `contract_howtopay` ENABLE KEYS */;
+LOCK TABLES `res_pic` WRITE;
+/*!40000 ALTER TABLE `res_pic` DISABLE KEYS */;
+/*!40000 ALTER TABLE `res_pic` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
