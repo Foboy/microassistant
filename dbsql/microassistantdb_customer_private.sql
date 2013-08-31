@@ -18,27 +18,37 @@ USE `microassistantdb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `sys_role_user`
+-- Table structure for table `customer_private`
 --
 
-DROP TABLE IF EXISTS `sys_role_user`;
+DROP TABLE IF EXISTS `customer_private`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `sys_role_user` (
-  `sys_role_user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`sys_role_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `customer_private` (
+  `customer_private_id` int(11) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `sex` int(11) DEFAULT '0' COMMENT '0:man 1:woman',
+  `birthday` datetime DEFAULT NULL,
+  `industy` varchar(45) DEFAULT NULL,
+  `mobile` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `qq` varchar(45) DEFAULT NULL,
+  `phone` varchar(45) DEFAULT NULL,
+  `address` varchar(45) DEFAULT NULL,
+  `detail` varchar(45) DEFAULT NULL,
+  `ent_id` int(11) NOT NULL COMMENT '所属企业ID',
+  `owner_id` int(11) NOT NULL,
+  PRIMARY KEY (`customer_private_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='个人客户';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sys_role_user`
+-- Dumping data for table `customer_private`
 --
 
-LOCK TABLES `sys_role_user` WRITE;
-/*!40000 ALTER TABLE `sys_role_user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sys_role_user` ENABLE KEYS */;
+LOCK TABLES `customer_private` WRITE;
+/*!40000 ALTER TABLE `customer_private` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customer_private` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-31 13:39:03
+-- Dump completed on 2013-08-31 13:39:04

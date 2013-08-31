@@ -33,6 +33,7 @@ CREATE TABLE `sys_user` (
   `create_time` datetime DEFAULT NULL COMMENT '注册时间',
   `end_time` datetime DEFAULT NULL COMMENT '失效时间',
   `father_id` int(11) NOT NULL COMMENT '第一级为0',
+  `ent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -43,7 +44,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (1,'sdfsd','sdfsdf',NULL,NULL,NULL,NULL,11);
+INSERT INTO `sys_user` VALUES (1,'sdfsd','sdfsdf',NULL,NULL,NULL,NULL,11,NULL);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-24 16:15:31
+-- Dump completed on 2013-08-31 13:39:09

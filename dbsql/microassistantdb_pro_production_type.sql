@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `pro_production_type`;
 CREATE TABLE `pro_production_type` (
   `p_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `p_type_name` varchar(45) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `ent_id` int(11) NOT NULL,
   PRIMARY KEY (`p_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品分类表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-24 16:15:28
+-- Dump completed on 2013-08-31 13:39:04
