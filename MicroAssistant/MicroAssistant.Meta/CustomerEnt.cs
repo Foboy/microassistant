@@ -1,13 +1,14 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/8/24 15:53:57
+ * @date: 2013/8/28 15:33:17
  */
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using MicroAssistant.Common;
 
 namespace MicroAssistant.Meta
 {
@@ -80,6 +81,12 @@ namespace MicroAssistant.Meta
         public Int32 EntId
         { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Int32 OwnerId
+        { get; set; }
+
 
         /// <summary>
         /// 从读取器向完整实例对象赋值
@@ -98,6 +105,7 @@ namespace MicroAssistant.Meta
             this.Address = DBConvert.ToString(reader["address"]);
             this.Detail = DBConvert.ToString(reader["detail"]);
             this.EntId = DBConvert.ToInt32(reader["ent_id"]);
+            this.OwnerId = DBConvert.ToInt32(reader["owner_id"]);
             return this;
         }
     }

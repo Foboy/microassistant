@@ -1,7 +1,7 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/8/24 16:00:41
+ * @date: 2013/8/28 15:34:35
  */
 using System;
 using System.Collections.Generic;
@@ -27,11 +27,13 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdGetCustomerPrivateCount;
         private MySqlCommand cmdGetCustomerPrivate;
 
+        private MySqlCommand cmdSearchCustomerPrivByOwnerId;
+
         private CustomerPrivateAccessor()
         {
             #region cmdInsertCustomerPrivate
 
-            cmdInsertCustomerPrivate = new MySqlCommand("INSERT INTO customer_private(name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id) values (@Name,@Sex,@Birthday,@Industy,@Mobile,@Email,@Qq,@Phone,@Address,@Detail,@EntId)");
+            cmdInsertCustomerPrivate = new MySqlCommand("INSERT INTO customer_private(name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id,owner_id) values (@Name,@Sex,@Birthday,@Industy,@Mobile,@Email,@Qq,@Phone,@Address,@Detail,@EntId,@OwnerId)");
 
             cmdInsertCustomerPrivate.Parameters.Add("@Name", MySqlDbType.String);
             cmdInsertCustomerPrivate.Parameters.Add("@Sex", MySqlDbType.Int32);
@@ -44,12 +46,13 @@ namespace MicroAssistant.DataAccess
             cmdInsertCustomerPrivate.Parameters.Add("@Address", MySqlDbType.String);
             cmdInsertCustomerPrivate.Parameters.Add("@Detail", MySqlDbType.String);
             cmdInsertCustomerPrivate.Parameters.Add("@EntId", MySqlDbType.Int32);
+            cmdInsertCustomerPrivate.Parameters.Add("@OwnerId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateCustomerPrivate
 
-            cmdUpdateCustomerPrivate = new MySqlCommand(" update customer_private set customer_private_id = @CustomerPrivateId,name = @Name,sex = @Sex,birthday = @Birthday,industy = @Industy,mobile = @Mobile,email = @Email,qq = @Qq,phone = @Phone,address = @Address,detail = @Detail,ent_id = @EntId where customer_private_id = @CustomerPrivateId");
-            cmdUpdateCustomerPrivate.Parameters.Add("@CustomerPrivateId", MySqlDbType.Int32);
+            cmdUpdateCustomerPrivate = new MySqlCommand(" update customer_private set name = @Name,sex = @Sex,birthday = @Birthday,industy = @Industy,mobile = @Mobile,email = @Email,qq = @Qq,phone = @Phone,address = @Address,detail = @Detail,ent_id = @EntId,owner_id = @OwnerId where customer_private_id = @CustomerPrivateId");
+
             cmdUpdateCustomerPrivate.Parameters.Add("@Name", MySqlDbType.String);
             cmdUpdateCustomerPrivate.Parameters.Add("@Sex", MySqlDbType.Int32);
             cmdUpdateCustomerPrivate.Parameters.Add("@Birthday", MySqlDbType.DateTime);
@@ -61,6 +64,7 @@ namespace MicroAssistant.DataAccess
             cmdUpdateCustomerPrivate.Parameters.Add("@Address", MySqlDbType.String);
             cmdUpdateCustomerPrivate.Parameters.Add("@Detail", MySqlDbType.String);
             cmdUpdateCustomerPrivate.Parameters.Add("@EntId", MySqlDbType.Int32);
+            cmdUpdateCustomerPrivate.Parameters.Add("@OwnerId", MySqlDbType.Int32);
 
             #endregion
 
@@ -72,7 +76,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadCustomerPrivate
 
-            cmdLoadCustomerPrivate = new MySqlCommand(@" select customer_private_id,name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id from customer_private limit @PageIndex,@PageSize");
+            cmdLoadCustomerPrivate = new MySqlCommand(@" select customer_private_id,name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id,owner_id from customer_private limit @PageIndex,@PageSize");
             cmdLoadCustomerPrivate.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadCustomerPrivate.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -86,14 +90,21 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllCustomerPrivate
 
-            cmdLoadAllCustomerPrivate = new MySqlCommand(" select customer_private_id,name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id from customer_private");
+            cmdLoadAllCustomerPrivate = new MySqlCommand(" select customer_private_id,name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id,owner_id from customer_private");
 
             #endregion
 
             #region cmdGetCustomerPrivate
 
-            cmdGetCustomerPrivate = new MySqlCommand(" select customer_private_id,name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id from customer_private where customer_private_id = @CustomerPrivateId");
+            cmdGetCustomerPrivate = new MySqlCommand(" select customer_private_id,name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id,owner_id from customer_private where customer_private_id = @CustomerPrivateId");
             cmdGetCustomerPrivate.Parameters.Add("@CustomerPrivateId", MySqlDbType.Int32);
+
+            #endregion
+
+            #region cmdSearchCustomerPrivByOwnerId
+
+            cmdSearchCustomerPrivByOwnerId = new MySqlCommand(" select customer_private_id,name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id,owner_id from customer_private where owner_id = @OwnerId");
+            cmdSearchCustomerPrivByOwnerId.Parameters.Add("@OwnerId", MySqlDbType.Int32);
 
             #endregion
         }
@@ -113,7 +124,7 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                _cmdInsertCustomerPrivate.Parameters["@CustomerPrivateId"].Value = e.CustomerPrivateId;
+              
                 _cmdInsertCustomerPrivate.Parameters["@Name"].Value = e.Name;
                 _cmdInsertCustomerPrivate.Parameters["@Sex"].Value = e.Sex;
                 _cmdInsertCustomerPrivate.Parameters["@Birthday"].Value = e.Birthday;
@@ -125,6 +136,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertCustomerPrivate.Parameters["@Address"].Value = e.Address;
                 _cmdInsertCustomerPrivate.Parameters["@Detail"].Value = e.Detail;
                 _cmdInsertCustomerPrivate.Parameters["@EntId"].Value = e.EntId;
+                _cmdInsertCustomerPrivate.Parameters["@OwnerId"].Value = e.OwnerId;
 
                 _cmdInsertCustomerPrivate.ExecuteNonQuery();
                 return returnValue;
@@ -198,6 +210,7 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateCustomerPrivate.Parameters["@Address"].Value = e.Address;
                 _cmdUpdateCustomerPrivate.Parameters["@Detail"].Value = e.Detail;
                 _cmdUpdateCustomerPrivate.Parameters["@EntId"].Value = e.EntId;
+                _cmdUpdateCustomerPrivate.Parameters["@OwnerId"].Value = e.OwnerId;
 
                 _cmdUpdateCustomerPrivate.ExecuteNonQuery();
 
@@ -220,7 +233,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<CustomerPrivate> Search(Int32 CustomerPrivateId, String Name, Int32 Sex, DateTime Birthday, String Industy, String Mobile, String Email, String Qq, String Phone, String Address, String Detail, Int32 EntId, int pageIndex, int pageSize)
+        public PageEntity<CustomerPrivate> Search(Int32 CustomerPrivateId, String Name, Int32 Sex, DateTime Birthday, String Industy, String Mobile, String Email, String Qq, String Phone, String Address, String Detail, Int32 EntId, Int32 OwnerId, int pageIndex, int pageSize)
         {
             PageEntity<CustomerPrivate> returnValue = new PageEntity<CustomerPrivate>();
             MySqlConnection oc = ConnectManager.Create();
@@ -245,6 +258,7 @@ namespace MicroAssistant.DataAccess
                 _cmdLoadCustomerPrivate.Parameters["@Address"].Value = Address;
                 _cmdLoadCustomerPrivate.Parameters["@Detail"].Value = Detail;
                 _cmdLoadCustomerPrivate.Parameters["@EntId"].Value = EntId;
+                _cmdLoadCustomerPrivate.Parameters["@OwnerId"].Value = OwnerId;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
@@ -340,6 +354,38 @@ namespace MicroAssistant.DataAccess
             return returnValue;
 
         }
+
+        public List<CustomerPrivate> SearchCustomerPrivByOwnerId(int ownerid)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdSearchCustomerPrivByOwnerId = cmdSearchCustomerPrivByOwnerId.Clone() as MySqlCommand;
+            _cmdSearchCustomerPrivByOwnerId.Connection = oc;
+            List<CustomerPrivate> returnValue = new List<CustomerPrivate>();
+            try
+            {
+                _cmdSearchCustomerPrivByOwnerId.Parameters["@OwnerId"].Value = ownerid;
+
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                MySqlDataReader reader = _cmdSearchCustomerPrivByOwnerId.ExecuteReader();
+                while (reader.Read())
+                {
+                    returnValue.Add(new CustomerPrivate().BuildSampleEntity(reader));
+                }
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdSearchCustomerPrivByOwnerId.Dispose();
+                _cmdSearchCustomerPrivByOwnerId = null;
+                GC.Collect();
+            }
+            return returnValue;
+        }
+
         private static readonly CustomerPrivateAccessor instance = new CustomerPrivateAccessor();
         public static CustomerPrivateAccessor Instance
         {
