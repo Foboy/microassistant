@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/flat-ui.css" rel="stylesheet" media="screen">
+    <link href="css/master.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+  	<!-- Button to trigger modal -->
+    <!--<a href="#myModal" role="button" class="btn" data-toggle="modal">查看演示案例</a>-->
+     
+    <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">编辑产品</h3>
+      </div>
+      <div class="modal-body">
+        <div class="popupBox clearfix">
+    	<div class="listBox">
+            <ul>
+            	<li class="cur"><i></i>产品资料</li>
+                <li><i></i>产品报价</li>
+                <li><i></i>入库单</li>
+            </ul>
+        </div>
+        <div class="madeBox">
+        <ul class="listContent">
+        	<li><span class="span1">采购数量：</span><span><input type="text" value="" placeholder="Inactive" class="span3"></span></li>
+            <li><span class="span1">采购单价：</span><span><input type="text" value="" placeholder="Inactive" class="span3"></span></li>
+            <li><span class="span1">&nbsp;</span><span class="priceBox">采购总价：<b class="colorBlue">85000.00</b><span class="colorGray">元</span></span></li>
+            <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="#fakelink" class="btn btn-large btn-block btn-success">确 定</a></span></li>
+        </ul>
+        </div>
+    </div>
+      </div>
+    </div>
+  	<div class="navbar">
+      
+    </div>
+    <div class="Nav">
+        <div class="headImg">
+            <img src="img/Adimg/h1.jpg"/>
+        </div>
+        <ul class="navList">
+            <li>
+                <a href="#" class="homeIcon"></a>
+                <p><a href="#">主页</a></p>
+            </li>
+            <li>
+                <a href="#" class="peopleIcon"></a>
+                <p><a href="#">产品管理</a></p>
+            </li>
+            <li class="cur">
+                <a href="#" class="peopleIcon"></a>
+                <p><a href="#">销售管理</a></p>
+            </li>
+            <li>
+                <a href="#" class="peopleIcon"></a>
+                <p><a href="#">财务管理</a></p>
+            </li>
+        </ul>
+    </div>
+    <div class="conBox">
+    	<div class="floatBox">
+        	<div class="fBg"></div>
+            <div class="fCon clearfix">
+                <i class="arrR"></i>
+            	<ul>
+                	<li class="clearfix"><span class="colorBlue namS">客户类型：</span><span class="conS">企业客户</span><i class="editIcon"></i></li>
+                    <li class="clearfix"><span class="colorBlue namS">机会类型：</span><span class="conS"><input type="text" class="textS"/></span><i class="editIcon"></i></li>
+                    <li class="clearfix"><span class="colorBlue namS">机会描述：</span><span class="conS"><!--<textarea style="width:170px; height:120px; border-radius:0;"></textarea>--><div class="textA">您好吗</div></span><i class="editIcon"></i></li>
+                    <li class="clearfix"><span class="colorBlue namS">联系人：</span><span class="conS">王晓</span><i class="editIcon"></i></li>
+                    <li class="clearfix"><span class="colorBlue namS">手机：</span><span class="conS">1234567890</span><i class="editIcon"></i></li>
+                    <li class="clearfix"><span class="colorBlue namS">座机：</span><span class="conS">王晓</span><i class="editIcon"></i></li>
+                    <li class="clearfix"><span class="colorBlue namS">邮箱：</span><span class="conS">1234567890</span><i class="editIcon"></i></li>
+                    <li class="clearfix"><span class="colorBlue namS">录入时间：</span><span class="conS">2013/07/31</span><i class="editIcon"></i></li>
+                    <li class="clearfix"><span class="conS"><a href="#">添加其他联系方式</a></span></li>
+                </ul>
+                <div class="redBtn clearfix"><a href="#fakelink" class="btn btn-large btn-block btn-danger">拜访该客户</a></div>
+            </div>
+        </div>
+        <h1 class="titSec">销售管理</h1>
+        <ul class="clearfix salesList">
+            <li>
+                <em><i></i></em>
+                <p>销售机会（30）</p>
+                <span class="arrowD"></span>
+            </li>
+            <li>
+            	<div class="bentArrow"></div>
+                <p>转换率<span class="colorBlue">20%</span></p>
+            </li>
+            <li class="cur">
+                <em><i></i></em>
+                <p>拜访（5）</p>
+                <span class="arrowD"></span>
+            </li>
+            <li>
+            	<div class="bentArrow"></div>
+                <p>转换率<span class="colorBlue">20%</span></p>
+            </li>
+            <li>
+                <em><i></i></em>
+                <p>签订合同（5）</p>
+                <span class="arrowD"></span>
+            </li>
+            <li>
+            	<div class="bentArrow"></div>
+                <p>转换率<span class="colorBlue">20%</span></p>
+            </li>
+            <li>
+                <em><i></i></em>
+                <p>售后跟进（5）</p>
+                <span class="arrowD"></span>
+            </li>
+        </ul>
+        <div class="searchBox addL">
+            <input type="button" class="addBtn"/>
+        </div>
+        <div class="tablePad">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th width="30%">机会描述</th>
+                  <th width="20%">共拜访</th>
+                  <th width="20%">赢率</th>
+                  <th width="15%">最近一次拜访</th>
+                  <th width="15%">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>HP 8300</td>
+                  <td class="colorBlue">3次</td>
+                  <td>60%</td>
+                  <td>2013/07/31</td>                  
+                  <td><a href="#myModal" role="button" data-toggle="modal">详情</a>|<a href="#myModal" role="button" data-toggle="modal">签订合同</a></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Mark</td>
+                  <td class="colorBlue">四川新颖顺信息...</td>
+                  <td class="colorBlue">1588234555</td>
+                  <td>2013/07/31</td>
+                  <td><a href="#myModal" role="button" data-toggle="modal">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Mark</td>
+                  <td class="colorBlue">四川新颖顺信息...</td>
+                  <td class="colorBlue">1588234555</td>
+                  <td>2013/07/31</td>
+                  <td><a href="#myModal" role="button" data-toggle="modal">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Mark</td>
+                  <td class="colorBlue">四川新颖顺信息...</td>
+                  <td class="colorBlue">1588234555</td>
+                  <td>2013/07/31</td>
+                  <td><a href="#myModal" role="button" data-toggle="modal">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
