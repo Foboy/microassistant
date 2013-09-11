@@ -64,27 +64,61 @@
         </ul>
     </div>
     <div class="conBox">
-    	<div class="floatBox">
+    	<div class="floatBox pactBox">
         	<div class="fBg"></div>
             <div class="fCon clearfix">
                 <i class="arrR"></i>
-            	<ul class="ul-f1">
-                	<li class="clearfix"><span class="colorBlue namS">客户类型：</span><span class="conS">企业客户</span><i class="editIcon"></i></li>
-                    <li class="clearfix"><span class="colorBlue namS">机会类型：</span><span class="conS"><input type="text" class="textS"/></span><i class="editIcon"></i></li>
-                    <li class="clearfix"><span class="colorBlue namS">机会描述：</span><span class="conS"><!--<textarea style="width:170px; height:120px; border-radius:0;"></textarea>--><div class="textA">您好吗</div></span><i class="editIcon"></i></li>
-                    <li class="clearfix"><span class="colorBlue namS">联系人：</span><span class="conS">王晓</span><i class="editIcon"></i></li>
-                    <li class="clearfix"><span class="colorBlue namS">手机：</span><span class="conS">1234567890</span><i class="editIcon"></i></li>
-                    <li class="clearfix"><span class="colorBlue namS">座机：</span><span class="conS">王晓</span><i class="editIcon"></i></li>
-                    <li class="clearfix"><span class="colorBlue namS">邮箱：</span><span class="conS">1234567890</span><i class="editIcon"></i></li>
-                    <li class="clearfix"><span class="colorBlue namS">录入时间：</span><span class="conS">2013/07/31</span><i class="editIcon"></i></li>
-                    <li class="clearfix"><span class="conS"><a href="#">添加其他联系方式</a></span></li>
+                <ul class="pact-ul clearfix">
+                	<li class="cur">合同详情</li>
+                    <li>合同动态</li>
                 </ul>
-                <div class="redBtn clearfix"><a href="#fakelink" class="btn btn-large btn-block btn-danger">拜访该客户</a></div>
+            	<!--<ul class="ul-f1">
+                	<li class="clearfix"><span class="colorBlue namS">合同名称：</span><span class="conS">鼠标采购合同</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">合同编号：</span><span class="conS">20130812173645
+</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">客户：</span><span class="conS">四川新颖顺信息技术有限公司</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">合同金额：</span><span class="conS">896,600</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">付款方式：</span><span class="conS">分期 共<b class="colorRed">3</b> 期
+</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">合同有效期：</span><span class="conS">2013/07/12 <span class="colorBlue">至</span>  2014/07/12</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">合同承办人：</span><span class="conS">张三
+</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">合同签订时间：</span><span class="conS">2013/07/31</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">附件：</span><span class="conS"></span></li>
+                </ul>-->   
+                <ul class="ul-f3">
+                    <li class="clearfix cur">
+                        <div class="li-timeb colorRed">
+                           三期
+                            <span class="cir-w"><i></i></span>
+                        </div>
+                        <div class="li-conb">
+                            <div class="li-boxs">
+                                <i></i>
+                                <div class="tim-list"><div class="colorBlue">收款时间：</div>2013/06/02</div>
+								<div class="tim-list"><div class="colorBlue">实际收款时间：</div><span class="colorRed">未到收款日</span></div>
+                            </div>
+                        </div>
+                    </li> 
+                    <li class="clearfix none">
+                        <div class="li-timeb colorRed">
+                           二期
+                            <span class="cir-w"><i></i></span>
+                        </div>
+                        <div class="li-conb">
+                            <div class="li-boxs">
+                                <i></i>
+                                <div class="tim-list"><div class="colorBlue">收款时间：</div>2013/06/02</div>
+								<div class="tim-list"><div class="colorBlue">实际收款时间：</div><span class="colorRed">未到收款日</span></div>
+                            </div>
+                        </div>
+                    </li>                            
+                </ul>             
             </div>
         </div>
         <h1 class="titSec">销售管理</h1>
         <ul class="clearfix salesList">
-            <li class="cur">
+            <li>
                 <em><i></i></em>
                 <p>销售机会（30）</p>
                 <span class="arrowD"></span>
@@ -102,7 +136,7 @@
             	<div class="bentArrow"></div>
                 <p>转换率<span class="colorBlue">20%</span></p>
             </li>
-            <li>
+            <li class="cur">
                 <em><i></i></em>
                 <p>签订合同（5）</p>
                 <span class="arrowD"></span>
@@ -124,46 +158,46 @@
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th width="30%">机会描述</th>
-                  <th width="20%">联系人</th>
-                  <th width="20%">联系方式</th>
-                  <th width="15%">创建时间</th>
-                  <th width="15%">&nbsp;</th>
+                  <th width="20%">合同名称</th>
+                  <th width="20%">合同编号</th>
+                  <th width="15%">客户</th>
+                  <th width="10%">合同金额</th>
+                  <th width="25%">合同时间</th>
+                  <th width="25%">&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>1</td>
-                  <td>Mark</td>
+                  <td>鼠标采购合同</td>
+                  <td>20130713152365</td>
                   <td class="colorBlue">四川新颖顺信息...</td>
-                  <td class="colorBlue">1588234555</td>
-                  <td>2013/07/31</td>
-                  <td><a href="#myModal" role="button" data-toggle="modal">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                  <td>100,000</td>
+                  <td>2013/07/31<b class="colorBlue">至</b>2014/07/31</td>
+                  <td><a href="#myModal" role="button" data-toggle="modal">详情</a></td>
                 </tr>
                 <tr>
-                  <td>2</td>
-                  <td>Mark</td>
+                  <td>鼠标采购合同</td>
+                  <td>20130713152365</td>
                   <td class="colorBlue">四川新颖顺信息...</td>
-                  <td class="colorBlue">1588234555</td>
-                  <td>2013/07/31</td>
-                  <td><a href="#myModal" role="button" data-toggle="modal">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                  <td>100,000</td>
+                  <td>2013/07/31<b class="colorBlue">至</b>2014/07/31</td>
+                  <td><a href="#myModal" role="button" data-toggle="modal">详情</a></td>
                 </tr>
                 <tr>
-                  <td>3</td>
-                  <td>Mark</td>
+                  <td>鼠标采购合同</td>
+                  <td>20130713152365</td>
                   <td class="colorBlue">四川新颖顺信息...</td>
-                  <td class="colorBlue">1588234555</td>
-                  <td>2013/07/31</td>
-                  <td><a href="#myModal" role="button" data-toggle="modal">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                  <td>100,000</td>
+                  <td>2013/07/31<b class="colorBlue">至</b>2014/07/31</td>
+                  <td><a href="#myModal" role="button" data-toggle="modal">详情</a></td>
                 </tr>
                 <tr>
-                  <td>4</td>
-                  <td>Mark</td>
+                  <td>鼠标采购合同</td>
+                  <td>20130713152365</td>
                   <td class="colorBlue">四川新颖顺信息...</td>
-                  <td class="colorBlue">1588234555</td>
-                  <td>2013/07/31</td>
-                  <td><a href="#myModal" role="button" data-toggle="modal">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                  <td>100,000</td>
+                  <td>2013/07/31<b class="colorBlue">至</b>2014/07/31</td>
+                  <td><a href="#myModal" role="button" data-toggle="modal">详情</a></td>
                 </tr>
               </tbody>
             </table>
