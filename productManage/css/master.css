@@ -27,7 +27,7 @@ a:hover{text-decoration:underline;}
 /*=== 颜色样式 END ===*/
 
 /*===  图标样式 ===*/
-.homeIcon,.peopleIcon,.askIcon,.arrowD,.pcIcon,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
+.homeIcon,.peopleIcon,.askIcon,.arrowD,.pcIcon,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
 .pcIcon{background-position:-60px -139px; width:29px; height:27px;}
 .homeIcon{background-position:-27px -138px; width:23px; height:22px;}
 .homeIcon:hover{background-position:0 -138px;}
@@ -48,6 +48,8 @@ a:hover{text-decoration:underline;}
 .mapIcon{background-position:-144px -241px; width:19px; height:25px;}
 .peo-wIcon{background-position:0 -296px; width:18px; height:19px;}
 .tel-wIcon{background-position:0 -355px; width:17px; height:16px;}
+.textIcon{background-position:-152px -288px; width:11px; height:15px;}
+.downloadIcon{background-position:-176px -284px; width:15px; height:13px; cursor:pointer;}
 /*===  图标样式 END ===*/
 
 
@@ -56,6 +58,7 @@ a:hover{text-decoration:underline;}
 .modal .modal-body{max-height:530px; padding:0;}
 .modal-header h3{font-family:"微软雅黑"; font-weight:normal; color:#25aae2; font-size:16px;}
 .popupBox{width:870px; min-height:530px; background:#ffffff;}
+.popupBox2{width:1100px;}
 .listBox{width:170px;min-height:530px;float:left; padding-left:20px;}
 .listBox h2{font-size:16px; font-family:"微软雅黑"; font-weight:normal; color:#25aae2; height:25px; line-height:25px; margin:5px 0 20px 0;}
 .listBox ul{border-left:2px solid #DDDDDD; margin-left:10px; margin-top:15px;}
@@ -70,7 +73,7 @@ a:hover{text-decoration:underline;}
 .listContent li span{}
 .listContent li span .addBtn{width:30px; margin-top:-8px;}
 .listContent li .span3{width:266px; border-radius:0; margin-right:10px;}
-.listContent li .span1{width:80px; text-align:right; padding-right:20px; font-size:16px;display:inline-block;}
+.listContent li .span1{width:80px; text-align:right; padding-right:10px; font-size:16px;display:inline-block;}
 .listContent li .priceBox,.listContent li .profit{width:254px; height:41px; border:2px solid #CCCCCC; line-height:41px; background:#FFFFFF; font-size:16px; padding:0 10px;display:inline-block;}
 .listContent li .profit{width:340px;}
 .listContent li .profit .pfD{width:169px; border-right:2px solid #CCCCCC; margin-right:10px;display:inline-block;}
@@ -87,7 +90,20 @@ a:hover{text-decoration:underline;}
 .btnCenter a{width:90px; display:inline-block;}
 .listContent li.checkBox{margin:-25px 0 0 0;}
 .listContent li.checkBox input{margin:0 5px 0 0;}
-.listContent li .selectS{border: 2px solid #bdc3c7; width:280px; height:35px;}
+.listContent li .selectS,.listContent li .selectS2{border: 2px solid #bdc3c7; width:280px; height:35px;}
+.listContent li .selectS2{width:135px; margin-right:10px;}
+.pact-w{width:500px;}
+.pact-w li .span1{width:120px; position:relative;}
+.pact-w li .span1 b{position:absolute; right:-140px; top:28px; font-weight:normal;}
+.textpact{width:200px; height:40px; line-height:40px; background:#f5f5f5;}
+.textpact i{margin:12px 10px 0 10px; float:left;}
+.textpact .textNam{width:140px; float:left; color:#666; font-size:14px;}
+.uploadBox{width:1050px; float:left; padding-left:50px;}
+.uploadBox .uploadBtn{width:150px; float:left;}
+.uploadBox .textBox{float:left; width:900px;}
+.uploadBox .textBox .textpact{ float:left; margin:0 0 20px 20px;}
+.saveBox{text-align:right; float:left; width:1030px; padding-bottom:20px;}
+.saveBox span{width:150px; display:inline-block;}
 /*=== 弹出框样式 END ===*/
 .master{width:1366px; margin:0 auto;}
 .navbar{height:60px; background:#248faf; margin-bottom:0; position:relative;}
@@ -186,6 +202,7 @@ a:hover{text-decoration:underline;}
 .floatBox .fCon ul.ul-f1 li .conS{width:210px;}
 .floatBox .fCon ul.ul-f1 li .textS{width:180px; border-radius:0;}
 .floatBox .fCon ul.ul-f1 li .textA{width:184px; padding:0 5px; height:120px; background:#FFFFFF; color:#525252; font-size:12px;}
+.floatBox .fCon ul.ul-f1 li .textpact{margin:0 10px 20px 0;}
 .redBtn{width:310px;}
 .redBtn a{width:260px;height:40px; margin:50px 0 0 45px;}
 .floatW900{width:900px;}
