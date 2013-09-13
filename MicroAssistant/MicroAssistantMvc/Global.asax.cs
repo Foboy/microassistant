@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MicroAssistantMvc.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,12 +18,18 @@ namespace MicroAssistantMvc
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
+         
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+        }
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {
+            filters.Add(new HandleErrorAttribute());
+            //注册全局过滤器
+            filters.Add(new LogFilterAttribute() { Message = "全局" });
         }
     }
 }
