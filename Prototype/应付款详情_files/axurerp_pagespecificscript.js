@@ -66,7 +66,7 @@ $axure.eventManager.click('u65', function(e) {
 
 if (true) {
 
-	NewTab($axure.globalVariableProvider.getLinkUrl('产品详情页.html'), "");
+	NewTab('#', "");
 
 }
 });
@@ -99,7 +99,7 @@ $axure.eventManager.click('u73', function(e) {
 
 if (true) {
 
-	NewTab($axure.globalVariableProvider.getLinkUrl('产品详情页.html'), "");
+	NewTab('#', "");
 
 }
 });

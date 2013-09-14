@@ -33,7 +33,7 @@ $axure.eventManager.click('u105', function(e) {
 
 if (true) {
 
-	NewTab($axure.globalVariableProvider.getLinkUrl('产品详情页.html'), "");
+	NewTab('#', "");
 
 }
 });
@@ -110,7 +110,7 @@ $axure.eventManager.click('u107', function(e) {
 
 if (true) {
 
-	NewTab($axure.globalVariableProvider.getLinkUrl('产品详情页.html'), "");
+	NewTab('#', "");
 
 }
 });
@@ -121,7 +121,7 @@ $axure.eventManager.click('u147', function(e) {
 
 if (true) {
 
-	NewTab($axure.globalVariableProvider.getLinkUrl('产品详情页.html'), "");
+	NewTab('#', "");
 
 }
 });
@@ -132,7 +132,7 @@ $axure.eventManager.click('u145', function(e) {
 
 if (true) {
 
-	NewTab($axure.globalVariableProvider.getLinkUrl('产品详情页.html'), "");
+	NewTab('#', "");
 
 }
 });

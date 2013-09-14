@@ -128,18 +128,18 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="应付款_files/u60_line.png");
 }
 
-* html .u65_line {
+* html .u63_normal {
     background-image: none;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="应付款_files/u65_line.png");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="应付款_files/u63_normal.png");
 }
 
-* html .u66_normal {
+* html .u70_line {
     background-image: none;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="应付款_files/u66_normal.png");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="应付款_files/u70_line.png");
 }
 
-* html .u73_line {
+* html .u75_line {
     background-image: none;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="应付款_files/u73_line.png");
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="应付款_files/u75_line.png");
 }
 
