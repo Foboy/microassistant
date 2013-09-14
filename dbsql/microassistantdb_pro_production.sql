@@ -34,6 +34,7 @@ CREATE TABLE `pro_production` (
   `market_price` decimal(10,2) DEFAULT '0.00',
   `user_id` int(11) NOT NULL,
   `ent_id` int(11) NOT NULL,
+  `stock_count` int(11) NOT NULL DEFAULT '0' COMMENT '库存',
   PRIMARY KEY (`p_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-31 13:39:07
+-- Dump completed on 2013-08-31 15:08:36

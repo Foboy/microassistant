@@ -64,7 +64,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadProProduction
 
-            cmdLoadProProduction = new MySqlCommand(@"select p_id,p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id from pro_production where (@PName='' or PName=@PName) and (@PTypeId=0 or PTypeId=@PTypeId) and (@UserId=0 or UserId=@UserId) limit @PageIndex,@PageSize");
+            cmdLoadProProduction = new MySqlCommand(@"select p_id,p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id,stock_count,ent_id from pro_production where (@PName='' or PName=@PName) and (@PTypeId=0 or PTypeId=@PTypeId) and (@UserId=0 or UserId=@UserId) limit @PageIndex,@PageSize");
             cmdLoadProProduction.Parameters.Add("@PName", MySqlDbType.String);
             cmdLoadProProduction.Parameters.Add("@PTypeId", MySqlDbType.Int32);
             cmdLoadProProduction.Parameters.Add("@UserId", MySqlDbType.Int32);
@@ -81,13 +81,13 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllProProduction
 
-            cmdLoadAllProProduction = new MySqlCommand("select p_id,p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id from pro_production");
+            cmdLoadAllProProduction = new MySqlCommand("select p_id,p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id,stock_count,ent_id from pro_production");
 
             #endregion
 
             #region cmdGetProProduction
 
-            cmdGetProProduction = new MySqlCommand("select p_id,p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id from pro_production where p_id = @PId");
+            cmdGetProProduction = new MySqlCommand("select p_id,p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id,stock_count,ent_id from pro_production where p_id = @PId");
             cmdGetProProduction.Parameters.Add("@PId", MySqlDbType.Int32);
 
             #endregion
@@ -115,6 +115,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertProProduction.Parameters["@LowestPrice"].Value = e.LowestPrice;
                 _cmdInsertProProduction.Parameters["@MarketPrice"].Value = e.MarketPrice;
                 _cmdInsertProProduction.Parameters["@UserId"].Value = e.UserId;
+                
                 _cmdInsertProProduction.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertProProduction.LastInsertedId);
                 return returnValue;

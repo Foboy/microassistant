@@ -40,12 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContractHowtopay.cs" />
+    <Compile Include="ContractInfo.cs" />
     <Compile Include="CustomerEnt.cs" />
     <Compile Include="CustomerPrivate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProProduction.cs" />
     <Compile Include="ProProductionType.cs" />
     <Compile Include="ProProductonDetail.cs" />
+    <Compile Include="ResPic.cs" />
     <Compile Include="SysFunction.cs" />
     <Compile Include="SysRole.cs" />
     <Compile Include="SysRoleFunction.cs" />
