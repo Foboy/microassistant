@@ -1,4 +1,4 @@
-﻿using MicroAssistantMvc.Filters;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +24,6 @@ namespace MicroAssistantMvc
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
-        }
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-        {
-            filters.Add(new HandleErrorAttribute());
-            //注册全局过滤器
-            filters.Add(new LogFilterAttribute() { Message = "全局" });
         }
     }
 }

@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace MicroAssistantMvc.Areas.UserManagement
+namespace MicroAssistantMvc.Areas.ContractManagement
 {
-    public class UserAreaRegistration : AreaRegistration
+    public class ContractManagementAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
             get
             {
-                return "UserManagement";
+                return "ContractManagement";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "User_default",
-                "UserManagement/{controller}/{action}/{id}",
+                "ContractManagement_default",
+                "ContractManagement/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

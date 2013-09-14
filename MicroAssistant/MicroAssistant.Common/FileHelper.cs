@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Web;
 using System.Drawing.Imaging;
 using MicroAssistant.DataStructure;
+using System.Resources;
+using System.Reflection;
 
 namespace MicroAssistant.Common
 {
@@ -66,5 +68,7 @@ namespace MicroAssistant.Common
             }
         }
         #endregion 上传图片
+
+       
     }
 }

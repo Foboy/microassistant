@@ -9,12 +9,12 @@ using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 
-namespace MicroAssistantMvc.Controllers
+namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 {
     public class UserController : Controller
     {
         //
-        // GET: /MicUser/
+        // GET: /UserManagement/User
 
         public ActionResult Index()
         {
@@ -139,7 +139,11 @@ namespace MicroAssistantMvc.Controllers
             }
             return result;
         }
-
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
         public JsonResult GetUserInfoByID(int userid)
         {
             var res = new JsonResult();

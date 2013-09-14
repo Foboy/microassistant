@@ -8,7 +8,7 @@ using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 
-namespace MicroAssistantMvc.Controllers
+namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
 {
     public class PermissionController : Controller
     {
