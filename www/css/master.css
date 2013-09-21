@@ -121,3 +121,9 @@ a:hover{text-decoration:underline;}
 .goodsIntro{width:100%; height:270px; border:1px solid #DDDDDD; background:#FFFFFF;}
 .goodsIntro .introCon{padding:15px;}
 /*=== 产品详情页面 END ===*/
+
+/*=== 产品详情侧滑 ===*/
+.productSlipBox{
+width:0;top:0;right:0;position:fixed;background:#fff;z-index:100;
+}
+/*=== 产品详情侧滑 END ===*/

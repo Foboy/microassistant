@@ -1,7 +1,8 @@
-angular.module('product', ['ngRoute']).
+angular.module('product', ['ngRoute','ngAnimate']).
   config(function($routeProvider, $locationProvider) {
   $routeProvider.
-      when('/product', {templateUrl: 'partials/product/product-list.html',   controller: ProductListCtrl}).
-      when('/product/:productId', {templateUrl: 'partials/product/product-detail.html', controller: ProductDetailCtrl}).
-      otherwise({redirectTo: '/product'});
+      when('/product', {template: '/product', controller: ProductListCtrl, controllerAs: 'pclr'})
+	  .when('/product/:catalogId', {template: '/product/:catalogId', controller: ProductListCtrl, controllerAs: 'pclr'})
+	  .when('/product/:catalogId/:pageIndex', {template: '/product/:catalogId/:pageIndex', controller: ProductListCtrl, controllerAs: 'pclr'})
+	  .otherwise({redirectTo: '/product'});
 });
