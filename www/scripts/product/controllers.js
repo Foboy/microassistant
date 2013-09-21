@@ -85,6 +85,21 @@ function ProductBaseCtrl($scope, $routeParams, $http, $animate){
 	  $("#productDetail").animate({width:"0px"},0);
 	  //$('#myModal').modal();
   };
+  
+  $scope.addCatalog = function(){
+	  if($scope.addCatalogFlag)
+	  {
+		  
+	  }
+	  else
+	  {
+		  $scope.addCatalogFlag = true;
+	  }
+  };
+  
+  $scope.addCatalogCancel = function(){
+	  $scope.addCatalogFlag = false;
+  };
 }
 
 function ProductListCtrl($scope, $routeParams, $http){

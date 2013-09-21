@@ -1,4 +1,4 @@
-angular.module('product', ['ngRoute','ngAnimate']).
+angular.module('product', ['ngRoute']).
   config(function($routeProvider, $locationProvider) {
   $routeProvider.
       when('/product', {template: '/product', controller: ProductListCtrl, controllerAs: 'pclr'})
