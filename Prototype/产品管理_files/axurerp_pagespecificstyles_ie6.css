@@ -353,3 +353,28 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="产品管理_files/u235_normal.png");
 }
 
+* html .u246_normal {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="产品管理_files/u246_normal.png");
+}
+
+* html .u248_normal {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="产品管理_files/u248_normal.png");
+}
+
+* html .u251_normal {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="产品管理_files/u251_normal.png");
+}
+
+* html .u254_line {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="产品管理_files/u254_line.png");
+}
+
+* html .u256_line {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="产品管理_files/u256_line.png");
+}
+
