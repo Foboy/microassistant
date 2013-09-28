@@ -9,7 +9,7 @@ using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 
-namespace MicroAssistantMvc.Controllers
+namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
 {
     public class ProductionController : Controller
     {
