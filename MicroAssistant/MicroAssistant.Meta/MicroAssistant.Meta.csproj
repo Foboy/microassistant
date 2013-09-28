@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="ContractHowtopay.cs" />
     <Compile Include="ContractInfo.cs" />
-    <Compile Include="Customer.cs" />
     <Compile Include="CustomerEnt.cs" />
     <Compile Include="CustomerPrivate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

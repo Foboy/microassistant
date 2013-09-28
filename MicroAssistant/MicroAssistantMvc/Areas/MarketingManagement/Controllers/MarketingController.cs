@@ -1,4 +1,5 @@
 ﻿using MicroAssistant.Common;
+using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 using System;
@@ -23,23 +24,42 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             return View();
         }
         /// <summary>
-        /// 添加销售机会（添加个人客户和企业客户）
+        /// 添加销售机会（添加企业客户）
         /// </summary>
         /// <param name="customer"></param>
-        /// <param name="IsEnt">true 为企业客户 false为个人客户</param>
         /// <returns></returns>
-        public JsonResult AddMarketingChance(Customer customer,bool IsEnt,int entid )
+        public JsonResult AddMarketingChanceE(CustomerEnt customer, int entid)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
-                if (IsEnt)
-                {
-                    CustomerEnt ce = (Customer)customer;
-                }
-                //通过CustomerEntModel序列化为实体
-                ce.OwnerId = Convert.ToInt32(ownerId);
+                int i =CustomerEntAccessor.Instance.Insert(customer);
+                if (i>0)
+                    result.Error = AppError.ERROR_SUCCESS;
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+        /// <summary>
+        /// 添加销售机会（添加个人客户）
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="IsEnt">true 为企业客户 false为个人客户</param>
+        /// <returns></returns>
+        public JsonResult AddMarketingChanceP(CustomerPrivate customer, int entid)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+
                 //bool check =(bool) CustomerEntAccessor.Instance.Insert(ce);
                 //if (check)
                 //    result.Error = AppError.ERROR_SUCCESS;
@@ -69,8 +89,13 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             return null;
         }
 
-//编辑销售机会详情
-        public JsonResult EditMarketingInfo(Customer customer, bool IsEnt)
+       //编辑销售机会详情 企业
+        public JsonResult EditMarketingInfoE(CustomerEnt customer)
+        {
+            return null;
+        }
+        //编辑销售机会详情 个人
+        public JsonResult EditMarketingInfoP(CustomerPrivate customer)
         {
             return null;
         }

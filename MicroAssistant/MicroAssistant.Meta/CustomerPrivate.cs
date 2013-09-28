@@ -13,7 +13,7 @@ using MicroAssistant.Common;
 namespace MicroAssistant.Meta
 {
     [Serializable]
-    public class CustomerPrivate : Customer
+    public class CustomerPrivate 
     {
         /// <summary>
         /// 

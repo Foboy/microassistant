@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `microassistantdb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `microassistantdb`;
--- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
 -- Host: localhost    Database: microassistantdb
 -- ------------------------------------------------------
--- Server version	5.5.25
+-- Server version	5.6.13-enterprise-commercial-advanced
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,6 +31,7 @@ CREATE TABLE `contract_howtopay` (
   `pay_time` datetime NOT NULL COMMENT '分期付款时间',
   `received_time` datetime DEFAULT NULL COMMENT '实际收款时间',
   `IsReceived` int(11) NOT NULL DEFAULT '0' COMMENT '0:没确认收款 1：已收款',
+  `contract_info_id` int(11) NOT NULL,
   PRIMARY KEY (`howtopay_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='付款方式';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-08-31 15:08:37
+-- Dump completed on 2013-09-28 14:09:50
