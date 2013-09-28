@@ -1,4 +1,6 @@
-﻿using MicroAssistant.Meta;
+﻿using MicroAssistant.Common;
+using MicroAssistant.DataStructure;
+using MicroAssistant.Meta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,29 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
         /// <returns></returns>
         public JsonResult AddMarketingChance(Customer customer,bool IsEnt,int entid )
         {
-            return null;
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+                if (IsEnt)
+                {
+                    CustomerEnt ce = (Customer)customer;
+                }
+                //通过CustomerEntModel序列化为实体
+                ce.OwnerId = Convert.ToInt32(ownerId);
+                //bool check =(bool) CustomerEntAccessor.Instance.Insert(ce);
+                //if (check)
+                //    result.Error = AppError.ERROR_SUCCESS;
+
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 获取销售机会列表
