@@ -9,7 +9,7 @@ using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 
-namespace MicroAssistantMvc.Controllers
+namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
 {
     public class ProductionController : Controller
     {
@@ -52,7 +52,7 @@ namespace MicroAssistantMvc.Controllers
         /// <param name="entid"></param>
         /// <returns></returns>
 
-        public JsonResult  SearchProductTypeListByEntID(int entid,int pageIndex, int pageSize)
+        public JsonResult SearchProductTypeListByEntID(int entid,int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProductionType>> result = new AdvancedResult<PageEntity<ProProductionType>>();

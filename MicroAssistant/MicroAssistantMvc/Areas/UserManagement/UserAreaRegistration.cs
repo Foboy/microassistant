@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace MicroAssistantMvc.Areas.User
+namespace MicroAssistantMvc.Areas.UserManagement
 {
     public class UserAreaRegistration : AreaRegistration
     {
@@ -8,7 +8,7 @@ namespace MicroAssistantMvc.Areas.User
         {
             get
             {
-                return "User";
+                return "UserManagement";
             }
         }
 
@@ -16,7 +16,7 @@ namespace MicroAssistantMvc.Areas.User
         {
             context.MapRoute(
                 "User_default",
-                "User/{controller}/{action}/{id}",
+                "UserManagement/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

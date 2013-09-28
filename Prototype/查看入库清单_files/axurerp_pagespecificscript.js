@@ -88,7 +88,7 @@ $axure.eventManager.click('u206', function(e) {
 
 if (true) {
 
-	self.location.href=$axure.globalVariableProvider.getLinkUrl('添加入库单.html');
+	self.location.href='#';
 
 }
 });

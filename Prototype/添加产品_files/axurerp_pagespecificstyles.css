@@ -2474,93 +2474,11 @@ div {
     word-wrap:break-word;
 }
 
-.u154_normal {
-    background-image: url('../添加产品_files/u149_normal.png');
+.u154_line {
+    background-image: url('../添加产品_files/u154_line.png');
 }
 
-.u154_container {
-    position:absolute;
-    left:181px;
-    top:266px;
-    width:30px;
-    height:30px;
-}
-
-#u154_img {
-    position:absolute;
-    left:-3px;
-    top:-3px;
-    width:36px;
-    height:36px;
-}
-
-.u155 {
-    position:absolute;
-    left:2px;
-    top:7px;
-    width:26px;
-    height:16px;
-    ;
-    ;
-    ;
-    font-family:Arial;
-    text-align:left;
-    word-wrap:break-word;
-}
-
-.u156_normal {
-    background-image: url('../添加产品_files/u146_normal.png');
-}
-
-.u156_container {
-    position:absolute;
-    left:183px;
-    top:268px;
-    width:26px;
-    height:26px;
-}
-
-#u156_img {
-    position:absolute;
-    left:-3px;
-    top:-3px;
-    width:32px;
-    height:32px;
-}
-
-.u157 {
-    position:absolute;
-    left:2px;
-    top:5px;
-    width:22px;
-    height:16px;
-    ;
-    ;
-    ;
-    font-family:Arial;
-    text-align:left;
-    word-wrap:break-word;
-}
-
-.u158 {
-    position:absolute;
-    left:226px;
-    top:271px;
-    width:79px;
-    height:19px;
-    ;
-    ;
-    ;
-    font-family:Arial;
-    text-align:left;
-    word-wrap:break-word;
-}
-
-.u159_line {
-    background-image: url('../添加产品_files/u159_line.png');
-}
-
-.u159_line {
+.u154_line {
     position:absolute;
     left:4px;
     top:0px;
@@ -2568,7 +2486,7 @@ div {
     height:48px;
 }
 
-.u159 {
+.u154 {
     position:absolute;
     left:192px;
     top:139px;
@@ -2577,28 +2495,7 @@ div {
     
 }
 
-.u160_line {
-    background-image: url('../添加产品_files/u160_line.png');
-}
-
-.u160_line {
-    position:absolute;
-    left:4px;
-    top:0px;
-    width:3px;
-    height:48px;
-}
-
-.u160 {
-    position:absolute;
-    left:191px;
-    top:218px;
-    width:10px;
-    height:48px;
-    
-}
-
-#u161 {
+#u155 {
     position:absolute;
     left:360px;
     top:66px;
@@ -2607,7 +2504,7 @@ div {
     overflow:hidden;
 }
 
-#pd2u161 {
+#pd2u155 {
     position:absolute;
     left:0px;
     top:0px;
@@ -2616,11 +2513,11 @@ div {
     
 }
 
-.u162_normal {
-    background-image: url('../添加产品_files/u162_normal.png');
+.u156_normal {
+    background-image: url('../添加产品_files/u156_normal.png');
 }
 
-.u162_container {
+.u156_container {
     position:absolute;
     left:141px;
     top:100px;
@@ -2628,7 +2525,7 @@ div {
     height:40px;
 }
 
-#u162_img {
+#u156_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -2636,7 +2533,7 @@ div {
     height:46px;
 }
 
-.u163 {
+.u157 {
     position:absolute;
     left:2px;
     top:12px;
@@ -2650,7 +2547,7 @@ div {
     word-wrap:break-word;
 }
 
-.u164 {
+.u158 {
     position:absolute;
     left:48px;
     top:109px;
@@ -2664,11 +2561,11 @@ div {
     word-wrap:break-word;
 }
 
-.u165_normal {
-    background-image: url('../添加产品_files/u165_normal.png');
+.u159_normal {
+    background-image: url('../添加产品_files/u159_normal.png');
 }
 
-.u165_container {
+.u159_container {
     position:absolute;
     left:203px;
     top:248px;
@@ -2676,7 +2573,7 @@ div {
     height:35px;
 }
 
-#u165_img {
+#u159_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -2684,7 +2581,7 @@ div {
     height:41px;
 }
 
-.u166 {
+.u160 {
     position:absolute;
     left:2px;
     top:10px;
@@ -2698,11 +2595,11 @@ div {
     word-wrap:break-word;
 }
 
-.u167_normal {
-    background-image: url('../添加产品_files/u162_normal.png');
+.u161_normal {
+    background-image: url('../添加产品_files/u156_normal.png');
 }
 
-.u167_container {
+.u161_container {
     position:absolute;
     left:139px;
     top:28px;
@@ -2710,7 +2607,7 @@ div {
     height:40px;
 }
 
-#u167_img {
+#u161_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -2718,7 +2615,7 @@ div {
     height:46px;
 }
 
-.u168 {
+.u162 {
     position:absolute;
     left:2px;
     top:12px;
@@ -2732,7 +2629,7 @@ div {
     word-wrap:break-word;
 }
 
-.u169 {
+.u163 {
     position:absolute;
     left:17px;
     top:37px;
@@ -2746,7 +2643,7 @@ div {
     word-wrap:break-word;
 }
 
-.u170 {
+.u164 {
     position:absolute;
     left:430px;
     top:38px;
@@ -2760,7 +2657,7 @@ div {
     word-wrap:break-word;
 }
 
-.u171 {
+.u165 {
     position:absolute;
     left:432px;
     top:109px;
@@ -2774,11 +2671,11 @@ div {
     word-wrap:break-word;
 }
 
-.u172_normal {
-    background-image: url('../添加产品_files/u172_normal.png');
+.u166_normal {
+    background-image: url('../添加产品_files/u166_normal.png');
 }
 
-.u172_container {
+.u166_container {
     position:absolute;
     left:159px;
     top:165px;
@@ -2786,7 +2683,7 @@ div {
     height:45px;
 }
 
-#u172_img {
+#u166_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -2794,7 +2691,7 @@ div {
     height:51px;
 }
 
-.u173 {
+.u167 {
     position:absolute;
     left:2px;
     top:14px;
@@ -2808,7 +2705,7 @@ div {
     word-wrap:break-word;
 }
 
-.u174 {
+.u168 {
     position:absolute;
     left:172px;
     top:180px;
@@ -2822,7 +2719,7 @@ div {
     word-wrap:break-word;
 }
 
-.u175 {
+.u169 {
     position:absolute;
     left:266px;
     top:175px;
@@ -2836,7 +2733,7 @@ div {
     word-wrap:break-word;
 }
 
-#pd1u161 {
+#pd1u155 {
     position:absolute;
     left:0px;
     top:0px;
@@ -2845,11 +2742,11 @@ div {
     
 }
 
-.u176_normal {
-    background-image: url('../添加产品_files/u162_normal.png');
+.u170_normal {
+    background-image: url('../添加产品_files/u156_normal.png');
 }
 
-.u176_container {
+.u170_container {
     position:absolute;
     left:122px;
     top:28px;
@@ -2857,7 +2754,7 @@ div {
     height:40px;
 }
 
-#u176_img {
+#u170_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -2865,7 +2762,7 @@ div {
     height:46px;
 }
 
-.u177 {
+.u171 {
     position:absolute;
     left:2px;
     top:12px;
@@ -2879,7 +2776,7 @@ div {
     word-wrap:break-word;
 }
 
-.u178 {
+.u172 {
     position:absolute;
     left:29px;
     top:37px;
@@ -2893,11 +2790,11 @@ div {
     word-wrap:break-word;
 }
 
-.u179_normal {
-    background-image: url('../添加产品_files/u162_normal.png');
+.u173_normal {
+    background-image: url('../添加产品_files/u156_normal.png');
 }
 
-.u179_container {
+.u173_container {
     position:absolute;
     left:122px;
     top:100px;
@@ -2905,7 +2802,7 @@ div {
     height:40px;
 }
 
-#u179_img {
+#u173_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -2913,7 +2810,7 @@ div {
     height:46px;
 }
 
-.u180 {
+.u174 {
     position:absolute;
     left:2px;
     top:12px;
@@ -2927,7 +2824,7 @@ div {
     word-wrap:break-word;
 }
 
-.u181 {
+.u175 {
     position:absolute;
     left:29px;
     top:109px;
@@ -2941,31 +2838,31 @@ div {
     word-wrap:break-word;
 }
 
-.u182_normal {
-    background-image: url('../添加产品_files/u165_normal.png');
+.u176_normal {
+    background-image: url('../添加产品_files/u176_normal.png');
 }
 
-.u182_container {
+.u176_container {
     position:absolute;
-    left:148px;
-    top:322px;
-    width:90px;
+    left:175px;
+    top:320px;
+    width:140px;
     height:35px;
 }
 
-#u182_img {
+#u176_img {
     position:absolute;
     left:-3px;
     top:-3px;
-    width:96px;
+    width:146px;
     height:41px;
 }
 
-.u183 {
+.u177 {
     position:absolute;
     left:2px;
     top:10px;
-    width:86px;
+    width:136px;
     height:16px;
     ;
     ;
@@ -2975,45 +2872,11 @@ div {
     word-wrap:break-word;
 }
 
-.u184_normal {
-    background-image: url('../添加产品_files/u165_normal.png');
+.u178_normal {
+    background-image: url('../添加产品_files/u156_normal.png');
 }
 
-.u184_container {
-    position:absolute;
-    left:287px;
-    top:322px;
-    width:90px;
-    height:35px;
-}
-
-#u184_img {
-    position:absolute;
-    left:-3px;
-    top:-3px;
-    width:96px;
-    height:41px;
-}
-
-.u185 {
-    position:absolute;
-    left:2px;
-    top:10px;
-    width:86px;
-    height:16px;
-    ;
-    ;
-    ;
-    font-family:Arial;
-    text-align:left;
-    word-wrap:break-word;
-}
-
-.u186_normal {
-    background-image: url('../添加产品_files/u162_normal.png');
-}
-
-.u186_container {
+.u178_container {
     position:absolute;
     left:124px;
     top:173px;
@@ -3021,7 +2884,7 @@ div {
     height:40px;
 }
 
-#u186_img {
+#u178_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -3029,7 +2892,7 @@ div {
     height:46px;
 }
 
-.u187 {
+.u179 {
     position:absolute;
     left:2px;
     top:12px;
@@ -3043,7 +2906,7 @@ div {
     word-wrap:break-word;
 }
 
-.u188 {
+.u180 {
     position:absolute;
     left:30px;
     top:182px;
@@ -3057,11 +2920,11 @@ div {
     word-wrap:break-word;
 }
 
-.u189_normal {
-    background-image: url('../添加产品_files/u189_normal.png');
+.u181_normal {
+    background-image: url('../添加产品_files/u181_normal.png');
 }
 
-.u189_container {
+.u181_container {
     position:absolute;
     left:74px;
     top:239px;
@@ -3069,7 +2932,7 @@ div {
     height:45px;
 }
 
-#u189_img {
+#u181_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -3077,7 +2940,7 @@ div {
     height:51px;
 }
 
-.u190 {
+.u182 {
     position:absolute;
     left:2px;
     top:14px;
@@ -3091,11 +2954,11 @@ div {
     word-wrap:break-word;
 }
 
-.u191_normal {
-    background-image: url('../添加产品_files/u191_normal.png');
+.u183_normal {
+    background-image: url('../添加产品_files/u183_normal.png');
 }
 
-.u191_container {
+.u183_container {
     position:absolute;
     left:233px;
     top:239px;
@@ -3103,7 +2966,7 @@ div {
     height:45px;
 }
 
-#u191_img {
+#u183_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -3111,7 +2974,7 @@ div {
     height:51px;
 }
 
-.u192 {
+.u184 {
     position:absolute;
     left:2px;
     top:14px;
@@ -3125,7 +2988,7 @@ div {
     word-wrap:break-word;
 }
 
-.u193 {
+.u185 {
     position:absolute;
     left:82px;
     top:254px;
@@ -3139,7 +3002,7 @@ div {
     word-wrap:break-word;
 }
 
-.u194 {
+.u186 {
     position:absolute;
     left:243px;
     top:254px;
@@ -3153,7 +3016,7 @@ div {
     word-wrap:break-word;
 }
 
-.u195 {
+.u187 {
     position:absolute;
     left:175px;
     top:250px;
@@ -3167,7 +3030,7 @@ div {
     word-wrap:break-word;
 }
 
-.u196 {
+.u188 {
     position:absolute;
     left:364px;
     top:250px;
@@ -3181,7 +3044,7 @@ div {
     word-wrap:break-word;
 }
 
-#pd0u161 {
+#pd0u155 {
     position:absolute;
     left:0px;
     top:0px;
@@ -3190,11 +3053,11 @@ div {
     
 }
 
-.u197_normal {
-    background-image: url('../添加产品_files/u162_normal.png');
+.u189_normal {
+    background-image: url('../添加产品_files/u156_normal.png');
 }
 
-.u197_container {
+.u189_container {
     position:absolute;
     left:122px;
     top:28px;
@@ -3202,7 +3065,7 @@ div {
     height:40px;
 }
 
-#u197_img {
+#u189_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -3210,7 +3073,7 @@ div {
     height:46px;
 }
 
-.u198 {
+.u190 {
     position:absolute;
     left:2px;
     top:12px;
@@ -3224,7 +3087,7 @@ div {
     word-wrap:break-word;
 }
 
-.u199 {
+.u191 {
     position:absolute;
     left:29px;
     top:37px;
@@ -3238,11 +3101,11 @@ div {
     word-wrap:break-word;
 }
 
-.u200_normal {
-    background-image: url('../添加产品_files/u162_normal.png');
+.u192_normal {
+    background-image: url('../添加产品_files/u156_normal.png');
 }
 
-.u200_container {
+.u192_container {
     position:absolute;
     left:122px;
     top:100px;
@@ -3250,7 +3113,7 @@ div {
     height:40px;
 }
 
-#u200_img {
+#u192_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -3258,7 +3121,7 @@ div {
     height:46px;
 }
 
-.u201 {
+.u193 {
     position:absolute;
     left:2px;
     top:12px;
@@ -3272,7 +3135,7 @@ div {
     word-wrap:break-word;
 }
 
-.u202 {
+.u194 {
     position:absolute;
     left:29px;
     top:109px;
@@ -3286,11 +3149,11 @@ div {
     word-wrap:break-word;
 }
 
-.u203_normal {
-    background-image: url('../添加产品_files/u203_normal.png');
+.u195_normal {
+    background-image: url('../添加产品_files/u195_normal.png');
 }
 
-.u203_container {
+.u195_container {
     position:absolute;
     left:381px;
     top:116px;
@@ -3298,7 +3161,7 @@ div {
     height:8px;
 }
 
-#u203_img {
+#u195_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -3306,7 +3169,7 @@ div {
     height:14px;
 }
 
-.u204 {
+.u196 {
     position:absolute;
     left:2px;
     top:-4px;
@@ -3320,11 +3183,67 @@ div {
     word-wrap:break-word;
 }
 
-.u205 {
+.u197 {
     position:absolute;
     left:59px;
     top:175px;
     width:61px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u199 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:19px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u201 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:19px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u203 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:19px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u205 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:19px;
     height:19px;
     ;
     ;
@@ -3348,67 +3267,11 @@ div {
     word-wrap:break-word;
 }
 
-.u209 {
-    position:absolute;
-    left:16px;
-    top:0px;
-    width:19px;
-    height:19px;
-    ;
-    ;
-    ;
-    font-family:Arial;
-    text-align:left;
-    word-wrap:break-word;
+.u208_normal {
+    background-image: url('../添加产品_files/u208_normal.png');
 }
 
-.u211 {
-    position:absolute;
-    left:16px;
-    top:0px;
-    width:19px;
-    height:19px;
-    ;
-    ;
-    ;
-    font-family:Arial;
-    text-align:left;
-    word-wrap:break-word;
-}
-
-.u213 {
-    position:absolute;
-    left:16px;
-    top:0px;
-    width:19px;
-    height:19px;
-    ;
-    ;
-    ;
-    font-family:Arial;
-    text-align:left;
-    word-wrap:break-word;
-}
-
-.u215 {
-    position:absolute;
-    left:16px;
-    top:0px;
-    width:19px;
-    height:19px;
-    ;
-    ;
-    ;
-    font-family:Arial;
-    text-align:left;
-    word-wrap:break-word;
-}
-
-.u216_normal {
-    background-image: url('../添加产品_files/u216_normal.png');
-}
-
-.u216_container {
+.u208_container {
     position:absolute;
     left:121px;
     top:235px;
@@ -3416,7 +3279,7 @@ div {
     height:205px;
 }
 
-#u216_img {
+#u208_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -3424,7 +3287,7 @@ div {
     height:211px;
 }
 
-.u217 {
+.u209 {
     position:absolute;
     left:2px;
     top:94px;
@@ -3438,7 +3301,7 @@ div {
     word-wrap:break-word;
 }
 
-.u218 {
+.u210 {
     position:absolute;
     left:28px;
     top:244px;
@@ -3452,11 +3315,11 @@ div {
     word-wrap:break-word;
 }
 
-.u219_normal {
-    background-image: url('../添加产品_files/u165_normal.png');
+.u211_normal {
+    background-image: url('../添加产品_files/u159_normal.png');
 }
 
-.u219_container {
+.u211_container {
     position:absolute;
     left:192px;
     top:462px;
@@ -3464,7 +3327,7 @@ div {
     height:35px;
 }
 
-#u219_img {
+#u211_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -3472,7 +3335,7 @@ div {
     height:41px;
 }
 
-.u220 {
+.u212 {
     position:absolute;
     left:2px;
     top:10px;
@@ -3486,11 +3349,11 @@ div {
     word-wrap:break-word;
 }
 
-.u221_normal {
-    background-image: url('../添加产品_files/u165_normal.png');
+.u213_normal {
+    background-image: url('../添加产品_files/u159_normal.png');
 }
 
-.u221_container {
+.u213_container {
     position:absolute;
     left:331px;
     top:462px;
@@ -3498,7 +3361,7 @@ div {
     height:35px;
 }
 
-#u221_img {
+#u213_img {
     position:absolute;
     left:-3px;
     top:-3px;
@@ -3506,7 +3369,7 @@ div {
     height:41px;
 }
 
-.u222 {
+.u214 {
     position:absolute;
     left:2px;
     top:10px;

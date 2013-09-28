@@ -115,7 +115,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertProProduction.Parameters["@LowestPrice"].Value = e.LowestPrice;
                 _cmdInsertProProduction.Parameters["@MarketPrice"].Value = e.MarketPrice;
                 _cmdInsertProProduction.Parameters["@UserId"].Value = e.UserId;
-                
+
                 _cmdInsertProProduction.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertProProduction.LastInsertedId);
                 return returnValue;
@@ -320,6 +320,10 @@ namespace MicroAssistant.DataAccess
                     reader.Read();
                     returnValue = new ProProduction().BuildSampleEntity(reader);
                 }
+            }
+            catch
+            {
+                throw;
             }
             finally
             {
