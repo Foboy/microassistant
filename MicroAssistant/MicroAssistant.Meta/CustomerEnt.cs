@@ -13,7 +13,11 @@ using MicroAssistant.Common;
 namespace MicroAssistant.Meta
 {
     [Serializable]
+<<<<<<< HEAD
     public class CustomerEnt : Customer
+=======
+    public class CustomerEnt 
+>>>>>>> ff89a5a760e31eaaf33ef9d1b03ea6b4d8720970
     {
         /// <summary>
         /// 
