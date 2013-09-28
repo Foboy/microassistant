@@ -24,7 +24,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdUpdateProProductionType;
         private MySqlCommand cmdLoadProProductionType;
         private MySqlCommand cmdLoadAllProProductionType;
-        private MySqlCommand cmdGetProProductionTypeCount;
+        private MySqlCommand cmdLoadProProductionTypeCount;
         private MySqlCommand cmdGetProProductionType;
 
         private ProProductionTypeAccessor()
@@ -58,16 +58,24 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadProProductionType
 
-            cmdLoadProProductionType = new MySqlCommand(@" select p_type_id,p_type_name,ent_id,father_id,pic_id from pro_production_type limit @PageIndex,@PageSize");
-            cmdLoadProProductionType.Parameters.Add("@pageIndex", MySqlDbType.Int32);
-            cmdLoadProProductionType.Parameters.Add("@pageSize", MySqlDbType.Int32);
+            cmdLoadProProductionType = new MySqlCommand(@"select p_type_id,p_type_name,ent_id,father_id,pic_id,r.pic_url from pro_production_type as t LEFT JOIN res_pic as r on t.pic_id=r.pic_id
+            WHERE  t.ent_id=@entid and (t.father_id=0 or t.father_id=@fatherid) and (t.p_type_id=0 and or t.p_type_id=@ptypeid) AND (t.p_type_name='' or t.p_type_name =@ptypename) LIMIT @PageIndex,@PageSize");
+            cmdLoadProProductionType.Parameters.Add("@PageIndex", MySqlDbType.Int32);
+            cmdLoadProProductionType.Parameters.Add("@PageSize", MySqlDbType.Int32);
+            cmdLoadProProductionType.Parameters.Add("@entid", MySqlDbType.Int32);
+            cmdLoadProProductionType.Parameters.Add("@fatherid", MySqlDbType.Int32);
+            cmdLoadProProductionType.Parameters.Add("@ptypeid", MySqlDbType.Int32);
+            cmdLoadProProductionType.Parameters.Add("@ptypename", MySqlDbType.String); 
 
             #endregion
 
-            #region cmdGetProProductionTypeCount
+            #region cmdLoadProProductionTypeCount
 
-            cmdGetProProductionTypeCount = new MySqlCommand(" select count(*)  from pro_production_type ");
-
+            cmdLoadProProductionTypeCount = new MySqlCommand("@select count(*) from pro_production_type as t LEFT JOIN res_pic as r on t.pic_id=r.pic_id WHERE t.ent_id=@entid and (t.father_id=0 or t.father_id=@fatherid) and (t.p_type_id=0 and or t.p_type_id=@ptypeid) AND (t.p_type_name='' or t.p_type_name =@ptypename)");
+            cmdLoadProProductionTypeCount.Parameters.Add("@entid", MySqlDbType.Int32);
+            cmdLoadProProductionTypeCount.Parameters.Add("@fatherid", MySqlDbType.Int32);
+            cmdLoadProProductionTypeCount.Parameters.Add("@ptypeid", MySqlDbType.Int32);
+            cmdLoadProProductionTypeCount.Parameters.Add("@ptypename", MySqlDbType.String); 
             #endregion
 
             #region cmdLoadAllProProductionType
@@ -193,24 +201,22 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<ProProductionType> Search(Int32 PTypeId, String PTypeName, Int32 EntId, Int32 FatherId, Int32 PicId, int pageIndex, int pageSize)
+        public PageEntity<ProProductionType> Search(Int32 PTypeId, String PTypeName, Int32 EntId, Int32 FatherId, int pageIndex, int pageSize)
         {
             PageEntity<ProProductionType> returnValue = new PageEntity<ProProductionType>();
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdLoadProProductionType = cmdLoadProProductionType.Clone() as MySqlCommand;
-            MySqlCommand _cmdGetProProductionTypeCount = cmdGetProProductionTypeCount.Clone() as MySqlCommand;
+            MySqlCommand _cmdLoadProProductionTypeCount = cmdLoadProProductionTypeCount.Clone() as MySqlCommand;
             _cmdLoadProProductionType.Connection = oc;
-            _cmdGetProProductionTypeCount.Connection = oc;
-
+            _cmdLoadProProductionTypeCount.Connection = oc;
             try
             {
                 _cmdLoadProProductionType.Parameters["@PageIndex"].Value = pageIndex;
                 _cmdLoadProProductionType.Parameters["@PageSize"].Value = pageSize;
-                _cmdLoadProProductionType.Parameters["@PTypeId"].Value = PTypeId;
-                _cmdLoadProProductionType.Parameters["@PTypeName"].Value = PTypeName;
-                _cmdLoadProProductionType.Parameters["@EntId"].Value = EntId;
-                _cmdLoadProProductionType.Parameters["@FatherId"].Value = FatherId;
-                _cmdLoadProProductionType.Parameters["@PicId"].Value = PicId;
+                _cmdLoadProProductionType.Parameters["@ptypeid"].Value = PTypeId;
+                _cmdLoadProProductionType.Parameters["@ptypename"].Value = PTypeName;
+                _cmdLoadProProductionType.Parameters["@entid"].Value = EntId;
+                _cmdLoadProProductionType.Parameters["@fatherid"].Value = FatherId;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
@@ -220,7 +226,11 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new ProProductionType().BuildSampleEntity(reader));
                 }
-                returnValue.RecordsCount = (int)_cmdGetProProductionTypeCount.ExecuteScalar();
+                _cmdLoadProProductionTypeCount.Parameters["@ptypeid"].Value = PTypeId;
+                _cmdLoadProProductionTypeCount.Parameters["@ptypename"].Value = PTypeName;
+                _cmdLoadProProductionTypeCount.Parameters["@entid"].Value = EntId;
+                _cmdLoadProProductionTypeCount.Parameters["@fatherid"].Value = FatherId;
+                returnValue.RecordsCount = (int)_cmdLoadProProductionTypeCount.ExecuteScalar();
             }
             finally
             {
@@ -229,8 +239,8 @@ namespace MicroAssistant.DataAccess
                 oc = null;
                 _cmdLoadProProductionType.Dispose();
                 _cmdLoadProProductionType = null;
-                _cmdGetProProductionTypeCount.Dispose();
-                _cmdGetProProductionTypeCount = null;
+                _cmdLoadProProductionTypeCount.Dispose();
+                _cmdLoadProProductionTypeCount = null;
                 GC.Collect();
             }
             return returnValue;
