@@ -1,11 +1,8 @@
-<<<<<<< HEAD
-﻿using MicroAssistant.Meta;
-=======
+
 ﻿using MicroAssistant.Common;
 using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
->>>>>>> ff89a5a760e31eaaf33ef9d1b03ea6b4d8720970
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +25,6 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             return View();
         }
         /// <summary>
-<<<<<<< HEAD
-        /// 添加销售机会（添加个人客户和企业客户）
-=======
         /// 添加销售机会（添加企业客户）
         /// </summary>
         /// <param name="customer"></param>
@@ -56,16 +50,15 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
         }
         /// <summary>
         /// 添加销售机会（添加个人客户）
->>>>>>> ff89a5a760e31eaaf33ef9d1b03ea6b4d8720970
         /// </summary>
         /// <param name="customer"></param>
         /// <param name="IsEnt">true 为企业客户 false为个人客户</param>
         /// <returns></returns>
-<<<<<<< HEAD
         public JsonResult AddMarketingChance(Customer customer,bool IsEnt,int entid )
         {
             return null;
-=======
+        }
+
         public JsonResult AddMarketingChanceP(CustomerPrivate customer, int entid)
         {
             var Res = new JsonResult();
@@ -86,7 +79,6 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
->>>>>>> ff89a5a760e31eaaf33ef9d1b03ea6b4d8720970
         }
         /// <summary>
         /// 获取销售机会列表
@@ -103,10 +95,13 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             return null;
         }
 
-<<<<<<< HEAD
-//编辑销售机会详情
+
+       //编辑销售机会详情
         public JsonResult EditMarketingInfo(Customer customer, bool IsEnt)
-=======
+        {
+            return null;
+        }
+
        //编辑销售机会详情 企业
         public JsonResult EditMarketingInfoE(CustomerEnt customer)
         {
@@ -114,7 +109,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
         }
         //编辑销售机会详情 个人
         public JsonResult EditMarketingInfoP(CustomerPrivate customer)
->>>>>>> ff89a5a760e31eaaf33ef9d1b03ea6b4d8720970
+
         {
             return null;
         }
