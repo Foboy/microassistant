@@ -1,9 +1,9 @@
-function ProductBaseCtrl($scope, $routeParams, $http, $animate, $location){
-	console.log("pbc")
-	console.log($animate)
-	console.log($routeParams)
+function ProductMainCtrl($scope, $routeParams, $http, $location){
+	console.log("pmc");
+	console.log($scope);
 	var actCatalogId = 0;
 	var actPageIndex = 1;
+	
   //获取产品列表
   $scope.getCatProducts = function(catalogId, pageIndex){
 	  actCatalogId = catalogId;
@@ -65,8 +65,8 @@ function ProductBaseCtrl($scope, $routeParams, $http, $animate, $location){
 			  }
 			  else
 			  {
-				  $location.path("/product/"+$scope.catalogs[0].PTypeId+"/1");
-				  //$scope.activeCat($scope.catalogs[0].PTypeId, pageIndex);
+				  //$location.path("/product/"+$scope.catalogs[0].PTypeId+"/1");
+				  $scope.activeCat($scope.catalogs[0].PTypeId, pageIndex);
 			  }
 		  }
 		}).
@@ -91,36 +91,47 @@ function ProductBaseCtrl($scope, $routeParams, $http, $animate, $location){
 	  $scope.addCatalogFlag = false;
   };
   
-  $scope.setRouteParams = function(params){
-	  $scope.routeParams = params;
-  };
   
   $scope.editProduct = function(){
-	  $scope.productEditPageOne = true;
-	  
-	  $('#productEditModal').modal('show');
-	  console.log($scope.ProductEditForm.$setDirty());
-	  //$scope.ProductEditForm.$setPristine();
-  };
-  
-  $scope.editProductPageNext = function(){
-	  console.log($scope.ProductEditForm.PName);
-	  if($scope.ProductEditForm.PName.$valid)
-	  	$scope.productEditPageOne = false;
-	  else
-	  {
-	  	$scope.ProductEditForm.PName.$dirty = true;
-		$scope.ProductEditForm.PName.$pristine = false;
-	  }
-	  //$('#productEditModal').modal('show');
-	  //console.log($scope.ProductEditForm.$setDirty());
-	  //$scope.ProductEditForm.$setPristine();
+	  $scope.$broadcast('EventEditPoduct',this.product);
   };
   
   $scope.addPurchase = function(){
-	  $('#addPurchaseModal').modal('show');
+	  $scope.$broadcast('EventAddPurchase',this.product);
   };
   
+  $scope.showProductDetail = function(){
+	  $scope.$broadcast('EventShowPoductDetail',this.product);
+  };
+  
+  $scope.getCatalogs($routeParams.catalogId,$routeParams.pageIndex || 1);
+  $('#file_upload').cuploadify({
+				'formData'     : {
+					'token'     : 'sss'
+				},
+				'swf'      : 'js/uploadify/uploadify.swf',
+				'uploader' : '/Upload/Uploader/71358f72c447e0ec2ecba71636907898?queryData=width-126,height-126&imageWidth=470&imageHeight=0',
+				'height'   : 70,
+				'width'    : 190
+			});
+}
+
+//产品详细
+function ProductDetailCtrl($scope, $routeParams, $http, $location){
+	console.log("deatil")
+	console.log($scope)
+	$scope.$on('EventShowPoductDetail',function(event,product){
+		console.log("EventShowPoductDetail");
+		console.log(product);
+		$("#productDetailBox").animate({width:"600px"},500);
+	    $scope.productInfo();
+	});
+	
+	$scope.hideProductDetail = function(){
+	  $scope.tabIndex=0;
+	  $("#productDetailBox").animate({width:"0px"},500,function(){});
+  	};
+	
   $scope.productInfo = function(){
 	  $scope.tabIndex=1;
 	  $http.get($sitecore.urls["productDetail"],{params:{productId:$routeParams.productId}}).success(function(data) {
@@ -154,31 +165,63 @@ function ProductBaseCtrl($scope, $routeParams, $http, $animate, $location){
 	  });
   };
   
-  $scope.showProductDetail = function(){
-	  $("#productDetailBox").animate({width:"600px"},500);
-	  $scope.productInfo();
+}
+
+//编辑产品
+function ProductEditCtrl($scope, $routeParams, $http, $location){
+	console.log($scope)
+	$scope.PTypes = [{name:"家具",id:0},{name:"家电",id:1}];
+	
+	$scope.$on('EventEditPoduct',function(event,product){
+		console.log("EventEditPoduct");
+		console.log(product);
+	    $scope.productEditPageOne = true;
+	  	console.log($scope)
+	    $('#productEditModal').modal('show');
+	});
+	
+  $scope.editProductPageNext = function(){
+	  console.log($scope.ProductEditForm);
+	  if($scope.ProductEditForm.PName.$valid)
+	  {
+	  	$scope.productEditPageOne = false;
+		$scope.showerror = false;
+	  }
+	  else
+	  {
+		$scope.showerror = true;
+	  }
+	  //$('#productEditModal').modal('show');
+	  //console.log($scope.ProductEditForm.$setDirty());
+	  //$scope.ProductEditForm.$setPristine();
   };
   
-  $scope.hideProductDetail = function(){
-	  $scope.tabIndex=0;
-	  $("#productDetailBox").animate({width:"0px"},500,function(){
-		  console.log($location)
-		  $scope.$apply(function() {
-			  $location.path("/product/"+$routeParams.catalogId+"/"+$routeParams.pageIndex);
+    $scope.ProductEditSubmit = function(){
+	  console.log(angular.toJson($scope.EditProduct));
+	  if($scope.ProductEditForm.$valid)
+	  {
+		  $scope.showerror = false;
+		  $http.post($sitecore.urls["productEdit"],{product:angular.toJson($scope.EditProduct)}).success(function(data) {
+			console.log(data);
+			$scope.product = data;
+		  }).
+		  error(function(data, status, headers, config) {
+			$scope.product = {};
 		  });
-	  });
-	  
-  };
-  
-  $scope.ProductEditSubmit = function(){
-	  alert(angular.toJson($scope.EditProduct));
-	  alert($scope.ProductEditForm.$valid);
+	  }
+	  else
+	  {
+		  $scope.showerror = true;
+	  }
   };
 }
 
-function ProductListCtrl($scope, $routeParams, $http, $location){
-		console.log($scope.$parent)
-		console.log($routeParams)
-		$scope.$parent.setRouteParams($routeParams);
-		$scope.$parent.getCatalogs($routeParams.catalogId,$routeParams.pageIndex || 1);
+//添加采购单
+function ProductPurchaseCtrl($scope, $routeParams, $http, $location){
+	console.log($scope)
+	$scope.$on('EventAddPurchase',function(event,product){
+		console.log("EventAddPurchase");
+		console.log(product);
+		$('#addPurchaseModal').modal('show');
+	});
 }
