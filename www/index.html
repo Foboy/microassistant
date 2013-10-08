@@ -14,6 +14,8 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/product/controllers.js"></script>
     <script src="scripts/sales/controllers.js"></script>
+    <script src="scripts/finance/controllers.js"></script>
+    <script src="scripts/home/controllers.js"></script>
     <script src="js/uploadify/jquery.uploadify.js"></script>
     <script src="js/uploadify/uploadify.extention.js"></script>
     <link rel="stylesheet" type="text/css" href="js/uploadify/uploadify.css">
@@ -28,7 +30,7 @@
     </style>
 
   </head>
-  <body>
+  <body ng-controller="MainCtrl">
   	<div class="navbar">
       
     </div>
@@ -37,21 +39,21 @@
             <img src="img/Adimg/h1.jpg"/>
         </div>
         <ul class="navList">
-            <li class="cur">
-                <a href="#" class="homeIcon"></a>
-                <p><a ng-href="#">主页</a></p>
+            <li ng-class="page=='home'?'cur':''">
+                <a ng-href="#!/home" class="homeIcon"></a>
+                <p><a ng-href="#!/home">主页</a></p>
             </li>
-            <li>
+            <li ng-class="page=='product'?'cur':''">
                 <a ng-href="#!/product" class="peopleIcon"></a>
                 <p><a ng-href="#!/product">产品管理</a></p>
             </li>
-            <li>
+            <li ng-class="page=='sales'?'cur':''">
                 <a ng-href="#!/sales" class="peopleIcon"></a>
                 <p><a ng-href="#!/sales">销售管理</a></p>
             </li>
-            <li>
-                <a href="#" class="peopleIcon"></a>
-                <p><a ng-href="#">财务管理</a></p>
+            <li ng-class="page=='finance'?'cur':''">
+                <a ng-href="#!/finance" class="peopleIcon"></a>
+                <p><a ng-href="#!/finance">财务管理</a></p>
             </li>
         </ul>
     </div>
