@@ -18,32 +18,30 @@ namespace MicroAssistantMvc.Filters
         {
             base.OnActionExecuting(filterContext);
             string actionName = filterContext.ActionDescriptor.ActionName;
-           string des =GetDescription(actionName);
-
-           filterContext.HttpContext.Response.Write("执行之前ActionName" + des + "<br />");
+            string des = GetDescription(actionName);
+            //filterContext.HttpContext.Response.Write("执行之前ActionName" + des + "<br />");
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
             base.OnActionExecuted(filterContext);
-            filterContext.HttpContext.Response.Write("Action执行之后" + Message + "<br />");
+            //filterContext.HttpContext.Response.Write("Action执行之后" + Message + "<br />");
         }
 
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
             base.OnResultExecuting(filterContext);
-            filterContext.HttpContext.Response.Write("返回Result之前" + Message + "<br />");
+            //filterContext.HttpContext.Response.Write("返回Result之前" + Message + "<br />");
         }
 
         public override void OnResultExecuted(ResultExecutedContext filterContext)
         {
-            
+
             base.OnResultExecuted(filterContext);
 
             string requestpath = filterContext.HttpContext.Request.Path;
             string res = JsonHelper.Serialize(filterContext.Result);
-
-            filterContext.HttpContext.Response.Write("返回Result之后" + Message + "<br />");
+            //filterContext.HttpContext.Response.Write("返回Result之后" + Message + "<br />");
         }
 
 

@@ -1,0 +1,5 @@
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistantPortal\bin\MicroAssistantPortal.dll
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistantPortal\bin\MicroAssistantPortal.pdb
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistantPortal\obj\Debug\MicroAssistantPortal.csprojResolveAssemblyReference.cache
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistantPortal\obj\Debug\MicroAssistantPortal.dll
+H:\WorkCode\microassistant\MicroAssistant\MicroAssistantPortal\obj\Debug\MicroAssistantPortal.pdb

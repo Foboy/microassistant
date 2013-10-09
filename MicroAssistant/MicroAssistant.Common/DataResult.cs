@@ -12,6 +12,9 @@ namespace MicroAssistant.Common
         [DataMember]
         public AppError Error { get; set; }
 
+        /// <summary>
+        /// 新增ID
+        /// </summary>
         [DataMember]
         public int Id { get; set; }
 
