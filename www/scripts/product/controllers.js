@@ -114,6 +114,14 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 				'height'   : 70,
 				'width'    : 190
 			});
+  console.log("bootstro")
+  console.log(bootstro)
+  bootstro.start('.bootstro', {
+	  url : 'partials/product/help.json',
+	  nextButtonText : '继续 &raquo;',
+	  prevButtonText : '&laquo; 返回',
+	  finishButtonText : '<i class="icon-ok"></i> 跳过帮助',
+  }); 
 }
 
 //产品详细
@@ -224,4 +232,22 @@ function ProductPurchaseCtrl($scope, $routeParams, $http, $location){
 		console.log(product);
 		$('#addPurchaseModal').modal('show');
 	});
+	
+	$scope.ProductAddPurchaseSubmit = function(){
+	  if($scope.ProductAddPurchaseForm.$valid)
+	  {
+		  $scope.showerror = false;
+		  $http.post($sitecore.urls["productEdit"],{product:angular.toJson($scope.AddedPurchase)}).success(function(data) {
+			console.log(data);
+			$scope.product = data;
+		  }).
+		  error(function(data, status, headers, config) {
+			$scope.product = {};
+		  });
+	  }
+	  else
+	  {
+		  $scope.showerror = true;
+	  }
+	};
 }
