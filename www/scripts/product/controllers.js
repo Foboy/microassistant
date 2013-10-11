@@ -1,15 +1,14 @@
 function ProductMainCtrl($scope, $routeParams, $http, $location){
 	console.log("pmc");
 	console.log($scope);
-	var actCatalogId = 0;
-	var actPageIndex = 1;
+	$scope.ActCatalogId = 0;
+	$scope.ActPageIndex = 1;
 	
   //获取产品列表
   $scope.getCatProducts = function(catalogId, pageIndex){
-	  actCatalogId = catalogId;
-	  actPageIndex = pageIndex;
 	  $http.get($sitecore.urls["productList"],{params:{catalogid:catalogId}}).success(function(data) {
 		  console.log(data);
+		$scope.ActPageIndex = pageIndex;
 		$scope.products = data;
 	  }).
 	  error(function(data, status, headers, config) {
@@ -25,12 +24,9 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 		if($scope.catalogs[i].PTypeId == catalogId)
 		{
 			actived = true;
-			$scope.catalogs[i].active = true;
+			$scope.ActCatalogId = $scope.catalogs[i].PTypeId;
 			$scope.getCatProducts($scope.catalogs[i].PTypeId, pageIndex);
-		}
-		else
-		{
-			$scope.catalogs[i].active = false;
+			break;
 		}
 	  }
 	  if(!actived)
@@ -42,8 +38,8 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
   };
   
   //获取产品分类列表
-  $scope.getCatalogs = function(catalogId, pageIndex){
-	  if(catalogId == actCatalogId && pageIndex == actPageIndex)
+  $scope.showCatalogs = function(catalogId, pageIndex){
+	  if(catalogId == $scope.ActCatalogId && pageIndex == actPageIndex)
 	  	return;
 	  if($scope.catalogs)
 	  {
@@ -79,11 +75,26 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
   $scope.addCatalog = function(){
 	  if($scope.addCatalogFlag)
 	  {
-		  
+		  if($scope.ProductCatalogForm.$valid)
+		  {
+			  $scope.showerror = false;
+			  $http.post($sitecore.urls["productEdit"],{product:angular.toJson($scope.AddedCatalog)}).success(function(data) {
+				console.log(data);
+				$scope.product = data;
+			  }).
+			  error(function(data, status, headers, config) {
+				$scope.product = {};
+			  });
+		  }
+		  else
+		  {
+			  $scope.showerror = true;
+		  }
 	  }
 	  else
 	  {
 		  $scope.addCatalogFlag = true;
+		  $scope.showerror = false;
 	  }
   };
   
@@ -104,7 +115,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 	  $scope.$broadcast('EventShowPoductDetail',this.product);
   };
   
-  $scope.getCatalogs($routeParams.catalogId,$routeParams.pageIndex || 1);
+  $scope.showCatalogs($routeParams.catalogId,$routeParams.pageIndex || 1);
   $('#file_upload').cuploadify({
 				'formData'     : {
 					'token'     : 'sss'
@@ -112,10 +123,12 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 				'swf'      : 'js/uploadify/uploadify.swf',
 				'uploader' : '/Upload/Uploader/71358f72c447e0ec2ecba71636907898?queryData=width-126,height-126&imageWidth=470&imageHeight=0',
 				'height'   : 70,
-				'width'    : 190
+				'width'    : 190,
+				onUploadComplete : function(response){
+					
+				}
 			});
-  console.log("bootstro")
-  console.log(bootstro)
+
   bootstro.start('.bootstro', {
 	  url : 'partials/product/help.json',
 	  nextButtonText : '继续 &raquo;',
