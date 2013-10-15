@@ -28,6 +28,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdGetCustomerEnt;
 
         private MySqlCommand cmdSearchCustomerEntByOwnerId;
+        private MySqlCommand cmdSearchCustomerEntByName;
 
         private CustomerEntAccessor()
         {
@@ -104,6 +105,12 @@ namespace MicroAssistant.DataAccess
 
             cmdSearchCustomerEntByOwnerId = new MySqlCommand(" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,ent_id,owner_id from customer_ent where owner_id = @OwnerId");
             cmdSearchCustomerEntByOwnerId.Parameters.Add("@OwnerId", MySqlDbType.Int32);
+
+            #endregion
+            #region cmdSearchCustomerEntByName
+
+            cmdSearchCustomerEntByName = new MySqlCommand(" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,ent_id,owner_id from customer_ent where ent_name = @EntName");
+            cmdSearchCustomerEntByName.Parameters.Add("@EntName", MySqlDbType.String);
 
             #endregion
         }
@@ -381,6 +388,40 @@ namespace MicroAssistant.DataAccess
                 oc = null;
                 _cmdSearchCustomerEntByOwnerId.Dispose();
                 _cmdSearchCustomerEntByOwnerId = null;
+                GC.Collect();
+            }
+            return returnValue;
+        }
+
+        /// <summary>
+        /// 通过企业名称获取企业客户
+        /// </summary>
+        public List<CustomerEnt> SearchCustomerEntByName(string name)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdSearchCustomerEntByName = cmdSearchCustomerEntByName.Clone() as MySqlCommand;
+            _cmdSearchCustomerEntByName.Connection = oc;
+            List<CustomerEnt> returnValue = new List<CustomerEnt>();
+            try
+            {
+                _cmdSearchCustomerEntByName.Parameters["@EntName"].Value = name;
+
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                MySqlDataReader reader = _cmdSearchCustomerEntByName.ExecuteReader();
+                while (reader.Read())
+                {
+                    returnValue.Add(new CustomerEnt().BuildSampleEntity(reader));
+                }
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdSearchCustomerEntByName.Dispose();
+                _cmdSearchCustomerEntByName = null;
                 GC.Collect();
             }
             return returnValue;

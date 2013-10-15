@@ -31,11 +31,11 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertContractInfo
 
-            cmdInsertContractInfo = new MySqlCommand("INSERT INTO contract_info(contract_no,c_name,customer_id,start_time,end_time,owner_id,contract_time,amount,howtopay,howtopay_id,ent_id) values (@ContractNo,@CName,@CustomerId,@StartTime,@EndTime,@OwnerId,@ContractTime,@Amount,@Howtopay,@HowtopayId,@EntId)");
+            cmdInsertContractInfo = new MySqlCommand("INSERT INTO contract_info(contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,howtopay_id,ent_id) values (@ContractNo,@CName,@CustomerName,@StartTime,@EndTime,@OwnerId,@ContractTime,@Amount,@Howtopay,@HowtopayId,@EntId)");
 
             cmdInsertContractInfo.Parameters.Add("@ContractNo", MySqlDbType.String);
             cmdInsertContractInfo.Parameters.Add("@CName", MySqlDbType.String);
-            cmdInsertContractInfo.Parameters.Add("@CustomerId", MySqlDbType.Int32);
+            cmdInsertContractInfo.Parameters.Add("@CustomerName", MySqlDbType.String);
             cmdInsertContractInfo.Parameters.Add("@StartTime", MySqlDbType.DateTime);
             cmdInsertContractInfo.Parameters.Add("@EndTime", MySqlDbType.DateTime);
             cmdInsertContractInfo.Parameters.Add("@OwnerId", MySqlDbType.Int32);
@@ -48,11 +48,11 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateContractInfo
 
-            cmdUpdateContractInfo = new MySqlCommand(" update contract_info set contract_no = @ContractNo,c_name = @CName,customer_id = @CustomerId,start_time = @StartTime,end_time = @EndTime,owner_id = @OwnerId,contract_time = @ContractTime,amount = @Amount,howtopay = @Howtopay,howtopay_id = @HowtopayId,ent_id = @EntId where contract_info_id = @ContractInfoId");
+            cmdUpdateContractInfo = new MySqlCommand(" update contract_info set contract_no = @ContractNo,c_name = @CName,customer_name = @CustomerName,start_time = @StartTime,end_time = @EndTime,owner_id = @OwnerId,contract_time = @ContractTime,amount = @Amount,howtopay = @Howtopay,howtopay_id = @HowtopayId,ent_id = @EntId where contract_info_id = @ContractInfoId");
             cmdUpdateContractInfo.Parameters.Add("@ContractInfoId", MySqlDbType.Int32);
             cmdUpdateContractInfo.Parameters.Add("@ContractNo", MySqlDbType.String);
             cmdUpdateContractInfo.Parameters.Add("@CName", MySqlDbType.String);
-            cmdUpdateContractInfo.Parameters.Add("@CustomerId", MySqlDbType.Int32);
+            cmdUpdateContractInfo.Parameters.Add("@CustomerName", MySqlDbType.String);
             cmdUpdateContractInfo.Parameters.Add("@StartTime", MySqlDbType.DateTime);
             cmdUpdateContractInfo.Parameters.Add("@EndTime", MySqlDbType.DateTime);
             cmdUpdateContractInfo.Parameters.Add("@OwnerId", MySqlDbType.Int32);
@@ -72,7 +72,8 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadContractInfo
 
-            cmdLoadContractInfo = new MySqlCommand(@" select contract_info_id,contract_no,c_name,customer_id,start_time,end_time,owner_id,contract_time,amount,howtopay,howtopay_id,ent_id from contract_info limit @PageIndex,@PageSize");
+            cmdLoadContractInfo = new MySqlCommand(@" select contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,howtopay_id,ent_id from contract_info where ent_id = @EntId limit @PageIndex,@PageSize");
+            cmdLoadContractInfo.Parameters.Add("@EntId", MySqlDbType.Int32);
             cmdLoadContractInfo.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadContractInfo.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -86,14 +87,14 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllContractInfo
 
-            cmdLoadAllContractInfo = new MySqlCommand(" select contract_info_id,contract_no,c_name,customer_id,start_time,end_time,owner_id,contract_time,amount,howtopay,howtopay_id,ent_id from contract_info");
+            cmdLoadAllContractInfo = new MySqlCommand(" select contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,howtopay_id,ent_id from contract_info");
 
             #endregion
 
             #region cmdGetContractInfo
 
-            cmdGetContractInfo = new MySqlCommand(" select contract_info_id,contract_no,c_name,customer_id,start_time,end_time,owner_id,contract_time,amount,howtopay,howtopay_id,ent_id from contract_info where contract_info_id = @ContractInfoId");
-            cmdGetContractInfo.Parameters.Add("@ContractInfoId", MySqlDbType.Int32);
+            cmdGetContractInfo = new MySqlCommand(" select contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,howtopay_id,ent_id from contract_info where contract_no = @ContractNo");
+            cmdGetContractInfo.Parameters.Add("@ContractNo", MySqlDbType.String);
 
             #endregion
         }
@@ -103,11 +104,11 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Insert(ContractInfo e)
+        public int Insert(ContractInfo e)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdInsertContractInfo = cmdInsertContractInfo.Clone() as MySqlCommand;
-            bool returnValue = false;
+            int returnValue = 0;
             _cmdInsertContractInfo.Connection = oc;
             try
             {
@@ -115,7 +116,7 @@ namespace MicroAssistant.DataAccess
                     oc.Open();
                 _cmdInsertContractInfo.Parameters["@ContractNo"].Value = e.ContractNo;
                 _cmdInsertContractInfo.Parameters["@CName"].Value = e.CName;
-                _cmdInsertContractInfo.Parameters["@CustomerId"].Value = e.CustomerId;
+                _cmdInsertContractInfo.Parameters["@CustomerName"].Value = e.CustomerName;
                 _cmdInsertContractInfo.Parameters["@StartTime"].Value = e.StartTime;
                 _cmdInsertContractInfo.Parameters["@EndTime"].Value = e.EndTime;
                 _cmdInsertContractInfo.Parameters["@OwnerId"].Value = e.OwnerId;
@@ -126,6 +127,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertContractInfo.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdInsertContractInfo.ExecuteNonQuery();
+                returnValue = Convert.ToInt32(_cmdInsertContractInfo.LastInsertedId);
                 return returnValue;
             }
             finally
@@ -188,7 +190,7 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateContractInfo.Parameters["@ContractInfoId"].Value = e.ContractInfoId;
                 _cmdUpdateContractInfo.Parameters["@ContractNo"].Value = e.ContractNo;
                 _cmdUpdateContractInfo.Parameters["@CName"].Value = e.CName;
-                _cmdUpdateContractInfo.Parameters["@CustomerId"].Value = e.CustomerId;
+                _cmdUpdateContractInfo.Parameters["@CustomerName"].Value = e.CustomerName;
                 _cmdUpdateContractInfo.Parameters["@StartTime"].Value = e.StartTime;
                 _cmdUpdateContractInfo.Parameters["@EndTime"].Value = e.EndTime;
                 _cmdUpdateContractInfo.Parameters["@OwnerId"].Value = e.OwnerId;
@@ -218,8 +220,8 @@ namespace MicroAssistant.DataAccess
         /// <para>索引从0开始</para>
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
-        /// </summary>
-        public PageEntity<ContractInfo> Search(Int32 ContractInfoId, String ContractNo, String CName, Int32 CustomerId, DateTime StartTime, DateTime EndTime, Int32 OwnerId, DateTime ContractTime, Decimal Amount, Int32 Howtopay, Int32 HowtopayId, Int32 EntId, int pageIndex, int pageSize)
+        /// </summary>Int32 ContractInfoId, String ContractNo, String CName, Int32 CustomerName, DateTime StartTime, DateTime EndTime, Int32 OwnerId, DateTime ContractTime, Decimal Amount, Int32 Howtopay, Int32 HowtopayId, 
+        public PageEntity<ContractInfo> Search(Int32 EntId, int pageIndex, int pageSize)
         {
             PageEntity<ContractInfo> returnValue = new PageEntity<ContractInfo>();
             MySqlConnection oc = ConnectManager.Create();
@@ -232,17 +234,17 @@ namespace MicroAssistant.DataAccess
             {
                 _cmdLoadContractInfo.Parameters["@PageIndex"].Value = pageIndex;
                 _cmdLoadContractInfo.Parameters["@PageSize"].Value = pageSize;
-                _cmdLoadContractInfo.Parameters["@ContractInfoId"].Value = ContractInfoId;
-                _cmdLoadContractInfo.Parameters["@ContractNo"].Value = ContractNo;
-                _cmdLoadContractInfo.Parameters["@CName"].Value = CName;
-                _cmdLoadContractInfo.Parameters["@CustomerId"].Value = CustomerId;
-                _cmdLoadContractInfo.Parameters["@StartTime"].Value = StartTime;
-                _cmdLoadContractInfo.Parameters["@EndTime"].Value = EndTime;
-                _cmdLoadContractInfo.Parameters["@OwnerId"].Value = OwnerId;
-                _cmdLoadContractInfo.Parameters["@ContractTime"].Value = ContractTime;
-                _cmdLoadContractInfo.Parameters["@Amount"].Value = Amount;
-                _cmdLoadContractInfo.Parameters["@Howtopay"].Value = Howtopay;
-                _cmdLoadContractInfo.Parameters["@HowtopayId"].Value = HowtopayId;
+                //_cmdLoadContractInfo.Parameters["@ContractInfoId"].Value = ContractInfoId;
+                //_cmdLoadContractInfo.Parameters["@ContractNo"].Value = ContractNo;
+                //_cmdLoadContractInfo.Parameters["@CName"].Value = CName;
+                //_cmdLoadContractInfo.Parameters["@CustomerName"].Value = CustomerName;
+                //_cmdLoadContractInfo.Parameters["@StartTime"].Value = StartTime;
+                //_cmdLoadContractInfo.Parameters["@EndTime"].Value = EndTime;
+                //_cmdLoadContractInfo.Parameters["@OwnerId"].Value = OwnerId;
+                //_cmdLoadContractInfo.Parameters["@ContractTime"].Value = ContractTime;
+                //_cmdLoadContractInfo.Parameters["@Amount"].Value = Amount;
+                //_cmdLoadContractInfo.Parameters["@Howtopay"].Value = Howtopay;
+                //_cmdLoadContractInfo.Parameters["@HowtopayId"].Value = HowtopayId;
                 _cmdLoadContractInfo.Parameters["@EntId"].Value = EntId;
 
                 if (oc.State == ConnectionState.Closed)
@@ -304,9 +306,9 @@ namespace MicroAssistant.DataAccess
 
         /// <summary>
         /// 获取指定记录
-        /// <param name="id">Id值</param>
+        /// <param name="ContractNo">合同编号</param>
         /// </summary>
-        public ContractInfo Get(int ContractInfoId)
+        public ContractInfo Get(string ContractNo)
         {
             ContractInfo returnValue = null;
             MySqlConnection oc = ConnectManager.Create();
@@ -315,7 +317,7 @@ namespace MicroAssistant.DataAccess
             _cmdGetContractInfo.Connection = oc;
             try
             {
-                _cmdGetContractInfo.Parameters["@ContractInfoId"].Value = ContractInfoId;
+                _cmdGetContractInfo.Parameters["@ContractNo"].Value = ContractNo;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();

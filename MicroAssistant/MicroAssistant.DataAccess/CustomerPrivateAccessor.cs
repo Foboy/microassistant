@@ -28,6 +28,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdGetCustomerPrivate;
 
         private MySqlCommand cmdSearchCustomerPrivByOwnerId;
+        private MySqlCommand cmdSearchCustomerPrivByName;
 
         private CustomerPrivateAccessor()
         {
@@ -107,6 +108,13 @@ namespace MicroAssistant.DataAccess
             cmdSearchCustomerPrivByOwnerId.Parameters.Add("@OwnerId", MySqlDbType.Int32);
 
             #endregion
+
+            #region cmdSearchCustomerPrivByName
+
+            cmdSearchCustomerPrivByName = new MySqlCommand(" select customer_private_id,name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id,owner_id from customer_private where name = @Name");
+            cmdSearchCustomerPrivByName.Parameters.Add("@Name", MySqlDbType.String);
+
+            #endregion
         }
 
         /// <summary>
@@ -114,11 +122,11 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Insert(CustomerPrivate e)
+        public int Insert(CustomerPrivate e)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdInsertCustomerPrivate = cmdInsertCustomerPrivate.Clone() as MySqlCommand;
-            bool returnValue = false;
+            int returnValue = 0;
             _cmdInsertCustomerPrivate.Connection = oc;
             try
             {
@@ -139,6 +147,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertCustomerPrivate.Parameters["@OwnerId"].Value = e.OwnerId;
 
                 _cmdInsertCustomerPrivate.ExecuteNonQuery();
+                returnValue = Convert.ToInt32(_cmdInsertCustomerPrivate.LastInsertedId);
                 return returnValue;
             }
             finally
@@ -381,6 +390,37 @@ namespace MicroAssistant.DataAccess
                 oc = null;
                 _cmdSearchCustomerPrivByOwnerId.Dispose();
                 _cmdSearchCustomerPrivByOwnerId = null;
+                GC.Collect();
+            }
+            return returnValue;
+        }
+
+        public List<CustomerPrivate> SearchCustomerPrivByName(string name)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdSearchCustomerPrivByName = cmdSearchCustomerPrivByName.Clone() as MySqlCommand;
+            _cmdSearchCustomerPrivByName.Connection = oc;
+            List<CustomerPrivate> returnValue = new List<CustomerPrivate>();
+            try
+            {
+                _cmdSearchCustomerPrivByName.Parameters["@Name"].Value = name;
+
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                MySqlDataReader reader = _cmdSearchCustomerPrivByName.ExecuteReader();
+                while (reader.Read())
+                {
+                    returnValue.Add(new CustomerPrivate().BuildSampleEntity(reader));
+                }
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdSearchCustomerPrivByName.Dispose();
+                _cmdSearchCustomerPrivByName = null;
                 GC.Collect();
             }
             return returnValue;

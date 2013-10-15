@@ -20,11 +20,17 @@ namespace MicroAssistant.Meta
         /// </summary>
         public Int32 UserId
         { get; set; }
-
+        
         /// <summary>
         /// 
         /// </summary>
         public String UserName
+        { get; set; }
+
+           /// <summary>
+        /// 
+        /// </summary>
+        public String UserAccount
         { get; set; }
 
         /// <summary>
@@ -72,6 +78,7 @@ namespace MicroAssistant.Meta
         {
             this.UserId = DBConvert.ToInt32(reader["user_id"]);
             this.UserName = DBConvert.ToString(reader["user_name"]);
+            this.UserAccount = DBConvert.ToString(reader["user_account"]);
             this.Pwd = DBConvert.ToString(reader["pwd"]);
             this.Mobile = DBConvert.ToString(reader["mobile"]);
             this.Email = DBConvert.ToString(reader["email"]);

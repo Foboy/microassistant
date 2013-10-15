@@ -36,7 +36,7 @@ namespace MicroAssistant.Meta
         /// <summary>
         /// 
         /// </summary>
-        public Int32 CustomerId
+        public string CustomerName
         { get; set; }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace MicroAssistant.Meta
             this.ContractInfoId = DBConvert.ToInt32(reader["contract_info_id"]);
             this.ContractNo = DBConvert.ToString(reader["contract_no"]);
             this.CName = DBConvert.ToString(reader["c_name"]);
-            this.CustomerId = DBConvert.ToInt32(reader["customer_id"]);
+            this.CustomerName = DBConvert.ToString(reader["customer_name"]);
             this.StartTime = DBConvert.ToDateTime(reader["start_time"]);
             this.EndTime = DBConvert.ToDateTime(reader["end_time"]);
             this.OwnerId = DBConvert.ToInt32(reader["owner_id"]);

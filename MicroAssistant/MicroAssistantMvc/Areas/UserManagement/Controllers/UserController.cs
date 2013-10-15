@@ -22,7 +22,14 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         }
 
         #region IUserService 成员
-        public AdvancedResult<string> Register(string account, string pwd)
+       /// <summary>
+        /// 企业注册
+       /// </summary>
+       /// <param name="entName">企业名称</param>
+       /// <param name="account"></param>
+       /// <param name="pwd"></param>
+       /// <returns></returns>
+        public AdvancedResult<string> EntRegister(string entName,string account, string pwd)
         {
             AdvancedResult<string> result = new AdvancedResult<string>();
             try
@@ -41,6 +48,44 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 int i = SysUserAccessor.Instance.Insert(user);
 
                 if (i>0)
+                {
+                    result.Error = AppError.ERROR_SUCCESS;
+                    result.Data = SecurityHelper.GetToken(i.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            return result;
+        }
+        /// <summary>
+        /// 员工注册
+        /// </summary>
+        /// <param name="account">员工账号是邮箱格式</param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
+        public AdvancedResult<string> UserRegister(string account, string pwd,int entCode)
+        {
+            AdvancedResult<string> result = new AdvancedResult<string>();
+            try
+            {
+                AdvancedResult<bool> dr = CheckAccout(account);
+                if (dr.Data)
+                {
+                    result.Error = AppError.ERROR_PERSON_FOUND;
+                    return result;
+                }
+
+                SysUser user = new SysUser();
+                user.UserName = account;
+                user.Pwd = pwd;
+                user.Email = account;
+                user.FatherId = entCode;
+                int i = SysUserAccessor.Instance.Insert(user);
+
+                if (i > 0)
                 {
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = SecurityHelper.GetToken(i.ToString());
@@ -310,94 +355,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 
         #endregion
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
-        /// <returns></returns>
-        public bool Insert(SysUser user)
-        {
-            AdvancedResult<string> result = new AdvancedResult<string>();
-            try
-            {
-                AdvancedResult<bool> dr = CheckAccout(user.UserName);
-                if (dr.Data)
-                {
-                    result.Error = AppError.ERROR_PERSON_FOUND;
-                    return false;
-                }
-
-                SysUser newuser = new SysUser();
-                newuser.UserName = user.UserName;
-                newuser.Pwd = user.Pwd;
-                newuser.Email = user.Email;
-                int i = SysUserAccessor.Instance.Insert(newuser);
-
-                if (i>0)
-                {
-                    result.Error = AppError.ERROR_SUCCESS;
-                    result.Data = SecurityHelper.GetToken(i.ToString());
-                }
-            }
-            catch (Exception e)
-            {
-                result.Error = AppError.ERROR_FAILED;
-                result.ExMessage = e.ToString();
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// 删除数据
-        /// <param name="es">数据实体对象数组</param>
-        /// <returns></returns>
-        /// </summary>
-        public bool Delete(int UserId)
-        {
-            return false;
-
-        }
-
-        /// <summary>
-        /// 修改指定的数据
-        /// <param name="e">修改后的数据实体对象</param>
-        /// <para>数据对应的主键必须在实例中设置</para>
-        /// </summary>
-        public void Update(SysUser e)
-        {
-
-        }
-
-        /// <summary>
-        /// 根据条件分页获取指定数据
-        /// <param name="pageIndex">当前页</param>
-        /// <para>索引从0开始</para>
-        /// <param name="pageSize">每页记录条数</param>
-        /// <para>记录数必须大于0</para>
-        /// </summary>
-        public PageEntity<SysUser> Search(Int32 UserId, String UserName, String Pwd, String Mobile, String Email, DateTime CreateTime, DateTime EndTime, Int32 FatherId, int pageIndex, int pageSize)
-        {
-
-            return null;
-        }
-
-        /// <summary>
-        /// 获取全部数据
-        /// </summary>
-        public List<SysUser> Search()
-        {
-            return null;
-        }
-
-        /// <summary>
-        /// 获取指定记录
-        /// <param name="id">Id值</param>
-        /// </summary>
-        public SysUser Get(int UserId)
-        {
-
-            return null;
-        }
+       
 
     }
 }
