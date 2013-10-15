@@ -26,14 +26,17 @@ DROP TABLE IF EXISTS `sys_user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sys_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(45) NOT NULL,
+  `user_name` varchar(45) NOT NULL COMMENT '用户名或者企业名',
+  `user_account` varchar(45) NOT NULL COMMENT '用户账号()',
   `pwd` varchar(45) NOT NULL,
   `mobile` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL COMMENT '注册时间',
   `end_time` datetime DEFAULT NULL COMMENT '失效时间',
-  `father_id` int(11) NOT NULL COMMENT '第一级为0',
-  `ent_id` int(11) DEFAULT NULL,
+  `ent_admin_id` int(11) DEFAULT NULL COMMENT '所属企业管理员ID',
+  `is_enable` int(11) NOT NULL DEFAULT '1' COMMENT '0:不可用 1：可用',
+  `type` int(11) NOT NULL DEFAULT '0' COMMENT '0：普通用户 1：企业用户',
+  `father_id` int(11) DEFAULT NULL COMMENT '员工所属企业ID',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -44,7 +47,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (1,'sdfsd','sdfsdf',NULL,NULL,NULL,NULL,11,NULL);
+INSERT INTO `sys_user` VALUES (1,'sdfsd','','sdfsdf',NULL,NULL,NULL,NULL,NULL,1,0,11);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-09-28 14:09:51
+-- Dump completed on 2013-10-15 20:32:33

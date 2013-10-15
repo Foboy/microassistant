@@ -28,7 +28,7 @@ CREATE TABLE `contract_info` (
   `contract_info_id` int(11) NOT NULL AUTO_INCREMENT,
   `contract_no` varchar(45) DEFAULT NULL,
   `c_name` varchar(45) DEFAULT NULL,
-  `customer_id` int(11) DEFAULT NULL COMMENT '客户ID',
+  `customer_name` varchar(45) DEFAULT NULL COMMENT '客户名称',
   `start_time` datetime DEFAULT NULL,
   `end_time` datetime DEFAULT NULL,
   `owner_id` int(11) NOT NULL COMMENT '操作人ID',
@@ -59,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-09-28 14:09:51
+-- Dump completed on 2013-10-15 20:32:32
