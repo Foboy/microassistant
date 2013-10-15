@@ -1,0 +1,94 @@
+﻿<%@ CodeTemplate Language="C#" TargetLanguage="C#" ResponseEncoding="UTF-8" Debug="True" Description="Generate an domain." %>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Assembly Name="System.Data" %>
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Property Name="NamespaceName" Type="System.String" Default="MicroAssistant.Meta" Optional="False" Category="Context" Description="The name of the namespace." %>
+<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="Context" Description="Table that the typed DataSet should contain." %>
+<%@ Property Name="author" Type="System.String" Default="yangchao" Optional="False" Category="Context" %>
+<%@ Property Name="email" Type="System.String" Default="aaronyangchao@gmail.com" Optional="False" Category="Context" %>
+<script runat="template">
+private string GetTableName(string Name)
+{
+return Name;
+}
+
+private string FormatStr(string str)
+{
+	if(str.Contains("_"))
+	{
+		string[] s = str.Split('_');
+		string reStr="";
+		for(int i=0;i<s.Length;i++)
+		{
+			reStr+=GetDoNetStr(s[i]);
+		}
+		return reStr;
+	}else
+	{
+		return GetDoNetStr(str);
+	}	
+}
+private string GetDoNetStr(string str)
+{
+		return GetFirt(str)+GetLast(str);
+}
+private string GetFirt(string str)
+{
+	return str.Substring(0,1).ToUpper();
+}
+private string GetLast(string str)
+{
+	return str.Substring(1,str.Length-1).ToLower();
+	}
+private string GetTypeStr(string str)
+{
+	if(str=="Decimal")
+	    return "Double";
+	else	
+		return str;
+}
+</script>
+/**
+ * @author <%= author %>
+ * @email:<%= email %>
+ * @date: <%=System.DateTime.Now.ToString() %>
+ */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+
+namespace <%=NamespaceName %>
+{
+	[Serializable]
+	public class  <%= FormatStr(GetTableName(SourceTable.Name)) %>
+	{
+		<%
+		for (int i = 0; i < SourceTable.Columns.Count; i++) 
+		{ %>
+		/// <summary>
+        /// <%= SourceTable.Columns[i].Description %>
+        /// </summary>
+		public <%=GetTypeStr(SourceTable.Columns[i].SystemType.Name)%>  <% = FormatStr(SourceTable.Columns[i].Name)%>
+		{get;set;} 
+		
+		<% } %> 
+        
+              /// <summary>
+        /// 从读取器向完整实例对象赋值
+        /// </summary>/// <param name="reader">数据读取器</param>
+        /// <returns>返回本对象实例</returns>
+        public <%= FormatStr(GetTableName(SourceTable.Name)) %> BuildSampleEntity(IDataReader reader)
+        {
+            <%
+		for (int i = 0; i < SourceTable.Columns.Count; i++) 
+		{ %>
+            this.<% = FormatStr(SourceTable.Columns[i].Name)%> = DBConvert.To<%=GetTypeStr(SourceTable.Columns[i].SystemType.Name)%>(reader["<% =SourceTable.Columns[i].Name%>"]);
+     <% } %> 
+            return this;
+        }
+	}
+}

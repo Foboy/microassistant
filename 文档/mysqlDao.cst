@@ -1,0 +1,454 @@
+﻿<%@ CodeTemplate Language="C#" TargetLanguage="C#" ResponseEncoding="UTF-8" Debug="True" Description="Generate an domain." %>
+<%@ Assembly Name="SchemaExplorer" %>
+
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Text" %>
+<%@ Property Name="NamespaceName" Type="System.String" Default="MicroAssistant.DataAccess" Optional="False" Category="Context" Description="The name of the namespace." %>
+<%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="Context" Description="Table that the typed DataSet should contain." %>
+<%@ Property Name="author" Type="System.String" Default="yangchao" Optional="False" Category="Context" %>
+<%@ Property Name="email" Type="System.String" Default="aaronyangchao@gmail.com" Optional="False" Category="Context" %>
+<script runat="template">
+private string GetTableName(string Name)
+{
+	return Name;
+}
+
+private string FormatStr(string str)
+{
+	if(str.Contains("_"))
+	{
+		string[] s = str.Split('_');
+		string reStr="";
+		for(int i=0;i<s.Length;i++)
+		{
+			reStr+=GetDoNetStr(s[i]);
+		}
+		return reStr;
+	}else
+	{
+		return GetDoNetStr(str);
+	}	
+}
+private string GetDoNetStr(string str)
+{
+		return GetFirt(str)+GetLast(str);
+}
+private string GetFirt(string str)
+{
+	return str.Substring(0,1).ToUpper();
+}
+private string GetLast(string str)
+{
+	return str.Substring(1,str.Length-1).ToLower();
+	}
+
+
+private string strInsert()
+{
+    string str="INSERT INTO " +SourceTable.Name ;
+    str+="(";
+    for (int i = 0; i < SourceTable.Columns.Count; i++) 
+    {
+      str+= SourceTable.Columns[i].Name+",";
+    }
+    str=str.Substring(0,str.Length-1);
+    str+=") values (";
+    for (int i = 0; i < SourceTable.Columns.Count; i++) 
+    {
+       str+="@"+ FormatStr(SourceTable.Columns[i].Name)+",";
+    }
+    str=str.Substring(0,str.Length-1);
+    str+=")";
+    return str;
+
+}
+private string strUpdate()
+{
+       string str=" update " +SourceTable.Name ;
+    str+=" set ";
+    for (int i = 0; i < SourceTable.Columns.Count; i++) 
+    {
+      str+= SourceTable.Columns[i].Name+" = @"+ FormatStr(SourceTable.Columns[i].Name)+",";
+    }
+        str=str.Substring(0,str.Length-1);
+    str+=" where " + SourceTable.PrimaryKey.MemberColumns[0].Column.Name +" = @"+ FormatStr( SourceTable.PrimaryKey.MemberColumns[0].Column.Name);
+    return str;
+ }
+
+private string strDelete()
+{
+    string str=" delete from " +SourceTable.Name ;
+    str+=" where " + SourceTable.PrimaryKey.MemberColumns[0].Column.Name +" = @"+ FormatStr( SourceTable.PrimaryKey.MemberColumns[0].Column.Name);
+    return str;
+}
+
+private string strLoadAll()
+{
+    string str=" select ";
+    for (int i = 0; i < SourceTable.Columns.Count; i++) 
+    {
+      str+= SourceTable.Columns[i].Name+",";
+    }
+    str=str.Substring(0,str.Length-1);
+    str+=" from " + SourceTable.Name ;
+    return str;
+}
+private string strLoadByPage()
+{
+    string str=" select ";
+    for (int i = 0; i < SourceTable.Columns.Count; i++) 
+    {
+      str+= SourceTable.Columns[i].Name+",";
+    }
+    str=str.Substring(0,str.Length-1);
+    str+=" from " + SourceTable.Name ;
+    str+=" limit @PageIndex,@PageSize";
+    return str;
+    
+    }
+private string strGetCount()
+{
+    string str=" select count(*) ";
+    str+=" from " + SourceTable.Name ;
+    return str;
+    }
+private string strGet()
+{
+     string str=" select ";
+    for (int i = 0; i < SourceTable.Columns.Count; i++) 
+    {
+      str+= SourceTable.Columns[i].Name+",";
+    }
+    str=str.Substring(0,str.Length-1);
+    str+=" from " + SourceTable.Name ;
+       str+=" where " + SourceTable.PrimaryKey.MemberColumns[0].Column.Name +" = @"+ FormatStr( SourceTable.PrimaryKey.MemberColumns[0].Column.Name);
+    return str;
+    }
+    
+private string GetSearchParams()
+{
+         string str="";
+    for (int i = 0; i < SourceTable.Columns.Count; i++) 
+    {
+      str+= SourceTable.Columns[i].DataType +" " + FormatStr( SourceTable.Columns[i].Name)+",";
+    }
+    str=str.Substring(0,str.Length-1);
+    return str;
+    }
+
+</script>
+/**
+ * @author <%= author %>
+ * @email:<%= email %>
+ * @date: <%=System.DateTime.Now.ToString() %>
+ */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using System.Collections;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+using MicroAssistant.Common;
+using MicroAssistant.Meta;
+
+
+namespace MicroAssistant.DataAccess
+{
+    public class <%= FormatStr(GetTableName(SourceTable.Name)) %>Accessor
+    {   
+        private MySqlCommand cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>;
+        private MySqlCommand cmdDelete<%= FormatStr(GetTableName(SourceTable.Name)) %>;
+        private MySqlCommand cmdUpdate<%= FormatStr(GetTableName(SourceTable.Name)) %>;
+        private MySqlCommand cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %>;
+        private MySqlCommand cmdLoadAll<%= FormatStr(GetTableName(SourceTable.Name)) %>;
+        private MySqlCommand cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>Count;
+        private MySqlCommand cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>;
+        
+        private <%= FormatStr(GetTableName(SourceTable.Name)) %>Accessor()
+        {
+            #region cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>
+
+            cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %> = new MySqlCommand("<%= strInsert() %>");
+            
+            <%  for (int i = 0; i < SourceTable.Columns.Count; i++) 
+                 { %>
+            cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters.Add("@<%= FormatStr(SourceTable.Columns[i].Name) %>", MySqlDbType.<%= SourceTable.Columns[i].DataType %>);
+                <%} %>
+            #endregion
+            
+            #region cmdUpdate<%= FormatStr(GetTableName(SourceTable.Name)) %>
+
+            cmdUpdate<%= FormatStr(GetTableName(SourceTable.Name)) %> = new MySqlCommand("<%= strUpdate() %>");
+                        <%  for (int i = 0; i < SourceTable.Columns.Count; i++) 
+                 { %>
+            cmdUpdate<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters.Add("@<%= FormatStr(SourceTable.Columns[i].Name) %>", MySqlDbType.<%= SourceTable.Columns[i].DataType %>);
+            <%} %>
+
+            #endregion
+            
+            #region cmdDelete<%= FormatStr(GetTableName(SourceTable.Name)) %>
+
+            cmdDelete<%= FormatStr(GetTableName(SourceTable.Name)) %> = new MySqlCommand("<%= strDelete() %>");
+            cmdDelete<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters.Add("@<%= FormatStr( SourceTable.PrimaryKey.MemberColumns[0].Column.Name) %>", MySqlDbType.<%= SourceTable.PrimaryKey.MemberColumns[0].Column.DataType %>);
+            #endregion
+
+            #region cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %>
+
+            cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %> = new MySqlCommand(@"<%= strLoadByPage()  %>");
+            cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters.Add("@pageIndex", MySqlDbType.Int32);
+            cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters.Add("@pageSize", MySqlDbType.Int32);
+
+            #endregion
+
+            #region cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>Count
+
+            cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>Count = new MySqlCommand("<%= strGetCount() %> ");
+
+            #endregion
+
+            #region cmdLoadAll<%= FormatStr(GetTableName(SourceTable.Name)) %>
+
+            cmdLoadAll<%= FormatStr(GetTableName(SourceTable.Name)) %> = new MySqlCommand("<%= strLoadAll() %>");
+
+            #endregion
+
+            #region cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>
+
+            cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %> = new MySqlCommand("<%= strGet() %>");
+            cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters.Add("@<%= FormatStr( SourceTable.PrimaryKey.MemberColumns[0].Column.Name) %>", MySqlDbType.<%= SourceTable.PrimaryKey.MemberColumns[0].Column.DataType %>);
+
+            #endregion
+        }
+        
+                /// <summary>
+        /// 添加数据
+        /// <param name="es">数据实体对象数组</param>
+        /// <returns></returns>
+        /// </summary>
+        public bool Insert(<%= FormatStr(GetTableName(SourceTable.Name)) %> e)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %> = cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>.Clone() as MySqlCommand;
+            bool returnValue = false;
+            _cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>.Connection = oc;
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+                 <%  for (int i = 0; i < SourceTable.Columns.Count; i++) 
+                 { %>
+                _cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters["@<%= FormatStr(SourceTable.Columns[i].Name) %>"].Value =e.<%= FormatStr(SourceTable.Columns[i].Name) %>;
+               <%} %>
+                
+                _cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>.Dispose();
+                _cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %> = null;
+            }
+        }
+        
+        /// <summary>
+        /// 删除数据
+        /// <param name="es">数据实体对象数组</param>
+        /// <returns></returns>
+        /// </summary>
+        public bool Delete(int <%= FormatStr( SourceTable.PrimaryKey.MemberColumns[0].Column.Name) %>)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdDelete<%= FormatStr(GetTableName(SourceTable.Name)) %> = cmdDelete<%= FormatStr(GetTableName(SourceTable.Name)) %>.Clone() as MySqlCommand;
+            bool returnValue = false;
+            _cmdDelete<%= FormatStr(GetTableName(SourceTable.Name)) %>.Connection = oc;
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+                _cmdDelete<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters["@<%= FormatStr( SourceTable.PrimaryKey.MemberColumns[0].Column.Name) %>"].Value = <%= FormatStr( SourceTable.PrimaryKey.MemberColumns[0].Column.Name) %>;
+
+                
+                _cmdDelete<%= FormatStr(GetTableName(SourceTable.Name)) %>.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdDelete<%= FormatStr(GetTableName(SourceTable.Name)) %>.Dispose();
+                _cmdDelete<%= FormatStr(GetTableName(SourceTable.Name)) %> = null;
+            }
+        }
+
+        /// <summary>
+        /// 修改指定的数据
+        /// <param name="e">修改后的数据实体对象</param>
+        /// <para>数据对应的主键必须在实例中设置</para>
+        /// </summary>
+        public void Update(<%= FormatStr(GetTableName(SourceTable.Name)) %> e)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdUpdate<%= FormatStr(GetTableName(SourceTable.Name)) %> = cmdUpdate<%= FormatStr(GetTableName(SourceTable.Name)) %>.Clone() as MySqlCommand;
+            _cmdUpdate<%= FormatStr(GetTableName(SourceTable.Name)) %>.Connection = oc;
+
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+                    
+                  <%  for (int i = 0; i < SourceTable.Columns.Count; i++) 
+                 { %>
+                    _cmdUpdate<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters["@<%= FormatStr(SourceTable.Columns[i].Name) %>"].Value = e.<%= FormatStr(SourceTable.Columns[i].Name) %>;
+                  <% } %>
+
+                    _cmdUpdate<%= FormatStr(GetTableName(SourceTable.Name)) %>.ExecuteNonQuery();
+                
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdUpdate<%= FormatStr(GetTableName(SourceTable.Name)) %>.Dispose();
+                _cmdUpdate<%= FormatStr(GetTableName(SourceTable.Name)) %> = null;
+                GC.Collect();
+            }
+        }
+
+        /// <summary>
+        /// 根据条件分页获取指定数据
+        /// <param name="pageIndex">当前页</param>
+        /// <para>索引从0开始</para>
+        /// <param name="pageSize">每页记录条数</param>
+        /// <para>记录数必须大于0</para>
+        /// </summary>
+        public PageEntity< <%= FormatStr(GetTableName(SourceTable.Name)) %>> Search(<%= GetSearchParams() %>, int pageIndex, int pageSize)
+        {
+            PageEntity< <%= FormatStr(GetTableName(SourceTable.Name)) %>> returnValue = new PageEntity< <%= FormatStr(GetTableName(SourceTable.Name)) %>>();
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %> = cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %>.Clone() as MySqlCommand;
+            MySqlCommand _cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>Count = cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>Count.Clone() as MySqlCommand;
+            _cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %>.Connection = oc;
+            _cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>Count.Connection = oc;
+
+            try
+            {
+                _cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters["@PageIndex"].Value = pageIndex;
+                _cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters["@PageSize"].Value =  pageSize;
+                 <%  for (int i = 0; i < SourceTable.Columns.Count; i++) 
+                 { %>
+                _cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters["@<%= FormatStr(SourceTable.Columns[i].Name) %>"].Value = <%= FormatStr(SourceTable.Columns[i].Name) %>;
+                <% } %>
+
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                MySqlDataReader reader = _cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %>.ExecuteReader();
+                while (reader.Read())
+                {
+                    returnValue.Items.Add(new <%= FormatStr(GetTableName(SourceTable.Name)) %>().BuildSampleEntity(reader));
+                }
+                returnValue.RecordsCount = (int)_cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>Count.ExecuteScalar();
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %>.Dispose();
+                _cmdLoad<%= FormatStr(GetTableName(SourceTable.Name)) %> = null;
+                _cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>Count.Dispose();
+                _cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>Count = null;
+                GC.Collect();
+            }
+            return returnValue;
+
+        }
+
+        /// <summary>
+        /// 获取全部数据
+        /// </summary>
+        public List< <%= FormatStr(GetTableName(SourceTable.Name)) %>> Search()
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdLoadAll<%= FormatStr(GetTableName(SourceTable.Name)) %> = cmdLoadAll<%= FormatStr(GetTableName(SourceTable.Name)) %>.Clone() as MySqlCommand;
+            _cmdLoadAll<%= FormatStr(GetTableName(SourceTable.Name)) %>.Connection = oc; List< <%= FormatStr(GetTableName(SourceTable.Name)) %>> returnValue = new List< <%= FormatStr(GetTableName(SourceTable.Name)) %>>();
+            try
+            {
+                _cmdLoadAll<%= FormatStr(GetTableName(SourceTable.Name)) %>.CommandText = string.Format(_cmdLoadAll<%= FormatStr(GetTableName(SourceTable.Name)) %>.CommandText, string.Empty);
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                MySqlDataReader reader = _cmdLoadAll<%= FormatStr(GetTableName(SourceTable.Name)) %>.ExecuteReader();
+                while (reader.Read())
+                {
+                    returnValue.Add(new <%= FormatStr(GetTableName(SourceTable.Name)) %>().BuildSampleEntity(reader));
+                }
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdLoadAll<%= FormatStr(GetTableName(SourceTable.Name)) %>.Dispose();
+                _cmdLoadAll<%= FormatStr(GetTableName(SourceTable.Name)) %> = null;
+                GC.Collect();
+            }
+            return returnValue;
+        }
+
+        /// <summary>
+        /// 获取指定记录
+        /// <param name="id">Id值</param>
+        /// </summary>
+        public <%= FormatStr(GetTableName(SourceTable.Name)) %> Get(int <%= FormatStr( SourceTable.PrimaryKey.MemberColumns[0].Column.Name) %>)
+        {
+            <%= FormatStr(GetTableName(SourceTable.Name)) %> returnValue = null;
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %> = cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>.Clone() as MySqlCommand;
+
+            _cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>.Connection = oc; 
+            try
+            {
+                _cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters["@<%= FormatStr( SourceTable.PrimaryKey.MemberColumns[0].Column.Name) %>"].Value = <%= FormatStr( SourceTable.PrimaryKey.MemberColumns[0].Column.Name) %>;
+
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                MySqlDataReader reader = _cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    returnValue = new <%= FormatStr(GetTableName(SourceTable.Name)) %>().BuildSampleEntity(reader);
+                }
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>.Dispose();
+                _cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %> = null;
+                GC.Collect();
+            }
+            return returnValue;
+
+        }
+        private static readonly <%= FormatStr(GetTableName(SourceTable.Name)) %>Accessor instance = new <%= FormatStr(GetTableName(SourceTable.Name)) %>Accessor();
+        public static <%= FormatStr(GetTableName(SourceTable.Name)) %>Accessor Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+        
+    }
+}
