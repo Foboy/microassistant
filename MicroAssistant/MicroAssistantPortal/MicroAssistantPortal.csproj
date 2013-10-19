@@ -82,6 +82,7 @@
     <Content Include="js\uploadify\uploadify.css" />
     <Content Include="js\uploadify\uploadify.extention.js" />
     <Content Include="js\uploadify\uploadify.swf" />
+    <Content Include="login.html" />
     <Content Include="partials\finance.html" />
     <Content Include="partials\home.html" />
     <Content Include="partials\product.html" />
