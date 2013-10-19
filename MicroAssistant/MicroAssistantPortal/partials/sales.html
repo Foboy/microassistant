@@ -1,0 +1,142 @@
+        <h1 class="titSec">销售管理</h1>
+        <ul class="clearfix salesList">
+            <li ng-class="steps=='chance'?'cur':''">
+                <a ng-href="#!/sales/chance/1"><em><i></i></em></a>
+                <p>销售机会（30）</p>
+                <span class="arrowD"></span>
+            </li>
+            <li>
+            	<div class="bentArrow"></div>
+                <p>转换率<span class="colorBlue">20%</span></p>
+            </li>
+            <li ng-class="steps=='visit'?'cur':''">
+                <a ng-href="#!/sales/visit/1"><em><i></i></em></a>
+                <p>拜访（5）</p>
+                <span class="arrowD"></span>
+            </li>
+            <li>
+            	<div class="bentArrow"></div>
+                <p>转换率<span class="colorBlue">20%</span></p>
+            </li>
+            <li ng-class="steps=='contract'?'cur':''">
+                <a ng-href="#!/sales/contract/1"><em><i></i></em></a>
+                <p>签订合同（5）</p>
+                <span class="arrowD"></span>
+            </li>
+            <li>
+            	<div class="bentArrow"></div>
+                <p>转换率<span class="colorBlue">20%</span></p>
+            </li>
+            <li ng-class="steps=='after'?'cur':''">
+                <a ng-href="#!/sales/after/1"><em><i></i></em></a>
+                <p>售后跟进（5）</p>
+                <span class="arrowD"></span>
+            </li>
+        </ul>
+        <div class="searchBox addL">
+            <input type="button" class="addBtn" ng-click="addCurrentStepItem()"/>
+        </div>
+        <div class="tablePad" ng-show="steps=='chance'">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th width="30%">机会描述</th>
+                  <th width="20%">联系人</th>
+                  <th width="20%">联系方式</th>
+                  <th width="15%">创建时间</th>
+                  <th width="15%">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Mark</td>
+                  <td class="colorBlue">四川新颖顺信息...</td>
+                  <td class="colorBlue">1588234555</td>
+                  <td>2013/07/31</td>
+                  <td><a href="" role="button" ng-click="showChanceDetail()">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="tablePad" ng-show="steps=='visit'">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th width="30%">拜访描述</th>
+                  <th width="20%">联系人</th>
+                  <th width="20%">联系方式</th>
+                  <th width="15%">创建时间</th>
+                  <th width="15%">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Mark</td>
+                  <td class="colorBlue">四川新颖顺信息...</td>
+                  <td class="colorBlue">1588234555</td>
+                  <td>2013/07/31</td>
+                  <td><a href="" role="button" ng-click="showVisitDetail()">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="tablePad" ng-show="steps=='contract'">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th width="30%">合同描述</th>
+                  <th width="20%">联系人</th>
+                  <th width="20%">联系方式</th>
+                  <th width="15%">创建时间</th>
+                  <th width="15%">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Mark</td>
+                  <td class="colorBlue">四川新颖顺信息...</td>
+                  <td class="colorBlue">1588234555</td>
+                  <td>2013/07/31</td>
+                  <td><a href="" role="button" ng-click="showContractDetail()">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="tablePad" ng-show="steps=='after'">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th width="30%">售后描述</th>
+                  <th width="20%">联系人</th>
+                  <th width="20%">联系方式</th>
+                  <th width="15%">创建时间</th>
+                  <th width="15%">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Mark</td>
+                  <td class="colorBlue">四川新颖顺信息...</td>
+                  <td class="colorBlue">1588234555</td>
+                  <td>2013/07/31</td>
+                  <td><a href="" role="button" ng-click="showAfterDetail()">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+	<div ng-include="'partials/sales/chance-detail.html'" ng-controller="SalesChanceDetailCtrl"></div>
+    <div ng-include="'partials/sales/visit-detail.html'" ng-controller="SalesVisitDetailCtrl"></div>
+    <div ng-include="'partials/sales/contract-detail.html'" ng-controller="SalesContractDetailCtrl"></div>
+    <div ng-include="'partials/sales/after-detail.html'" ng-controller="SalesAfterDetailCtrl"></div>
+<div id="visitLocationSelectModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="MapContent" style="width:697px;height:550px;float:left;border:solid 1px #c8c8c8;margin-left:12px;">
+    </div>
+</div>
