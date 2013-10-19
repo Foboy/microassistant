@@ -31,7 +31,7 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertContractInfo
 
-            cmdInsertContractInfo = new MySqlCommand("INSERT INTO contract_info(contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,howtopay_id,ent_id) values (@ContractNo,@CName,@CustomerName,@StartTime,@EndTime,@OwnerId,@ContractTime,@Amount,@Howtopay,@HowtopayId,@EntId)");
+            cmdInsertContractInfo = new MySqlCommand("INSERT INTO contract_info(contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,ent_id) values (@ContractNo,@CName,@CustomerName,@StartTime,@EndTime,@OwnerId,@ContractTime,@Amount,@Howtopay,@EntId)");
 
             cmdInsertContractInfo.Parameters.Add("@ContractNo", MySqlDbType.String);
             cmdInsertContractInfo.Parameters.Add("@CName", MySqlDbType.String);
@@ -42,13 +42,12 @@ namespace MicroAssistant.DataAccess
             cmdInsertContractInfo.Parameters.Add("@ContractTime", MySqlDbType.DateTime);
             cmdInsertContractInfo.Parameters.Add("@Amount", MySqlDbType.Decimal);
             cmdInsertContractInfo.Parameters.Add("@Howtopay", MySqlDbType.Int32);
-            cmdInsertContractInfo.Parameters.Add("@HowtopayId", MySqlDbType.Int32);
             cmdInsertContractInfo.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateContractInfo
 
-            cmdUpdateContractInfo = new MySqlCommand(" update contract_info set contract_no = @ContractNo,c_name = @CName,customer_name = @CustomerName,start_time = @StartTime,end_time = @EndTime,owner_id = @OwnerId,contract_time = @ContractTime,amount = @Amount,howtopay = @Howtopay,howtopay_id = @HowtopayId,ent_id = @EntId where contract_info_id = @ContractInfoId");
+            cmdUpdateContractInfo = new MySqlCommand(" update contract_info set contract_no = @ContractNo,c_name = @CName,customer_name = @CustomerName,start_time = @StartTime,end_time = @EndTime,owner_id = @OwnerId,contract_time = @ContractTime,amount = @Amount,howtopay = @Howtopay,ent_id = @EntId where contract_info_id = @ContractInfoId");
             cmdUpdateContractInfo.Parameters.Add("@ContractInfoId", MySqlDbType.Int32);
             cmdUpdateContractInfo.Parameters.Add("@ContractNo", MySqlDbType.String);
             cmdUpdateContractInfo.Parameters.Add("@CName", MySqlDbType.String);
@@ -59,7 +58,6 @@ namespace MicroAssistant.DataAccess
             cmdUpdateContractInfo.Parameters.Add("@ContractTime", MySqlDbType.DateTime);
             cmdUpdateContractInfo.Parameters.Add("@Amount", MySqlDbType.Decimal);
             cmdUpdateContractInfo.Parameters.Add("@Howtopay", MySqlDbType.Int32);
-            cmdUpdateContractInfo.Parameters.Add("@HowtopayId", MySqlDbType.Int32);
             cmdUpdateContractInfo.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
@@ -72,7 +70,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadContractInfo
 
-            cmdLoadContractInfo = new MySqlCommand(@" select contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,howtopay_id,ent_id from contract_info where ent_id = @EntId limit @PageIndex,@PageSize");
+            cmdLoadContractInfo = new MySqlCommand(@" select contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,ent_id from contract_info where ent_id = @EntId limit @PageIndex,@PageSize");
             cmdLoadContractInfo.Parameters.Add("@EntId", MySqlDbType.Int32);
             cmdLoadContractInfo.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadContractInfo.Parameters.Add("@pageSize", MySqlDbType.Int32);
@@ -87,13 +85,13 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllContractInfo
 
-            cmdLoadAllContractInfo = new MySqlCommand(" select contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,howtopay_id,ent_id from contract_info");
+            cmdLoadAllContractInfo = new MySqlCommand(" select contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,ent_id from contract_info");
 
             #endregion
 
             #region cmdGetContractInfo
 
-            cmdGetContractInfo = new MySqlCommand(" select contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,howtopay_id,ent_id from contract_info where contract_no = @ContractNo");
+            cmdGetContractInfo = new MySqlCommand(" select contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,ent_id from contract_info where contract_no = @ContractNo");
             cmdGetContractInfo.Parameters.Add("@ContractNo", MySqlDbType.String);
 
             #endregion
@@ -123,7 +121,6 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertContractInfo.Parameters["@ContractTime"].Value = e.ContractTime;
                 _cmdInsertContractInfo.Parameters["@Amount"].Value = e.Amount;
                 _cmdInsertContractInfo.Parameters["@Howtopay"].Value = e.Howtopay;
-                _cmdInsertContractInfo.Parameters["@HowtopayId"].Value = e.HowtopayId;
                 _cmdInsertContractInfo.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdInsertContractInfo.ExecuteNonQuery();
@@ -197,7 +194,6 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateContractInfo.Parameters["@ContractTime"].Value = e.ContractTime;
                 _cmdUpdateContractInfo.Parameters["@Amount"].Value = e.Amount;
                 _cmdUpdateContractInfo.Parameters["@Howtopay"].Value = e.Howtopay;
-                _cmdUpdateContractInfo.Parameters["@HowtopayId"].Value = e.HowtopayId;
                 _cmdUpdateContractInfo.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdUpdateContractInfo.ExecuteNonQuery();

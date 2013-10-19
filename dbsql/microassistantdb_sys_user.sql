@@ -34,9 +34,9 @@ CREATE TABLE `sys_user` (
   `create_time` datetime DEFAULT NULL COMMENT '注册时间',
   `end_time` datetime DEFAULT NULL COMMENT '失效时间',
   `ent_admin_id` int(11) DEFAULT NULL COMMENT '所属企业管理员ID',
-  `is_enable` int(11) NOT NULL DEFAULT '1' COMMENT '0:不可用 1：可用',
+  `is_enable` int(11) NOT NULL DEFAULT '1' COMMENT '2:不可用 1：可用',
   `type` int(11) NOT NULL DEFAULT '0' COMMENT '0：普通用户 1：企业用户',
-  `father_id` int(11) DEFAULT NULL COMMENT '员工所属企业ID',
+  `ent_id` int(11) DEFAULT NULL COMMENT '员工所属企业ID',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -60,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-15 20:32:33
+-- Dump completed on 2013-10-19 15:14:39

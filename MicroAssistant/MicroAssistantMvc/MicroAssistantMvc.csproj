@@ -175,7 +175,6 @@
     <Compile Include="Areas\MarketingManagement\MarketingManagementAreaRegistration.cs" />
     <Compile Include="Areas\ProductManagement\ProductManagementAreaRegistration.cs" />
     <Compile Include="Areas\SystemManagement\SystemManagementAreaRegistration.cs" />
-    <Compile Include="Areas\UserManagement\Models\MicUser.cs" />
     <Compile Include="Areas\UserManagement\UserAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MicControllerBase.cs" />
@@ -326,6 +325,7 @@
     <Folder Include="Areas\ProductManagement\Views\Shared\" />
     <Folder Include="Areas\SystemManagement\Models\" />
     <Folder Include="Areas\SystemManagement\Views\Shared\" />
+    <Folder Include="Areas\UserManagement\Models\" />
     <Folder Include="Areas\UserManagement\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

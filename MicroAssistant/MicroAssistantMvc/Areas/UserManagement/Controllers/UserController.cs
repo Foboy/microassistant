@@ -42,15 +42,17 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 }
 
                 SysUser user = new SysUser();
-                user.UserName = account;
+                user.UserAccount = account;
                 user.Pwd = pwd;
                 user.Email = string.Empty;
                 int i = SysUserAccessor.Instance.Insert(user);
 
                 if (i>0)
                 {
+                    string token = SecurityHelper.GetToken(i.ToString());
+                    CacheManagerFactory.GetMemoryManager().Set(token, SysUserAccessor.Instance.Get(i));
                     result.Error = AppError.ERROR_SUCCESS;
-                    result.Data = SecurityHelper.GetToken(i.ToString());
+                    result.Data = token;
                 }
             }
             catch (Exception e)
@@ -84,7 +86,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 }
 
                 SysUser user = new SysUser();
-                user.UserName = account;
+                user.UserAccount = account;
                 user.Pwd = pwd;
                 user.Email = account;
                 user.EntId = entId;
@@ -92,8 +94,10 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 
                 if (i > 0)
                 {
+                    string token = SecurityHelper.GetToken(i.ToString());
+                    CacheManagerFactory.GetMemoryManager().Set(token, SysUserAccessor.Instance.Get(i));
                     result.Error = AppError.ERROR_SUCCESS;
-                    result.Data = SecurityHelper.GetToken(i.ToString());
+                    result.Data = token;
                 }
             }
             catch (Exception e)
@@ -109,7 +113,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         {
             AdvancedResult<bool> result = new AdvancedResult<bool>();
             SysUser user = null;
-            //user = SysUserAccessor.Instance.Get(0, account.Trim(), string.Empty, StateType.Ignore);
+            user = SysUserAccessor.Instance.GetSysUserByAcount(account.Trim());
 
             try
             {
@@ -166,11 +170,20 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             try
             {
                 SysUser user = null;
-                //user = SysUserAccessor.Instance.Get(0, account.Trim(), pwd.Trim(), StateType.Active);
+                user = SysUserAccessor.Instance.GetSysUserByAcountAndPwd(account.Trim(), pwd.Trim());
                 if (user != null)
                 {
-                    result.Error = AppError.ERROR_SUCCESS;
-                    result.Data = SecurityHelper.GetToken(user.UserId.ToString());
+                    if (user.IsEnable == 2)
+                    {
+                        result.Error = AppError.ERROR_USER_FORBID;
+                    }
+                    else
+                    {
+                        string token = SecurityHelper.GetToken(user.UserId.ToString());
+                        CacheManagerFactory.GetMemoryManager().Set(token, SysUserAccessor.Instance.Get(user.UserId));
+                        result.Error = AppError.ERROR_SUCCESS;
+                        result.Data = token;
+                    }
                 }
                 else
                 {
@@ -222,8 +235,15 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 if (userid > 0)
                 {
                     SysUser user = SysUserAccessor.Instance.Get(userid);
-                    result.Error = AppError.ERROR_SUCCESS;
-                    result.Data = user;
+                    if (user.IsEnable == 2)
+                    {
+                        result.Error = AppError.ERROR_USER_FORBID;
+                    }
+                    else
+                    {
+                        result.Error = AppError.ERROR_SUCCESS;
+                        result.Data = user;
+                    }
                 }
                 else
                 {
@@ -259,9 +279,16 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                     if (userid > 0)
                     {
-                        //SysUser user = SysUserAccessor.Instance.Get(userid, string.Empty, string.Empty, StateType.Ignore);
-                        result.Error = AppError.ERROR_SUCCESS;
-                        //result.Data = user;
+                        SysUser user = SysUserAccessor.Instance.Get(userid);
+                        if (user.IsEnable == 2)
+                        {
+                            result.Error = AppError.ERROR_USER_FORBID;
+                        }
+                        else
+                        {
+                            result.Error = AppError.ERROR_SUCCESS;
+                            result.Data = user;
+                        }
                     }
                     else
                     {

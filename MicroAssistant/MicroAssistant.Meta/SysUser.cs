@@ -1,7 +1,7 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/6/15 10:35:36
+ * @date: 2013/10/19 14:53:13
  */
 using System;
 using System.Collections.Generic;
@@ -20,14 +20,14 @@ namespace MicroAssistant.Meta
         /// </summary>
         public Int32 UserId
         { get; set; }
-        
+
         /// <summary>
         /// 
         /// </summary>
         public String UserName
         { get; set; }
 
-           /// <summary>
+        /// <summary>
         /// 
         /// </summary>
         public String UserAccount
@@ -66,6 +66,24 @@ namespace MicroAssistant.Meta
         /// <summary>
         /// 
         /// </summary>
+        public Int32 EntAdminId
+        { get; set; }
+
+        /// <summary>
+        /// 2:不可用 1：可用
+        /// </summary>
+        public Int32 IsEnable
+        { get; set; }
+
+        /// <summary>
+        /// 0：普通用户 1：企业用户
+        /// </summary>
+        public Int32 Type
+        { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public Int32 EntId
         { get; set; }
 
@@ -84,6 +102,9 @@ namespace MicroAssistant.Meta
             this.Email = DBConvert.ToString(reader["email"]);
             this.CreateTime = DBConvert.ToDateTime(reader["create_time"]);
             this.EndTime = DBConvert.ToDateTime(reader["end_time"]);
+            this.EntAdminId = DBConvert.ToInt32(reader["ent_admin_id"]);
+            this.IsEnable = DBConvert.ToInt32(reader["is_enable"]);
+            this.Type = DBConvert.ToInt32(reader["type"]);
             this.EntId = DBConvert.ToInt32(reader["ent_id"]);
             return this;
         }

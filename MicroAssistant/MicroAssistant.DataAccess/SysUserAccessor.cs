@@ -26,33 +26,43 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdLoadAllSysUser;
         private MySqlCommand cmdGetSysUserCount;
         private MySqlCommand cmdGetSysUser;
+        private MySqlCommand cmdGetSysUserByAcount;
+        private MySqlCommand cmdGetSysUserByAcountAndPwd;
 
         private SysUserAccessor()
         {
             #region cmdInsertSysUser
 
-            cmdInsertSysUser = new MySqlCommand("INSERT INTO sys_user(user_id,user_name,pwd,mobile,email,create_time,end_time,ent_id) values (@UserId,@UserName,@Pwd,@Mobile,@Email,@CreateTime,@EndTime,@EntId)");
+            cmdInsertSysUser = new MySqlCommand("INSERT INTO sys_user(user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id) values (@UserId,@UserName,@UserAccount,@Pwd,@Mobile,@Email,@CreateTime,@EndTime,@EntAdminId,@IsEnable,@Type,@EntId)");
 
             cmdInsertSysUser.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdInsertSysUser.Parameters.Add("@UserName", MySqlDbType.String);
+            cmdInsertSysUser.Parameters.Add("@UserAccount", MySqlDbType.String);
             cmdInsertSysUser.Parameters.Add("@Pwd", MySqlDbType.String);
             cmdInsertSysUser.Parameters.Add("@Mobile", MySqlDbType.String);
             cmdInsertSysUser.Parameters.Add("@Email", MySqlDbType.String);
             cmdInsertSysUser.Parameters.Add("@CreateTime", MySqlDbType.DateTime);
             cmdInsertSysUser.Parameters.Add("@EndTime", MySqlDbType.DateTime);
+            cmdInsertSysUser.Parameters.Add("@EntAdminId", MySqlDbType.Int32);
+            cmdInsertSysUser.Parameters.Add("@IsEnable", MySqlDbType.Int32);
+            cmdInsertSysUser.Parameters.Add("@Type", MySqlDbType.Int32);
             cmdInsertSysUser.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateSysUser
 
-            cmdUpdateSysUser = new MySqlCommand(" update sys_user set user_id = @UserId,user_name = @UserName,pwd = @Pwd,mobile = @Mobile,email = @Email,create_time = @CreateTime,end_time = @EndTime,ent_id = @EntId where user_id = @UserId");
+            cmdUpdateSysUser = new MySqlCommand(" update sys_user set user_id = @UserId,user_name = @UserName,user_account = @UserAccount,pwd = @Pwd,mobile = @Mobile,email = @Email,create_time = @CreateTime,end_time = @EndTime,ent_admin_id = @EntAdminId,is_enable = @IsEnable,type = @Type,ent_id = @EntId where user_id = @UserId");
             cmdUpdateSysUser.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdUpdateSysUser.Parameters.Add("@UserName", MySqlDbType.String);
+            cmdUpdateSysUser.Parameters.Add("@UserAccount", MySqlDbType.String);
             cmdUpdateSysUser.Parameters.Add("@Pwd", MySqlDbType.String);
             cmdUpdateSysUser.Parameters.Add("@Mobile", MySqlDbType.String);
             cmdUpdateSysUser.Parameters.Add("@Email", MySqlDbType.String);
             cmdUpdateSysUser.Parameters.Add("@CreateTime", MySqlDbType.DateTime);
             cmdUpdateSysUser.Parameters.Add("@EndTime", MySqlDbType.DateTime);
+            cmdUpdateSysUser.Parameters.Add("@EntAdminId", MySqlDbType.Int32);
+            cmdUpdateSysUser.Parameters.Add("@IsEnable", MySqlDbType.Int32);
+            cmdUpdateSysUser.Parameters.Add("@Type", MySqlDbType.Int32);
             cmdUpdateSysUser.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
@@ -65,7 +75,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadSysUser
 
-            cmdLoadSysUser = new MySqlCommand(@" select user_id,user_name,pwd,mobile,email,create_time,end_time,ent_id from sys_user limit @PageIndex,@PageSize");
+            cmdLoadSysUser = new MySqlCommand(@" select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user limit @PageIndex,@PageSize");
             cmdLoadSysUser.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadSysUser.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -79,18 +89,32 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllSysUser
 
-            cmdLoadAllSysUser = new MySqlCommand(" select user_id,user_name,pwd,mobile,email,create_time,end_time,ent_id from sys_user");
+            cmdLoadAllSysUser = new MySqlCommand(" select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user");
 
             #endregion
 
             #region cmdGetSysUser
 
-            cmdGetSysUser = new MySqlCommand(" select user_id,user_name,pwd,mobile,email,create_time,end_time,ent_id from sys_user where user_id = @UserId");
+            cmdGetSysUser = new MySqlCommand(" select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_id = @UserId");
             cmdGetSysUser.Parameters.Add("@UserId", MySqlDbType.Int32);
 
             #endregion
-        }
 
+            #region cmdGetSysUserByAcount
+
+            cmdGetSysUserByAcount = new MySqlCommand(" select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_account = @UserAccount");
+            cmdGetSysUserByAcount.Parameters.Add("@UserAccount", MySqlDbType.String);
+
+            #endregion
+
+            #region cmdGetSysUserByAcountAndPwd
+
+            cmdGetSysUserByAcountAndPwd = new MySqlCommand("  select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_account = @UserAccount and pwd = @Pwd");
+            cmdGetSysUserByAcountAndPwd.Parameters.Add("@UserAccount", MySqlDbType.String);
+            cmdGetSysUserByAcountAndPwd.Parameters.Add("@Pwd", MySqlDbType.String);
+
+            #endregion
+        }
         /// <summary>
         /// 添加数据
         /// <param name="es">数据实体对象数组</param>
@@ -108,11 +132,15 @@ namespace MicroAssistant.DataAccess
                     oc.Open();
                 _cmdInsertSysUser.Parameters["@UserId"].Value = e.UserId;
                 _cmdInsertSysUser.Parameters["@UserName"].Value = e.UserName;
+                _cmdInsertSysUser.Parameters["@UserAccount"].Value = e.UserAccount;
                 _cmdInsertSysUser.Parameters["@Pwd"].Value = e.Pwd;
                 _cmdInsertSysUser.Parameters["@Mobile"].Value = e.Mobile;
                 _cmdInsertSysUser.Parameters["@Email"].Value = e.Email;
                 _cmdInsertSysUser.Parameters["@CreateTime"].Value = e.CreateTime;
                 _cmdInsertSysUser.Parameters["@EndTime"].Value = e.EndTime;
+                _cmdInsertSysUser.Parameters["@EntAdminId"].Value = e.EntAdminId;
+                _cmdInsertSysUser.Parameters["@IsEnable"].Value = e.IsEnable;
+                _cmdInsertSysUser.Parameters["@Type"].Value = e.Type;
                 _cmdInsertSysUser.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdInsertSysUser.ExecuteNonQuery();
@@ -178,11 +206,15 @@ namespace MicroAssistant.DataAccess
 
                 _cmdUpdateSysUser.Parameters["@UserId"].Value = e.UserId;
                 _cmdUpdateSysUser.Parameters["@UserName"].Value = e.UserName;
+                _cmdUpdateSysUser.Parameters["@UserAccount"].Value = e.UserAccount;
                 _cmdUpdateSysUser.Parameters["@Pwd"].Value = e.Pwd;
                 _cmdUpdateSysUser.Parameters["@Mobile"].Value = e.Mobile;
                 _cmdUpdateSysUser.Parameters["@Email"].Value = e.Email;
                 _cmdUpdateSysUser.Parameters["@CreateTime"].Value = e.CreateTime;
                 _cmdUpdateSysUser.Parameters["@EndTime"].Value = e.EndTime;
+                _cmdUpdateSysUser.Parameters["@EntAdminId"].Value = e.EntAdminId;
+                _cmdUpdateSysUser.Parameters["@IsEnable"].Value = e.IsEnable;
+                _cmdUpdateSysUser.Parameters["@Type"].Value = e.Type;
                 _cmdUpdateSysUser.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdUpdateSysUser.ExecuteNonQuery();
@@ -206,7 +238,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<SysUser> Search(Int32 UserId, String UserName, String Pwd, String Mobile, String Email, DateTime CreateTime, DateTime EndTime, Int32 EntId, int pageIndex, int pageSize)
+        public PageEntity<SysUser> Search(Int32 UserId, String UserName, String UserAccount, String Pwd, String Mobile, String Email, DateTime CreateTime, DateTime EndTime, Int32 EntAdminId, Int32 IsEnable, Int32 Type, Int32 EntId, int pageIndex, int pageSize)
         {
             PageEntity<SysUser> returnValue = new PageEntity<SysUser>();
             MySqlConnection oc = ConnectManager.Create();
@@ -221,11 +253,15 @@ namespace MicroAssistant.DataAccess
                 _cmdLoadSysUser.Parameters["@PageSize"].Value = pageSize;
                 _cmdLoadSysUser.Parameters["@UserId"].Value = UserId;
                 _cmdLoadSysUser.Parameters["@UserName"].Value = UserName;
+                _cmdLoadSysUser.Parameters["@UserAccount"].Value = UserAccount;
                 _cmdLoadSysUser.Parameters["@Pwd"].Value = Pwd;
                 _cmdLoadSysUser.Parameters["@Mobile"].Value = Mobile;
                 _cmdLoadSysUser.Parameters["@Email"].Value = Email;
                 _cmdLoadSysUser.Parameters["@CreateTime"].Value = CreateTime;
                 _cmdLoadSysUser.Parameters["@EndTime"].Value = EndTime;
+                _cmdLoadSysUser.Parameters["@EntAdminId"].Value = EntAdminId;
+                _cmdLoadSysUser.Parameters["@IsEnable"].Value = IsEnable;
+                _cmdLoadSysUser.Parameters["@Type"].Value = Type;
                 _cmdLoadSysUser.Parameters["@EntId"].Value = EntId;
 
                 if (oc.State == ConnectionState.Closed)
@@ -317,6 +353,81 @@ namespace MicroAssistant.DataAccess
                 oc = null;
                 _cmdGetSysUser.Dispose();
                 _cmdGetSysUser = null;
+                GC.Collect();
+            }
+            return returnValue;
+
+        }
+
+        /// <summary>
+        /// 通过账户获取用户
+        /// </summary>
+        public SysUser GetSysUserByAcount(string UserAccount)
+        {
+            SysUser returnValue = null;
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdGetSysUserByAcount = cmdGetSysUserByAcount.Clone() as MySqlCommand;
+
+            _cmdGetSysUserByAcount.Connection = oc;
+            try
+            {
+                _cmdGetSysUserByAcount.Parameters["@UserAccount"].Value = UserAccount;
+
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                MySqlDataReader reader = _cmdGetSysUserByAcount.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    returnValue = new SysUser().BuildSampleEntity(reader);
+                }
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdGetSysUserByAcount.Dispose();
+                _cmdGetSysUserByAcount = null;
+                GC.Collect();
+            }
+            return returnValue;
+
+        }
+
+        /// <summary>
+        /// 通过账号密码获取用户
+        /// </summary>
+        public SysUser GetSysUserByAcountAndPwd(string UserAccount,string Pwd)
+        {
+            SysUser returnValue = null;
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdGetSysUserByAcountAndPwd = cmdGetSysUserByAcountAndPwd.Clone() as MySqlCommand;
+
+            _cmdGetSysUserByAcountAndPwd.Connection = oc;
+            try
+            {
+                _cmdGetSysUserByAcountAndPwd.Parameters["@UserAccount"].Value = UserAccount;
+                _cmdGetSysUserByAcountAndPwd.Parameters["@Pwd"].Value = Pwd;
+
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                MySqlDataReader reader = _cmdGetSysUserByAcountAndPwd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    returnValue = new SysUser().BuildSampleEntity(reader);
+                }
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdGetSysUserByAcountAndPwd.Dispose();
+                _cmdGetSysUserByAcountAndPwd = null;
                 GC.Collect();
             }
             return returnValue;

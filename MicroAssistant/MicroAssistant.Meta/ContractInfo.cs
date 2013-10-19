@@ -22,19 +22,19 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 合同编号
         /// </summary>
         public String ContractNo
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 合同名称
         /// </summary>
         public String CName
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 客户名称
         /// </summary>
         public string CustomerName
         { get; set; }
@@ -52,7 +52,7 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 操作人ID
         /// </summary>
         public Int32 OwnerId
         { get; set; }
@@ -70,15 +70,15 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 付款方式0: 全额 1：分期
         /// </summary>
         public Int32 Howtopay
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 分期付款细节
         /// </summary>
-        public Int32 HowtopayId
+        public List<ContractHowtopay> HowtopayList
         { get; set; }
 
         /// <summary>
@@ -104,7 +104,6 @@ namespace MicroAssistant.Meta
             this.ContractTime = DBConvert.ToDateTime(reader["contract_time"]);
             this.Amount = DBConvert.ToDouble(reader["amount"]);
             this.Howtopay = DBConvert.ToInt32(reader["howtopay"]);
-            this.HowtopayId = DBConvert.ToInt32(reader["howtopay_id"]);
             this.EntId = DBConvert.ToInt32(reader["ent_id"]);
             return this;
         }

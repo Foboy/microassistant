@@ -83,8 +83,8 @@ namespace MicroAssistant.DataStructure
         /// <summary>
         /// 成长记录名不能为空
         /// </summary>
-        [Description("错误:成长记录名不能为空")]
-        ERROR_BOOK_NOT_NULL = 12
+        [Description("错误:账号已禁用")]
+        ERROR_USER_FORBID = 12
         
     }
 }

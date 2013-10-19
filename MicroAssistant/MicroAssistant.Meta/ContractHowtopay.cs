@@ -1,7 +1,7 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/8/31 14:46:33
+ * @date: 2013/10/19 14:28:09
  */
 using System;
 using System.Collections.Generic;
@@ -22,33 +22,39 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 付款序号
         /// </summary>
         public Int32 InstalmentsNo
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 金额
         /// </summary>
         public Double Amount
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 付款时间
         /// </summary>
         public DateTime PayTime
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 收款时间
         /// </summary>
         public DateTime ReceivedTime
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 0:没确认收款 1：已收款
         /// </summary>
         public Int32 Isreceived
+        { get; set; }
+
+        /// <summary>
+        /// 合同编号
+        /// </summary>
+        public String ContractNo
         { get; set; }
 
 
@@ -64,6 +70,7 @@ namespace MicroAssistant.Meta
             this.PayTime = DBConvert.ToDateTime(reader["pay_time"]);
             this.ReceivedTime = DBConvert.ToDateTime(reader["received_time"]);
             this.Isreceived = DBConvert.ToInt32(reader["IsReceived"]);
+            this.ContractNo = DBConvert.ToString(reader["contract_no"]);
             return this;
         }
     }

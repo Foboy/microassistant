@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `contract_info`;
 CREATE TABLE `contract_info` (
   `contract_info_id` int(11) NOT NULL AUTO_INCREMENT,
   `contract_no` varchar(45) DEFAULT NULL,
-  `c_name` varchar(45) DEFAULT NULL,
+  `c_name` varchar(45) DEFAULT NULL COMMENT '合同名称',
   `customer_name` varchar(45) DEFAULT NULL COMMENT '客户名称',
   `start_time` datetime DEFAULT NULL,
   `end_time` datetime DEFAULT NULL,
@@ -35,7 +35,6 @@ CREATE TABLE `contract_info` (
   `contract_time` datetime NOT NULL COMMENT '合同签订时间',
   `amount` decimal(10,2) DEFAULT NULL,
   `howtopay` int(11) NOT NULL DEFAULT '0' COMMENT '0: 全额 1：分期',
-  `howtopay_id` int(11) NOT NULL,
   `ent_id` int(11) NOT NULL,
   PRIMARY KEY (`contract_info_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='合同表';
@@ -59,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-15 20:32:32
+-- Dump completed on 2013-10-19 15:14:38
