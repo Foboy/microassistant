@@ -25,16 +25,20 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
        /// <param name="account"></param>
        /// <param name="pwd"></param>
        /// <returns></returns>
-        public AdvancedResult<string> EntRegister(string entName,string account, string pwd)
+        public JsonResult EntRegister(string entName, string account, string pwd)
         {
+            var Res = new JsonResult();
             AdvancedResult<string> result = new AdvancedResult<string>();
             try
             {
-                AdvancedResult<bool> dr = CheckAccout(account);
+                AdvancedResult<bool> dr = CheckUserAccout(account);
                 if (dr.Data)
                 {
                     result.Error = AppError.ERROR_PERSON_FOUND;
-                    return result;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                    
                 }
 
                 SysUser user = new SysUser();
@@ -54,7 +58,9 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 员工注册
@@ -62,16 +68,19 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="account">员工账号是邮箱格式</param>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public AdvancedResult<string> UserRegister(string account, string pwd,int entId)
+        public JsonResult UserRegister(string account, string pwd, int entId)
         {
+            var Res = new JsonResult();
             AdvancedResult<string> result = new AdvancedResult<string>();
             try
             {
-                AdvancedResult<bool> dr = CheckAccout(account);
+                AdvancedResult<bool> dr = CheckUserAccout(account);
                 if (dr.Data)
                 {
                     result.Error = AppError.ERROR_PERSON_FOUND;
-                    return result;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
                 }
 
                 SysUser user = new SysUser();
@@ -92,9 +101,11 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
-        public AdvancedResult<bool> CheckAccout(string account)
+        private AdvancedResult<bool> CheckUserAccout(string account)
         {
             AdvancedResult<bool> result = new AdvancedResult<bool>();
             SysUser user = null;
@@ -115,8 +126,17 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             }
             return result;
         }
-        public AdvancedResult<bool> CheckLogin(string token)
+        public JsonResult CheckAccout(string account)
         {
+            var Res = new JsonResult();
+
+            Res.Data = CheckUserAccout(account);
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+        public JsonResult CheckLogin(string token)
+        {
+            var Res = new JsonResult();
             AdvancedResult<bool> result = new AdvancedResult<bool>();
             try
             {
@@ -135,10 +155,13 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
-        public AdvancedResult<string> Login(string account, string pwd)
+        public JsonResult Login(string account, string pwd)
         {
+            var Res = new JsonResult();
             AdvancedResult<string> result = new AdvancedResult<string>();
             try
             {
@@ -159,10 +182,13 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
-        public RespResult Logout(string token)
+        public JsonResult Logout(string token)
         {
+            var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
@@ -178,7 +204,9 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 获取用户信息
@@ -216,8 +244,9 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public AdvancedResult<SysUser> GetUserInfo(string token)
+        public JsonResult GetUserInfo(string token)
         {
+            var Res = new JsonResult();
             AdvancedResult<SysUser> result = new AdvancedResult<SysUser>();
             try
             {
@@ -245,7 +274,9 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
 
 
@@ -255,8 +286,9 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="user">修改用户名，性别，密码，地址，qq，手机</param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public RespResult EditeUserInfo(SysUser user, string token)
+        public JsonResult EditeUserInfo(SysUser user, string token)
         {
+            var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
@@ -304,15 +336,18 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
 
         /// <summary>
         /// 获取所有用户信息
         /// </summary>
         /// <returns></returns>
-        public AdvancedResult<List<SysUser>> GetUserAllInfo()
+        public JsonResult GetUserAllInfo()
         {
+            var Res = new JsonResult();
             AdvancedResult<List<SysUser>> result = new AdvancedResult<List<SysUser>>();
             try
             {
@@ -325,7 +360,9 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-            return result;
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
 
 
