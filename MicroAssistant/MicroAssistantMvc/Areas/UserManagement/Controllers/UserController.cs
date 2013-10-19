@@ -66,7 +66,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="account">员工账号是邮箱格式</param>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public AdvancedResult<string> UserRegister(string account, string pwd,int entCode)
+        public AdvancedResult<string> UserRegister(string account, string pwd,int entId)
         {
             AdvancedResult<string> result = new AdvancedResult<string>();
             try
@@ -82,7 +82,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 user.UserName = account;
                 user.Pwd = pwd;
                 user.Email = account;
-                user.FatherId = entCode;
+                user.EntId = entId;
                 int i = SysUserAccessor.Instance.Insert(user);
 
                 if (i > 0)
