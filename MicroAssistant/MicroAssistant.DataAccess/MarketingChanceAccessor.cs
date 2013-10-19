@@ -31,9 +31,8 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertMarketingChance
 
-            cmdInsertMarketingChance = new MySqlCommand("INSERT INTO marketing_chance(idmarketing_chance,chance_type,customer_type,contact_name,remark,add_time,qq,email,tel,phone,rate,ent_id,user_id) values (@IdmarketingChance,@ChanceType,@CustomerType,@ContactName,@Remark,@AddTime,@Qq,@Email,@Tel,@Phone,@Rate,@EntId,@UserId)");
+            cmdInsertMarketingChance = new MySqlCommand("INSERT INTO marketing_chance(chance_type,customer_type,contact_name,remark,add_time,qq,email,tel,phone,rate,ent_id,user_id) values (@ChanceType,@CustomerType,@ContactName,@Remark,@AddTime,@Qq,@Email,@Tel,@Phone,@Rate,@EntId,@UserId)");
 
-            cmdInsertMarketingChance.Parameters.Add("@IdmarketingChance", MySqlDbType.Int32);
             cmdInsertMarketingChance.Parameters.Add("@ChanceType", MySqlDbType.Int32);
             cmdInsertMarketingChance.Parameters.Add("@CustomerType", MySqlDbType.Int32);
             cmdInsertMarketingChance.Parameters.Add("@ContactName", MySqlDbType.String);
@@ -50,7 +49,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateMarketingChance
 
-            cmdUpdateMarketingChance = new MySqlCommand(" update marketing_chance set idmarketing_chance = @IdmarketingChance,chance_type = @ChanceType,customer_type = @CustomerType,contact_name = @ContactName,remark = @Remark,add_time = @AddTime,qq = @Qq,email = @Email,tel = @Tel,phone = @Phone,rate = @Rate,ent_id = @EntId,user_id = @UserId where idmarketing_chance = @IdmarketingChance");
+            cmdUpdateMarketingChance = new MySqlCommand(" update marketing_chance set chance_type = @ChanceType,customer_type = @CustomerType,contact_name = @ContactName,remark = @Remark,add_time = @AddTime,qq = @Qq,email = @Email,tel = @Tel,phone = @Phone,rate = @Rate,ent_id = @EntId,user_id = @UserId where idmarketing_chance = @IdmarketingChance");
             cmdUpdateMarketingChance.Parameters.Add("@IdmarketingChance", MySqlDbType.Int32);
             cmdUpdateMarketingChance.Parameters.Add("@ChanceType", MySqlDbType.Int32);
             cmdUpdateMarketingChance.Parameters.Add("@CustomerType", MySqlDbType.Int32);
@@ -116,7 +115,6 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                _cmdInsertMarketingChance.Parameters["@IdmarketingChance"].Value = e.IdmarketingChance;
                 _cmdInsertMarketingChance.Parameters["@ChanceType"].Value = e.ChanceType;
                 _cmdInsertMarketingChance.Parameters["@CustomerType"].Value = e.CustomerType;
                 _cmdInsertMarketingChance.Parameters["@ContactName"].Value = e.ContactName;

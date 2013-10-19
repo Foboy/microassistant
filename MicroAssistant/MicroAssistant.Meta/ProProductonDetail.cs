@@ -1,7 +1,7 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/6/14 19:00:42
+ * @date: 2013/10/19 15:39:07
  */
 using System;
 using System.Collections.Generic;
@@ -16,50 +16,60 @@ namespace MicroAssistant.Meta
     public class ProProductonDetail
     {
         /// <summary>
-        /// 表主键ID
+        /// 
         /// </summary>
         public Int32 PDId
         { get; set; }
 
         /// <summary>
-        /// 采购价格
+        /// 采购单价
         /// </summary>
         public Double Price
         { get; set; }
 
         /// <summary>
-        /// 产品采购数量
+        /// 
         /// </summary>
         public Int32 PNum
         { get; set; }
 
         /// <summary>
-        ///产品编码
+        /// 采购批次号
         /// </summary>
         public String PCode
         { get; set; }
 
         /// <summary>
-        /// 入库单录入时间
+        /// 
         /// </summary>
         public DateTime CreateTime
         { get; set; }
 
         /// <summary>
-        /// 销售人员ID
+        /// 
         /// </summary>
         public Int32 UserId
         { get; set; }
+
         /// <summary>
         /// 产品ID
         /// </summary>
-        public Int32 Pid
+        public Int32 PId
         { get; set; }
+
         /// <summary>
         /// 企业ID
         /// </summary>
-        public Int32 Entid
+        public Int32 EntId
         { get; set; }
+
+        /// <summary>
+        /// 0:未付款 1:已付款
+        /// </summary>
+        public Int32 IsPay
+        { get; set; }
+
+
         /// <summary>
         /// 从读取器向完整实例对象赋值
         /// </summary>/// <param name="reader">数据读取器</param>
@@ -72,8 +82,9 @@ namespace MicroAssistant.Meta
             this.PCode = DBConvert.ToString(reader["p_code"]);
             this.CreateTime = DBConvert.ToDateTime(reader["create_time"]);
             this.UserId = DBConvert.ToInt32(reader["user_id"]);
-            this.Pid = DBConvert.ToInt32(reader["pid"]);
-            this.Entid = DBConvert.ToInt32(reader["ent_id"]);
+            this.PId = DBConvert.ToInt32(reader["p_id"]);
+            this.EntId = DBConvert.ToInt32(reader["ent_id"]);
+            this.IsPay = DBConvert.ToInt32(reader["is_pay"]);
             return this;
         }
     }

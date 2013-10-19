@@ -33,9 +33,8 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertSysFunction
 
-            cmdInsertSysFunction = new MySqlCommand("INSERT INTO sys_function(idsys_function,function_name,father_id,mark,function_url,function_code,level) values (@IdsysFunction,@FunctionName,@FatherId,@Mark,@FunctionUrl,@FunctionCode,@Level)");
+            cmdInsertSysFunction = new MySqlCommand("INSERT INTO sys_function(function_name,father_id,mark,function_url,function_code,level) values (@FunctionName,@FatherId,@Mark,@FunctionUrl,@FunctionCode,@Level)");
 
-            cmdInsertSysFunction.Parameters.Add("@IdsysFunction", MySqlDbType.Int32);
             cmdInsertSysFunction.Parameters.Add("@FunctionName", MySqlDbType.String);
             cmdInsertSysFunction.Parameters.Add("@FatherId", MySqlDbType.Int32);
             cmdInsertSysFunction.Parameters.Add("@Mark", MySqlDbType.String);
@@ -46,7 +45,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateSysFunction
 
-            cmdUpdateSysFunction = new MySqlCommand(" update sys_function set idsys_function = @IdsysFunction,function_name = @FunctionName,father_id = @FatherId,mark = @Mark,function_url = @FunctionUrl,function_code = @FunctionCode,level = @Level where idsys_function = @IdsysFunction");
+            cmdUpdateSysFunction = new MySqlCommand(" update sys_function set function_name = @FunctionName,father_id = @FatherId,mark = @Mark,function_url = @FunctionUrl,function_code = @FunctionCode,level = @Level where idsys_function = @IdsysFunction");
             cmdUpdateSysFunction.Parameters.Add("@IdsysFunction", MySqlDbType.Int32);
             cmdUpdateSysFunction.Parameters.Add("@FunctionName", MySqlDbType.String);
             cmdUpdateSysFunction.Parameters.Add("@FatherId", MySqlDbType.Int32);
@@ -110,7 +109,6 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                _cmdInsertSysFunction.Parameters["@IdsysFunction"].Value = e.IdsysFunction;
                 _cmdInsertSysFunction.Parameters["@FunctionName"].Value = e.FunctionName;
                 _cmdInsertSysFunction.Parameters["@FatherId"].Value = e.FatherId;
                 _cmdInsertSysFunction.Parameters["@Mark"].Value = e.Mark;

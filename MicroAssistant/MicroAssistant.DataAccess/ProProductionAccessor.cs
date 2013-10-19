@@ -44,7 +44,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateProProduction
 
-            cmdUpdateProProduction = new MySqlCommand("update pro_production set p_id = @PId,p_name = @PName,p_info = @PInfo,unit = @Unit,p_type_id = @PTypeId,lowest_price = @LowestPrice,market_price = @MarketPrice,user_id = @UserId where p_id = @PId");
+            cmdUpdateProProduction = new MySqlCommand("update pro_production set p_name = @PName,p_info = @PInfo,unit = @Unit,p_type_id = @PTypeId,lowest_price = @LowestPrice,market_price = @MarketPrice,user_id = @UserId where p_id = @PId");
             cmdUpdateProProduction.Parameters.Add("@PId", MySqlDbType.Int32);
             cmdUpdateProProduction.Parameters.Add("@PName", MySqlDbType.String);
             cmdUpdateProProduction.Parameters.Add("@PInfo", MySqlDbType.String);

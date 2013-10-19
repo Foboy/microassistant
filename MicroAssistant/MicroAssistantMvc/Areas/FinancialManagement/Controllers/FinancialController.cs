@@ -1,5 +1,6 @@
 ﻿using MicroAssistant.Cache;
 using MicroAssistant.Common;
+using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 using MicroAssistantMvc.Controllers;
@@ -16,12 +17,6 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         //
         // GET: /FinancialManagement/Financial/
 
-    
-
-//       
-//
-//
-//
         /// <summary>
         ///  根据企业ID获取应收款列表（token）返回 应收款列表（客户名称，合同编号，本期应收金额，本期应收时间）
         /// </summary>
@@ -33,11 +28,12 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
             AdvancedResult<ContractHowtopay> result = new AdvancedResult<ContractHowtopay>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
-                // int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
+                    SysUser user = SysUserAccessor.Instance.Get(userid);
                     ContractHowtopay con = new ContractHowtopay();
-                   // con = ContractInfoAccessor.Instance.Get(ContractNo);
+                    //con = ContractHowtopayAccessor.Instance.Search(user.EntId);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = con;
 

@@ -50,7 +50,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 if (i>0)
                 {
                     string token = SecurityHelper.GetToken(i.ToString());
-                    CacheManagerFactory.GetMemoryManager().Set(token, SysUserAccessor.Instance.Get(i));
+                    CacheManagerFactory.GetMemoryManager().Set(token, i.ToString());
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = token;
                 }
@@ -95,7 +95,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 if (i > 0)
                 {
                     string token = SecurityHelper.GetToken(i.ToString());
-                    CacheManagerFactory.GetMemoryManager().Set(token, SysUserAccessor.Instance.Get(i));
+                    CacheManagerFactory.GetMemoryManager().Set(token, i.ToString());
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = token;
                 }
@@ -180,7 +180,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     else
                     {
                         string token = SecurityHelper.GetToken(user.UserId.ToString());
-                        CacheManagerFactory.GetMemoryManager().Set(token, SysUserAccessor.Instance.Get(user.UserId));
+                        CacheManagerFactory.GetMemoryManager().Set(token, user.UserId);
                         result.Error = AppError.ERROR_SUCCESS;
                         result.Data = token;
                     }

@@ -31,9 +31,8 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertMarketingVisit
 
-            cmdInsertMarketingVisit = new MySqlCommand("INSERT INTO marketing_visit(idmarketing_visit,visit_type,amount,address,remark,visit_time,chance_id) values (@IdmarketingVisit,@VisitType,@Amount,@Address,@Remark,@VisitTime,@ChanceId)");
+            cmdInsertMarketingVisit = new MySqlCommand("INSERT INTO marketing_visit(visit_type,amount,address,remark,visit_time,chance_id) values (@VisitType,@Amount,@Address,@Remark,@VisitTime,@ChanceId)");
 
-            cmdInsertMarketingVisit.Parameters.Add("@IdmarketingVisit", MySqlDbType.Int32);
             cmdInsertMarketingVisit.Parameters.Add("@VisitType", MySqlDbType.Int32);
             cmdInsertMarketingVisit.Parameters.Add("@Amount", MySqlDbType.Decimal);
             cmdInsertMarketingVisit.Parameters.Add("@Address", MySqlDbType.String);
@@ -44,7 +43,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateMarketingVisit
 
-            cmdUpdateMarketingVisit = new MySqlCommand(" update marketing_visit set idmarketing_visit = @IdmarketingVisit,visit_type = @VisitType,amount = @Amount,address = @Address,remark = @Remark,visit_time = @VisitTime,chance_id = @ChanceId where idmarketing_visit = @IdmarketingVisit");
+            cmdUpdateMarketingVisit = new MySqlCommand(" update marketing_visit set visit_type = @VisitType,amount = @Amount,address = @Address,remark = @Remark,visit_time = @VisitTime,chance_id = @ChanceId where idmarketing_visit = @IdmarketingVisit");
             cmdUpdateMarketingVisit.Parameters.Add("@IdmarketingVisit", MySqlDbType.Int32);
             cmdUpdateMarketingVisit.Parameters.Add("@VisitType", MySqlDbType.Int32);
             cmdUpdateMarketingVisit.Parameters.Add("@Amount", MySqlDbType.Decimal);
@@ -104,7 +103,6 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                _cmdInsertMarketingVisit.Parameters["@IdmarketingVisit"].Value = e.IdmarketingVisit;
                 _cmdInsertMarketingVisit.Parameters["@VisitType"].Value = e.VisitType;
                 _cmdInsertMarketingVisit.Parameters["@Amount"].Value = e.Amount;
                 _cmdInsertMarketingVisit.Parameters["@Address"].Value = e.Address;

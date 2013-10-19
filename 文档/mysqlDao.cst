@@ -48,13 +48,13 @@ private string strInsert()
 {
     string str="INSERT INTO " +SourceTable.Name ;
     str+="(";
-    for (int i = 0; i < SourceTable.Columns.Count; i++) 
+    for (int i = 1; i < SourceTable.Columns.Count; i++) 
     {
       str+= SourceTable.Columns[i].Name+",";
     }
     str=str.Substring(0,str.Length-1);
     str+=") values (";
-    for (int i = 0; i < SourceTable.Columns.Count; i++) 
+    for (int i = 1; i < SourceTable.Columns.Count; i++) 
     {
        str+="@"+ FormatStr(SourceTable.Columns[i].Name)+",";
     }
@@ -67,7 +67,7 @@ private string strUpdate()
 {
        string str=" update " +SourceTable.Name ;
     str+=" set ";
-    for (int i = 0; i < SourceTable.Columns.Count; i++) 
+    for (int i = 1; i < SourceTable.Columns.Count; i++) 
     {
       str+= SourceTable.Columns[i].Name+" = @"+ FormatStr(SourceTable.Columns[i].Name)+",";
     }
@@ -173,7 +173,7 @@ namespace MicroAssistant.DataAccess
 
             cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %> = new MySqlCommand("<%= strInsert() %>");
             
-            <%  for (int i = 0; i < SourceTable.Columns.Count; i++) 
+            <%  for (int i = 1; i < SourceTable.Columns.Count; i++) 
                  { %>
             cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters.Add("@<%= FormatStr(SourceTable.Columns[i].Name) %>", MySqlDbType.<%= SourceTable.Columns[i].DataType %>);
                 <%} %>
@@ -238,7 +238,7 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                 <%  for (int i = 0; i < SourceTable.Columns.Count; i++) 
+                 <%  for (int i = 1; i < SourceTable.Columns.Count; i++) 
                  { %>
                 _cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>.Parameters["@<%= FormatStr(SourceTable.Columns[i].Name) %>"].Value =e.<%= FormatStr(SourceTable.Columns[i].Name) %>;
                <%} %>

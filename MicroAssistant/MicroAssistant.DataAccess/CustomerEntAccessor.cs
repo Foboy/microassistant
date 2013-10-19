@@ -53,7 +53,7 @@ namespace MicroAssistant.DataAccess
             #region cmdUpdateCustomerEnt
 
             cmdUpdateCustomerEnt = new MySqlCommand(" update customer_ent set ent_name = @EntName,industy = @Industy,contact_username = @ContactUsername,contact_mobile = @ContactMobile,contact_phone = @ContactPhone,contact_email = @ContactEmail,contact_qq = @ContactQq,address = @Address,detail = @Detail,ent_id = @EntId,owner_id = @OwnerId where customer_ent_id = @CustomerEntId");
-
+            cmdUpdateCustomerEnt.Parameters.Add("@CustomerEntId", MySqlDbType.Int32);
             cmdUpdateCustomerEnt.Parameters.Add("@EntName", MySqlDbType.String);
             cmdUpdateCustomerEnt.Parameters.Add("@Industy", MySqlDbType.String);
             cmdUpdateCustomerEnt.Parameters.Add("@ContactUsername", MySqlDbType.String);

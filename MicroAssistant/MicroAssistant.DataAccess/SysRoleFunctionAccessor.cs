@@ -32,16 +32,15 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertSysRoleFunction
 
-            cmdInsertSysRoleFunction = new MySqlCommand("INSERT INTO sys_role_function(sys_role_function_id,role_id,function_id) values (@SysRoleFunctionId,@RoleId,@FunctionId)");
+            cmdInsertSysRoleFunction = new MySqlCommand("INSERT INTO sys_role_function(role_id,function_id) values (@RoleId,@FunctionId)");
 
-            cmdInsertSysRoleFunction.Parameters.Add("@SysRoleFunctionId", MySqlDbType.Int32);
             cmdInsertSysRoleFunction.Parameters.Add("@RoleId", MySqlDbType.Int32);
             cmdInsertSysRoleFunction.Parameters.Add("@FunctionId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateSysRoleFunction
 
-            cmdUpdateSysRoleFunction = new MySqlCommand("update sys_role_function set sys_role_function_id = @SysRoleFunctionId,role_id = @RoleId,function_id = @FunctionId where sys_role_function_id = @SysRoleFunctionId");
+            cmdUpdateSysRoleFunction = new MySqlCommand("update sys_role_function set role_id = @RoleId,function_id = @FunctionId where sys_role_function_id = @SysRoleFunctionId");
             cmdUpdateSysRoleFunction.Parameters.Add("@SysRoleFunctionId", MySqlDbType.Int32);
             cmdUpdateSysRoleFunction.Parameters.Add("@RoleId", MySqlDbType.Int32);
             cmdUpdateSysRoleFunction.Parameters.Add("@FunctionId", MySqlDbType.Int32);
@@ -109,7 +108,6 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                _cmdInsertSysRoleFunction.Parameters["@SysRoleFunctionId"].Value = e.SysRoleFunctionId;
                 _cmdInsertSysRoleFunction.Parameters["@RoleId"].Value = e.RoleId;
                 _cmdInsertSysRoleFunction.Parameters["@FunctionId"].Value = e.FunctionId;
 

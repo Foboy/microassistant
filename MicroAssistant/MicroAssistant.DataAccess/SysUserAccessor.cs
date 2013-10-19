@@ -33,9 +33,8 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertSysUser
 
-            cmdInsertSysUser = new MySqlCommand("INSERT INTO sys_user(user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id) values (@UserId,@UserName,@UserAccount,@Pwd,@Mobile,@Email,@CreateTime,@EndTime,@EntAdminId,@IsEnable,@Type,@EntId)");
+            cmdInsertSysUser = new MySqlCommand("INSERT INTO sys_user(user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id) values (@UserName,@UserAccount,@Pwd,@Mobile,@Email,@CreateTime,@EndTime,@EntAdminId,@IsEnable,@Type,@EntId)");
 
-            cmdInsertSysUser.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdInsertSysUser.Parameters.Add("@UserName", MySqlDbType.String);
             cmdInsertSysUser.Parameters.Add("@UserAccount", MySqlDbType.String);
             cmdInsertSysUser.Parameters.Add("@Pwd", MySqlDbType.String);
@@ -51,7 +50,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateSysUser
 
-            cmdUpdateSysUser = new MySqlCommand(" update sys_user set user_id = @UserId,user_name = @UserName,user_account = @UserAccount,pwd = @Pwd,mobile = @Mobile,email = @Email,create_time = @CreateTime,end_time = @EndTime,ent_admin_id = @EntAdminId,is_enable = @IsEnable,type = @Type,ent_id = @EntId where user_id = @UserId");
+            cmdUpdateSysUser = new MySqlCommand(" update sys_user set user_name = @UserName,user_account = @UserAccount,pwd = @Pwd,mobile = @Mobile,email = @Email,create_time = @CreateTime,end_time = @EndTime,ent_admin_id = @EntAdminId,is_enable = @IsEnable,type = @Type,ent_id = @EntId where user_id = @UserId");
             cmdUpdateSysUser.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdUpdateSysUser.Parameters.Add("@UserName", MySqlDbType.String);
             cmdUpdateSysUser.Parameters.Add("@UserAccount", MySqlDbType.String);
@@ -130,7 +129,6 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                _cmdInsertSysUser.Parameters["@UserId"].Value = e.UserId;
                 _cmdInsertSysUser.Parameters["@UserName"].Value = e.UserName;
                 _cmdInsertSysUser.Parameters["@UserAccount"].Value = e.UserAccount;
                 _cmdInsertSysUser.Parameters["@Pwd"].Value = e.Pwd;

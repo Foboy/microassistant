@@ -31,9 +31,8 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertContractHowtopay
 
-            cmdInsertContractHowtopay = new MySqlCommand("INSERT INTO contract_howtopay(howtopay_id,instalments_no,amount,pay_time,received_time,IsReceived,contract_no) values (@HowtopayId,@InstalmentsNo,@Amount,@PayTime,@ReceivedTime,@Isreceived,@ContractNo)");
+            cmdInsertContractHowtopay = new MySqlCommand("INSERT INTO contract_howtopay(instalments_no,amount,pay_time,received_time,IsReceived,contract_no) values (@InstalmentsNo,@Amount,@PayTime,@ReceivedTime,@Isreceived,@ContractNo)");
 
-            cmdInsertContractHowtopay.Parameters.Add("@HowtopayId", MySqlDbType.Int32);
             cmdInsertContractHowtopay.Parameters.Add("@InstalmentsNo", MySqlDbType.Int32);
             cmdInsertContractHowtopay.Parameters.Add("@Amount", MySqlDbType.Decimal);
             cmdInsertContractHowtopay.Parameters.Add("@PayTime", MySqlDbType.DateTime);
@@ -44,7 +43,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateContractHowtopay
 
-            cmdUpdateContractHowtopay = new MySqlCommand(" update contract_howtopay set howtopay_id = @HowtopayId,instalments_no = @InstalmentsNo,amount = @Amount,pay_time = @PayTime,received_time = @ReceivedTime,IsReceived = @Isreceived,contract_no = @ContractNo where howtopay_id = @HowtopayId");
+            cmdUpdateContractHowtopay = new MySqlCommand(" update contract_howtopay set instalments_no = @InstalmentsNo,amount = @Amount,pay_time = @PayTime,received_time = @ReceivedTime,IsReceived = @Isreceived,contract_no = @ContractNo where howtopay_id = @HowtopayId");
             cmdUpdateContractHowtopay.Parameters.Add("@HowtopayId", MySqlDbType.Int32);
             cmdUpdateContractHowtopay.Parameters.Add("@InstalmentsNo", MySqlDbType.Int32);
             cmdUpdateContractHowtopay.Parameters.Add("@Amount", MySqlDbType.Decimal);

@@ -1,7 +1,7 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/6/14 18:59:02
+ * @date: 2013/10/19 15:37:56
  */
 using System;
 using System.Collections.Generic;
@@ -23,15 +23,15 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdDeleteProProductonDetail;
         private MySqlCommand cmdUpdateProProductonDetail;
         private MySqlCommand cmdLoadProProductonDetail;
-        private MySqlCommand cmdLoadProProductonDetailCount;
         private MySqlCommand cmdLoadAllProProductonDetail;
+        private MySqlCommand cmdGetProProductonDetailCount;
         private MySqlCommand cmdGetProProductonDetail;
 
         private ProProductonDetailAccessor()
         {
             #region cmdInsertProProductonDetail
 
-            cmdInsertProProductonDetail = new MySqlCommand("INSERT INTO pro_producton_detail(price,p_num,p_code,create_time,user_id,pid) values (@Price,@PNum,@PCode,@CreateTime,@UserId,@PId)");
+            cmdInsertProProductonDetail = new MySqlCommand("INSERT INTO pro_producton_detail(price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay) values (@PDId,@Price,@PNum,@PCode,@CreateTime,@UserId,@PId,@EntId)");
 
             cmdInsertProProductonDetail.Parameters.Add("@Price", MySqlDbType.Decimal);
             cmdInsertProProductonDetail.Parameters.Add("@PNum", MySqlDbType.Int32);
@@ -39,64 +39,54 @@ namespace MicroAssistant.DataAccess
             cmdInsertProProductonDetail.Parameters.Add("@CreateTime", MySqlDbType.DateTime);
             cmdInsertProProductonDetail.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdInsertProProductonDetail.Parameters.Add("@PId", MySqlDbType.Int32);
+            cmdInsertProProductonDetail.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateProProductonDetail
 
-            cmdUpdateProProductonDetail = new MySqlCommand(" update pro_producton_detail set p_d_id = @PDId,price = @Price,p_num = @PNum,p_code = @PCode,create_time = @CreateTime,user_id = @UserId,pid=@PId where p_d_id = @PDId");
-
+            cmdUpdateProProductonDetail = new MySqlCommand(" update pro_producton_detail set price = @Price,p_num = @PNum,p_code = @PCode,create_time = @CreateTime,user_id = @UserId,p_id = @PId,ent_id = @EntId,is_pay = @IsPay where p_d_id = @PDId");
+            cmdUpdateProProductonDetail.Parameters.Add("@PDId", MySqlDbType.Int32);
             cmdUpdateProProductonDetail.Parameters.Add("@Price", MySqlDbType.Decimal);
             cmdUpdateProProductonDetail.Parameters.Add("@PNum", MySqlDbType.Int32);
             cmdUpdateProProductonDetail.Parameters.Add("@PCode", MySqlDbType.String);
             cmdUpdateProProductonDetail.Parameters.Add("@CreateTime", MySqlDbType.DateTime);
             cmdUpdateProProductonDetail.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdUpdateProProductonDetail.Parameters.Add("@PId", MySqlDbType.Int32);
+            cmdUpdateProProductonDetail.Parameters.Add("@EntId", MySqlDbType.Int32);
+            cmdUpdateProProductonDetail.Parameters.Add("@IsPay", MySqlDbType.Int32);
 
             #endregion
 
             #region cmdDeleteProProductonDetail
 
-            cmdDeleteProProductonDetail = new MySqlCommand("delete from pro_producton_detail where p_d_id = @PId");
-            cmdDeleteProProductonDetail.Parameters.Add("@PId", MySqlDbType.Int32);
+            cmdDeleteProProductonDetail = new MySqlCommand(" delete from pro_producton_detail where p_d_id = @PDId");
+            cmdDeleteProProductonDetail.Parameters.Add("@PDId", MySqlDbType.Int32);
             #endregion
 
             #region cmdLoadProProductonDetail
 
-            cmdLoadProProductonDetail = new MySqlCommand(@"select p_d_id,price,p_num,p_code,create_time,user_id,pid from pro_producton_detail where (@PDId=0 or p_d_id=@PDId) and (@Price=0 or price=@Price) and (@PNum=0 or p_num=@PNum) and (@PCode='' or p_code=@PCode) and (@UserId=0 or user_id=@UserId) and (@PId=0 or pid=@PId ) {0} {1} limit @PageIndex,@PageSize");
-
-            cmdLoadProProductonDetail.Parameters.Add("@PageIndex", MySqlDbType.Int32);
-            cmdLoadProProductonDetail.Parameters.Add("@PageSize", MySqlDbType.Int32);
-            cmdLoadProProductonDetail.Parameters.Add("@PDId", MySqlDbType.Int32);
-            cmdLoadProProductonDetail.Parameters.Add("@Price", MySqlDbType.Decimal);
-            cmdLoadProProductonDetail.Parameters.Add("@PNum", MySqlDbType.Int32);
-            cmdLoadProProductonDetail.Parameters.Add("@PCode", MySqlDbType.String);
-            //  cmdLoadProProductonDetail.Parameters.Add("@CreateTime", MySqlDbType.DateTime);
-            cmdLoadProProductonDetail.Parameters.Add("@UserId", MySqlDbType.Int32);
-            cmdLoadProProductonDetail.Parameters.Add("@PId", MySqlDbType.Int32);
+            cmdLoadProProductonDetail = new MySqlCommand(@" select p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail limit @PageIndex,@PageSize");
+            cmdLoadProProductonDetail.Parameters.Add("@pageIndex", MySqlDbType.Int32);
+            cmdLoadProProductonDetail.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
             #endregion
 
-            #region cmdLoadProProductonDetailCount
+            #region cmdGetProProductonDetailCount
 
-            cmdLoadProProductonDetailCount = new MySqlCommand(@"select count(*) from pro_producton_detail where (@PDId =0 or p_d_id=@PDId) and (@Price=0 or price=@Price) and (@PNum=0 or p_num=@PNum) and (@PCode='' or p_code=@PCode) and (@UserId=0 or user_id=@UserId) and (@PId=0 or pid=@PId){0} {1}");
-            cmdLoadProProductonDetailCount.Parameters.Add("@PDId", MySqlDbType.Int32);
-            cmdLoadProProductonDetailCount.Parameters.Add("@Price", MySqlDbType.Decimal);
-            cmdLoadProProductonDetailCount.Parameters.Add("@PNum", MySqlDbType.Int32);
-            cmdLoadProProductonDetailCount.Parameters.Add("@PCode", MySqlDbType.String);
-            cmdLoadProProductonDetailCount.Parameters.Add("@UserId", MySqlDbType.Int32);
-            cmdLoadProProductonDetailCount.Parameters.Add("@PId", MySqlDbType.Int32);
+            cmdGetProProductonDetailCount = new MySqlCommand(" select count(*)  from pro_producton_detail ");
+
             #endregion
 
             #region cmdLoadAllProProductonDetail
 
-            cmdLoadAllProProductonDetail = new MySqlCommand("select p_d_id,price,p_num,p_code,create_time,user_id from pro_producton_detail");
+            cmdLoadAllProProductonDetail = new MySqlCommand(" select p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail");
 
             #endregion
 
             #region cmdGetProProductonDetail
 
-            cmdGetProProductonDetail = new MySqlCommand("select p_d_id,price,p_num,p_code,create_time,user_id,pid from pro_producton_detail where p_d_id = @PId");
-            cmdGetProProductonDetail.Parameters.Add("@PId", MySqlDbType.Int32);
+            cmdGetProProductonDetail = new MySqlCommand(" select p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail where p_d_id = @PDId");
+            cmdGetProProductonDetail.Parameters.Add("@PDId", MySqlDbType.Int32);
 
             #endregion
         }
@@ -121,7 +111,9 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertProProductonDetail.Parameters["@PCode"].Value = e.PCode;
                 _cmdInsertProProductonDetail.Parameters["@CreateTime"].Value = e.CreateTime;
                 _cmdInsertProProductonDetail.Parameters["@UserId"].Value = e.UserId;
-                _cmdInsertProProductonDetail.Parameters["@PId"].Value = e.Pid;
+                _cmdInsertProProductonDetail.Parameters["@PId"].Value = e.PId;
+                _cmdInsertProProductonDetail.Parameters["@EntId"].Value = e.EntId;
+
                 _cmdInsertProProductonDetail.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertProProductonDetail.LastInsertedId);
                 return returnValue;
@@ -151,10 +143,10 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                _cmdDeleteProProductonDetail.Parameters["@PId"].Value = PDId;
+                _cmdDeleteProProductonDetail.Parameters["@PDId"].Value = PDId;
 
 
-                returnValue = _cmdDeleteProProductonDetail.ExecuteNonQuery() > 0 ? true : returnValue;
+                _cmdDeleteProProductonDetail.ExecuteNonQuery();
                 return returnValue;
             }
             finally
@@ -182,13 +174,17 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
+
                 _cmdUpdateProProductonDetail.Parameters["@PDId"].Value = e.PDId;
                 _cmdUpdateProProductonDetail.Parameters["@Price"].Value = e.Price;
                 _cmdUpdateProProductonDetail.Parameters["@PNum"].Value = e.PNum;
                 _cmdUpdateProProductonDetail.Parameters["@PCode"].Value = e.PCode;
                 _cmdUpdateProProductonDetail.Parameters["@CreateTime"].Value = e.CreateTime;
                 _cmdUpdateProProductonDetail.Parameters["@UserId"].Value = e.UserId;
-                _cmdUpdateProProductonDetail.Parameters["@PId"].Value = e.UserId;
+                _cmdUpdateProProductonDetail.Parameters["@PId"].Value = e.PId;
+                _cmdUpdateProProductonDetail.Parameters["@EntId"].Value = e.EntId;
+                _cmdUpdateProProductonDetail.Parameters["@IsPay"].Value = e.IsPay;
+
                 _cmdUpdateProProductonDetail.ExecuteNonQuery();
 
             }
@@ -210,57 +206,32 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<ProProductonDetail> Search(Int32 PDId, Decimal Price, Int32 PNum, String PCode, string StartTime, string EndTime, Int32 UserId, Int32 PId, int pageIndex, int pageSize)
+        public PageEntity<ProProductonDetail> Search(Int32 UserId, Int32 PId, Int32 EntId, int pageIndex, int pageSize)
         {
             PageEntity<ProProductonDetail> returnValue = new PageEntity<ProProductonDetail>();
-            List<ProProductonDetail> prolist = new List<ProProductonDetail>();
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdLoadProProductonDetail = cmdLoadProProductonDetail.Clone() as MySqlCommand;
-            MySqlCommand _cmdLoadProProductonDetailCount = cmdLoadProProductonDetailCount.Clone() as MySqlCommand;
+            MySqlCommand _cmdGetProProductonDetailCount = cmdGetProProductonDetailCount.Clone() as MySqlCommand;
             _cmdLoadProProductonDetail.Connection = oc;
-            _cmdLoadProProductonDetailCount.Connection = oc;
+            _cmdGetProProductonDetailCount.Connection = oc;
+
             try
             {
                 _cmdLoadProProductonDetail.Parameters["@PageIndex"].Value = pageIndex;
                 _cmdLoadProProductonDetail.Parameters["@PageSize"].Value = pageSize;
-                _cmdLoadProProductonDetail.Parameters["@PDId"].Value = PDId;
-                _cmdLoadProProductonDetail.Parameters["@Price"].Value = Price;
-                _cmdLoadProProductonDetail.Parameters["@PNum"].Value = PNum;
-                _cmdLoadProProductonDetail.Parameters["@PCode"].Value = PCode;
                 _cmdLoadProProductonDetail.Parameters["@UserId"].Value = UserId;
                 _cmdLoadProProductonDetail.Parameters["@PId"].Value = PId;
+                _cmdLoadProProductonDetail.Parameters["@EntId"].Value = EntId;
 
-                _cmdLoadProProductonDetailCount.Parameters["@PDId"].Value = PDId;
-                _cmdLoadProProductonDetailCount.Parameters["@Price"].Value = Price;
-                _cmdLoadProProductonDetailCount.Parameters["@PNum"].Value = PNum;
-                _cmdLoadProProductonDetailCount.Parameters["@PCode"].Value = PCode;
-                _cmdLoadProProductonDetailCount.Parameters["@UserId"].Value = UserId;
-                _cmdLoadProProductonDetailCount.Parameters["@PId"].Value = PId;
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                if (!string.IsNullOrEmpty(StartTime))
-                {
-                    StartTime = "   AND  create_time >= DATE_FORMAT('" + StartTime + "', 'yyyy-mm-dd hh24:mi:ss')";
-                }
-                if (!string.IsNullOrEmpty(EndTime))
-                {
-                    EndTime = "  AND create_time < DATE_FORMAT('" + EndTime + "', 'yyyy-mm-dd hh24:mi:ss')";
-                }
-                _cmdLoadProProductonDetail.CommandText = string.Format(_cmdLoadProProductonDetail.CommandText, StartTime, EndTime);
+
                 MySqlDataReader reader = _cmdLoadProProductonDetail.ExecuteReader();
                 while (reader.Read())
                 {
-                    prolist.Add(new ProProductonDetail().BuildSampleEntity(reader));
-                    
+                    returnValue.Items.Add(new ProProductonDetail().BuildSampleEntity(reader));
                 }
-                reader.Close();
-                returnValue.Items = prolist;
-                returnValue.PageIndex = pageIndex;
-                returnValue.PageSize = pageSize;
-                if (oc.State == ConnectionState.Closed)
-                    oc.Open();
-                _cmdLoadProProductonDetailCount.CommandText = string.Format(_cmdLoadProProductonDetailCount.CommandText, StartTime, EndTime);
-                returnValue.RecordsCount =Convert.ToInt32( _cmdLoadProProductonDetailCount.ExecuteScalar());
+                returnValue.RecordsCount = (int)_cmdGetProProductonDetailCount.ExecuteScalar();
             }
             finally
             {
@@ -269,8 +240,8 @@ namespace MicroAssistant.DataAccess
                 oc = null;
                 _cmdLoadProProductonDetail.Dispose();
                 _cmdLoadProProductonDetail = null;
-                _cmdLoadProProductonDetailCount.Dispose();
-                _cmdLoadProProductonDetailCount = null;
+                _cmdGetProProductonDetailCount.Dispose();
+                _cmdGetProProductonDetailCount = null;
                 GC.Collect();
             }
             return returnValue;

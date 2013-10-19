@@ -125,21 +125,28 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
-        public JsonResult SearchProductonDetailList(int pid, string startTime, string endTime, int pageIndex, int pageSize)
+        public JsonResult SearchProductonDetailList(int pid, int pageIndex, int pageSize, string token)
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProductonDetail>> result = new AdvancedResult<PageEntity<ProProductonDetail>>();
             try
             {
-                PageEntity<ProProductonDetail> list = new PageEntity<ProProductonDetail>();
-                list = ProProductonDetailAccessor.Instance.Search(0, 0, 0, string.Empty, startTime, endTime, 0, pid, pageIndex, pageSize);
-                result.Error = AppError.ERROR_SUCCESS;
-                result.Data = list;
+                if (CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
 
+                    SysUser user = SysUserAccessor.Instance.Get(userid);
+
+                    PageEntity<ProProductonDetail> list = new PageEntity<ProProductonDetail>();
+                    list = ProProductonDetailAccessor.Instance.Search(user.UserId, pid, user.EntId, pageIndex, pageSize);
+                    result.Error = AppError.ERROR_SUCCESS;
+                    result.Data = list;
+                }
+                else
+                    result.Error = AppError.ERROR_FAILED;
             }
             catch (Exception e)
             {
-
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }

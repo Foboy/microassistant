@@ -53,7 +53,7 @@ namespace MicroAssistant.DataAccess
             #region cmdUpdateCustomerPrivate
 
             cmdUpdateCustomerPrivate = new MySqlCommand(" update customer_private set name = @Name,sex = @Sex,birthday = @Birthday,industy = @Industy,mobile = @Mobile,email = @Email,qq = @Qq,phone = @Phone,address = @Address,detail = @Detail,ent_id = @EntId,owner_id = @OwnerId where customer_private_id = @CustomerPrivateId");
-
+            cmdUpdateCustomerPrivate.Parameters.Add("@CustomerPrivateId", MySqlDbType.Int32);
             cmdUpdateCustomerPrivate.Parameters.Add("@Name", MySqlDbType.String);
             cmdUpdateCustomerPrivate.Parameters.Add("@Sex", MySqlDbType.Int32);
             cmdUpdateCustomerPrivate.Parameters.Add("@Birthday", MySqlDbType.DateTime);
