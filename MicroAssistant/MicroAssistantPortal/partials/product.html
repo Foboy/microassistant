@@ -1,0 +1,58 @@
+        <h1 class="titSec">产品项目</h1>
+        <ul class="clearfix goodsList">
+            <li ng-repeat="catalog in catalogs"  ng-class="catalog.PTypeId==ActCatalogId?'cur':''">
+                <a ng-href="#!/product/{{catalog.PTypeId}}/1"><em><i class="pcIcon"></i></em></a>
+                <p>{{catalog.PTypeName}}</p>
+                <span class="arrowD"></span>
+            </li>
+            <li ng-show="addCatalogFlag">
+            	<div class="newAddBox">
+                	<i class="aClose" ng-click="addCatalogCancel()"></i>
+                    <div class="clearfix addImg" id="file_upload"><em><i class="askIcon"></i></em><a href="" >点击添加图片</a></div>
+                    <form name="ProductCatalogForm" ng-class="showerror?'showerror':''">
+                    <input type="text" ng-model="AddedCatalog.PicId" style="display:none" />
+                     <input type="text" placeholder="输入分类名称" ng-model="AddedCatalog.PTypeName" ng-required="true" class="addName"/>
+                     </form>
+                </div>
+            </li>
+            <li>
+                <div class="addG bootstro" id="add_catalog_btn" ng-click="addCatalog()">添加</div>
+            </li>
+        </ul>
+        <div class="searchBox">
+            <input type="button" class="addBtn bootstro" id="add_product_btn" ng-click="editProduct()"/>
+            <input type="button" class="delBtn"/>
+            <span class="seCon"><input type="text" class="setext" placeholder="Type something…"><input type="button" class="seBtn"/></span>
+        </div>
+        <div class="tablePad">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th width="30%">产品名称</th>
+                  <th width="10%">成本价格</th>
+                  <th width="10%">售价</th>
+                  <th width="10%">最低售价</th>
+                  <th width="10%">库存</th>
+                  <th width="30%">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="product in products">
+                  <td>1</td>
+                  <td>{{product.PName}}</td>
+                  <td class="colorBlue">8300.00</td>
+                  <td class="colorBlue">{{product.MarketPrice}}</td>
+                  <td class="colorBlue">{{product.LowestPrice}}</td>
+                  <td>{{product.StockCount}}</td>
+                  <td><a href="" role="button" data-toggle="modal" ng-click="showProductDetail()">查看</a>|
+                  <a role="button" data-toggle="modal" href="" ng-click="editProduct()">编辑产品资料</a>|
+                  <a role="button" data-toggle="modal" href="" ng-click="addPurchase()">添加采购单</a></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+	<div ng-include="'partials/product/product-detail.html'" ng-controller="ProductDetailCtrl"></div>
+    <div ng-include="'partials/product/product-edit.html'" ng-controller="ProductEditCtrl"></div>
+    <div ng-include="'partials/product/product-purchase.html'" ng-controller="ProductPurchaseCtrl"></div>
