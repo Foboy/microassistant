@@ -228,11 +228,11 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Insert(<%= FormatStr(GetTableName(SourceTable.Name)) %> e)
+        public int Insert(<%= FormatStr(GetTableName(SourceTable.Name)) %> e)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %> = cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>.Clone() as MySqlCommand;
-            bool returnValue = false;
+            int returnValue = 0;
             _cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>.Connection = oc;
             try
             {
@@ -244,6 +244,7 @@ namespace MicroAssistant.DataAccess
                <%} %>
                 
                 _cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>.ExecuteNonQuery();
+                 returnValue = Convert.ToInt32(_cmdInsert<%= FormatStr(GetTableName(SourceTable.Name)) %>.LastInsertedId);
                 return returnValue;
             }
             finally

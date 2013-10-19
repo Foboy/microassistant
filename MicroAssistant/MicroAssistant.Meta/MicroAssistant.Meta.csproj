@@ -48,6 +48,8 @@
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerEnt.cs" />
     <Compile Include="CustomerPrivate.cs" />
+    <Compile Include="MarketingChance.cs" />
+    <Compile Include="MarketingVisit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProProduction.cs" />
     <Compile Include="ProProductionType.cs" />

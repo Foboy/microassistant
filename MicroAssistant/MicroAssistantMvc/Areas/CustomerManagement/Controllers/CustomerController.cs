@@ -11,7 +11,7 @@ using MicroAssistant.Cache;
 
 namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomerController : ControllerBase
     {
         //
         // GET: /CustomerManagement/CustomerEnt/

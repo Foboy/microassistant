@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
 {
-    public class ContractInfoController : Controller
+    public class ContractInfoController : ControllerBase
     {
         //
         // GET: /ContractManagement/ContractInfo/

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using MicroAssistant.Cache;
+using MicroAssistant.Common;
+using MicroAssistant.DataStructure;
+using MicroAssistant.Meta;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,7 +10,7 @@ using System.Web.Mvc;
 
 namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
 {
-    public class FinancialController : Controller
+    public class FinancialController : ControllerBase
     {
         //
         // GET: /FinancialManagement/Financial/
@@ -25,16 +29,45 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult SearchReceivablesByEID(int eid)
+        public JsonResult SearchReceivables(string token)
         {
-            return null;
+            var Res = new JsonResult();
+            AdvancedResult<ContractHowtopay> result = new AdvancedResult<ContractHowtopay>();
+            if (CacheManagerFactory.GetMemoryManager().Contains(token))
+            {
+                // int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                try
+                {
+                    ContractHowtopay con = new ContractHowtopay();
+                   // con = ContractInfoAccessor.Instance.Get(ContractNo);
+                    result.Error = AppError.ERROR_SUCCESS;
+                    result.Data = con;
+
+                }
+                catch (Exception e)
+                {
+                    result.Error = AppError.ERROR_FAILED;
+                    result.ExMessage = e.ToString();
+                }
+
+                result.Error = AppError.ERROR_SUCCESS;
+            }
+            else
+            {
+                result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+            }
+
+
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
        }
         /// <summary>
         /// 根据企业ID获取应付款列表 （token）返回 应付款列表（采购批次，单价，数量，提交时间，付款状态）
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult SearchPayablesByEID(int eid)
+        public JsonResult SearchPayablesByEID(string token)
         {
             return null;
         }
@@ -45,7 +78,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult GetHowToPayByEID(int eid)
+        public JsonResult GetHowToPayByEID(string contractNo,string token)
         {
             return null;
         }
@@ -54,7 +87,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult ConfirmReceived(int eid)
+        public JsonResult ConfirmReceived(string contractNo,int rNum,string token)
         {
             return null;
         }

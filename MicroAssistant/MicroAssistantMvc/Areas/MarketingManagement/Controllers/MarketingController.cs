@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
 {
-    public class MarketingController : Controller
+    public class MarketingController : ControllerBase
     {
         //
         // GET: /MarketingManagement/Marketing/

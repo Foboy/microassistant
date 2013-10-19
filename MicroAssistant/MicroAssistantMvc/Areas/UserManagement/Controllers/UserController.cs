@@ -11,7 +11,7 @@ using MicroAssistant.Meta;
 
 namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 {
-    public class UserController : Controller
+    public class UserController : ControllerBase
     {
         //
         // GET: /UserManagement/User

@@ -10,7 +10,7 @@ using MicroAssistant.Meta;
 
 namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
 {
-    public class PermissionController : Controller
+    public class PermissionController : ControllerBase
     {
         
 

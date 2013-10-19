@@ -66,7 +66,7 @@ namespace MicroAssistant.Meta
         /// <summary>
         /// 
         /// </summary>
-        public Int32 FatherId
+        public Int32 EntId
         { get; set; }
 
 
@@ -84,7 +84,7 @@ namespace MicroAssistant.Meta
             this.Email = DBConvert.ToString(reader["email"]);
             this.CreateTime = DBConvert.ToDateTime(reader["create_time"]);
             this.EndTime = DBConvert.ToDateTime(reader["end_time"]);
-            this.FatherId = DBConvert.ToInt32(reader["father_id"]);
+            this.EntId = DBConvert.ToInt32(reader["ent_id"]);
             return this;
         }
     }

@@ -11,7 +11,7 @@ using MicroAssistant.Meta;
 
 namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
 {
-    public class ProductionController : Controller
+    public class ProductionController : ControllerBase
     {
         //
         // GET: /ProductManagement/Production/

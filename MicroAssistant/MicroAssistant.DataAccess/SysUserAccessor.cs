@@ -31,7 +31,7 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertSysUser
 
-            cmdInsertSysUser = new MySqlCommand("INSERT INTO sys_user(user_id,user_name,pwd,mobile,email,create_time,end_time,father_id) values (@UserId,@UserName,@Pwd,@Mobile,@Email,@CreateTime,@EndTime,@FatherId)");
+            cmdInsertSysUser = new MySqlCommand("INSERT INTO sys_user(user_id,user_name,pwd,mobile,email,create_time,end_time,ent_id) values (@UserId,@UserName,@Pwd,@Mobile,@Email,@CreateTime,@EndTime,@EntId)");
 
             cmdInsertSysUser.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdInsertSysUser.Parameters.Add("@UserName", MySqlDbType.String);
@@ -40,12 +40,12 @@ namespace MicroAssistant.DataAccess
             cmdInsertSysUser.Parameters.Add("@Email", MySqlDbType.String);
             cmdInsertSysUser.Parameters.Add("@CreateTime", MySqlDbType.DateTime);
             cmdInsertSysUser.Parameters.Add("@EndTime", MySqlDbType.DateTime);
-            cmdInsertSysUser.Parameters.Add("@FatherId", MySqlDbType.Int32);
+            cmdInsertSysUser.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateSysUser
 
-            cmdUpdateSysUser = new MySqlCommand(" update sys_user set user_id = @UserId,user_name = @UserName,pwd = @Pwd,mobile = @Mobile,email = @Email,create_time = @CreateTime,end_time = @EndTime,father_id = @FatherId where user_id = @UserId");
+            cmdUpdateSysUser = new MySqlCommand(" update sys_user set user_id = @UserId,user_name = @UserName,pwd = @Pwd,mobile = @Mobile,email = @Email,create_time = @CreateTime,end_time = @EndTime,ent_id = @EntId where user_id = @UserId");
             cmdUpdateSysUser.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdUpdateSysUser.Parameters.Add("@UserName", MySqlDbType.String);
             cmdUpdateSysUser.Parameters.Add("@Pwd", MySqlDbType.String);
@@ -53,7 +53,7 @@ namespace MicroAssistant.DataAccess
             cmdUpdateSysUser.Parameters.Add("@Email", MySqlDbType.String);
             cmdUpdateSysUser.Parameters.Add("@CreateTime", MySqlDbType.DateTime);
             cmdUpdateSysUser.Parameters.Add("@EndTime", MySqlDbType.DateTime);
-            cmdUpdateSysUser.Parameters.Add("@FatherId", MySqlDbType.Int32);
+            cmdUpdateSysUser.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
 
@@ -65,7 +65,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadSysUser
 
-            cmdLoadSysUser = new MySqlCommand(@" select user_id,user_name,pwd,mobile,email,create_time,end_time,father_id from sys_user limit @PageIndex,@PageSize");
+            cmdLoadSysUser = new MySqlCommand(@" select user_id,user_name,pwd,mobile,email,create_time,end_time,ent_id from sys_user limit @PageIndex,@PageSize");
             cmdLoadSysUser.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadSysUser.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -79,13 +79,13 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllSysUser
 
-            cmdLoadAllSysUser = new MySqlCommand(" select user_id,user_name,pwd,mobile,email,create_time,end_time,father_id from sys_user");
+            cmdLoadAllSysUser = new MySqlCommand(" select user_id,user_name,pwd,mobile,email,create_time,end_time,ent_id from sys_user");
 
             #endregion
 
             #region cmdGetSysUser
 
-            cmdGetSysUser = new MySqlCommand(" select user_id,user_name,pwd,mobile,email,create_time,end_time,father_id from sys_user where user_id = @UserId");
+            cmdGetSysUser = new MySqlCommand(" select user_id,user_name,pwd,mobile,email,create_time,end_time,ent_id from sys_user where user_id = @UserId");
             cmdGetSysUser.Parameters.Add("@UserId", MySqlDbType.Int32);
 
             #endregion
@@ -113,7 +113,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertSysUser.Parameters["@Email"].Value = e.Email;
                 _cmdInsertSysUser.Parameters["@CreateTime"].Value = e.CreateTime;
                 _cmdInsertSysUser.Parameters["@EndTime"].Value = e.EndTime;
-                _cmdInsertSysUser.Parameters["@FatherId"].Value = e.FatherId;
+                _cmdInsertSysUser.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdInsertSysUser.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertSysUser.LastInsertedId);
@@ -183,7 +183,7 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateSysUser.Parameters["@Email"].Value = e.Email;
                 _cmdUpdateSysUser.Parameters["@CreateTime"].Value = e.CreateTime;
                 _cmdUpdateSysUser.Parameters["@EndTime"].Value = e.EndTime;
-                _cmdUpdateSysUser.Parameters["@FatherId"].Value = e.FatherId;
+                _cmdUpdateSysUser.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdUpdateSysUser.ExecuteNonQuery();
 
@@ -206,7 +206,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<SysUser> Search(Int32 UserId, String UserName, String Pwd, String Mobile, String Email, DateTime CreateTime, DateTime EndTime, Int32 FatherId, int pageIndex, int pageSize)
+        public PageEntity<SysUser> Search(Int32 UserId, String UserName, String Pwd, String Mobile, String Email, DateTime CreateTime, DateTime EndTime, Int32 EntId, int pageIndex, int pageSize)
         {
             PageEntity<SysUser> returnValue = new PageEntity<SysUser>();
             MySqlConnection oc = ConnectManager.Create();
@@ -226,7 +226,7 @@ namespace MicroAssistant.DataAccess
                 _cmdLoadSysUser.Parameters["@Email"].Value = Email;
                 _cmdLoadSysUser.Parameters["@CreateTime"].Value = CreateTime;
                 _cmdLoadSysUser.Parameters["@EndTime"].Value = EndTime;
-                _cmdLoadSysUser.Parameters["@FatherId"].Value = FatherId;
+                _cmdLoadSysUser.Parameters["@EntId"].Value = EntId;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
