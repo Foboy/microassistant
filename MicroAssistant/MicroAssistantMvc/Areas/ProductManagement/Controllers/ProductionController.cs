@@ -8,10 +8,11 @@ using MicroAssistant.Common;
 using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
+using MicroAssistantMvc.Controllers;
 
 namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
 {
-    public class ProductionController : ControllerBase
+    public class ProductionController : MicControllerBase
     {
         //
         // GET: /ProductManagement/Production/

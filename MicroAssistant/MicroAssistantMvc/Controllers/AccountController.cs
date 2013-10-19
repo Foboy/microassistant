@@ -15,7 +15,7 @@ namespace MicroAssistantMvc.Controllers
 {
     [Authorize]
     [InitializeSimpleMembership]
-    public class AccountController : ControllerBase
+    public class AccountController : MicControllerBase
     {
         //
         // GET: /Account/Login

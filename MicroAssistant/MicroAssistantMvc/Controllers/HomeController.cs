@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MicroAssistantMvc.Controllers
 {
-    public class HomeController : ControllerBase
+    public class HomeController : MicControllerBase
     {
         public ActionResult Index()
         {

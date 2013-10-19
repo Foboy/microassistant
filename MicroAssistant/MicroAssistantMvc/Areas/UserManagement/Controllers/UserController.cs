@@ -8,18 +8,14 @@ using MicroAssistant.Common;
 using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
+using MicroAssistantMvc.Controllers;
 
 namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 {
-    public class UserController : ControllerBase
+    public class UserController : MicControllerBase
     {
         //
         // GET: /UserManagement/User
-
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         #region IUserService 成员
        /// <summary>

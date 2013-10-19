@@ -7,10 +7,11 @@ using MicroAssistant.Common;
 using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
+using MicroAssistantMvc.Controllers;
 
 namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
 {
-    public class PermissionController : ControllerBase
+    public class PermissionController : MicControllerBase
     {
         
 

@@ -3,6 +3,7 @@ using MicroAssistant.Common;
 using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
+using MicroAssistantMvc.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +12,12 @@ using System.Web.Mvc;
 
 namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
 {
-    public class ContractInfoController : ControllerBase
+    public class ContractInfoController : MicControllerBase
     {
         //
         // GET: /ContractManagement/ContractInfo/
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+     
 
 
         /// <summary>

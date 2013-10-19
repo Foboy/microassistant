@@ -8,10 +8,11 @@ using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 using MicroAssistant.Cache;
+using MicroAssistantMvc.Controllers;
 
 namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
 {
-    public class CustomerController : ControllerBase
+    public class CustomerController : MicControllerBase
     {
         //
         // GET: /CustomerManagement/CustomerEnt/
