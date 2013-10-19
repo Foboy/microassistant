@@ -1,4 +1,4 @@
-﻿for(var i = 0; i < 76; i++) { var scriptId = 'u' + i; window[scriptId] = document.getElementById(scriptId); }
+﻿for(var i = 0; i < 88; i++) { var scriptId = 'u' + i; window[scriptId] = document.getElementById(scriptId); }
 
 $axure.eventManager.pageLoad(
 function (e) {
@@ -26,7 +26,29 @@ if (true) {
 
 }
 });
-gv_vAlignTable['u55'] = 'center';gv_vAlignTable['u46'] = 'center';gv_vAlignTable['u48'] = 'center';gv_vAlignTable['u8'] = 'top';gv_vAlignTable['u32'] = 'center';gv_vAlignTable['u23'] = 'center';gv_vAlignTable['u53'] = 'top';gv_vAlignTable['u1'] = 'center';document.getElementById('u38_img').tabIndex = 0;
+gv_vAlignTable['u55'] = 'center';gv_vAlignTable['u46'] = 'center';document.getElementById('u76_img').tabIndex = 0;
+
+u76.style.cursor = 'pointer';
+$axure.eventManager.click('u76', function(e) {
+
+if (true) {
+
+	SetPanelVisibility('u80','','none',500);
+
+}
+});
+gv_vAlignTable['u48'] = 'center';gv_vAlignTable['u8'] = 'top';gv_vAlignTable['u32'] = 'center';gv_vAlignTable['u23'] = 'center';gv_vAlignTable['u53'] = 'top';u85.tabIndex = 0;
+
+u85.style.cursor = 'pointer';
+$axure.eventManager.click('u85', function(e) {
+
+if (true) {
+
+	self.location.href=$axure.globalVariableProvider.getLinkUrl('我的时间轴.html');
+
+}
+});
+gv_vAlignTable['u85'] = 'top';gv_vAlignTable['u1'] = 'center';document.getElementById('u38_img').tabIndex = 0;
 
 u38.style.cursor = 'pointer';
 $axure.eventManager.click('u38', function(e) {
@@ -48,7 +70,7 @@ if (true) {
 
 }
 });
-gv_vAlignTable['u49'] = 'top';gv_vAlignTable['u41'] = 'center';gv_vAlignTable['u17'] = 'center';gv_vAlignTable['u15'] = 'top';gv_vAlignTable['u36'] = 'center';u66.tabIndex = 0;
+gv_vAlignTable['u49'] = 'top';gv_vAlignTable['u79'] = 'center';gv_vAlignTable['u41'] = 'center';gv_vAlignTable['u17'] = 'center';gv_vAlignTable['u15'] = 'top';gv_vAlignTable['u36'] = 'center';u66.tabIndex = 0;
 
 u66.style.cursor = 'pointer';
 $axure.eventManager.click('u66', function(e) {
@@ -59,7 +81,18 @@ if (true) {
 
 }
 });
-gv_vAlignTable['u66'] = 'top';gv_vAlignTable['u57'] = 'top';document.getElementById('u22_img').tabIndex = 0;
+gv_vAlignTable['u66'] = 'top';gv_vAlignTable['u87'] = 'top';u83.tabIndex = 0;
+
+u83.style.cursor = 'pointer';
+$axure.eventManager.click('u83', function(e) {
+
+if (true) {
+
+	self.location.href=$axure.globalVariableProvider.getLinkUrl('用户基本资料.html');
+
+}
+});
+gv_vAlignTable['u83'] = 'top';gv_vAlignTable['u57'] = 'top';document.getElementById('u22_img').tabIndex = 0;
 
 u22.style.cursor = 'pointer';
 $axure.eventManager.click('u22', function(e) {
@@ -70,7 +103,7 @@ if (true) {
 
 }
 });
-gv_vAlignTable['u13'] = 'center';gv_vAlignTable['u52'] = 'top';gv_vAlignTable['u3'] = 'center';gv_vAlignTable['u28'] = 'top';gv_vAlignTable['u20'] = 'center';gv_vAlignTable['u50'] = 'top';gv_vAlignTable['u24'] = 'top';gv_vAlignTable['u39'] = 'center';gv_vAlignTable['u69'] = 'center';gv_vAlignTable['u71'] = 'top';gv_vAlignTable['u26'] = 'center';u65.tabIndex = 0;
+gv_vAlignTable['u13'] = 'center';gv_vAlignTable['u52'] = 'top';gv_vAlignTable['u3'] = 'center';gv_vAlignTable['u77'] = 'center';gv_vAlignTable['u28'] = 'top';gv_vAlignTable['u20'] = 'center';gv_vAlignTable['u50'] = 'top';gv_vAlignTable['u24'] = 'top';gv_vAlignTable['u39'] = 'center';gv_vAlignTable['u69'] = 'center';gv_vAlignTable['u71'] = 'top';gv_vAlignTable['u26'] = 'center';u65.tabIndex = 0;
 
 u65.style.cursor = 'pointer';
 $axure.eventManager.click('u65', function(e) {
@@ -81,7 +114,7 @@ if (true) {
 
 }
 });
-gv_vAlignTable['u65'] = 'top';gv_vAlignTable['u56'] = 'top';gv_vAlignTable['u5'] = 'center';gv_vAlignTable['u42'] = 'top';document.getElementById('u33_img').tabIndex = 0;
+gv_vAlignTable['u65'] = 'top';gv_vAlignTable['u56'] = 'top';gv_vAlignTable['u5'] = 'center';gv_vAlignTable['u82'] = 'center';gv_vAlignTable['u42'] = 'top';document.getElementById('u33_img').tabIndex = 0;
 
 u33.style.cursor = 'pointer';
 $axure.eventManager.click('u33', function(e) {

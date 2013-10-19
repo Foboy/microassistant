@@ -328,3 +328,28 @@
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="客户信息_files/u74_normal.png");
 }
 
+* html .u160_normal {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="客户信息_files/u160_normal.png");
+}
+
+* html .u162_normal {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="客户信息_files/u162_normal.png");
+}
+
+* html .u165_normal {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="客户信息_files/u165_normal.png");
+}
+
+* html .u168_line {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="客户信息_files/u168_line.png");
+}
+
+* html .u170_line {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="客户信息_files/u170_line.png");
+}
+
