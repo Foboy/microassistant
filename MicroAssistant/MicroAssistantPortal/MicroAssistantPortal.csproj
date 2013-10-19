@@ -7,13 +7,13 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C6F259E1-1F3A-4D68-8F3F-7A595D1C3FEE}</ProjectGuid>
+    <ProjectGuid>{9CF19C5B-7ABF-4722-B319-25A581740C14}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MicroAssistantPortal</RootNamespace>
     <AssemblyName>MicroAssistantPortal</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -57,44 +57,49 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="addclient_com.html" />
-    <Content Include="addclient_enterprise.html" />
-    <Content Include="addGoods_1.html" />
-    <Content Include="addGoods_2.html" />
-    <Content Include="addGoods_3.html" />
     <Content Include="css\bootstrap-responsive.css" />
     <Content Include="css\bootstrap-responsive.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\flat-ui.css" />
     <Content Include="css\master.css" />
-    <Content Include="financialManagement.html" />
-    <Content Include="financialManagement_pay.html" />
-    <Content Include="goodsInfo.html" />
     <Content Include="img\Adimg\h1.jpg" />
     <Content Include="img\arrowBg.png" />
     <Content Include="img\circleBG.png" />
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
     <Content Include="img\icon.png" />
-    <Content Include="inventory.html" />
+    <Content Include="index.html" />
     <Content Include="js\angular-animate.js" />
     <Content Include="js\angular-route.js" />
     <Content Include="js\angular.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\bootstro\bootstro.css" />
+    <Content Include="js\bootstro\bootstro.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\uploadify\jquery.uploadify.js" />
     <Content Include="js\uploadify\uploadify.css" />
     <Content Include="js\uploadify\uploadify.extention.js" />
     <Content Include="js\uploadify\uploadify.swf" />
+    <Content Include="login.html" />
+    <Content Include="partials\finance.html" />
+    <Content Include="partials\home.html" />
+    <Content Include="partials\product.html" />
     <Content Include="partials\product\product-detail.html" />
-    <Content Include="Payment.html" />
-    <Content Include="peopleInfo.html" />
-    <Content Include="product.html" />
+    <Content Include="partials\product\product-edit.html" />
+    <Content Include="partials\product\product-purchase.html" />
+    <Content Include="partials\sales.html" />
+    <Content Include="partials\sales\after-detail.html" />
+    <Content Include="partials\sales\chance-detail.html" />
+    <Content Include="partials\sales\contract-detail.html" />
+    <Content Include="partials\sales\visit-detail.html" />
+    <Content Include="scripts\app.js" />
     <Content Include="scripts\core.js" />
-    <Content Include="scripts\product\app.js" />
+    <Content Include="scripts\finance\controllers.js" />
+    <Content Include="scripts\home\controllers.js" />
     <Content Include="scripts\product\controllers.js" />
+    <Content Include="scripts\sales\controllers.js" />
     <Content Include="scripts\utilities.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -103,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="img\icon.psd" />
+    <Content Include="partials\product\help.json" />
     <Content Include="scripts\product\json\productCat.json" />
     <Content Include="scripts\product\json\productDetail.json" />
     <Content Include="scripts\product\json\productList.json" />
@@ -112,9 +118,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="scripts\finance\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
