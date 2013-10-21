@@ -34,7 +34,7 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 付款时间
+        /// 客户应付款时间
         /// </summary>
         public DateTime PayTime
         { get; set; }
@@ -46,7 +46,7 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 0:没确认收款 1：已收款
+        /// 1:没确认收款 2：已收款
         /// </summary>
         public Int32 Isreceived
         { get; set; }

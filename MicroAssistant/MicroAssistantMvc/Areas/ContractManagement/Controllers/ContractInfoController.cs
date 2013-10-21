@@ -143,7 +143,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                 {
                     ContractInfo con = new ContractInfo();
                     con = ContractInfoAccessor.Instance.Get(ContractNo);
-                    con.HowtopayList = ContractHowtopayAccessor.Instance.Search(ContractNo);
+                    con.HowtopayList = ContractHowtopayAccessor.Instance.Search(ContractNo,0);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = con;
 

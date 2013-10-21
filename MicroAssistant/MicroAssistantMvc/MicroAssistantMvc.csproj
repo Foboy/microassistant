@@ -171,6 +171,7 @@
     <Compile Include="Areas\CustomerManagement\Controllers\CustomerController.cs" />
     <Compile Include="Areas\FinancialManagement\Controllers\FinancialController.cs" />
     <Compile Include="Areas\FinancialManagement\FinancialManagementAreaRegistration.cs" />
+    <Compile Include="Areas\FinancialManagement\Models\ReceivablesModel.cs" />
     <Compile Include="Areas\MarketingManagement\Controllers\MarketingController.cs" />
     <Compile Include="Areas\MarketingManagement\MarketingManagementAreaRegistration.cs" />
     <Compile Include="Areas\ProductManagement\ProductManagementAreaRegistration.cs" />
@@ -254,6 +255,7 @@
     <Content Include="Areas\ProductManagement\Views\Web.config" />
     <Content Include="Areas\SystemManagement\Views\Web.config" />
     <Content Include="Areas\ContractManagement\Views\Web.config" />
+    <Content Include="Config\Cache.config" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -317,7 +319,6 @@
     <Folder Include="Areas\ContractManagement\Views\Shared\" />
     <Folder Include="Areas\CustomerManagement\Models\" />
     <Folder Include="Areas\CustomerManagement\Views\Shared\" />
-    <Folder Include="Areas\FinancialManagement\Models\" />
     <Folder Include="Areas\FinancialManagement\Views\Shared\" />
     <Folder Include="Areas\MarketingManagement\Models\" />
     <Folder Include="Areas\MarketingManagement\Views\Shared\" />

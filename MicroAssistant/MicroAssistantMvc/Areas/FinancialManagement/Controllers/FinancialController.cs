@@ -3,6 +3,7 @@ using MicroAssistant.Common;
 using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
+using MicroAssistantMvc.Areas.FinancialManagement.Models;
 using MicroAssistantMvc.Controllers;
 using System;
 using System.Collections.Generic;
@@ -22,20 +23,44 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult SearchReceivables(string token)
+        public JsonResult SearchReceivables(int pageIndex,int pageSize,string token)
         {
             var Res = new JsonResult();
-            AdvancedResult<ContractHowtopay> result = new AdvancedResult<ContractHowtopay>();
+            AdvancedResult<List<ReceivablesModel>> result = new AdvancedResult<List<ReceivablesModel>>();
+            List<ReceivablesModel> rmlist = new List<ReceivablesModel>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
                 int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
                     SysUser user = SysUserAccessor.Instance.Get(userid);
-                    ContractHowtopay con = new ContractHowtopay();
-                    //con = ContractHowtopayAccessor.Instance.Search(user.EntId);
+
+                    PageEntity<ContractInfo> clist = new PageEntity<ContractInfo>();
+                    clist = ContractInfoAccessor.Instance.Search(pageIndex, pageSize, user.EntId);
+                    for (int i = 0; i < clist.Items.Count; i++)
+                    {
+                        ReceivablesModel rm = new ReceivablesModel();
+                        rm.ContractNo = clist.Items[i].ContractNo;
+                        rm.CustomerName = clist.Items[i].CustomerName;
+
+                        List<ContractHowtopay> hplist = new List<ContractHowtopay>();
+                        hplist = ContractHowtopayAccessor.Instance.Search(rm.ContractNo,1);
+                        if (hplist.Count > 0)
+                        {
+                            rm.PayTime = hplist[0].PayTime;
+                            rm.ReceivedTime = hplist[0].ReceivedTime;
+                            rmlist.Add(rm);
+                        }
+                        else
+                        {
+                            hplist = ContractHowtopayAccessor.Instance.Search(rm.ContractNo, 2);
+                            rm.PayTime = hplist[hplist.Count-1].PayTime;
+                            rm.ReceivedTime = hplist[hplist.Count-1].ReceivedTime;
+                            rmlist.Add(rm);
+                        }
+                    }
                     result.Error = AppError.ERROR_SUCCESS;
-                    result.Data = con;
+                    result.Data = rmlist;
 
                 }
                 catch (Exception e)
@@ -61,9 +86,40 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult SearchPayablesByEID(string token)
+        public JsonResult SearchPayablesByEID(int pageIndex, int pageSize, string token)
         {
-            return null;
+            var Res = new JsonResult();
+            AdvancedResult<List<ProProductonDetail>> result = new AdvancedResult<List<ProProductonDetail>>();
+            List<ProProductonDetail> rmlist = new List<ProProductonDetail>();
+            if (CacheManagerFactory.GetMemoryManager().Contains(token))
+            {
+                int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                try
+                {
+                    SysUser user = SysUserAccessor.Instance.Get(userid);
+                    //获取未付款列表
+                  
+                    result.Error = AppError.ERROR_SUCCESS;
+                    result.Data = rmlist;
+
+                }
+                catch (Exception e)
+                {
+                    result.Error = AppError.ERROR_FAILED;
+                    result.ExMessage = e.ToString();
+                }
+
+                result.Error = AppError.ERROR_SUCCESS;
+            }
+            else
+            {
+                result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+            }
+
+
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         /// 根据合同编号获取应收款详情（合同编号，token）

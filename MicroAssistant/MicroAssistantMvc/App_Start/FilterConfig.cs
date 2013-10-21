@@ -12,7 +12,7 @@ namespace MicroAssistantMvc
             filters.Add(new HandleErrorAttribute());
 
             //注册全局过滤器
-            filters.Add(new LogFilterAttribute() { Message = "全局" });
+            //filters.Add(new LogFilterAttribute() { Message = "全局" });
         }
     }
 }

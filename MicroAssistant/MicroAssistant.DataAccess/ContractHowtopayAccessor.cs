@@ -62,8 +62,9 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadContractHowtopay
 
-            cmdLoadContractHowtopay = new MySqlCommand(@" select howtopay_id,instalments_no,amount,pay_time,received_time,IsReceived,contract_no from contract_howtopay where contract_no = @ContractNo");
+            cmdLoadContractHowtopay = new MySqlCommand(@" select howtopay_id,instalments_no,amount,pay_time,received_time,IsReceived,contract_no from contract_howtopay where contract_no = @ContractNo and (IsReceived = @IsReceived or @IsReceived = 0 ) order by pay_time ");
             cmdLoadContractHowtopay.Parameters.Add("@ContractNo", MySqlDbType.String);
+            cmdLoadContractHowtopay.Parameters.Add("@IsReceived", MySqlDbType.Int32);
 
             #endregion
 
@@ -194,12 +195,10 @@ namespace MicroAssistant.DataAccess
 
         /// <summary>
         /// 根据条件分页获取指定数据
-        /// <param name="pageIndex">当前页</param>
-        /// <para>索引从0开始</para>
-        /// <param name="pageSize">每页记录条数</param>
-        /// <para>记录数必须大于0</para>
+        /// <param name="IsReceived">1:没确认收款 2：已收款</param>
+        /// <param name="ContractNo">合同编号</param>
         /// </summary>
-        public List<ContractHowtopay> Search(String ContractNo)
+        public List<ContractHowtopay> Search(String ContractNo, int IsReceived)
         {
             List<ContractHowtopay> returnValue = new List<ContractHowtopay>();
             MySqlConnection oc = ConnectManager.Create();
@@ -209,6 +208,7 @@ namespace MicroAssistant.DataAccess
             try
             {
                 _cmdLoadContractHowtopay.Parameters["@ContractNo"].Value = ContractNo;
+                _cmdLoadContractHowtopay.Parameters["@IsReceived"].Value = IsReceived;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
