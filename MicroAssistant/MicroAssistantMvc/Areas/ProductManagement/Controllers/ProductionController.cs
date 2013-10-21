@@ -31,11 +31,19 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             AdvancedResult<PageEntity<ProProduction>> result = new AdvancedResult<PageEntity<ProProduction>>();
             try
             {
-                PageEntity<ProProduction> list = new PageEntity<ProProduction>();
-                int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
-                list = ProProductionAccessor.Instance.Search(string.Empty, typeid, userid, pageIndex, pageSize);
-                result.Error = AppError.ERROR_SUCCESS;
-                result.Data = list;
+                if (CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    PageEntity<ProProduction> list = new PageEntity<ProProduction>();
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                    list = ProProductionAccessor.Instance.Search(string.Empty, typeid, userid, pageIndex, pageSize);
+                    result.Error = AppError.ERROR_SUCCESS;
+                    result.Data = list;
+                }
+                else
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+              
             }
             catch (Exception e)
             {
