@@ -64,7 +64,7 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 0:未付款 1:已付款
+        /// 1:未付款 2:已付款
         /// </summary>
         public Int32 IsPay
         { get; set; }

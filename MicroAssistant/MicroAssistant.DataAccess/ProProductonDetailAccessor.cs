@@ -26,6 +26,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdLoadAllProProductonDetail;
         private MySqlCommand cmdGetProProductonDetailCount;
         private MySqlCommand cmdGetProProductonDetail;
+        private MySqlCommand cmdUpdateIsPay;
 
         private ProProductonDetailAccessor()
         {
@@ -65,9 +66,17 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadProProductonDetail
 
-            cmdLoadProProductonDetail = new MySqlCommand(@" select p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail limit @PageIndex,@PageSize");
+            cmdLoadProProductonDetail = new MySqlCommand(@" select p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail 
+and (user_id = @UserId or @UserId = 0 )  
+and (p_id = @PId or @PId = 0 ) 
+and (ent_id = @EntId or @EntId = 0 ) 
+order by create_time desc
+limit @PageIndex,@PageSize");
             cmdLoadProProductonDetail.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadProProductonDetail.Parameters.Add("@pageSize", MySqlDbType.Int32);
+            cmdLoadProProductonDetail.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdLoadProProductonDetail.Parameters.Add("@PId", MySqlDbType.Int32);
+            cmdLoadProProductonDetail.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
 
@@ -87,6 +96,14 @@ namespace MicroAssistant.DataAccess
 
             cmdGetProProductonDetail = new MySqlCommand(" select p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail where p_d_id = @PDId");
             cmdGetProProductonDetail.Parameters.Add("@PDId", MySqlDbType.Int32);
+
+            #endregion
+
+            #region cmdUpdateIsPay
+
+            cmdUpdateIsPay = new MySqlCommand(" update pro_producton_detail set is_pay = @IsPay where p_code = @PCode");
+            cmdUpdateIsPay.Parameters.Add("@PCode", MySqlDbType.String);
+            cmdUpdateIsPay.Parameters.Add("@IsPay", MySqlDbType.Int32);
 
             #endregion
         }
@@ -317,6 +334,39 @@ namespace MicroAssistant.DataAccess
             return returnValue;
 
         }
+
+/// <summary>
+/// 更新付款状态
+/// </summary>
+/// <param name="PCode">采购批次</param>
+        /// <param name="IsPay">1:未付款 2:已付款</param>
+        public void UpdateIsPay(string PCode, int IsPay)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdUpdateIsPay = cmdUpdateIsPay.Clone() as MySqlCommand;
+            _cmdUpdateIsPay.Connection = oc;
+
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+                _cmdUpdateIsPay.Parameters["@PCode"].Value = PCode;
+                _cmdUpdateIsPay.Parameters["@IsPay"].Value = IsPay;
+
+                _cmdUpdateIsPay.ExecuteNonQuery();
+
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdUpdateIsPay.Dispose();
+                _cmdUpdateIsPay = null;
+                GC.Collect();
+            }
+        }
+
         private static readonly ProProductonDetailAccessor instance = new ProProductonDetailAccessor();
         public static ProProductonDetailAccessor Instance
         {

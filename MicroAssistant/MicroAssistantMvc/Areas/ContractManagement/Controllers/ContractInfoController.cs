@@ -132,7 +132,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
         }
 
         //根据合同编号获取合同信息（合同编号，token）返回（合同名称，合同编号，客户名称，合同金额，付款方式（xml），合同有效期，合同承办人，合同时间，附件{附件url1，附件url2}）
-        public JsonResult GetContractInfoByContractNo(string ContractNo, string token)
+        public JsonResult GetContractInfoByContractNo(string contractNo, string token)
         {
             var Res = new JsonResult();
             AdvancedResult<ContractInfo> result = new AdvancedResult<ContractInfo>();
@@ -142,8 +142,8 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                 try
                 {
                     ContractInfo con = new ContractInfo();
-                    con = ContractInfoAccessor.Instance.Get(ContractNo);
-                    con.HowtopayList = ContractHowtopayAccessor.Instance.Search(ContractNo,0);
+                    con = ContractInfoAccessor.Instance.Get(contractNo);
+                    con.HowtopayList = ContractHowtopayAccessor.Instance.Search(contractNo, 0);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = con;
 

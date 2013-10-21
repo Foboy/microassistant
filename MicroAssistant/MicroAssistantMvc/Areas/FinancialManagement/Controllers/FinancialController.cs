@@ -89,16 +89,17 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         public JsonResult SearchPayablesByEID(int pageIndex, int pageSize, string token)
         {
             var Res = new JsonResult();
-            AdvancedResult<List<ProProductonDetail>> result = new AdvancedResult<List<ProProductonDetail>>();
-            List<ProProductonDetail> rmlist = new List<ProProductonDetail>();
+            AdvancedResult<PageEntity<ProProductonDetail>> result = new AdvancedResult<PageEntity<ProProductonDetail>>();
+            PageEntity<ProProductonDetail> rmlist = new PageEntity<ProProductonDetail>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
                 int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
                     SysUser user = SysUserAccessor.Instance.Get(userid);
-                    //获取未付款列表
-                  
+                    //获取应付款列表
+                    rmlist = ProProductonDetailAccessor.Instance.Search(0, 0, user.EntId, pageIndex, pageSize);
+
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = rmlist;
 
@@ -130,19 +131,109 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         /// <returns></returns>
         public JsonResult GetHowToPayByEID(string contractNo,string token)
         {
-            return null;
+            var Res = new JsonResult();
+            AdvancedResult<ContractInfo> result = new AdvancedResult<ContractInfo>();
+            if (CacheManagerFactory.GetMemoryManager().Contains(token))
+            {
+                // int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                try
+                {
+                    ContractInfo con = new ContractInfo();
+                    con = ContractInfoAccessor.Instance.Get(contractNo);
+                    con.HowtopayList = ContractHowtopayAccessor.Instance.Search(contractNo, 0);
+                    result.Error = AppError.ERROR_SUCCESS;
+                    result.Data = con;
+
+                }
+                catch (Exception e)
+                {
+                    result.Error = AppError.ERROR_FAILED;
+                    result.ExMessage = e.ToString();
+                }
+
+                result.Error = AppError.ERROR_SUCCESS;
+            }
+            else
+            {
+                result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+            }
+
+
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
-        /// 根据企业ID确认应收款（合同编号，收款序号，token）返回（true/false）
+        /// 根据合同编号以及收款序号确认应收款（合同编号，收款序号，token）返回（true/false）
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
         public JsonResult ConfirmReceived(string contractNo,int rNum,string token)
         {
-            return null;
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            if (CacheManagerFactory.GetMemoryManager().Contains(token))
+            {
+                try
+                {
+                    ContractHowtopayAccessor.Instance.UpdateIsReceived(contractNo, rNum, 2);
+                    result.Error = AppError.ERROR_SUCCESS;
+
+                }
+                catch (Exception e)
+                {
+                    result.Error = AppError.ERROR_FAILED;
+                    result.ExMessage = e.ToString();
+                }
+
+                result.Error = AppError.ERROR_SUCCESS;
+            }
+            else
+            {
+                result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+            }
+
+
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
 
+        /// <summary>
+        /// 根据采购批次确认应付款（采购批次，token）返回（true/false）
+        /// </summary>
+        /// <param name="eid"></param>
+        /// <returns></returns>
+        public JsonResult ConfirmPay(string PCode, string token)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            if (CacheManagerFactory.GetMemoryManager().Contains(token))
+            {
+                try
+                {
+                    ProProductonDetailAccessor.Instance.UpdateIsPay(PCode, 2);
+                    result.Error = AppError.ERROR_SUCCESS;
 
+                }
+                catch (Exception e)
+                {
+                    result.Error = AppError.ERROR_FAILED;
+                    result.ExMessage = e.ToString();
+                }
+
+                result.Error = AppError.ERROR_SUCCESS;
+            }
+            else
+            {
+                result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+            }
+
+
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
 
     }
 }

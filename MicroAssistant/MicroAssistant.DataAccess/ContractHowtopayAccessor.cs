@@ -26,6 +26,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdLoadAllContractHowtopay;
         private MySqlCommand cmdGetContractHowtopayCount;
         private MySqlCommand cmdGetContractHowtopay;
+        private MySqlCommand cmdUpdateIsreceived;
 
         private ContractHowtopayAccessor()
         {
@@ -84,6 +85,16 @@ namespace MicroAssistant.DataAccess
 
             cmdGetContractHowtopay = new MySqlCommand(" select howtopay_id,instalments_no,amount,pay_time,received_time,IsReceived,contract_no from contract_howtopay where howtopay_id = @HowtopayId");
             cmdGetContractHowtopay.Parameters.Add("@HowtopayId", MySqlDbType.Int32);
+
+            #endregion
+
+            #region cmdUpdateIsreceived
+
+            cmdUpdateIsreceived = new MySqlCommand(" update contract_howtopay set IsReceived = @Isreceived where instalments_no = @InstalmentsNo and IsReceived = @Isreceived and contract_no = @ContractNo");
+
+            cmdUpdateIsreceived.Parameters.Add("@InstalmentsNo", MySqlDbType.Int32);
+            cmdUpdateIsreceived.Parameters.Add("@Isreceived", MySqlDbType.Int32);
+            cmdUpdateIsreceived.Parameters.Add("@ContractNo", MySqlDbType.String);
 
             #endregion
         }
@@ -301,6 +312,43 @@ namespace MicroAssistant.DataAccess
             return returnValue;
 
         }
+
+     /// <summary>
+     /// 修改应收款状态
+     /// </summary>
+     /// <param name="contractNo">合同编号</param>
+     /// <param name="rNum">收款序号</param>
+        /// <param name="isReceived">1:没确认收款 2：已收款</param>
+        public void UpdateIsReceived(string contractNo, int rNum, int isReceived)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdUpdateIsreceived = cmdUpdateIsreceived.Clone() as MySqlCommand;
+            _cmdUpdateIsreceived.Connection = oc;
+
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                _cmdUpdateIsreceived.Parameters["@InstalmentsNo"].Value = rNum;
+                _cmdUpdateIsreceived.Parameters["@Isreceived"].Value = isReceived;
+                _cmdUpdateIsreceived.Parameters["@ContractNo"].Value = contractNo;
+
+                _cmdUpdateIsreceived.ExecuteNonQuery();
+
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdUpdateIsreceived.Dispose();
+                _cmdUpdateIsreceived = null;
+                GC.Collect();
+            }
+        }
+
+
         private static readonly ContractHowtopayAccessor instance = new ContractHowtopayAccessor();
         public static ContractHowtopayAccessor Instance
         {

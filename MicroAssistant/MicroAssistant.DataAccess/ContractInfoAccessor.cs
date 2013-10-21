@@ -70,7 +70,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadContractInfo
 
-            cmdLoadContractInfo = new MySqlCommand(@" select contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,ent_id from contract_info where ent_id = @EntId limit @PageIndex,@PageSize");
+            cmdLoadContractInfo = new MySqlCommand(@" select contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,ent_id from contract_info where ent_id = @EntId order by contract_time desc limit @PageIndex,@PageSize");
             cmdLoadContractInfo.Parameters.Add("@EntId", MySqlDbType.Int32);
             cmdLoadContractInfo.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadContractInfo.Parameters.Add("@pageSize", MySqlDbType.Int32);
