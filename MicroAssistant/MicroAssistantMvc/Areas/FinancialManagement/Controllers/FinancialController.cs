@@ -208,26 +208,27 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
-            if (CacheManagerFactory.GetMemoryManager().Contains(token))
+
+            try
             {
-                try
+                if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
                     ProProductonDetailAccessor.Instance.UpdateIsPay(PCode, 2);
                     result.Error = AppError.ERROR_SUCCESS;
-
                 }
-                catch (Exception e)
+                else
                 {
-                    result.Error = AppError.ERROR_FAILED;
-                    result.ExMessage = e.ToString();
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
                 }
-
-                result.Error = AppError.ERROR_SUCCESS;
             }
-            else
+            catch (Exception e)
             {
-                result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
             }
+
+            result.Error = AppError.ERROR_SUCCESS;
+
 
 
             Res.Data = result;
