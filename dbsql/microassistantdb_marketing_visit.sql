@@ -25,8 +25,8 @@ DROP TABLE IF EXISTS `marketing_visit`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `marketing_visit` (
-  `idmarketing_visit` int(11) NOT NULL,
-  `visit_type` int(11) NOT NULL DEFAULT '0' COMMENT '0:电话 1:面谈',
+  `idmarketing_visit` int(11) NOT NULL AUTO_INCREMENT,
+  `visit_type` int(11) NOT NULL DEFAULT '1' COMMENT '1:电话 2:面谈',
   `amount` decimal(10,2) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
   `remark` varchar(100) DEFAULT NULL,
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-19 15:14:36
+-- Dump completed on 2013-10-21 20:27:09

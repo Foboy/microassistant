@@ -33,6 +33,7 @@ CREATE TABLE `pro_producton_detail` (
   `user_id` int(11) DEFAULT NULL,
   `p_id` int(11) NOT NULL,
   `ent_id` int(11) NOT NULL,
+  `is_pay` int(11) NOT NULL DEFAULT '1' COMMENT '1:未付款 2:已付款',
   PRIMARY KEY (`p_d_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品入库单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-19 15:14:37
+-- Dump completed on 2013-10-21 20:27:11

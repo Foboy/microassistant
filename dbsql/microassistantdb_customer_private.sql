@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `customer_private`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `customer_private` (
-  `customer_private_id` int(11) NOT NULL,
+  `customer_private_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
   `sex` int(11) DEFAULT '0' COMMENT '0:man 1:woman',
   `birthday` datetime DEFAULT NULL,
@@ -60,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-19 15:14:36
+-- Dump completed on 2013-10-21 20:27:10

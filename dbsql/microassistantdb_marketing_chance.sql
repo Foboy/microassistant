@@ -25,9 +25,9 @@ DROP TABLE IF EXISTS `marketing_chance`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `marketing_chance` (
-  `idmarketing_chance` int(11) NOT NULL,
+  `idmarketing_chance` int(11) NOT NULL AUTO_INCREMENT,
   `chance_type` int(11) DEFAULT '0' COMMENT '机会类型分为：0:新客户机会1:老客户机会；默认新客户机会',
-  `customer_type` int(11) DEFAULT '0' COMMENT '客户类型分为：0:企业客户1:个人客户；默认为企业客户',
+  `customer_type` int(11) DEFAULT '1' COMMENT '客户类型分为：1:企业客户2:个人客户；默认为企业客户',
   `contact_name` varchar(45) DEFAULT NULL,
   `remark` varchar(100) DEFAULT NULL,
   `add_time` datetime DEFAULT NULL,
@@ -60,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-19 15:14:35
+-- Dump completed on 2013-10-21 20:27:08
