@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap 101 Template</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/flat-ui.css" rel="stylesheet" />
+    <link href="css/master.css" rel="stylesheet" />
+    <script src="js/jquery-1.7.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function CheckEamil(obj) {
+                var pattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                if (pattern.test(obj.val())) {
+                    obj.attr("style", "");
+                    return true;
+                }
+                else {
+                    obj.attr("style", "border:1px solid #EB464C");
+                    return false;
+                }
+            };
+            function CheckPassword(obj) {
+                if (obj.val().length > 6 && obj.val().length < 18) {
+                    obj.attr("style", "");
+                    return true;
+                } else {
+                    obj.attr("style", "border:1px solid #EB464C");
+                    return false;
+                }
+            }
+            $("#useremail").focusout(function () {
+                CheckEamil($(this));
+            });
+            $("#userpwd").focusout(function () {
+                CheckPassword($(this));
+            });
+            $("#loginbt").click(function () {
+                var emailflag = CheckEamil($("#useremail"));
+                var pwfflag = CheckPassword($("#userpwd"));
+                if (emailflag && pwfflag) {
+                    //$.get("UserManagement/User/Login", { "account": $("#useremail").val(), "pwd": $("#userpwd").val() }, function (result) {
+                    //    alert(result);
+                    //})
+                    location.href = "index.html";
+                }
+            });
+          
+        });
+
+    </script>
+</head>
+<body class="bg-blue">
+    <div class="logo-box"></div>
+    <div class="main clearfix m-box">
+        <div class="cp-box">
+            or<a href="#" class="redLink">企业注册</a>and<a href="#" class="redLink">员工注册</a>
+        </div>
+        <div class="login-box">
+            <h1>登 录</h1>
+            <div class="input-box" >
+                <div class="icon-box"><i class="peop-icon"></i></div>
+                <input type="text" id="useremail" title="邮箱"  />
+            </div>
+            <div class="input-box">
+                <div class="icon-box"><i class="passw-icon"></i></div>
+                <input type="password" id="userpwd" maxlength="18" />
+            </div>
+            <div class="sc-box"><a href="javascript:void(0)" id="loginbt" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>
+            <div class="f-l"><a href="#" target="_blank" class="grayLink">忘记密码？</a></div>
+        </div>
+    </div>
+</body>
+</html>
