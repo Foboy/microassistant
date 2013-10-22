@@ -1,9 +1,9 @@
 ﻿function UserLoginMainCtrl($scope, $http) {
     $scope.UserLogin = function () {
-        console.log(angular.toJson($scope.EditProduct));
+        console.log(angular.toJson($scope.User));
         if ($scope.UserLoginForm.$valid) {
             $scope.showerror = false;
-            $http.post($sitecore.urls["userLogin"], { account: User.email, pwd: User.pwd }).success(function (data) {
+            $http.post($sitecore.urls["userLogin"], { account: $scope.User.email, pwd: $scope.User.pwd }).success(function (data) {
                 console.log(data);
                 $scope.product = data;
             }).
