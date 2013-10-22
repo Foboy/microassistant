@@ -1,4 +1,4 @@
-﻿function UserLoginMainCtrl($scope, $http) {
+﻿function UserLoginMainCtrl($scope, $http, $location) {
     $scope.UserLogin = function () {
         console.log(angular.toJson($scope.User));
         if ($scope.UserLoginForm.$valid) {
@@ -7,11 +7,12 @@
                 if (data.Error) {
                     alert(data.ErrorMessage);
                 }
+                else {
+                    window.location.href = "index.html";
+                }
                 console.log(data);
-                $scope.product = data;
             }).
             error(function (data, status, headers, config) {
-                $scope.product = {};
             });
         }
         else {
@@ -30,11 +31,13 @@ function UserRegisterMainCtrl($scope, $http) {
                 {
                     alert(data.ErrorMessage);
                 }
+                else {
+                    window.location.href = "index.html";
+                }
                 console.log(data);
-                $scope.product = data;
             }).
             error(function (data, status, headers, config) {
-                $scope.product = {};
+                alert("error")
             });
         }
         else {
@@ -52,11 +55,13 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
                 if (data.Error) {
                     alert(data.ErrorMessage);
                 }
+                else {
+                    window.location.href = "index.html";
+                }
                 console.log(data);
-                $scope.product = data;
             }).
             error(function (data, status, headers, config) {
-                $scope.product = {};
+                alert("error")
             });
         }
         else {
