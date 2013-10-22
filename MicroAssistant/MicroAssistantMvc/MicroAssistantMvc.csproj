@@ -270,6 +270,7 @@
     <Content Include="www\css\bootstrap.min.css" />
     <Content Include="www\css\flat-ui.css" />
     <Content Include="www\css\master.css" />
+    <Content Include="www\enterprise-register.html" />
     <Content Include="www\img\Adimg\h1.jpg" />
     <Content Include="www\img\arrowBg.png" />
     <Content Include="www\img\circleBG.png" />
@@ -302,6 +303,7 @@
     <Content Include="www\partials\sales\chance-detail.html" />
     <Content Include="www\partials\sales\contract-detail.html" />
     <Content Include="www\partials\sales\visit-detail.html" />
+    <Content Include="www\register.html" />
     <Content Include="www\scripts\app.js" />
     <Content Include="www\scripts\core.js" />
     <Content Include="www\scripts\finance\controllers.js" />

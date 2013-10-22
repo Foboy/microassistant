@@ -1,1 +1,0 @@
-{"success":true,"result":[{"selector":"#add_catalog_btn","title":"添加产品大类","content":"点击这里在左侧滑出区填写产品大类信息，并再次点击此按钮添加产品大类。","width":"500px","placement":"right"},{"selector":"#add_product_btn","title":"添加产品","content":"点击此按钮在弹出框填写产品信息并添加产品。","width":"500px","placement":"left"}]}
