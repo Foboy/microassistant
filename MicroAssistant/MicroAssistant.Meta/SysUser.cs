@@ -76,7 +76,7 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 0：普通用户 1：企业用户
+        /// 1：普通用户 2：企业用户
         /// </summary>
         public Int32 Type
         { get; set; }
