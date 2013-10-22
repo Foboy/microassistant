@@ -22,7 +22,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
         /// </summary>
         /// <param name="ownerid"></param>
         /// <returns></returns>
-        public JsonResult SearchCustomerEntByOwnerId(string token)
+        public JsonResult SearchCustomerEntByOwnerId()
         {
             var Res = new JsonResult();
             AdvancedResult<List<CustomerEnt>> result = new AdvancedResult<List<CustomerEnt>>();
@@ -56,7 +56,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             return Res;
         }
         //根据用户ID查询个人客户（token）返回 个人客户列表（姓名，年龄，所属行业，所在地，联系方式）
-        public JsonResult SearchCustomerPrivByOwnerId(string token)
+        public JsonResult SearchCustomerPrivByOwnerId()
         {
             var Res = new JsonResult();
             AdvancedResult<List<CustomerPrivate>> result = new AdvancedResult<List<CustomerPrivate>>();
@@ -86,7 +86,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             return Res;
         }
         //添加修改企业客户（企业名称，所属行业，联系人{姓名，手机，座机，email,qq}，企业地址，企业资料,客户ID,token）
-        public JsonResult AddEntCustomer(int entid, string entName, string industy, string contactUsername, string contactMobile, string phone, string email, string qq, string address, string Detail, string token)
+        public JsonResult AddEntCustomer(int entid, string entName, string industy, string contactUsername, string contactMobile, string phone, string email, string qq, string address, string Detail)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -141,7 +141,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             return Res;
         }
         //添加修改个人客户（姓名，性别，出生日期，联系方式{},所属行业，所在地，个人信息，token）返回（true/false）
-        public JsonResult AddPrivateCustomer(int pivid, string name, int sex, DateTime birthday, string contactMobile, string phone, string email, string qq, string address, string detail, string token)
+        public JsonResult AddPrivateCustomer(int pivid, string name, int sex, DateTime birthday, string contactMobile, string phone, string email, string qq, string address, string detail)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -195,7 +195,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
         }
 
         // 根据联系人名称查询企业客户（联系人名称，token）返回（联系方式，企业资料）
-        public JsonResult SearchCustomerEntByName(string name, string token)
+        public JsonResult SearchCustomerEntByName(string name)
         {
             var Res = new JsonResult();
             AdvancedResult<List<CustomerEnt>> result = new AdvancedResult<List<CustomerEnt>>();
@@ -224,7 +224,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             return Res;
         }
         //根据联系人名称查询个人客户（联系人名称，token）返回（联系方式，个人信息）
-        public JsonResult SearchCustomerPrivateByName(string name, string token)
+        public JsonResult SearchCustomerPrivateByName(string name)
         {
             var Res = new JsonResult();
             AdvancedResult<List<CustomerPrivate>> result = new AdvancedResult<List<CustomerPrivate>>();
