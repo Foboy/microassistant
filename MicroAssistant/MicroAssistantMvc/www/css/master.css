@@ -338,8 +338,8 @@ a:hover{text-decoration:underline;}
 .basicInfo .ul-s1 li .span2{ width:215px; padding-left:20px;}
 .basicInfo .ul-s1 li .span3{ font-size:14px; color:#999999;}
 .basicInfo .ul-s1 li .span3 a{margin-right:20px;}
-.basicInfo .ul-s1 li .span3 .t-p,.basicInfo .ul-s1 li .span2 .t-p{width:300px; border-radius:0; margin-left:20px; height:28px;}
+.basicInfo .ul-s1 li .span3 .t-p,.basicInfo .ul-s1 li .span2 .t-p{width:300px; border-radius:0; margin-left:20px; height:28px; margin-top:5px;}
 .basicInfo .ul-s1 li .span2 .t-p{width:150px; margin-left:0;}
-.basicInfo .ul-s1 li .span2 label{float:left;}
+.basicInfo .ul-s1 li .span2 label{float:left; margin:30px 10px 0 0;}
 .save-btn{margin-left:192px; padding:20px 0;}
 .save-btn a{width:215px; display:inline-block;}
