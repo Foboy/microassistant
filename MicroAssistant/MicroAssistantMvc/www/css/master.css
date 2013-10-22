@@ -17,22 +17,30 @@ a:hover{text-decoration:underline;}
 	text-decoration:underline;
 	}
 .grayLink:link,.grayLink:visited,.grayLink:active{
-	color:#FFFFFF;
+	color:#999999;
 	text-decoration:none;
 	}
 .grayLink:hover{
-	color:#FFFFFF;
+	color:#999999;
+	text-decoration:underline;
+	}
+.redLink:link,.redLink:visited,.redLink:active{
+	color:#f25749;
+	text-decoration:none;
+	}
+.redLink:hover{
+	color:#f25749;
 	text-decoration:underline;
 	}
 /*=== 颜色样式 END ===*/
 .flat-l{float:left;}
 .flat-r{float:right;}
 /*===  图标样式 ===*/
-.homeIcon,.peopleIcon,.askIcon,.arrowD,.pcIcon,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
+.homeIcon,.peopleIcon,.askIcon,.arrowD,.pcIcon,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
 .pcIcon{background-position:-60px -139px; width:29px; height:27px;}
-.homeIcon{background-position:-27px -138px; width:23px; height:22px;}
-.homeIcon:hover{background-position:0 -138px;}
-.peopleIcon{background-position:-27px -168px; width:21px; height:23px;}
+.homeIcon{background-position:-41px -128px; width:35px; height:33px;}
+.homeIcon:hover{background-position:0 -128px;}
+.peopleIcon{background-position:-46px -168px; width:34px; height:38px;}
 .peopleIcon:hover{background-position:0 -168px;}
 .askIcon{background-position:-276px -219px; width:24px; height:42px;}
 .askIcon:hover{background-position:-276px -275px;}
@@ -41,7 +49,7 @@ a:hover{text-decoration:underline;}
 .delBtn{background-position:-43px -82px; width:25px; height:25px;}
 .bentArrow{background:url(../img/arrowBg.png) no-repeat; width:146px; height:36px;}
 .bentArrow.on{background-position:0 -50px;}
-.arrR{background-position:-179px -136px; width:18px; height:18px; cursor:pointer;}
+.arrR{background-position:-179px -129px; width:25px; height:25px; cursor:pointer;}
 .editIcon{background-position:-108px -140px; width:11px; height:11px;}
 .editIcon2{background-position:-104px -219px; width:12px; height:12px;}
 .closeIcon{background-position:-148px -219px; width:9px; height:10px;}
@@ -51,6 +59,7 @@ a:hover{text-decoration:underline;}
 .tel-wIcon{background-position:0 -355px; width:17px; height:16px;}
 .textIcon{background-position:-152px -288px; width:11px; height:15px;}
 .downloadIcon{background-position:-176px -284px; width:15px; height:13px; cursor:pointer;}
+.drawIcon{background-position:-178px -347px; width:31px; height:24px;}
 /*===  图标样式 END ===*/
 
 
@@ -115,21 +124,20 @@ a:hover{text-decoration:underline;}
 .popupBox3 .btnbox span{width:80px; display:inline-block; margin:10px;}
 .popupBox3 .btnbox span a{line-height:30px; padding:0 5px;}
 /*=== 弹出框样式 END ===*/
-.master{width:1366px; margin:0 auto;}
-.navbar{height:60px; background:#248faf; margin-bottom:0; position:relative;}
+.navbar{min-width:960px; max-width:1366px;width:100%;height:60px; background:#248faf; margin-bottom:0; position:relative;}
 .conBg{background:#f0f0f0;}
-.Nav{width:60px; position:absolute; top:120px; left:0;}
-.headImg{width:60px; height:40px; text-align:center; padding:10px 0;}
-.headImg img{border-radius:40px; height:40px; width:40px;}
+.Nav{width:80px; position:absolute; top:50px; left:0;}
+.headImg{width:80px; height:60px; text-align:center; padding:10px 0;}
+.headImg img{border-radius:40px; height:60px; width:60px;}
 .navList{margin-left:0;}
-.navList li{padding-left:4px; text-align:center; height:50px; list-style:none; width:58px; font-size:12px; padding-top:5px; margin-bottom:1px;}
+.navList li{padding-left:4px; text-align:center; height:70px; list-style:none; width:78px; font-size:12px; padding-top:5px; margin-bottom:1px;}
 .navList li a{color:#adadad;}
 .navList li.cur,.navList li:hover{padding-left:0; border-left:4px solid #248faf; background:#FFFFFF;}
 .navList li:hover a,.navList li.cur a{color:#333333; text-decoration:none;}
-.navList li:hover .homeIcon,.navList li.cur .homeIcon{background-position:0 -138px;}
+.navList li:hover .homeIcon,.navList li.cur .homeIcon{background-position:0 -128px;}
 .navList li:hover .peopleIcon,.navList li.cur .peopleIcon{background-position:0 -168px;}
 
-.conBox{position:relative; margin-left:60px; min-height:800px; border:1px solid #DEDEDE; background:#FFFFFF; margin-top:-15px; max-width:1306px;}
+.conBox{position:relative; margin-left:80px; min-height:800px;background:#FFFFFF; margin-top:-15px; max-width:1286px;}
 .titSec{height:30px; line-height:30px; color:#25aae2; font-size:18px; font-weight:normal; font-family:"微软雅黑"; padding-left:15px; margin:5px 0 20px 0;}
 .goodsList{border-bottom:3px solid #f25749; margin-left:0; padding-left:20px;}
 .goodsList li{ text-align:center; float:left; list-style:none; margin:0 20px; cursor:pointer; height:100px; position:relative;}
@@ -270,7 +278,7 @@ a:hover{text-decoration:underline;}
 .liedit-close-box input{margin-top:10px;}
 
 .pactBox{width:500px;}
-.pact-ul{width:450px;list-style:none; float:left; border-bottom:2px solid #CCCCCC; margin-left:0;padding-left:50px;}
+.pact-ul{width:450px;list-style:none; float:left; border-bottom:2px solid #FFFFFF; margin-left:0;padding-left:50px;}
 .pact-ul li{float:left; padding:0 15px; height:30px; line-height:30px; color:#FFFFFF; margin-right:10px; }
 .pact-ul li.cur{background:#FFFFFF; color:#25aae2;font-weight:bold;}
 .pactBox .fCon ul.ul-f1{margin-left:25px; width:400px;}
@@ -297,4 +305,41 @@ a:hover{text-decoration:underline;}
 .ul-f4 li .li-boxs .date{width:auto; margin-right:10px; margin-left:0;}
 /*=== 悬浮窗口 END ===*/
 
+/*================ 注册/登录 ==================*/
+.bg-blue{background:#248faf;}
+.logo-box{height:130px;}
+.main{max-width:1366px; min-width:960px; margin:0 auto; position:relative;}
+.m-box{position:relative;}
+.login-box{width:420px; height:450px; background:#f5f5f5; margin:0 auto;}
+.login-box h1{font-size:30px; font-weight:normal; color:#248faf; height:90px; line-height:90px; text-align:center;}
+.login-box .input-box{width:360px; height:50px; margin:0 0 30px 30px; position:relative;}
+.login-box .icon-box{width:55px; height:50px; background:#dddddd; text-align:center; float:left; margin:0;}
+.login-box .icon-box i{display:inline-block;background:url(../img/icon.png) no-repeat;}
+.login-box .icon-box i.peop-icon{background-position:-98px -336px; width:30px; height:30px; margin-top:10px;}
+.login-box .icon-box i.passw-icon{background-position:-101px -388px; width:23px; height:30px; margin-top:10px;}
+.login-box .input-box input{border:1px solid #dddddd; border-radius:0; margin:0; height:38px; width:293px;}
+.login-box .input-box span{position:absolute; left:-10px; top:16px;}
+.login-box .sc-box{width:360px; margin:10px 30px;}
+.login-box .f-l{text-align:right; margin:0 30px; font-size:12px;}
+.cp-box{position:absolute; right:0; top:200px; color:#FFFFFF; font-size:18px;}
+.cp-box a{margin:0 10px;}
+.login-box .r-t{margin:-25px 30px 30px 30px;}
+.error-box{position:relative; height:500px;}
+.error-box img{margin:100px 0 0 200px;}
+.error-box p{width:200px; line-height:18px; font-size:14px; color:#FFFFFF; position:absolute; right:250px; top:350px; font-family:'微软雅黑';}
+/*================ 注册/登录 END ==================*/
 
+
+.basicInfo{width:760px; border:1px solid #cccccc; border-bottom:0; margin-left:60px;}
+.basicInfo .ul-s1{margin:0;}
+.basicInfo .ul-s1 li{height:80px; border-bottom:1px solid #cccccc; list-style:none; line-height:80px;}
+.basicInfo .ul-s1 li .span1,.basicInfo .ul-s1 li .span2,.basicInfo .ul-s1 li .span3{float:left;height:80px; display:inline-block; font-size:16px; color:#333333; margin:0;}
+.basicInfo .ul-s1 li .span1{ width:110px; background:#f5f5f5; text-align:center;}
+.basicInfo .ul-s1 li .span2{ width:215px; padding-left:20px;}
+.basicInfo .ul-s1 li .span3{ font-size:14px; color:#999999;}
+.basicInfo .ul-s1 li .span3 a{margin-right:20px;}
+.basicInfo .ul-s1 li .span3 .t-p,.basicInfo .ul-s1 li .span2 .t-p{width:300px; border-radius:0; margin-left:20px; height:28px;}
+.basicInfo .ul-s1 li .span2 .t-p{width:150px; margin-left:0;}
+.basicInfo .ul-s1 li .span2 label{float:left;}
+.save-btn{margin-left:192px; padding:20px 0;}
+.save-btn a{width:215px; display:inline-block;}

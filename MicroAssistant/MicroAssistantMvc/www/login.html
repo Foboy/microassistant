@@ -77,13 +77,13 @@
                 <h1>登 录</h1>
                 <div class="input-box">
                     <div class="icon-box"><i class="peop-icon"></i></div>
-                    <input type="text" name="emial" ng-model="User.email" title="邮箱" ng-required="true" />
+                    <input type="text" name="emial" ng-model="User.email" title="邮箱"  ng-required="true" />
                 </div>
                 <div class="input-box">
                     <div class="icon-box"><i class="passw-icon"></i></div>
-                    <input type="password" name="pwd" ng-model="User.pwd" maxlength="18" ng-required="true" />
+                    <input type="password" name="pwd" ng-model="User.pwd" maxlength="18"  ng-required="true"/>
                 </div>
-                <div class="sc-box"><a href="javascript:void(0)" id="loginbt" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>
+                <div class="sc-box"><a href="javascript:void(0)" ng-click="UserLogin()" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>
                 <div class="f-l"><a href="#" target="_blank" class="grayLink">忘记密码？</a></div>
             </div>
         </form>
