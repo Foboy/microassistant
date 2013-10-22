@@ -46,6 +46,10 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 user.UserAccount = account;
                 user.Pwd = pwd;
                 user.Email = account;
+                user.CreateTime = DateTime.Now;
+                user.EndTime = DateTime.Now.AddDays(90);
+                user.IsEnable = 1;
+                user.Type = 2;
                 int i = SysUserAccessor.Instance.Insert(user);
 
                 if (i>0)
@@ -92,6 +96,10 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 user.Pwd = pwd;
                 user.Email = account;
                 user.EntId = entId;
+                user.CreateTime = DateTime.Now;
+                user.EndTime = DateTime.Now.AddDays(90);
+                user.IsEnable = 1;
+                user.Type = 1;
                 int i = SysUserAccessor.Instance.Insert(user);
 
                 if (i > 0)

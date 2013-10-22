@@ -108,7 +108,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdGetSysUserByAcountAndPwd
 
-            cmdGetSysUserByAcountAndPwd = new MySqlCommand("  select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_account = @UserAccount and pwd = @Pwd");
+            cmdGetSysUserByAcountAndPwd = new MySqlCommand("  select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_account = @UserAccount and pwd = @Pwd and is_enable=1");
             cmdGetSysUserByAcountAndPwd.Parameters.Add("@UserAccount", MySqlDbType.String);
             cmdGetSysUserByAcountAndPwd.Parameters.Add("@Pwd", MySqlDbType.String);
 
