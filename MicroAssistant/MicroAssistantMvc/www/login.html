@@ -10,15 +10,15 @@
     <script src="scripts/core.js"></script>
     <script src="scripts/user/controllers.js"></script>
     <style type="text/css">
-        .showerror .ng-invalid {
+        #form.showerror .ng-invalid {
             border-color: #fa787e;
         }
 
-        .ng-invalid.ng-dirty {
+        #form .ng-invalid.ng-dirty {
             border-color: #fa787e;
         }
 
-        .ng-valid.ng-dirty {
+        #form .ng-valid.ng-dirty {
             border-color: #50a729;
         }
     </style>
@@ -72,7 +72,7 @@
         <div class="cp-box">
             or<a href="#" class="redLink">企业注册</a>and<a href="#" class="redLink">员工注册</a>
         </div>
-        <form name="UserLoginForm" ng-class="showerror?'showerror':''">
+        <form name="UserLoginForm" id="form" ng-class="showerror?'showerror':''">
             <div class="login-box">
                 <h1>登 录</h1>
                 <div class="input-box">
