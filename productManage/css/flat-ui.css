@@ -555,7 +555,7 @@ h6 {
   background-color: #16a085;
 }
 .btn.btn-info {
-  background-color: #3498db;
+  background-color: #248faf;
 }
 .btn.btn-info:hover,
 .btn.btn-info:focus,
@@ -1540,8 +1540,8 @@ input[type="color"].flat:focus,
 .control-group.info input[type="tel"],
 .control-group.info input[type="color"],
 .control-group.info .uneditable-input {
-  border-color: #3498db;
-  color: #3498db;
+  border-color: #248faf;
+  color: #248faf;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -1921,7 +1921,7 @@ textarea[class*="span"] {
   filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
 }
 .progress .bar-info {
-  background-color: #3498db;
+  background-color: #248faf;
   filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
 }
 .ui-slider {
@@ -1955,7 +1955,7 @@ textarea[class*="span"] {
   filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
 }
 .ui-slider .bar-info {
-  background-color: #3498db;
+  background-color: #248faf;
   filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
 }
 .ui-slider-handle {
@@ -2761,7 +2761,7 @@ textarea[class*="span"] {
   background-color: #27ae60;
 }
 .palette-peter-river {
-  background-color: #3498db;
+  background-color: #248faf;
 }
 .palette-belize-hole {
   background-color: #2980b9;
