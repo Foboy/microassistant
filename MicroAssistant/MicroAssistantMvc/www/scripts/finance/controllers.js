@@ -3,10 +3,10 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
     if (!$scope.steps)
         $scope.steps = "receivable";//应收款步骤
     console.log($routeParams);
-    $scope.loadCurrentStepList = function (pageSize, token) {
+    $scope.loadCurrentStepList = function (pageSize) {
         switch ($scope.steps) {
             case 'receivable'://应收款步骤
-                $http.get($sitecore.urls["receivablesfinanceList"], { pageIndex: $routeParams.pageIndex || 1, pageSize: pageSize, token: token }).success(function (data) {
+                $http.get($sitecore.urls["receivablesfinanceList"], { pageIndex: $routeParams.pageIndex || 1, pageSize: pageSize }).success(function (data) {
                     console.log(data);
                     $scope.ActPageIndex = $routeParams.pageIndex || 1;
                     $scope.receivables = data;
