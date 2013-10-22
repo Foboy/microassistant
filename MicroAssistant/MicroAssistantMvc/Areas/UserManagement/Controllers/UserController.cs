@@ -42,6 +42,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 }
 
                 SysUser user = new SysUser();
+                user.UserName = entName;
                 user.UserAccount = account;
                 user.Pwd = pwd;
                 user.Email = account;
@@ -139,7 +140,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
-        public JsonResult CheckLogin(string token)
+        public JsonResult CheckLogin()
         {
             var Res = new JsonResult();
             AdvancedResult<bool> result = new AdvancedResult<bool>();
@@ -200,7 +201,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
-        public JsonResult Logout(string token)
+        public JsonResult Logout()
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -265,7 +266,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public JsonResult GetUserInfo(string token)
+        public JsonResult GetUserInfo()
         {
             var Res = new JsonResult();
             AdvancedResult<SysUser> result = new AdvancedResult<SysUser>();
@@ -314,7 +315,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="user">修改用户名，性别，密码，地址，qq，手机</param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public JsonResult EditeUserInfo(SysUser user, string token)
+        public JsonResult EditeUserInfo(SysUser user)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
