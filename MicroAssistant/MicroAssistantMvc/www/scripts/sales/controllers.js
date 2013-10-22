@@ -67,7 +67,6 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 				break;
 		}
 	};
-	
 	$scope.showChanceDetail = function(){
 		$scope.$broadcast('EventChanceDetail');
 	};
