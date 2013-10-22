@@ -4,6 +4,9 @@
         if ($scope.UserLoginForm.$valid) {
             $scope.showerror = false;
             $http.post($sitecore.urls["userLogin"], { account: $scope.User.email, pwd: $scope.User.pwd }).success(function (data) {
+                if (data.Error) {
+                    alert(data.ErrorMessage);
+                }
                 console.log(data);
                 $scope.product = data;
             }).
@@ -24,6 +27,10 @@ function UserRegisterMainCtrl($scope, $http) {
         if ($scope.UserRegisterForm.$valid) {
             $scope.showerror = false;
             $http.post($sitecore.urls["userRegister"], { account: $scope.User.email, pwd: $scope.User.pwd, entId: $scope.User.enterprise || 0 }).success(function (data) {
+                if (data.Error)
+                {
+                    alert(data.ErrorMessage);
+                }
                 console.log(data);
                 $scope.product = data;
             }).
