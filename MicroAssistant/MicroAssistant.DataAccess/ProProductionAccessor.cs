@@ -27,6 +27,8 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdLoadProProductionCount;
         private MySqlCommand cmdGetProProduction;
 
+        private MySqlCommand cmdUpdateStockCount;
+
         private ProProductionAccessor()
         {
             #region cmdInsertProProduction
@@ -90,6 +92,13 @@ namespace MicroAssistant.DataAccess
             cmdGetProProduction = new MySqlCommand("select p_id,p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id,stock_count,ent_id from pro_production where p_id = @PId");
             cmdGetProProduction.Parameters.Add("@PId", MySqlDbType.Int32);
 
+            #endregion
+
+            #region cmdUpdateStockCount
+
+            cmdUpdateStockCount = new MySqlCommand("update pro_production set stock_count = @StockCount where p_id = @PId");
+            cmdUpdateStockCount.Parameters.Add("@PId", MySqlDbType.Int32);
+            cmdUpdateStockCount.Parameters.Add("@StockCount", MySqlDbType.Int32);
             #endregion
         }
 
@@ -337,6 +346,42 @@ namespace MicroAssistant.DataAccess
             return returnValue;
 
         }
+
+        /// <summary>
+        /// 更新产品库存
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <param name="stockCount"></param>
+        public void UpdateStockCount(int pid, int stockCount)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdUpdateStockCount = cmdUpdateStockCount.Clone() as MySqlCommand;
+            _cmdUpdateStockCount.Connection = oc;
+
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                _cmdUpdateStockCount.Parameters["@PId"].Value = pid;
+                _cmdUpdateStockCount.Parameters["@StockCount"].Value = stockCount;
+
+                _cmdUpdateStockCount.ExecuteNonQuery();
+
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdUpdateStockCount.Dispose();
+                _cmdUpdateStockCount = null;
+                GC.Collect();
+            }
+        }
+
+
+
         private static readonly ProProductionAccessor instance = new ProProductionAccessor();
         public static ProProductionAccessor Instance
         {
