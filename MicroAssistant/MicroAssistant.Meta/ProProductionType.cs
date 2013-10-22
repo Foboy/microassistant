@@ -45,6 +45,9 @@ namespace MicroAssistant.Meta
         public Int32 PicId
         { get; set; }
 
+        public ResPic Pic
+        { get; set; }
+
 
         /// <summary>
         /// 从读取器向完整实例对象赋值

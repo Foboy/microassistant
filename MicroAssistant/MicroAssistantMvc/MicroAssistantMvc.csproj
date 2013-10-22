@@ -42,6 +42,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.7.4\lib\net40\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -174,6 +177,7 @@
     <Compile Include="Areas\FinancialManagement\Models\ReceivablesModel.cs" />
     <Compile Include="Areas\MarketingManagement\Controllers\MarketingController.cs" />
     <Compile Include="Areas\MarketingManagement\MarketingManagementAreaRegistration.cs" />
+    <Compile Include="Areas\ProductManagement\Models\ProductTypeModule.cs" />
     <Compile Include="Areas\ProductManagement\ProductManagementAreaRegistration.cs" />
     <Compile Include="Areas\SystemManagement\SystemManagementAreaRegistration.cs" />
     <Compile Include="Areas\UserManagement\UserAreaRegistration.cs" />
@@ -374,7 +378,6 @@
     <Folder Include="Areas\FinancialManagement\Views\Shared\" />
     <Folder Include="Areas\MarketingManagement\Models\" />
     <Folder Include="Areas\MarketingManagement\Views\Shared\" />
-    <Folder Include="Areas\ProductManagement\Models\" />
     <Folder Include="Areas\ProductManagement\Views\Shared\" />
     <Folder Include="Areas\SystemManagement\Models\" />
     <Folder Include="Areas\SystemManagement\Views\Shared\" />

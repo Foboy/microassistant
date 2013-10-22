@@ -9,6 +9,7 @@ using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 using MicroAssistantMvc.Controllers;
+using MicroAssistantMvc.Areas.ProductManagement.Models;
 
 namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
 {
@@ -61,16 +62,34 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
         /// <param name="entid"></param>
         /// <returns></returns>
 
-        public JsonResult SearchProductTypeListByEntID(int entid,int pageIndex, int pageSize)
+        public JsonResult SearchProductTypeListByEntID(int entid,string token,int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
-            AdvancedResult<PageEntity<ProProductionType>> result = new AdvancedResult<PageEntity<ProProductionType>>();
+            AdvancedResult<List<ProductTypeModule>> result = new AdvancedResult<List<ProductTypeModule>>();
+            List<ProductTypeModule> ptlist = new List<ProductTypeModule>();
             try
             {
-                PageEntity<ProProductionType> list = new PageEntity<ProProductionType>();
-                list = ProProductionTypeAccessor.Instance.Search(0, string.Empty, entid,0,pageIndex, pageSize);
-                result.Error = AppError.ERROR_SUCCESS;
-                result.Data = list;
+                if (CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    PageEntity<ProProductionType> list = new PageEntity<ProProductionType>();
+                    list = ProProductionTypeAccessor.Instance.Search(0, string.Empty, entid, 0, pageIndex, pageSize);
+                    for (int i = 0; i < list.Items.Count; i++)
+                    {
+                        ProductTypeModule pt = new ProductTypeModule();
+                        pt.EntId = list.Items[i].EntId;
+                        pt.PTypeId = list.Items[i].PTypeId;
+                        pt.PTypeName = list.Items[i].PTypeName;
+                        pt.FatherId = list.Items[i].FatherId;
+                        pt.PicUrl = ResPicAccessor.Instance.Get(list.Items[0].PicId).PicUrl;
+                        ptlist.Add(pt);
+                    }
+                    result.Error = AppError.ERROR_SUCCESS;
+                    result.Data = ptlist;
+                }
+                else
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
             }
             catch (Exception e)
             {

@@ -5,6 +5,7 @@ using System.Web;
 
 namespace MicroAssistantMvc.Areas.FinancialManagement.Models
 {
+      [Serializable]
     public class ReceivablesModel
     {
         /// <summary>
