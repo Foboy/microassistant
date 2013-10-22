@@ -26,7 +26,7 @@ function UserRegisterMainCtrl($scope, $http) {
         console.log(angular.toJson($scope.User));
         if ($scope.UserRegisterForm.$valid) {
             $scope.showerror = false;
-            $http.post($sitecore.urls["userRegister"], { account: $scope.User.email, pwd: $scope.User.pwd, entId: $scope.User.enterprise || 0 }).success(function (data) {
+            $http.post($sitecore.urls["userRegister"], { username: $scope.User.name, account: $scope.User.email, pwd: $scope.User.pwd, entId: $scope.User.enterprise || 0 }).success(function (data) {
                 if (data.Error)
                 {
                     alert(data.ErrorMessage);
