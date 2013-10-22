@@ -1,33 +1,51 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app>
   <head>
     <title>Bootstrap 101 Template</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="css/flat-ui.css" rel="stylesheet" media="screen">
     <link href="css/master.css" rel="stylesheet" media="screen">
+    <script src="js/angular.js"></script>
+    <script src="scripts/core.js"></script>
+    <script src="scripts/user/controllers.js"></script>
+    <style type="text/css">
+        .showerror .ng-invalid {
+            border-color: #fa787e;
+        }
+
+        .ng-invalid.ng-dirty {
+            border-color: #fa787e;
+        }
+
+        .ng-valid.ng-dirty {
+            border-color: #50a729;
+        }
+    </style>
   </head>
-  <body class="bg-blue">
+  <body class="bg-blue" ng-controller="UserRegisterMainCtrl">
 	<div class="logo-box"></div>
     <div class="main clearfix m-box">
     	<div class="login-box">
-        	<h1>员工注册</h1>
-            <div class="input-box">
-            	<span class="colorRed">*</span>
-            	<div class="icon-box"><i class="peop-icon"></i></div>
-                <input type="text" value="请输入登录邮箱"/>
-            </div>
-            <div class="input-box">
-            	<span class="colorRed">*</span>
-            	<div class="icon-box"><i class="passw-icon"></i></div>
-                <input type="password" value="输入密码"/>
-            </div>
-            <div class="input-box">
-            	<div class="icon-box"><i class="passw-icon"></i></div>
-                <input type="text" value="请输入企业代号"/>
-            </div>
-            <div class="f-l r-t"><a href="#" target="_blank" class="grayLink">忘记密码？</a></div>
-            <div class="sc-box"><a href="#fakelink" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>            
+            <form name="UserRegisterForm" ng-class="showerror?'showerror':''">
+        	    <h1>员工注册</h1>
+                <div class="input-box">
+            	    <span class="colorRed">*</span>
+            	    <div class="icon-box"><i class="peop-icon"></i></div>
+                    <input type="text" ng-model="User.email"  ng-required="true" title="请输入邮箱"  placeholder="请输入邮箱"/>
+                </div>
+                <div class="input-box">
+            	    <span class="colorRed">*</span>
+            	    <div class="icon-box"><i class="passw-icon"></i></div>
+                    <input type="password" ng-model="User.pwd"  ng-required="true" title="请输入密码"  placeholder="请输入密码"/>
+                </div>
+                <div class="input-box">
+            	    <div class="icon-box"><i class="passw-icon"></i></div>
+                    <input type="text" ng-model="User.enterprise" ng-pattern="/[0-9]*/" title="请输入企业代号"  placeholder="请输入企业代号"/>
+                </div>
+                <div class="f-l r-t"><a href="#" target="_blank" class="grayLink">忘记密码？</a></div>
+                <div class="sc-box"><a href="javascript:void(0)" ng-click="UserRegister()" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>   
+             </form>         
         </div>
     </div>
   </body>
