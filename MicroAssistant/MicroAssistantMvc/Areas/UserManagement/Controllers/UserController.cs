@@ -44,7 +44,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 SysUser user = new SysUser();
                 user.UserAccount = account;
                 user.Pwd = pwd;
-                user.Email = string.Empty;
+                user.Email = account;
                 int i = SysUserAccessor.Instance.Insert(user);
 
                 if (i>0)
@@ -70,7 +70,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="account">员工账号是邮箱格式</param>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public JsonResult UserRegister(string account, string pwd, int entId)
+        public JsonResult UserRegister(string username,string account, string pwd, int entId)
         {
             var Res = new JsonResult();
             AdvancedResult<string> result = new AdvancedResult<string>();
@@ -87,6 +87,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 
                 SysUser user = new SysUser();
                 user.UserAccount = account;
+                user.UserName = username;
                 user.Pwd = pwd;
                 user.Email = account;
                 user.EntId = entId;
