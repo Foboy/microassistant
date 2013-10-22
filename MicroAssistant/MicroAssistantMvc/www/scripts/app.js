@@ -4,7 +4,7 @@ angular.module('microassistant', ['ngRoute']).
   	  .when('/home', {templateUrl: 'partials/home.html', controller: HomeMainCtrl})
 	  .when('/product/:catalogId?/:pageIndex?', {templateUrl: 'partials/product.html', controller: ProductMainCtrl})
 	  .when('/sales/:steps?/:pageIndex?', {templateUrl: 'partials/sales.html', controller: SalesMainCtrl})
-	  .when('/finance', {templateUrl: 'partials/finance.html', controller: FinanceMainCtrl})
+	  .when('/finance/:steps?/:pageIndex?', { templateUrl: 'partials/finance.html', controller: FinanceMainCtrl })
 	  .otherwise({redirectTo: '/home'});
   	  $locationProvider.hashPrefix('!');
 }).value('$anchorScroll', angular.noop);
