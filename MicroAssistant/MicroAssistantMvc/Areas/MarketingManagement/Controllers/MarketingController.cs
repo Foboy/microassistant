@@ -27,7 +27,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
         /// </summary>
         /// <param name="customer"></param>
         /// <returns></returns>
-        public JsonResult AddMarketingChance(Customer customer,bool IsEnt,int entid ,string token)
+        public JsonResult AddMarketingChance(string token)
         {
             return null;
         }

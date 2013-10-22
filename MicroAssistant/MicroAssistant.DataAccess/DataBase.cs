@@ -28,7 +28,7 @@ namespace MicroAssistant.DataAccess
         {
             MySqlConnection oc = new MySqlConnection();
             //本地
-            oc.ConnectionString = "Database='microAssistantdb';Data Source='localhost';User Id='root';Password='111111';charset='utf8';pooling=true ";
+            oc.ConnectionString = "Database='microAssistantdb';Data Source='localhost';User Id='root';Password='000000';charset='utf8';pooling=true ";
             //正式
             //oc.ConnectionString = "Database='MicroAssistant';Data Source='localhost';User Id='MicroAssistant';Password='000000';charset='utf8';pooling=true";
             return oc;

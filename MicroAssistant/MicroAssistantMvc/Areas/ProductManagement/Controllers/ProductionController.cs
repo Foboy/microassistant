@@ -26,7 +26,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns>产品列表（产品名称，售价，最低售价，库存。。。)</returns>
-        public JsonResult SearchProductionSByType(int typeid,string token,int pageIndex, int pageSize)
+        public JsonResult SearchProductionSByType(int typeid,int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProduction>> result = new AdvancedResult<PageEntity<ProProduction>>();
@@ -62,7 +62,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
         /// <param name="entid"></param>
         /// <returns></returns>
 
-        public JsonResult SearchProductTypeListByEntID(int entid,string token,int pageIndex, int pageSize)
+        public JsonResult SearchProductTypeListByEntID(int entid,int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
             AdvancedResult<List<ProductTypeModule>> result = new AdvancedResult<List<ProductTypeModule>>();
@@ -129,7 +129,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
         /// </summary>
         /// <param name="ppd"></param>
         /// <returns></returns>
-        public JsonResult AddProductonDetail(int pid,int num,float price,string token)
+        public JsonResult AddProductonDetail(int pid,int num,float price)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -178,7 +178,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
-        public JsonResult SearchProductonDetailList(int pid, int pageIndex, int pageSize, string token)
+        public JsonResult SearchProductonDetailList(int pid, int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProductonDetail>> result = new AdvancedResult<PageEntity<ProProductonDetail>>();
@@ -214,7 +214,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
         /// </summary>
         /// <param name="pro"></param>
         /// <returns></returns>
-        public JsonResult AddProduction(string pname, int ptypeid, string unit, string pinfo, Double LowestPrice, Double MarketPrice ,string token)
+        public JsonResult AddProduction(string pname, int ptypeid, string unit, string pinfo, Double LowestPrice, Double MarketPrice)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -257,7 +257,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
         /// </summary>
         /// <param name="ptype"></param>
         /// <returns></returns>
-        public JsonResult AddProductionType(int fatherid,String pTypeName,int ptypepicid, string token)
+        public JsonResult AddProductionType(int fatherid,String pTypeName,int ptypepicid)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
