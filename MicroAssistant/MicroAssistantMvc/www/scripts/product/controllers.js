@@ -6,10 +6,13 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 	
   //获取产品列表
   $scope.getCatProducts = function(catalogId, pageIndex){
-	  $http.get($sitecore.urls["productList"],{params:{catalogid:catalogId}}).success(function(data) {
-		  console.log(data);
-		$scope.ActPageIndex = pageIndex;
-		$scope.products = data;
+      $http.get($sitecore.urls["productList"], { params: { typeid: catalogId, pageIndex: pageIndex,pageSize:20 } }).success(function (data) {
+          console.log(data);
+          if (data.Error) {
+              alert(data.ErrorMessage);
+          }
+		  $scope.ActPageIndex = pageIndex;
+		  $scope.products = data.Data.Items;
 	  }).
 	  error(function(data, status, headers, config) {
 		$scope.products = [];
@@ -50,21 +53,24 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 	  }
 	  else
 	  {
-		$http.get($sitecore.urls["productCat"]).success(function(data) {
-		  $scope.catalogs = data;
-		  console.log($scope.catalogs)
-		  if($scope.catalogs && $scope.catalogs.length)
-		  {
-			  if(catalogId)
-			  {
-				  $scope.activeCat(catalogId, pageIndex);
-			  }
-			  else
-			  {
-				  //$location.path("/product/"+$scope.catalogs[0].PTypeId+"/1");
-				  $scope.activeCat($scope.catalogs[0].PTypeId, pageIndex);
-			  }
-		  }
+	      $http.post($sitecore.urls["productCat"], {entid:3,pageIndex:1,pageSize:50}).success(function (data) {
+	          $scope.catalogs = data.Data || [];
+	          if (data.Error) {
+	              alert(data.ErrorMessage);
+	          }
+		      console.log($scope.catalogs)
+		      if($scope.catalogs && $scope.catalogs.length)
+		      {
+			      if(catalogId)
+			      {
+				      $scope.activeCat(catalogId, pageIndex);
+			      }
+			      else
+			      {
+				      //$location.path("/product/"+$scope.catalogs[0].PTypeId+"/1");
+				      $scope.activeCat($scope.catalogs[0].PTypeId, pageIndex);
+			      }
+		      }
 		}).
 		error(function(data, status, headers, config) {
 		  $scope.catalogs = [];
@@ -78,9 +84,18 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 		  if($scope.ProductCatalogForm.$valid)
 		  {
 			  $scope.showerror = false;
-			  $http.post($sitecore.urls["productEdit"],{product:angular.toJson($scope.AddedCatalog)}).success(function(data) {
-				console.log(data);
-				$scope.product = data;
+		      $http.post($sitecore.urls["productAddCat"], { fatherid: 0, pTypeName: $scope.AddedCatalog.PTypeName, ptypepicid: $scope.AddedCatalog.PicId || 0 }).success(function (data) {
+		          console.log(data);
+		          if (data.Error) {
+		              alert(data.ErrorMessage);
+		          }
+		          else {
+		              $scope.catalogs = $scope.catalogs || [];
+		              data.PTypeName = $scope.AddedCatalog.PTypeName;
+		              data.PicId = $scope.AddedCatalog.PicId;
+		              $scope.catalogs.push(data);
+		              $scope.addCatalogFlag = false;
+		          }
 			  }).
 			  error(function(data, status, headers, config) {
 				$scope.product = {};
@@ -129,12 +144,12 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 				}
 			});
 
-  bootstro.start('.bootstro', {
-	  url : 'partials/product/help.json',
-	  nextButtonText : '继续 &raquo;',
-	  prevButtonText : '&laquo; 返回',
-	  finishButtonText : '<i class="icon-ok"></i> 跳过帮助',
-  }); 
+  //bootstro.start('.bootstro', {
+  //    url : 'partials/product/help.json',
+  //    nextButtonText : '继续 &raquo;',
+  //    prevButtonText : '&laquo; 返回',
+  //    finishButtonText : '<i class="icon-ok"></i> 跳过帮助',
+  //}); 
 }
 
 //产品详细
@@ -189,15 +204,17 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
 }
 
 //编辑产品
-function ProductEditCtrl($scope, $routeParams, $http, $location){
-	console.log($scope)
-	$scope.PTypes = [{name:"家具",id:0},{name:"家电",id:1}];
-	
+function ProductEditCtrl($scope, $routeParams, $http, $location) {
+    $scope.PTypes = [{ PTypeName: 'aa' }];
+    console.log($scope)
+    
 	$scope.$on('EventEditPoduct',function(event,product){
 		console.log("EventEditPoduct");
 		console.log(product);
 	    $scope.productEditPageOne = true;
-	  	console.log($scope)
+	    console.log($scope)
+	    //$scope.PTypes = $scope.$parent.$parent.catalogs;
+	    console.log($scope.PTypes)
 	    $('#productEditModal').modal('show');
 	});
 	

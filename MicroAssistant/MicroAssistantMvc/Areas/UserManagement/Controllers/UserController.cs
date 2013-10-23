@@ -9,6 +9,7 @@ using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 using MicroAssistantMvc.Controllers;
+using System.Web.Security;
 
 namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 {
@@ -58,6 +59,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     CacheManagerFactory.GetMemoryManager().Set(token, i.ToString());
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = token;
+                    WriteAuthCookie(user.UserName, token);
                 }
             }
             catch (Exception e)
@@ -108,6 +110,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     CacheManagerFactory.GetMemoryManager().Set(token, i.ToString());
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = token;
+                    WriteAuthCookie(user.UserName, token);
                 }
             }
             catch (Exception e)
@@ -193,6 +196,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                         CacheManagerFactory.GetMemoryManager().Set(token, user.UserId);
                         result.Error = AppError.ERROR_SUCCESS;
                         result.Data = token;
+                        WriteAuthCookie(user.UserName, token);
                     }
                 }
                 else
@@ -421,6 +425,25 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         public RespResult RenewUser(string username, DateTime endTime)
         {
             throw new NotImplementedException();
+        }
+
+        private void WriteAuthCookie(string username, string token)
+        {
+            DateTime issueDate = DateTime.Now;
+            DateTime expiration = issueDate.AddDays(1);
+            string userData = token;
+            bool isPersistent = true;
+
+            FormsAuthenticationTicket ticket;
+            ticket = new FormsAuthenticationTicket(
+                1, username, issueDate, expiration, isPersistent, userData);
+
+            string value = FormsAuthentication.Encrypt(ticket);
+            HttpCookie cookie = FormsAuthentication.GetAuthCookie(username, isPersistent);
+            cookie.Value = value;
+            cookie.Expires = expiration;
+            Response.Cookies.Set(cookie);
+
         }
 
         #endregion

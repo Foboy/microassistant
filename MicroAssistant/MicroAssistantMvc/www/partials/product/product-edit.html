@@ -16,7 +16,7 @@
         <ul class="listContent">
         	<li><span class="span1">产品名称：</span><span><input type="text" name="PName" ng-model="EditProduct.PName" ng-required="true" placeholder="请输入产品名称" class="span3"></span></li>
             <li><span class="span1">产品分类：</span><span>
-            <select class="span3" ng-model="EditProduct.PTypeId" ng-options="t.name for t in PTypes ">
+            <select class="span3" ng-model="EditProduct.PTypeId" ng-options="t.PTypeName for t in PTypes ">
 			</select>
 				</span></li>
             <li><span class="span1">单位：</span><span>

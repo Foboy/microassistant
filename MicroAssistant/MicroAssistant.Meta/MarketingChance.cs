@@ -28,7 +28,7 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 客户类型分为：1:企业客户2:个人客户；默认为企业客户
         /// </summary>
         public Int32 CustomerType
         { get; set; }

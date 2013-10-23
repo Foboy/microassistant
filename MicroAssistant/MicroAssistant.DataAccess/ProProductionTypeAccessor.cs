@@ -58,8 +58,8 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadProProductionType
 
-            cmdLoadProProductionType = new MySqlCommand(@"select p_type_id,p_type_name,ent_id,father_id,pic_id,r.pic_url from pro_production_type as t LEFT JOIN res_pic as r on t.pic_id=r.pic_id
-            WHERE  t.ent_id=@entid and (t.father_id=0 or t.father_id=@fatherid) and (t.p_type_id=0 and or t.p_type_id=@ptypeid) AND (t.p_type_name='' or t.p_type_name =@ptypename) LIMIT @PageIndex,@PageSize");
+            cmdLoadProProductionType = new MySqlCommand(@"select p_type_id,p_type_name,ent_id,father_id,t.pic_id,r.pic_url from pro_production_type as t LEFT JOIN res_pic as r on t.pic_id=r.pic_id
+            WHERE  t.ent_id=@entid and (0=@fatherid or t.father_id=@fatherid) and (0=@ptypeid or t.p_type_id=@ptypeid) AND (''=@ptypename or t.p_type_name =@ptypename) LIMIT @PageIndex,@PageSize");
             cmdLoadProProductionType.Parameters.Add("@PageIndex", MySqlDbType.Int32);
             cmdLoadProProductionType.Parameters.Add("@PageSize", MySqlDbType.Int32);
             cmdLoadProProductionType.Parameters.Add("@entid", MySqlDbType.Int32);
@@ -71,7 +71,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadProProductionTypeCount
 
-            cmdLoadProProductionTypeCount = new MySqlCommand("@select count(*) from pro_production_type as t LEFT JOIN res_pic as r on t.pic_id=r.pic_id WHERE t.ent_id=@entid and (t.father_id=0 or t.father_id=@fatherid) and (t.p_type_id=0 and or t.p_type_id=@ptypeid) AND (t.p_type_name='' or t.p_type_name =@ptypename)");
+            cmdLoadProProductionTypeCount = new MySqlCommand(@"select count(1) from pro_production_type as t LEFT JOIN res_pic as r on t.pic_id=r.pic_id WHERE t.ent_id=@entid and (@fatherid=0 or t.father_id=@fatherid) and (@ptypeid=0 or t.p_type_id=@ptypeid) AND (@ptypename='' or t.p_type_name =@ptypename)");
             cmdLoadProProductionTypeCount.Parameters.Add("@entid", MySqlDbType.Int32);
             cmdLoadProProductionTypeCount.Parameters.Add("@fatherid", MySqlDbType.Int32);
             cmdLoadProProductionTypeCount.Parameters.Add("@ptypeid", MySqlDbType.Int32);
@@ -226,11 +226,13 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new ProProductionType().BuildSampleEntity(reader));
                 }
+                reader.Close();
                 _cmdLoadProProductionTypeCount.Parameters["@ptypeid"].Value = PTypeId;
                 _cmdLoadProProductionTypeCount.Parameters["@ptypename"].Value = PTypeName;
                 _cmdLoadProProductionTypeCount.Parameters["@entid"].Value = EntId;
                 _cmdLoadProProductionTypeCount.Parameters["@fatherid"].Value = FatherId;
-                returnValue.RecordsCount = (int)_cmdLoadProProductionTypeCount.ExecuteScalar();
+
+                returnValue.RecordsCount = Convert.ToInt32( _cmdLoadProProductionTypeCount.ExecuteScalar());
             }
             finally
             {
