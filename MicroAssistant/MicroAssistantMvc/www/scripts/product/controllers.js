@@ -156,11 +156,13 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 function ProductDetailCtrl($scope, $routeParams, $http, $location){
 	console.log("deatil")
 	console.log($scope)
+    
 	$scope.$on('EventShowPoductDetail',function(event,product){
 		console.log("EventShowPoductDetail");
 		console.log(product);
+		$scope.actproduct = product;
 		$("#productDetailBox").animate({width:"600px"},500);
-		$scope.productInfo(product);
+		$scope.productInfo();
 	});
 	
 	$scope.hideProductDetail = function(){
@@ -168,15 +170,17 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
 	  $("#productDetailBox").animate({width:"0px"},500,function(){});
   	};
 	
-	$scope.productInfo = function (product) {
-	  $scope.tabIndex=1;
-	    $http.post($sitecore.urls["productDetail"], { pid: product.PId }).success(function (data) {
-		console.log(data);
-		$scope.product = data;
-	  }).
-	  error(function(data, status, headers, config) {
-		$scope.product = {};
-	  });
+	$scope.productInfo = function () {
+	    $scope.tabIndex = 1;
+	    if (!$scope.product || $scope.actproduct.PId != $scope.product.PId) {
+	        $http.post($sitecore.urls["productDetail"], { pid: $scope.actproduct.PId }).success(function (data) {
+	            console.log(data);
+	            $scope.product = data.Data;
+	        }).
+            error(function (data, status, headers, config) {
+                $scope.product = {};
+            });
+	    }
   };
   
   $scope.productStore = function(){
@@ -240,7 +244,19 @@ function ProductEditCtrl($scope, $routeParams, $http, $location) {
 	      
 		  $scope.showerror = false;
 	      $http.post($sitecore.urls["productEdit"], { pname: $scope.EditProduct.PName, ptypeid: $scope.EditProduct.PType.PTypeId, unit: $scope.EditProduct.Unit, pinfo: $scope.EditProduct.PInfo, LowestPrice: $scope.EditProduct.LowestPrice, MarketPrice: $scope.EditProduct.MarketPrice }).success(function (data) {
-			console.log(data);
+	          console.log(data);
+	          if (data.Error) {
+	              alert(data.ErrorMessage);
+	          }
+	          else {
+	              if ($scope.ActCatalogId == $scope.EditProduct.PType.PTypeId) {
+	                  var currentproduct = angular.copy($scope.EditProduct);
+	                  currentproduct.StockCount = 0;
+	                  currentproduct.PId = data.Id;
+	                  $scope.products.push(currentproduct);
+	              }
+	              $('#productEditModal').modal('hide');
+	          }
 			$scope.product = data;
 		  }).
 		  error(function(data, status, headers, config) {

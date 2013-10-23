@@ -16,11 +16,8 @@
                     <li class="clearfix"><span class="colorBlue namS">产品描述：</span><span class="s-text conS">{{product.PInfo}}</span></li>
                 </ul> 
                 <div class="basicProfit" ng-show="tabIndex==1">
-                    <div class="pTop">
-                        最低利润率：<b class="colorBlue">20%</b>
-                    </div>
                     <div class="pDown">
-                        市场售价利润率：<b class="colorBlue">20%</b>
+                        市场售价利润率：<b class="colorBlue">{{((product.MarketPrice-product.LowestPrice)*100/product.LowestPrice) | currency:''}}%</b>
                     </div>
                  </div>
                  <div class="tablePad" ng-show="tabIndex==2">
