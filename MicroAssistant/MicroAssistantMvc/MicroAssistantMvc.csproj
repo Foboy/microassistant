@@ -181,6 +181,8 @@
     <Compile Include="Areas\FinancialManagement\Models\ReceivablesModel.cs" />
     <Compile Include="Areas\MarketingManagement\Controllers\MarketingController.cs" />
     <Compile Include="Areas\MarketingManagement\MarketingManagementAreaRegistration.cs" />
+    <Compile Include="Areas\MarketingManagement\Models\SingleVisitListModel.cs" />
+    <Compile Include="Areas\MarketingManagement\Models\VisitModel.cs" />
     <Compile Include="Areas\ProductManagement\Models\ProductTypeModule.cs" />
     <Compile Include="Areas\ProductManagement\ProductManagementAreaRegistration.cs" />
     <Compile Include="Areas\SystemManagement\SystemManagementAreaRegistration.cs" />
@@ -382,7 +384,6 @@
     <Folder Include="Areas\CustomerManagement\Models\" />
     <Folder Include="Areas\CustomerManagement\Views\Shared\" />
     <Folder Include="Areas\FinancialManagement\Views\Shared\" />
-    <Folder Include="Areas\MarketingManagement\Models\" />
     <Folder Include="Areas\MarketingManagement\Views\Shared\" />
     <Folder Include="Areas\ProductManagement\Views\Shared\" />
     <Folder Include="Areas\SystemManagement\Models\" />

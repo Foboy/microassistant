@@ -26,6 +26,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdLoadAllMarketingChance;
         private MySqlCommand cmdGetMarketingChanceCount;
         private MySqlCommand cmdGetMarketingChance;
+        private MySqlCommand cmdUpdateRate;
 
         private MarketingChanceAccessor()
         {
@@ -45,6 +46,14 @@ namespace MicroAssistant.DataAccess
             cmdInsertMarketingChance.Parameters.Add("@Rate", MySqlDbType.Int32);
             cmdInsertMarketingChance.Parameters.Add("@EntId", MySqlDbType.Int32);
             cmdInsertMarketingChance.Parameters.Add("@UserId", MySqlDbType.Int32);
+            #endregion
+
+            #region cmdUpdateRate
+
+            cmdUpdateRate = new MySqlCommand(" update marketing_chance set rate = @Rate where idmarketing_chance = @IdmarketingChance");
+            cmdUpdateRate.Parameters.Add("@IdmarketingChance", MySqlDbType.Int32);
+            cmdUpdateRate.Parameters.Add("@Rate", MySqlDbType.Int32);
+
             #endregion
 
             #region cmdUpdateMarketingChance
@@ -171,6 +180,39 @@ namespace MicroAssistant.DataAccess
                 oc = null;
                 _cmdDeleteMarketingChance.Dispose();
                 _cmdDeleteMarketingChance = null;
+            }
+        }
+
+        /// <summary>
+        ///修改盈率
+        /// <param name="e">修改后的数据实体对象</param>
+        /// <para>数据对应的主键必须在实例中设置</para>
+        /// </summary>
+        public void UpdateRate(int cid,int rate)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdUpdateRate = cmdUpdateRate.Clone() as MySqlCommand;
+            _cmdUpdateRate.Connection = oc;
+
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                _cmdUpdateRate.Parameters["@IdmarketingChance"].Value = cid;
+                _cmdUpdateRate.Parameters["@Rate"].Value = rate ;
+
+                _cmdUpdateRate.ExecuteNonQuery();
+
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdUpdateRate.Dispose();
+                _cmdUpdateRate = null;
+                GC.Collect();
             }
         }
 

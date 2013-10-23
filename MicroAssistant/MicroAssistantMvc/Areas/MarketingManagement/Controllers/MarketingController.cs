@@ -4,6 +4,7 @@ using MicroAssistant.Common;
 using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
+using MicroAssistantMvc.Areas.MarketingManagement.Models;
 using MicroAssistantMvc.Controllers;
 using System;
 using System.Collections.Generic;
@@ -57,9 +58,30 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                         {
                             case 1:
                                 //添加企业客户
+                                CustomerEnt ce = new CustomerEnt();
+                                ce.EntName = username;
+                                ce.ContactUsername = username;
+                                ce.ContactMobile = phone;
+                                ce.ContactPhone = phone;
+                                ce.ContactEmail = email;
+                                ce.ContactQq = qq;
+                                ce.Detail = chanceDetail;
+                                ce.OwnerId = CurrentUser.UserId;
+                                ce.EntId = CurrentUser.EntId;
+                                CustomerEntAccessor.Instance.Insert(ce);
                                 break;
                             case 2:
                                 //添加个人客户
+                                CustomerPrivate cp = new CustomerPrivate();
+                                cp.Name = username;
+                                cp.Mobile = phone;
+                                cp.Phone = phone;
+                                cp.Email = email;
+                                cp.Qq = qq;
+                                cp.Detail = chanceDetail;
+
+                                cp.OwnerId = CurrentUser.UserId;
+                                cp.EntId = CurrentUser.EntId; CustomerPrivateAccessor.Instance.Insert(cp);
                                 break;
                         }
                     }
@@ -234,17 +256,19 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
         }
 
         //获取单个销售机会的拜访记录（销售机会ID，toke）返回 拜访列表（拜访方式，拜访描述，报价,地点），赢率
-        public JsonResult GetVisitInfo(int eid)
+        public JsonResult GetVisitInfo(int cid, int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
-            AdvancedResult<MarketingVisit> result = new AdvancedResult<MarketingVisit>();
+            AdvancedResult<SingleVisitListModel> result = new AdvancedResult<SingleVisitListModel>();
 
             try
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    PageEntity<MarketingVisit> returnValue = new PageEntity<MarketingVisit>();
+                  result.Data.Vlist =  MarketingVisitAccessor.Instance.Search(cid, pageIndex, pageSize);
+                  result.Data.Rate = MarketingChanceAccessor.Instance.Get(cid).Rate;
                     result.Error = AppError.ERROR_SUCCESS;
-                    //result.Data = con;
                 }
                 else
                 {
@@ -261,16 +285,37 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
-        //获取拜访记录列表（token）返回 拜访记录列表（机会描述，拜访次数，盈率，最近一次拜访时间）
-        public JsonResult SearchVisitInfoList(int eid)
+        //获取拜访记录列表 返回 拜访记录列表（机会描述，拜访次数，盈率，最近一次拜访时间）
+        public JsonResult SearchVisitInfoList(int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
-            AdvancedResult<ContractInfo> result = new AdvancedResult<ContractInfo>();
-
+            AdvancedResult<PageEntity<VisitModel>> result = new AdvancedResult<PageEntity<VisitModel>>();
+            List<VisitModel> vlist = new List<VisitModel>();
             try
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                   PageEntity<MarketingChance> clist = MarketingChanceAccessor.Instance.Search(CurrentUser.UserId, pageIndex, pageSize);
+                   result.Data.RecordsCount = clist.RecordsCount;
+                   List<MarketingVisit> mvlist = new List<MarketingVisit>();
+                   for (int i = 0; i < clist.Items.Count; i++)
+                   {
+                       VisitModel vm = new VisitModel();
+                       vm.Rate = clist.Items[i].Rate;
+                       vm.Remark = clist.Items[i].Remark;
+                 
+                      PageEntity<MarketingVisit> pmvlist =  MarketingVisitAccessor.Instance.Search(clist.Items[0].IdmarketingChance, 0, 10);
+                      if (pmvlist.RecordsCount > 0)
+                      {
+                          vm.LastVisitTime = pmvlist.Items[0].VisitTime;
+                          vm.VisitNum = pmvlist.RecordsCount;
+                      }
+                      else
+                      {
+                          vm.VisitNum = 0;
+                      }
+                      
+                   }
                     result.Error = AppError.ERROR_SUCCESS;
                     //result.Data = con;
                 }
@@ -290,7 +335,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             return Res;
         }
         //编辑拜访记录（拜访记录ID，拜访方式，拜访描述，报价，地点）返回（true/false）
-        public JsonResult EditVisitInfo(int vid)
+        public JsonResult EditVisitInfo(int vid, int visitType, string remark, Double amount, String address)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -299,8 +344,14 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-
-                    result.Error = AppError.ERROR_SUCCESS;
+                    MarketingVisit mv = MarketingVisitAccessor.Instance.Get(vid);
+                    mv.Address = address;
+                    mv.Amount = amount;
+                    mv.IdmarketingVisit = vid;
+                    mv.Remark = remark;
+                    mv.VisitType = visitType;
+                   MarketingVisitAccessor.Instance.Update(mv);
+                        result.Error = AppError.ERROR_SUCCESS;
                 }
                 else
                 {
@@ -317,7 +368,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             return Res;
         }
         //修改拜访赢率 （销售机会ID，赢率，toke）返回（true/false）
-        public JsonResult EditCustomerRate(float num)
+        public JsonResult EditCustomerRate(int cid,int num)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -326,7 +377,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-
+                    MarketingChanceAccessor.Instance.UpdateRate(cid, num);
                     result.Error = AppError.ERROR_SUCCESS;
                 }
                 else
