@@ -294,6 +294,7 @@
     <Content Include="www\js\uploadify\uploadify.swf" />
     <Content Include="www\login.html" />
     <Content Include="www\partials\finance.html" />
+    <Content Include="www\partials\finance\financepayment-detail.html" />
     <Content Include="www\partials\home.html" />
     <Content Include="www\partials\others\locationselectmap.html" />
     <Content Include="www\partials\product.html" />
