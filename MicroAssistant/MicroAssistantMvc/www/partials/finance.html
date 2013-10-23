@@ -13,7 +13,7 @@
     <span class="seCon">
         <input type="text" class="setext" placeholder="Type something…"><input type="button" class="seBtn"></span>
 </div>
-<div class="tablePad">
+<div class="tablePad" ng-show="steps=='receivable'?'true':'false'">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -31,6 +31,59 @@
                 <td class="colorBlue">20130515090301001</td>
                 <td><span class="money">1000.00元</span><b class="colorBlue">2013/07/31</b></td>
                 <td><a href="#myModal" role="button" data-toggle="modal">详情</a>|<a href="#myModal" role="button" data-toggle="modal">确认收款</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="tablePad" ng-show="steps=='payable'?'true':'false'">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th width="30%">采购批次</th>
+                <th width="10%">单价</th>
+                <th width="15%">数量</th>
+                <th width="10%">总价</th>
+                <th width="20%">提交时间</th>
+                <th width="15%">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>20130515090301001</td>
+                <td class="colorBlue">67.00</td>
+                <td>1000 件</td>
+                <td class="colorRed">67.00</td>
+                <td>2013/09/13  14:45</td>
+                <td><a href="#myModal" role="button" data-toggle="modal">确认收款</a></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>20130515090301001</td>
+                <td class="colorBlue">67.00</td>
+                <td>1000 件</td>
+                <td class="colorRed">67.00</td>
+                <td>2013/09/13  14:45</td>
+                <td class="colorGreen">已付款</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>20130515090301001</td>
+                <td class="colorBlue">67.00</td>
+                <td>1000 件</td>
+                <td class="colorRed">67.00</td>
+                <td>2013/09/13  14:45</td>
+                <td><a href="#myModal" role="button" data-toggle="modal">确认收款</a></td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>20130515090301001</td>
+                <td class="colorBlue">67.00</td>
+                <td>1000 件</td>
+                <td class="colorRed">67.00</td>
+                <td>2013/09/13  14:45</td>
+                <td class="colorGreen">已付款</td>
             </tr>
         </tbody>
     </table>

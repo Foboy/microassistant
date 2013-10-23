@@ -15,7 +15,7 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
                 });
                 break;
             case 'payable'://Ó¦¸¶¿î²½Öè
-                $http.get($sitecore.urls["payablesfinanceList"], { params: { pageIndex: $routeParams.pageIndex || 1 } }).success(function (data) {
+                $http.post($sitecore.urls["payablesfinanceList"], { pageIndex: $routeParams.pageIndex || 1, pageSize: pageSize }).success(function (data) {
                     console.log(data);
                     $scope.ActPageIndex = $routeParams.pageIndex || 1;
                     $scope.payables = data;
