@@ -75,10 +75,6 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                     result.ExMessage = e.ToString();
                 }
 
-                result.Error = AppError.ERROR_SUCCESS;
-          
-
-
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
@@ -117,11 +113,6 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                     result.Error = AppError.ERROR_FAILED;
                     result.ExMessage = e.ToString();
                 }
-
-                result.Error = AppError.ERROR_SUCCESS;
-          
-
-
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
@@ -159,11 +150,6 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                     result.Error = AppError.ERROR_FAILED;
                     result.ExMessage = e.ToString();
                 }
-
-                result.Error = AppError.ERROR_SUCCESS;
-          
-
-
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
@@ -195,10 +181,6 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                     result.Error = AppError.ERROR_FAILED;
                     result.ExMessage = e.ToString();
                 }
-
-                result.Error = AppError.ERROR_SUCCESS;
-         
-
 
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
@@ -232,11 +214,6 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-
-            result.Error = AppError.ERROR_SUCCESS;
-
-
-
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
