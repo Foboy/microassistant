@@ -8,13 +8,12 @@
                     <li ng-class="tabIndex==3?'cur':''" ng-click="productPurchase()">采购单</li>
                 </ul>
             	<ul class="ul-f1" ng-show="tabIndex==1">
-                	<li class="clearfix"><span class="colorBlue namS">产品名称：</span><span class="conS">HP 8300</span></li>
-                    <li class="clearfix"><span class="colorBlue namS">产品分类：</span><span class="conS">惠普</span></li>
-                    <li class="clearfix"><span class="colorBlue namS">成本价：</span><span class="conS"><b class="colorRed">20.00</b> 元</span></li>
-                    <li class="clearfix"><span class="colorBlue namS">市场售价：</span><span class="conS"><b class="colorRed">20.00</b> 元</span></li>
-                    <li class="clearfix"><span class="colorBlue namS">最低售价：</span><span class="conS"><b class="colorRed">20.00</b> 元</span></li>
-                    <li class="clearfix"><span class="colorBlue namS">当前库存：</span><span class="conS"><b>67</b>件</span></li>
-                    <li class="clearfix"><span class="colorBlue namS">产品描述：</span><span class="s-text conS">Bootstrap Switch是对Bootstrap控件的扩充。基于选HTML中基本的选择框控件实现只有开和关两种状态的单选按钮。</span></li>
+                	<li class="clearfix"><span class="colorBlue namS">产品名称：</span><span class="conS">{{product.PName}}</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">产品分类：</span><span class="conS">{{product.PName}}</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">市场售价：</span><span class="conS"><b class="colorRed">{{product.MarketPrice}}</b> 元</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">最低售价：</span><span class="conS"><b class="colorRed">{{product.LowestPrice}}</b> 元</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">当前库存：</span><span class="conS"><b>{{product.StockCount}}</b>{{product.Unit}}</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">产品描述：</span><span class="s-text conS">{{product.PInfo}}</span></li>
                 </ul> 
                 <div class="basicProfit" ng-show="tabIndex==1">
                     <div class="pTop">
