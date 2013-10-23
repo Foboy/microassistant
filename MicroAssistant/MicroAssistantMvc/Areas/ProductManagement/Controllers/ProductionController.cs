@@ -248,6 +248,46 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
+        
+        }
+        /// <summary>
+        ///添加产品
+        /// </summary>
+        /// <param name="pro"></param>
+        /// <returns></returns>
+        public JsonResult UpateProduction(int pid,string pname, int ptypeid, string unit, string pinfo, Double LowestPrice, Double MarketPrice)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            ProProduction pro = new ProProduction();
+            try
+            {
+                if (CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    pro.PId = pid;
+                    pro.PName = pname;
+                    pro.PInfo = pinfo;
+                    pro.PTypeId = ptypeid;
+                    pro.Unit = unit;
+                    pro.LowestPrice = LowestPrice;
+                    pro.MarketPrice = MarketPrice;
+                    //pro.StockCount 需要在添加入库单的时候更新
+                    ProProductionAccessor.Instance.Update(pro);
+                    result.Error = AppError.ERROR_SUCCESS;
+                }
+                else
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
         /// <summary>
         ///添加产品分类
