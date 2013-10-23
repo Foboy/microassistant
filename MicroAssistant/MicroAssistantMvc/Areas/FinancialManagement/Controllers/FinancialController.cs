@@ -23,7 +23,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult SearchReceivables(int pageIndex,int pageSize,string token)
+        public JsonResult SearchReceivables(int pageIndex,int pageSize)
         {
             var Res = new JsonResult();
             AdvancedResult<List<ReceivablesModel>> result = new AdvancedResult<List<ReceivablesModel>>();
@@ -75,10 +75,6 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                     result.ExMessage = e.ToString();
                 }
 
-                result.Error = AppError.ERROR_SUCCESS;
-          
-
-
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
@@ -88,7 +84,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult SearchPayablesByEID(int pageIndex, int pageSize, string token)
+        public JsonResult SearchPayablesByEID(int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProductonDetail>> result = new AdvancedResult<PageEntity<ProProductonDetail>>();
@@ -117,11 +113,6 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                     result.Error = AppError.ERROR_FAILED;
                     result.ExMessage = e.ToString();
                 }
-
-                result.Error = AppError.ERROR_SUCCESS;
-          
-
-
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
@@ -133,7 +124,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult GetHowToPayByEID(string contractNo,string token)
+        public JsonResult GetHowToPayByEID(string contractNo)
         {
             var Res = new JsonResult();
             AdvancedResult<ContractInfo> result = new AdvancedResult<ContractInfo>();
@@ -159,11 +150,6 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                     result.Error = AppError.ERROR_FAILED;
                     result.ExMessage = e.ToString();
                 }
-
-                result.Error = AppError.ERROR_SUCCESS;
-          
-
-
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
@@ -173,7 +159,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult ConfirmReceived(string contractNo,int rNum,string token)
+        public JsonResult ConfirmReceived(string contractNo,int rNum)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -196,10 +182,6 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                     result.ExMessage = e.ToString();
                 }
 
-                result.Error = AppError.ERROR_SUCCESS;
-         
-
-
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
@@ -210,7 +192,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult ConfirmPay(string PCode, string token)
+        public JsonResult ConfirmPay(string PCode)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -232,11 +214,6 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
-
-            result.Error = AppError.ERROR_SUCCESS;
-
-
-
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;

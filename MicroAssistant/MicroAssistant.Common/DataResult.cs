@@ -57,6 +57,11 @@ namespace MicroAssistant.Common
         public int PageSize { get; set; }
         public List<T> Items { get; set; }
         public int RecordsCount { get; set; }
+
+        public PageEntity() 
+        {
+            this.Items = new List<T>();
+        }
     } 
 
 }

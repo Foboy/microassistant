@@ -16,34 +16,35 @@
         <ul class="listContent">
         	<li><span class="span1">产品名称：</span><span><input type="text" name="PName" ng-model="EditProduct.PName" ng-required="true" placeholder="请输入产品名称" class="span3"></span></li>
             <li><span class="span1">产品分类：</span><span>
-            <select class="span3" ng-model="EditProduct.PTypeId" ng-options="t.name for t in PTypes ">
+            <select class="span3" name="PType" ng-model="EditProduct.PType" ng-options="t.PTypeName for t in PTypes " ng-required="true">
 			</select>
 				</span></li>
             <li><span class="span1">单位：</span><span>
 <label class="checkbox-inline">
-  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" value="option1"> 个&nbsp;
+  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" ng-value="个" ng-checked="true"> 个&nbsp;
 </label>
 <label class="checkbox-inline">
-  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" value="option2"> 套&nbsp;
+  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" ng-value="套"> 套&nbsp;
 </label>
 <label class="checkbox-inline">
-  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" value="option3"> 瓶&nbsp;
+  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" ng-value="瓶"> 瓶&nbsp;
 </label>
 <label class="checkbox-inline">
-  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" value="option3"> 吨&nbsp;
+  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" ng-value="吨"> 吨&nbsp;
 </label>
 <label class="checkbox-inline">
-  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" value="option3"> 袋
+  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" ng-value="袋"> 袋
 </label>
 				</span></li>
+            <li><span class="span1">产品描述：</span><span><textarea rows="3" name="PInfo" ng-model="EditProduct.PInfo" ng-required="true" placeholder="请输入产品描述" class="span3"></textarea></span></li>
             <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" class="btn btn-large btn-block btn-success" ng-click="editProductPageNext()">下一步</a></span></li>
         </ul>
         </div>
         <div class="madeBox" ng-hide="productEditPageOne">
         <ul class="listContent">
-        	<li><span class="span1">采购数量：</span><span><input type="number" ng-model="EditProduct.StockCount" ng-required="true" placeholder="Inactive" class="span3"></span></li>
-            <li><span class="span1">采购单价：</span><span><input type="number" ng-model="EditProduct.PurchasePrice"  ng-required="true" placeholder="Inactive" class="span3"></span></li>
-            <li><span class="span1">&nbsp;</span><span class="priceBox">采购总价：<b class="colorBlue">{{(EditProduct.StockCount || 0)*(EditProduct.PurchasePrice||0)}}</b><span class="colorGray">元</span></span></li>
+        	<li><span class="span1">最低售价：</span><span><input type="number" ng-model="EditProduct.LowestPrice" ng-required="true" placeholder="最低售价" class="span3"></span></li>
+            <li><span class="span1">市场售价：</span><span><input type="number" ng-model="EditProduct.MarketPrice"  ng-required="true" placeholder="市场售价" class="span3"></span></li>
+            <!--<li><span class="span1">&nbsp;</span><span class="priceBox">采购总价：<b class="colorBlue">{{(EditProduct.StockCount || 0)*(EditProduct.PurchasePrice||0)}}</b><span class="colorGray">元</span></span></li>-->
             <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" class="btn btn-large btn-block btn-success" ng-click="ProductEditSubmit()">确 定</a><a href="" class="btn btn-large btn-block btn-success" ng-click="productEditPageOne = true">上一步</a></span></li>
         </ul>
         </div>

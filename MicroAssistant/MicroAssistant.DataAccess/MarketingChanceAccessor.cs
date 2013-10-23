@@ -26,6 +26,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdLoadAllMarketingChance;
         private MySqlCommand cmdGetMarketingChanceCount;
         private MySqlCommand cmdGetMarketingChance;
+        private MySqlCommand cmdUpdateRate;
 
         private MarketingChanceAccessor()
         {
@@ -45,6 +46,14 @@ namespace MicroAssistant.DataAccess
             cmdInsertMarketingChance.Parameters.Add("@Rate", MySqlDbType.Int32);
             cmdInsertMarketingChance.Parameters.Add("@EntId", MySqlDbType.Int32);
             cmdInsertMarketingChance.Parameters.Add("@UserId", MySqlDbType.Int32);
+            #endregion
+
+            #region cmdUpdateRate
+
+            cmdUpdateRate = new MySqlCommand(" update marketing_chance set rate = @Rate where idmarketing_chance = @IdmarketingChance");
+            cmdUpdateRate.Parameters.Add("@IdmarketingChance", MySqlDbType.Int32);
+            cmdUpdateRate.Parameters.Add("@Rate", MySqlDbType.Int32);
+
             #endregion
 
             #region cmdUpdateMarketingChance
@@ -74,7 +83,8 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadMarketingChance
 
-            cmdLoadMarketingChance = new MySqlCommand(@" select idmarketing_chance,chance_type,customer_type,contact_name,remark,add_time,qq,email,tel,phone,rate,ent_id,user_id from marketing_chance limit @PageIndex,@PageSize");
+            cmdLoadMarketingChance = new MySqlCommand(@" select idmarketing_chance,chance_type,customer_type,contact_name,remark,add_time,qq,email,tel,phone,rate,ent_id,user_id from marketing_chance where user_id = @UserId limit @PageIndex,@PageSize");
+            cmdLoadMarketingChance.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdLoadMarketingChance.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadMarketingChance.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -174,6 +184,39 @@ namespace MicroAssistant.DataAccess
         }
 
         /// <summary>
+        ///修改盈率
+        /// <param name="e">修改后的数据实体对象</param>
+        /// <para>数据对应的主键必须在实例中设置</para>
+        /// </summary>
+        public void UpdateRate(int cid,int rate)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdUpdateRate = cmdUpdateRate.Clone() as MySqlCommand;
+            _cmdUpdateRate.Connection = oc;
+
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                _cmdUpdateRate.Parameters["@IdmarketingChance"].Value = cid;
+                _cmdUpdateRate.Parameters["@Rate"].Value = rate ;
+
+                _cmdUpdateRate.ExecuteNonQuery();
+
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdUpdateRate.Dispose();
+                _cmdUpdateRate = null;
+                GC.Collect();
+            }
+        }
+
+        /// <summary>
         /// 修改指定的数据
         /// <param name="e">修改后的数据实体对象</param>
         /// <para>数据对应的主键必须在实例中设置</para>
@@ -224,7 +267,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<MarketingChance> Search(Int32 IdmarketingChance, Int32 ChanceType, Int32 CustomerType, String ContactName, String Remark, DateTime AddTime, String Qq, String Email, String Tel, String Phone, Int32 Rate, Int32 EntId, Int32 UserId, int pageIndex, int pageSize)
+        public PageEntity<MarketingChance> Search(Int32 UserId, int pageIndex, int pageSize)
         {
             PageEntity<MarketingChance> returnValue = new PageEntity<MarketingChance>();
             MySqlConnection oc = ConnectManager.Create();
@@ -237,18 +280,6 @@ namespace MicroAssistant.DataAccess
             {
                 _cmdLoadMarketingChance.Parameters["@PageIndex"].Value = pageIndex;
                 _cmdLoadMarketingChance.Parameters["@PageSize"].Value = pageSize;
-                _cmdLoadMarketingChance.Parameters["@IdmarketingChance"].Value = IdmarketingChance;
-                _cmdLoadMarketingChance.Parameters["@ChanceType"].Value = ChanceType;
-                _cmdLoadMarketingChance.Parameters["@CustomerType"].Value = CustomerType;
-                _cmdLoadMarketingChance.Parameters["@ContactName"].Value = ContactName;
-                _cmdLoadMarketingChance.Parameters["@Remark"].Value = Remark;
-                _cmdLoadMarketingChance.Parameters["@AddTime"].Value = AddTime;
-                _cmdLoadMarketingChance.Parameters["@Qq"].Value = Qq;
-                _cmdLoadMarketingChance.Parameters["@Email"].Value = Email;
-                _cmdLoadMarketingChance.Parameters["@Tel"].Value = Tel;
-                _cmdLoadMarketingChance.Parameters["@Phone"].Value = Phone;
-                _cmdLoadMarketingChance.Parameters["@Rate"].Value = Rate;
-                _cmdLoadMarketingChance.Parameters["@EntId"].Value = EntId;
                 _cmdLoadMarketingChance.Parameters["@UserId"].Value = UserId;
 
                 if (oc.State == ConnectionState.Closed)

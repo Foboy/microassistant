@@ -33,7 +33,7 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertProProduction
 
-            cmdInsertProProduction = new MySqlCommand("INSERT INTO pro_production(p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id) values (@PName,@PInfo,@Unit,@PTypeId,@LowestPrice,@MarketPrice,@UserId)");
+            cmdInsertProProduction = new MySqlCommand("INSERT INTO pro_production(p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id,ent_id) values (@PName,@PInfo,@Unit,@PTypeId,@LowestPrice,@MarketPrice,@UserId,@EntId)");
 
             cmdInsertProProduction.Parameters.Add("@PName", MySqlDbType.String);
             cmdInsertProProduction.Parameters.Add("@PInfo", MySqlDbType.String);
@@ -42,11 +42,12 @@ namespace MicroAssistant.DataAccess
             cmdInsertProProduction.Parameters.Add("@LowestPrice", MySqlDbType.Decimal);
             cmdInsertProProduction.Parameters.Add("@MarketPrice", MySqlDbType.Decimal);
             cmdInsertProProduction.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdInsertProProduction.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateProProduction
 
-            cmdUpdateProProduction = new MySqlCommand("update pro_production set p_name = @PName,p_info = @PInfo,unit = @Unit,p_type_id = @PTypeId,lowest_price = @LowestPrice,market_price = @MarketPrice,user_id = @UserId where p_id = @PId");
+            cmdUpdateProProduction = new MySqlCommand("update pro_production set p_name = @PName,p_info = @PInfo,unit = @Unit,p_type_id = @PTypeId,lowest_price = @LowestPrice,market_price = @MarketPrice where p_id = @PId");
             cmdUpdateProProduction.Parameters.Add("@PId", MySqlDbType.Int32);
             cmdUpdateProProduction.Parameters.Add("@PName", MySqlDbType.String);
             cmdUpdateProProduction.Parameters.Add("@PInfo", MySqlDbType.String);
@@ -54,7 +55,6 @@ namespace MicroAssistant.DataAccess
             cmdUpdateProProduction.Parameters.Add("@PTypeId", MySqlDbType.Int32);
             cmdUpdateProProduction.Parameters.Add("@LowestPrice", MySqlDbType.Decimal);
             cmdUpdateProProduction.Parameters.Add("@MarketPrice", MySqlDbType.Decimal);
-            cmdUpdateProProduction.Parameters.Add("@UserId", MySqlDbType.Int32);
 
             #endregion
 
@@ -66,18 +66,21 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadProProduction
 
-            cmdLoadProProduction = new MySqlCommand(@"select p_id,p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id,stock_count,ent_id from pro_production where (@PName='' or PName=@PName) and (@PTypeId=0 or PTypeId=@PTypeId) and (@UserId=0 or UserId=@UserId) limit @PageIndex,@PageSize");
+            cmdLoadProProduction = new MySqlCommand(@"select p_id,p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id,stock_count,ent_id from pro_production where (@PName='' or p_name=@PName) and (@PTypeId=0 or p_type_id=@PTypeId) and (@UserId=0 or user_id=@UserId) limit @PageIndex,@PageSize");
             cmdLoadProProduction.Parameters.Add("@PName", MySqlDbType.String);
             cmdLoadProProduction.Parameters.Add("@PTypeId", MySqlDbType.Int32);
             cmdLoadProProduction.Parameters.Add("@UserId", MySqlDbType.Int32);
-            cmdLoadProProduction.Parameters.Add("@pageIndex", MySqlDbType.Int32);
-            cmdLoadProProduction.Parameters.Add("@pageSize", MySqlDbType.Int32);
+            cmdLoadProProduction.Parameters.Add("@PageIndex", MySqlDbType.Int32);
+            cmdLoadProProduction.Parameters.Add("@PageSize", MySqlDbType.Int32);
 
             #endregion
 
             #region cmdLoadProProductionCount
 
-            cmdLoadProProductionCount = new MySqlCommand("select count(*)  from pro_production where (@PName=0 or PName=@PName) and (@PTypeId=0 or PTypeId=@PTypeId) and (@UserId=0 or UserId=@UserId) ");
+            cmdLoadProProductionCount = new MySqlCommand(@"select count(1)  from pro_production where (@PName=0 or p_name=@PName) and (@PTypeId=0 or p_type_id=@PTypeId) and (@UserId=0 or user_id=@UserId) ");
+            cmdLoadProProductionCount.Parameters.Add("@PName", MySqlDbType.String);
+            cmdLoadProProductionCount.Parameters.Add("@PTypeId", MySqlDbType.Int32);
+            cmdLoadProProductionCount.Parameters.Add("@UserId", MySqlDbType.Int32);
 
             #endregion
 
@@ -124,6 +127,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertProProduction.Parameters["@LowestPrice"].Value = e.LowestPrice;
                 _cmdInsertProProduction.Parameters["@MarketPrice"].Value = e.MarketPrice;
                 _cmdInsertProProduction.Parameters["@UserId"].Value = e.UserId;
+                _cmdInsertProProduction.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdInsertProProduction.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertProProduction.LastInsertedId);
@@ -193,7 +197,6 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateProProduction.Parameters["@PTypeId"].Value = e.PTypeId;
                 _cmdUpdateProProduction.Parameters["@LowestPrice"].Value = e.LowestPrice;
                 _cmdUpdateProProduction.Parameters["@MarketPrice"].Value = e.MarketPrice;
-                _cmdUpdateProProduction.Parameters["@UserId"].Value = e.UserId;
 
                 _cmdUpdateProProduction.ExecuteNonQuery();
 
@@ -246,17 +249,18 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new ProProduction().BuildSampleEntity(reader));
                 }
-                _cmdLoadProProductionCount.Parameters["@PageIndex"].Value = pageIndex;
-                _cmdLoadProProductionCount.Parameters["@PageSize"].Value = pageSize;
+                reader.Close();
+                //_cmdLoadProProductionCount.Parameters["@PageIndex"].Value = pageIndex;
+                //_cmdLoadProProductionCount.Parameters["@PageSize"].Value = pageSize;
                 // _cmdLoadProProductionCount.Parameters["@PId"].Value = PId;
                 _cmdLoadProProductionCount.Parameters["@PName"].Value = PName;
                 // _cmdLoadProProductionCount.Parameters["@PInfo"].Value = PInfo;
                 // _cmdLoadProProductionCount.Parameters["@Unit"].Value = Unit;
-                _cmdLoadProProduction.Parameters["@PTypeId"].Value = PTypeId;
+                _cmdLoadProProductionCount.Parameters["@PTypeId"].Value = PTypeId;
                 // _cmdLoadProProductionCount.Parameters["@LowestPrice"].Value = LowestPrice;
                 // _cmdLoadProProductionCount.Parameters["@MarketPrice"].Value = MarketPrice;
                 _cmdLoadProProductionCount.Parameters["@UserId"].Value = UserId;
-                returnValue.RecordsCount = (int)_cmdLoadProProductionCount.ExecuteScalar();
+                returnValue.RecordsCount = Convert.ToInt32( _cmdLoadProProductionCount.ExecuteScalar());
             }
             finally
             {

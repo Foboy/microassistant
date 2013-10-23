@@ -22,7 +22,7 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 1:电话 2:面谈
         /// </summary>
         public Int32 VisitType
         { get; set; }

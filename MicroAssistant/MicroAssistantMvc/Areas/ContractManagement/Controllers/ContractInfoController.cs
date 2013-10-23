@@ -25,7 +25,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult GetContractInfoByEID(string token)
+        public JsonResult GetContractInfoByEID()
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ContractInfo>> result = new AdvancedResult<PageEntity<ContractInfo>>();
@@ -64,7 +64,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
         /// <param name="contract"></param>
         /// <returns></returns>
         public JsonResult AddContractInfo(String ContractNo, String CName, string CustomerName, DateTime StartTime, DateTime EndTime,
-            DateTime ContractTime, double Amount, int HowToPay, List<ContractHowtopay> HowtopayList,string token)
+            DateTime ContractTime, double Amount, int HowToPay, List<ContractHowtopay> HowtopayList)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -132,7 +132,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
         }
 
         //根据合同编号获取合同信息（合同编号，token）返回（合同名称，合同编号，客户名称，合同金额，付款方式（xml），合同有效期，合同承办人，合同时间，附件{附件url1，附件url2}）
-        public JsonResult GetContractInfoByContractNo(string contractNo, string token)
+        public JsonResult GetContractInfoByContractNo(string contractNo)
         {
             var Res = new JsonResult();
             AdvancedResult<ContractInfo> result = new AdvancedResult<ContractInfo>();

@@ -9,6 +9,7 @@ using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 using MicroAssistantMvc.Controllers;
+using System.Web.Security;
 
 namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 {
@@ -42,17 +43,24 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 }
 
                 SysUser user = new SysUser();
+                user.UserName = entName;
                 user.UserAccount = account;
                 user.Pwd = pwd;
-                user.Email = string.Empty;
+                user.Email = account;
+                user.CreateTime = DateTime.Now;
+                user.EndTime = DateTime.Now.AddDays(90);
+                user.IsEnable = 1;
+                user.Type = 2;
                 int i = SysUserAccessor.Instance.Insert(user);
 
                 if (i>0)
                 {
+                    SysUserAccessor.Instance.UpdateUserEntId(i, i);//更新所属企业ID
                     string token = SecurityHelper.GetToken(i.ToString());
                     CacheManagerFactory.GetMemoryManager().Set(token, i.ToString());
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = token;
+                    WriteAuthCookie(user.UserName, token);
                 }
             }
             catch (Exception e)
@@ -70,7 +78,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="account">员工账号是邮箱格式</param>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public JsonResult UserRegister(string account, string pwd, int entId)
+        public JsonResult UserRegister(string username,string account, string pwd, int entId)
         {
             var Res = new JsonResult();
             AdvancedResult<string> result = new AdvancedResult<string>();
@@ -87,9 +95,14 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 
                 SysUser user = new SysUser();
                 user.UserAccount = account;
+                user.UserName = username;
                 user.Pwd = pwd;
                 user.Email = account;
                 user.EntId = entId;
+                user.CreateTime = DateTime.Now;
+                user.EndTime = DateTime.Now.AddDays(90);
+                user.IsEnable = 1;
+                user.Type = 1;
                 int i = SysUserAccessor.Instance.Insert(user);
 
                 if (i > 0)
@@ -98,6 +111,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     CacheManagerFactory.GetMemoryManager().Set(token, i.ToString());
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = token;
+                    WriteAuthCookie(user.UserName, token);
                 }
             }
             catch (Exception e)
@@ -138,7 +152,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
-        public JsonResult CheckLogin(string token)
+        public JsonResult CheckLogin()
         {
             var Res = new JsonResult();
             AdvancedResult<bool> result = new AdvancedResult<bool>();
@@ -183,6 +197,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                         CacheManagerFactory.GetMemoryManager().Set(token, user.UserId);
                         result.Error = AppError.ERROR_SUCCESS;
                         result.Data = token;
+                        WriteAuthCookie(user.UserName, token);
                     }
                 }
                 else
@@ -199,7 +214,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
-        public JsonResult Logout(string token)
+        public JsonResult Logout()
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -264,7 +279,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public JsonResult GetUserInfo(string token)
+        public JsonResult GetUserInfo()
         {
             var Res = new JsonResult();
             AdvancedResult<SysUser> result = new AdvancedResult<SysUser>();
@@ -313,7 +328,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="user">修改用户名，性别，密码，地址，qq，手机</param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public JsonResult EditeUserInfo(SysUser user, string token)
+        public JsonResult EditeUserInfo(SysUser user)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -411,6 +426,25 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         public RespResult RenewUser(string username, DateTime endTime)
         {
             throw new NotImplementedException();
+        }
+
+        private void WriteAuthCookie(string username, string token)
+        {
+            DateTime issueDate = DateTime.Now;
+            DateTime expiration = issueDate.AddDays(1);
+            string userData = token;
+            bool isPersistent = true;
+
+            FormsAuthenticationTicket ticket;
+            ticket = new FormsAuthenticationTicket(
+                1, username, issueDate, expiration, isPersistent, userData);
+
+            string value = FormsAuthentication.Encrypt(ticket);
+            HttpCookie cookie = FormsAuthentication.GetAuthCookie(username, isPersistent);
+            cookie.Value = value;
+            cookie.Expires = expiration;
+            Response.Cookies.Set(cookie);
+
         }
 
         #endregion

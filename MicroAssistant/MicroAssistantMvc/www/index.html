@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html ng-app="microassistant">
-  <head>
+<head>
     <title>Bootstrap 101 Template</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
@@ -11,8 +11,9 @@
     <script src="js/angular.js"></script>
     <script src="js/angular-route.js"></script>
     <script src="scripts/utilities.js"></script>
-	<script src="scripts/core.js"></script>
+    <script src="scripts/core.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/finance/controllers.js"></script>
     <script src="scripts/product/controllers.js"></script>
     <script src="scripts/sales/controllers.js"></script>
     <script src="scripts/finance/controllers.js"></script>
@@ -23,22 +24,26 @@
     <script src="js/bootstro/bootstro.js"></script>
     <link rel="stylesheet" type="text/css" href="js/uploadify/uploadify.css">
     <style type="text/css">
-		.showerror .ng-invalid{border-color: #fa787e;}
+        .showerror .ng-invalid {
+            border-color: #fa787e;
+        }
+
         .ng-invalid.ng-dirty {
             border-color: #fa787e;
         }
+
         .ng-valid.ng-dirty {
             border-color: #50a729;
         }
     </style>
 
-  </head>
-  <body ng-controller="MainCtrl">
-  	<div class="navbar">
+</head>
+<body ng-controller="MainCtrl">
+    <div class="navbar">
     </div>
     <div class="Nav">
         <div class="headImg">
-            <img src="img/Adimg/h1.jpg"/>
+            <img src="img/Adimg/h1.jpg" />
         </div>
         <ul class="navList">
             <li ng-class="page=='home'?'cur':''">
@@ -60,8 +65,8 @@
         </ul>
     </div>
     <div class="conBox">
-		<div ng-view>
+        <div ng-view>
         </div>
     </div>
-  </body>
+</body>
 </html>

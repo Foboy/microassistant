@@ -22,13 +22,13 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 机会类型分为：1:新客户机会2:老客户机会；默认新客户机会
         /// </summary>
         public Int32 ChanceType
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 客户类型分为：1:企业客户2:个人客户；默认为企业客户
         /// </summary>
         public Int32 CustomerType
         { get; set; }
