@@ -112,6 +112,9 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             try
             {
                 result.Data = ProProductionAccessor.Instance.Get(pid);
+                ProProductionType pt = ProProductionTypeAccessor.Instance.Get(result.Data.PTypeId);
+                if (pt != null)
+                    result.Data.PTypeName = pt.PTypeName;
                 result.Error = AppError.ERROR_SUCCESS;
             }
             catch (Exception e)

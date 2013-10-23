@@ -45,6 +45,12 @@ namespace MicroAssistant.Meta
         public Int32 PTypeId
         { get; set; }
 
+        /// <summary>
+        /// 产品分类名称
+        /// </summary>
+        public String PTypeName
+        { get; set; }
+
         ///<summary>
         ///最低售价
         ///</summary>
