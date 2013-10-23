@@ -160,7 +160,7 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
 		console.log("EventShowPoductDetail");
 		console.log(product);
 		$("#productDetailBox").animate({width:"600px"},500);
-	    $scope.productInfo();
+		$scope.productInfo(product);
 	});
 	
 	$scope.hideProductDetail = function(){
@@ -168,9 +168,9 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
 	  $("#productDetailBox").animate({width:"0px"},500,function(){});
   	};
 	
-  $scope.productInfo = function(){
+	$scope.productInfo = function (product) {
 	  $scope.tabIndex=1;
-	  $http.get($sitecore.urls["productDetail"],{params:{productId:$routeParams.productId}}).success(function(data) {
+	    $http.post($sitecore.urls["productDetail"], { pid: product.PId }).success(function (data) {
 		console.log(data);
 		$scope.product = data;
 	  }).
@@ -205,22 +205,21 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
 
 //编辑产品
 function ProductEditCtrl($scope, $routeParams, $http, $location) {
-    $scope.PTypes = [{ PTypeName: 'aa' }];
     console.log($scope)
-    
+
 	$scope.$on('EventEditPoduct',function(event,product){
 		console.log("EventEditPoduct");
 		console.log(product);
 	    $scope.productEditPageOne = true;
 	    console.log($scope)
-	    //$scope.PTypes = $scope.$parent.$parent.catalogs;
+	    $scope.PTypes = angular.copy($scope.$parent.$parent.catalogs);
 	    console.log($scope.PTypes)
 	    $('#productEditModal').modal('show');
 	});
 	
   $scope.editProductPageNext = function(){
-	  console.log($scope.ProductEditForm);
-	  if($scope.ProductEditForm.PName.$valid)
+
+      if ($scope.ProductEditForm.PName.$valid && $scope.ProductEditForm.PType.$valid && $scope.ProductEditForm.PInfo.$valid)
 	  {
 	  	$scope.productEditPageOne = false;
 		$scope.showerror = false;
@@ -238,8 +237,9 @@ function ProductEditCtrl($scope, $routeParams, $http, $location) {
 	  console.log(angular.toJson($scope.EditProduct));
 	  if($scope.ProductEditForm.$valid)
 	  {
+	      
 		  $scope.showerror = false;
-		  $http.post($sitecore.urls["productEdit"],{product:angular.toJson($scope.EditProduct)}).success(function(data) {
+	      $http.post($sitecore.urls["productEdit"], { pname: $scope.EditProduct.PName, ptypeid: $scope.EditProduct.PType.PTypeId, unit: $scope.EditProduct.Unit, pinfo: $scope.EditProduct.PInfo, LowestPrice: $scope.EditProduct.LowestPrice, MarketPrice: $scope.EditProduct.MarketPrice }).success(function (data) {
 			console.log(data);
 			$scope.product = data;
 		  }).
