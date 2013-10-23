@@ -62,7 +62,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
         /// <param name="entid"></param>
         /// <returns></returns>
 
-        public JsonResult SearchProductTypeListByEntID(int entid,int pageIndex, int pageSize)
+        public JsonResult SearchProductTypeListByEntID(int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
             AdvancedResult<List<ProductTypeModule>> result = new AdvancedResult<List<ProductTypeModule>>();
@@ -72,7 +72,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
                     PageEntity<ProProductionType> list = new PageEntity<ProProductionType>();
-                    list = ProProductionTypeAccessor.Instance.Search(0, string.Empty, entid, 0, pageIndex, pageSize);
+                    list = ProProductionTypeAccessor.Instance.Search(0, string.Empty, CurrentUser.EntId, 0, pageIndex, pageSize);
                     for (int i = 0; i < list.Items.Count; i++)
                     {
                         ProductTypeModule pt = new ProductTypeModule();
@@ -112,6 +112,9 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             try
             {
                 result.Data = ProProductionAccessor.Instance.Get(pid);
+                ProProductionType pt = ProProductionTypeAccessor.Instance.Get(result.Data.PTypeId);
+                if (pt != null)
+                    result.Data.PTypeName = pt.PTypeName;
                 result.Error = AppError.ERROR_SUCCESS;
             }
             catch (Exception e)

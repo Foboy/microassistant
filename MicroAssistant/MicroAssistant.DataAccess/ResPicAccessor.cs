@@ -302,7 +302,7 @@ namespace MicroAssistant.DataAccess
         /// </summary>
         public ResPic Get(int PicId)
         {
-            ResPic returnValue = null;
+            ResPic returnValue = new ResPic();
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdGetResPic = cmdGetResPic.Clone() as MySqlCommand;
 

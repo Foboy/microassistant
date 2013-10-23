@@ -62,7 +62,8 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadMarketingVisit
 
-            cmdLoadMarketingVisit = new MySqlCommand(@" select idmarketing_visit,visit_type,amount,address,remark,visit_time,chance_id from marketing_visit limit @PageIndex,@PageSize");
+            cmdLoadMarketingVisit = new MySqlCommand(@" select idmarketing_visit,visit_type,amount,address,remark,visit_time,chance_id from marketing_visit where chance_id=@ChanceId order by visit_time desc limit @PageIndex,@PageSize");
+            cmdLoadMarketingVisit.Parameters.Add("@ChanceId", MySqlDbType.Int32);
             cmdLoadMarketingVisit.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadMarketingVisit.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -200,7 +201,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<MarketingVisit> Search(Int32 IdmarketingVisit, Int32 VisitType, Decimal Amount, String Address, String Remark, DateTime VisitTime, Int32 ChanceId, int pageIndex, int pageSize)
+        public PageEntity<MarketingVisit> Search( Int32 ChanceId, int pageIndex, int pageSize)
         {
             PageEntity<MarketingVisit> returnValue = new PageEntity<MarketingVisit>();
             MySqlConnection oc = ConnectManager.Create();
@@ -213,12 +214,6 @@ namespace MicroAssistant.DataAccess
             {
                 _cmdLoadMarketingVisit.Parameters["@PageIndex"].Value = pageIndex;
                 _cmdLoadMarketingVisit.Parameters["@PageSize"].Value = pageSize;
-                _cmdLoadMarketingVisit.Parameters["@IdmarketingVisit"].Value = IdmarketingVisit;
-                _cmdLoadMarketingVisit.Parameters["@VisitType"].Value = VisitType;
-                _cmdLoadMarketingVisit.Parameters["@Amount"].Value = Amount;
-                _cmdLoadMarketingVisit.Parameters["@Address"].Value = Address;
-                _cmdLoadMarketingVisit.Parameters["@Remark"].Value = Remark;
-                _cmdLoadMarketingVisit.Parameters["@VisitTime"].Value = VisitTime;
                 _cmdLoadMarketingVisit.Parameters["@ChanceId"].Value = ChanceId;
 
                 if (oc.State == ConnectionState.Closed)
