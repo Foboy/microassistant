@@ -28,6 +28,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdGetSysUser;
         private MySqlCommand cmdGetSysUserByAcount;
         private MySqlCommand cmdGetSysUserByAcountAndPwd;
+        private MySqlCommand cmdUpdateSysUserEntId;
 
         private SysUserAccessor()
         {
@@ -46,6 +47,13 @@ namespace MicroAssistant.DataAccess
             cmdInsertSysUser.Parameters.Add("@IsEnable", MySqlDbType.Int32);
             cmdInsertSysUser.Parameters.Add("@Type", MySqlDbType.Int32);
             cmdInsertSysUser.Parameters.Add("@EntId", MySqlDbType.Int32);
+            #endregion
+            #region cmdUpdateSysUserEntId
+
+            cmdUpdateSysUserEntId = new MySqlCommand(" update sys_user set ent_id = @EntId where user_id = @UserId");
+            cmdUpdateSysUserEntId.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdUpdateSysUserEntId.Parameters.Add("@EntId", MySqlDbType.Int32);
+
             #endregion
 
             #region cmdUpdateSysUser
@@ -183,6 +191,39 @@ namespace MicroAssistant.DataAccess
                 oc = null;
                 _cmdDeleteSysUser.Dispose();
                 _cmdDeleteSysUser = null;
+            }
+        }
+
+/// <summary>
+/// 修改用户所属企业ID
+/// </summary>
+/// <param name="entid"></param>
+/// <param name="userid"></param>
+        public void UpdateUserEntId(int entid,int userid)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdUpdateSysUserEntId = cmdUpdateSysUserEntId.Clone() as MySqlCommand;
+            _cmdUpdateSysUserEntId.Connection = oc;
+
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                _cmdUpdateSysUserEntId.Parameters["@UserId"].Value = userid;
+                _cmdUpdateSysUserEntId.Parameters["@EntId"].Value = entid;
+
+                _cmdUpdateSysUserEntId.ExecuteNonQuery();
+
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdUpdateSysUserEntId.Dispose();
+                _cmdUpdateSysUserEntId = null;
+                GC.Collect();
             }
         }
 

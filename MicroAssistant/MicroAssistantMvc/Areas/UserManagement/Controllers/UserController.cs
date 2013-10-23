@@ -55,6 +55,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 
                 if (i>0)
                 {
+                    SysUserAccessor.Instance.UpdateUserEntId(i, i);//更新所属企业ID
                     string token = SecurityHelper.GetToken(i.ToString());
                     CacheManagerFactory.GetMemoryManager().Set(token, i.ToString());
                     result.Error = AppError.ERROR_SUCCESS;
