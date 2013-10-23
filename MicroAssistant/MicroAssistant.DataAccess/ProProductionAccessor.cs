@@ -33,7 +33,7 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertProProduction
 
-            cmdInsertProProduction = new MySqlCommand("INSERT INTO pro_production(p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id) values (@PName,@PInfo,@Unit,@PTypeId,@LowestPrice,@MarketPrice,@UserId)");
+            cmdInsertProProduction = new MySqlCommand("INSERT INTO pro_production(p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id,ent_id) values (@PName,@PInfo,@Unit,@PTypeId,@LowestPrice,@MarketPrice,@UserId,@EntId)");
 
             cmdInsertProProduction.Parameters.Add("@PName", MySqlDbType.String);
             cmdInsertProProduction.Parameters.Add("@PInfo", MySqlDbType.String);
@@ -42,6 +42,7 @@ namespace MicroAssistant.DataAccess
             cmdInsertProProduction.Parameters.Add("@LowestPrice", MySqlDbType.Decimal);
             cmdInsertProProduction.Parameters.Add("@MarketPrice", MySqlDbType.Decimal);
             cmdInsertProProduction.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdInsertProProduction.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateProProduction
@@ -127,6 +128,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertProProduction.Parameters["@LowestPrice"].Value = e.LowestPrice;
                 _cmdInsertProProduction.Parameters["@MarketPrice"].Value = e.MarketPrice;
                 _cmdInsertProProduction.Parameters["@UserId"].Value = e.UserId;
+                _cmdInsertProProduction.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdInsertProProduction.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertProProduction.LastInsertedId);
