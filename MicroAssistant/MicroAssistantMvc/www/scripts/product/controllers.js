@@ -6,7 +6,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 	
   //获取产品列表
   $scope.getCatProducts = function(catalogId, pageIndex){
-      $http.get($sitecore.urls["productList"], { params: { typeid: catalogId, pageIndex: pageIndex,pageSize:20 } }).success(function (data) {
+      $http.get($sitecore.urls["productList"], { params: { typeid: catalogId, pageIndex: pageIndex-1,pageSize:20 } }).success(function (data) {
           console.log(data);
           if (data.Error) {
               alert(data.ErrorMessage);
@@ -53,7 +53,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 	  }
 	  else
 	  {
-	      $http.post($sitecore.urls["productCat"], {entid:3,pageIndex:1,pageSize:50}).success(function (data) {
+	      $http.post($sitecore.urls["productCat"], {pageIndex:0,pageSize:50}).success(function (data) {
 	          $scope.catalogs = data.Data || [];
 	          if (data.Error) {
 	              alert(data.ErrorMessage);
