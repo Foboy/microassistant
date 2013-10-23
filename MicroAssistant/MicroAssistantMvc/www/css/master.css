@@ -343,3 +343,17 @@ a:hover{text-decoration:underline;}
 .basicInfo .ul-s1 li .span2 label{float:left; margin:30px 10px 0 0;}
 .save-btn{margin-left:192px; padding:20px 0;}
 .save-btn a{width:215px; display:inline-block;}
+
+.time-box{padding:50px 0 0 200px; position:relative;}
+.time-add{width:136px; height:162px; background:url(../img/blue-bubble.png); display:block; line-height:200px; font-size:12px; color:#FFFFFF; text-decoration:none; text-align:center;}
+.time-add:hover{color:#FFFFFF; text-decoration:none;}
+.time-shaft{background:url(../img/time-axis.jpg) repeat-y; list-style:none; margin:-5px 0 0 63px; padding-top:1px;}
+.time-shaft li{background:url(../img/time-box.png) no-repeat; width:546px; height:86px; margin-left:-9px; margin-top:50px;}
+.time-shaft li .time-q{float:left; width:180px; padding:20px 0 0 50px; color:#999999;}
+.time-shaft li .time-q span{margin:0 5px; color:#333333;}
+.time-shaft li .com-info{float:left; width:255px; padding-left:55px;}
+.time-shaft li .com-info h2{color:#248faf; font-size:16px;width:255px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.time-shaft li .com-info p{color:#999999;}
+.time-box .w-bg{background:#FFFFFF; width:20px; height:26px; position:absolute; left:260px; bottom:0;}
+.popupbox4{width:540px; min-height:250px;}
+.popupbox4 .saveBox{width:320px;}
