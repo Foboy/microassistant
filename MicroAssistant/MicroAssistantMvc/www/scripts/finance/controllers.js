@@ -34,10 +34,10 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
 function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
     console.log("deatil")
     console.log($scope)
-    $scope.$on('EventShowReceivableDetail', function (event, product) {
+    $scope.$on('EventShowReceivableDetail', function (event, item) {
         console.log("EventShowReceivableDetail");
         console.log(product);
-        $("#productDetailBox").animate({ width: "600px" }, 500);
+        $("#paymentDetailBox").animate({ width: "600px" }, 500);
         $scope.productInfo();
     });
 };
