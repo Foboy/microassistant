@@ -122,8 +122,10 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 	  $scope.$broadcast('EventEditPoduct',this.product);
   };
   
-  $scope.addPurchase = function(){
-	  $scope.$broadcast('EventAddPurchase',this.product);
+  $scope.addPurchase = function () {
+      console.log("EventAddPurchase");
+      console.log(this);
+	  $scope.$broadcast('EventAddPurchase',this);
   };
   
   $scope.showProductDetail = function(){
@@ -156,11 +158,12 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 function ProductDetailCtrl($scope, $routeParams, $http, $location){
 	console.log("deatil")
 	console.log($scope)
-    
-	$scope.$on('EventShowPoductDetail',function(event,product){
+	var product;
+
+	$scope.$on('EventShowPoductDetail',function(event,showproduct){
 		console.log("EventShowPoductDetail");
-		console.log(product);
-		$scope.actproduct = product;
+		console.log(showproduct);
+		product = showproduct;
 		$("#productDetailBox").animate({width:"600px"},500);
 		$scope.productInfo();
 	});
@@ -172,8 +175,8 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
 	
 	$scope.productInfo = function () {
 	    $scope.tabIndex = 1;
-	    if (!$scope.product || $scope.actproduct.PId != $scope.product.PId) {
-	        $http.post($sitecore.urls["productDetail"], { pid: $scope.actproduct.PId }).success(function (data) {
+	    if (!$scope.product || product.PId != $scope.product.PId) {
+	        $http.post($sitecore.urls["productDetail"], { pid: product.PId }).success(function (data) {
 	            console.log(data);
 	            $scope.product = data.Data;
 	        }).
@@ -184,24 +187,26 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
   };
   
   $scope.productStore = function(){
-	  $scope.tabIndex=2;
-	  $http.get($sitecore.urls["productDetail"],{params:{productId:$routeParams.productId}}).success(function(data) {
-		console.log(data);
-		$scope.product = data;
-	  }).
-	  error(function(data, status, headers, config) {
-		$scope.product = {};
-	  });
+      $scope.tabIndex = 2;
+      if (!$scope.stores || !$scope.stores.length || product.PId != $scope.stores[0].PId) {
+	      $http.post($sitecore.urls["productStoresList"], { pid: product.PId,pageIndex:0,pageSize:10 }).success(function (data) {
+	          console.log(data);
+	          $scope.stores = data.Data.Items;
+	      }).
+          error(function (data, status, headers, config) {
+              $scope.stores = {};
+          });
+	  }
   };
   
   $scope.productPurchase = function(){
 	  $scope.tabIndex=3;
 	  $http.get($sitecore.urls["productDetail"],{params:{productId:$routeParams.productId}}).success(function(data) {
 		console.log(data);
-		$scope.product = data;
+		$scope.producta = data;
 	  }).
 	  error(function(data, status, headers, config) {
-		$scope.product = {};
+		$scope.producta = {};
 	  });
   };
   
@@ -214,10 +219,24 @@ function ProductEditCtrl($scope, $routeParams, $http, $location) {
 	$scope.$on('EventEditPoduct',function(event,product){
 		console.log("EventEditPoduct");
 		console.log(product);
-	    $scope.productEditPageOne = true;
-	    console.log($scope)
-	    $scope.PTypes = angular.copy($scope.$parent.$parent.catalogs);
-	    console.log($scope.PTypes)
+		$scope.productEditPageOne = true;
+		$scope.PTypes = angular.copy($scope.$parent.$parent.catalogs);
+		console.log($scope.PTypes)
+		if (product) {
+		    $scope.EditProduct = angular.copy(product);
+		    if (angular.isArray($scope.PTypes)) {
+		        angular.forEach($scope.PTypes, function (value) {
+		            if (value.PTypeId == product.PTypeId)
+		                $scope.EditProduct.PType = value;
+		        });
+		    }
+		}
+		else {
+		    $scope.ProductEditForm.$setPristine();
+		    $scope.EditProduct = { Unit: '个' };
+		}
+	    
+
 	    $('#productEditModal').modal('show');
 	});
 	
@@ -241,19 +260,28 @@ function ProductEditCtrl($scope, $routeParams, $http, $location) {
 	  console.log(angular.toJson($scope.EditProduct));
 	  if($scope.ProductEditForm.$valid)
 	  {
-	      
+	      $scope.EditProduct.PTypeId = $scope.EditProduct.PType.PTypeId;
+	      $scope.EditProduct.PTypeName = $scope.EditProduct.PType.PTypeName;
 		  $scope.showerror = false;
-	      $http.post($sitecore.urls["productEdit"], { pname: $scope.EditProduct.PName, ptypeid: $scope.EditProduct.PType.PTypeId, unit: $scope.EditProduct.Unit, pinfo: $scope.EditProduct.PInfo, LowestPrice: $scope.EditProduct.LowestPrice, MarketPrice: $scope.EditProduct.MarketPrice }).success(function (data) {
+	      $http.post($scope.EditProduct.PId ? $sitecore.urls["productUpdate"] : $sitecore.urls["productAdd"], { pid: $scope.EditProduct.PId, pname: $scope.EditProduct.PName, ptypeid: $scope.EditProduct.PType.PTypeId, unit: $scope.EditProduct.Unit, pinfo: $scope.EditProduct.PInfo, LowestPrice: $scope.EditProduct.LowestPrice, MarketPrice: $scope.EditProduct.MarketPrice }).success(function (data) {
 	          console.log(data);
 	          if (data.Error) {
 	              alert(data.ErrorMessage);
 	          }
 	          else {
 	              if ($scope.ActCatalogId == $scope.EditProduct.PType.PTypeId) {
-	                  var currentproduct = angular.copy($scope.EditProduct);
-	                  currentproduct.StockCount = 0;
-	                  currentproduct.PId = data.Id;
-	                  $scope.products.push(currentproduct);
+	                  if ($scope.EditProduct.PId) {
+	                      angular.forEach($scope.products, function (value) {
+	                          if (value.PId == $scope.EditProduct.PId)
+	                              angular.extend(value, $scope.EditProduct);
+	                      });
+	                  }
+	                  else {
+	                      var currentproduct = angular.copy($scope.EditProduct);
+	                      currentproduct.StockCount = 0;
+	                      currentproduct.PId = data.Id;
+	                      $scope.products.push(currentproduct);
+	                  }
 	              }
 	              $('#productEditModal').modal('hide');
 	          }
@@ -272,10 +300,12 @@ function ProductEditCtrl($scope, $routeParams, $http, $location) {
 
 //添加采购单
 function ProductPurchaseCtrl($scope, $routeParams, $http, $location){
-	console.log($scope)
-	$scope.$on('EventAddPurchase',function(event,product){
+    console.log($scope)
+    var from;
+    $scope.$on('EventAddPurchase', function (event, fromscope) {
 		console.log("EventAddPurchase");
-		console.log(product);
+		console.log(fromscope);
+		from = fromscope;
 		$('#addPurchaseModal').modal('show');
 	});
 	
@@ -283,12 +313,26 @@ function ProductPurchaseCtrl($scope, $routeParams, $http, $location){
 	  if($scope.ProductAddPurchaseForm.$valid)
 	  {
 		  $scope.showerror = false;
-		  $http.post($sitecore.urls["productEdit"],{product:angular.toJson($scope.AddedPurchase)}).success(function(data) {
+	      $http.post($sitecore.urls["productAddStores"], { pid: from.product.PId, num: $scope.AddedPurchase.PNum, price: $scope.AddedPurchase.Price }).success(function (data) {
 			console.log(data);
-			$scope.product = data;
+			if (data.Error) {
+			    alert(data.ErrorMessage);
+			}
+			else {
+			    if (from && angular.isArray(from.stores))
+			    {
+			        $scope.AddedPurchase.PId = data.Id;
+			        from.stores.push(angular.copy($scope.AddedPurchase));
+			    }
+			    if (from && from.product)
+			    {
+			        from.product.StockCount = (from.product.StockCount || 0) + $scope.AddedPurchase.PNum;
+			    }
+			    $('#addPurchaseModal').modal('hide');
+			}
 		  }).
 		  error(function(data, status, headers, config) {
-			$scope.product = {};
+			//$scope.product = {};
 		  });
 	  }
 	  else
