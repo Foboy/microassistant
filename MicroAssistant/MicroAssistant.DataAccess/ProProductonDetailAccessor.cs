@@ -32,7 +32,7 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertProProductonDetail
 
-            cmdInsertProProductonDetail = new MySqlCommand("INSERT INTO pro_producton_detail(price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay) values (@PDId,@Price,@PNum,@PCode,@CreateTime,@UserId,@PId,@EntId)");
+            cmdInsertProProductonDetail = new MySqlCommand(@"INSERT INTO pro_producton_detail(price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay) values (@Price,@PNum,@PCode,@CreateTime,@UserId,@PId,@EntId,@IsPay)");
 
             cmdInsertProProductonDetail.Parameters.Add("@Price", MySqlDbType.Decimal);
             cmdInsertProProductonDetail.Parameters.Add("@PNum", MySqlDbType.Int32);
@@ -41,6 +41,7 @@ namespace MicroAssistant.DataAccess
             cmdInsertProProductonDetail.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdInsertProProductonDetail.Parameters.Add("@PId", MySqlDbType.Int32);
             cmdInsertProProductonDetail.Parameters.Add("@EntId", MySqlDbType.Int32);
+            cmdInsertProProductonDetail.Parameters.Add("@IsPay", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateProProductonDetail
@@ -67,9 +68,9 @@ namespace MicroAssistant.DataAccess
             #region cmdLoadProProductonDetail
 
             cmdLoadProProductonDetail = new MySqlCommand(@" select p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail 
-and (user_id = @UserId or @UserId = 0 )  
-and (p_id = @PId or @PId = 0 ) 
-and (ent_id = @EntId or @EntId = 0 ) 
+where (@EntId = 0 or ent_id = @EntId)
+and (@UserId = 0 or user_id = @UserId )  
+and (@PId = 0 or p_id = @PId)  
 order by create_time desc
 limit @PageIndex,@PageSize");
             cmdLoadProProductonDetail.Parameters.Add("@pageIndex", MySqlDbType.Int32);
@@ -82,7 +83,13 @@ limit @PageIndex,@PageSize");
 
             #region cmdGetProProductonDetailCount
 
-            cmdGetProProductonDetailCount = new MySqlCommand(" select count(*)  from pro_producton_detail ");
+            cmdGetProProductonDetailCount = new MySqlCommand(@" select count(1) from pro_producton_detail 
+where (@EntId = 0 or ent_id = @EntId)
+and (@UserId = 0 or user_id = @UserId )  
+and (@PId = 0 or p_id = @PId)");
+            cmdGetProProductonDetailCount.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdGetProProductonDetailCount.Parameters.Add("@PId", MySqlDbType.Int32);
+            cmdGetProProductonDetailCount.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
 
@@ -130,6 +137,8 @@ limit @PageIndex,@PageSize");
                 _cmdInsertProProductonDetail.Parameters["@UserId"].Value = e.UserId;
                 _cmdInsertProProductonDetail.Parameters["@PId"].Value = e.PId;
                 _cmdInsertProProductonDetail.Parameters["@EntId"].Value = e.EntId;
+                _cmdInsertProProductonDetail.Parameters["@IsPay"].Value = e.IsPay;
+                
 
                 _cmdInsertProProductonDetail.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertProProductonDetail.LastInsertedId);
@@ -248,7 +257,11 @@ limit @PageIndex,@PageSize");
                 {
                     returnValue.Items.Add(new ProProductonDetail().BuildSampleEntity(reader));
                 }
-                returnValue.RecordsCount = (int)_cmdGetProProductonDetailCount.ExecuteScalar();
+                reader.Close();
+                _cmdGetProProductonDetailCount.Parameters["@UserId"].Value = UserId;
+                _cmdGetProProductonDetailCount.Parameters["@PId"].Value = PId;
+                _cmdGetProProductonDetailCount.Parameters["@EntId"].Value = EntId;
+                returnValue.RecordsCount = Convert.ToInt32( _cmdGetProProductonDetailCount.ExecuteScalar());
             }
             finally
             {
