@@ -110,7 +110,7 @@ $axure.eventManager.click('u65', function(e) {
 
 if (true) {
 
-	NewTab($axure.globalVariableProvider.getLinkUrl('应收款详情.html'), "");
+	self.location.href=$axure.globalVariableProvider.getLinkUrl('应收款详情.html');
 
 }
 });
@@ -143,7 +143,7 @@ $axure.eventManager.click('u73', function(e) {
 
 if (true) {
 
-	NewTab($axure.globalVariableProvider.getLinkUrl('应收款详情.html'), "");
+	self.location.href=$axure.globalVariableProvider.getLinkUrl('应收款详情.html');
 
 }
 });
