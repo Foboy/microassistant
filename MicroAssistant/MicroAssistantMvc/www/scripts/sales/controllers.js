@@ -23,15 +23,17 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
                     });
 		        }
 				break;
-			case 'visit':
-				$http.get($sitecore.urls["productList"],{params:{pageIndex:$routeParams.pageIndex||0}}).success(function(data) {
-					console.log(data);
-				  $scope.ActPageIndex = $routeParams.pageIndex||0;
-				  $scope.visits = data;
-				}).
-				error(function(data, status, headers, config) {
-				  $scope.visits = [];
-				});
+		    case 'visit':
+		        if (!$scope.cvisits) {
+		            $http.post($sitecore.urls["salesChanceVisitList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: 20 }).success(function (data) {
+		                console.log(data);
+		                $scope.ActPageIndex = $routeParams.pageIndex || 0;
+		                $scope.cvisits = data.Data.Items;
+		            }).
+                    error(function (data, status, headers, config) {
+                        $scope.cvisits = [];
+                    });
+		        }
 				break;
 			case 'contract':
 				$http.get($sitecore.urls["productList"],{params:{pageIndex:$routeParams.pageIndex||0}}).success(function(data) {
@@ -99,11 +101,11 @@ function SalesChanceDetailCtrl($scope, $routeParams, $http, $location){
   	};
 };
 function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
-    var from;
-    $scope.$on('EventVisitDetail', function (event, fromscope) {
-        console.log(fromscope)
-        from = fromscope;
-        $scope.chance = from.chance;
+    var chance;
+    $scope.$on('EventVisitDetail', function (event, from) {
+        console.log(from)
+        chance = from.chance || from.cvisit;
+        $scope.chance = chance;
         $scope.NewRate = $scope.chance.Rate;
         $scope.chanceVisitDetail();
         $scope.visitFormReset();
@@ -121,8 +123,8 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	};
 
 	$scope.chanceVisitDetail = function () {
-	    if (!$scope.chance_visits || from.chance.IdmarketingChance != $scope.IdmarketingChance) {
-	        $http.post($sitecore.urls["salesChanceVisitsList"], { cid: from.chance.IdmarketingChance, pageIndex: 0, pageSize: 20 }).success(function (data) {
+	    if (!$scope.chance_visits || chance.IdmarketingChance != $scope.IdmarketingChance) {
+	        $http.post($sitecore.urls["salesChanceVisitsList"], { cid: chance.IdmarketingChance, pageIndex: 0, pageSize: 20 }).success(function (data) {
 	            console.log(data);
 	            if (data.Error) {
 	                alert(data.ErrorMessage);
@@ -187,7 +189,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	$scope.addChanceVisit = function () {
 	    if ($scope.SalesAddChanceVisitFrom.$valid) {
 	        $scope.showerror = false;
-	        $http.post($sitecore.urls["salesAddChanceVisits"], { cid: from.chance.IdmarketingChance, visitType: $scope.EditVisit.VisitType, remark: $scope.EditVisit.Remark, amount: 0, address: $scope.combineAdderess() }).success(function (data) {
+	        $http.post($sitecore.urls["salesAddChanceVisits"], { cid: chance.IdmarketingChance, visitType: $scope.EditVisit.VisitType, remark: $scope.EditVisit.Remark, amount: 0, address: $scope.combineAdderess() }).success(function (data) {
 	            console.log(data);
 	            if (data.Error) {
 	                alert(data.ErrorMessage);
@@ -198,6 +200,8 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	                $scope.chance_visits.unshift(addedvisit);
 	                $scope.addvisitpanleshow = false;
 	                $scope.visitFormReset();
+	                chance.LastVisitTime = new Date();
+	                chance.VisitNum = (chance.VisitNum || 0) + 1;
 	            }
 	        }).
             error(function (data, status, headers, config) {
@@ -216,7 +220,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	        return;
 	    }
 	    if ($scope.SalesRateChangeFrom.$valid) {
-	        $http.post($sitecore.urls["salesRateChange"], { cid: from.chance.IdmarketingChance, num: $scope.NewRate }).success(function (data) {
+	        $http.post($sitecore.urls["salesRateChange"], { cid: chance.IdmarketingChance, num: $scope.NewRate }).success(function (data) {
 	            console.log(data);
 	            if (data.Error) {
 	                $scope.NewRate = $scope.chance.Rate;
@@ -279,6 +283,7 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location) {
                 else {
                     if (from && angular.isArray(from.chances)) {
                         $scope.EditChance.IdmarketingChance = data.Id;
+                        $scope.EditChance.AddTime = new Date();
                         from.chances.push(angular.copy($scope.EditChance));
                     }
                     $('#addChanceModal').modal('hide');

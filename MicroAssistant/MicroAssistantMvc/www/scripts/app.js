@@ -55,4 +55,25 @@ function MainCtrl($scope, $routeParams, $http, $location){
 	    result += chinese.charAt(num % 10);
 	    return result;
 	}
+
+	$scope.parseJsonDate = function (datestr) {
+	    console.log(typeof (new Date()));
+	    var date;
+	    if (!datestr) {
+	        date = new Date();
+	    }
+	    else if (typeof datestr == 'object') {
+	        return datestr;
+	    }
+	    else if (typeof datestr == 'string') {
+	        datestr = datestr.replace(/\//g, '');
+	        date = eval(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
+	        console.log(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
+	        console.log(date);
+	    }
+	    else {
+	        date = new Date();
+	    }
+	    return date;
+	};
 }
