@@ -297,6 +297,8 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                 {
                    PageEntity<MarketingChance> clist = MarketingChanceAccessor.Instance.Search(CurrentUser.UserId, pageIndex, pageSize);
                    result.Data.RecordsCount = clist.RecordsCount;
+                   result.Data.PageIndex = pageIndex;
+                   result.Data.PageSize = pageSize;
                    List<MarketingVisit> mvlist = new List<MarketingVisit>();
                    for (int i = 0; i < clist.Items.Count; i++)
                    {
@@ -314,10 +316,12 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                       {
                           vm.VisitNum = 0;
                       }
+                      vlist.Add(vm);
                       
                    }
+                    
                     result.Error = AppError.ERROR_SUCCESS;
-                    //result.Data = con;
+                    result.Data.Items = vlist;
                 }
                 else
                 {
