@@ -87,7 +87,10 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                     }
                     int i = MarketingChanceAccessor.Instance.Insert(chance);
                     if (i > 0)
+                    {
+                        result.Id = i;
                         result.Error = AppError.ERROR_SUCCESS;
+                    }
                     else
                         result.Error = AppError.ERROR_FAILED;
                 }
@@ -266,6 +269,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
                     PageEntity<MarketingVisit> returnValue = new PageEntity<MarketingVisit>();
+                    result.Data = new SingleVisitListModel();
                   result.Data.Vlist =  MarketingVisitAccessor.Instance.Search(cid, pageIndex, pageSize);
                   result.Data.Rate = MarketingChanceAccessor.Instance.Get(cid).Rate;
                     result.Error = AppError.ERROR_SUCCESS;

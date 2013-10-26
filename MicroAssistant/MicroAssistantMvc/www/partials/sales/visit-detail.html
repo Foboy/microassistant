@@ -1,5 +1,13 @@
 <div id="visitLocationSelectModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<iframe id="salesVisitMapIframe" src="" style="width:850px;height:500px;border:none;"></iframe>
+      <div class="modal-header">
+        <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myAPModalLabel">选择地点</h3>
+      </div>
+      <div class="modal-body" style="width:850px;">
+        <div class="popupBox clearfix"  style="width:850px;">
+            <iframe id="salesVisitMapIframe" src="" style="width:850px;height:500px;border:none;"></iframe>
+        </div>
+      </div>
 </div>
     	<div class="floatBox floatW900" id="visitDetailBox" style="width:0;right:0;top:0;">
         	<div class="fBg"></div>
@@ -17,8 +25,8 @@
                                 <a href="#" class="writeLink">结束拜访，转回到机会</a>
                             </div>
                             <div class="rate-cur">
-                            	<div class="rate-show">
-                                	当前赢率：<strong>45%</strong>
+                            	<div class="rate-show" ng-hide="rateEditPanleShow" ng-dblclick="rateEditPanleShow=true">
+                                	当前赢率：<strong>{{chance.Rate}}%</strong>
                                 	<div class="alter">
                                     	<b></b>
                                         <div>
@@ -26,6 +34,18 @@
                                         </div>
                                         <input type="button" class="close-alert"/>
                                     </div>
+                                </div>
+                                <div class="rate-show" ng-show="rateEditPanleShow">
+                                    <form name="SalesRateChangeFrom">
+                                        <input type="text" ng-model="NewRate" ng-required="true" />
+                                        <div class="alter">
+                                            <b></b>
+                                            <div>
+                                                <a href="" ng-click="changeRateSubmit()">保存</a>
+                                                <a href="" ng-click="rateEditPanleShow=false">取消</a>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -35,41 +55,43 @@
                                 	<span class="cir-w"><i></i></span>
                                 </div>
                                 <div class="li-conb">
-                                	<a href="#" class="writeLink">点击添加新的拜访记录</a>
-									<div class="li-boxs add-visit clearfix">
+                                	<a href="" class="writeLink" ng-click="addvisitpanleshow=true">点击添加新的拜访记录</a>
+									<div class="li-boxs add-visit clearfix" ng-show="addvisitpanleshow">
 										<i></i>
 										<div class="clearfix">
                                         	<div class="visit-num">
-                                            	<span class="span1">第二次拜访</span>
+                                            	<span class="span1">{{parseNumberToChinese(chance_visits.length || 0)}}次拜访</span>
                                             </div>
                                         </div>
 										<div class="clearfix">
+                                            <form name ="SalesAddChanceVisitFrom" ng-class="showerror?'showerror':''">
 											<div class="choice-left">
-												<label><input type="radio"/>电话</label>
-												<label><input type="radio"/>在线联系</label>
-												<label><input type="radio"/>面谈</label>
+												<label><input type="radio" name="visitType" value="1" ng-model="EditVisit.VisitType"/>电话</label>
+                                                <label><input type="radio" name="visitType" value="2" ng-model="EditVisit.VisitType"/>面谈</label>
+												<label><input type="radio" name="visitType" value="3" ng-model="EditVisit.VisitType"/>在线联系</label>
                                                 <input type="text" ng-model="visit_lat" style="display:none;" />
                                                 <input type="text" ng-model="visit_lng" style="display:none;" />
 												<a href="" class="grayLink" ng-click="selectVisitLocation()">添加地点</a>
 											</div>
 											<div class="choice-right">
-												<textarea></textarea>
-												<input type="text" class="text"/>
+												<textarea  ng-model="EditVisit.Remark"></textarea>
+												<input type="text" class="text" ng-model="EditVisit.Address"/>
 												<div class="choice-box">
 													<span>
-														<a href="#fakelink" class="btn btn-large btn-block btn-danger">保存 </a>
+														<a href="" ng-click="addChanceVisit()" class="btn btn-large btn-block btn-danger">保存 </a>
 													</span>
                                                     <span>
-                                                    	<a href="#fakelink" class="btn btn-block btn-large">取消</a>
+                                                    	<a href="" ng-click="addvisitpanleshow=false" class="btn btn-block btn-large">取消</a>
                                                     </span>
 												</div>
 											</div>
+                                            </form>
 										</div>
 										
 									</div>
                                 </div>
                             </li>
-                            <li class="clearfix">
+                            <li class="clearfix" ng-repeat="visit in chance_visits">
                             	<div class="li-timeb colorBlue">
                                 	2013/07/31
                                 	<span class="cir-w"><i></i></span>
@@ -83,7 +105,7 @@
 										</div>
                                         <div class="clearfix">
                                         	<div class="visit-num">
-                                            	<span class="span1">第二次拜访</span>
+                                            	<span class="span1">{{parseNumberToChinese($index-chance_visits.length + 1)}}次拜访</span>
                                                 <span class="span2"><b class="peo-wIcon"></b></span>
                                             </div>
 
@@ -91,33 +113,8 @@
                                             	报价：<span class="colorBlue">125,600,000</span>
                                             </div>
                                         </div>
-                                        <p>今天电话了王先生，他对我当前的报价基本没有意义了。答应明天给我扯回销，确定是否购买我们的产品
-</p>
-										<div class="li-address"><b class="mapIcon"></b>成都市，一品天下大街56号/17:56</div>
-
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="clearfix none">
-                            	<div class="li-timeb colorBlue">
-                                	2013/07/31
-                                	<span class="cir-w"><i></i></span>
-                                </div>
-                                <div class="li-conb">
-                                	<div class="li-boxs">
-                                    	<i></i>
-                                        <div class="clearfix">
-                                        	<div class="visit-num">
-                                            	<span class="span1">第二次拜访</span>
-                                                <span class="span2"><b class="tel-wIcon"></b></span>
-                                            </div>
-                                            <div class="quote-info">
-                                            	报价：<span class="colorBlue">125,600,000</span>
-                                            </div>
-                                        </div>
-                                        <p>今天电话了王先生，他对我当前的报价基本没有意义了。答应明天给我扯回销，确定是否购买我们的产品
-</p>
-										<div class="li-address"><b class="mapIcon"></b>成都市，一品天下大街56号/17:56</div>
+                                        <p>{{visit.Remark}}</p>
+										<div class="li-address"><b class="mapIcon" ng-click="markAddressOnMap()"></b>{{parseAddress(visit.Address).address}}/17:56</div>
 
                                     </div>
                                 </div>

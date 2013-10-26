@@ -1,7 +1,7 @@
         <h1 class="titSec">销售管理</h1>
         <ul class="clearfix salesList">
             <li ng-class="steps=='chance'?'cur':''">
-                <a ng-href="#!/sales/chance/1"><em><i></i></em></a>
+                <a ng-href="#!/sales/chance"><em><i></i></em></a>
                 <p>销售机会（30）</p>
                 <span class="arrowD"></span>
             </li>
@@ -10,7 +10,7 @@
                 <p>转换率<span class="colorBlue">20%</span></p>
             </li>
             <li ng-class="steps=='visit'?'cur':''">
-                <a ng-href="#!/sales/visit/1"><em><i></i></em></a>
+                <a ng-href="#!/sales/visit"><em><i></i></em></a>
                 <p>拜访（5）</p>
                 <span class="arrowD"></span>
             </li>
@@ -19,7 +19,7 @@
                 <p>转换率<span class="colorBlue">20%</span></p>
             </li>
             <li ng-class="steps=='contract'?'cur':''">
-                <a ng-href="#!/sales/contract/1"><em><i></i></em></a>
+                <a ng-href="#!/sales/contract"><em><i></i></em></a>
                 <p>签订合同（5）</p>
                 <span class="arrowD"></span>
             </li>
@@ -28,13 +28,13 @@
                 <p>转换率<span class="colorBlue">20%</span></p>
             </li>
             <li ng-class="steps=='after'?'cur':''">
-                <a ng-href="#!/sales/after/1"><em><i></i></em></a>
+                <a ng-href="#!/sales/after"><em><i></i></em></a>
                 <p>售后跟进（5）</p>
                 <span class="arrowD"></span>
             </li>
         </ul>
         <div class="searchBox addL">
-            <input type="button" class="addBtn" ng-click="addCurrentStepItem()"/>
+            <input type="button" class="addBtn" ng-click="addCurrentStepItem()" ng-show="steps=='chance'||steps=='contract'" />
         </div>
         <div class="tablePad" ng-show="steps=='chance'">
             <table class="table table-bordered table-striped">
@@ -49,13 +49,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr ng-repeat="chance in chances">
                   <td>1</td>
-                  <td>Mark</td>
-                  <td class="colorBlue">四川新颖顺信息...</td>
-                  <td class="colorBlue">1588234555</td>
+                  <td>{{chance.Remark}}</td>
+                  <td class="colorBlue">{{chance.ContactName}}</td>
+                  <td class="colorBlue">{{chance.Phone||chance.Tel||chance.Email||chance.Qq}}</td>
                   <td>2013/07/31</td>
-                  <td><a href="" role="button" ng-click="showChanceDetail()">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                  <td><a href="" role="button" ng-click="showChanceDetail()">详情</a>|<a href="" ng-click="showVisitDetail()" role="button" data-toggle="modal">主动拜访</a></td>
                 </tr>
               </tbody>
             </table>
@@ -135,6 +135,7 @@
             </table>
         </div>
 	<div ng-include="'partials/sales/chance-detail.html'" ng-controller="SalesChanceDetailCtrl"></div>
+    <div ng-include="'partials/sales/chance-edit.html'" ng-controller="SalesChanceEditCtrl"></div>
     <div ng-include="'partials/sales/visit-detail.html'" ng-controller="SalesVisitDetailCtrl"></div>
     <div ng-include="'partials/sales/contract-detail.html'" ng-controller="SalesContractDetailCtrl"></div>
     <div ng-include="'partials/sales/after-detail.html'" ng-controller="SalesAfterDetailCtrl"></div>

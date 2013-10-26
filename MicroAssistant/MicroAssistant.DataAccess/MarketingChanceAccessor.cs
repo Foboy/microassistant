@@ -92,7 +92,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdGetMarketingChanceCount
 
-            cmdGetMarketingChanceCount = new MySqlCommand(" select count(*)  from marketing_chance ");
+            cmdGetMarketingChanceCount = new MySqlCommand(" select count(1)  from marketing_chance ");
 
             #endregion
 
@@ -290,7 +290,8 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new MarketingChance().BuildSampleEntity(reader));
                 }
-                returnValue.RecordsCount = (int)_cmdGetMarketingChanceCount.ExecuteScalar();
+                reader.Close();
+                returnValue.RecordsCount = Convert.ToInt32( _cmdGetMarketingChanceCount.ExecuteScalar());
             }
             finally
             {
