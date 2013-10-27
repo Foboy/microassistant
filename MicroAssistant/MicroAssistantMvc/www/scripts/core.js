@@ -33,8 +33,10 @@ $sitecore.urls.add("makeSurePay", "/FinancialManagement/Financial/ConfirmPay");/
 
 
 
-$sitecore.urls.add("SearchCustomerEntByOwnerId", "/CustomerManagement/CustomerEnt/SearchCustomerEntByOwnerId");//通过销售人员ID获取销售的企业客户
-$sitecore.urls.add("SearchCustomerPrivByOwnerId", "/CustomerManagement/CustomerEnt/SearchCustomerPrivByOwnerId");//根据用户ID查询个人客户（token）返回 个人客户列表（姓名，年龄，所属行业，所在地，联系方式）
+$sitecore.urls.add("SearchCustomerEntByOwnerId", "/CustomerManagement/Customer/SearchCustomerEntByOwnerId");//通过销售人员ID获取销售的企业客户
+$sitecore.urls.add("SearchCustomerPrivByOwnerId", "/CustomerManagement/Customer/SearchCustomerPrivByOwnerId");//根据用户ID查询个人客户（token）返回 个人客户列表（姓名，年龄，所属行业，所在地，联系方式）
+$sitecore.urls.add("AddOrUpdateEnterPriseClient", "/CustomerManagement/Customer/AddEntCustomer");//新增修改企业客户信息
+$sitecore.urls.add("AddOrUpdatePersonalClient", "/CustomerManagement/Customer/AddPrivateCustomer");//新增修改个人客户信息
 
 
 

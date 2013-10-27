@@ -1,10 +1,15 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+﻿<div tabindex="-1" class="modal hide fade" id="AddPersonalBox" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form ng-class="showerror?'showerror':''" name="AddentPersonalForm">
+        <ul class="listContent peopleInfo">
+            <li class="clearfix"><span class="span1">姓名：</span><span><input type="text" value="" placeholder="Inactive" class="span3"></span></li>
+            <li class="clearfix"><span class="span1">性别：</span><span><label class="radio checked"><input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" data-toggle="radio" checked="checked">男</label><label class="radio checked"><input type="radio" name="optionsRadios" id="Radio1" value="option1" data-toggle="radio" checked="checked">女</label></span></li>
+            <li class="clearfix"><span class="span1">出生日期：</span><span><input type="text" value="" placeholder="Inactive" class="span3"></span></li>
+            <li class="clearfix"><span class="span1">联系方式：</span><span><input type="text" value="手机" placeholder="Inactive" class="span3"><input type="text" value="邮箱" placeholder="Inactive" class="span3"></span></li>
+            <li class="clearfix"><span class="span1">&nbsp;</span><span><input type="text" value="Email" placeholder="Inactive" class="span3"><input type="text" value="QQ" placeholder="Inactive" class="span3"></span></li>
+            <li class="clearfix"><span class="span1">从事行业：</span><span><input type="text" value="" placeholder="Inactive" class="span3"></span></li>
+            <li class="clearfix"><span class="span1">所在地：</span><span><input type="text" value="" placeholder="Inactive" class="span3"></span></li>
+            <li class="clearfix"><span class="span1">个人信息：</span><span><textarea style="width: 650px; height: 210px;"></textarea></span></li>
+            <li class="clearfix"><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" ng-click="AddPersonalSubmit()" class="btn btn-large btn-block btn-success">保 存</a></span></li>
+        </ul>
+    </form>
+</div>

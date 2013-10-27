@@ -15,7 +15,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
     public class CustomerController : MicControllerBase
     {
         //
-        // GET: /CustomerManagement/CustomerEnt/
+        // GET: /CustomerManagement/Customer/
 
         /// <summary>
         /// 通过销售人员ID获取销售的企业客户

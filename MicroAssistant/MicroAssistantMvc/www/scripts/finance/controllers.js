@@ -56,12 +56,12 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
     $scope.$on('EventMakeSurePayable', function (event, item) {
         console.log(item);
         $("#makesurePayBox").modal('show');
-        $scope.makeSurePay(item);
-        $scope.cancelPay();
+        //$scope.makeSurePay(item);
+        //$scope.cancelPay();
     });
     $scope.makeSurePay = function (item) {
         console.log(item);
-        $http.post($scope.urls["makeSurePay"], { PCode: item.PCode }).success(function (data) {
+        $http.post($sitecore.urls["makeSurePay"], { PCode: item.PCode }).success(function (data) {
             console.log(data.Data);
             $("#makesurePayBox").modal('hide');
         }).error(function (data, status, headers, config) {
