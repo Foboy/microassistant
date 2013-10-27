@@ -1,4 +1,4 @@
-angular.module('microassistant', ['ngRoute']).
+﻿angular.module('microassistant', ['ngRoute']).
   config(function($routeProvider, $locationProvider) {
   $routeProvider
   	  .when('/home', {templateUrl: 'partials/home.html', controller: HomeMainCtrl})
@@ -38,4 +38,42 @@ function MainCtrl($scope, $routeParams, $http, $location){
 		}
 	};
 	$scope.checkpage();
+
+	$scope.parseNumberToChinese = function(num)
+	{
+	    console.log(num);
+	    if (!isNaN(num))
+	        num = Math.abs(num);
+	    if (isNaN(num) || num == 0)
+	        return '初次';
+	    var result = '第';
+	    var chinese = '一二三四五六七八九';
+	    if (num > 10)
+	    {
+	        result += chinese.charAt(Math.floor(num / 10))+'十';
+	    }
+	    result += chinese.charAt(num % 10);
+	    return result;
+	}
+
+	$scope.parseJsonDate = function (datestr) {
+	    console.log(typeof (new Date()));
+	    var date;
+	    if (!datestr) {
+	        date = new Date();
+	    }
+	    else if (typeof datestr == 'object') {
+	        return datestr;
+	    }
+	    else if (typeof datestr == 'string') {
+	        datestr = datestr.replace(/\//g, '');
+	        date = eval(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
+	        console.log(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
+	        console.log(date);
+	    }
+	    else {
+	        date = new Date();
+	    }
+	    return date;
+	};
 }

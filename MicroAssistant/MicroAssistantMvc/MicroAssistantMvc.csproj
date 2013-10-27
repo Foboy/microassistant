@@ -305,6 +305,7 @@
     <Content Include="www\partials\sales.html" />
     <Content Include="www\partials\sales\after-detail.html" />
     <Content Include="www\partials\sales\chance-detail.html" />
+    <Content Include="www\partials\sales\chance-edit.html" />
     <Content Include="www\partials\sales\contract-detail.html" />
     <Content Include="www\partials\sales\visit-detail.html" />
     <Content Include="www\register.html" />

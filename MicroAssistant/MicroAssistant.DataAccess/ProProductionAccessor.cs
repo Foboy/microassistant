@@ -33,7 +33,7 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertProProduction
 
-            cmdInsertProProduction = new MySqlCommand("INSERT INTO pro_production(p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id) values (@PName,@PInfo,@Unit,@PTypeId,@LowestPrice,@MarketPrice,@UserId)");
+            cmdInsertProProduction = new MySqlCommand("INSERT INTO pro_production(p_name,p_info,unit,p_type_id,lowest_price,market_price,user_id,ent_id) values (@PName,@PInfo,@Unit,@PTypeId,@LowestPrice,@MarketPrice,@UserId,@EntId)");
 
             cmdInsertProProduction.Parameters.Add("@PName", MySqlDbType.String);
             cmdInsertProProduction.Parameters.Add("@PInfo", MySqlDbType.String);
@@ -42,11 +42,12 @@ namespace MicroAssistant.DataAccess
             cmdInsertProProduction.Parameters.Add("@LowestPrice", MySqlDbType.Decimal);
             cmdInsertProProduction.Parameters.Add("@MarketPrice", MySqlDbType.Decimal);
             cmdInsertProProduction.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdInsertProProduction.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateProProduction
 
-            cmdUpdateProProduction = new MySqlCommand("update pro_production set p_name = @PName,p_info = @PInfo,unit = @Unit,p_type_id = @PTypeId,lowest_price = @LowestPrice,market_price = @MarketPrice,user_id = @UserId where p_id = @PId");
+            cmdUpdateProProduction = new MySqlCommand("update pro_production set p_name = @PName,p_info = @PInfo,unit = @Unit,p_type_id = @PTypeId,lowest_price = @LowestPrice,market_price = @MarketPrice where p_id = @PId");
             cmdUpdateProProduction.Parameters.Add("@PId", MySqlDbType.Int32);
             cmdUpdateProProduction.Parameters.Add("@PName", MySqlDbType.String);
             cmdUpdateProProduction.Parameters.Add("@PInfo", MySqlDbType.String);
@@ -54,7 +55,6 @@ namespace MicroAssistant.DataAccess
             cmdUpdateProProduction.Parameters.Add("@PTypeId", MySqlDbType.Int32);
             cmdUpdateProProduction.Parameters.Add("@LowestPrice", MySqlDbType.Decimal);
             cmdUpdateProProduction.Parameters.Add("@MarketPrice", MySqlDbType.Decimal);
-            cmdUpdateProProduction.Parameters.Add("@UserId", MySqlDbType.Int32);
 
             #endregion
 
@@ -127,6 +127,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertProProduction.Parameters["@LowestPrice"].Value = e.LowestPrice;
                 _cmdInsertProProduction.Parameters["@MarketPrice"].Value = e.MarketPrice;
                 _cmdInsertProProduction.Parameters["@UserId"].Value = e.UserId;
+                _cmdInsertProProduction.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdInsertProProduction.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertProProduction.LastInsertedId);
@@ -196,7 +197,6 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateProProduction.Parameters["@PTypeId"].Value = e.PTypeId;
                 _cmdUpdateProProduction.Parameters["@LowestPrice"].Value = e.LowestPrice;
                 _cmdUpdateProProduction.Parameters["@MarketPrice"].Value = e.MarketPrice;
-                _cmdUpdateProProduction.Parameters["@UserId"].Value = e.UserId;
 
                 _cmdUpdateProProduction.ExecuteNonQuery();
 

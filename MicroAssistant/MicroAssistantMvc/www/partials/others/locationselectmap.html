@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -44,7 +44,7 @@
 </body>
 
 <script type="text/javascript">
-		var marker;
+		var marker,address;
 		var map = new BMap.Map("container"); 
 		var lat = utilities.getquerystring("lat");
 		var lng = utilities.getquerystring("lng"); 
@@ -59,7 +59,7 @@
 			marked = true;
 		}
 
-		var point = new BMap.Point(lat, lng);  // 创建点坐标 
+		var point = new BMap.Point(lng, lat);  // 创建点坐标 
 		console.log(point)
 		map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
 		map.enableScrollWheelZoom();
@@ -67,46 +67,54 @@
 		
 		var geo = new BMap.Geocoder();  
 		
-		if(!marked)
-		{
-			var lcity = new BMap.LocalCity();
-			lcity.get(function(cityresult){
-				map.setCenter(cityresult.name);
-				document.getElementById("curCity").innerHTML = cityresult.name;
-			});
-		}
-		else
-		{
-			document.getElementById("lat_span").innerHTML = lat;
-			document.getElementById("lng_span").innerHTML = lng;
-			geo.getLocation(new BMap.Point(lat, lng), function(result){    
-				if (result){    
-					document.getElementById("location").innerHTML = result.address;    
-				}    
-			});	
-		}
-		
 		var mkrTool = new BMapLib.MarkerTool(map, {autoClose: true, followText: ""});
 		console.log(mkrTool);
 		mkrTool.addEventListener("markend", function(evt){ 
-			marker = evt.marker;
+		    marker = evt.marker;
+		    console.log(marker);
 			document.getElementById("lat_span").innerHTML = marker.point.lat;
 			document.getElementById("lng_span").innerHTML = marker.point.lng;
 			geo.getLocation(marker.point, function(result){    
-				if (result){    
-					document.getElementById("location").innerHTML = result.address;    
+			    if (result) {
+			        console.log(result)
+			        document.getElementById("curCity").innerHTML = result.addressComponents.city;
+				    address = result.addressComponents.city + '，' + result.addressComponents.district + result.addressComponents.street + result.addressComponents.streetNumber;
+				    document.getElementById("location").innerHTML = address;
 				}    
 			});
 
 		});
-		mkrTool.open(); //打开工具 
+		  
+		if (!marked) {
+		    var lcity = new BMap.LocalCity();
+		    lcity.get(function (cityresult) {
+		        map.setCenter(cityresult.name);
+		        console.log(cityresult)
+		        document.getElementById("curCity").innerHTML = cityresult.name;
+		    });
+		    mkrTool.open();//打开工具
+		}
+		else {
+		    document.getElementById("lat_span").innerHTML = lat;
+		    document.getElementById("lng_span").innerHTML = lng;
+		    marker = new BMap.Marker(new BMap.Point(lng, lat), { icon: BMapLib.MarkerTool.SYS_ICONS[0] });
+		    map.addOverlay(marker);
+		    geo.getLocation(new BMap.Point(lng, lat), function (result) {
+		        if (result) {
+		            console.log(result)
+		            document.getElementById("curCity").innerHTML = result.addressComponents.city;
+		            address = result.addressComponents.city + '，' + result.addressComponents.district + result.addressComponents.street + result.addressComponents.streetNumber;
+		            document.getElementById("location").innerHTML = address;
+		        }
+		    });
+		}
       	var icon = BMapLib.MarkerTool.SYS_ICONS[0]; 
     	mkrTool.setIcon(icon); 
 		
 		document.getElementById("selected_btn").onclick = function() {
 			if(marker)
 			{
-				utilities.fireiframelistener("visitlocation", marker.point.lat, marker.point.lng);
+			    utilities.fireiframelistener("visitlocation", marker.point.lat, marker.point.lng, address);
 			}
 		};
 		
@@ -147,5 +155,11 @@
 				cl.style.display = "none";
 			}	
 		};
+		if (utilities.getquerystring("lookonly"))
+		{
+		    document.getElementById("selected_btn").style.display = 'none';
+		    document.getElementById("reselect_btn").style.display = 'none';
+		}
+		
 </script>
 </html>

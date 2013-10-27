@@ -141,16 +141,15 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
-                    SysUser user = SysUserAccessor.Instance.Get(userid);
+                   
                     ppd.PCode = DateTime.Now.ToString("yyyymmddhhmmssfff");//采购批次号
                     ppd.PNum = num;
                     ppd.Price = price;
-                    ppd.UserId = userid;
+                    ppd.UserId = CurrentUser.UserId;
                     ppd.IsPay = 1;
                     ppd.CreateTime = DateTime.Now;
                     ppd.PId = pid;
-                    ppd.EntId = user.EntId;
+                    ppd.EntId = CurrentUser.EntId;
 
                     result.Id = ProProductonDetailAccessor.Instance.Insert(ppd);
                     if (result.Id > 0)
@@ -189,12 +188,10 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
-
-                    SysUser user = SysUserAccessor.Instance.Get(userid);
+                  
 
                     PageEntity<ProProductonDetail> list = new PageEntity<ProProductonDetail>();
-                    list = ProProductonDetailAccessor.Instance.Search(user.UserId, pid, user.EntId, pageIndex, pageSize);
+                    list = ProProductonDetailAccessor.Instance.Search(CurrentUser.UserId, pid, CurrentUser.EntId, pageIndex, pageSize);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = list;
                  }
@@ -226,20 +223,57 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
-
-                    SysUser user = SysUserAccessor.Instance.Get(userid);
                     pro.PName = pname;
                     pro.PInfo = pinfo;
                     pro.PTypeId = ptypeid;
                     pro.Unit = unit;
                     pro.LowestPrice = LowestPrice;
                     pro.MarketPrice = MarketPrice;
-                    pro.EntId = user.EntId;
-                    pro.UserId = userid;
+                    pro.EntId = CurrentUser.EntId;
+                    pro.UserId = CurrentUser.UserId;
                     //pro.StockCount 需要在添加入库单的时候更新
                     result.Id = ProProductionAccessor.Instance.Insert(pro);
                     result.Error = result.Id > 0 ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
+                }
+                else
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        
+        }
+        /// <summary>
+        ///添加产品
+        /// </summary>
+        /// <param name="pro"></param>
+        /// <returns></returns>
+        public JsonResult UpateProduction(int pid,string pname, int ptypeid, string unit, string pinfo, Double LowestPrice, Double MarketPrice)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            ProProduction pro = new ProProduction();
+            try
+            {
+                if (CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    pro.PId = pid;
+                    pro.PName = pname;
+                    pro.PInfo = pinfo;
+                    pro.PTypeId = ptypeid;
+                    pro.Unit = unit;
+                    pro.LowestPrice = LowestPrice;
+                    pro.MarketPrice = MarketPrice;
+                    //pro.StockCount 需要在添加入库单的时候更新
+                    ProProductionAccessor.Instance.Update(pro);
+                    result.Error = AppError.ERROR_SUCCESS;
                 }
                 else
                 {
@@ -269,11 +303,9 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
 
-                    SysUser user = SysUserAccessor.Instance.Get(userid);
 
-                    ptype.EntId = user.EntId;
+                    ptype.EntId = CurrentUser.EntId;
                     ptype.PicId = ptypepicid;
                     ptype.PTypeName = pTypeName;
                     ptype.FatherId = fatherid;

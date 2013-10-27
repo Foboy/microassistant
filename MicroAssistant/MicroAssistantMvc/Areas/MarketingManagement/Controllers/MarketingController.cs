@@ -87,7 +87,10 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                     }
                     int i = MarketingChanceAccessor.Instance.Insert(chance);
                     if (i > 0)
+                    {
+                        result.Id = i;
                         result.Error = AppError.ERROR_SUCCESS;
+                    }
                     else
                         result.Error = AppError.ERROR_FAILED;
                 }
@@ -266,6 +269,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
                     PageEntity<MarketingVisit> returnValue = new PageEntity<MarketingVisit>();
+                    result.Data = new SingleVisitListModel();
                   result.Data.Vlist =  MarketingVisitAccessor.Instance.Search(cid, pageIndex, pageSize);
                   result.Data.Rate = MarketingChanceAccessor.Instance.Get(cid).Rate;
                     result.Error = AppError.ERROR_SUCCESS;
@@ -290,6 +294,8 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<VisitModel>> result = new AdvancedResult<PageEntity<VisitModel>>();
+            result.Data = new PageEntity<VisitModel>();
+            result.Data.Items = new List<VisitModel>();
             List<VisitModel> vlist = new List<VisitModel>();
             try
             {
@@ -303,6 +309,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                        VisitModel vm = new VisitModel();
                        vm.Rate = clist.Items[i].Rate;
                        vm.Remark = clist.Items[i].Remark;
+                       vm.IdmarketingChance = clist.Items[i].IdmarketingChance;
                  
                       PageEntity<MarketingVisit> pmvlist =  MarketingVisitAccessor.Instance.Search(clist.Items[0].IdmarketingChance, 0, 10);
                       if (pmvlist.RecordsCount > 0)
@@ -314,7 +321,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                       {
                           vm.VisitNum = 0;
                       }
-                      
+                      result.Data.Items.Add(vm);
                    }
                     result.Error = AppError.ERROR_SUCCESS;
                     //result.Data = con;

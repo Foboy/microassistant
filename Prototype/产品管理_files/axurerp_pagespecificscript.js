@@ -178,7 +178,7 @@ $axure.eventManager.click('u120', function(e) {
 
 if (true) {
 
-	SetPanelState('u137', 'pd0u137','none','',500,'none','',500);
+	SetPanelVisibility('u137','','none',500);
 
 }
 });
