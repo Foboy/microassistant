@@ -37,7 +37,7 @@ a:hover{text-decoration:underline;}
 .flat-l{float:left;}
 .flat-r{float:right;}
 /*===  图标样式 ===*/
-.homeIcon,.peopleIcon,.askIcon,.arrowD,.pcIcon,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
+.homeIcon,.peopleIcon,.askIcon,.arrowD,.pcIcon,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon,.boy-icon,.girl-icon{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
 .pcIcon{background-position:-60px -139px; width:29px; height:27px;}
 .homeIcon{background-position:-41px -128px; width:35px; height:33px;}
 .homeIcon:hover{background-position:0 -128px;}
@@ -61,6 +61,8 @@ a:hover{text-decoration:underline;}
 .textIcon{background-position:-152px -288px; width:11px; height:15px;}
 .downloadIcon{background-position:-176px -284px; width:15px; height:13px; cursor:pointer;}
 .drawIcon{background-position:-178px -347px; width:31px; height:24px;}
+.boy-icon{background-position:-102px -513px; width:22px; height:26px;}
+.boy-icon{background-position:-101px -550px; width:25px; height:24px;}
 /*===  图标样式 END ===*/
 
 
@@ -125,7 +127,7 @@ a:hover{text-decoration:underline;}
 .popupBox3 .btnbox span{width:80px; display:inline-block; margin:10px;}
 .popupBox3 .btnbox span a{line-height:30px; padding:0 5px;}
 /*=== 弹出框样式 END ===*/
-.navbar{min-width:960px; max-width:1366px;width:100%;height:60px; background:#248faf; margin-bottom:0; position:relative;}
+.navbar{min-width:960px;width:100%;height:60px; background:#248faf; margin-bottom:0; position:relative;}
 .conBg{background:#f0f0f0;}
 .Nav{width:80px; position:absolute; top:50px; left:0;}
 .headImg{width:80px; height:60px; text-align:center; padding:20px 0;}
@@ -178,7 +180,9 @@ a:hover{text-decoration:underline;}
 .tablePad .addBtn{width: 30px; margin-bottom:10px;}
 .tablePad table tr td .money{margin-right:20px;}
 .tablePad table tr td.colorGreen{font-size:12px; padding-left:15px;}
-
+.tablePad table tr td .t-himg{width:40px; height:40px; position:relative;}
+.tablePad table tr td .t-himg img{width:40px; height:40px;}
+.tablePad table tr td .t-himg i{position:absolute; right:0; bottom:0; color:#333333; background:#FFFFFF; font-size:12px; width:12px; height:12px; line-height:12px;}
 /*=== 产品详情页面 ===*/
 .titleStyle{color:#333333; font-size:16px; height:30px; line-height:30px;}
 .goodsInfo{margin:40px 20px 0 20px;}
@@ -358,3 +362,40 @@ a:hover{text-decoration:underline;}
 .time-box .w-bg{background:#FFFFFF; width:20px; height:26px; position:absolute; left:260px; bottom:0;}
 .popupbox4{width:540px; min-height:250px;}
 .popupbox4 .saveBox{width:320px;}
+
+
+/*用户名称*/
+.user-name{width:150px; height:45px; background:#1f6070; color:#FFFFFF; float:right; position:relative; z-index:998; font-size:14px; cursor:pointer;}
+.user-name span{width:150px; height:45px; line-height:45px; text-align:center; display:inline-block;}
+.user-name i{position:absolute; right:10px; top:19px; width:14px; height:12px; background:url(../img/icon.png) no-repeat -154px -384px; display:inline-block;}
+.user-name.cur i{background-position:-184px -384px;}
+.u-info-list{position:absolute; top:45px; left:0; width:150px; background:#1f6070; margin:0; z-index:999;}
+.u-info-list li{border-top:1px solid #dedede;}
+.u-info-list li a{height:34px; line-height:34px; text-align:center; display:inline-block; width:150px;}
+/*用户名称 END*/
+
+/*员工管理*/
+.staffList{width:210px; background:#1f6070; min-height:800px;float:left;}
+.staffList h2{height:50px; line-height:50px; text-align:center; color:#FFFFFF; font-size:20px; border-bottom:1px solid #FFFFFF; margin:0; font-weight:normal;}
+.staffList ul{margin:0;}
+.staffList ul li{height:45px; line-height:45px; list-style:none;}
+.staffList ul li a{display:inline-block; width:210px; height:45px; line-height:45px; color:#FFFFFF; text-decoration:none;}
+.staffList ul li a:hover{background:#248faf;}
+.staffList ul li a span{display:inline-block; padding-left:15px; width:170px; margin:0;}
+.add-section{width:180px; margin:20px 0 0 15px;}
+
+.staffCon{float:left; width:960px;}
+.staffCon .searchBox{padding:15px 0;}
+
+.peop-box{width:200px; height:60px; background:#f5f5f5; padding:10px; position:relative; z-index:9; font-size:14px; margin:10px; float:left;}
+.peop-box img{border-radius: 40px;height: 60px;width: 60px; float:left;}
+.p-b-info{width:140px; float:left;}
+.p-b-info p{line-height:20px; margin:0 0 5px 0; padding-left:15px;}
+.p-b-info p .p-t{color:#999999; text-align:right;}
+.p-b-info p.p-s-f{font-size:12px;}
+
+.s-c{position:absolute; top:80px; left:0; width:220px;   background:#f5f5f5; border-top:3px solid #50a729;z-index:10;}
+.s-c .p-t{width:80px; display:inline-block;text-align:right;}
+.s-c p{border-bottom:1px solid #FFFFFF; padding:10px 0; margin:0;}
+.s-c p select{width:100px; font-size:12px; height:25px; margin:0;}
+/*员工管理 END*/
