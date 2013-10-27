@@ -1,0 +1,51 @@
+﻿<div class="conBox">
+    <h1 class="titSec">客户资料</h1>
+    <ul class="clearfix goodsList">
+        <li ng-class="sorts=='enterprise'?'cur':''">
+            <em><i class="pcIcon"></i></em>
+            <a ng-href="#!client/enterprise/1">企业客户</a>
+            <span class="arrowD"></span>
+        </li>
+        <li ng-class="sorts=='personal'?'cur':''">
+            <em><i class="phoneIcon"></i></em>
+            <a ng-href="#!client/personal/1">个人客户</a>
+            <span class="arrowD"></span>
+        </li>
+    </ul>
+    <div class="searchBox">
+        <input type="button" class="addBtn" ng-click="sorts=='enterprise'?'AddEnterprise()':'AddPersonal()'" />
+        <span class="seCon">
+            <input type="text" class="setext" placeholder="Type something…"><input type="button" class="seBtn" /></span>
+    </div>
+    <div class="tablePad" ng-show="sorts='enterprise'?'true':'false'">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th width="20%">名称</th>
+                    <th width="15%">所属行业</th>
+                    <th width="10%">联系人</th>
+                    <th width="20%">联系方式</th>
+                    <th width="20%">地址</th>
+                    <th width="10%">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="enterpriseclient in enterpriseclients">
+                    <td>1</td>
+                    <td class="colorBlue">四川新颖顺信息技术有限公司</td>
+                    <td class="colorBlue">IT</td>
+                    <td>张三</td>
+                    <td>
+                        <p>028-87856604</p>
+                        <p>15882417448</p>
+                    </td>
+                    <td>四川省  成都市 武侯区航空路6号</td>
+                    <td><a href="#myModal" role="button" data-toggle="modal">查看</a>|<a href="#myModal" role="button" data-toggle="modal">编辑</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div  ng-include="'partials/client/client-addenterprise.html'" ng-controller=""></div>
+<div  ng-include="'partials/client/client-addpersonal.html'" ng-controller=""></div>

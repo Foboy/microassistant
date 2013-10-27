@@ -30,7 +30,7 @@
                 <td>四川新迎顺信息技术有限公司</td>
                 <td class="colorBlue">20130515090301001</td>
                 <td><span class="money">1000.00元</span><b class="colorBlue">2013/07/31</b></td>
-                <td><a href="" role="button" ng-click="receivableDetail()" data-toggle="modal">详情</a>|<a href="#myModal" role="button" data-toggle="modal">确认收款</a></td>
+                <td><a href="" role="button" ng-click="ShowReceivableDetail()" data-toggle="modal">详情</a>|<a href="" ng-click="ShowReceivableDetail()" role="button" data-toggle="modal">确认收款</a></td>
             </tr>
         </tbody>
     </table>
@@ -56,11 +56,10 @@
                 <td>1000 件</td>
                 <td class="colorRed">67.00</td>
                 <td>2013/09/13  14:45</td>
-                <td><a href="#myModal" role="button" data-toggle="modal">确认收款</a></td>
+                <td><a href="" ng-click="MakeSurePayable()" role="button" data-toggle="modal">确认收款</a></td>
             </tr>
         </tbody>
     </table>
 </div>
-<div ng-include="'partials/finance/financepayment-detail.html'" ng-controller="FinaceDetailCtrl"></div>
-<!--<div ng-include="'partials/product/product-edit.html'" ng-controller="ProductEditCtrl"></div>
-<div ng-include="'partials/product/product-purchase.html'" ng-controller="ProductPurchaseCtrl"></div>-->
+<div ng-include="'partials/finance/receivables-detail.html'" ng-controller="FinaceDetailCtrl"></div>
+<div ng-include="'partials/finance/makesure-pay.html'" ng-controller="FinaceDetailCtrl"></div>

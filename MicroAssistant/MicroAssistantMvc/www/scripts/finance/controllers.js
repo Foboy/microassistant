@@ -53,6 +53,25 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
             $scope.receivableDetailInfo = [];
         });
     };
+    $scope.$on('EventMakeSurePayable', function (event, item) {
+        console.log(item);
+        $("#makesurePayBox").modal('show');
+        $scope.makeSurePay(item);
+        $scope.cancelPay();
+    });
+    $scope.makeSurePay = function (item) {
+        console.log(item);
+        $http.post($scope.urls["makeSurePay"], { PCode: item.PCode }).success(function (data) {
+            console.log(data.Data);
+            $("#makesurePayBox").modal('hide');
+        }).error(function (data, status, headers, config) {
+            console.log(data.Data);
+        })
+    };
+    $scope.cancelPay = function () {
+        $("#makesurePayBox").modal('hide');
+    };
+
     $scope.makeSureTimesReceivable = function (item)//确认分期收款
     {
         console.log(item);
