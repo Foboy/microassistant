@@ -16,5 +16,8 @@ $sitecore.urls.add("productDetail", "/ProductManagement/Production/GetProductInf
 $sitecore.urls.add("productEdit", "/ProductManagement/Production/AddProduction");
 
 
-$sitecore.urls.add("receivablesfinanceList", "/FinancialManagement/Financial/SearchReceivables");//根据企业ID获取应收款列表（token）返回 应收款列表
-$sitecore.urls.add("payablesfinanceList", "/FinancialManagement/Financial/SearchPayablesByEID");//根据企业ID获取应付款列表 （token）返回 应付款列表
+$sitecore.urls.add("receivablesfinanceList", "/FinancialManagement/Financial/SearchReceivables");//根据企业ID获取应收款列表 返回 应收款列表
+$sitecore.urls.add("payablesfinanceList", "/FinancialManagement/Financial/SearchPayablesByEID");//根据企业ID获取应付款列表 返回 应付款列表
+$sitecore.urls.add("receivablesDetail", "/FinancialManagement/Financial/GetHowToPayByEID");//应收款详情
+$sitecore.urls.add("makeSureTimesReceivable", "/FinancialManagement/Financial/ConfirmReceived");//确认收款
+
