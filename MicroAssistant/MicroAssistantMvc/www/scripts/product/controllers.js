@@ -215,7 +215,6 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
 //编辑产品
 function ProductEditCtrl($scope, $routeParams, $http, $location) {
     console.log($scope)
-
 	$scope.$on('EventEditPoduct',function(event,product){
 		console.log("EventEditPoduct");
 		console.log(product);

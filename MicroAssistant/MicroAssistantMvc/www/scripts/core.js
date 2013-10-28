@@ -23,6 +23,20 @@ $sitecore.urls.add("salesChanceList", "/MarketingManagement/Marketing/SearchMark
 $sitecore.urls.add("salesChanceVisitsList", "/MarketingManagement/Marketing/GetVisitInfo");
 $sitecore.urls.add("salesAddChanceVisits", "/MarketingManagement/Marketing/ToVisit"); 
 $sitecore.urls.add("salesRateChange", "/MarketingManagement/Marketing/EditCustomerRate");
+$sitecore.urls.add("salesChanceVisitList", "/MarketingManagement/Marketing/SearchVisitInfoList");
 
-$sitecore.urls.add("receivablesfinanceList", "/FinancialManagement/Financial/SearchReceivables");//根据企业ID获取应收款列表（token）返回 应收款列表
-$sitecore.urls.add("payablesfinanceList", "/FinancialManagement/Financial/SearchPayablesByEID");//根据企业ID获取应付款列表 （token）返回 应付款列表
+$sitecore.urls.add("receivablesfinanceList", "/FinancialManagement/Financial/SearchReceivables");//根据企业ID获取应收款列表 返回 应收款列表
+$sitecore.urls.add("payablesfinanceList", "/FinancialManagement/Financial/SearchPayablesByEID");//根据企业ID获取应付款列表 返回 应付款列表
+$sitecore.urls.add("receivablesDetail", "/FinancialManagement/Financial/GetHowToPayByEID");//应收款详情
+$sitecore.urls.add("makeSureTimesReceivable", "/FinancialManagement/Financial/ConfirmReceived");//确认收款
+$sitecore.urls.add("makeSurePay", "/FinancialManagement/Financial/ConfirmPay");//确认付款
+
+
+
+$sitecore.urls.add("SearchCustomerEntByOwnerId", "/CustomerManagement/Customer/SearchCustomerEntByOwnerId");//通过销售人员ID获取销售的企业客户
+$sitecore.urls.add("SearchCustomerPrivByOwnerId", "/CustomerManagement/Customer/SearchCustomerPrivByOwnerId");//根据用户ID查询个人客户（token）返回 个人客户列表（姓名，年龄，所属行业，所在地，联系方式）
+$sitecore.urls.add("AddOrUpdateEnterPriseClient", "/CustomerManagement/Customer/AddEntCustomer");//新增修改企业客户信息
+$sitecore.urls.add("AddOrUpdatePersonalClient", "/CustomerManagement/Customer/AddPrivateCustomer");//新增修改个人客户信息
+
+
+

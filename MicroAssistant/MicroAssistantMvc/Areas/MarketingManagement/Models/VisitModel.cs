@@ -7,6 +7,8 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Models
 {
     public class VisitModel
     {
+        public Int32 IdmarketingChance { get; set; }
+
         /// <summary>
         /// 拜访次数
         /// </summary>
