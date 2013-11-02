@@ -135,7 +135,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
         public JsonResult AddProductonDetail(int pid,int num,float price)
         {
             var Res = new JsonResult();
-            RespResult result = new RespResult();
+            AdvancedResult<ProProductonDetail> result = new AdvancedResult<ProProductonDetail>();
             ProProductonDetail ppd = new ProProductonDetail();
             try
             {
@@ -152,9 +152,11 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
                     ppd.EntId = CurrentUser.EntId;
 
                     result.Id = ProProductonDetailAccessor.Instance.Insert(ppd);
+                    result.Data = ppd;
                     if (result.Id > 0)
                     {
                         result.Error = AppError.ERROR_SUCCESS;
+                        
                         ProProduction pro = ProProductionAccessor.Instance.Get(pid);
                         ProProductionAccessor.Instance.UpdateStockCount(pid, pro.StockCount + num);
                     }
