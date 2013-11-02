@@ -201,13 +201,15 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
   
   $scope.productPurchase = function(){
 	  $scope.tabIndex=3;
-	  $http.get($sitecore.urls["productDetail"],{params:{productId:$routeParams.productId}}).success(function(data) {
-		console.log(data);
-		$scope.producta = data;
-	  }).
-	  error(function(data, status, headers, config) {
-		$scope.producta = {};
-	  });
+	  if (!$scope.stores || !$scope.stores.length || product.PId != $scope.stores[0].PId) {
+	      $http.post($sitecore.urls["productStoresList"], { pid: product.PId, pageIndex: 0, pageSize: 10 }).success(function (data) {
+	          console.log(data);
+	          $scope.stores = data.Data.Items;
+	      }).
+          error(function (data, status, headers, config) {
+              $scope.stores = {};
+          });
+	  }
   };
   
 }

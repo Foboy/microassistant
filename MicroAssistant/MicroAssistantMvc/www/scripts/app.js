@@ -16,6 +16,8 @@ function MainCtrl($scope, $routeParams, $http, $location) {
         $scope.checkpage();
     });
 
+    $scope.CurrentUser = null;
+
     $scope.checkpage = function () {
         if ($location.path().indexOf('/home') == 0) {
             $scope.page = "home";
