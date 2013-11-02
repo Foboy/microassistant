@@ -2,6 +2,7 @@
         	<div class="fBg"></div>
             <div class="fCon clearfix">
                 <i class="arrR" ng-click="hideChanceDetail()"></i>
+                <form name="salesChanceDetailForm">
             	<ul class="ul-f1">
                 	<li class="clearfix"><span class="colorBlue namS">客户类型：</span>
                         <span class="conS" ng-hide="CustomerTypeEdit">{{chance.CustomerType==1?'企业客户':'个人客户'}}</span>
@@ -40,11 +41,14 @@
                         <input type="text" ng-model="chance.Email" ng-show="EmailEdit" value="" placeholder="E-mail" class="span3">
                         <i class="editIcon" ng-click="EmailEdit=!EmailEdit"></i></li>
                     <li class="clearfix"><span class="colorBlue namS">录入时间：</span>
-                        <span class="conS" ng-hide="AddTimeEdit">{{chance.AddTime| date:'yyyy/MM/dd'}}</span>
-                        <input type="text" ng-model="chance.AddTime" ng-show="AddTimeEdit" value="" placeholder="E-mail" class="span3 form_datetime">
+                        <span class="conS" ng-hide="AddTimeEdit">{{chance.FormatAddTime}}</span>
+                        <input type="text" ng-model="chance.FormatAddTime" ng-show="AddTimeEdit" value="" class="span3 form_datetime">
                         <i class="editIcon" ng-click="AddTimeEdit=!AddTimeEdit"></i></li>
                     <li class="clearfix"><span class="conS"><a href="#">添加其他联系方式</a></span></li>
+
                 </ul>
-                <div class="redBtn clearfix"><a href="#fakelink" class="btn btn-large btn-block btn-danger">拜访该客户</a></div>
+                    </form>
+                    <a href="" class="btn btn-large btn-block btn-danger" ng-show="chanceDetailHasChanged()" ng-click="SalesChanceDetailSubmit()">保存修改</a>
+                    <a href="#fakelink" class="btn btn-large btn-block btn-danger">拜访该客户</a>
             </div>
         </div>

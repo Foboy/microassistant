@@ -138,8 +138,7 @@ namespace MicroAssistant.DataAccess
 FROM
     sys_user a
 where
-    a.ent_id = @EntId) c where c.role_id=@RoleId {0}");
-            cmdLoadSysUserByRoleId.Parameters.Add("@RoleId", MySqlDbType.Int32);
+    a.ent_id = @EntId) c  {0}");
             cmdLoadSysUserByRoleId.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
@@ -509,15 +508,17 @@ where
                 switch (roleId)
                 {
                     case 0:
-                        strsql = " or ";
+                        strsql = string.Empty;
                         break;
                     case -1:
+                        strsql = " where role_id is null ";
                         break;
-                    
+                    default:
+                        strsql = " where role_id = " + roleId;
+                        break;
                 }
                 _cmdLoadSysUserByRoleId.CommandText = string.Format(_cmdLoadSysUserByRoleId.CommandText, strsql);
                 _cmdLoadSysUserByRoleId.Parameters["@EntId"].Value = entId;
-                _cmdLoadSysUserByRoleId.Parameters["@RoleId"].Value = roleId;
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
 
