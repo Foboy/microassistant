@@ -1,7 +1,7 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/5/21 11:34:12
+ * @date: 2013/11/2 14:33:03
  */
 using System;
 using System.Collections.Generic;
@@ -33,6 +33,12 @@ namespace MicroAssistant.Meta
         public Int32 UserId
         { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Int32 EntId
+        { get; set; }
+
 
         /// <summary>
         /// 从读取器向完整实例对象赋值
@@ -43,6 +49,7 @@ namespace MicroAssistant.Meta
             this.SysRoleUserId = DBConvert.ToInt32(reader["sys_role_user_id"]);
             this.RoleId = DBConvert.ToInt32(reader["role_id"]);
             this.UserId = DBConvert.ToInt32(reader["user_id"]);
+            this.EntId = DBConvert.ToInt32(reader["ent_id"]);
             return this;
         }
     }
