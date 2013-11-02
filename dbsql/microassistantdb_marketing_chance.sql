@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `marketing_chance`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `marketing_chance` (
   `idmarketing_chance` int(11) NOT NULL AUTO_INCREMENT,
-  `chance_type` int(11) DEFAULT '0' COMMENT '机会类型分为：0:新客户机会1:老客户机会；默认新客户机会',
+  `chance_type` int(11) DEFAULT '1' COMMENT '机会类型分为：1:新客户机会2:老客户机会；默认新客户机会',
   `customer_type` int(11) DEFAULT '1' COMMENT '客户类型分为：1:企业客户2:个人客户；默认为企业客户',
   `contact_name` varchar(45) DEFAULT NULL,
   `remark` varchar(100) DEFAULT NULL,
@@ -38,6 +38,7 @@ CREATE TABLE `marketing_chance` (
   `rate` int(11) DEFAULT NULL COMMENT '盈率',
   `ent_id` int(11) DEFAULT NULL COMMENT '所属企业ID',
   `user_id` int(11) DEFAULT NULL COMMENT '销售人员ID',
+  `IsVisit` int(11) NOT NULL DEFAULT '1' COMMENT '1:未拜访 2：已拜访',
   PRIMARY KEY (`idmarketing_chance`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='销售机会表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -60,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-21 20:27:08
+-- Dump completed on 2013-11-02 19:13:57

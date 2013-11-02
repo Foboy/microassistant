@@ -30,7 +30,7 @@ CREATE TABLE `sys_function` (
   `father_id` int(11) NOT NULL,
   `mark` varchar(200) DEFAULT NULL,
   `function_url` varchar(100) DEFAULT NULL,
-  `function_code` varchar(45) DEFAULT NULL COMMENT '后期用,每两位代表一级，共四位数字编码 100101',
+  `function_code` varchar(45) DEFAULT NULL COMMENT '后期用,第一级就是模块 用两位编码 例子：10 ，第二级是子模块 4位 例子：1001， 第三级是页面 6位 例子 100101 第四级是按钮 8位 例子 10010101 所有的模块页面按钮必须有编码，系统设置默认角色赋予默认权限\n',
   `level` int(11) NOT NULL,
   PRIMARY KEY (`idsys_function`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-21 20:27:12
+-- Dump completed on 2013-11-02 19:14:01
