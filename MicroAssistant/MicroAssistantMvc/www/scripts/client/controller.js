@@ -45,19 +45,11 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
             $scope.AddEnterpriseSubmit = function () {
                 if ($scope.AddEnterpriseForm.$valid) {
                     $scope.showerror = false;
-                    $http.post($sitecore.urls["AddOrUpdateEnterPriseClient"], { entid: $scope.EnterpriseItem.CustomerEntId, entName: $scope.EnterpriseItem.EntName, industy: $scope.EnterpriseItem.Industy, contactUsername: $scope.EnterpriseItem.ContactUsername, contactMobile: $scope.EnterpriseItem.ContactMobile, phone: $scope.EnterpriseItem.ContactPhone, email: $scope.EnterpriseItem.ContactEmail, qq: '', address: $scope.EnterpriseItem.Address, Detail: $scope.EnterpriseItem.Detail }).success(function (data) {
+                    $http.post($sitecore.urls["AddOrUpdateEnterPriseClient"], { customerEntId: $scope.EnterpriseItem.CustomerEntId, entName: $scope.EnterpriseItem.EntName, industy: $scope.EnterpriseItem.Industy, contactUsername: $scope.EnterpriseItem.ContactUsername, contactMobile: $scope.EnterpriseItem.ContactMobile, phone: $scope.EnterpriseItem.ContactPhone, email: $scope.EnterpriseItem.ContactEmail, qq: '', address: $scope.EnterpriseItem.Address, Detail: $scope.EnterpriseItem.Detail }).success(function (data) {
                         if (data.Error) {
                             alert(data.ErrorMessage);
                         }
                         else {
-                            //if (from && angular.isArray(from.stores)) {
-                            //    $scope.AddedPurchase.PId = data.Id;
-                            //    from.stores.push(angular.copy($scope.AddedPurchase));
-                            //}
-                            //if (from && from.product) {
-                            //    from.product.StockCount = (from.product.StockCount || 0) + $scope.AddedPurchase.PNum;
-                            //}
-                           
                             $("#AddEnterpriseBox").modal('hide');
                             $scope.loadCurrentSortList();
                         }
