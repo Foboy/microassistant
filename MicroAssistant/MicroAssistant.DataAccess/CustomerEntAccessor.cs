@@ -396,7 +396,7 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new CustomerEnt().BuildSampleEntity(reader));
                 }
-                returnValue.RecordsCount = (int)_cmdSearchCustomerEntByOwnerIdCount.ExecuteScalar();
+                returnValue.RecordsCount = Convert.ToInt32(_cmdSearchCustomerEntByOwnerIdCount.ExecuteScalar());
             }
             finally
             {
