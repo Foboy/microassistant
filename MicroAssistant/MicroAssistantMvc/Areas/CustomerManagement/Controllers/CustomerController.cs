@@ -146,7 +146,6 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
-
             int _pivid = 0;
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
