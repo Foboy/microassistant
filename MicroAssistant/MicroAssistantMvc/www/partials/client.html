@@ -32,7 +32,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="enterpriseclientItem in enterpriseclients">
-                <td>1</td>
+                <td>{{$index+1}}</td>
                 <td class="colorBlue">{{enterpriseclientItem.EntName}}</td>
                 <td class="colorBlue">{{enterpriseclientItem.Industy}}</td>
                 <td>{{enterpriseclientItem.ContactUsername}}</td>
@@ -41,7 +41,7 @@
                     <p>{{enterpriseclientItem.ContactPhone}}</p>
                 </td>
                 <td>{{enterpriseclientItem.Address}}</td>
-                <td><a href="#myModal" role="button" data-toggle="modal">查看</a>|<a href="#myModal" role="button" data-toggle="modal">编辑</a></td>
+                <td><a href="#myModal" role="button" data-toggle="modal">查看</a>|<a href="" ng-click="ShowAddEnterpriseForm()" role="button" data-toggle="modal">编辑</a></td>
             </tr>
         </tbody>
     </table>
@@ -73,7 +73,7 @@
                   <td class="colorBlue">{{personclientItem.Industy}}</td>                  
                   <td><p>{{personclientItem.Mobile}}</p><p>{{personclientItem.Email}}</p></td>
                   <td>{{personclientItem.Address}}</td>
-                  <td><a href="#myModal" role="button" data-toggle="modal">查看</a>|<a href="#myModal" role="button" data-toggle="modal">编辑</a></td>
+                  <td><a href="#myModal" role="button" data-toggle="modal">查看</a>|<a href="" ng-click="ShowAddPersonalForm()" role="button" data-toggle="modal">编辑</a></td>
                 </tr>
               </tbody>
             </table>

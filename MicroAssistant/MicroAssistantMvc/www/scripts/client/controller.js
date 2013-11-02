@@ -5,14 +5,14 @@
     $scope.loadCurrentSortList = function () {
         switch ($scope.sorts) {
             case 'enterprise'://获取企业用户
-                $http.post($sitecore.urls["SearchCustomerEntByOwnerId"]).success(function (data) {
+                $http.post($sitecore.urls["SearchCustomerEntByOwnerId"], { pageIndex: $routeParams.pageIndex || 0, pageSize: 20 }).success(function (data) {
                     $scope.enterpriseclients = data.Data.Items;
                 }).error(function (data, status, headers, config) {
                     $scope.enterpriseclients = [];
                 });
                 break;
             case 'personal'://获取个人用户
-                $http.post($sitecore.urls["SearchCustomerPrivByOwnerId"]).success(function (data) {
+                $http.post($sitecore.urls["SearchCustomerPrivByOwnerId"], { pageIndex: $routeParams.pageIndex || 0, pageSize: 20 }).success(function (data) {
                     $scope.personalclients = data.Data.Items;
                 }).error(function (data, status, headers, config) {
                     $scope.personalclients = [];
@@ -25,7 +25,7 @@
         $scope.$broadcast('EventAddEnterprise', this.enterpriseclientItem);
     };
     $scope.ShowAddPersonalForm = function () {
-        $scope.$broadcast('EventAddPersonal', this);
+        $scope.$broadcast('EventAddPersonal', this.personclientItem);
     }
 }
 function AddClientCtrl($scope, $routeParams, $http, $location) {
@@ -34,41 +34,24 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
             var formdata;
             $scope.$on("EventAddEnterprise", function (event, data) {
                 formdata = data;
-                if (form) {
+                if (formdata) {
                     $scope.EnterpriseItem = angular.copy(formdata);
-
                 }
                 else {
                     $scope.EnterpriseItem = { CustomerEntId: 0 };
                 }
-                //if (product) {
-                //    $scope.EditProduct = angular.copy(product);
-                //    if (angular.isArray($scope.PTypes)) {
-                //        angular.forEach($scope.PTypes, function (value) {
-                //            if (value.PTypeId == product.PTypeId)
-                //                $scope.EditProduct.PType = value;
-                //        });
-                //    }
-                //}
-               
                 $("#AddEnterpriseBox").modal('show');
             });
             $scope.AddEnterpriseSubmit = function () {
                 if ($scope.AddEnterpriseForm.$valid) {
                     $scope.showerror = false;
-                    $http.post($sitecore.urls["AddOrUpdateEnterPriseClient"], { entid: $scope.EnterpriseItem.CustomerEntId, entName: $scope.EnterpriseItem.EntName, industy: $scope.EnterpriseItem.Industy, contactUsername: $scope.EnterpriseItem.ContactUsername, contactMobile: $scope.EnterpriseItem.ContactMobile, phone: $scope.EnterpriseItem.ContactPhone, email: $scope.EnterpriseItem.ContactEmail, qq: '', address: $scope.EnterpriseItem.Address, Detail: $scope.EnterpriseItem.Detail }).success(function (data) {
+                    $http.post($sitecore.urls["AddOrUpdateEnterPriseClient"], { customerEntId: $scope.EnterpriseItem.CustomerEntId, entName: $scope.EnterpriseItem.EntName, industy: $scope.EnterpriseItem.Industy, contactUsername: $scope.EnterpriseItem.ContactUsername, contactMobile: $scope.EnterpriseItem.ContactMobile, phone: $scope.EnterpriseItem.ContactPhone, email: $scope.EnterpriseItem.ContactEmail, qq: '', address: $scope.EnterpriseItem.Address, Detail: $scope.EnterpriseItem.Detail }).success(function (data) {
                         if (data.Error) {
                             alert(data.ErrorMessage);
                         }
                         else {
-                            //if (from && angular.isArray(from.stores)) {
-                            //    $scope.AddedPurchase.PId = data.Id;
-                            //    from.stores.push(angular.copy($scope.AddedPurchase));
-                            //}
-                            //if (from && from.product) {
-                            //    from.product.StockCount = (from.product.StockCount || 0) + $scope.AddedPurchase.PNum;
-                            //}
                             $("#AddEnterpriseBox").modal('hide');
+                            $scope.loadCurrentSortList();
                         }
                     }).
                     error(function (data, status, headers, config) {
@@ -81,27 +64,27 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
             };
             break;
         case 'personal':
-            var form;
-            $scope.$on("EventAddPersonal", function (event, formscope) {
+            var formdata;
+            $scope.$on("EventAddPersonal", function (event, data) {
+                formdata = data;
+                if (formdata) {
+                    $scope.EnterpriseItem = angular.copy(formdata);
+                }
+                else {
+                    $scope.EnterpriseItem = { CustomerEntId: 0 };
+                }
                 $("#AddPersonalBox").modal('show');
             });
             $scope.AddPersonalSumbit = function () {
                 if ($scope.AddentPersonalForm.$valid) {
                     $scope.showerror = false;
                     $http.post($sitecore.urls["productAddStores"], { pid: from.product.PId, num: $scope.AddedPurchase.PNum, price: $scope.AddedPurchase.Price }).success(function (data) {
-                        
                         if (data.Error) {
                             alert(data.ErrorMessage);
                         }
                         else {
-                            //if (from && angular.isArray(from.stores)) {
-                            //    $scope.AddedPurchase.PId = data.Id;
-                            //    from.stores.push(angular.copy($scope.AddedPurchase));
-                            //}
-                            //if (from && from.product) {
-                            //    from.product.StockCount = (from.product.StockCount || 0) + $scope.AddedPurchase.PNum;
-                            //}
-                            //$('#addPurchaseModal').modal('hide');
+                            $("#AddPersonalBox").modal('hide');
+                            $scope.loadCurrentSortList();
                         }
                     }).
                     error(function (data, status, headers, config) {

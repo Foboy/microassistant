@@ -30,6 +30,8 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdGetSysUserByAcountAndPwd;
         private MySqlCommand cmdUpdateSysUserEntId;
 
+        private MySqlCommand cmdLoadSysUserByRoleId;
+
         private SysUserAccessor()
         {
             #region cmdInsertSysUser
@@ -120,6 +122,25 @@ namespace MicroAssistant.DataAccess
             cmdGetSysUserByAcountAndPwd = new MySqlCommand("  select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_account = @UserAccount and pwd = @Pwd and is_enable=1");
             cmdGetSysUserByAcountAndPwd.Parameters.Add("@UserAccount", MySqlDbType.String);
             cmdGetSysUserByAcountAndPwd.Parameters.Add("@Pwd", MySqlDbType.String);
+
+            #endregion
+
+            #region cmdLoadSysUserByRoleId
+
+            cmdLoadSysUserByRoleId = new MySqlCommand(@"select * from (SELECT 
+    a . *,
+    (select 
+            b.role_id
+        from
+            sys_role_user b
+        where
+            b.user_id =a.user_id and b.ent_id = @EntId ) role_id
+FROM
+    sys_user a
+where
+    a.ent_id = @EntId) c where c.role_id=@RoleId {0}");
+            cmdLoadSysUserByRoleId.Parameters.Add("@RoleId", MySqlDbType.Int32);
+            cmdLoadSysUserByRoleId.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
         }
@@ -473,6 +494,51 @@ namespace MicroAssistant.DataAccess
             return returnValue;
 
         }
+
+        /// <summary>
+        /// 获取全部数据
+        /// </summary>
+        public List<SysUser> LoadSysUserByRoleId(int entId,int roleId)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdLoadSysUserByRoleId = cmdLoadSysUserByRoleId.Clone() as MySqlCommand;
+            _cmdLoadSysUserByRoleId.Connection = oc; List<SysUser> returnValue = new List<SysUser>();
+            try
+            {
+                string strsql = string.Empty;
+                switch (roleId)
+                {
+                    case 0:
+                        strsql = " or ";
+                        break;
+                    case -1:
+                        break;
+                    
+                }
+                _cmdLoadSysUserByRoleId.CommandText = string.Format(_cmdLoadSysUserByRoleId.CommandText, strsql);
+                _cmdLoadSysUserByRoleId.Parameters["@EntId"].Value = entId;
+                _cmdLoadSysUserByRoleId.Parameters["@RoleId"].Value = roleId;
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                MySqlDataReader reader = _cmdLoadSysUserByRoleId.ExecuteReader();
+                while (reader.Read())
+                {
+                    returnValue.Add(new SysUser().BuildUserRoleEntity(reader));
+                }
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdLoadSysUserByRoleId.Dispose();
+                _cmdLoadSysUserByRoleId = null;
+                GC.Collect();
+            }
+            return returnValue;
+        }
+
         private static readonly SysUserAccessor instance = new SysUserAccessor();
         public static SysUserAccessor Instance
         {

@@ -376,6 +376,7 @@ namespace MicroAssistant.DataAccess
         public PageEntity<CustomerPrivate> SearchCustomerPrivByOwnerId(int ownerid, int pageIndex, int pageSize)
         {
             MySqlConnection oc = ConnectManager.Create();
+            MySqlConnection oc1 = ConnectManager.Create();
             MySqlCommand _cmdSearchCustomerPrivByOwnerId = cmdSearchCustomerPrivByOwnerId.Clone() as MySqlCommand;
             _cmdSearchCustomerPrivByOwnerId.Connection = oc;
             MySqlCommand _cmdSearchCustomerPrivByOwnerIdCount = cmdSearchCustomerPrivByOwnerIdCount.Clone() as MySqlCommand;
@@ -397,7 +398,7 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new CustomerPrivate().BuildSampleEntity(reader));
                 }
-                returnValue.RecordsCount = (int)_cmdSearchCustomerPrivByOwnerIdCount.ExecuteScalar();
+                returnValue.RecordsCount = Convert.ToInt32(_cmdSearchCustomerPrivByOwnerIdCount.ExecuteScalar());
             }
             finally
             {
