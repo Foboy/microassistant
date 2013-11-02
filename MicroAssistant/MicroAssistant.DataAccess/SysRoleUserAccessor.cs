@@ -27,6 +27,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdGetSysRoleUserCount;
         private MySqlCommand cmdGetSysRoleUser;
 
+
         private SysRoleUserAccessor()
         {
             #region cmdInsertSysRoleUser

@@ -86,11 +86,11 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             return Res;
         }
         //添加修改企业客户（企业名称，所属行业，联系人{姓名，手机，座机，email,qq}，企业地址，企业资料,客户ID,token）
-        public JsonResult AddEntCustomer(int entid, string entName, string industy, string contactUsername, string contactMobile, string phone, string email, string qq, string address, string Detail)
+        public JsonResult AddEntCustomer(int customerEntId, string entName, string industy, string contactUsername, string contactMobile, string phone, string email, string qq, string address, string Detail)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
-            int _entid = 0;
+            int _customerEntId = 0;
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
@@ -108,15 +108,16 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
                     ce.ContactEmail = email;
                     ce.ContactQq = qq;
                     ce.Detail = Detail;
-                    if (entid == 0)
+                    ce.EntId = CurrentUser.EntId;
+                    if (customerEntId == 0)
                     {
-                        _entid = CustomerEntAccessor.Instance.Insert(ce);
+                        _customerEntId = CustomerEntAccessor.Instance.Insert(ce);
                     }
                     else
                     {
-                        _entid = entid;
+                        _customerEntId = customerEntId;
 
-                        ce.EntId = _entid;
+                        ce.CustomerEntId = _customerEntId;
                         CustomerEntAccessor.Instance.Update(ce);
                     }
                     result.Error = AppError.ERROR_SUCCESS;
