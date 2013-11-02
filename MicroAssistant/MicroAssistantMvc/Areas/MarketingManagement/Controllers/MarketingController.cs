@@ -87,7 +87,10 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                     }
                     int i = MarketingChanceAccessor.Instance.Insert(chance);
                     if (i > 0)
+                    {
+                        result.Id = i;
                         result.Error = AppError.ERROR_SUCCESS;
+                    }
                     else
                         result.Error = AppError.ERROR_FAILED;
                 }
@@ -266,6 +269,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
                     PageEntity<MarketingVisit> returnValue = new PageEntity<MarketingVisit>();
+                    result.Data = new SingleVisitListModel();
                   result.Data.Vlist =  MarketingVisitAccessor.Instance.Search(cid, pageIndex, pageSize);
                   result.Data.Rate = MarketingChanceAccessor.Instance.Get(cid).Rate;
                     result.Error = AppError.ERROR_SUCCESS;
@@ -297,6 +301,8 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                 {
                    PageEntity<MarketingChance> clist = MarketingChanceAccessor.Instance.Search(CurrentUser.UserId, pageIndex, pageSize);
                    result.Data.RecordsCount = clist.RecordsCount;
+                   result.Data.PageIndex = pageIndex;
+                   result.Data.PageSize = pageSize;
                    List<MarketingVisit> mvlist = new List<MarketingVisit>();
                    for (int i = 0; i < clist.Items.Count; i++)
                    {
@@ -314,10 +320,12 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                       {
                           vm.VisitNum = 0;
                       }
+                      vlist.Add(vm);
                       
                    }
+                    
                     result.Error = AppError.ERROR_SUCCESS;
-                    //result.Data = con;
+                    result.Data.Items = vlist;
                 }
                 else
                 {

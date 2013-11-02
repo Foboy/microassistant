@@ -293,8 +293,12 @@
     <Content Include="www\js\uploadify\uploadify.extention.js" />
     <Content Include="www\js\uploadify\uploadify.swf" />
     <Content Include="www\login.html" />
+    <Content Include="www\partials\client.html" />
+    <Content Include="www\partials\client\client-addenterprise.html" />
+    <Content Include="www\partials\client\client-addpersonal.html" />
     <Content Include="www\partials\finance.html" />
-    <Content Include="www\partials\finance\financepayment-detail.html" />
+    <Content Include="www\partials\finance\makesure-pay.html" />
+    <Content Include="www\partials\finance\receivables-detail.html" />
     <Content Include="www\partials\home.html" />
     <Content Include="www\partials\others\locationselectmap.html" />
     <Content Include="www\partials\product.html" />
@@ -304,10 +308,12 @@
     <Content Include="www\partials\sales.html" />
     <Content Include="www\partials\sales\after-detail.html" />
     <Content Include="www\partials\sales\chance-detail.html" />
+    <Content Include="www\partials\sales\chance-edit.html" />
     <Content Include="www\partials\sales\contract-detail.html" />
     <Content Include="www\partials\sales\visit-detail.html" />
     <Content Include="www\register.html" />
     <Content Include="www\scripts\app.js" />
+    <Content Include="www\scripts\client\controller.js" />
     <Content Include="www\scripts\core.js" />
     <Content Include="www\scripts\finance\controllers.js" />
     <Content Include="www\scripts\home\controllers.js" />

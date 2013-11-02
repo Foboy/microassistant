@@ -17,23 +17,24 @@
         	<li><span class="span1">产品名称：</span><span><input type="text" name="PName" ng-model="EditProduct.PName" ng-required="true" placeholder="请输入产品名称" class="span3"></span></li>
             <li><span class="span1">产品分类：</span><span>
             <select class="span3" name="PType" ng-model="EditProduct.PType" ng-options="t.PTypeName for t in PTypes " ng-required="true">
+                <option value="">选择分类</option>
 			</select>
 				</span></li>
             <li><span class="span1">单位：</span><span>
 <label class="checkbox-inline">
-  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" ng-value="个" ng-checked="true"> 个&nbsp;
+  <input type="radio" ng-model="EditProduct.Unit" value="个" /> 个&nbsp;
 </label>
 <label class="checkbox-inline">
-  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" ng-value="套"> 套&nbsp;
+  <input type="radio" ng-model="EditProduct.Unit" value="套" /> 套&nbsp;
 </label>
 <label class="checkbox-inline">
-  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" ng-value="瓶"> 瓶&nbsp;
+  <input type="radio" ng-model="EditProduct.Unit" value="瓶" /> 瓶&nbsp;
 </label>
 <label class="checkbox-inline">
-  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" ng-value="吨"> 吨&nbsp;
+  <input type="radio" ng-model="EditProduct.Unit" value="吨" /> 吨&nbsp;
 </label>
 <label class="checkbox-inline">
-  <input type="radio" name="optionsRadios" ng-model="EditProduct.Unit" ng-value="袋"> 袋
+  <input type="radio" ng-model="EditProduct.Unit" value="袋" /> 袋
 </label>
 				</span></li>
             <li><span class="span1">产品描述：</span><span><textarea rows="3" name="PInfo" ng-model="EditProduct.PInfo" ng-required="true" placeholder="请输入产品描述" class="span3"></textarea></span></li>

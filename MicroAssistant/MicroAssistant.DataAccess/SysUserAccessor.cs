@@ -48,6 +48,7 @@ namespace MicroAssistant.DataAccess
             cmdInsertSysUser.Parameters.Add("@Type", MySqlDbType.Int32);
             cmdInsertSysUser.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
+
             #region cmdUpdateSysUserEntId
 
             cmdUpdateSysUserEntId = new MySqlCommand(" update sys_user set ent_id = @EntId where user_id = @UserId");

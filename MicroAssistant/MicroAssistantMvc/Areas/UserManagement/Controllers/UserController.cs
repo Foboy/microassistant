@@ -45,7 +45,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 SysUser user = new SysUser();
                 user.UserName = entName;
                 user.UserAccount = account;
-                user.Pwd = pwd;
+                user.Pwd = SecurityHelper.MD5(pwd);
                 user.Email = account;
                 user.CreateTime = DateTime.Now;
                 user.EndTime = DateTime.Now.AddDays(90);
@@ -96,7 +96,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 SysUser user = new SysUser();
                 user.UserAccount = account;
                 user.UserName = username;
-                user.Pwd = pwd;
+                user.Pwd = SecurityHelper.MD5(pwd);
                 user.Email = account;
                 user.EntId = entId;
                 user.CreateTime = DateTime.Now;
@@ -184,7 +184,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             try
             {
                 SysUser user = null;
-                user = SysUserAccessor.Instance.GetSysUserByAcountAndPwd(account.Trim(), pwd.Trim());
+                user = SysUserAccessor.Instance.GetSysUserByAcountAndPwd(account.Trim(), SecurityHelper.MD5(pwd.Trim()));
                 if (user != null)
                 {
                     if (user.IsEnable == 2)
@@ -407,10 +407,100 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             return Res;
         }
 
+        //修改邮箱
+        //修改密码
+        //用户时间轴
+        //员工管理
 
-        public RespResult UpdatePwd(string oldpwd, string newpwd, string token)
+        /// <summary>
+        /// 修改用户密码
+        /// </summary>
+        /// <param name="oldpwd"></param>
+        /// <param name="newpwd"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public JsonResult UpdatePwd(string oldpwd, string newpwd, string token)
         {
-            throw new NotImplementedException();
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                        SysUser olduser = SysUserAccessor.Instance.Get(CurrentUser.UserId);
+
+                        if (SecurityHelper.MD5(oldpwd) != olduser.Pwd)
+                        {
+                            result.Error = AppError.ERROR_FAILED;
+                        }
+                        else
+                        {
+                            olduser.Pwd = SecurityHelper.MD5(newpwd);
+
+                            SysUserAccessor.Instance.Update(olduser);
+                            result.Error = AppError.ERROR_SUCCESS;
+                        }
+
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
+        /// <summary>
+        /// 修改用户邮箱
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
+        public JsonResult UpdateEmail(string email, string pwd)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                    SysUser olduser = SysUserAccessor.Instance.Get(CurrentUser.UserId);
+
+                    if (SecurityHelper.MD5(pwd) != olduser.Pwd)
+                    {
+                        result.Error = AppError.ERROR_FAILED;
+                    }
+                    else if (!CheckUserAccout(email).Data)
+                    {
+                        result.Error = AppError.ERROR_FAILED;
+                    }else
+                    {
+                        olduser.Email = email;
+                        SysUserAccessor.Instance.Update(olduser);
+                        result.Error = AppError.ERROR_SUCCESS;
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
         }
 
         public RespResult GetOldPwd(string token)
