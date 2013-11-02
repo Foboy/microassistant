@@ -356,7 +356,7 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new <%= FormatStr(GetTableName(SourceTable.Name)) %>().BuildSampleEntity(reader));
                 }
-                returnValue.RecordsCount = (int)_cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>Count.ExecuteScalar();
+                returnValue.RecordsCount = Convert.ToInt32(_cmdGet<%= FormatStr(GetTableName(SourceTable.Name)) %>Count.ExecuteScalar());
             }
             finally
             {

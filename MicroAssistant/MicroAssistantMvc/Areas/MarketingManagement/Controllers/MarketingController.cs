@@ -126,7 +126,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
                     PageEntity<MarketingChance> returnValue = new PageEntity<MarketingChance>();
-                   returnValue = MarketingChanceAccessor.Instance.Search(CurrentUser.UserId, pageIndex, pageSize);
+                    returnValue = MarketingChanceAccessor.Instance.Search(1, CurrentUser.UserId, pageIndex, pageSize);//1:未拜访 2：已拜访
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = returnValue;
                 }
@@ -238,10 +238,14 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                     mv.VisitTime=DateTime.Now;
                     mv.VisitType=visitType;
                    int i = MarketingVisitAccessor.Instance.Insert(mv);
-                    if (i > 0)
-                        result.Error = AppError.ERROR_SUCCESS;
-                    else
-                        result.Error = AppError.ERROR_FAILED;
+
+                   if (i > 0)
+                   {
+                       MarketingChanceAccessor.Instance.UpdateisVisit(cid, 2);
+                       result.Error = AppError.ERROR_SUCCESS;
+                   }
+                   else
+                       result.Error = AppError.ERROR_FAILED;
                 }
                 else
                 {
@@ -299,7 +303,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                   PageEntity<MarketingChance> clist = MarketingChanceAccessor.Instance.Search(CurrentUser.UserId, pageIndex, pageSize);
+                   PageEntity<MarketingChance> clist = MarketingChanceAccessor.Instance.Search(0,CurrentUser.UserId, pageIndex, pageSize);
                    result.Data.RecordsCount = clist.RecordsCount;
                    result.Data.PageIndex = pageIndex;
                    result.Data.PageSize = pageSize;

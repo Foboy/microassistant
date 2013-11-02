@@ -263,7 +263,7 @@ where
                 {
                     returnValue.Items.Add(new SysRole().BuildSampleEntity(reader));
                 }
-                returnValue.RecordsCount = (int)_cmdGetSysRoleCount.ExecuteScalar();
+                returnValue.RecordsCount = Convert.ToInt32(_cmdGetSysRoleCount.ExecuteScalar());
             }
             finally
             {
