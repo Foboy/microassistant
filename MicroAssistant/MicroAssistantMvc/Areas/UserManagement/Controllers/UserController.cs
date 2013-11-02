@@ -328,7 +328,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="user">修改用户名，性别，密码，地址，qq，手机</param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public JsonResult EditeUserInfo(string username,string sex,string age)
+        public JsonResult EditeUserInfo(string username,int sex,int age)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -344,6 +344,17 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     if (userid > 0)
                     {
                         SysUser olduser = SysUserAccessor.Instance.Get(userid);
+                        olduser.UserName = username;
+                        olduser.Sex = sex;
+                        olduser.Birthday = DateTime.Now.AddYears(-age);
+                        //olduser.Pwd = user.Pwd;
+                        //olduser.Province = user.Province;
+                        //olduser.City = user.City;
+                        //olduser.County = user.County;
+                        //olduser.Street = user.Street;
+                        //olduser.Mobile = user.Mobile;
+                        //olduser.Qq = user.Qq;
+
 
                         //SysUser olduser = SysUserAccessor.Instance.Get(userid, string.Empty, string.Empty, StateType.Ignore);
                         //if (olduser.UserAccount != user.UserAccount)

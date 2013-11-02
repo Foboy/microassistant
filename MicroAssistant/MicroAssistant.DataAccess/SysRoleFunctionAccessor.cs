@@ -216,7 +216,7 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new SysRoleFunction().BuildSampleEntity(reader));
                 }
-                returnValue.RecordsCount = (int)_cmdGetSysRoleFunctionCount.ExecuteScalar();
+                returnValue.RecordsCount = Convert.ToInt32(_cmdGetSysRoleFunctionCount.ExecuteScalar());
             }
             finally
             {
