@@ -32,7 +32,7 @@
     }
 }
 function AddClientCtrl($scope, $routeParams, $http, $location) {
-    switch (scop.sorts) {
+    switch ($scope.sorts) {
         case 'enterprise':
             var form;
             $scope.$on("EventAddEnterprise", function (event, formscope) {
