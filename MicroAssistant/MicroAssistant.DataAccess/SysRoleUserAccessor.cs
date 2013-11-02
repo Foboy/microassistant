@@ -41,11 +41,10 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateSysRoleUser
 
-            cmdUpdateSysRoleUser = new MySqlCommand(" update sys_role_user set role_id = @RoleId,user_id = @UserId,ent_id = @EntId where sys_role_user_id = @SysRoleUserId");
-            cmdUpdateSysRoleUser.Parameters.Add("@SysRoleUserId", MySqlDbType.Int32);
+            cmdUpdateSysRoleUser = new MySqlCommand(" update sys_role_user set role_id = @RoleId where user_id = @UserId");
+        
             cmdUpdateSysRoleUser.Parameters.Add("@RoleId", MySqlDbType.Int32);
             cmdUpdateSysRoleUser.Parameters.Add("@UserId", MySqlDbType.Int32);
-            cmdUpdateSysRoleUser.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
 
@@ -152,7 +151,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="e">修改后的数据实体对象</param>
         /// <para>数据对应的主键必须在实例中设置</para>
         /// </summary>
-        public void Update(SysRoleUser e)
+        public void UpdateUserRole(int userId, int roleId)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdUpdateSysRoleUser = cmdUpdateSysRoleUser.Clone() as MySqlCommand;
@@ -163,10 +162,8 @@ namespace MicroAssistant.DataAccess
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
 
-                _cmdUpdateSysRoleUser.Parameters["@SysRoleUserId"].Value = e.SysRoleUserId;
-                _cmdUpdateSysRoleUser.Parameters["@RoleId"].Value = e.RoleId;
-                _cmdUpdateSysRoleUser.Parameters["@UserId"].Value = e.UserId;
-                _cmdUpdateSysRoleUser.Parameters["@EntId"].Value = e.EntId;
+                _cmdUpdateSysRoleUser.Parameters["@RoleId"].Value = roleId;
+                _cmdUpdateSysRoleUser.Parameters["@UserId"].Value = userId;
 
                 _cmdUpdateSysRoleUser.ExecuteNonQuery();
 

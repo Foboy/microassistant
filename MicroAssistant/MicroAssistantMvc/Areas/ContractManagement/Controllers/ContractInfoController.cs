@@ -25,7 +25,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult GetContractInfoByEID()
+        public JsonResult GetContractInfoByEID(int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ContractInfo>> result = new AdvancedResult<PageEntity<ContractInfo>>();
@@ -35,7 +35,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                 try
                 {
                     PageEntity<ContractInfo> list = new PageEntity<ContractInfo>();
-                    list = ContractInfoAccessor.Instance.Search(ownerid,0,9999);
+                    list = ContractInfoAccessor.Instance.Search(ownerid, pageIndex, pageSize);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = list;
 

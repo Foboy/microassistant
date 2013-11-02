@@ -319,9 +319,12 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             return Res;
         }
 
-//通过权限ID获取用户信息 返回 用户列表（账号，姓名，sex，头像，手机号，入职时间，权限ID）
-
-        public JsonResult SearchUserListByRoleId()
+        /// <summary>
+        /// 通过权限ID获取用户信息 返回 用户列表（账号，姓名，sex，头像，手机号，入职时间，权限ID）
+        /// </summary>
+        /// <param name="roleId">0获取全部，-1 获取未审核用户</param>
+        /// <returns></returns>
+        public JsonResult SearchUserListByRoleId(int roleId)
         {
             var Res = new JsonResult();
             AdvancedResult<List<SysUser>> result = new AdvancedResult<List<SysUser>>();
@@ -332,7 +335,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
 
-                    //userlist = SysRoleAccessor.Instance.LoadEntRole(CurrentUser.EntId);
+                    userlist = SysUserAccessor.Instance.LoadSysUserByRoleId(CurrentUser.EntId, roleId);
 
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = userlist;
@@ -356,7 +359,31 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
 
 //根据用户ID修改用户权限
 
-
+        public JsonResult UpdateUserRole(int userId, int roleId)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+                if (CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    SysRoleUserAccessor.Instance.UpdateUserRole(userId, roleId);
+                    result.Error = AppError.ERROR_SUCCESS;
+                }
+                else
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
 
 
         #endregion
