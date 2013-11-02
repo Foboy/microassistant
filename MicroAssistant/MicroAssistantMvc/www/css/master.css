@@ -37,7 +37,7 @@ a:hover{text-decoration:underline;}
 .flat-l{float:left;}
 .flat-r{float:right;}
 /*===  图标样式 ===*/
-.homeIcon,.peopleIcon,.askIcon,.arrowD,.pcIcon,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon,.boy-icon,.girl-icon{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
+.homeIcon,.peopleIcon,.askIcon,.arrowD,.pcIcon,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon,.boy-icon,.girl-icon,.b-i,.g-i{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
 .pcIcon{background-position:-60px -139px; width:29px; height:27px;}
 .homeIcon{background-position:-41px -128px; width:35px; height:33px;}
 .homeIcon:hover{background-position:0 -128px;}
@@ -61,8 +61,10 @@ a:hover{text-decoration:underline;}
 .textIcon{background-position:-152px -288px; width:11px; height:15px;}
 .downloadIcon{background-position:-176px -284px; width:15px; height:13px; cursor:pointer;}
 .drawIcon{background-position:-178px -347px; width:31px; height:24px;}
-.boy-icon{background-position:-102px -513px; width:22px; height:26px;}
-.boy-icon{background-position:-101px -550px; width:25px; height:24px;}
+.boy-icon{background-position:-99px -546px; width:16px; height:19px;}
+.girl-icon{background-position:-99px -509px; width:18px; height:22px;}
+.b-i{background-position:-96px -574px; width:9px; height:10px;}
+.g-i{background-position:-96px -588px; width:10px; height:12px;}
 /*===  图标样式 END ===*/
 
 
@@ -182,7 +184,7 @@ a:hover{text-decoration:underline;}
 .tablePad table tr td.colorGreen{font-size:12px; padding-left:15px;}
 .tablePad table tr td .t-himg{width:40px; height:40px; position:relative;}
 .tablePad table tr td .t-himg img{width:40px; height:40px;}
-.tablePad table tr td .t-himg i{position:absolute; right:0; bottom:0; color:#333333; background:#FFFFFF; font-size:12px; width:12px; height:12px; line-height:12px;}
+.tablePad table tr td .t-himg i{position:absolute; right:0; bottom:0; color:#333333; background-color:#f5f5f5; font-size:12px; line-height:12px;}
 /*=== 产品详情页面 ===*/
 .titleStyle{color:#333333; font-size:16px; height:30px; line-height:30px;}
 .goodsInfo{margin:40px 20px 0 20px;}
@@ -387,14 +389,14 @@ a:hover{text-decoration:underline;}
 .staffCon{float:left; width:960px;}
 .staffCon .searchBox{padding:15px 0;}
 
-.peop-box{width:200px; height:60px; background:#f5f5f5; padding:10px; position:relative; z-index:9; font-size:14px; margin:10px; float:left;}
+.peop-box{width:200px; height:65px; background:#f5f5f5; padding:10px; position:relative; z-index:9; font-size:14px; margin:10px; float:left;}
 .peop-box img{border-radius: 40px;height: 60px;width: 60px; float:left;}
 .p-b-info{width:140px; float:left;}
 .p-b-info p{line-height:20px; margin:0 0 5px 0; padding-left:15px;}
 .p-b-info p .p-t{color:#999999; text-align:right;}
 .p-b-info p.p-s-f{font-size:12px;}
 
-.s-c{position:absolute; top:80px; left:0; width:220px;   background:#f5f5f5; border-top:3px solid #50a729;z-index:10;}
+.s-c{position:absolute; top:85px; left:0; width:220px;   background:#f5f5f5; border-top:3px solid #50a729;z-index:10;}
 .s-c .p-t{width:80px; display:inline-block;text-align:right;}
 .s-c p{border-bottom:1px solid #FFFFFF; padding:10px 0; margin:0;}
 .s-c p select{width:100px; font-size:12px; height:25px; margin:0;}
