@@ -5,7 +5,7 @@
         <span class="arrowD"></span>
     </li>
     <li ng-class="steps=='payable'?'cur':''">
-        <a ng-href="#!/finance/payable/1">应收款</a>
+        <a ng-href="#!/finance/payable/1">应付款</a>
         <span class="arrowD"></span>
     </li>
 </ul>
@@ -27,9 +27,9 @@
         <tbody>
             <tr ng-repeat="receivableitem in receivables">
                 <td>1</td>
-                <td>四川新迎顺信息技术有限公司</td>
-                <td class="colorBlue">20130515090301001</td>
-                <td><span class="money">1000.00元</span><b class="colorBlue">2013/07/31</b></td>
+                <td>{{receivableitem.CustomerName}}</td>
+                <td class="colorBlue">{{receivableitem.ContractNo}}</td>
+                <td><span class="money">{{receivableitem.Amount}}元</span><b class="colorBlue">{{receivableitem.ReceivedTime}}</b></td>
                 <td><a href="" role="button" ng-click="ShowReceivableDetail()" data-toggle="modal">详情</a>|<a href="" ng-click="ShowReceivableDetail()" role="button" data-toggle="modal">确认收款</a></td>
             </tr>
         </tbody>
@@ -51,11 +51,11 @@
         <tbody>
             <tr ng-repeat="payableitem in payables">
                 <td>1</td>
-                <td>20130515090301001</td>
-                <td class="colorBlue">67.00</td>
-                <td>1000 件</td>
-                <td class="colorRed">67.00</td>
-                <td>2013/09/13  14:45</td>
+                <td>{{payableitem.PCode}}</td>
+                <td class="colorBlue">{{payableitem.Price}}</td>
+                <td>{{payableitem.PNum}} 件</td>
+                <td class="colorRed">{{payableitem.Price*payableitem.PNum| currency:''}}</td>
+                <td>{{payableitem.CreateTime}}</td>
                 <td><a href="" ng-click="MakeSurePayable()" role="button" data-toggle="modal">确认收款</a></td>
             </tr>
         </tbody>
