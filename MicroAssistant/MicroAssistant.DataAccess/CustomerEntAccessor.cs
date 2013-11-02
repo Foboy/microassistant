@@ -376,10 +376,11 @@ namespace MicroAssistant.DataAccess
         public PageEntity<CustomerEnt> SearchCustomerEntByOwnerId(int ownerid, int pageIndex, int pageSize)
         {
             MySqlConnection oc = ConnectManager.Create();
+            MySqlConnection oc1 = ConnectManager.Create();
             MySqlCommand _cmdSearchCustomerEntByOwnerId = cmdSearchCustomerEntByOwnerId.Clone() as MySqlCommand;
             _cmdSearchCustomerEntByOwnerId.Connection = oc;
             MySqlCommand _cmdSearchCustomerEntByOwnerIdCount = cmdSearchCustomerEntByOwnerIdCount.Clone() as MySqlCommand;
-            _cmdSearchCustomerEntByOwnerIdCount.Connection = oc;
+            _cmdSearchCustomerEntByOwnerIdCount.Connection = oc1;
             PageEntity<CustomerEnt> returnValue = new PageEntity<CustomerEnt>();
             try
             {
@@ -390,6 +391,8 @@ namespace MicroAssistant.DataAccess
                 _cmdSearchCustomerEntByOwnerIdCount.Parameters["@OwnerId"].Value = ownerid;
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
+                if (oc1.State == ConnectionState.Closed)
+                    oc1.Open();
 
                 MySqlDataReader reader = _cmdSearchCustomerEntByOwnerId.ExecuteReader();
                 while (reader.Read())
@@ -403,6 +406,9 @@ namespace MicroAssistant.DataAccess
                 oc.Close();
                 oc.Dispose();
                 oc = null;
+                oc1.Close();
+                oc1.Dispose();
+                oc1 = null;
                 _cmdSearchCustomerEntByOwnerId.Dispose();
                 _cmdSearchCustomerEntByOwnerId = null;
                 _cmdSearchCustomerEntByOwnerIdCount.Dispose();
