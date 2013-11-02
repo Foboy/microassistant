@@ -90,18 +90,33 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 	$scope.loadCurrentStepList();
 }
 
-function SalesChanceDetailCtrl($scope, $routeParams, $http, $location){
-	$scope.$on('EventChanceDetail',function(event){
-		$("#chanceDetailBox").animate({width:"350px"},300);
+function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) {
+    var chance;
+    $("#chanceDetailBox").hide();
+    $scope.$on('EventChanceDetail', function (event, from) {
+        $("#chanceDetailBox").show();
+        $("#chanceDetailBox").animate({ width: "350px" }, 300, function () {
+            $(".form_datetime").datetimepicker({
+                format: "dd MM yyyy - hh:ii",
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            });
+        });
+	    chance = from.chance;
+	    $scope.chance = chance;
+	    chance.AddTime = $filter('date')($scope.parseJsonDate(chance.AddTime), 'yyyy/MM/dd');
+
 		//加载机会数据
 	});
 	
 	$scope.hideChanceDetail = function(){
-	  $("#chanceDetailBox").animate({width:"0px"},300,function(){});
-  	};
+	    $("#chanceDetailBox").animate({ width: "0px" }, 300, function () { $("#chanceDetailBox").hide(); });
+	};
 };
 function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
     var chance;
+    $("#visitDetailBox").hide();
     $scope.$on('EventVisitDetail', function (event, from) {
         console.log(from)
         chance = from.chance || from.cvisit;
@@ -109,9 +124,11 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
         $scope.NewRate = $scope.chance.Rate;
         $scope.chanceVisitDetail();
         $scope.visitFormReset();
+        $("#visitDetailBox").show();
 		$("#visitDetailBox").animate({width:"900px"},500);
 		//加载机会数据
     });
+    
 
     $scope.visitFormReset = function () {
         $scope.EditVisit = { VisitType: 1, Address: '' };
@@ -119,7 +136,8 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
     };
 	
 	$scope.hideVisitDetail = function(){
-	  $("#visitDetailBox").animate({width:"0px"},500,function(){});
+	    $("#visitDetailBox").animate({ width: "0px" }, 500, function () { $("#visitDetailBox").hide(); });
+
 	};
 
 	$scope.chanceVisitDetail = function () {
@@ -240,15 +258,19 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	    }
 	};
 };
-function SalesContractDetailCtrl($scope, $routeParams, $http, $location){
-	$scope.$on('EventContractDetail',function(event){
+function SalesContractDetailCtrl($scope, $routeParams, $http, $location) {
+    $("#contractDetailBox").hide();
+    $scope.$on('EventContractDetail', function (event) {
+        $("#contractDetailBox").show();
 		$("#contractDetailBox").animate({width:"500px"},400);
 		//加载机会数据
 	});
 	
 	$scope.hideContractDetail = function(){
-	  $("#contractDetailBox").animate({width:"0px"},400,function(){});
-  	};
+	    $("#contractDetailBox").animate({ width: "0px" }, 400, function () { $("#contractDetailBox").hide(); });
+	    
+	};
+	
 };
 function SalesAfterDetailCtrl($scope, $routeParams, $http, $location){
 };
