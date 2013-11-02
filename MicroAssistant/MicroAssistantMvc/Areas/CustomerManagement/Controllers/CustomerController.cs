@@ -22,17 +22,17 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
         /// </summary>
         /// <param name="ownerid"></param>
         /// <returns></returns>
-        public JsonResult SearchCustomerEntByOwnerId()
+        public JsonResult SearchCustomerEntByOwnerId(int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
-            AdvancedResult<List<CustomerEnt>> result = new AdvancedResult<List<CustomerEnt>>();
+            AdvancedResult<PageEntity<CustomerEnt>> result = new AdvancedResult<PageEntity<CustomerEnt>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
-                    List<CustomerEnt> list = new List<CustomerEnt>();
-                    list = CustomerEntAccessor.Instance.SearchCustomerEntByOwnerId(ownerid);
+                    PageEntity<CustomerEnt> list = new PageEntity<CustomerEnt>();
+                    list = CustomerEntAccessor.Instance.SearchCustomerEntByOwnerId(ownerid,pageIndex,pageSize);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = list;
 
@@ -56,17 +56,17 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             return Res;
         }
         //根据用户ID查询个人客户（token）返回 个人客户列表（姓名，年龄，所属行业，所在地，联系方式）
-        public JsonResult SearchCustomerPrivByOwnerId()
+        public JsonResult SearchCustomerPrivByOwnerId(int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
-            AdvancedResult<List<CustomerPrivate>> result = new AdvancedResult<List<CustomerPrivate>>();
+            AdvancedResult<PageEntity<CustomerPrivate>> result = new AdvancedResult<PageEntity<CustomerPrivate>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
-                    List<CustomerPrivate> list = new List<CustomerPrivate>();
-                    list = CustomerPrivateAccessor.Instance.SearchCustomerPrivByOwnerId(ownerid);
+                    PageEntity<CustomerPrivate> list = new PageEntity<CustomerPrivate>();
+                    list = CustomerPrivateAccessor.Instance.SearchCustomerPrivByOwnerId(ownerid,pageIndex,pageSize);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = list;
 
