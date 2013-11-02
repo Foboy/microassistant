@@ -6,19 +6,20 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
     $scope.loadCurrentStepList = function (pageSize) {
         switch ($scope.steps) {
             case 'receivable'://应收款步骤
-                $http.post($sitecore.urls["receivablesfinanceList"], { pageIndex: $routeParams.pageIndex || 1, pageSize: pageSize }).success(function (data) {
+                $http.post($sitecore.urls["receivablesfinanceList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: pageSize }).success(function (data) {
                     console.log(data.Data);
-                    $scope.ActPageIndex = $routeParams.pageIndex || 1;
-                    $scope.receivables = data.Data;
+                    //$scope.ActPageIndex = $routeParams.pageIndex || 0;
+                    //$scope.receivables = data.Data.Items;
                 }).error(function (data, status, headers, config) {
                     $scope.receivables = [];
                 });
                 break;
             case 'payable'://应付款步骤
-                $http.post($sitecore.urls["payablesfinanceList"], { pageIndex: $routeParams.pageIndex || 1, pageSize: pageSize }).success(function (data) {
+                $http.post($sitecore.urls["payablesfinanceList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: pageSize }).success(function (data) {
                     console.log(data.Data);
-                    $scope.ActPageIndex = $routeParams.pageIndex || 1;
-                    $scope.payables = data.Data;
+                    $scope.ActPageIndex = $routeParams.pageIndex || 0;
+                    $scope.payables = data.Data.Items;
+                    
                 }).error(function (data, status, headers, config) {
                     $scope.payables = [];
                 });

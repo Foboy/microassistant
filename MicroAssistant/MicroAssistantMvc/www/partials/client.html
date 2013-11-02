@@ -2,12 +2,12 @@
 <ul class="clearfix goodsList">
     <li ng-class="sorts=='enterprise'?'cur':''">
         <em><i class="pcIcon"></i></em>
-        <a ng-href="#!/client/enterprise/1">企业客户</a>
+        <a ng-href="#!/client/enterprise/0">企业客户</a>
         <span class="arrowD"></span>
     </li>
     <li ng-class="sorts=='personal'?'cur':''">
         <em><i class="phoneIcon"></i></em>
-        <a ng-href="#!/client/personal/1">个人客户</a>
+        <a ng-href="#!/client/personal/0">个人客户</a>
         <span class="arrowD"></span>
     </li>
 </ul>
@@ -16,6 +16,7 @@
     <span class="seCon">
         <input type="text" class="setext" placeholder="Type something…"><input type="button" class="seBtn" /></span>
 </div>
+<!--企业客户信息区域-->
 <div class="tablePad" ng-show="sorts=='enterprise'?'true':'false'">
     <table class="table table-bordered table-striped">
         <thead>
@@ -30,21 +31,52 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr ng-repeat="enterpriseclientItem in enterpriseclients">
                 <td>1</td>
-                <td class="colorBlue">四川新颖顺信息技术有限公司</td>
-                <td class="colorBlue">IT</td>
-                <td>张三</td>
+                <td class="colorBlue">{{enterpriseclientItem.EntName}}</td>
+                <td class="colorBlue">{{enterpriseclientItem.Industy}}</td>
+                <td>{{enterpriseclientItem.ContactUsername}}</td>
                 <td>
-                    <p>028-87856604</p>
-                    <p>15882417448</p>
+                    <p>{{enterpriseclientItem.ContactMobile}} | {{enterpriseclientItem.ContactEmail}}</p>
+                    <p>{{enterpriseclientItem.ContactPhone}}</p>
                 </td>
-                <td>四川省  成都市 武侯区航空路6号</td>
+                <td>{{enterpriseclientItem.Address}}</td>
                 <td><a href="#myModal" role="button" data-toggle="modal">查看</a>|<a href="#myModal" role="button" data-toggle="modal">编辑</a></td>
             </tr>
         </tbody>
     </table>
 </div>
-
+ <!--个人客户信息区域-->
+<div class="tablePad" ng-show="sorts=='personal'?'true':'false'">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th width="10%">姓名</th>
+                  <th width="15%">年龄</th>
+                  <th width="15%">所属行业</th>
+                  <th width="20%">联系方式</th>
+                  <th width="25%">所在地</th>
+                  <th width="10%">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="personclientItem in personalclients" >
+                  <td>
+                  <div class="t-himg">
+                        <img src="img/Adimg/h1.jpg">
+                        <i class="b-i"></i>
+                  </div>
+                  </td>
+                  <td>{{personclientItem.Name}}</td>
+                  <td>{{personclientItem.Sex}}</td><!-- 没有年龄字段-->
+                  <td class="colorBlue">{{personclientItem.Industy}}</td>                  
+                  <td><p>{{personclientItem.Mobile}}</p><p>{{personclientItem.Email}}</p></td>
+                  <td>{{personclientItem.Address}}</td>
+                  <td><a href="#myModal" role="button" data-toggle="modal">查看</a>|<a href="#myModal" role="button" data-toggle="modal">编辑</a></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
 <div  ng-include="sorts=='enterprise'?'partials/client/client-addenterprise.html':'partials/client/client-addpersonal.html'" ng-controller="AddClientCtrl"></div>
 

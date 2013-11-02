@@ -119,7 +119,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
   
   
   $scope.editProduct = function(){
-	  $scope.$broadcast('EventEditPoduct',this.product);
+      $scope.$broadcast('EventEditPoduct', this.product);
   };
   
   $scope.addPurchase = function () {
@@ -217,7 +217,7 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
 //编辑产品
 function ProductEditCtrl($scope, $routeParams, $http, $location) {
     console.log($scope)
-	$scope.$on('EventEditPoduct',function(event,product){
+    $scope.$on('EventEditPoduct', function (event, product) {
 		console.log("EventEditPoduct");
 		console.log(product);
 		$scope.productEditPageOne = true;
@@ -236,8 +236,6 @@ function ProductEditCtrl($scope, $routeParams, $http, $location) {
 		    $scope.ProductEditForm.$setPristine();
 		    $scope.EditProduct = { Unit: '个' };
 		}
-	    
-
 	    $('#productEditModal').modal('show');
 	});
 	
