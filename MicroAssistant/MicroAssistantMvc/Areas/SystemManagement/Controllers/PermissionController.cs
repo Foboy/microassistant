@@ -281,6 +281,16 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             return Res;
         }
 
+        //--------------------------------
+
+//        通过token获取企业所有权限 返回 权限列表（权限ID，全部（人数））
+//通过token添加部门 返回 true/false
+//通过权限ID获取用户信息 返回 用户列表（账号，姓名，sex，头像，手机号，入职时间，权限ID）
+//根据用户ID修改用户权限
+
+
+
+
         #endregion
 
 

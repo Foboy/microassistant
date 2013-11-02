@@ -328,7 +328,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="user">修改用户名，性别，密码，地址，qq，手机</param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public JsonResult EditeUserInfo(SysUser user)
+        public JsonResult EditeUserInfo(string username,string sex,string age)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -343,6 +343,8 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                     if (userid > 0)
                     {
+                        SysUser olduser = SysUserAccessor.Instance.Get(userid);
+
                         //SysUser olduser = SysUserAccessor.Instance.Get(userid, string.Empty, string.Empty, StateType.Ignore);
                         //if (olduser.UserAccount != user.UserAccount)
                         //{
@@ -354,7 +356,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                         //    }
                         //}
                         //olduser.UserAccount = user.UserAccount;
-                        //olduser.Sex = user.Sex;
+                        
                         //olduser.Pwd = user.Pwd;
                         //olduser.Province = user.Province;
                         //olduser.City = user.City;
@@ -406,12 +408,6 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
-
-        //修改邮箱
-        //修改密码
-        //用户时间轴
-        //员工管理
-
         /// <summary>
         /// 修改用户密码
         /// </summary>
@@ -502,6 +498,9 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
+
+        //用户时间轴
+        //员工管理
 
         public RespResult GetOldPwd(string token)
         {
