@@ -22,6 +22,18 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
+        /// 1:男 2：女
+        /// </summary>
+        public Int32 Sex
+        { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime Birthday
+        { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         public String UserName
@@ -109,6 +121,8 @@ namespace MicroAssistant.Meta
             this.IsEnable = DBConvert.ToInt32(reader["is_enable"]);
             this.Type = DBConvert.ToInt32(reader["type"]);
             this.EntId = DBConvert.ToInt32(reader["ent_id"]);
+            this.Birthday = DBConvert.ToDateTime(reader["birthday"]);
+            this.Sex = DBConvert.ToInt32(reader["sex"]);
             return this;
         }
         /// <summary>
@@ -130,6 +144,8 @@ namespace MicroAssistant.Meta
             this.Type = DBConvert.ToInt32(reader["type"]);
             this.EntId = DBConvert.ToInt32(reader["ent_id"]);
             this.RoleId = DBConvert.ToInt32(reader["role_id"]);
+            this.Birthday = DBConvert.ToDateTime(reader["birthday"]);
+            this.Sex = DBConvert.ToInt32(reader["sex"]);
             return this;
         }
     }
