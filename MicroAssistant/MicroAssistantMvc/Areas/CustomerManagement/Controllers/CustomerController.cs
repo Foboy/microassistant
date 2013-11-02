@@ -22,17 +22,17 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
         /// </summary>
         /// <param name="ownerid"></param>
         /// <returns></returns>
-        public JsonResult SearchCustomerEntByOwnerId()
+        public JsonResult SearchCustomerEntByOwnerId(int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
-            AdvancedResult<List<CustomerEnt>> result = new AdvancedResult<List<CustomerEnt>>();
+            AdvancedResult<PageEntity<CustomerEnt>> result = new AdvancedResult<PageEntity<CustomerEnt>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
-                    List<CustomerEnt> list = new List<CustomerEnt>();
-                    list = CustomerEntAccessor.Instance.SearchCustomerEntByOwnerId(ownerid);
+                    PageEntity<CustomerEnt> list = new PageEntity<CustomerEnt>();
+                    list = CustomerEntAccessor.Instance.SearchCustomerEntByOwnerId(ownerid,pageIndex,pageSize);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = list;
 
@@ -56,17 +56,17 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             return Res;
         }
         //根据用户ID查询个人客户（token）返回 个人客户列表（姓名，年龄，所属行业，所在地，联系方式）
-        public JsonResult SearchCustomerPrivByOwnerId()
+        public JsonResult SearchCustomerPrivByOwnerId(int pageIndex, int pageSize)
         {
             var Res = new JsonResult();
-            AdvancedResult<List<CustomerPrivate>> result = new AdvancedResult<List<CustomerPrivate>>();
+            AdvancedResult<PageEntity<CustomerPrivate>> result = new AdvancedResult<PageEntity<CustomerPrivate>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
-                    List<CustomerPrivate> list = new List<CustomerPrivate>();
-                    list = CustomerPrivateAccessor.Instance.SearchCustomerPrivByOwnerId(ownerid);
+                    PageEntity<CustomerPrivate> list = new PageEntity<CustomerPrivate>();
+                    list = CustomerPrivateAccessor.Instance.SearchCustomerPrivByOwnerId(ownerid,pageIndex,pageSize);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = list;
 
@@ -86,11 +86,11 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             return Res;
         }
         //添加修改企业客户（企业名称，所属行业，联系人{姓名，手机，座机，email,qq}，企业地址，企业资料,客户ID,token）
-        public JsonResult AddEntCustomer(int entid, string entName, string industy, string contactUsername, string contactMobile, string phone, string email, string qq, string address, string Detail)
+        public JsonResult AddEntCustomer(int customerEntId, string entName, string industy, string contactUsername, string contactMobile, string phone, string email, string qq, string address, string Detail)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
-            int _entid = 0;
+            int _customerEntId = 0;
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
@@ -108,15 +108,16 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
                     ce.ContactEmail = email;
                     ce.ContactQq = qq;
                     ce.Detail = Detail;
-                    if (entid == 0)
+                    ce.EntId = CurrentUser.EntId;
+                    if (customerEntId == 0)
                     {
-                        _entid = CustomerEntAccessor.Instance.Insert(ce);
+                        _customerEntId = CustomerEntAccessor.Instance.Insert(ce);
                     }
                     else
                     {
-                        _entid = entid;
+                        _customerEntId = customerEntId;
 
-                        ce.EntId = _entid;
+                        ce.CustomerEntId = _customerEntId;
                         CustomerEntAccessor.Instance.Update(ce);
                     }
                     result.Error = AppError.ERROR_SUCCESS;

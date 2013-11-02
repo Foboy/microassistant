@@ -1,10 +1,7 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/5/21 11:33:03
- * @editor:zhengrunqiang
- * @email:653269669@qq.com
- * @date: 2013/5/27 14:57:00
+ * @date: 2013/11/2 14:32:45
  */
 using System;
 using System.Collections.Generic;
@@ -29,40 +26,38 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdLoadAllSysRoleUser;
         private MySqlCommand cmdGetSysRoleUserCount;
         private MySqlCommand cmdGetSysRoleUser;
-       
-        
+
 
         private SysRoleUserAccessor()
         {
             #region cmdInsertSysRoleUser
 
-            cmdInsertSysRoleUser = new MySqlCommand("INSERT INTO sys_role_user(role_id,user_id) values (@RoleId,@UserId)");
-   
+            cmdInsertSysRoleUser = new MySqlCommand("INSERT INTO sys_role_user(role_id,user_id,ent_id) values (@RoleId,@UserId,@EntId)");
+
             cmdInsertSysRoleUser.Parameters.Add("@RoleId", MySqlDbType.Int32);
             cmdInsertSysRoleUser.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdInsertSysRoleUser.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateSysRoleUser
 
-            cmdUpdateSysRoleUser = new MySqlCommand(" update sys_role_user set role_id = @RoleId,user_id = @UserId where sys_role_user_id = @SysRoleUserId");
+            cmdUpdateSysRoleUser = new MySqlCommand(" update sys_role_user set role_id = @RoleId,user_id = @UserId,ent_id = @EntId where sys_role_user_id = @SysRoleUserId");
             cmdUpdateSysRoleUser.Parameters.Add("@SysRoleUserId", MySqlDbType.Int32);
             cmdUpdateSysRoleUser.Parameters.Add("@RoleId", MySqlDbType.Int32);
             cmdUpdateSysRoleUser.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdUpdateSysRoleUser.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
 
             #region cmdDeleteSysRoleUser
 
-            cmdDeleteSysRoleUser = new MySqlCommand(" delete from sys_role_user where user_id = @UserId and {0}");
-            cmdDeleteSysRoleUser.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdDeleteSysRoleUser = new MySqlCommand(" delete from sys_role_user where sys_role_user_id = @SysRoleUserId");
+            cmdDeleteSysRoleUser.Parameters.Add("@SysRoleUserId", MySqlDbType.Int32);
             #endregion
 
             #region cmdLoadSysRoleUser
 
-            cmdLoadSysRoleUser = new MySqlCommand(@" select sys_role_user_id,role_id,user_id from sys_role_user where (@SysRoleFunctionId=0 or sys_role_function_id=@SysRoleFunctionId) and (@RoleId=0 or role_id=@RoleId) and (@UserId=0 or user_id=@UserId) limit @PageIndex,@PageSize");
-            cmdLoadSysRoleUser.Parameters.Add("@SysRoleUserId", MySqlDbType.Int32);
-            cmdLoadSysRoleUser.Parameters.Add("@RoleId", MySqlDbType.Int32);
-            cmdLoadSysRoleUser.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdLoadSysRoleUser = new MySqlCommand(@" select sys_role_user_id,role_id,user_id,ent_id from sys_role_user limit @PageIndex,@PageSize");
             cmdLoadSysRoleUser.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadSysRoleUser.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -70,22 +65,19 @@ namespace MicroAssistant.DataAccess
 
             #region cmdGetSysRoleUserCount
 
-            cmdGetSysRoleUserCount = new MySqlCommand(" select count(*)  from sys_role_user where (@SysRoleFunctionId=0 or sys_role_function_id=@SysRoleFunctionId) and (@RoleId=0 or role_id=@RoleId) and (@UserId=0 or user_id=@UserId) ");
-            cmdGetSysRoleUserCount.Parameters.Add("@SysRoleUserId", MySqlDbType.Int32);
-            cmdGetSysRoleUserCount.Parameters.Add("@RoleId", MySqlDbType.Int32);
-            cmdGetSysRoleUserCount.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdGetSysRoleUserCount = new MySqlCommand(" select count(*)  from sys_role_user ");
 
             #endregion
 
             #region cmdLoadAllSysRoleUser
 
-            cmdLoadAllSysRoleUser = new MySqlCommand(" select sys_role_user_id,role_id,user_id from sys_role_user");
+            cmdLoadAllSysRoleUser = new MySqlCommand(" select sys_role_user_id,role_id,user_id,ent_id from sys_role_user");
 
             #endregion
 
             #region cmdGetSysRoleUser
 
-            cmdGetSysRoleUser = new MySqlCommand(" select sys_role_user_id,role_id,user_id from sys_role_user where sys_role_user_id = @SysRoleUserId");
+            cmdGetSysRoleUser = new MySqlCommand(" select sys_role_user_id,role_id,user_id,ent_id from sys_role_user where sys_role_user_id = @SysRoleUserId");
             cmdGetSysRoleUser.Parameters.Add("@SysRoleUserId", MySqlDbType.Int32);
 
             #endregion
@@ -108,6 +100,7 @@ namespace MicroAssistant.DataAccess
                     oc.Open();
                 _cmdInsertSysRoleUser.Parameters["@RoleId"].Value = e.RoleId;
                 _cmdInsertSysRoleUser.Parameters["@UserId"].Value = e.UserId;
+                _cmdInsertSysRoleUser.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdInsertSysRoleUser.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertSysRoleUser.LastInsertedId);
@@ -128,7 +121,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Delete(int UserId)
+        public bool Delete(int SysRoleUserId)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdDeleteSysRoleUser = cmdDeleteSysRoleUser.Clone() as MySqlCommand;
@@ -138,14 +131,10 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                string SqlText = string.Empty;
-                _cmdDeleteSysRoleUser.CommandText = string.Format(_cmdDeleteSysRoleUser.CommandText, SqlText);
-                _cmdDeleteSysRoleUser.Parameters["@UserId"].Value = UserId;
+                _cmdDeleteSysRoleUser.Parameters["@SysRoleUserId"].Value = SysRoleUserId;
 
-                if (_cmdDeleteSysRoleUser.ExecuteNonQuery() > 0)
-                {
-                    returnValue = true;
-                }
+
+                _cmdDeleteSysRoleUser.ExecuteNonQuery();
                 return returnValue;
             }
             finally
@@ -157,40 +146,7 @@ namespace MicroAssistant.DataAccess
                 _cmdDeleteSysRoleUser = null;
             }
         }
-        /// <summary>
-        /// 移除用户角色
-        /// </summary>
-        /// <param name="UserId"></param>
-        /// <param name="RoleId"></param>
-        /// <returns></returns>
-        public bool Delete(int UserId, int RoleId)
-        {
-            MySqlConnection oc = ConnectManager.Create();
-            MySqlCommand _cmdDeleteSysRoleUser = cmdDeleteSysRoleUser.Clone() as MySqlCommand;
-            bool returnValue = false;
-            _cmdDeleteSysRoleUser.Connection = oc;
-            try
-            {
-                if (oc.State == ConnectionState.Closed)
-                    oc.Open();
-                string SqlText="role_id="+RoleId;
-                _cmdDeleteSysRoleUser.CommandText =string.Format(_cmdDeleteSysRoleUser.CommandText,SqlText);
-                _cmdDeleteSysRoleUser.Parameters["@UserId"].Value = UserId;
-                if (_cmdDeleteSysRoleUser.ExecuteNonQuery() > 0)
-                {
-                    returnValue = true;
-                }
-                return returnValue;
-            }
-            finally
-            {
-                oc.Close();
-                oc.Dispose();
-                oc = null;
-                _cmdDeleteSysRoleUser.Dispose();
-                _cmdDeleteSysRoleUser = null;
-            }
-        }
+
         /// <summary>
         /// 修改指定的数据
         /// <param name="e">修改后的数据实体对象</param>
@@ -210,6 +166,7 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateSysRoleUser.Parameters["@SysRoleUserId"].Value = e.SysRoleUserId;
                 _cmdUpdateSysRoleUser.Parameters["@RoleId"].Value = e.RoleId;
                 _cmdUpdateSysRoleUser.Parameters["@UserId"].Value = e.UserId;
+                _cmdUpdateSysRoleUser.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdUpdateSysRoleUser.ExecuteNonQuery();
 
@@ -232,7 +189,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<SysRoleUser> Search(Int32 SysRoleUserId, Int32 RoleId, Int32 UserId, int pageIndex, int pageSize)
+        public PageEntity<SysRoleUser> Search(Int32 SysRoleUserId, Int32 RoleId, Int32 UserId, Int32 EntId, int pageIndex, int pageSize)
         {
             PageEntity<SysRoleUser> returnValue = new PageEntity<SysRoleUser>();
             MySqlConnection oc = ConnectManager.Create();
@@ -248,6 +205,7 @@ namespace MicroAssistant.DataAccess
                 _cmdLoadSysRoleUser.Parameters["@SysRoleUserId"].Value = SysRoleUserId;
                 _cmdLoadSysRoleUser.Parameters["@RoleId"].Value = RoleId;
                 _cmdLoadSysRoleUser.Parameters["@UserId"].Value = UserId;
+                _cmdLoadSysRoleUser.Parameters["@EntId"].Value = EntId;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();

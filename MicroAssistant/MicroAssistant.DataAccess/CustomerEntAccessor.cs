@@ -29,6 +29,7 @@ namespace MicroAssistant.DataAccess
 
         private MySqlCommand cmdSearchCustomerEntByOwnerId;
         private MySqlCommand cmdSearchCustomerEntByName;
+        private MySqlCommand cmdSearchCustomerEntByOwnerIdCount;
 
         private CustomerEntAccessor()
         {
@@ -103,10 +104,21 @@ namespace MicroAssistant.DataAccess
 
             #region cmdSearchCustomerEntByOwnerId
 
-            cmdSearchCustomerEntByOwnerId = new MySqlCommand(" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,ent_id,owner_id from customer_ent where owner_id = @OwnerId");
+            cmdSearchCustomerEntByOwnerId = new MySqlCommand(" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,ent_id,owner_id from customer_ent where owner_id = @OwnerId order by customer_ent_id desc limit @PageIndex,@PageSize");
             cmdSearchCustomerEntByOwnerId.Parameters.Add("@OwnerId", MySqlDbType.Int32);
+            cmdSearchCustomerEntByOwnerId.Parameters.Add("@pageIndex", MySqlDbType.Int32);
+            cmdSearchCustomerEntByOwnerId.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
             #endregion
+
+            #region cmdSearchCustomerEntByOwnerIdCount
+
+            cmdSearchCustomerEntByOwnerIdCount = new MySqlCommand(" select count(*)  from customer_ent where owner_id = @OwnerId ");
+            cmdSearchCustomerEntByOwnerIdCount.Parameters.Add("@OwnerId", MySqlDbType.Int32);
+
+            #endregion
+
+
             #region cmdSearchCustomerEntByName
 
             cmdSearchCustomerEntByName = new MySqlCommand(" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,ent_id,owner_id from customer_ent where ent_name = @EntName");
@@ -358,36 +370,49 @@ namespace MicroAssistant.DataAccess
             return returnValue;
 
         }
-
         /// <summary>
         /// 通过销售ID获取企业客户
         /// </summary>
-        public List<CustomerEnt> SearchCustomerEntByOwnerId(int ownerid)
+        public PageEntity<CustomerEnt> SearchCustomerEntByOwnerId(int ownerid, int pageIndex, int pageSize)
         {
             MySqlConnection oc = ConnectManager.Create();
+            MySqlConnection oc1 = ConnectManager.Create();
             MySqlCommand _cmdSearchCustomerEntByOwnerId = cmdSearchCustomerEntByOwnerId.Clone() as MySqlCommand;
-            _cmdSearchCustomerEntByOwnerId.Connection = oc; 
-            List<CustomerEnt> returnValue = new List<CustomerEnt>();
+            _cmdSearchCustomerEntByOwnerId.Connection = oc;
+            MySqlCommand _cmdSearchCustomerEntByOwnerIdCount = cmdSearchCustomerEntByOwnerIdCount.Clone() as MySqlCommand;
+            _cmdSearchCustomerEntByOwnerIdCount.Connection = oc1;
+            PageEntity<CustomerEnt> returnValue = new PageEntity<CustomerEnt>();
             try
             {
+                _cmdSearchCustomerEntByOwnerId.Parameters["@PageIndex"].Value = pageIndex;
+                _cmdSearchCustomerEntByOwnerId.Parameters["@PageSize"].Value = pageSize;
                 _cmdSearchCustomerEntByOwnerId.Parameters["@OwnerId"].Value = ownerid;
 
+                _cmdSearchCustomerEntByOwnerIdCount.Parameters["@OwnerId"].Value = ownerid;
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
+                if (oc1.State == ConnectionState.Closed)
+                    oc1.Open();
 
                 MySqlDataReader reader = _cmdSearchCustomerEntByOwnerId.ExecuteReader();
                 while (reader.Read())
                 {
-                    returnValue.Add(new CustomerEnt().BuildSampleEntity(reader));
+                    returnValue.Items.Add(new CustomerEnt().BuildSampleEntity(reader));
                 }
+                returnValue.RecordsCount = Convert.ToInt32(_cmdSearchCustomerEntByOwnerIdCount.ExecuteScalar());
             }
             finally
             {
                 oc.Close();
                 oc.Dispose();
                 oc = null;
+                oc1.Close();
+                oc1.Dispose();
+                oc1 = null;
                 _cmdSearchCustomerEntByOwnerId.Dispose();
                 _cmdSearchCustomerEntByOwnerId = null;
+                _cmdSearchCustomerEntByOwnerIdCount.Dispose();
+                _cmdSearchCustomerEntByOwnerIdCount = null;
                 GC.Collect();
             }
             return returnValue;
