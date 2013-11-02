@@ -235,6 +235,12 @@ function ProductEditCtrl($scope, $routeParams, $http, $location) {
 		else {
 		    $scope.ProductEditForm.$setPristine();
 		    $scope.EditProduct = { Unit: '个' };
+		    if (angular.isArray($scope.PTypes)) {
+		        angular.forEach($scope.PTypes, function (value) {
+		            if (value.PTypeId == $scope.ActCatalogId)
+		                $scope.EditProduct.PType = value;
+		        });
+		    }
 		}
 	    
 
