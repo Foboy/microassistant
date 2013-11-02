@@ -1,7 +1,7 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/5/21 11:37:29
+ * @date: 2013/11/2 14:30:49
  */
 using System;
 using System.Collections.Generic;
@@ -26,22 +26,26 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdLoadAllSysRole;
         private MySqlCommand cmdGetSysRoleCount;
         private MySqlCommand cmdGetSysRole;
+        private MySqlCommand cmdLoadEntRole;
 
         private SysRoleAccessor()
         {
             #region cmdInsertSysRole
 
-            cmdInsertSysRole = new MySqlCommand("INSERT INTO sys_role(role_id,role_name) values (@RoleId,@RoleName)");
+            cmdInsertSysRole = new MySqlCommand("INSERT INTO sys_role(role_name,ent_id,father_id) values (@RoleName,@EntId,@FatherId)");
 
-            cmdInsertSysRole.Parameters.Add("@RoleId", MySqlDbType.Int32);
             cmdInsertSysRole.Parameters.Add("@RoleName", MySqlDbType.String);
+            cmdInsertSysRole.Parameters.Add("@EntId", MySqlDbType.Int32);
+            cmdInsertSysRole.Parameters.Add("@FatherId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateSysRole
 
-            cmdUpdateSysRole = new MySqlCommand(" update sys_role set role_id = @RoleId,role_name = @RoleName where role_id = @RoleId");
+            cmdUpdateSysRole = new MySqlCommand(" update sys_role set role_name = @RoleName,ent_id = @EntId,father_id = @FatherId where role_id = @RoleId");
             cmdUpdateSysRole.Parameters.Add("@RoleId", MySqlDbType.Int32);
             cmdUpdateSysRole.Parameters.Add("@RoleName", MySqlDbType.String);
+            cmdUpdateSysRole.Parameters.Add("@EntId", MySqlDbType.Int32);
+            cmdUpdateSysRole.Parameters.Add("@FatherId", MySqlDbType.Int32);
 
             #endregion
 
@@ -53,7 +57,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadSysRole
 
-            cmdLoadSysRole = new MySqlCommand(@" select role_id,role_name from sys_role limit @PageIndex,@PageSize");
+            cmdLoadSysRole = new MySqlCommand(@" select role_id,role_name,ent_id,father_id from sys_role limit @PageIndex,@PageSize");
             cmdLoadSysRole.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadSysRole.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -67,14 +71,62 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllSysRole
 
-            cmdLoadAllSysRole = new MySqlCommand(" select role_id,role_name from sys_role");
+            cmdLoadAllSysRole = new MySqlCommand(" select role_id,role_name,ent_id,father_id from sys_role");
 
             #endregion
 
             #region cmdGetSysRole
 
-            cmdGetSysRole = new MySqlCommand(" select role_id,role_name from sys_role where role_id = @RoleId");
+            cmdGetSysRole = new MySqlCommand(" select role_id,role_name,ent_id,father_id from sys_role where role_id = @RoleId");
             cmdGetSysRole.Parameters.Add("@RoleId", MySqlDbType.Int32);
+
+            #endregion
+
+            #region cmdLoadEntRole
+
+            cmdLoadEntRole = new MySqlCommand(@" select 
+    0 role_id,
+    '全部' role_name,
+    0 father_id,
+    count(b.sys_role_user_id) count
+from
+    sys_role_user b
+where
+    ent_id = @EntId
+union select 
+    -1 role_id,
+    '未审核' role_name,
+    0 father_id,
+    (select 
+            count(b.user_id)
+        from
+            sys_user b
+        where
+            ent_id = @EntId
+                and b.user_id not in (select 
+                    a.user_id
+                from
+                    sys_role_user a
+                where
+                    a.ent_id = @EntId))
+from dual 
+union select 
+    a.role_id,
+    a.role_name,
+    a.father_id,
+    (select 
+            count(b.sys_role_user_id)
+        from
+            sys_role_user b
+        where
+            a.role_id = b.role_id) count
+from
+    sys_role a
+where
+    ent_id = @EntId
+
+");
+            cmdLoadEntRole.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
         }
@@ -94,8 +146,10 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                _cmdInsertSysRole.Parameters["@RoleId"].Value = e.RoleId;
                 _cmdInsertSysRole.Parameters["@RoleName"].Value = e.RoleName;
+                _cmdInsertSysRole.Parameters["@EntId"].Value = e.EntId;
+                _cmdInsertSysRole.Parameters["@FatherId"].Value = e.FatherId;
+
                 _cmdInsertSysRole.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertSysRole.LastInsertedId);
                 return returnValue;
@@ -159,6 +213,8 @@ namespace MicroAssistant.DataAccess
 
                 _cmdUpdateSysRole.Parameters["@RoleId"].Value = e.RoleId;
                 _cmdUpdateSysRole.Parameters["@RoleName"].Value = e.RoleName;
+                _cmdUpdateSysRole.Parameters["@EntId"].Value = e.EntId;
+                _cmdUpdateSysRole.Parameters["@FatherId"].Value = e.FatherId;
 
                 _cmdUpdateSysRole.ExecuteNonQuery();
 
@@ -181,7 +237,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<SysRole> Search(Int32 RoleId, String RoleName, int pageIndex, int pageSize)
+        public PageEntity<SysRole> Search(Int32 RoleId, String RoleName, Int32 EntId, Int32 FatherId, int pageIndex, int pageSize)
         {
             PageEntity<SysRole> returnValue = new PageEntity<SysRole>();
             MySqlConnection oc = ConnectManager.Create();
@@ -196,6 +252,8 @@ namespace MicroAssistant.DataAccess
                 _cmdLoadSysRole.Parameters["@PageSize"].Value = pageSize;
                 _cmdLoadSysRole.Parameters["@RoleId"].Value = RoleId;
                 _cmdLoadSysRole.Parameters["@RoleName"].Value = RoleName;
+                _cmdLoadSysRole.Parameters["@EntId"].Value = EntId;
+                _cmdLoadSysRole.Parameters["@FatherId"].Value = FatherId;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
@@ -291,6 +349,42 @@ namespace MicroAssistant.DataAccess
             return returnValue;
 
         }
+
+        /// <summary>
+        /// 获取全部数据
+        /// </summary>
+        public List<SysRole> LoadEntRole(int entId)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdLoadEntRole = cmdLoadEntRole.Clone() as MySqlCommand;
+            _cmdLoadEntRole.Connection = oc; 
+            List<SysRole> returnValue = new List<SysRole>();
+            try
+            {
+
+                _cmdLoadEntRole.Parameters["@EntId"].Value = entId;
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                MySqlDataReader reader = _cmdLoadEntRole.ExecuteReader();
+                while (reader.Read())
+                {
+                    returnValue.Add(new SysRole().BuildCountEntity(reader));
+                }
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdLoadEntRole.Dispose();
+                _cmdLoadEntRole = null;
+                GC.Collect();
+            }
+            return returnValue;
+        }
+
+
         private static readonly SysRoleAccessor instance = new SysRoleAccessor();
         public static SysRoleAccessor Instance
         {

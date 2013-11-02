@@ -8,6 +8,7 @@ using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 using MicroAssistantMvc.Controllers;
+using MicroAssistant.Cache;
 
 namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
 {
@@ -53,7 +54,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             try
             {
                 List<SysRoleFunction> list = new List<SysRoleFunction>();
-                list = SysRoleFunctionAccessor.Instance.Search(0, roleId, 0, 0, int.MaxValue).Items;
+                //list = SysRoleFunctionAccessor.Instance.Search(0, roleId, 0, 0, int.MaxValue).Items;
                 result.Error = AppError.ERROR_SUCCESS;
                 result.Data = list;
 
@@ -192,7 +193,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             {
                 foreach (int roleId in roleIds)
                 {
-                    SysRoleUserAccessor.Instance.Delete(userId, roleId);
+                    //SysRoleUserAccessor.Instance.Delete(userId, roleId);
                 }
                 result.Error = AppError.ERROR_SUCCESS;
             }
@@ -217,7 +218,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             try
             {
                 List<SysRoleUser> list = new List<SysRoleUser>();
-                list = SysRoleUserAccessor.Instance.Search(0, 0, userId, 0, int.MaxValue).Items;
+                //list = SysRoleUserAccessor.Instance.Search(0, 0, userId, 0, int.MaxValue).Items;
                 result.Error = AppError.ERROR_SUCCESS;
                 result.Data = list;
             }
@@ -283,7 +284,77 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
 
         //--------------------------------
 
+//        通过token获取企业所有权限 返回 权限列表（权限ID，全部（人数））
 
+        public JsonResult SearchEntRole()
+        {
+            var Res = new JsonResult();
+            AdvancedResult<List<SysRole>> result = new AdvancedResult<List<SysRole>>();
+            List<SysRole> rolelist = new List<SysRole>();
+
+            try
+            {
+                if (CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                  
+                   rolelist = SysRoleAccessor.Instance.LoadEntRole(CurrentUser.EntId);
+                  
+                    result.Error = AppError.ERROR_SUCCESS;
+                    result.Data = rolelist;
+                }
+                else
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
+//通过权限ID获取用户信息 返回 用户列表（账号，姓名，sex，头像，手机号，入职时间，权限ID）
+
+        public JsonResult SearchUserListByRoleId()
+        {
+            var Res = new JsonResult();
+            AdvancedResult<List<SysUser>> result = new AdvancedResult<List<SysUser>>();
+            List<SysUser> userlist = new List<SysUser>();
+
+            try
+            {
+                if (CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+
+                    //userlist = SysRoleAccessor.Instance.LoadEntRole(CurrentUser.EntId);
+
+                    result.Error = AppError.ERROR_SUCCESS;
+                    result.Data = userlist;
+                }
+                else
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
+//根据用户ID修改用户权限
 
 
 
