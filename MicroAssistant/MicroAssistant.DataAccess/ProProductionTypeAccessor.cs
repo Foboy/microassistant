@@ -58,7 +58,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadProProductionType
 
-            cmdLoadProProductionType = new MySqlCommand(@"select p_type_id,p_type_name,ent_id,father_id,t.pic_id,r.pic_url from pro_production_type as t LEFT JOIN res_pic as r on t.pic_id=r.pic_id
+            cmdLoadProProductionType = new MySqlCommand(@"select p_type_id,p_type_name,t.ent_id,father_id,t.pic_id,r.pic_url from pro_production_type as t LEFT JOIN res_pic as r on t.pic_id=r.pic_id
             WHERE  t.ent_id=@entid and (0=@fatherid or t.father_id=@fatherid) and (0=@ptypeid or t.p_type_id=@ptypeid) AND (''=@ptypename or t.p_type_name =@ptypename) LIMIT @PageIndex,@PageSize");
             cmdLoadProProductionType.Parameters.Add("@PageIndex", MySqlDbType.Int32);
             cmdLoadProProductionType.Parameters.Add("@PageSize", MySqlDbType.Int32);

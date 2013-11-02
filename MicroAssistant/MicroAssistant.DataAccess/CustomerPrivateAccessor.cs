@@ -29,6 +29,7 @@ namespace MicroAssistant.DataAccess
 
         private MySqlCommand cmdSearchCustomerPrivByOwnerId;
         private MySqlCommand cmdSearchCustomerPrivByName;
+        private MySqlCommand cmdSearchCustomerPrivByOwnerIdCount;
 
         private CustomerPrivateAccessor()
         {
@@ -104,9 +105,17 @@ namespace MicroAssistant.DataAccess
 
             #region cmdSearchCustomerPrivByOwnerId
 
-            cmdSearchCustomerPrivByOwnerId = new MySqlCommand(" select customer_private_id,name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id,owner_id from customer_private where owner_id = @OwnerId");
+            cmdSearchCustomerPrivByOwnerId = new MySqlCommand(" select customer_private_id,name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id,owner_id from customer_private where owner_id = @OwnerId order by customer_private_id desc limit @PageIndex,@PageSize");
             cmdSearchCustomerPrivByOwnerId.Parameters.Add("@OwnerId", MySqlDbType.Int32);
+            cmdSearchCustomerPrivByOwnerId.Parameters.Add("@pageIndex", MySqlDbType.Int32);
+            cmdSearchCustomerPrivByOwnerId.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
+            #endregion
+
+            #region cmdSearchCustomerPrivByOwnerIdCount
+
+            cmdSearchCustomerPrivByOwnerIdCount = new MySqlCommand(" select count(*)  from customer_private  where owner_id = @OwnerId ");
+            cmdSearchCustomerPrivByOwnerIdCount.Parameters.Add("@OwnerId", MySqlDbType.Int32);
             #endregion
 
             #region cmdSearchCustomerPrivByName
@@ -277,7 +286,7 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new CustomerPrivate().BuildSampleEntity(reader));
                 }
-                returnValue.RecordsCount = (int)_cmdGetCustomerPrivateCount.ExecuteScalar();
+                returnValue.RecordsCount = Convert.ToInt32(_cmdGetCustomerPrivateCount.ExecuteScalar());
             }
             finally
             {
@@ -364,15 +373,22 @@ namespace MicroAssistant.DataAccess
 
         }
 
-        public List<CustomerPrivate> SearchCustomerPrivByOwnerId(int ownerid)
+        public PageEntity<CustomerPrivate> SearchCustomerPrivByOwnerId(int ownerid, int pageIndex, int pageSize)
         {
             MySqlConnection oc = ConnectManager.Create();
+            MySqlConnection oc1 = ConnectManager.Create();
             MySqlCommand _cmdSearchCustomerPrivByOwnerId = cmdSearchCustomerPrivByOwnerId.Clone() as MySqlCommand;
             _cmdSearchCustomerPrivByOwnerId.Connection = oc;
-            List<CustomerPrivate> returnValue = new List<CustomerPrivate>();
+            MySqlCommand _cmdSearchCustomerPrivByOwnerIdCount = cmdSearchCustomerPrivByOwnerIdCount.Clone() as MySqlCommand;
+            _cmdSearchCustomerPrivByOwnerIdCount.Connection = oc;
+            PageEntity<CustomerPrivate> returnValue = new PageEntity<CustomerPrivate>();
             try
             {
+                _cmdSearchCustomerPrivByOwnerId.Parameters["@PageIndex"].Value = pageIndex;
+                _cmdSearchCustomerPrivByOwnerId.Parameters["@PageSize"].Value = pageSize;
                 _cmdSearchCustomerPrivByOwnerId.Parameters["@OwnerId"].Value = ownerid;
+
+                _cmdSearchCustomerPrivByOwnerIdCount.Parameters["@OwnerId"].Value = ownerid;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
@@ -380,8 +396,9 @@ namespace MicroAssistant.DataAccess
                 MySqlDataReader reader = _cmdSearchCustomerPrivByOwnerId.ExecuteReader();
                 while (reader.Read())
                 {
-                    returnValue.Add(new CustomerPrivate().BuildSampleEntity(reader));
+                    returnValue.Items.Add(new CustomerPrivate().BuildSampleEntity(reader));
                 }
+                returnValue.RecordsCount = Convert.ToInt32(_cmdSearchCustomerPrivByOwnerIdCount.ExecuteScalar());
             }
             finally
             {

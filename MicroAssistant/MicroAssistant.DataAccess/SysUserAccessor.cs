@@ -30,11 +30,13 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdGetSysUserByAcountAndPwd;
         private MySqlCommand cmdUpdateSysUserEntId;
 
+        private MySqlCommand cmdLoadSysUserByRoleId;
+
         private SysUserAccessor()
         {
             #region cmdInsertSysUser
 
-            cmdInsertSysUser = new MySqlCommand("INSERT INTO sys_user(user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id) values (@UserName,@UserAccount,@Pwd,@Mobile,@Email,@CreateTime,@EndTime,@EntAdminId,@IsEnable,@Type,@EntId)");
+            cmdInsertSysUser = new MySqlCommand("INSERT INTO sys_user(user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id,birthday,sex) values (@UserName,@UserAccount,@Pwd,@Mobile,@Email,@CreateTime,@EndTime,@EntAdminId,@IsEnable,@Type,@EntId,@Birthday,@Sex)");
 
             cmdInsertSysUser.Parameters.Add("@UserName", MySqlDbType.String);
             cmdInsertSysUser.Parameters.Add("@UserAccount", MySqlDbType.String);
@@ -47,6 +49,8 @@ namespace MicroAssistant.DataAccess
             cmdInsertSysUser.Parameters.Add("@IsEnable", MySqlDbType.Int32);
             cmdInsertSysUser.Parameters.Add("@Type", MySqlDbType.Int32);
             cmdInsertSysUser.Parameters.Add("@EntId", MySqlDbType.Int32);
+            cmdInsertSysUser.Parameters.Add("@Birthday", MySqlDbType.Int32);
+            cmdInsertSysUser.Parameters.Add("@Sex", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateSysUserEntId
@@ -59,7 +63,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateSysUser
 
-            cmdUpdateSysUser = new MySqlCommand(" update sys_user set user_name = @UserName,user_account = @UserAccount,pwd = @Pwd,mobile = @Mobile,email = @Email,create_time = @CreateTime,end_time = @EndTime,ent_admin_id = @EntAdminId,is_enable = @IsEnable,type = @Type,ent_id = @EntId where user_id = @UserId");
+            cmdUpdateSysUser = new MySqlCommand(" update sys_user set birthday = @Birthday,sex = @Sex,user_name = @UserName,user_account = @UserAccount,pwd = @Pwd,mobile = @Mobile,email = @Email,create_time = @CreateTime,end_time = @EndTime,ent_admin_id = @EntAdminId,is_enable = @IsEnable,type = @Type,ent_id = @EntId where user_id = @UserId");
             cmdUpdateSysUser.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdUpdateSysUser.Parameters.Add("@UserName", MySqlDbType.String);
             cmdUpdateSysUser.Parameters.Add("@UserAccount", MySqlDbType.String);
@@ -72,6 +76,8 @@ namespace MicroAssistant.DataAccess
             cmdUpdateSysUser.Parameters.Add("@IsEnable", MySqlDbType.Int32);
             cmdUpdateSysUser.Parameters.Add("@Type", MySqlDbType.Int32);
             cmdUpdateSysUser.Parameters.Add("@EntId", MySqlDbType.Int32);
+            cmdUpdateSysUser.Parameters.Add("@Birthday", MySqlDbType.Int32);
+                     cmdUpdateSysUser.Parameters.Add("@Sex", MySqlDbType.Int32);
 
             #endregion
 
@@ -83,7 +89,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadSysUser
 
-            cmdLoadSysUser = new MySqlCommand(@" select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user limit @PageIndex,@PageSize");
+            cmdLoadSysUser = new MySqlCommand(@" select birthday,sex, user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user limit @PageIndex,@PageSize");
             cmdLoadSysUser.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadSysUser.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -97,13 +103,13 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllSysUser
 
-            cmdLoadAllSysUser = new MySqlCommand(" select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user");
+            cmdLoadAllSysUser = new MySqlCommand(" select birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user");
 
             #endregion
 
             #region cmdGetSysUser
 
-            cmdGetSysUser = new MySqlCommand(" select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_id = @UserId");
+            cmdGetSysUser = new MySqlCommand(" select birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_id = @UserId");
             cmdGetSysUser.Parameters.Add("@UserId", MySqlDbType.Int32);
 
             #endregion
@@ -117,9 +123,27 @@ namespace MicroAssistant.DataAccess
 
             #region cmdGetSysUserByAcountAndPwd
 
-            cmdGetSysUserByAcountAndPwd = new MySqlCommand("  select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_account = @UserAccount and pwd = @Pwd and is_enable=1");
+            cmdGetSysUserByAcountAndPwd = new MySqlCommand("  select birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_account = @UserAccount and pwd = @Pwd and is_enable=1");
             cmdGetSysUserByAcountAndPwd.Parameters.Add("@UserAccount", MySqlDbType.String);
             cmdGetSysUserByAcountAndPwd.Parameters.Add("@Pwd", MySqlDbType.String);
+
+            #endregion
+
+            #region cmdLoadSysUserByRoleId
+
+            cmdLoadSysUserByRoleId = new MySqlCommand(@"select * from (SELECT 
+    a . *,
+    (select 
+            b.role_id
+        from
+            sys_role_user b
+        where
+            b.user_id =a.user_id and b.ent_id = @EntId ) role_id
+FROM
+    sys_user a
+where
+    a.ent_id = @EntId) c  {0}");
+            cmdLoadSysUserByRoleId.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
         }
@@ -149,6 +173,8 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertSysUser.Parameters["@IsEnable"].Value = e.IsEnable;
                 _cmdInsertSysUser.Parameters["@Type"].Value = e.Type;
                 _cmdInsertSysUser.Parameters["@EntId"].Value = e.EntId;
+                _cmdInsertSysUser.Parameters["@Birthday"].Value = e.Birthday;
+                _cmdInsertSysUser.Parameters["@Sex"].Value = e.Sex;
 
                 _cmdInsertSysUser.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertSysUser.LastInsertedId);
@@ -256,6 +282,8 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateSysUser.Parameters["@IsEnable"].Value = e.IsEnable;
                 _cmdUpdateSysUser.Parameters["@Type"].Value = e.Type;
                 _cmdUpdateSysUser.Parameters["@EntId"].Value = e.EntId;
+                _cmdUpdateSysUser.Parameters["@Sex"].Value = e.Sex;
+                _cmdUpdateSysUser.Parameters["@Birthday"].Value = e.Birthday;
 
                 _cmdUpdateSysUser.ExecuteNonQuery();
 
@@ -312,7 +340,7 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new SysUser().BuildSampleEntity(reader));
                 }
-                returnValue.RecordsCount = (int)_cmdGetSysUserCount.ExecuteScalar();
+                returnValue.RecordsCount = Convert.ToInt32(_cmdGetSysUserCount.ExecuteScalar());
             }
             finally
             {
@@ -473,6 +501,53 @@ namespace MicroAssistant.DataAccess
             return returnValue;
 
         }
+
+        /// <summary>
+        /// 获取全部数据
+        /// </summary>
+        public List<SysUser> LoadSysUserByRoleId(int entId,int roleId)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdLoadSysUserByRoleId = cmdLoadSysUserByRoleId.Clone() as MySqlCommand;
+            _cmdLoadSysUserByRoleId.Connection = oc; List<SysUser> returnValue = new List<SysUser>();
+            try
+            {
+                string strsql = string.Empty;
+                switch (roleId)
+                {
+                    case 0:
+                        strsql = string.Empty;
+                        break;
+                    case -1:
+                        strsql = " where role_id is null ";
+                        break;
+                    default:
+                        strsql = " where role_id = " + roleId;
+                        break;
+                }
+                _cmdLoadSysUserByRoleId.CommandText = string.Format(_cmdLoadSysUserByRoleId.CommandText, strsql);
+                _cmdLoadSysUserByRoleId.Parameters["@EntId"].Value = entId;
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                MySqlDataReader reader = _cmdLoadSysUserByRoleId.ExecuteReader();
+                while (reader.Read())
+                {
+                    returnValue.Add(new SysUser().BuildUserRoleEntity(reader));
+                }
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdLoadSysUserByRoleId.Dispose();
+                _cmdLoadSysUserByRoleId = null;
+                GC.Collect();
+            }
+            return returnValue;
+        }
+
         private static readonly SysUserAccessor instance = new SysUserAccessor();
         public static SysUserAccessor Instance
         {

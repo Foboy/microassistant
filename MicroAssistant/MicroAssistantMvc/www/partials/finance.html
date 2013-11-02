@@ -1,11 +1,11 @@
 <h1 class="titSec">财务管理</h1>
 <ul class="clearfix salesList financeList">
     <li ng-class="steps=='receivable'?'cur':''">
-        <a ng-href="#!/finance/receivable/1">应收款</a>
+        <a ng-href="#!/finance/receivable/0">应收款</a>
         <span class="arrowD"></span>
     </li>
     <li ng-class="steps=='payable'?'cur':''">
-        <a ng-href="#!/finance/payable/1">应付款</a>
+        <a ng-href="#!/finance/payable/0">应付款</a>
         <span class="arrowD"></span>
     </li>
 </ul>
@@ -29,7 +29,7 @@
                 <td>1</td>
                 <td>{{receivableitem.CustomerName}}</td>
                 <td class="colorBlue">{{receivableitem.ContractNo}}</td>
-                <td><span class="money">{{receivableitem.Amount}}元</span><b class="colorBlue">{{receivableitem.ReceivedTime}}</b></td>
+                <td><span class="money">{{receivableitem.Amount}}元</span><b class="colorBlue">{{parseJsonDate(receivableitem.ReceivedTime)|date:'yyyy/MM/dd'}}</b></td>
                 <td><a href="" role="button" ng-click="ShowReceivableDetail()" data-toggle="modal">详情</a>|<a href="" ng-click="ShowReceivableDetail()" role="button" data-toggle="modal">确认收款</a></td>
             </tr>
         </tbody>
@@ -55,8 +55,8 @@
                 <td class="colorBlue">{{payableitem.Price}}</td>
                 <td>{{payableitem.PNum}} 件</td>
                 <td class="colorRed">{{payableitem.Price*payableitem.PNum| currency:''}}</td>
-                <td>{{payableitem.CreateTime}}</td>
-                <td><a href="" ng-click="MakeSurePayable()" role="button" data-toggle="modal">确认收款</a></td>
+                <td>{{parseJsonDate(payableitem.CreateTime)|date:'yyyy/MM/dd'}}</td>
+                <td><a href="" ng-click="MakeSurePayable()" role="button" data-toggle="modal">确认付款</a></td>
             </tr>
         </tbody>
     </table>

@@ -66,9 +66,13 @@ function MainCtrl($scope, $routeParams, $http, $location) {
         }
         else if (typeof datestr == 'string') {
             datestr = datestr.replace(/\//g, '');
-            date = eval(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
-            console.log(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
-            console.log(date);
+            if ((/Date/ig).test(datestr)) {
+                date = eval(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
+                console.log(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
+                console.log(date);
+            }
+            else
+                return datestr;
         }
         else {
             date = new Date();

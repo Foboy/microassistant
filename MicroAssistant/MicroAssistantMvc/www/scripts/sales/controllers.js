@@ -36,14 +36,16 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 		        }
 				break;
 			case 'contract':
-				$http.get($sitecore.urls["productList"],{params:{pageIndex:$routeParams.pageIndex||0}}).success(function(data) {
-					console.log(data);
-				  $scope.ActPageIndex = $routeParams.pageIndex||0;
-				  $scope.contracts = data;
-				}).
-				error(function(data, status, headers, config) {
-				  $scope.contracts = [];
-				});
+			    if (!$scope.contracts) {
+			        $http.post($sitecore.urls["salesChanceVisitList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: 20 }).success(function (data) {
+			            console.log(data);
+			            $scope.ActPageIndex = $routeParams.pageIndex || 0;
+			            $scope.cvisits = data.Data.Items;
+			        }).
+                    error(function (data, status, headers, config) {
+                        $scope.cvisits = [];
+                    });
+			    }
 				break;
 			case 'after':
 				$http.get($sitecore.urls["productList"],{params:{pageIndex:$routeParams.pageIndex||1}}).success(function(data) {
@@ -90,18 +92,84 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 	$scope.loadCurrentStepList();
 }
 
-function SalesChanceDetailCtrl($scope, $routeParams, $http, $location){
-	$scope.$on('EventChanceDetail',function(event){
-		$("#chanceDetailBox").animate({width:"350px"},300);
+function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) {
+    var fromscope,chance,selectdate;
+    $("#chanceDetailBox").hide();
+    $scope.$on('EventChanceDetail', function (event, from) {
+        $("#chanceDetailBox").show();
+        $("#chanceDetailBox").animate({ width: "350px" }, 300, function () {
+            $(".form_datetime").datetimepicker({
+                minView:2,
+                language:'zh-CN',
+                format: "yyyy/mm/dd",
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            })
+            .on('changeDate', function (ev) {
+                $scope.$apply(function () {
+                    selectdate = ev.date;
+                    $scope.chance.FormatAddTime = ev.target.value
+                });
+                console.log();
+            });
+        });
+        fromscope = from;
+        chance = from.chance;
+        chance.FormatAddTime = $filter('date')($scope.parseJsonDate(chance.AddTime), 'yyyy/MM/dd');
+        chance.CustomerType = chance.CustomerType + "";
+        chance.ChanceType = chance.ChanceType + "";
+        $scope.oldchance = chance;
+        $scope.chance = angular.copy(chance);
+        
+
 		//加载机会数据
-	});
+    });
+
+    $scope.chanceDetailHasChanged = function () {
+        return !angular.equals($scope.oldchance, $scope.chance);
+    };
 	
 	$scope.hideChanceDetail = function(){
-	  $("#chanceDetailBox").animate({width:"0px"},300,function(){});
-  	};
+	    $("#chanceDetailBox").animate({ width: "0px" }, 300, function () { $("#chanceDetailBox").hide(); });
+	};
+
+	$scope.SalesChanceDetailSubmit = function () {
+	    if ($scope.salesChanceDetailForm.$valid) {
+	        $scope.showerror = false;
+	        $http.post($sitecore.urls["salesChanceEdit"], {
+	            cid: chance.IdmarketingChance,
+	            chanceType: $scope.chance.ChanceType,
+	            customerType: $scope.chance.CustomerType,
+	            username: $scope.chance.ContactName,
+	            chanceDetail: $scope.chance.Remark,
+	            tel: $scope.chance.Tel,
+	            phone: $scope.chance.Phone,
+	            email: $scope.chance.Email,
+	            qq: $scope.chance.Qq,
+	            Isasyn: $scope.chance.Isasyn
+	        }).success(function (data) {
+	            console.log(data);
+	            if (data.Error) {
+	                alert(data.ErrorMessage);
+	            }
+	            else {
+	                fromscope.chance = $scope.chance;
+	                fromscope.chance.AddTime = selectdate;
+	            }
+	        }).
+            error(function (data, status, headers, config) {
+                //$scope.product = {};
+            });
+	    }
+	    else {
+	        $scope.showerror = true;
+	    }
+	};
 };
 function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
     var chance;
+    $("#visitDetailBox").hide();
     $scope.$on('EventVisitDetail', function (event, from) {
         console.log(from)
         chance = from.chance || from.cvisit;
@@ -109,9 +177,11 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
         $scope.NewRate = $scope.chance.Rate;
         $scope.chanceVisitDetail();
         $scope.visitFormReset();
+        $("#visitDetailBox").show();
 		$("#visitDetailBox").animate({width:"900px"},500);
 		//加载机会数据
     });
+    
 
     $scope.visitFormReset = function () {
         $scope.EditVisit = { VisitType: 1, Address: '' };
@@ -119,7 +189,8 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
     };
 	
 	$scope.hideVisitDetail = function(){
-	  $("#visitDetailBox").animate({width:"0px"},500,function(){});
+	    $("#visitDetailBox").animate({ width: "0px" }, 500, function () { $("#visitDetailBox").hide(); });
+
 	};
 
 	$scope.chanceVisitDetail = function () {
@@ -240,15 +311,19 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	    }
 	};
 };
-function SalesContractDetailCtrl($scope, $routeParams, $http, $location){
-	$scope.$on('EventContractDetail',function(event){
+function SalesContractDetailCtrl($scope, $routeParams, $http, $location) {
+    $("#contractDetailBox").hide();
+    $scope.$on('EventContractDetail', function (event) {
+        $("#contractDetailBox").show();
 		$("#contractDetailBox").animate({width:"500px"},400);
 		//加载机会数据
 	});
 	
 	$scope.hideContractDetail = function(){
-	  $("#contractDetailBox").animate({width:"0px"},400,function(){});
-  	};
+	    $("#contractDetailBox").animate({ width: "0px" }, 400, function () { $("#contractDetailBox").hide(); });
+	    
+	};
+	
 };
 function SalesAfterDetailCtrl($scope, $routeParams, $http, $location){
 };

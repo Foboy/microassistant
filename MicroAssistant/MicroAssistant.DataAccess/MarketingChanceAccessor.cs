@@ -27,6 +27,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdGetMarketingChanceCount;
         private MySqlCommand cmdGetMarketingChance;
         private MySqlCommand cmdUpdateRate;
+        private MySqlCommand cmdUpdateIsVisit;
 
         private MarketingChanceAccessor()
         {
@@ -53,6 +54,14 @@ namespace MicroAssistant.DataAccess
             cmdUpdateRate = new MySqlCommand(" update marketing_chance set rate = @Rate where idmarketing_chance = @IdmarketingChance");
             cmdUpdateRate.Parameters.Add("@IdmarketingChance", MySqlDbType.Int32);
             cmdUpdateRate.Parameters.Add("@Rate", MySqlDbType.Int32);
+
+            #endregion
+
+            #region cmdUpdateIsVisit
+
+            cmdUpdateIsVisit = new MySqlCommand(" update marketing_chance set IsVisit = @IsVisit where idmarketing_chance = @IdmarketingChance");
+            cmdUpdateIsVisit.Parameters.Add("@IdmarketingChance", MySqlDbType.Int32);
+            cmdUpdateIsVisit.Parameters.Add("@IsVisit", MySqlDbType.Int32);
 
             #endregion
 
@@ -83,8 +92,9 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadMarketingChance
 
-            cmdLoadMarketingChance = new MySqlCommand(@" select idmarketing_chance,chance_type,customer_type,contact_name,remark,add_time,qq,email,tel,phone,rate,ent_id,user_id from marketing_chance where user_id = @UserId limit @PageIndex,@PageSize");
+            cmdLoadMarketingChance = new MySqlCommand(@" select idmarketing_chance,chance_type,customer_type,contact_name,remark,add_time,qq,email,tel,phone,rate,ent_id,user_id from marketing_chance where user_id = @UserId and (IsVisit = @IsVisit or @IsVisit = 0 ) limit @PageIndex,@PageSize");
             cmdLoadMarketingChance.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdLoadMarketingChance.Parameters.Add("@IsVisit", MySqlDbType.Int32);
             cmdLoadMarketingChance.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadMarketingChance.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -217,6 +227,39 @@ namespace MicroAssistant.DataAccess
         }
 
         /// <summary>
+        ///修改拜访记录状态
+        /// <param name="isVisit">1:未拜访 2：已拜访</param>
+        /// <para>数据对应的主键必须在实例中设置</para>
+        /// </summary>
+        public void UpdateisVisit(int cid, int isVisit)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdUpdateIsVisit = cmdUpdateIsVisit.Clone() as MySqlCommand;
+            _cmdUpdateIsVisit.Connection = oc;
+
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+
+                _cmdUpdateIsVisit.Parameters["@IdmarketingChance"].Value = cid;
+                _cmdUpdateIsVisit.Parameters["@isVisit"].Value = isVisit;
+
+                _cmdUpdateIsVisit.ExecuteNonQuery();
+
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdUpdateIsVisit.Dispose();
+                _cmdUpdateIsVisit = null;
+                GC.Collect();
+            }
+        }
+
+        /// <summary>
         /// 修改指定的数据
         /// <param name="e">修改后的数据实体对象</param>
         /// <para>数据对应的主键必须在实例中设置</para>
@@ -267,7 +310,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<MarketingChance> Search(Int32 UserId, int pageIndex, int pageSize)
+        public PageEntity<MarketingChance> Search(int IsVisit,Int32 UserId, int pageIndex, int pageSize)
         {
             PageEntity<MarketingChance> returnValue = new PageEntity<MarketingChance>();
             MySqlConnection oc = ConnectManager.Create();
@@ -281,6 +324,7 @@ namespace MicroAssistant.DataAccess
                 _cmdLoadMarketingChance.Parameters["@PageIndex"].Value = pageIndex;
                 _cmdLoadMarketingChance.Parameters["@PageSize"].Value = pageSize;
                 _cmdLoadMarketingChance.Parameters["@UserId"].Value = UserId;
+                _cmdLoadMarketingChance.Parameters["@IsVisit"].Value = IsVisit;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();

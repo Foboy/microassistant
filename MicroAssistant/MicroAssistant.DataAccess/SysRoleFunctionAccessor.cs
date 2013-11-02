@@ -1,7 +1,7 @@
 ﻿/**
  * @author yangchao
  * @email:aaronyangchao@gmail.com
- * @date: 2013/5/21 11:37:03
+ * @date: 2013/11/2 14:31:17
  */
 using System;
 using System.Collections.Generic;
@@ -21,29 +21,31 @@ namespace MicroAssistant.DataAccess
     {
         private MySqlCommand cmdInsertSysRoleFunction;
         private MySqlCommand cmdDeleteSysRoleFunction;
-        private MySqlCommand cmdDeleteSysRoleFunctionByRoleId;
         private MySqlCommand cmdUpdateSysRoleFunction;
         private MySqlCommand cmdLoadSysRoleFunction;
         private MySqlCommand cmdLoadAllSysRoleFunction;
         private MySqlCommand cmdGetSysRoleFunctionCount;
         private MySqlCommand cmdGetSysRoleFunction;
+        
 
         private SysRoleFunctionAccessor()
         {
             #region cmdInsertSysRoleFunction
 
-            cmdInsertSysRoleFunction = new MySqlCommand("INSERT INTO sys_role_function(role_id,function_id) values (@RoleId,@FunctionId)");
+            cmdInsertSysRoleFunction = new MySqlCommand("INSERT INTO sys_role_function(role_id,function_id,ent_id) values (@RoleId,@FunctionId,@EntId)");
 
             cmdInsertSysRoleFunction.Parameters.Add("@RoleId", MySqlDbType.Int32);
             cmdInsertSysRoleFunction.Parameters.Add("@FunctionId", MySqlDbType.Int32);
+            cmdInsertSysRoleFunction.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateSysRoleFunction
 
-            cmdUpdateSysRoleFunction = new MySqlCommand("update sys_role_function set role_id = @RoleId,function_id = @FunctionId where sys_role_function_id = @SysRoleFunctionId");
+            cmdUpdateSysRoleFunction = new MySqlCommand(" update sys_role_function set role_id = @RoleId,function_id = @FunctionId,ent_id = @EntId where sys_role_function_id = @SysRoleFunctionId");
             cmdUpdateSysRoleFunction.Parameters.Add("@SysRoleFunctionId", MySqlDbType.Int32);
             cmdUpdateSysRoleFunction.Parameters.Add("@RoleId", MySqlDbType.Int32);
             cmdUpdateSysRoleFunction.Parameters.Add("@FunctionId", MySqlDbType.Int32);
+            cmdUpdateSysRoleFunction.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
 
@@ -53,44 +55,33 @@ namespace MicroAssistant.DataAccess
             cmdDeleteSysRoleFunction.Parameters.Add("@SysRoleFunctionId", MySqlDbType.Int32);
             #endregion
 
-            #region cmdDeleteSysRoleFunctionByRoleId
+            #region cmdLoadSysRoleFunction
 
-            cmdDeleteSysRoleFunctionByRoleId = new MySqlCommand(" delete from sys_role_function where role_id = @RoleId");
-            cmdDeleteSysRoleFunctionByRoleId.Parameters.Add("@RoleId", MySqlDbType.Int32);
-            #endregion
-
-            #region cmdLoadSysRoleFunction 选择条件查询
-
-            cmdLoadSysRoleFunction = new MySqlCommand(@" select sys_role_function_id,role_id,function_id from sys_role_function where (@SysRoleFunctionId=0 or sys_role_function_id=@SysRoleFunctionId) and (@RoleId=0 or role_id=@RoleId) and (@FunctionId=0 and function_id =@FunctionId) limit @PageIndex,@PageSize");
-            cmdLoadSysRoleFunction.Parameters.Add("@SysRoleFunctionId", MySqlDbType.Int32);
-            cmdLoadSysRoleFunction.Parameters.Add("RoleId", MySqlDbType.Int32);
-            cmdLoadSysRoleFunction.Parameters.Add("FunctionId", MySqlDbType.Int32);
+            cmdLoadSysRoleFunction = new MySqlCommand(@" select sys_role_function_id,role_id,function_id,ent_id from sys_role_function limit @PageIndex,@PageSize");
             cmdLoadSysRoleFunction.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadSysRoleFunction.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
-            #endregion cmdLoadSysRoleFunction 选择条件查询
+            #endregion
 
-            #region cmdGetSysRoleFunctionCount 选择条件查询数据总条数
+            #region cmdGetSysRoleFunctionCount
 
-            cmdGetSysRoleFunctionCount = new MySqlCommand(" select count(*) from sys_role_function where (@SysRoleFunctionId=0 or sys_role_function_id=@SysRoleFunctionId) and (@RoleId=0 or role_id=@RoleId) and (@FunctionId=0 and function_id =@FunctionId)");
-            cmdGetSysRoleFunctionCount.Parameters.Add("@SysRoleFunctionId", MySqlDbType.Int32);
-            cmdGetSysRoleFunctionCount.Parameters.Add("RoleId", MySqlDbType.Int32);
-            cmdGetSysRoleFunctionCount.Parameters.Add("FunctionId", MySqlDbType.Int32);
+            cmdGetSysRoleFunctionCount = new MySqlCommand(" select count(*)  from sys_role_function ");
 
-            #endregion cmdGetSysRoleFunctionCount 选择条件查询数据总条数
+            #endregion
 
             #region cmdLoadAllSysRoleFunction
 
-            cmdLoadAllSysRoleFunction = new MySqlCommand(" select sys_role_function_id,role_id,function_id from sys_role_function");
+            cmdLoadAllSysRoleFunction = new MySqlCommand(" select sys_role_function_id,role_id,function_id,ent_id from sys_role_function");
 
             #endregion
 
             #region cmdGetSysRoleFunction
 
-            cmdGetSysRoleFunction = new MySqlCommand(" select sys_role_function_id,role_id,function_id from sys_role_function where sys_role_function_id = @SysRoleFunctionId");
+            cmdGetSysRoleFunction = new MySqlCommand(" select sys_role_function_id,role_id,function_id,ent_id from sys_role_function where sys_role_function_id = @SysRoleFunctionId");
             cmdGetSysRoleFunction.Parameters.Add("@SysRoleFunctionId", MySqlDbType.Int32);
 
             #endregion
+
         }
 
         /// <summary>
@@ -110,6 +101,7 @@ namespace MicroAssistant.DataAccess
                     oc.Open();
                 _cmdInsertSysRoleFunction.Parameters["@RoleId"].Value = e.RoleId;
                 _cmdInsertSysRoleFunction.Parameters["@FunctionId"].Value = e.FunctionId;
+                _cmdInsertSysRoleFunction.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdInsertSysRoleFunction.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertSysRoleFunction.LastInsertedId);
@@ -123,32 +115,6 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertSysRoleFunction.Dispose();
                 _cmdInsertSysRoleFunction = null;
             }
-        }
-
-        /// <summary>
-        /// 为某个角色添加权限
-        /// <param name="es">数据实体对象数组</param>
-        /// <returns></returns>
-        /// </summary>
-        public bool Insert(int roleid, List<int> functionids)
-        {
-            bool returnValue = false;
-            try
-            {
-                for (int i = 0; i < functionids.Count; i++)
-                {
-                    SysRoleFunction srf = new SysRoleFunction();
-                    srf.FunctionId=functionids[i];
-                    srf.RoleId=roleid;
-                    Insert(srf);
-                }
-                returnValue = true;
-            }
-            catch
-            {
-
-            }
-            return returnValue;
         }
 
         /// <summary>
@@ -183,37 +149,6 @@ namespace MicroAssistant.DataAccess
         }
 
         /// <summary>
-        /// 删除数据
-        /// <param name="es">数据实体对象数组</param>
-        /// <returns></returns>
-        /// </summary>
-        public bool DeleteByRoleId(int roleId)
-        {
-            MySqlConnection oc = ConnectManager.Create();
-            MySqlCommand _cmdDeleteSysRoleFunctionByRoleId = cmdDeleteSysRoleFunctionByRoleId.Clone() as MySqlCommand;
-            bool returnValue = false;
-            _cmdDeleteSysRoleFunctionByRoleId.Connection = oc;
-            try
-            {
-                if (oc.State == ConnectionState.Closed)
-                    oc.Open();
-                _cmdDeleteSysRoleFunctionByRoleId.Parameters["@RoleId"].Value = roleId;
-
-
-                _cmdDeleteSysRoleFunctionByRoleId.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally
-            {
-                oc.Close();
-                oc.Dispose();
-                oc = null;
-                _cmdDeleteSysRoleFunctionByRoleId.Dispose();
-                _cmdDeleteSysRoleFunctionByRoleId = null;
-            }
-        }
-
-        /// <summary>
         /// 修改指定的数据
         /// <param name="e">修改后的数据实体对象</param>
         /// <para>数据对应的主键必须在实例中设置</para>
@@ -232,6 +167,7 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateSysRoleFunction.Parameters["@SysRoleFunctionId"].Value = e.SysRoleFunctionId;
                 _cmdUpdateSysRoleFunction.Parameters["@RoleId"].Value = e.RoleId;
                 _cmdUpdateSysRoleFunction.Parameters["@FunctionId"].Value = e.FunctionId;
+                _cmdUpdateSysRoleFunction.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdUpdateSysRoleFunction.ExecuteNonQuery();
 
@@ -254,7 +190,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<SysRoleFunction> Search(Int32 SysRoleFunctionId, Int32 RoleId, Int32 FunctionId, int pageIndex, int pageSize)
+        public PageEntity<SysRoleFunction> Search(Int32 SysRoleFunctionId, Int32 RoleId, Int32 FunctionId, Int32 EntId, int pageIndex, int pageSize)
         {
             PageEntity<SysRoleFunction> returnValue = new PageEntity<SysRoleFunction>();
             MySqlConnection oc = ConnectManager.Create();
@@ -270,6 +206,7 @@ namespace MicroAssistant.DataAccess
                 _cmdLoadSysRoleFunction.Parameters["@SysRoleFunctionId"].Value = SysRoleFunctionId;
                 _cmdLoadSysRoleFunction.Parameters["@RoleId"].Value = RoleId;
                 _cmdLoadSysRoleFunction.Parameters["@FunctionId"].Value = FunctionId;
+                _cmdLoadSysRoleFunction.Parameters["@EntId"].Value = EntId;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
@@ -279,7 +216,7 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new SysRoleFunction().BuildSampleEntity(reader));
                 }
-                returnValue.RecordsCount = (int)_cmdGetSysRoleFunctionCount.ExecuteScalar();
+                returnValue.RecordsCount = Convert.ToInt32(_cmdGetSysRoleFunctionCount.ExecuteScalar());
             }
             finally
             {
