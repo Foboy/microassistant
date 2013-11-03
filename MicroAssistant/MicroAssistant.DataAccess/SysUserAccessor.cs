@@ -49,7 +49,7 @@ namespace MicroAssistant.DataAccess
             cmdInsertSysUser.Parameters.Add("@IsEnable", MySqlDbType.Int32);
             cmdInsertSysUser.Parameters.Add("@Type", MySqlDbType.Int32);
             cmdInsertSysUser.Parameters.Add("@EntId", MySqlDbType.Int32);
-            cmdInsertSysUser.Parameters.Add("@Birthday", MySqlDbType.Int32);
+            cmdInsertSysUser.Parameters.Add("@Birthday", MySqlDbType.DateTime);
             cmdInsertSysUser.Parameters.Add("@Sex", MySqlDbType.Int32);
             #endregion
 
@@ -76,7 +76,7 @@ namespace MicroAssistant.DataAccess
             cmdUpdateSysUser.Parameters.Add("@IsEnable", MySqlDbType.Int32);
             cmdUpdateSysUser.Parameters.Add("@Type", MySqlDbType.Int32);
             cmdUpdateSysUser.Parameters.Add("@EntId", MySqlDbType.Int32);
-            cmdUpdateSysUser.Parameters.Add("@Birthday", MySqlDbType.Int32);
+            cmdUpdateSysUser.Parameters.Add("@Birthday", MySqlDbType.DateTime);
                      cmdUpdateSysUser.Parameters.Add("@Sex", MySqlDbType.Int32);
 
             #endregion
