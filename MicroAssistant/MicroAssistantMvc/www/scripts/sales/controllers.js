@@ -130,8 +130,14 @@ function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) 
         return !angular.equals($scope.oldchance, $scope.chance);
     };
 	
-	$scope.hideChanceDetail = function(){
-	    $("#chanceDetailBox").animate({ width: "0px" }, 300, function () { $("#chanceDetailBox").hide(); });
+	$scope.hideChanceDetail = function(callback){
+	    $("#chanceDetailBox").animate({ width: "0px" }, 300, function () {
+	        $("#chanceDetailBox").hide();
+	        if (typeof callback === 'function')
+	        {
+	            callback();
+	        }
+	    });
 	};
 
 	$scope.SalesChanceDetailSubmit = function () {
@@ -165,6 +171,14 @@ function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) 
 	    else {
 	        $scope.showerror = true;
 	    }
+	};
+
+	$scope.visit = function () {
+	    $scope.hideChanceDetail(function () {
+	        $scope.$apply(function () {
+	            $scope.showVisitDetail();
+	        });
+	    });
 	};
 };
 function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
@@ -309,6 +323,10 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	    else {
 	        $scope.rateEditPanleShow = false;
 	    }
+	};
+
+	$scope.editExistVisit = function () {
+	    console.log(angular.element(this));
 	};
 };
 function SalesContractDetailCtrl($scope, $routeParams, $http, $location) {
