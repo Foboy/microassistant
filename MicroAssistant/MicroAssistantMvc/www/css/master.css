@@ -38,10 +38,10 @@ a:hover{text-decoration:underline;}
 /*===  图标样式 ===*/
 .homeIcon,.peopleIcon,.askIcon,.arrowD,.pcIcon,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon,.boy-icon,.girl-icon,.b-i,.g-i,.sales-oppr-icon,.visit-icon,.contract-icon,.sales-follow-icon,.com-pIcon,.sim-pIcon,.email-icon,.num-icon{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
 .pcIcon{background-position:-60px -139px; width:29px; height:27px;}
-.homeIcon{background-position:-41px -128px; width:35px; height:33px;}
+.homeIcon{background-position:-28px -128px; width:24px; height:22px;}
 .homeIcon:hover{background-position:0 -128px;}
-.peopleIcon{background-position:0 -168px; width:34px; height:38px;}
-.peopleIcon:hover{background-position:0 -168px;}
+.peopleIcon{background-position:-32px -155px; width:22px; height:25px;}
+.peopleIcon:hover{background-position:-1px -155px;}
 .askIcon{background-position:-276px -275px; width:24px; height:42px;}
 .askIcon:hover{background-position:-276px -275px;}
 .arrowD{background-position:-110px -94px; width:9px; height:6px;}
@@ -139,13 +139,15 @@ a:hover{text-decoration:underline;}
 .Nav{width:150px; position:fixed; top:50px; left:0;}
 .headImg{width:150px; height:60px; text-align:center; padding:20px 0;}
 .headImg img{border-radius:40px; height:60px; width:60px;}
-.navList{margin-left:0;}
-.navList li{padding-left:4px; text-align:center; height:70px; list-style:none; width:148px; font-size:12px; padding-top:5px; margin-bottom:1px;}
-.navList li a{color:#adadad;}
+.navList{margin-left:0;border-top:1px solid #e5e3d4;}
+.navList li{padding-left:4px; text-align:center; height:45px; list-style:none; width:145px; font-size:12px; margin-bottom:1px; border-bottom:1px solid #e5e3d4;border-right:1px solid #e5e3d4; background:#f2f2ea; color:#6d6b6c;}
+.navList li a{color:#6d6b6c;}
+.navList li .homeIcon,.navList li .peopleIcon{float:left; margin:10px;}
+.navList li p{float:right; width:99px; height:45px; line-height:45px; font-size:14px; text-align:center; border-left:1px solid #e5e3d4; margin:0;}
 .navList li.cur,.navList li:hover{padding-left:0; border-left:4px solid #248faf; background:#FFFFFF;}
-.navList li:hover a,.navList li.cur a{color:#333333; text-decoration:none;}
+.navList li:hover a,.navList li.cur a{color:#6d6b6c; text-decoration:none;}
 .navList li:hover .homeIcon,.navList li.cur .homeIcon{background-position:0 -128px; float:left; margin:10px;}
-.navList li:hover .peopleIcon,.navList li.cur .peopleIcon{background-position:0 -168px;}
+.navList li:hover .peopleIcon,.navList li.cur .peopleIcon{background-position:-1px -155px;float:left; margin:10px;}
 
 .conBox{position:relative; margin-left:150px; min-height:800px;background:#FFFFFF; max-width:1286px; top:50px;}
 .titSec{height:30px; line-height:30px; color:#5B5B5B; font-size:20px; font-weight:normal; font-family:"微软雅黑"; padding:5px 0 10px 15px; margin:0;}
