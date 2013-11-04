@@ -36,7 +36,7 @@ CREATE TABLE `pro_production` (
   `ent_id` int(11) NOT NULL,
   `stock_count` int(11) NOT NULL DEFAULT '0' COMMENT '库存',
   PRIMARY KEY (`p_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='产品';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,6 +45,7 @@ CREATE TABLE `pro_production` (
 
 LOCK TABLES `pro_production` WRITE;
 /*!40000 ALTER TABLE `pro_production` DISABLE KEYS */;
+INSERT INTO `pro_production` VALUES (4,'333','33','套',5,23.00,2323.00,7,1,0);
 /*!40000 ALTER TABLE `pro_production` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-21 20:27:12
+-- Dump completed on 2013-11-02 19:19:25

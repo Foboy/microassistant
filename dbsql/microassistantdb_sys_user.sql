@@ -35,10 +35,12 @@ CREATE TABLE `sys_user` (
   `end_time` datetime DEFAULT NULL COMMENT '失效时间',
   `ent_admin_id` int(11) DEFAULT NULL COMMENT '所属企业管理员ID',
   `is_enable` int(11) NOT NULL DEFAULT '1' COMMENT '2:不可用 1：可用',
-  `type` int(11) NOT NULL DEFAULT '0' COMMENT '0：普通用户 1：企业用户',
+  `type` int(11) NOT NULL DEFAULT '0' COMMENT '1：普通用户 2：企业用户',
   `ent_id` int(11) DEFAULT NULL COMMENT '员工所属企业ID',
+  `sex` int(11) NOT NULL DEFAULT '1' COMMENT '1:男 2：女',
+  `birthday` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +49,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (1,'sdfsd','','sdfsdf',NULL,NULL,NULL,NULL,NULL,1,0,11);
+INSERT INTO `sys_user` VALUES (1,'王胖子公司','www','099b3b060154898840f0ebdfb46ec78f',NULL,'www','2013-10-23 20:43:05','2014-01-21 20:43:05',0,1,2,1,1,NULL),(2,'qq','qq','099b3b060154898840f0ebdfb46ec78f',NULL,'qq','2013-11-02 11:00:12','2014-01-31 11:00:12',0,1,1,1,1,NULL),(7,'222','222','bcbe3365e6ac95ea2c0343a2395834dd',NULL,'222','2013-11-02 17:09:09','2014-01-31 17:09:09',0,1,1,1,1,NULL);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-10-21 20:27:12
+-- Dump completed on 2013-11-02 19:19:26

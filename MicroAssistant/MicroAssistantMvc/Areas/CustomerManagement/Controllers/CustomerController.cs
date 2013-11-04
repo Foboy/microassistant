@@ -142,11 +142,10 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             return Res;
         }
         //添加修改个人客户（姓名，性别，出生日期，联系方式{},所属行业，所在地，个人信息，token）返回（true/false）
-        public JsonResult AddPrivateCustomer(int pivid, string name, int sex, DateTime birthday, string contactMobile, string phone, string email, string qq, string address, string detail)
+        public JsonResult AddPrivateCustomer(int pivid, string name, int sex, string birthday, string contactMobile, string phone, string email, string qq, string address, string detail)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
-
             int _pivid = 0;
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
@@ -156,7 +155,10 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
                     CustomerPrivate cp = new CustomerPrivate();
                     cp.Name = name;
                     cp.Sex = sex;
-                    cp.Birthday = birthday;
+
+                    if (birthday != null)
+                        cp.Birthday = Convert.ToDateTime(birthday);
+
                     cp.Mobile = contactMobile;
                     cp.Phone = phone;
                     cp.Email = email;

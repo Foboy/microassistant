@@ -45,7 +45,7 @@ namespace MicroAssistantMvc.Controllers
         }
         #endregion
 
-        #region adUser
+        #region currentUser
         private SysUser currentUser;
         public SysUser CurrentUser
         {
