@@ -376,7 +376,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                         //olduser.Mobile = user.Mobile;
                         //olduser.Qq = user.Qq;
 
-                        //SysUserAccessor.Instance.Update(olduser);
+                        SysUserAccessor.Instance.Update(olduser);
                         result.Error = AppError.ERROR_SUCCESS;
 
                     }
@@ -511,7 +511,80 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         }
 
         //用户时间轴
-        //员工管理
+        public JsonResult SearchUserTimeMachine()
+        {
+            var Res = new JsonResult();
+            AdvancedResult<List<SysUserTimemachine>> result = new AdvancedResult<List<SysUserTimemachine>>();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+
+                    result.Data = SysUserTimemachineAccessor.Instance.Search(CurrentUser.UserId);
+                    result.Error = AppError.ERROR_SUCCESS;
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+        //添加用户入职记录
+        public void AddUserTimeMachine(int entid)
+        {
+ 
+        }
+
+        //关联企业
+        public JsonResult EditeUserEntId(int entId)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                    if (userid > 0)
+                    {
+                        SysUser olduser = SysUserAccessor.Instance.Get(userid);
+                        olduser.EntId = entId;
+
+                        SysUserAccessor.Instance.Update(olduser);
+                        result.Error = AppError.ERROR_SUCCESS;
+
+                    }
+                    else
+                    {
+                        result.Error = AppError.ERROR_FAILED;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
+
+
 
         public RespResult GetOldPwd(string token)
         {

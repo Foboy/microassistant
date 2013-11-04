@@ -55,8 +55,8 @@
                                 	<span class="cir-w"><i></i></span>
                                 </div>
                                 <div class="li-conb">
-                                	<a href="" class="writeLink" ng-click="addvisitpanleshow=true">点击添加新的拜访记录</a>
-									<div class="li-boxs add-visit clearfix" ng-show="addvisitpanleshow">
+                                	<a href="" class="writeLink" ng-click="addNewVisit($event)">点击添加新的拜访记录</a>
+									<div class="li-boxs add-visit clearfix" ng-show="addvisitpanleshow" id="visitEditBox">
 										<i></i>
 										<div class="clearfix">
                                         	<div class="visit-num">
@@ -81,7 +81,7 @@
 														<a href="" ng-click="addChanceVisit()" class="btn btn-large btn-block btn-danger">保存 </a>
 													</span>
                                                     <span>
-                                                    	<a href="" ng-click="addvisitpanleshow=false" class="btn btn-block btn-large">取消</a>
+                                                    	<a href="" ng-click="addNewVisitCancel()" class="btn btn-block btn-large">取消</a>
                                                     </span>
 												</div>
 											</div>
@@ -92,30 +92,32 @@
                                 </div>
                             </li>
                             <li class="clearfix" ng-repeat="visit in chance_visits">
-                            	<div class="li-timeb colorBlue">
-                                	2013/07/31
-                                	<span class="cir-w"><i></i></span>
-                                </div>
-                                <div class="li-conb">
-                                	<div class="li-boxs">
-                                    	<i></i>
-										<div class="liedit-close-box">
-											<input type="button" class="editIcon2"/>
-											<input type="button" class="closeIcon"/>
-										</div>
-                                        <div class="clearfix">
-                                        	<div class="visit-num">
-                                            	<span class="span1">{{parseNumberToChinese($index-chance_visits.length + 1)}}次拜访</span>
-                                                <span class="span2"><b class="peo-wIcon"></b></span>
-                                            </div>
+                                <div>
+                            	    <div class="li-timeb colorBlue">
+                                	    2013/07/31
+                                	    <span class="cir-w"><i></i></span>
+                                    </div>
+                                    <div class="li-conb">
+                                	    <div class="li-boxs">
+                                    	    <i></i>
+										    <div class="liedit-close-box">
+											    <input type="button" class="editIcon2" ng-click="editExistVisit($event)"/>
+											    <input type="button" class="closeIcon"/>
+										    </div>
+                                            <div class="clearfix">
+                                        	    <div class="visit-num">
+                                            	    <span class="span1">{{parseNumberToChinese($index-chance_visits.length + 1)}}次拜访</span>
+                                                    <span class="span2"><b class="peo-wIcon"></b></span>
+                                                </div>
 
-                                            <div class="quote-info">
-                                            	报价：<span class="colorBlue">125,600,000</span>
+                                                <div class="quote-info">
+                                            	    报价：<span class="colorBlue">125,600,000</span>
+                                                </div>
                                             </div>
+                                            <p>{{visit.Remark}}</p>
+										    <div class="li-address"><b class="mapIcon" ng-click="markAddressOnMap()"></b>{{parseAddress(visit.Address).address}}/17:56</div>
+
                                         </div>
-                                        <p>{{visit.Remark}}</p>
-										<div class="li-address"><b class="mapIcon" ng-click="markAddressOnMap()"></b>{{parseAddress(visit.Address).address}}/17:56</div>
-
                                     </div>
                                 </div>
                             </li>
