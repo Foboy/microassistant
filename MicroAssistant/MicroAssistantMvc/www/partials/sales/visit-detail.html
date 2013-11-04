@@ -55,7 +55,7 @@
                                 	<span class="cir-w"><i></i></span>
                                 </div>
                                 <div class="li-conb">
-                                	<a href="" class="writeLink" ng-click="addvisitpanleshow=true">点击添加新的拜访记录</a>
+                                	<a href="" class="writeLink" ng-click="addNewVisit($event)">点击添加新的拜访记录</a>
 									<div class="li-boxs add-visit clearfix" ng-show="addvisitpanleshow" id="visitEditBox">
 										<i></i>
 										<div class="clearfix">
@@ -81,7 +81,7 @@
 														<a href="" ng-click="addChanceVisit()" class="btn btn-large btn-block btn-danger">保存 </a>
 													</span>
                                                     <span>
-                                                    	<a href="" ng-click="addvisitpanleshow=false" class="btn btn-block btn-large">取消</a>
+                                                    	<a href="" ng-click="addNewVisitCancel()" class="btn btn-block btn-large">取消</a>
                                                     </span>
 												</div>
 											</div>
@@ -98,10 +98,10 @@
                                 	    <span class="cir-w"><i></i></span>
                                     </div>
                                     <div class="li-conb">
-                                	    <div class="li-boxs itemparent">
+                                	    <div class="li-boxs">
                                     	    <i></i>
 										    <div class="liedit-close-box">
-											    <input type="button" class="editIcon2" ng-click="editExistVisit()"/>
+											    <input type="button" class="editIcon2" ng-click="editExistVisit($event)"/>
 											    <input type="button" class="closeIcon"/>
 										    </div>
                                             <div class="clearfix">

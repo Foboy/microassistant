@@ -324,9 +324,20 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	        $scope.rateEditPanleShow = false;
 	    }
 	};
+	$scope.addNewVisit = function (ev) {
+	    $("#visitEditBox").prev('.li-boxs').show();
+	    $(ev.target).after($("#visitEditBox"));
+	    $scope.addvisitpanleshow = true;
+	};
 
-	$scope.editExistVisit = function () {
-	    console.log(angular.element(this));
+	$scope.addNewVisitCancel = function () {
+	    $("#visitEditBox").prev('.li-boxs').show();
+	    $scope.addvisitpanleshow = false;
+	};
+
+	$scope.editExistVisit = function (ev) {
+	    $(ev.target).parents('.li-boxs').hide().after($("#visitEditBox"));
+	    $scope.addvisitpanleshow = true;
 	};
 };
 function SalesContractDetailCtrl($scope, $routeParams, $http, $location) {
