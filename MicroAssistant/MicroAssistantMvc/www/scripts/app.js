@@ -1,5 +1,5 @@
 ﻿angular.module('microassistant', ['ngRoute']).
-  config(function ($routeProvider, $locationProvider) {
+  config(['$provide', '$routeProvider', '$locationProvider', function ($provide, $routeProvider, $locationProvider) {
       $routeProvider
           .when('/home', { templateUrl: 'partials/home.html', controller: HomeMainCtrl })
           .when('/product/:catalogId?/:pageIndex?', { templateUrl: 'partials/product.html', controller: ProductMainCtrl })
@@ -8,7 +8,17 @@
           .when('/client/:sorts?/:pageIndex?', { templateUrl: 'partials/client.html', controller: ClientMainCtrl })
           .otherwise({ redirectTo: '/home' });
       $locationProvider.hashPrefix('!');
-  }).value('$anchorScroll', angular.noop);
+
+      $provide.decorator('$animate', ['$delegate', '$injector', '$sniffer', '$rootElement', '$timeout', '$rootScope',
+        function ($delegate, $injector, $sniffer, $rootElement, $timeout, $rootScope) {
+            var enter = $delegate.enter;
+            $delegate.enter = function (element, parent, after, done) {
+                enter(element, parent, after);
+                $rootScope.$broadcast('animate-enter', element);
+            }
+            return $delegate;
+      }]);
+  }]).value('$anchorScroll', angular.noop);
 
 function MainCtrl($scope, $routeParams, $http, $location) {
 
@@ -56,7 +66,7 @@ function MainCtrl($scope, $routeParams, $http, $location) {
     }
 
     $scope.parseJsonDate = function (datestr) {
-        console.log(typeof (new Date()));
+        //console.log(typeof (new Date()));
         var date;
         if (!datestr) {
             date = new Date();
@@ -65,11 +75,11 @@ function MainCtrl($scope, $routeParams, $http, $location) {
             return datestr;
         }
         else if (typeof datestr == 'string') {
-            datestr = datestr.replace(/\//g, '');
             if ((/Date/ig).test(datestr)) {
+                datestr = datestr.replace(/\//g, '');
                 date = eval(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
-                console.log(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
-                console.log(date);
+                //console.log(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
+                //console.log(date);
             }
             else
                 return datestr;
@@ -79,4 +89,6 @@ function MainCtrl($scope, $routeParams, $http, $location) {
         }
         return date;
     };
+
+
 }

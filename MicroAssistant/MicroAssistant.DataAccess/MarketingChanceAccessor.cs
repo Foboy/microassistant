@@ -92,7 +92,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadMarketingChance
 
-            cmdLoadMarketingChance = new MySqlCommand(@" select idmarketing_chance,chance_type,customer_type,contact_name,remark,add_time,qq,email,tel,phone,rate,ent_id,user_id from marketing_chance where user_id = @UserId and (IsVisit = @IsVisit or @IsVisit = 0 ) limit @PageIndex,@PageSize");
+            cmdLoadMarketingChance = new MySqlCommand(@" select idmarketing_chance,chance_type,customer_type,contact_name,remark,add_time,qq,email,tel,phone,rate,ent_id,user_id from marketing_chance  where  user_id = @UserId and (IsVisit = @IsVisit or @IsVisit = 0 ) limit @PageIndex,@PageSize");
             cmdLoadMarketingChance.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdLoadMarketingChance.Parameters.Add("@IsVisit", MySqlDbType.Int32);
             cmdLoadMarketingChance.Parameters.Add("@pageIndex", MySqlDbType.Int32);

@@ -85,7 +85,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                     co.Amount = Amount;
                     co.Howtopay = HowToPay;
                     co.HowtopayList = HowtopayList;
-
+                    co.EntId = CurrentUser.EntId;
                     //if (entid == 0)
                     //{
                     _conid = ContractInfoAccessor.Instance.Insert(co);

@@ -303,7 +303,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                   PageEntity<MarketingChance> clist = MarketingChanceAccessor.Instance.Search(0,CurrentUser.UserId, pageIndex, pageSize);
+                   PageEntity<MarketingChance> clist = MarketingChanceAccessor.Instance.Search(2,CurrentUser.UserId, pageIndex, pageSize);
                    result.Data.RecordsCount = clist.RecordsCount;
                    result.Data.PageIndex = pageIndex;
                    result.Data.PageSize = pageSize;
@@ -314,7 +314,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                        vm.Rate = clist.Items[i].Rate;
                        vm.Remark = clist.Items[i].Remark;
                  
-                      PageEntity<MarketingVisit> pmvlist =  MarketingVisitAccessor.Instance.Search(clist.Items[0].IdmarketingChance, 0, 10);
+                      PageEntity<MarketingVisit> pmvlist =  MarketingVisitAccessor.Instance.Search(clist.Items[i].IdmarketingChance, 0, 100);
                       if (pmvlist.RecordsCount > 0)
                       {
                           vm.LastVisitTime = pmvlist.Items[0].VisitTime;

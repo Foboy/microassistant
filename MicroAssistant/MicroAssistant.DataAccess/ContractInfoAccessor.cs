@@ -251,6 +251,7 @@ namespace MicroAssistant.DataAccess
                 {
                     returnValue.Items.Add(new ContractInfo().BuildSampleEntity(reader));
                 }
+                reader.Close();
                 returnValue.RecordsCount = Convert.ToInt32(_cmdGetContractInfoCount.ExecuteScalar());
             }
             finally

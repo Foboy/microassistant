@@ -24,7 +24,11 @@ $sitecore.urls.add("salesChanceList", "/MarketingManagement/Marketing/SearchMark
 $sitecore.urls.add("salesChanceVisitsList", "/MarketingManagement/Marketing/GetVisitInfo");
 $sitecore.urls.add("salesAddChanceVisits", "/MarketingManagement/Marketing/ToVisit"); 
 $sitecore.urls.add("salesRateChange", "/MarketingManagement/Marketing/EditCustomerRate");
-$sitecore.urls.add("salesChanceVisitList", "/MarketingManagement/Marketing/SearchVisitInfoList"); 
+$sitecore.urls.add("salesChanceVisitList", "/MarketingManagement/Marketing/SearchVisitInfoList");
+
+$sitecore.urls.add("salesConractList", "/ContractManagement/ContractInfo/GetContractInfoByEID");
+$sitecore.urls.add("salesAddConract", "/ContractManagement/ContractInfo/AddContractInfo");
+
 
 
 $sitecore.urls.add("receivablesfinanceList", "/FinancialManagement/Financial/SearchReceivables");//根据企业ID获取应收款列表 返回 应收款列表
