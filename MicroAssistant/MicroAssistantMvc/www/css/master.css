@@ -94,9 +94,9 @@ a:hover{text-decoration:underline;}
 .listBox h2{font-size:16px; font-family:"微软雅黑"; font-weight:normal; color:#25aae2; height:25px; line-height:25px; margin:5px 0 20px 0;}
 .listBox ul{border-left:2px solid #DDDDDD; margin-left:10px; margin-top:15px;}
 .listBox li{font-size:16px; font-weight:600; color:#DDDDDD; height:30px; line-height:30px; list-style:none; margin-bottom:60px;}
-.listBox li i{background:url(../img/icon.png) no-repeat -173px -82px; width:30px; height:30px; display:inline-block; margin:0 10px -10px -15px;}
+.listBox li i{background:url(../img/icon.png) no-repeat -173px -82px; width:30px; height:30px; line-height:30px; display:inline-block; margin:0 10px -10px -15px; font-style:normal;  text-align:center; color:#b3b3b3;}
 .listBox li.cur{color:#f25749;}
-.listBox li.cur i{background-position:-135px -82px;}
+.listBox li.cur i{background-position:-135px -82px;color:#FFFFFF;}
 .madeBox{width:680px;min-height:530px; float:left;position:relative;}
 .listContent{padding:35px 0 0 25px; margin:0; }
 .peopleInfo{padding-left:20px;}
