@@ -20,7 +20,7 @@
       }]);
   }]).value('$anchorScroll', angular.noop);
 
-function MainCtrl($scope, $routeParams, $http, $location) {
+function MainCtrl($scope, $routeParams, $http, $location, $filter) {
 
     $scope.$on('$routeChangeSuccess', function () {
         $scope.checkpage();
@@ -65,14 +65,14 @@ function MainCtrl($scope, $routeParams, $http, $location) {
         return result;
     }
 
-    $scope.parseJsonDate = function (datestr) {
+    $scope.parseJsonDate = function (datestr, format) {
         //console.log(typeof (new Date()));
         var date;
         if (!datestr) {
             date = new Date();
         }
         else if (typeof datestr == 'object') {
-            return datestr;
+            date = datestr;
         }
         else if (typeof datestr == 'string') {
             if ((/Date/ig).test(datestr)) {
@@ -87,8 +87,20 @@ function MainCtrl($scope, $routeParams, $http, $location) {
         else {
             date = new Date();
         }
+        if (format)
+            return $filter('date')(date, format);
         return date;
     };
 
-
+    
+    $http.post($sitecore.urls["userCurrentUser"], {  }).success(function (data) {
+        console.log(data);
+        if (data.Error) {
+            alert(data.ErrorMessage);
+        }
+        $scope.CurrentUser = data.Data;
+    }).
+    error(function (data, status, headers, config) {
+        $scope.CurrentUser = {};
+    });
 }

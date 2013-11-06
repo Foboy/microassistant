@@ -59,8 +59,9 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 				break;
 		}
 	};
-	$scope.addCurrentStepItem = function(){
-		switch($scope.steps)
+	$scope.addCurrentStepItem = function (step) {
+	    var steps = step || $scope.steps;
+	    switch (steps)
 		{
 			case 'chance':
 			    $scope.$broadcast('EventAddChance', this);
@@ -116,7 +117,7 @@ function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) 
         });
         fromscope = from;
         chance = from.chance;
-        chance.FormatAddTime = $filter('date')($scope.parseJsonDate(chance.AddTime), 'yyyy/MM/dd');
+        chance.FormatAddTime = $scope.parseJsonDate(chance.AddTime, 'yyyy/MM/dd');
         chance.CustomerType = chance.CustomerType + "";
         chance.ChanceType = chance.ChanceType + "";
         $scope.oldchance = chance;
@@ -208,6 +209,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	};
 
 	$scope.chanceVisitDetail = function () {
+
 	    if (!$scope.chance_visits || chance.IdmarketingChance != $scope.IdmarketingChance) {
 	        $http.post($sitecore.urls["salesChanceVisitsList"], { cid: chance.IdmarketingChance, pageIndex: 0, pageSize: 20 }).success(function (data) {
 	            console.log(data);
@@ -215,6 +217,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	                alert(data.ErrorMessage);
 	            }
 	            else {
+	                $scope.IdmarketingChance = chance.IdmarketingChance;
 	                $scope.chance_visits = data.Data.Vlist.Items;
 	            }
 	        }).
@@ -342,16 +345,22 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 };
 function SalesContractDetailCtrl($scope, $routeParams, $http, $location) {
     $("#contractDetailBox").hide();
-    $scope.$on('EventContractDetail', function (event) {
+    $scope.tabIndex = 1;
+    $scope.$on('EventContractDetail', function (event,from) {
         $("#contractDetailBox").show();
-		$("#contractDetailBox").animate({width:"500px"},400);
-		//加载机会数据
+        $("#contractDetailBox").animate({ width: "500px" }, 400);
+        $scope.contract = from.contract;
+
 	});
 	
 	$scope.hideContractDetail = function(){
 	    $("#contractDetailBox").animate({ width: "0px" }, 400, function () { $("#contractDetailBox").hide(); });
 	    
 	};
+
+	$scope.contractDynamic = function () {
+	    $scope.tabIndex = 2;
+	}
 	
 };
 function SalesAfterDetailCtrl($scope, $routeParams, $http, $location){

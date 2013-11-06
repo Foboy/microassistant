@@ -6,8 +6,9 @@ $sitecore.urls.add = function(name,url){
 	$sitecore.urls[name] = $sitecore.urls.base + url +"?timestamp="+ new Date().getTime();
 };
 $sitecore.urls.add("userLogin", "/UserManagement/User/Login"); 
-$sitecore.urls.add("userRegister", "/UserManagement/User/UserRegister"); 
-$sitecore.urls.add("enterpriseRegister", "/UserManagement/User/EntRegister");
+$sitecore.urls.add("userRegister", "/UserManagement/User/UserRegister");
+$sitecore.urls.add("userCurrentUser", "/UserManagement/User/GetUserInfo");
+
 
 $sitecore.urls.add("productCat", "/ProductManagement/Production/SearchProductTypeListByEntID");
 $sitecore.urls.add("productAddCat", "/ProductManagement/Production/AddProductionType"); 

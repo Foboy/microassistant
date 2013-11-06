@@ -54,7 +54,7 @@
                   <td>{{chance.Remark}}</td>
                   <td class="colorBlue">{{chance.ContactName}}</td>
                   <td class="colorBlue">{{chance.Phone||chance.Tel||chance.Email||chance.Qq}}</td>
-                  <td>{{parseJsonDate(chance.AddTime)| date:'yyyy/MM/dd'}}</td>
+                  <td>{{parseJsonDate(chance.AddTime,'yyyy/MM/dd')}}</td>
                   <td><a href="" role="button" ng-click="showChanceDetail()">详情</a>|<a href="" ng-click="showVisitDetail()" role="button" data-toggle="modal">主动拜访</a></td>
                 </tr>
               </tbody>
@@ -78,8 +78,8 @@
                   <td>{{cvisit.Remark}}</td>
                   <td class="colorBlue">{{cvisit.VisitNum}}次</td>
                   <td class="colorBlue">{{cvisit.Rate}}%</td>
-                  <td>{{parseJsonDate(cvisit.LastVisitTime)| date:'yyyy/MM/dd'}}</td>
-                  <td><a href="" role="button" ng-click="showVisitDetail()">详情</a>|<a href="#myModal" role="button" data-toggle="modal">签订合同</a></td>
+                  <td>{{parseJsonDate(cvisit.LastVisitTime,'yyyy/MM/dd')}}</td>
+                  <td><a href="" role="button" ng-click="showVisitDetail()">详情</a>|<a href="" role="button" data-toggle="modal" ng-click="addCurrentStepItem('contract')">签订合同</a></td>
                 </tr>
               </tbody>
             </table>
@@ -104,7 +104,7 @@
                   <td class="colorBlue">{{contract.ContractNo}}</td>
                   <td class="colorBlue">{{contract.CustomerName}}</td>
                   <td>{{contract.Amount | currency:''}}</td>
-                  <td>{{parseJsonDate(contract.StartTime)}}<span>至</span>{{parseJsonDate(contract.EndTime)}}</td>
+                  <td>{{parseJsonDate(contract.StartTime,'yyyy/MM/dd')}}<span>至</span>{{parseJsonDate(contract.EndTime,'yyyy/MM/dd')}}</td>
                   <td><a href="" role="button" ng-click="showContractDetail()">详情</a></td>
                 </tr>
               </tbody>

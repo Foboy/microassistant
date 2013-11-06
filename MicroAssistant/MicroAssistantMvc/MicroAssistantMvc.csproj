@@ -269,6 +269,7 @@
     <Content Include="Areas\SystemManagement\Views\Web.config" />
     <Content Include="Areas\ContractManagement\Views\Web.config" />
     <Content Include="Config\Cache.config" />
+    <Content Include="www\boss.html" />
     <Content Include="www\css\bootstrap-responsive.css" />
     <Content Include="www\css\bootstrap-responsive.min.css" />
     <Content Include="www\css\bootstrap.css" />
@@ -295,6 +296,7 @@
     <Content Include="www\js\bootstrap.min.js" />
     <Content Include="www\js\bootstro\bootstro.css" />
     <Content Include="www\js\bootstro\bootstro.js" />
+    <Content Include="www\js\jquery-drawing.js" />
     <Content Include="www\js\jquery.js" />
     <Content Include="www\js\uploadify\jquery.uploadify.js" />
     <Content Include="www\js\uploadify\uploadify.css" />
@@ -328,6 +330,7 @@
     <Content Include="www\scripts\home\controllers.js" />
     <Content Include="www\scripts\product\controllers.js" />
     <Content Include="www\scripts\sales\controllers.js" />
+    <Content Include="www\scripts\user\bosscontrollers.js" />
     <Content Include="www\scripts\user\controllers.js" />
     <Content Include="www\scripts\utilities.js" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
@@ -392,6 +395,7 @@
     <Content Include="www\scripts\product\json\productDetail.json" />
     <Content Include="www\scripts\product\json\productList.json" />
     <Content Include="www\web.config" />
+    <Content Include="www\js\jquery-migrate-1.2.1.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
