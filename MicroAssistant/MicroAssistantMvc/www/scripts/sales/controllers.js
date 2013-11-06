@@ -37,13 +37,13 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 				break;
 			case 'contract':
 			    if (!$scope.contracts) {
-			        $http.post($sitecore.urls["salesChanceVisitList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: 20 }).success(function (data) {
+			        $http.post($sitecore.urls["salesConractList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: 20 }).success(function (data) {
 			            console.log(data);
 			            $scope.ActPageIndex = $routeParams.pageIndex || 0;
-			            $scope.cvisits = data.Data.Items;
+			            $scope.contracts = data.Data.Items;
 			        }).
                     error(function (data, status, headers, config) {
-                        $scope.cvisits = [];
+                        $scope.contracts = [];
                     });
 			    }
 				break;
@@ -98,7 +98,7 @@ function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) 
     $scope.$on('EventChanceDetail', function (event, from) {
         $("#chanceDetailBox").show();
         $("#chanceDetailBox").animate({ width: "350px" }, 300, function () {
-            $(".form_datetime").datetimepicker({
+            $("#chanceDetailBox .form_datetime").datetimepicker({
                 minView:2,
                 language:'zh-CN',
                 format: "yyyy/mm/dd",
@@ -401,4 +401,147 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location) {
             $scope.showerror = true;
         }
     };
+}
+
+function SalesContractEditCtrl($scope, $routeParams, $http, $location) {
+    var from;
+    $scope.$on('EventAddContract', function (event, fromscope) {
+        console.log("EventAddContract");
+        console.log(fromscope);
+        from = fromscope;
+        $scope.EditContract = { HowtopayListCount: 3, Howtopay: 0 };
+        $scope.salesContractEditPage = 1;
+        $scope.ContractPayChanced();
+        $('#salesContractEditModal').modal('show');
+        $("#salesContractEditPageOne .form_datetime").datetimepicker({
+            minView: 2,
+            language: 'zh-CN',
+            format: "yyyy/mm/dd",
+            autoclose: true,
+            todayBtn: true,
+            pickerPosition: "bottom-left"
+        })
+        .on('changeDate', function (ev) {
+            $scope.$apply(function () {
+                console.log(ev);
+                console.log($scope.EditContract);
+                var modelName = $(ev.target).attr('ng-model');
+                if (modelName.indexOf('StartTime') >= 0)
+                {
+                    $scope.EditContract.StartTime = ev.target.value;
+                }
+                else if (modelName.indexOf('EndTime') >= 0)
+                {
+                    $scope.EditContract.EndTime = ev.target.value;
+                }
+                else if (modelName.indexOf('ContractTime') >= 0) {
+                    $scope.EditContract.ContractTime = ev.target.value;
+                }
+            });
+        });
+
+        $('#salesContractUpload').cuploadify({
+            'formData': {
+                'token': 'sss'
+            },
+            'swf': 'js/uploadify/uploadify.swf',
+            'uploader': '/Upload/Uploader/71358f72c447e0ec2ecba71636907898?queryData=width-126,height-126&imageWidth=470&imageHeight=0',
+            'height': 70,
+            'width': 190,
+            onUploadComplete: function (response) {
+
+            }
+        });
+    });
+
+    $scope.$on('animate-enter', function (event, element) {
+        $(element).find('input.form_datetime_dynamic').datetimepicker({
+            minView: 2,
+            language: 'zh-CN',
+            format: "yyyy/mm/dd",
+            autoclose: true,
+            todayBtn: true,
+            pickerPosition: "bottom-left"
+        })
+        .on('changeDate', function (ev) {
+            $scope.$apply(function () {
+                console.log(ev);
+                var index = $(ev.target).attr('item-index');
+                angular.forEach($scope.EditContract.HowtopayList, function (value, key) {
+                    if (value.$index == index)
+                        value.PayTime = ev.target.value;
+
+                });
+            });
+        });
+    });
+
+    $scope.ContractPayChanced = function () {
+        var count = $scope.EditContract.Howtopay == 1 ? $scope.EditContract.HowtopayListCount : 0;
+        if ($scope.EditContract.HowtopayList && $scope.EditContract.HowtopayList.length) {
+            for (var i = 0; i < $scope.EditContract.HowtopayList.length; i++) {
+                if (i < count) {
+                    $scope.EditContract.HowtopayList[i].enable = 'display';
+                }
+                else {
+                    $scope.EditContract.HowtopayList[i].enable = 'hidden';
+                }
+            }
+        }
+        else {
+            $scope.EditContract.HowtopayList = new Array(24);
+            for (var i = 0; i < $scope.EditContract.HowtopayList.length; i++) {
+                var $index = i;
+                $scope.EditContract.HowtopayList[i] = { $index: $index, enable: 'hidden' };
+            }
+            for (var i = 0; i < count; i++) {
+                $scope.EditContract.HowtopayList[i].enable = 'display';
+            }
+        }
+    }
+
+    $scope.SalesContractEditSubmit = function () {
+        if (!$scope.SalesContractEditFormOne.$valid)
+        {
+            $scope.showerror1 = true;
+            $scope.salesContractEditPage = 1;
+            return;
+        }
+        else if (!$scope.SalesContractEditFormTwo.$valid) {
+            $scope.showerror2 = true;
+            $scope.salesContractEditPage = 2;
+            return;
+        }
+        else {
+            $scope.showerror1 = false;
+            $scope.showerror2 = false;
+
+            var paylist = [];
+            angular.forEach($scope.EditContract.HowtopayList, function (value, key) {
+                if (value.enable == 'display')
+                    paylist.push({ InstalmentsNo: key, Amount: value.Amount, PayTime: value.PayTime, ReceivedTime: value.PayTime, Isreceived: 1, ContractNo: $scope.EditContract.ContractNo });
+                
+            });
+
+            if (paylist.length == 0)
+                paylist.push({ InstalmentsNo: 1, Amount: $scope.EditContract.Amount, PayTime: $scope.EditContract.StartTime, ReceivedTime: $scope.EditContract.StartTime, Isreceived: 1, ContractNo: $scope.EditContract.ContractNo });
+
+            $http.post($scope.EditContract.ContractInfoId ? $sitecore.urls["salesAddConract"] : $sitecore.urls["salesAddConract"], { ContractNo: $scope.EditContract.ContractNo, CName: $scope.EditContract.CName, CustomerName: $scope.EditContract.CustomerName, StartTime: $scope.EditContract.StartTime, EndTime: $scope.EditContract.EndTime, ContractTime: $scope.EditContract.ContractTime, Amount: $scope.EditContract.Amount, HowToPay: $scope.EditContract.Howtopay, HowtopayList: paylist }).success(function (data) {
+                console.log(data);
+                if (data.Error) {
+                    alert(data.ErrorMessage);
+                }
+                else {
+                    $scope.EditContract.ContractInfoId = data.Id;
+                    $scope.contracts.push(angular.copy($scope.EditContract));
+                    $('#salesContractEditModal').modal('hide');
+                }
+                $scope.product = data;
+            }).
+            error(function (data, status, headers, config) {
+                $scope.product = {};
+            });
+        }
+    };
+
 }

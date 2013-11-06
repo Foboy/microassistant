@@ -1,7 +1,7 @@
         <h1 class="titSec">销售管理</h1>
         <ul class="clearfix salesList">
             <li ng-class="steps=='chance'?'cur':''">
-                <a ng-href="#!/sales/chance"><em><i></i></em></a>
+                <a ng-href="#!/sales/chance"><em><i class="sales-oppr-icon"></i></em></a>
                 <p>销售机会（30）</p>
                 <span class="arrowD"></span>
             </li>
@@ -10,7 +10,7 @@
                 <p>转换率<span class="colorBlue">20%</span></p>
             </li>
             <li ng-class="steps=='visit'?'cur':''">
-                <a ng-href="#!/sales/visit"><em><i></i></em></a>
+                <a ng-href="#!/sales/visit"><em><i class="visit-icon"></i></em></a>
                 <p>拜访（5）</p>
                 <span class="arrowD"></span>
             </li>
@@ -19,7 +19,7 @@
                 <p>转换率<span class="colorBlue">20%</span></p>
             </li>
             <li ng-class="steps=='contract'?'cur':''">
-                <a ng-href="#!/sales/contract"><em><i></i></em></a>
+                <a ng-href="#!/sales/contract"><em><i class="contract-icon"></i></em></a>
                 <p>签订合同（5）</p>
                 <span class="arrowD"></span>
             </li>
@@ -28,7 +28,7 @@
                 <p>转换率<span class="colorBlue">20%</span></p>
             </li>
             <li ng-class="steps=='after'?'cur':''">
-                <a ng-href="#!/sales/after"><em><i></i></em></a>
+                <a ng-href="#!/sales/after"><em><i class="sales-follow-icon"></i></em></a>
                 <p>售后跟进（5）</p>
                 <span class="arrowD"></span>
             </li>
@@ -50,7 +50,7 @@
               </thead>
               <tbody>
                 <tr ng-repeat="chance in chances">
-                  <td>1</td>
+                  <td>{{$index +1}}</td>
                   <td>{{chance.Remark}}</td>
                   <td class="colorBlue">{{chance.ContactName}}</td>
                   <td class="colorBlue">{{chance.Phone||chance.Tel||chance.Email||chance.Qq}}</td>
@@ -74,7 +74,7 @@
               </thead>
               <tbody>
                 <tr ng-repeat="cvisit in cvisits">
-                  <td>1</td>
+                  <td>{{$index +1}}</td>
                   <td>{{cvisit.Remark}}</td>
                   <td class="colorBlue">{{cvisit.VisitNum}}次</td>
                   <td class="colorBlue">{{cvisit.Rate}}%</td>
@@ -98,13 +98,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>鼠标采购合同</td>
-                  <td class="colorBlue">20130713152365</td>
-                  <td class="colorBlue">四川新颖顺信息...</td>
-                  <td>100,000</td>
-                  <td>2013/07/31<span>至</span>2014/07/31</td>
+                <tr ng-repeat="contract in contracts">
+                  <td>{{$index +1}}</td>
+                  <td>{{contract.CName}}</td>
+                  <td class="colorBlue">{{contract.ContractNo}}</td>
+                  <td class="colorBlue">{{contract.CustomerName}}</td>
+                  <td>{{contract.Amount | currency:''}}</td>
+                  <td>{{parseJsonDate(contract.StartTime)}}<span>至</span>{{parseJsonDate(contract.EndTime)}}</td>
                   <td><a href="" role="button" ng-click="showContractDetail()">详情</a></td>
                 </tr>
               </tbody>
@@ -138,4 +138,5 @@
     <div ng-include="'partials/sales/chance-edit.html'" ng-controller="SalesChanceEditCtrl"></div>
     <div ng-include="'partials/sales/visit-detail.html'" ng-controller="SalesVisitDetailCtrl"></div>
     <div ng-include="'partials/sales/contract-detail.html'" ng-controller="SalesContractDetailCtrl"></div>
+<div ng-include="'partials/sales/contract-edit.html'" ng-controller="SalesContractEditCtrl"></div>
     <div ng-include="'partials/sales/after-detail.html'" ng-controller="SalesAfterDetailCtrl"></div>

@@ -93,6 +93,12 @@ namespace MicroAssistant.Meta
         public Int32 UserId
         { get; set; }
 
+        /// <summary>
+        /// 1:未拜访 2：已拜访
+        /// </summary>
+        public Int32 IsVisit
+        { get; set; }
+
 
         /// <summary>
         /// 从读取器向完整实例对象赋值
@@ -113,6 +119,7 @@ namespace MicroAssistant.Meta
             this.Rate = DBConvert.ToInt32(reader["rate"]);
             this.EntId = DBConvert.ToInt32(reader["ent_id"]);
             this.UserId = DBConvert.ToInt32(reader["user_id"]);
+            this.IsVisit = DBConvert.ToInt32(reader["IsVisit"]);
             return this;
         }
     }

@@ -48,6 +48,18 @@ namespace MicroAssistant.Common
         [DataMember(Name = "Data")]
         public T Data { get; set; }
 
+        public AdvancedResult()
+        {
+            try
+            {
+                this.Data = System.Activator.CreateInstance<T>();
+            }
+            catch
+            {
+                this.Data = default(T);
+            }
+        }
+
     } 
 
 
