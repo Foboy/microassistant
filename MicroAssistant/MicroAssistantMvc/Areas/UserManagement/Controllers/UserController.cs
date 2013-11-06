@@ -634,8 +634,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             {
             if (roleXmlModel == null)
             {
-                // ----------------------------------------------------     修改前： Config/CacheMan.config      ------------------------
-                string filePath = System.AppDomain.CurrentDomain.BaseDirectory + "Config/Role.config";
+                string filePath = System.AppDomain.CurrentDomain.BaseDirectory + "Config/Role.xml";
                 if (System.IO.File.Exists(filePath) == false) throw new FileNotFoundException("默认权限模板配置文件没有找到", filePath);
                 string roleConfig = System.IO.File.ReadAllText(filePath);
                 roleXmlModel = new XmlDocument();
@@ -656,25 +655,25 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                             {
                                 newadminId = eroleid;
                             }
-                        foreach (XmlNode fathernode in rolenode.SelectNodes("//father"))
+                        foreach (XmlNode fathernode in rolenode.ChildNodes)
                         {
                             string fnname = fathernode.Attributes["name"].Value;
-                            string fncode = fathernode.Attributes["code"].Value;
+                            string fnid = fathernode.Attributes["id"].Value;
                             //添加企业角色权限
                             SysRoleFunction frf = new SysRoleFunction();
                             frf.EntId = entId;
                             frf.RoleId = eroleid;
-                            frf.FunctionId = Convert.ToInt32(fncode);
+                            frf.FunctionId = Convert.ToInt32(fnid);
                             SysRoleFunctionAccessor.Instance.Insert(frf);
-                            foreach (XmlNode sonnode in fathernode.SelectNodes("//son"))
+                            foreach (XmlNode sonnode in fathernode.ChildNodes)
                             {
                                 string sname = sonnode.Attributes["name"].Value;
-                                string scode = sonnode.Attributes["code"].Value;
+                                string sid = sonnode.Attributes["id"].Value;
                                 SysRoleFunction srf = new SysRoleFunction();
                                 srf.EntId = entId;
                                 srf.RoleId = eroleid;
-                                srf.FunctionId = Convert.ToInt32(scode);
-
+                                srf.FunctionId = Convert.ToInt32(sid);
+                                SysRoleFunctionAccessor.Instance.Insert(srf);
                             }
                         }
                     }

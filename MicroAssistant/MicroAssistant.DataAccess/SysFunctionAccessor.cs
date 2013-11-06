@@ -91,6 +91,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdGetSysUserRolePermisson 获取某个用户所有权限列表信息
             cmdGetSysUserRolePermisson = new MySqlCommand("SELECT * from sys_function f RIGHT JOIN( SELECT s.function_id from sys_role_function s RIGHT JOIN ( select *  from sys_role_user r WHERE r.user_id=@UserId) p ON p.role_id=s.role_id) o ON o.function_id=f.idsys_function");
+            cmdGetSysUserRolePermisson.Parameters.Add("@UserId", MySqlDbType.Int32);
             #endregion
         }
 
@@ -336,7 +337,7 @@ namespace MicroAssistant.DataAccess
                 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-
+                _cmdGetSysUserRolePermisson.Parameters["@UserId"].Value = userId;
                 MySqlDataReader reader = _cmdGetSysUserRolePermisson.ExecuteReader();
                 while (reader.Read())
                 {
