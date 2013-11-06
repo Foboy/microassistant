@@ -32,6 +32,13 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             AdvancedResult<PageEntity<ProProduction>> result = new AdvancedResult<PageEntity<ProProduction>>();
             try
             {
+                if (!CheckUserFunction("2013"))
+                {
+                    result.Error = AppError.ERROR_PERMISSION_FORBID;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                }
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
                     PageEntity<ProProduction> list = new PageEntity<ProProduction>();
@@ -111,6 +118,13 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             AdvancedResult<ProProduction> result = new AdvancedResult<ProProduction>();
             try
             {
+                if (!CheckUserFunction("2012"))
+                {
+                    result.Error = AppError.ERROR_PERMISSION_FORBID;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                }
                 result.Data = ProProductionAccessor.Instance.Get(pid);
                 ProProductionType pt = ProProductionTypeAccessor.Instance.Get(result.Data.PTypeId);
                 if (pt != null)
@@ -141,7 +155,13 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                   
+                    if (!CheckUserFunction("2011"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
                     ppd.PCode = DateTime.Now.ToString("yyyymmddhhmmssfff");//采购批次号
                     ppd.PNum = num;
                     ppd.Price = price;
@@ -190,7 +210,13 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                  
+                    if (!CheckUserFunction("2011"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
 
                     PageEntity<ProProductonDetail> list = new PageEntity<ProProductonDetail>();
                     list = ProProductonDetailAccessor.Instance.Search(CurrentUser.UserId, pid, CurrentUser.EntId, pageIndex, pageSize);
@@ -225,6 +251,14 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    if (!CheckUserFunction("2010"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
+
                     pro.PName = pname;
                     pro.PInfo = pinfo;
                     pro.PTypeId = ptypeid;
@@ -266,6 +300,14 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    if (!CheckUserFunction("2010"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
+
                     pro.PId = pid;
                     pro.PName = pname;
                     pro.PInfo = pinfo;
@@ -340,6 +382,14 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             RespResult result = new RespResult();
             try
             {
+                if (!CheckUserFunction("2010"))
+                {
+                    result.Error = AppError.ERROR_PERMISSION_FORBID;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                }
+
                 result.Error = ProProductionAccessor.Instance.Delete(pid) ? AppError.ERROR_SUCCESS : AppError.ERROR_FAILED;
                 //是否需要删除产品入库单
             }
