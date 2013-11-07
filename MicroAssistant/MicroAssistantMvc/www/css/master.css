@@ -248,6 +248,8 @@ a:hover{text-decoration:underline;}
 .financeList li.cur{ background:#25aae2; color:#FFFFFF;}
 /*=== 财务管理 END ===*/
 /*=== 悬浮窗口 ===*/
+.head-f{position:absolute; right:30px; top:30px;}
+.head-f img{width:60px; height:60px; border-radius:40px;}
 .floatBox{width:350px; min-height:800px;  position:absolute; z-index:999; right:0; top:0;}
 .floatBox .fBg{background:#000000;width:100%; min-height:800px; position:absolute; right:0; top:0; z-index:1000;filter:alpha(opacity=90); /* IE */ -moz-opacity:0.9; /* Moz + FF */ opacity: 0.9;}
 .floatBox .fCon{position:absolute; z-index:1001;width:100%; right:0; top:0;}
