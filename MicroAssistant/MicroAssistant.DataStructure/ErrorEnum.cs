@@ -80,11 +80,12 @@ namespace MicroAssistant.DataStructure
         /// </summary>
         [Description("错误:该用户未登录")]
         ERROR_PERSON_NOT_LOGIN = 11,
-        /// <summary>
-        /// 成长记录名不能为空
-        /// </summary>
-        [Description("错误:账号已禁用")]
-        ERROR_USER_FORBID = 12
+
+        [Description("错误:无权操作")]
+        ERROR_PERMISSION_FORBID = 13,
+        
+        [Description("错误:用户已禁用")]
+        ERROR_USER_FORBID =12
         
     }
 }

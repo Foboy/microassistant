@@ -102,6 +102,10 @@ namespace MicroAssistant.Meta
         public Int32 RoleId
         { get; set; }
 
+        //登陆后用户权限
+        public List<SysFunction> userFuns
+        { get; set; }
+
 
         /// <summary>
         /// 从读取器向完整实例对象赋值

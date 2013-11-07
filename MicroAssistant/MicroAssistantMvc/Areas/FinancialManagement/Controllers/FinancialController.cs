@@ -33,6 +33,14 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                 {
                     if (CacheManagerFactory.GetMemoryManager().Contains(token))
                     {
+                        if (!CheckUserFunction("1101"))
+                        {
+                            result.Error = AppError.ERROR_PERMISSION_FORBID;
+                            Res.Data = result;
+                            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                            return Res;
+                        }
+
                         int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                         SysUser user = SysUserAccessor.Instance.Get(userid);
 
@@ -94,6 +102,14 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                 {
                     if (CacheManagerFactory.GetMemoryManager().Contains(token))
                     {
+                        if (!CheckUserFunction("1102"))
+                        {
+                            result.Error = AppError.ERROR_PERMISSION_FORBID;
+                            Res.Data = result;
+                            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                            return Res;
+                        }
+
                         int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                         SysUser user = SysUserAccessor.Instance.Get(userid);
                         //获取应付款列表
@@ -133,6 +149,13 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                 {
                     if (CacheManagerFactory.GetMemoryManager().Contains(token))
                     {
+                        if (!CheckUserFunction("1103"))
+                        {
+                            result.Error = AppError.ERROR_PERMISSION_FORBID;
+                            Res.Data = result;
+                            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                            return Res;
+                        }
                         // int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                         ContractInfo con = new ContractInfo();
                         con = ContractInfoAccessor.Instance.Get(contractNo);
@@ -168,6 +191,13 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                 {
                     if (CacheManagerFactory.GetMemoryManager().Contains(token))
                     {
+                        if (!CheckUserFunction("1105"))
+                        {
+                            result.Error = AppError.ERROR_PERMISSION_FORBID;
+                            Res.Data = result;
+                            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                            return Res;
+                        }
                         ContractHowtopayAccessor.Instance.UpdateIsReceived(contractNo, rNum, 2);
                         result.Error = AppError.ERROR_SUCCESS;
                     }
@@ -201,6 +231,13 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    if (!CheckUserFunction("1104"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
                     ProProductonDetailAccessor.Instance.UpdateIsPay(PCode, 2);
                     result.Error = AppError.ERROR_SUCCESS;
                 }

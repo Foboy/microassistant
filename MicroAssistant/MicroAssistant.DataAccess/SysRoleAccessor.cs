@@ -27,6 +27,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdGetSysRoleCount;
         private MySqlCommand cmdGetSysRole;
         private MySqlCommand cmdLoadEntRole;
+        private MySqlCommand cmdDeleteByUserId;
 
         private SysRoleAccessor()
         {
@@ -53,6 +54,12 @@ namespace MicroAssistant.DataAccess
 
             cmdDeleteSysRole = new MySqlCommand(" delete from sys_role where role_id = @RoleId");
             cmdDeleteSysRole.Parameters.Add("@RoleId", MySqlDbType.Int32);
+            #endregion
+
+            #region cmdDeleteByUserId
+
+            cmdDeleteByUserId = new MySqlCommand(" delete from sys_role where user_id = @UserId");
+            cmdDeleteByUserId.Parameters.Add("@UserId", MySqlDbType.Int32);
             #endregion
 
             #region cmdLoadSysRole
@@ -192,6 +199,37 @@ where
                 oc = null;
                 _cmdDeleteSysRole.Dispose();
                 _cmdDeleteSysRole = null;
+            }
+        }
+
+        /// <summary>
+        /// 删除数据
+        /// <param name="es">数据实体对象数组</param>
+        /// <returns></returns>
+        /// </summary>
+        public bool DeleteByUserId(int userId)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdDeleteByUserId = cmdDeleteByUserId.Clone() as MySqlCommand;
+            bool returnValue = false;
+            _cmdDeleteByUserId.Connection = oc;
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+                _cmdDeleteByUserId.Parameters["@UserId"].Value = userId;
+
+
+                _cmdDeleteByUserId.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdDeleteByUserId.Dispose();
+                _cmdDeleteByUserId = null;
             }
         }
 

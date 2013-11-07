@@ -31,6 +31,13 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
             AdvancedResult<PageEntity<ContractInfo>> result = new AdvancedResult<PageEntity<ContractInfo>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
+                if (!CheckUserFunction("1206"))
+                {
+                    result.Error = AppError.ERROR_PERMISSION_FORBID;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                }
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
@@ -71,6 +78,13 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
             int _conid = 0;
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
+                if (!CheckUserFunction("1207"))
+                {
+                    result.Error = AppError.ERROR_PERMISSION_FORBID;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                }
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
@@ -138,6 +152,13 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
             AdvancedResult<ContractInfo> result = new AdvancedResult<ContractInfo>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
+                if (!CheckUserFunction("1206"))
+                {
+                    result.Error = AppError.ERROR_PERMISSION_FORBID;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                }
                // int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {

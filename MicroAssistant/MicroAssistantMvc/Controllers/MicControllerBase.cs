@@ -62,6 +62,7 @@ namespace MicroAssistantMvc.Controllers
                 {
                     int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                     currentUser = SysUserAccessor.Instance.Get(userid);
+                    currentUser.userFuns = SysFunctionAccessor.Instance.SearchSysUserRolePermisson(userid);
                 }
                 else
                 {
@@ -69,6 +70,26 @@ namespace MicroAssistantMvc.Controllers
                 }
                 return currentUser;
             }
+        }
+        /// <summary>
+        /// 判断用户是否有此页面权限
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="functionCode"></param>
+        /// <returns></returns>
+        protected bool CheckUserFunction(string functionCode)
+        {
+            bool result = false;
+
+           foreach(SysFunction sf in CurrentUser.userFuns)
+           {
+               if(sf.FunctionCode==functionCode)
+               {
+                   result=true;
+               }
+           }
+
+            return result;
         }
         #endregion
 

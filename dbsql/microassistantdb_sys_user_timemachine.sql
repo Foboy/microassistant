@@ -18,34 +18,32 @@ USE `microassistantdb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `res_pic`
+-- Table structure for table `sys_user_timemachine`
 --
 
-DROP TABLE IF EXISTS `res_pic`;
+DROP TABLE IF EXISTS `sys_user_timemachine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `res_pic` (
-  `pic_id` int(11) NOT NULL AUTO_INCREMENT,
-  `pic_description` varchar(150) DEFAULT NULL,
-  `obj_id` int(11) DEFAULT NULL COMMENT '图片所在对象ID',
-  `obj_type` int(11) NOT NULL DEFAULT '1' COMMENT '1：用户2：分类',
-  `pic_url` varchar(128) NOT NULL,
-  `pic_height` int(11) NOT NULL DEFAULT '0',
-  `pic_width` int(11) NOT NULL DEFAULT '0',
-  `state` int(11) NOT NULL DEFAULT '1' COMMENT '2:禁止 1：可用',
-  `create_time` datetime DEFAULT NULL,
-  `ent_id` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`pic_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `sys_user_timemachine` (
+  `idsys_user_timemachine` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(45) NOT NULL,
+  `role_name` varchar(45) DEFAULT NULL,
+  `ent_name` varchar(45) NOT NULL,
+  `ent_id` int(11) NOT NULL,
+  `start_time` datetime NOT NULL,
+  `end_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`idsys_user_timemachine`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户时间轴表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `res_pic`
+-- Dumping data for table `sys_user_timemachine`
 --
 
-LOCK TABLES `res_pic` WRITE;
-/*!40000 ALTER TABLE `res_pic` DISABLE KEYS */;
-/*!40000 ALTER TABLE `res_pic` ENABLE KEYS */;
+LOCK TABLES `sys_user_timemachine` WRITE;
+/*!40000 ALTER TABLE `sys_user_timemachine` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_user_timemachine` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-06 20:12:09
+-- Dump completed on 2013-11-06 20:12:11
