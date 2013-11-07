@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.DataStructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.Meta", "MicroAssistant.Meta\MicroAssistant.Meta.csproj", "{626060A8-1116-4E49-A252-D3FB4503E096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistantMvc", "MicroAssistantMvc\MicroAssistantMvc.csproj", "{B2A3FC67-3077-447A-BBD1-DCA801094DC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistantMvc4", "MicroAssistantMvc\MicroAssistantMvc4.csproj", "{B2A3FC67-3077-447A-BBD1-DCA801094DC7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistantMvc.Tests", "MicroAssistantMvc.Tests\MicroAssistantMvc.Tests.csproj", "{E43DC235-8381-4DA0-B702-D1386D1FBBBF}"
 EndProject
@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6F07C9
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistantMvc3", "MicroAssistantMvc3\MicroAssistantMvc3.csproj", "{A6045587-DD55-41CE-8DCE-A94DB03217EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{E43DC235-8381-4DA0-B702-D1386D1FBBBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E43DC235-8381-4DA0-B702-D1386D1FBBBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E43DC235-8381-4DA0-B702-D1386D1FBBBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6045587-DD55-41CE-8DCE-A94DB03217EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6045587-DD55-41CE-8DCE-A94DB03217EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6045587-DD55-41CE-8DCE-A94DB03217EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6045587-DD55-41CE-8DCE-A94DB03217EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
