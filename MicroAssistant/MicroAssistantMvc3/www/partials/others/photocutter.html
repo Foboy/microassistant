@@ -6,6 +6,9 @@
     <script src="../../js/jquery.js"></script>
     <script src="../../js/jscop/jquery.Jcrop.js"></script>
     <script src="../../js/jscop/jquery.Jcrop.extend.js"></script>
+    <script src="../../js/uploadify/jquery.uploadify.js"></script>
+    <script src="../../js/uploadify/uploadify.extention.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../js/uploadify/uploadify.css">
     <script type="text/javascript">
 
         jQuery(document).ready(function () {
@@ -27,6 +30,7 @@
                     $preview = $('#preview-pane'),
                     $pcnt = $('#preview-pane .preview-container'),
                     $pimg = $('#preview-pane .preview-container img'),
+                    $circle = $('<img src="../../img/c-png-2.png" />'),
 
                     xsize = $pcnt.width(),
                     ysize = $pcnt.height(),
@@ -56,10 +60,12 @@
                     $photo.css({ width: disWidth + "px", height: disHeight + "px" });
                     $photowraper.css({ width: disWidth + "px", height: disHeight + "px" });
 
+                    var selectLeft = Math.floor((disWidth - selectWidth) / 2), selectTop = Math.floor((disHeight - selectHeight) / 2);
+
                     $photo.Jcrop({
                         onChange: updatePreview,
                         onSelect: updatePreview,
-                        setSelect: [Math.floor((disWidth - selectWidth) / 2), Math.floor((disHeight - selectHeight) / 2), 9999, 9999],
+                        setSelect: [0,0,1,1],
                         aspectRatio: 1
                     }, function () {
                         // Use the API to get the real image size
@@ -68,14 +74,15 @@
                         boundy = bounds[1];
                         // Store the API in the jcrop_api variable
                         jcrop_api = this;
-
+                        jcrop_api.animateTo([selectLeft, selectTop, selectLeft + selectWidth, selectTop + selectHeight]);
+                        $('#photo-wraper .jcrop-tracker').first().append($circle);
                     });
 
                     function updatePreview(c) {
                         if (parseInt(c.w) > 0) {
                             var rx = xsize / c.w;
                             var ry = ysize / c.h;
-
+                            $circle.css({ width: c.w + 'px', height: c.h + 'px' })
                             $pimg.css({
                                 width: Math.round(rx * boundx) + 'px',
                                 height: Math.round(ry * boundy) + 'px',
@@ -87,6 +94,18 @@
 
             });
             $("#imgLoad").attr('src', '../../img/testpic.jpg');
+            $('#selected_btn').cuploadify({
+                'formData': {
+                    'token': 'sss'
+                },
+                'swf': '../../js/uploadify/uploadify.swf',
+                'uploader': '/Upload/Uploader/71358f72c447e0ec2ecba71636907898?queryData=width-126,height-126&imageWidth=470&imageHeight=0',
+                'height': 70,
+                'width': 190,
+                onUploadComplete: function (response) {
+
+                }
+            });
         });
 </script>
     <link href="../../js/jscop/jquery.Jcrop.css" rel="stylesheet" />
@@ -95,6 +114,7 @@
         /* Apply these styles only when #preview-pane has
    been placed within the Jcrop widget */
         #preview-pane {
+            position:relative;
             padding: 6px;
             border: 1px rgba(0,0,0,.4) solid;
             background-color: white;
@@ -129,12 +149,13 @@
         </div>
         <div style="width: 200px; height: 460px; margin-left: 20px; float: right;">
             <div id="preview-pane" style="width:180px;margin:10px 0;">
+                <img src="../../img/c-png-2-white.png" alt="" style="width:180px;height:180px;position:absolute;" />
                 <div class="preview-container">
                     <img src="../../img/testpic.jpg" class="jcrop-preview" alt="Preview" />
                 </div>
             </div>
-            <a href="javascript:void(0)" id="selected_btn" class="btn selected">选择完成</a>
-            <a href="javascript:void(0)" id="reselect_btn" class="btn reselect" style="margin: 20px 0;">重新选择</a>
+            <a href="javascript:void(0)" id="selected_btn" class="btn selected">本地照片</a>
+            <a href="javascript:void(0)" id="reselect_btn" class="btn selected" style="margin: 20px 0;">保存头像</a>
         </div>
     </div>
     <div style="filter:alpha(opacity=0); -moz-opacity:0;-khtml-opacity: 0;opacity: 0;">

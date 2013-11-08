@@ -1,4 +1,4 @@
-var $sitecore = $sitecore || {};
+ï»¿var $sitecore = $sitecore || {};
 
 $sitecore.urls = $sitecore.urls || {};
 $sitecore.urls.base = "";
@@ -8,6 +8,7 @@ $sitecore.urls.add = function(name,url){
 $sitecore.urls.add("userLogin", "/UserManagement/User/Login"); 
 $sitecore.urls.add("userRegister", "/UserManagement/User/UserRegister");
 $sitecore.urls.add("userCurrentUser", "/UserManagement/User/GetUserInfo");
+$sitecore.urls.add("enterpriseRegister", "/UserManagement/User/EntRegister");
 
 
 $sitecore.urls.add("productCat", "/ProductManagement/Production/SearchProductTypeListByEntID");
@@ -32,18 +33,18 @@ $sitecore.urls.add("salesAddConract", "/ContractManagement/ContractInfo/AddContr
 
 
 
-$sitecore.urls.add("receivablesfinanceList", "/FinancialManagement/Financial/SearchReceivables");//¸ù¾İÆóÒµID»ñÈ¡Ó¦ÊÕ¿îÁĞ±í ·µ»Ø Ó¦ÊÕ¿îÁĞ±í
-$sitecore.urls.add("payablesfinanceList", "/FinancialManagement/Financial/SearchPayablesByEID");//¸ù¾İÆóÒµID»ñÈ¡Ó¦¸¶¿îÁĞ±í ·µ»Ø Ó¦¸¶¿îÁĞ±í
-$sitecore.urls.add("receivablesDetail", "/FinancialManagement/Financial/GetHowToPayByEID");//Ó¦ÊÕ¿îÏêÇé
-$sitecore.urls.add("makeSureTimesReceivable", "/FinancialManagement/Financial/ConfirmReceived");//È·ÈÏÊÕ¿î
-$sitecore.urls.add("makeSurePay", "/FinancialManagement/Financial/ConfirmPay");//È·ÈÏ¸¶¿î
+$sitecore.urls.add("receivablesfinanceList", "/FinancialManagement/Financial/SearchReceivables");//æ ¹æ®ä¼ä¸šIDè·å–åº”æ”¶æ¬¾åˆ—è¡¨ è¿”å› åº”æ”¶æ¬¾åˆ—è¡¨
+$sitecore.urls.add("payablesfinanceList", "/FinancialManagement/Financial/SearchPayablesByEID");//æ ¹æ®ä¼ä¸šIDè·å–åº”ä»˜æ¬¾åˆ—è¡¨ è¿”å› åº”ä»˜æ¬¾åˆ—è¡¨
+$sitecore.urls.add("receivablesDetail", "/FinancialManagement/Financial/GetHowToPayByEID");//åº”æ”¶æ¬¾è¯¦æƒ…
+$sitecore.urls.add("makeSureTimesReceivable", "/FinancialManagement/Financial/ConfirmReceived");//ç¡®è®¤æ”¶æ¬¾
+$sitecore.urls.add("makeSurePay", "/FinancialManagement/Financial/ConfirmPay");//ç¡®è®¤ä»˜æ¬¾
 
 
 
-$sitecore.urls.add("SearchCustomerEntByOwnerId", "/CustomerManagement/Customer/SearchCustomerEntByOwnerId");//Í¨¹ıÏúÊÛÈËÔ±ID»ñÈ¡ÏúÊÛµÄÆóÒµ¿Í»§
-$sitecore.urls.add("SearchCustomerPrivByOwnerId", "/CustomerManagement/Customer/SearchCustomerPrivByOwnerId");//¸ù¾İÓÃ»§ID²éÑ¯¸öÈË¿Í»§£¨token£©·µ»Ø ¸öÈË¿Í»§ÁĞ±í£¨ĞÕÃû£¬ÄêÁä£¬ËùÊôĞĞÒµ£¬ËùÔÚµØ£¬ÁªÏµ·½Ê½£©
-$sitecore.urls.add("AddOrUpdateEnterPriseClient", "/CustomerManagement/Customer/AddEntCustomer");//ĞÂÔöĞŞ¸ÄÆóÒµ¿Í»§ĞÅÏ¢
-$sitecore.urls.add("AddOrUpdatePersonalClient", "/CustomerManagement/Customer/AddPrivateCustomer");//ĞÂÔöĞŞ¸Ä¸öÈË¿Í»§ĞÅÏ¢
+$sitecore.urls.add("SearchCustomerEntByOwnerId", "/CustomerManagement/Customer/SearchCustomerEntByOwnerId");//é€šè¿‡é”€å”®äººå‘˜IDè·å–é”€å”®çš„ä¼ä¸šå®¢æˆ·
+$sitecore.urls.add("SearchCustomerPrivByOwnerId", "/CustomerManagement/Customer/SearchCustomerPrivByOwnerId");//æ ¹æ®ç”¨æˆ·IDæŸ¥è¯¢ä¸ªäººå®¢æˆ·ï¼ˆtokenï¼‰è¿”å› ä¸ªäººå®¢æˆ·åˆ—è¡¨ï¼ˆå§“åï¼Œå¹´é¾„ï¼Œæ‰€å±è¡Œä¸šï¼Œæ‰€åœ¨åœ°ï¼Œè”ç³»æ–¹å¼ï¼‰
+$sitecore.urls.add("AddOrUpdateEnterPriseClient", "/CustomerManagement/Customer/AddEntCustomer");//æ–°å¢ä¿®æ”¹ä¼ä¸šå®¢æˆ·ä¿¡æ¯
+$sitecore.urls.add("AddOrUpdatePersonalClient", "/CustomerManagement/Customer/AddPrivateCustomer");//æ–°å¢ä¿®æ”¹ä¸ªäººå®¢æˆ·ä¿¡æ¯
 
 
 

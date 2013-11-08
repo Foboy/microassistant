@@ -8,10 +8,10 @@ using MicroAssistant.Common;
 using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
-using MicroAssistantMvc.Controllers;
-using MicroAssistantMvc.Areas.ProductManagement.Models;
+using MicroAssistantMvc3.Controllers;
+using MicroAssistantMvc3.Areas.ProductManagement.Models;
 
-namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
+namespace MicroAssistantMvc3.Areas.ProductManagement.Controllers
 {
     public class ProductionController : MicControllerBase
     {

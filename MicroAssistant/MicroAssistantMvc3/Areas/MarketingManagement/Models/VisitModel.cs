@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MicroAssistantMvc.Areas.MarketingManagement.Models
+namespace MicroAssistantMvc3.Areas.MarketingManagement.Models
 {
     public class VisitModel
     {

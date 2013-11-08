@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MicroAssistantMvc.Areas.ProductManagement.Models
+namespace MicroAssistantMvc3.Areas.ProductManagement.Models
 {
       [Serializable]
     public class ProductTypeModule

@@ -8,9 +8,9 @@ using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 using MicroAssistant.Cache;
-using MicroAssistantMvc.Controllers;
+using MicroAssistantMvc3.Controllers;
 
-namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
+namespace MicroAssistantMvc3.Areas.CustomerManagement.Controllers
 {
     public class CustomerController : MicControllerBase
     {

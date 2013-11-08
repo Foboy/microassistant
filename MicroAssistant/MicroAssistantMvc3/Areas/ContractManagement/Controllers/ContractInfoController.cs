@@ -4,14 +4,14 @@ using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 using MicroAssistant.Common;
-using MicroAssistantMvc.Controllers;
+using MicroAssistantMvc3.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
+namespace MicroAssistantMvc3.Areas.ContractManagement.Controllers
 {
     public class ContractInfoController : MicControllerBase
     {

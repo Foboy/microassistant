@@ -1,4 +1,4 @@
-var utilities = utilities || {};
+﻿var utilities = utilities || {};
 
 utilities.getquerystring = function(para) {
 	var reg = new RegExp("(^|&|\\?)" + para + "=([^&]*)(&|$)"), r;

@@ -1,0 +1,24 @@
+﻿<div tabindex="-1" class="modal hide fade" id="AddPersonalBox" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <form ng-class="showerror?'showerror':''" name="AddPersonalForm">
+        <ul class="listContent peopleInfo">
+            <input  type="text" style="display:none" name="CustomerPrivateId" ng-model="PersonalItem.CustomerPrivateId"/>
+            <li class="clearfix"><span class="span1">姓名：</span><span><input type="text" name="Name" ng-model="PersonalItem.Name" ng-required="true" class="span3"></span></li>
+            <li class="clearfix"><span class="span1">性别：</span><span><label class="checkbox-inline">
+                <input type="radio" ng-model="PersonalItem.Sex" value="1" />
+                男&nbsp;
+            </label>
+                <label class="checkbox-inline">
+                    <input type="radio" ng-model="PersonalItem.Sex" value="2" />
+                    女&nbsp;
+                </label>
+            </span></li>
+            <li class="clearfix"><span class="span1">出生日期：</span><span><input type="text" name="Birthday" ng-model="PersonalItem.Birthday"  class="span3"></span></li>
+            <li class="clearfix"><span class="span1">联系方式：</span><span><input type="text" name="Mobile" ng-model="PersonalItem.Mobile" placeholder="手机" class="span3"><input type="text" name="Email" ng-model="PersonalItem.Email" placeholder="邮箱" class="span3"></span></li>
+            <li class="clearfix"><span class="span1">&nbsp;</span><span><input type="text" name="Phone" ng-model="PersonalItem.Phone" placeholder="座机" class="span3"><input type="text" name="Qq" ng-model="PersonalItem.Qq" placeholder="QQ" class="span3"></span></li>
+            <!--<li class="clearfix"><span class="span1">从事行业：</span><span><input type="text" name="Industy" ng-model="PersonalItem.Industy"  class="span3"></span></li>
+            <li class="clearfix"><span class="span1">所在地：</span><span><input type="text" name="Address" ng-model="PersonalItem.Address"  class="span3"></span></li>-->
+            <li class="clearfix"><span class="span1">个人信息：</span><span><textarea style="width: 350px; height: 20px;" name="Detail" ng-model="PersonalItem.Detail"></textarea></span></li>
+            <li class="clearfix"><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" ng-click="AddPersonalSubmit()" class="btn btn-large btn-block btn-success">保 存</a></span></li>
+        </ul>
+    </form>
+</div>

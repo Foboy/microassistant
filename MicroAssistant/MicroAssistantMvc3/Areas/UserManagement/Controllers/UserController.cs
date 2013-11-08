@@ -8,10 +8,10 @@ using MicroAssistant.Common;
 using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
-using MicroAssistantMvc.Controllers;
+using MicroAssistantMvc3.Controllers;
 using System.Web.Security;
 
-namespace MicroAssistantMvc.Areas.UserManagement.Controllers
+namespace MicroAssistantMvc3.Areas.UserManagement.Controllers
 {
     public class UserController : MicControllerBase
     {

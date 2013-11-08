@@ -9,14 +9,16 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace MicroAssistantMvc.Controllers
+namespace MicroAssistantMvc3.Controllers
 {
     public class MicControllerBase : Controller
     {
         #region token
         private string currentToken;
-        public string token {
-            get {
+        public string token
+        {
+            get
+            {
                 if (currentToken != null)
                     return currentToken;
                 if (FormsAuthentication.CookiesSupported)
@@ -32,13 +34,13 @@ namespace MicroAssistantMvc.Controllers
                         catch (Exception e)
                         {
                             // 票据解密失败
-                            
+
                         }
                     }
                 }
                 else
                 {
-                      //客户端不支持Cookie
+                    //客户端不支持Cookie
                 }
                 return currentToken;
             }
@@ -78,6 +80,6 @@ namespace MicroAssistantMvc.Controllers
             ViewBag.CurrentToken = token;
             base.OnAuthorization(filterContext);
         }
-    
+
     }
 }

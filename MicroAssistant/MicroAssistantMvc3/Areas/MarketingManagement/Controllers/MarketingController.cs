@@ -4,15 +4,15 @@ using MicroAssistant.Common;
 using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
-using MicroAssistantMvc.Areas.MarketingManagement.Models;
-using MicroAssistantMvc.Controllers;
+using MicroAssistantMvc3.Areas.MarketingManagement.Models;
+using MicroAssistantMvc3.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
+namespace MicroAssistantMvc3.Areas.MarketingManagement.Controllers
 {
     public class MarketingController : MicControllerBase
     {
