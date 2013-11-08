@@ -2,6 +2,7 @@
   config(['$provide', '$routeProvider', '$locationProvider', function ($provide, $routeProvider, $locationProvider) {
       $routeProvider
           .when('/home', { templateUrl: 'partials/home.html', controller: HomeMainCtrl })
+          .when('/user', { templateUrl: 'partials/userinfo.html', controller: UserMainCtrl })
           .when('/product/:catalogId?/:pageIndex?', { templateUrl: 'partials/product.html', controller: ProductMainCtrl })
           .when('/sales/:steps?/:pageIndex?', { templateUrl: 'partials/sales.html', controller: SalesMainCtrl })
           .when('/finance/:steps?/:pageIndex?', { templateUrl: 'partials/finance.html', controller: FinanceMainCtrl })
@@ -31,6 +32,10 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     $scope.checkpage = function () {
         if ($location.path().indexOf('/home') == 0) {
             $scope.page = "home";
+        }
+
+        else if ($location.path().indexOf('/user') == 0) {
+            $scope.page = "user";
         }
         else if ($location.path().indexOf('/product') == 0) {
             $scope.page = "product";
@@ -92,6 +97,13 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
         return date;
     };
 
+    $scope.parseAge = function (datestr) {
+        var birthday = new Date($scope.parseJsonDate(datestr).replace(/:/g, "\/"));
+        var d = new Date();
+        var age = d.getFullYear() - birthday.getFullYear() - ((d.getMonth() < birthday.getMonth() || d.getMonth() == birthday.getMonth() && d.getDate() < birthday.getDate()) ? 1 : 0);
+        console.log(age);
+        return age;
+    }
     
     $http.post($sitecore.urls["userCurrentUser"], {  }).success(function (data) {
         console.log(data);

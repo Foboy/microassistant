@@ -1,0 +1,56 @@
+﻿<h1 class="titSec">基本信息</h1>
+<form ng-class="showerror?'showerror':''" name="EditUserForm">
+    <div class="basicInfo">
+        <ul class="ul-s1">
+            <li class="clearfix">
+                <span class="span1">邮箱账号</span>
+                <span class="span2">{{UserInfo.Email}}</span>
+
+            </li>
+            <li class="clearfix">
+                <span class="span1">昵称</span>
+                <span class="span2">
+                    <input type="text" name="UserAccount" ng-model="UserInfo.UserAccount" />
+                </span>
+            </li>
+            <li class="clearfix">
+                <span class="span1">真实姓名</span>
+                <span class="span2">
+                    <!--王晓-->
+                    <input type="text" name="UserName" ng-model="UserInfo.UserName" class="t-p"></span>
+                <span class="span3">
+                    <a class="grayLink" href="" ng-click="">修改密码</a>
+                    <a class="grayLink" href="" ng-click="">修改邮箱</a>
+                </span>
+            </li>
+            <li class="clearfix">
+                <span class="span1">性别</span>
+                <span class="span2">
+                    <label class="radio checked">
+                        <span class="icons">
+                            <span class="first-icon fui-radio-unchecked"></span>
+                            <span class="second-icon fui-radio-checked"></span>
+                        </span>
+                        <input type="radio" ng-model="UserInfo.Sex" value="1" data-toggle="radio">男
+                    </label>
+                    <label class="radio checked">
+                        <span class="icons">
+                            <span class="first-icon fui-radio-unchecked"></span>
+                            <span class="second-icon fui-radio-checked"></span>
+                        </span>
+                        <input type="radio" ng-model="UserInfo.Sex" data-toggle="radio" value="2">女
+                    </label>
+                </span>
+                <span class="span3">
+                    <a class="grayLink" href="" ng-click="EditUserInfo(UserInfo)">保存</a>
+                </span>
+            </li>
+            <li class="clearfix">
+                <span class="span1">年龄</span>
+                <span class="span2">
+                    <!--45-->
+                    <input type="text" name="Age" ng-model="UserInfo.Age" class="t-p"></span>
+            </li>
+        </ul>
+    </div>
+</form>

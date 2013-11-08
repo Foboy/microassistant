@@ -4,7 +4,7 @@
     <title>Bootstrap 101 Template</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-<!--    <link href="css/flat-ui.css" rel="stylesheet" media="screen">-->
+    <!--    <link href="css/flat-ui.css" rel="stylesheet" media="screen">-->
     <link href="css/master.css" rel="stylesheet" media="screen">
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -16,6 +16,7 @@
     <script src="scripts/utilities.js"></script>
     <script src="scripts/core.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/user/controllers.js"></script>
     <script src="scripts/finance/controllers.js"></script>
     <script src="scripts/product/controllers.js"></script>
     <script src="scripts/sales/controllers.js"></script>
@@ -44,40 +45,44 @@
 </head>
 <body ng-controller="MainCtrl">
     <div class="navbar">
-    
     </div>
     <div class="main">
-    <div class="Nav">
-        <div class="headImg">
-            <img src="img/Adimg/h1.jpg" />
+        <div class="Nav">
+            <div class="headImg">
+                <img src="img/Adimg/h1.jpg" />
+            </div>
+            <ul class="navList">
+                <li ng-class="page=='home'?'cur':''">
+                    <a ng-href="#!/home" class="homeIcon"></a>
+                    <p><a ng-href="#!/home">主页</a></p>
+                </li>
+                <li ng-class="page=='product'?'cur':''">
+                    <a ng-href="#!/product" class="productIcon"></a>
+                    <p><a ng-href="#!/product">产品管理</a></p>
+                </li>
+                <li ng-class="page=='sales'?'cur':''">
+                    <a ng-href="#!/sales" class="saleIcon"></a>
+                    <p><a ng-href="#!/sales">销售管理</a></p>
+                </li>
+                <li ng-class="page=='finance'?'cur':''">
+                    <a ng-href="#!/finance" class="financeIcon"></a>
+                    <p><a ng-href="#!/finance">财务管理</a></p>
+                </li>
+                <li ng-class="page=='client'?'cur':''">
+                    <a ng-href="#!/client" class="clientIcon"></a>
+                    <p><a ng-href="#!/client">客户管理</a></p>
+                </li>
+
+                <li ng-class="page=='user'?'cur':''">
+                    <a ng-href="#!/user" class="peopleIcon"></a>
+                    <p><a ng-href="#!/user">个人管理</a></p>
+                </li>
+            </ul>
         </div>
-        <ul class="navList">
-            <li ng-class="page=='home'?'cur':''">
-                <a ng-href="#!/home" class="homeIcon"></a>
-                <p><a ng-href="#!/home">主页</a></p>
-            </li>
-            <li ng-class="page=='product'?'cur':''">
-                <a ng-href="#!/product" class="productIcon"></a>
-                <p><a ng-href="#!/product">产品管理</a></p>
-            </li>
-            <li ng-class="page=='sales'?'cur':''">
-                <a ng-href="#!/sales" class="saleIcon"></a>
-                <p><a ng-href="#!/sales">销售管理</a></p>
-            </li>
-            <li ng-class="page=='finance'?'cur':''">
-                <a ng-href="#!/finance" class="financeIcon"></a>
-                <p><a ng-href="#!/finance">财务管理</a></p>
-            </li>
-             <li ng-class="page=='client'?'cur':''">
-                <a ng-href="#!/client" class="clientIcon"></a>
-                <p><a ng-href="#!/client">客户管理</a></p>
-            </li>
-        </ul>
-    </div>
-    <div class="conBox">
-        <div ng-view>
+        <div class="conBox">
+            <div ng-view>
+            </div>
         </div>
-    </div>
     </div>
 </body>
 </html>

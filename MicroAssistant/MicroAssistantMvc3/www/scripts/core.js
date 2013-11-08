@@ -13,6 +13,9 @@ $sitecore.urls.add("userRegister", "/UserManagement/User/UserRegister");
 $sitecore.urls.add("userCurrentUser", "/UserManagement/User/GetUserInfo");
 $sitecore.urls.add("enterpriseRegister", "/UserManagement/User/EntRegister");
 
+$sitecore.urls.add("GetCurrentUserInfo", "/UserManagement/User/GetUserInfo");//获取当前登录用户资料
+$sitecore.urls.add("EditCurrentUserInfo", "/UserManagement/User/EditeUserInfo");
+
 
 $sitecore.urls.add("productCat", "/ProductManagement/Production/SearchProductTypeListByEntID");
 $sitecore.urls.add("productAddCat", "/ProductManagement/Production/AddProductionType"); 
@@ -48,6 +51,5 @@ $sitecore.urls.add("SearchCustomerEntByOwnerId", "/CustomerManagement/Customer/S
 $sitecore.urls.add("SearchCustomerPrivByOwnerId", "/CustomerManagement/Customer/SearchCustomerPrivByOwnerId");//根据用户ID查询个人客户（token）返回 个人客户列表（姓名，年龄，所属行业，所在地，联系方式）
 $sitecore.urls.add("AddOrUpdateEnterPriseClient", "/CustomerManagement/Customer/AddEntCustomer");//新增修改企业客户信息
 $sitecore.urls.add("AddOrUpdatePersonalClient", "/CustomerManagement/Customer/AddPrivateCustomer");//新增修改个人客户信息
-
 
 
