@@ -40,6 +40,14 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    if (!CheckUserFunction("1202"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
+
                     MarketingChance chance = new MarketingChance();
                     chance.AddTime = DateTime.Now;
                     chance.ChanceType = chanceType;
@@ -125,6 +133,13 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    if (!CheckUserFunction("1201"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
                     PageEntity<MarketingChance> returnValue = new PageEntity<MarketingChance>();
                     returnValue = MarketingChanceAccessor.Instance.Search(1, CurrentUser.UserId, pageIndex, pageSize);//1:未拜访 2：已拜访
                     result.Error = AppError.ERROR_SUCCESS;
@@ -156,6 +171,13 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    if (!CheckUserFunction("1205"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
                     MarketingChance chance = new MarketingChance();
                    chance = MarketingChanceAccessor.Instance.Get(cid);
                     result.Error = AppError.ERROR_SUCCESS;
@@ -190,6 +212,14 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    if (!CheckUserFunction("1202"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
+
                     MarketingChance chance = new MarketingChance();
                     chance = MarketingChanceAccessor.Instance.Get(cid);
                     chance.ChanceType = chanceType;
@@ -230,6 +260,13 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    if (!CheckUserFunction("1204"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
                     MarketingVisit mv=new MarketingVisit();
                     mv.Address=address;
                     mv.Amount=amount;
@@ -272,6 +309,13 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    if (!CheckUserFunction("1205"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
                     PageEntity<MarketingVisit> returnValue = new PageEntity<MarketingVisit>();
                     result.Data = new SingleVisitListModel();
                   result.Data.Vlist =  MarketingVisitAccessor.Instance.Search(cid, pageIndex, pageSize);
@@ -303,6 +347,14 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+  
+                    if (!CheckUserFunction("1203"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
                    PageEntity<MarketingChance> clist = MarketingChanceAccessor.Instance.Search(2,CurrentUser.UserId, pageIndex, pageSize);
                    result.Data.RecordsCount = clist.RecordsCount;
                    result.Data.PageIndex = pageIndex;
@@ -356,6 +408,13 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    if (!CheckUserFunction("1204"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
                     MarketingVisit mv = MarketingVisitAccessor.Instance.Get(vid);
                     mv.Address = address;
                     mv.Amount = amount;
@@ -389,6 +448,13 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    if (!CheckUserFunction("1204"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
                     MarketingChanceAccessor.Instance.UpdateRate(cid, num);
                     result.Error = AppError.ERROR_SUCCESS;
                 }

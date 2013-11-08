@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace MicroAssistantMvc3.Areas.FinancialManagement
+namespace MicroAssistantMvc.Areas.FinancialManagement
 {
     public class FinancialManagementAreaRegistration : AreaRegistration
     {

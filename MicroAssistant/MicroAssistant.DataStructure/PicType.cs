@@ -12,22 +12,12 @@ namespace MicroAssistant.DataStructure
         /// </summary>
         Ignore=0,
         /// <summary>
-        /// 宝贝图片
+        /// 产品分类图片
         /// </summary>
-        BBPicture = 1,
+        ProTypePicture = 1,
         /// <summary>
         /// 用户头像
         /// </summary>
-        UserHeadImg=2,
-
-        /// <summary>
-        /// 投票图片
-        /// </summary>
-        VotePicture = 3,
-
-        /// <summary>
-        /// book图片
-        /// </summary>
-        Book=4
+        UserHeadImg=2
     }
 }

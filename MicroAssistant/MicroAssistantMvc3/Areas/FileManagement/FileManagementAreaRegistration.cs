@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace MicroAssistantMvc.Areas.MarketingManagement
+namespace MicroAssistantMvc3.Areas.FileManagement
 {
-    public class MarketingManagementAreaRegistration : AreaRegistration
+    public class FileManagementAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
             get
             {
-                return "MarketingManagement";
+                return "FileManagement";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "MarketingManagement_default",
-                "MarketingManagement/{controller}/{action}/{id}",
+                "FileManagement_default",
+                "FileManagement/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

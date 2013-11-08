@@ -98,6 +98,8 @@
     <Compile Include="Areas\ContractManagement\Controllers\ContractInfoController.cs" />
     <Compile Include="Areas\CustomerManagement\Controllers\CustomerController.cs" />
     <Compile Include="Areas\CustomerManagement\CustomerManagementAreaRegistration.cs" />
+    <Compile Include="Areas\FileManagement\Controllers\FileController.cs" />
+    <Compile Include="Areas\FileManagement\FileManagementAreaRegistration.cs" />
     <Compile Include="Areas\FinancialManagement\Controllers\FinancialController.cs" />
     <Compile Include="Areas\FinancialManagement\FinancialManagementAreaRegistration.cs" />
     <Compile Include="Areas\FinancialManagement\Models\ReceivablesModel.cs" />
@@ -119,6 +121,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\Role.xml" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -254,6 +257,7 @@
     <Content Include="www\scripts\user\bosscontrollers.js" />
     <Content Include="www\scripts\user\controllers.js" />
     <Content Include="www\scripts\utilities.js" />
+    <Content Include="Areas\FileManagement\Views\Web.config" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -297,6 +301,8 @@
     <Folder Include="Areas\ContractManagement\Views\Shared\" />
     <Folder Include="Areas\CustomerManagement\Models\" />
     <Folder Include="Areas\CustomerManagement\Views\Shared\" />
+    <Folder Include="Areas\FileManagement\Models\" />
+    <Folder Include="Areas\FileManagement\Views\Shared\" />
     <Folder Include="Areas\FinancialManagement\Views\Shared\" />
     <Folder Include="Areas\MarketingManagement\Views\Shared\" />
     <Folder Include="Areas\ProductManagement\Views\Shared\" />

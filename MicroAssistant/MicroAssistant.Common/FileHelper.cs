@@ -39,7 +39,6 @@ namespace MicroAssistant.Common
                     Directory.CreateDirectory(dir);
 
                 Image image = null;
-
                 // 保存原图
                 using (MemoryStream stream = new MemoryStream(fileByte, false))
                 {
