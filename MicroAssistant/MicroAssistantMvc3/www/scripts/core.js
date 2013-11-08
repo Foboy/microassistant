@@ -15,6 +15,8 @@ $sitecore.urls.add("enterpriseRegister", "/UserManagement/User/EntRegister");
 
 $sitecore.urls.add("GetCurrentUserInfo", "/UserManagement/User/GetUserInfo");//获取当前登录用户资料
 $sitecore.urls.add("EditCurrentUserInfo", "/UserManagement/User/EditeUserInfo");
+$sitecore.urls.add("UpdatePwd", "/UserManagement/User/UpdatePwd");//修改密码
+$sitecore.urls.add("UpdateEmail", "/UserManagement/User/UpdateEmail");//修改邮箱
 
 
 $sitecore.urls.add("productCat", "/ProductManagement/Production/SearchProductTypeListByEntID");

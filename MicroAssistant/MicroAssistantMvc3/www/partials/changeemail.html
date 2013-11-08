@@ -1,0 +1,29 @@
+﻿<h1 class="titSec">修改邮箱</h1>
+<div>
+    <form name="ChangeEmailForm">
+        <div class="basicInfo">
+            <ul class="ul-s1">
+                <li class="clearfix">
+                    <span class="span1">当前邮箱</span>
+                    <span class="span2">{{ChangeEmailData.currentEamil=UserInfo.Email}}
+                    </span>
+                </li>
+                <li class="clearfix">
+                    <span class="span1">登录密码</span>
+                    <span class="span3">
+                        <input type="password" name="pwd" ng-model="ChangeEmailData.pwd" ng-required="true" ng-minlength="6" ng-maxlength="18"  class="t-p">
+                    </span>
+                </li>
+                <li class="clearfix">
+                    <span class="span1">新的邮箱</span>
+                    <span class="span3">
+                        <input type="text" name="newemail" placeholder="Email" ng-model="ChangeEmailData.newemail" ng-required="true" ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" class="t-p">
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="save-btn">
+            <a href="" ng-click="ChangeEmailSubmit(ChangeEmailData)" class="btn btn-large btn-block btn-info">保 存</a>
+        </div>
+    </form>
+</div>

@@ -80,7 +80,8 @@ function UserMainCtrl($scope, $http, $location) {
                 if ($scope.UserInfo != null && $scope.UserInfo.Sex == 0) {
                     $scope.UserInfo.Sex = 1;
                 }
-                $scope.UserInfo.Age = $scope.parseAge(data.Data.Birthday);
+                //$scope.parseAge(data.Data.Birthday)
+                $scope.UserInfo.Age = 12;
             }
         }).error(function (data, status, headers, config) {
             alert('error');
@@ -100,5 +101,48 @@ function UserMainCtrl($scope, $http, $location) {
             })
         }
     };
+    //修改密码
+    $scope.ChangePwdSumbit = function (data) {
+        if ($scope.ChangePwdForm.$valid) {
+            if (data.surepwd != data.newpwd) {
+                $scope.ChangePwdForm.newpwd.$valid = false;
+                $scope.showerror = true;
+            } else {
+                $scope.showerror = false;
+                $http.post($sitecore.urls["UpdatePwd"], { oldpwd: data.oldpwd, newpwd: data.newpwd }).success(function (data) {
+                    if (data.Error) {
+                        alert(data.ErrorMessage);
+                    }
+                    console.log(data);
+                }).
+                error(function (data, status, headers, config) {
+                    alert("error")
+                });
+            }
+        }
+        else {
+            $scope.showerror = true;
+        }
+    };
+    //修改邮箱
+    $scope.ChangeEmailSubmit = function (data) {
+        if ($scope.ChangeEmailForm.$valid) {
+            $scope.showerror = false;
+            $http.post($sitecore.urls["UpdateEmail"], { email: data.newemail, pwd: data.pwd }).success(function (data) {
+                if (data.Error) {
+                    alert(data.ErrorMessage);
+                } else {
+                    alert("修改成功");
+                }
+                console.log(data);
+            }).
+            error(function (data, status, headers, config) {
+                alert("error")
+            });
 
+        }
+        else {
+            $scope.showerror = true;
+        }
+    }
 }

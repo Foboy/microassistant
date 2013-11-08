@@ -225,6 +225,8 @@
     <Content Include="www\js\uploadify\uploadify.extention.js" />
     <Content Include="www\js\uploadify\uploadify.swf" />
     <Content Include="www\login.html" />
+    <Content Include="www\partials\changeemail.html" />
+    <Content Include="www\partials\changepassword.html" />
     <Content Include="www\partials\client.html" />
     <Content Include="www\partials\client\client-addenterprise.html" />
     <Content Include="www\partials\client\client-addpersonal.html" />
