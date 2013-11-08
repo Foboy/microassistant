@@ -18,12 +18,12 @@
                 var imgHeight = img.height();
                 img.attr('src', '');
 
-                // Create variables (in this scope) to hold the API and image size
+
                 var jcrop_api,
                     boundx,
                     boundy,
 
-                    // Grab some information about the preview pane
+
                     $container = $('#container'),
                     $photowraper = $('#photo-wraper'),
                     $photo = $('#photo-wraper img'),
@@ -68,11 +68,11 @@
                         setSelect: [0,0,1,1],
                         aspectRatio: 1
                     }, function () {
-                        // Use the API to get the real image size
+
                         var bounds = this.getBounds();
                         boundx = bounds[0];
                         boundy = bounds[1];
-                        // Store the API in the jcrop_api variable
+
                         jcrop_api = this;
                         jcrop_api.animateTo([selectLeft, selectTop, selectLeft + selectWidth, selectTop + selectHeight]);
                         $('#photo-wraper .jcrop-tracker').first().append($circle);
@@ -111,8 +111,7 @@
     <link href="../../js/jscop/jquery.Jcrop.css" rel="stylesheet" />
 
     <style type="text/css">
-        /* Apply these styles only when #preview-pane has
-   been placed within the Jcrop widget */
+
         #preview-pane {
             position:relative;
             padding: 6px;
@@ -126,9 +125,7 @@
             box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
         }
 
-        /* The Javascript code will set the aspect ratio of the crop
-   area based on the size of the thumbnail preview,
-   specified here */
+
         #preview-pane .preview-container {
             width: 180px;
             height: 180px;
