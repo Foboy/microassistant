@@ -3,15 +3,15 @@ using MicroAssistant.Common;
 using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
-using MicroAssistantMvc3.Areas.FinancialManagement.Models;
-using MicroAssistantMvc3.Controllers;
+using MicroAssistantMvc.Areas.FinancialManagement.Models;
+using MicroAssistantMvc.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MicroAssistantMvc3.Areas.FinancialManagement.Controllers
+namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
 {
     public class FinancialController : MicControllerBase
     {

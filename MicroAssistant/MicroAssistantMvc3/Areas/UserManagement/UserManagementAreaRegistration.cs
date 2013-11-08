@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace MicroAssistantMvc3.Areas.UserManagement
+namespace MicroAssistantMvc.Areas.UserManagement
 {
     public class UserManagementAreaRegistration : AreaRegistration
     {

@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace MicroAssistantMvc3.Controllers
+namespace MicroAssistantMvc.Controllers
 {
     public class MicControllerBase : Controller
     {

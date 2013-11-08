@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace MicroAssistantMvc3.Areas.ProductManagement
+namespace MicroAssistantMvc.Areas.ProductManagement
 {
     public class ProductManagementAreaRegistration : AreaRegistration
     {

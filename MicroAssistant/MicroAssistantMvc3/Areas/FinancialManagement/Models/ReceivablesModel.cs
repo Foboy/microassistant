@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MicroAssistantMvc3.Areas.FinancialManagement.Models
+namespace MicroAssistantMvc.Areas.FinancialManagement.Models
 {
       [Serializable]
     public class ReceivablesModel

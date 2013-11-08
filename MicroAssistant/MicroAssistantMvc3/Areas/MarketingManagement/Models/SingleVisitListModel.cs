@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MicroAssistantMvc3.Areas.MarketingManagement.Models
+namespace MicroAssistantMvc.Areas.MarketingManagement.Models
 {
     public class SingleVisitListModel
     {
