@@ -15,7 +15,18 @@ namespace MicroAssistantMvc3.Areas.FileManagement.Controllers
     public class FileController : MicControllerBase
     {
         //
-        // GET: /FileManagement/File/
+        // GET: /FileManagement/File
+
+        public JsonResult UploadImage(int saveSource,List<ImageSaveInfo> saveInfo)
+        {
+            var Res = new JsonResult();
+            AdvancedResult<ResPic> result = new AdvancedResult<ResPic>();
+
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
 
         public JsonResult UploadPic(byte[] fileByte, int picHeight, int picWidth)
         {
@@ -80,11 +91,11 @@ namespace MicroAssistantMvc3.Areas.FileManagement.Controllers
                 {
                     int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                     string fileUrl = string.Empty;
-                    fileUrl = FileHelper.UploadFile(userid, fileByte, "jpg", PicType.ProTypePicture);
+                    fileUrl = FileHelper.UploadFile(userid, fileByte, "jpg", PicType.BBPicture);
 
                     ResPic pic = new ResPic();
                     pic.ObjId = 0;
-                    pic.ObjType = PicType.ProTypePicture;
+                    pic.ObjType = PicType.BBPicture;
                     pic.PicUrl = fileUrl;
                     pic.PicHeight = picHeight;
                     pic.PicWidth = picWidth;
@@ -137,10 +148,10 @@ namespace MicroAssistantMvc3.Areas.FileManagement.Controllers
                     pic.PicHeight = picHeight;
                     pic.PicWidth = picWidth;
                     pic.State = StateType.Active;
-                    if (user.PicId > 0)
-                    {
-                        ResPicAccessor.Instance.Delete(user.PicId);
-                    }
+                    //if (user.PicId > 0)
+                    //{
+                    //    ResPicAccessor.Instance.Delete(user.PicId);
+                    //}
 
                     int picid = ResPicAccessor.Instance.Insert(pic);
 

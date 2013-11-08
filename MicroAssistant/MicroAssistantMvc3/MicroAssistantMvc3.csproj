@@ -98,6 +98,8 @@
     <Compile Include="Areas\ContractManagement\Controllers\ContractInfoController.cs" />
     <Compile Include="Areas\CustomerManagement\Controllers\CustomerController.cs" />
     <Compile Include="Areas\CustomerManagement\CustomerManagementAreaRegistration.cs" />
+    <Compile Include="Areas\FileManagement\Controllers\FileController.cs" />
+    <Compile Include="Areas\FileManagement\FileManagementAreaRegistration.cs" />
     <Compile Include="Areas\FinancialManagement\Controllers\FinancialController.cs" />
     <Compile Include="Areas\FinancialManagement\FinancialManagementAreaRegistration.cs" />
     <Compile Include="Areas\FinancialManagement\Models\ReceivablesModel.cs" />
@@ -254,6 +256,7 @@
     <Content Include="www\scripts\user\bosscontrollers.js" />
     <Content Include="www\scripts\user\controllers.js" />
     <Content Include="www\scripts\utilities.js" />
+    <Content Include="Areas\FileManagement\Views\Web.config" />
     <None Include="Properties\PublishProfiles\MicroAssistant.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />

@@ -4,6 +4,7 @@
     <title>头像上传</title>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
     <script src="../../js/jquery.js"></script>
+    <script src="../../scripts/core.js"></script>
     <script src="../../js/jscop/jquery.Jcrop.js"></script>
     <script src="../../js/jscop/jquery.Jcrop.extend.js"></script>
     <script src="../../js/uploadify/jquery.uploadify.js"></script>
@@ -96,10 +97,13 @@
             $("#imgLoad").attr('src', '../../img/testpic.jpg');
             $('#selected_btn').cuploadify({
                 'formData': {
-                    'token': 'sss'
+                    'token': 'sss',
+                    'picHeight': 0,
+                    'picWidth':0
+
                 },
                 'swf': '../../js/uploadify/uploadify.swf',
-                'uploader': '/Upload/Uploader/71358f72c447e0ec2ecba71636907898?queryData=width-126,height-126&imageWidth=470&imageHeight=0',
+                'uploader': $sitecore.urls["uploadPic"],
                 'height': 70,
                 'width': 190,
                 onUploadComplete: function (response) {
