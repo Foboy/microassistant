@@ -30,7 +30,7 @@
                     $preview = $('#preview-pane'),
                     $pcnt = $('#preview-pane .preview-container'),
                     $pimg = $('#preview-pane .preview-container img'),
-                    $circle = $('<img src="../../img/c-png-2.png" />'),
+                    $circle = $('<img src="../../img/c-png-2.png" style="position: absolute;z-index: 350" />'),
 
                     xsize = $pcnt.width(),
                     ysize = $pcnt.height(),
@@ -75,7 +75,7 @@
 
                         jcrop_api = this;
                         jcrop_api.animateTo([selectLeft, selectTop, selectLeft + selectWidth, selectTop + selectHeight]);
-                        $('#photo-wraper .jcrop-tracker').first().append($circle);
+                        $('#photo-wraper .jcrop-hline').parent().append($circle);
                     });
 
                     function updatePreview(c) {
