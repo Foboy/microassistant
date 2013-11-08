@@ -1,0 +1,75 @@
+<div class="floatBox pactBox prouBox" id="productDetailBox" style="width:0;position:fixed;right:0;top:0;">
+        	<div class="fBg"></div>
+            <div class="fCon clearfix">
+                <i class="arrR" ng-click="hideProductDetail()"></i>
+                <ul class="pact-ul clearfix">
+                	<li ng-class="tabIndex==1?'cur':''" ng-click="productInfo()">产品信息</li>
+                    <li ng-class="tabIndex==3?'cur':''" ng-click="productPurchase()">入库信息</li>
+                    <li ng-class="tabIndex==2?'cur':''" ng-click="productStore()">采购单</li>
+                </ul>
+            	<ul class="ul-f1" ng-show="tabIndex==1">
+                	<li class="clearfix"><span class="colorBlue namS">产品名称：</span><span class="conS">{{product.PName}}</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">产品分类：</span><span class="conS">{{product.PName}}</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">市场售价：</span><span class="conS"><b class="colorRed">{{product.MarketPrice}}</b> 元</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">最低售价：</span><span class="conS"><b class="colorRed">{{product.LowestPrice}}</b> 元</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">当前库存：</span><span class="conS"><b>{{product.StockCount}}</b>{{product.Unit}}</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">产品描述：</span><span class="s-text conS">{{product.PInfo}}</span></li>
+                </ul> 
+                <div class="basicProfit" ng-show="tabIndex==1">
+                    <div class="pDown">
+                        市场售价利润率：<b class="colorBlue">{{((product.MarketPrice - product.LowestPrice)*100/product.LowestPrice) | currency:''}}%</b>
+                    </div>
+                 </div>
+                 <div class="tablePad" ng-show="tabIndex==2">
+                 	<input type="button" class="addBtn" ng-click="addPurchase()">
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th><label class="checkbox"><input type="checkbox" value=""></label></th>
+                          <th width="30%">采购批次</th>
+                          <th width="10%">单价</th>
+                          <th width="10%">数量</th>
+                          <th width="15%">采购总价</th>
+                          <th width="30%">入库时间</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr  ng-repeat="store in stores">
+                          <td><label class="checkbox"><input type="checkbox" value="">{{$index+1}}</label></td>
+                          <td>20130515090301001</td>
+                          <td class="colorBlue">{{store.Price| currency:''}}</td>
+                          <td>{{store.PNum}}</td>
+                          <td class="colorBlue">{{(store.PNum || 0)*(store.Price||0)| currency:''}}</td>
+                          <td>2013/04/13</td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                </div>
+                 <div class="tablePad" ng-show="tabIndex==3">
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th><label class="checkbox"><input type="checkbox" value=""></label></th>
+                          <th width="30%">采购批次</th>
+                          <th width="10%">单价</th>
+                          <th width="10%">数量</th>
+                          <th width="15%">采购总价</th>
+                          <th width="30%">录入时间</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr  ng-repeat="store in stores">
+                          <td><label class="checkbox"><input type="checkbox" value="">{{$index+1}}</label></td>
+                          <td>20130515090301001</td>
+                          <td class="colorBlue">{{store.Price| currency:''}}</td>
+                          <td>{{store.PNum}}</td>
+                          <td class="colorBlue">{{(store.PNum || 0)*(store.Price||0)| currency:''}}</td>
+                          <td>2013/04/13</td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                </div>          
+            </div>
+        </div>

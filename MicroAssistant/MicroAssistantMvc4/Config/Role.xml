@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+默认权限模板
+ -->
+<roles>
+  <role name="管理员">
+    <father name="产品管理" id="1">
+      <son name="添加产品" id="2"></son>
+      <son name="查看入库清单" id="3"></son>
+      <son name="产品详细页" id="4"></son>
+      <son name="产品列表" id="5"></son>
+    </father>
+    <father name="客户信息" id="6">
+      <son name="企业客户列表" id="7"></son>
+      <son name="个人客户列表" id="8"></son>
+      <son name="添加个人客户" id="9"></son>
+      <son name="添加企业客户" id="10"></son>
+    </father>
+    <father name="财务管理" id="11">
+      <son name="应收款列表" id="12"></son>
+      <son name="应付款列表" id="13"></son>
+      <son name="应收款详情" id="14"></son>
+      <son name="确认付款" id="15"></son>
+      <son name="确认收款" id="16"></son>
+    </father>
+    <father name="销售管理" id="17">
+      <son name="销售机会列表" id="18"></son>
+      <son name="添加销售机会" id="19"></son>
+      <son name="拜访列表" id="20"></son>
+      <son name="拜访" id="21"></son>
+      <son name="销售机会详情" id="22"></son>
+      <son name="合同列表" id="23"></son>
+      <son name="添加合同" id="24"></son>
+    </father>
+    <father name="企业管理" id="25">
+      <son name="员工管理" id="26"></son>
+    </father>
+  </role>
+  <role name="财务部">
+   
+    <father name="财务管理" id="11">
+      <son name="应收款列表" id="12"></son>
+      <son name="应付款列表" id="13"></son>
+      <son name="应收款详情" id="14"></son>
+      <son name="确认付款" id="15"></son>
+      <son name="确认收款" id="16"></son>
+    </father>
+   
+  </role>
+  <role name="销售部">
+   
+    <father name="客户信息" id="6">
+      <son name="企业客户列表" id="7"></son>
+      <son name="个人客户列表" id="8"></son>
+      <son name="添加个人客户" id="9"></son>
+      <son name="添加企业客户" id="10"></son>
+    </father>
+  
+    <father name="销售管理" id="17">
+      <son name="销售机会列表" id="18"></son>
+      <son name="添加销售机会" id="19"></son>
+      <son name="拜访列表" id="20"></son>
+      <son name="拜访" id="21"></son>
+      <son name="销售机会详情" id="22"></son>
+      <son name="合同列表" id="23"></son>
+      <son name="添加合同" id="24"></son>
+    </father>
+    
+  </role>
+  <role name="老板">
+    <father name="产品管理" id="1">
+      <son name="添加产品" id="2"></son>
+      <son name="查看入库清单" id="3"></son>
+      <son name="产品详细页" id="4"></son>
+      <son name="产品列表" id="5"></son>
+    </father>
+    <father name="客户信息" id="6">
+      <son name="企业客户列表" id="7"></son>
+      <son name="个人客户列表" id="8"></son>
+      <son name="添加个人客户" id="9"></son>
+      <son name="添加企业客户" id="10"></son>
+    </father>
+    <father name="财务管理" id="11">
+      <son name="应收款列表" id="12"></son>
+      <son name="应付款列表" id="13"></son>
+      <son name="应收款详情" id="14"></son>
+      <son name="确认付款" id="15"></son>
+      <son name="确认收款" id="16"></son>
+    </father>
+    <father name="销售管理" id="17">
+      <son name="销售机会列表" id="18"></son>
+      <son name="添加销售机会" id="19"></son>
+      <son name="拜访列表" id="20"></son>
+      <son name="拜访" id="21"></son>
+      <son name="销售机会详情" id="22"></son>
+      <son name="合同列表" id="23"></son>
+      <son name="添加合同" id="24"></son>
+    </father>
+    <father name="企业管理" id="25">
+      <son name="员工管理" id="26"></son>
+    </father>
+    <father name="老板模式" id="27">
+      <son name="统计" id="28"></son>
+    </father>
+  </role>
+</roles>
