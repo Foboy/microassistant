@@ -3,6 +3,7 @@
       $routeProvider
           .when('/home', { templateUrl: 'partials/home.html', controller: HomeMainCtrl })
           .when('/user', { templateUrl: 'partials/userinfo.html', controller: UserMainCtrl })
+          .when('/mytimeshaft', { templateUrl: 'partials/mytimeshaft.html', controller: UserTimeShaftCtrl })
           .when('/changepassword', { templateUrl: 'partials/changepassword.html', controller: UserMainCtrl })
           .when('/changeemail', { templateUrl: 'partials/changeemail.html', controller: UserMainCtrl })
           .when('/product/:catalogId?/:pageIndex?', { templateUrl: 'partials/product.html', controller: ProductMainCtrl })
@@ -24,6 +25,7 @@
   }]).value('$anchorScroll', angular.noop);
 
 function MainCtrl($scope, $routeParams, $http, $location, $filter) {
+    //退出登录
     $scope.UserLoginOut = function () {
         $http.post($sitecore.urls["Logout"], {}).success(function (data) {
             if (data.Error) {
@@ -45,7 +47,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     $scope.CurrentUser = null;
 
     $scope.checkpage = function () {
-        if ($location.path().indexOf('/home') == 0 ||$location.path().indexOf('/user') == 0 || $location.path().indexOf('/changepassword') == 0 || $location.path().indexOf('/changeemail') == 0) {
+        if ($location.path().indexOf('/home') == 0 || $location.path().indexOf('/user') == 0 || $location.path().indexOf('/changepassword') == 0 || $location.path().indexOf('/changeemail') == 0 || $location.path().indexOf('/mytimeshaft')==0) {
             $scope.page = "home";
         }
         else if ($location.path().indexOf('/product') == 0) {
@@ -82,6 +84,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     }
 
     $scope.parseJsonDate = function (datestr, format) {
+        debugger;
         //console.log(typeof (new Date()));
         var date;
         if (!datestr) {
