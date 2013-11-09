@@ -346,6 +346,8 @@ a:hover{text-decoration:underline;}
 .logo-box{height:130px;}
 .main{max-width:1366px; min-width:960px; margin:0 auto; position:relative;}
 .m-box{position:relative;}
+.cp-box .blue-btn{background:#1c6c85; display:inline-block; width:120px; height:35px; line-height:35px; text-align:center; color:#FFFFFF; font-size:14px; text-decoration:none;}
+.cp-box .blue-btn:hover{background:#185e73;}
 .login-box{width:420px; min-height:350px; padding-bottom:20px; background:#f5f5f5; margin:0 auto;}
 .login-box h1{font-size:30px; font-weight:700; color:#248faf; height:80px; line-height:80px; text-align:center;}
 .login-box .input-box{width:360px; height:50px; margin:0 0 30px 30px; position:relative;}
@@ -359,7 +361,7 @@ a:hover{text-decoration:underline;}
 .login-box .input-box span{position:absolute; left:-10px; top:16px;}
 .login-box .sc-box{width:360px; margin:30px 30px 10px 30px;}
 .login-box .f-l{text-align:right; margin:0 30px; font-size:12px;}
-.cp-box{position:absolute; right:0; top:200px; color:#FFFFFF; font-size:18px;}
+.cp-box{position:absolute; right:0; top:0; color:#FFFFFF; font-size:18px;}
 .cp-box a{margin:0 10px;}
 .login-box .r-t{margin:-25px 30px 30px 30px;}
 .error-box{position:relative; height:500px;}
