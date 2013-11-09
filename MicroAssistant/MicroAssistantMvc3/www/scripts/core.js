@@ -13,6 +13,7 @@ $sitecore.urls.add("userRegister", "/UserManagement/User/UserRegister");
 $sitecore.urls.add("userCurrentUser", "/UserManagement/User/GetUserInfo");
 $sitecore.urls.add("enterpriseRegister", "/UserManagement/User/EntRegister");
 
+
 $sitecore.urls.add("GetCurrentUserInfo", "/UserManagement/User/GetUserInfo");//获取当前登录用户资料
 $sitecore.urls.add("EditCurrentUserInfo", "/UserManagement/User/EditeUserInfo");//修改用户资料
 $sitecore.urls.add("UpdatePwd", "/UserManagement/User/UpdatePwd");//修改密码
