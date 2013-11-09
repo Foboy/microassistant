@@ -38,18 +38,18 @@ a:hover{text-decoration:underline;}
 /*===  图标样式 ===*/
 .homeIcon,.peopleIcon,.productIcon,.saleIcon,.financeIcon,.clientIcon,.askIcon,.arrowD,.pcIcon,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon,.boy-icon,.girl-icon,.b-i,.g-i,.sales-oppr-icon,.visit-icon,.contract-icon,.sales-follow-icon,.com-pIcon,.sim-pIcon,.email-icon,.num-icon{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
 .pcIcon{background-position:-60px -139px; width:29px; height:27px;}
-.homeIcon{background-position:-28px -128px; width:24px; height:22px;}
-.homeIcon:hover{background-position:0 -128px;}
-.peopleIcon{background-position:-32px -155px; width:22px; height:25px;}
-.peopleIcon:hover{background-position:-1px -155px;}
-.productIcon{background-position:-38px -471px; width:22px; height:20px;}
-.productIcon:hover{background-position:0 -471px;}
-.saleIcon{background-position:-40px -506px; width:23px; height:14px;}
-.saleIcon:hover{background-position:0 -506px;}
-.financeIcon{background-position:-38px -390px; width:23px; height:24px;}
-.financeIcon:hover{background-position:0 -390px;}
-.clientIcon{background-position:-37px -429px; width:24px; height:25px;}
-.clientIcon:hover{background-position:0 -429px;}
+.homeIcon{background-position:-31px -122px; width:18px; height:16px;}
+.homeIcon:hover{background-position:-1px -122px;}
+.peopleIcon{background-position:-31px -150px; width:17px; height:19px;}
+.peopleIcon:hover{background-position:-1px -150px;}
+.productIcon{background-position:-31px -182px; width:18px; height:16px;}
+.productIcon:hover{background-position:-2px -182px;}
+.clientIcon{background-position:-40px -419px; width:18px; height:20px;}
+.clientIcon:hover{background-position:-2px -419px;}
+.financeIcon{background-position:-40px -386px; width:18px; height:19px;}
+.financeIcon:hover{background-position:-2px -386px;}
+.saleIcon{background-position:-39px -451px; width:24px; height:25px;}
+.saleIcon:hover{background-position:0 -429px;}
 
 
 
@@ -153,16 +153,18 @@ a:hover{text-decoration:underline;}
 .navList{margin-left:0;border-top:1px solid #e5e3d4;}
 .navList li{text-align:center; height:45px; list-style:none; width:170px; font-size:12px; margin-bottom:1px; border-bottom:1px solid #e5e3d4;border-right:1px solid #e5e3d4; background:#f2f2ea; color:#6d6b6c;}
 .navList li a{color:#6d6b6c;}
-.navList li .homeIcon,.navList li .productIcon,.navList li .saleIcon,.navList li .financeIcon,.navList li .clientIcon{float:left; margin:10px;}
+.navList li .homeIcon,.navList li .productIcon,.navList li .clientIcon{float:left; margin:15px 10px 0 10px;}
+.navList li .saleIcon,.navList li .financeIcon,.navList li .peopleIcon{float:left; margin:12px 10px 0 10px;}
 .navList li .saleIcon{margin-top:15px;}
 .navList li p{float:right; width:99px; height:45px; line-height:45px; font-size:14px; text-align:center;  margin:0;}
 .navList li.cur,.navList li:hover{background:#e74c3c;}
 .navList li:hover a,.navList li.cur a{color:#FFFFFF; text-decoration:none;}
-.navList li:hover .homeIcon,.navList li.cur .homeIcon{background-position:0 -128px; float:left; margin:10px;}
-.navList li:hover .productIcon,.navList li.cur .productIcon{background-position:0 -471px;float:left; margin:10px;}
-.navList li:hover .saleIcon,.navList li.cur .saleIcon{background-position:0 -506px; float:left; margin:15px 10px 10px 10px;}
-.navList li:hover .financeIcon,.navList li.cur .financeIcon{background-position:0 -390px;float:left; margin:10px;}
-.navList li:hover .clientIcon,.navList li.cur .clientIcon{background-position:0 -429px;float:left; margin:10px;}
+.navList li:hover .homeIcon,.navList li.cur .homeIcon{background-position:-1px -122px; float:left;}
+.navList li:hover .productIcon,.navList li.cur .productIcon{background-position:-2px -182px;float:left; }
+.navList li:hover .saleIcon,.navList li.cur .saleIcon{background-position:0 -451px;float:left;}
+.navList li:hover .financeIcon,.navList li.cur .financeIcon{background-position:-2px -386px;float:left; }
+.navList li:hover .clientIcon,.navList li.cur .clientIcon{background-position:-2px -419px; float:left;}
+.navList li:hover .peopleIcon,.navList li.cur .peopleIcon{background-position:-1px -150px;float:left;}
 
 .conBox{position:relative; margin-left:170px; min-height:800px;background:#FFFFFF; max-width:1286px; top:50px;}
 .titSec{height:30px; line-height:30px; color:#5B5B5B; font-size:20px; font-weight:normal; font-family:"微软雅黑"; padding:5px 0 10px 15px; margin:0;}
