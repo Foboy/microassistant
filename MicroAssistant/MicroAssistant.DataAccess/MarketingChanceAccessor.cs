@@ -92,7 +92,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadMarketingChance
 
-            cmdLoadMarketingChance = new MySqlCommand(@" select idmarketing_chance,chance_type,customer_type,contact_name,remark,add_time,qq,email,tel,phone,rate,ent_id,user_id,IsVisit from marketing_chance  where  user_id = @UserId and (IsVisit = @IsVisit or @IsVisit = 0 ) limit @PageIndex,@PageSize");
+            cmdLoadMarketingChance = new MySqlCommand(@" select idmarketing_chance,chance_type,customer_type,contact_name,remark,add_time,qq,email,tel,phone,rate,ent_id,user_id,IsVisit from marketing_chance  where  user_id = @UserId and (IsVisit = @IsVisit or @IsVisit = 0 ) order by add_time desc limit @PageIndex,@PageSize");
             cmdLoadMarketingChance.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdLoadMarketingChance.Parameters.Add("@IsVisit", MySqlDbType.Int32);
             cmdLoadMarketingChance.Parameters.Add("@pageIndex", MySqlDbType.Int32);
@@ -102,8 +102,9 @@ namespace MicroAssistant.DataAccess
 
             #region cmdGetMarketingChanceCount
 
-            cmdGetMarketingChanceCount = new MySqlCommand(" select count(1)  from marketing_chance ");
-
+            cmdGetMarketingChanceCount = new MySqlCommand(" select count(1)  from marketing_chance where  user_id = @UserId and @IsVisit=0 or isvisit = @IsVisit ");
+            cmdGetMarketingChanceCount.Parameters.Add("@IsVisit", MySqlDbType.Int32);
+            cmdGetMarketingChanceCount.Parameters.Add("@UserId", MySqlDbType.Int32);
             #endregion
 
             #region cmdLoadAllMarketingChance
@@ -330,6 +331,8 @@ namespace MicroAssistant.DataAccess
                     oc.Open();
 
                 MySqlDataReader reader = _cmdLoadMarketingChance.ExecuteReader();
+                _cmdGetMarketingChanceCount.Parameters["@IsVisit"].Value = IsVisit;
+                _cmdGetMarketingChanceCount.Parameters["@UserId"].Value = UserId;
                 while (reader.Read())
                 {
                     returnValue.Items.Add(new MarketingChance().BuildSampleEntity(reader));
@@ -344,6 +347,37 @@ namespace MicroAssistant.DataAccess
                 oc = null;
                 _cmdLoadMarketingChance.Dispose();
                 _cmdLoadMarketingChance = null;
+                _cmdGetMarketingChanceCount.Dispose();
+                _cmdGetMarketingChanceCount = null;
+                GC.Collect();
+            }
+            return returnValue;
+
+        }
+
+        /// <summary>
+        /// 获取销售机会数量
+        /// </summary>
+        /// <param name="IsVisit"></param>
+        /// <returns></returns>
+        public int GetMarketingChanceCount(int IsVisit)
+        {
+            int returnValue =0;
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdGetMarketingChanceCount = cmdGetMarketingChanceCount.Clone() as MySqlCommand;
+            _cmdGetMarketingChanceCount.Connection = oc;
+
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+                returnValue = Convert.ToInt32(_cmdGetMarketingChanceCount.ExecuteScalar());
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
                 _cmdGetMarketingChanceCount.Dispose();
                 _cmdGetMarketingChanceCount = null;
                 GC.Collect();
