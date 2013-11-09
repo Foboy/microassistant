@@ -549,7 +549,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         }
 
         //关联企业
-        public JsonResult EditeUserEntId(int entId)
+        public JsonResult EditeUserEntId(string username,int entId)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -566,6 +566,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     {
                         SysUser olduser = SysUserAccessor.Instance.Get(userid);
                         olduser.EntId = entId;
+                        olduser.UserName = username;
 
                         SysUserAccessor.Instance.Update(olduser);
                         result.Error = AppError.ERROR_SUCCESS;
