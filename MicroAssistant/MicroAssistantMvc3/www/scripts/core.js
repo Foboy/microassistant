@@ -8,11 +8,14 @@ $sitecore.urls.add = function(name,url){
 
 $sitecore.urls.add("UploadFile", "/FileManagement/File/UploadFile");
 $sitecore.urls.add("SourceFileClipOrThumb", "/FileManagement/File/SourceFileClipOrThumb");
+$sitecore.urls.add("AddPic", "/FileManagement/File/AddPic");
+
 
 $sitecore.urls.add("userLogin", "/UserManagement/User/Login"); 
 $sitecore.urls.add("userRegister", "/UserManagement/User/UserRegister");
 $sitecore.urls.add("userCurrentUser", "/UserManagement/User/GetUserInfo");
 $sitecore.urls.add("enterpriseRegister", "/UserManagement/User/EntRegister");
+$sitecore.urls.add("EditeUserHeadImg", "/UserManagement/User/EditeUserHeadImg");
 
 
 $sitecore.urls.add("GetCurrentUserInfo", "/UserManagement/User/GetUserInfo");//获取当前登录用户资料
