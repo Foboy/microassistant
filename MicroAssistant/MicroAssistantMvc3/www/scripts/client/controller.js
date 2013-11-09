@@ -43,7 +43,6 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                 $("#AddEnterpriseBox").modal('show');
             });
             $scope.AddEnterpriseSubmit = function () {
-                debugger;
                 if ($scope.AddEnterpriseForm.$valid) {
                     $scope.showerror = false;
                     $http.post($sitecore.urls["AddOrUpdateEnterPriseClient"], { customerEntId: $scope.EnterpriseItem.CustomerEntId, entName: $scope.EnterpriseItem.EntName, industy: $scope.EnterpriseItem.Industy, contactUsername: $scope.EnterpriseItem.ContactUsername, contactMobile: $scope.EnterpriseItem.ContactMobile, phone: $scope.EnterpriseItem.ContactPhone, email: $scope.EnterpriseItem.ContactEmail, qq: '', address: $scope.EnterpriseItem.Address, Detail: $scope.EnterpriseItem.Detail }).success(function (data) {
@@ -98,4 +97,6 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
             };
             break;
     }
+
+
 };
