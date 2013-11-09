@@ -84,7 +84,6 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     }
 
     $scope.parseJsonDate = function (datestr, format) {
-        debugger;
         //console.log(typeof (new Date()));
         var date;
         if (!datestr) {
@@ -118,6 +117,19 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     //    return age;
     //}
 
+    $scope.setUserHeadImg = function () {
+        $("#salesUserHeadImageIframe").attr({ src: 'partials/others/photocutter.html' })
+        $('#userHeadImageSelectModal').modal('show');
+    }
+    $scope.HeadPicUrl = 'img/Adimg/h1.jpg';
+    utilities.registeriframelistener("event:userHeadImageSeted", function () {
+        $('#userHeadImageSelectModal').modal('hide');
+        var imgUrl = arguments[0];
+        $scope.$apply(function () {
+            $scope.HeadPicUrl = imgUrl;
+        });
+    });
+
     $scope.PLog = function(obj)
     {
         console.log(obj);
@@ -129,6 +141,15 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
             alert(data.ErrorMessage);
         }
         $scope.CurrentUser = data.Data;
+        if (data.Data.PicId > 0)
+        {
+            $http.post($sitecore.urls["GetPic"], { picid: data.Data.PicId }).success(function (picdata) {
+                $scope.HeadPicUrl = picdata.Data.PicUrl;
+            }).
+            error(function (data, status, headers, config) {
+                $scope.HeadPicUrl = '';
+            });
+        }
     }).
     error(function (data, status, headers, config) {
         $scope.CurrentUser = {};

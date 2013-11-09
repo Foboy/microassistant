@@ -155,13 +155,13 @@
                             alert(data.ErrorMessage);
                         }
                         else {
-                            $.post($sitecore.urls["AddPic"], { sourcePath: data.Data[0].FileUrl, picType: 2 }, function (data) {
-                                if (data.Error) {
-                                    alert(data.ErrorMessage);
+                            $.post($sitecore.urls["AddPic"], { sourcePath: data.Data[0].FileUrl, picType: 2 }, function (picdata) {
+                                if (picdata.Error) {
+                                    alert(picdata.ErrorMessage);
                                 }
                                 else {
-                                    $.post($sitecore.urls["EditeUserHeadImg"], { picId: data.Id }, function (data) {
-
+                                    $.post($sitecore.urls["EditeUserHeadImg"], { picId: picdata.Data.PicId }, function (userdata) {
+                                        utilities.fireiframelistener("event:userHeadImageSeted", data.Data[0].FileUrl);
                                     });
                                 }
                             });

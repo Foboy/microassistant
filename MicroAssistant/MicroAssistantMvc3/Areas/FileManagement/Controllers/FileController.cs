@@ -309,6 +309,32 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
         }
 
 
+        public JsonResult GetPic(int picid)
+        {
+            var Res = new JsonResult();
+            AdvancedResult<ResPic> result = new AdvancedResult<ResPic>();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                    result.Data =ResPicAccessor.Instance.Get(picid);
+                    result.Error = AppError.ERROR_SUCCESS;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
         public JsonResult AddPic(string sourcePath,PicType picType)
         {
             var Res = new JsonResult();
