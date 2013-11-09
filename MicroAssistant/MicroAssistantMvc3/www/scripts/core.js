@@ -18,6 +18,8 @@ $sitecore.urls.add("GetCurrentUserInfo", "/UserManagement/User/GetUserInfo");//�
 $sitecore.urls.add("EditCurrentUserInfo", "/UserManagement/User/EditeUserInfo");//修改用户资料
 $sitecore.urls.add("UpdatePwd", "/UserManagement/User/UpdatePwd");//修改密码
 $sitecore.urls.add("UpdateEmail", "/UserManagement/User/UpdateEmail");//修改邮箱
+$sitecore.urls.add("Logout", "/UserManagement/User/Logout");//用户退出登录
+$sitecore.urls.add("SearchUserTimeMachine", "/UserManagement/User/SearchUserTimeMachine");//用户时间轴
 
 $sitecore.urls.add("productCat", "/ProductManagement/Production/SearchProductTypeListByEntID");
 $sitecore.urls.add("productAddCat", "/ProductManagement/Production/AddProductionType"); 

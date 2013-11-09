@@ -21,8 +21,7 @@
     }
 
     $(document).keyup(function (e) {
-        if (e.keyCode == 13)
-        {
+        if (e.keyCode == 13) {
             $scope.$apply(function () {
                 $scope.UserLogin();
             });
@@ -36,8 +35,7 @@ function UserRegisterMainCtrl($scope, $http) {
         if ($scope.UserRegisterForm.$valid) {
             $scope.showerror = false;
             $http.post($sitecore.urls["userRegister"], { username: $scope.User.name, account: $scope.User.email, pwd: $scope.User.pwd, entId: $scope.User.enterprise || 0 }).success(function (data) {
-                if (data.Error)
-                {
+                if (data.Error) {
                     alert(data.ErrorMessage);
                 }
                 else {
@@ -173,7 +171,50 @@ function UserMainCtrl($scope, $http, $location) {
     }
 }
 
-function UserTimeShaftCtrl($scope, $http, $location)
+function UserTimeShaftCtrl($scope, $http, $location) {
+    $scope.LoadMyTimeShaft = function () {
+        $http.post($sitecore.urls["SearchUserTimeMachine"], {}).success(function (data) {
+            if (!data.Error) {
+                $scope.UserTimeShafts = data.Data;
+            } else {
+               
+            }
+            console.log(data);
+        }).
+              error(function (data, status, headers, config) {
+                  alert("error")
+              });
+    }
+    $scope.LoadMyTimeShaft();
+    $http.ShowAddCompany = function () {
+        $scope.$broadcast('EventAddCompany', this.timeshaftItem);
+    }
+}
+function AddCompanyCtrl($scope, $http, $location)
 {
-
+    var formdata;
+    $scope.$on("EventAddCompany", function (event, data) {
+        formdata = data;
+        $("#AddCompanyBox").modal('show');
+    });
+    $scope.AddCompanySubmit = function () {
+        if ($scope.AddCompanyForm.$valid) {
+            $scope.showerror = false;
+            $http.post($sitecore.urls["AddOrUpdateEnterPriseClient"], { customerEntId: $scope.EnterpriseItem.CustomerEntId, entName: $scope.EnterpriseItem.EntName, industy: $scope.EnterpriseItem.Industy, contactUsername: $scope.EnterpriseItem.ContactUsername, contactMobile: $scope.EnterpriseItem.ContactMobile, phone: $scope.EnterpriseItem.ContactPhone, email: $scope.EnterpriseItem.ContactEmail, qq: '', address: $scope.EnterpriseItem.Address, Detail: $scope.EnterpriseItem.Detail }).success(function (data) {
+                if (data.Error) {
+                    alert(data.ErrorMessage);
+                }
+                else {
+                    $("#AddEnterpriseBox").modal('hide');
+                    $scope.loadCurrentSortList();
+                }
+            }).
+            error(function (data, status, headers, config) {
+                //$scope.product = {};
+            });
+        }
+        else {
+            $scope.showerror = true;
+        }
+    };
 }
