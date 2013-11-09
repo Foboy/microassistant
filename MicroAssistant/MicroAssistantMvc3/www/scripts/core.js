@@ -13,14 +13,10 @@ $sitecore.urls.add("userRegister", "/UserManagement/User/UserRegister");
 $sitecore.urls.add("userCurrentUser", "/UserManagement/User/GetUserInfo");
 $sitecore.urls.add("enterpriseRegister", "/UserManagement/User/EntRegister");
 
-<<<<<<< HEAD
 $sitecore.urls.add("GetCurrentUserInfo", "/UserManagement/User/GetUserInfo");//获取当前登录用户资料
-$sitecore.urls.add("EditCurrentUserInfo", "/UserManagement/User/EditeUserInfo");
+$sitecore.urls.add("EditCurrentUserInfo", "/UserManagement/User/EditeUserInfo");//修改用户资料
 $sitecore.urls.add("UpdatePwd", "/UserManagement/User/UpdatePwd");//修改密码
 $sitecore.urls.add("UpdateEmail", "/UserManagement/User/UpdateEmail");//修改邮箱
-
-=======
->>>>>>> 1a5074f05c2878cba6a388a9c424e474dbc1a450
 
 $sitecore.urls.add("productCat", "/ProductManagement/Production/SearchProductTypeListByEntID");
 $sitecore.urls.add("productAddCat", "/ProductManagement/Production/AddProductionType"); 

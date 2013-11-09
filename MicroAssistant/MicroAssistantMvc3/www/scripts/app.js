@@ -2,12 +2,9 @@
   config(['$provide', '$routeProvider', '$locationProvider', function ($provide, $routeProvider, $locationProvider) {
       $routeProvider
           .when('/home', { templateUrl: 'partials/home.html', controller: HomeMainCtrl })
-<<<<<<< HEAD
           .when('/user', { templateUrl: 'partials/userinfo.html', controller: UserMainCtrl })
           .when('/changepassword', { templateUrl: 'partials/changepassword.html', controller: UserMainCtrl })
           .when('/changeemail', { templateUrl: 'partials/changeemail.html', controller: UserMainCtrl })
-=======
->>>>>>> 1a5074f05c2878cba6a388a9c424e474dbc1a450
           .when('/product/:catalogId?/:pageIndex?', { templateUrl: 'partials/product.html', controller: ProductMainCtrl })
           .when('/sales/:steps?/:pageIndex?', { templateUrl: 'partials/sales.html', controller: SalesMainCtrl })
           .when('/finance/:steps?/:pageIndex?', { templateUrl: 'partials/finance.html', controller: FinanceMainCtrl })
@@ -38,12 +35,9 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
         if ($location.path().indexOf('/home') == 0) {
             $scope.page = "home";
         }
-<<<<<<< HEAD
         else if ($location.path().indexOf('/user') == 0 || $location.path().indexOf('/changepassword') == 0 || $location.path().indexOf('/changeemail') == 0) {
             $scope.page = "user";
         }
-=======
->>>>>>> 1a5074f05c2878cba6a388a9c424e474dbc1a450
         else if ($location.path().indexOf('/product') == 0) {
             $scope.page = "product";
         }
@@ -103,8 +97,6 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
             return $filter('date')(date, format);
         return date;
     };
-
-<<<<<<< HEAD
     //$scope.parseAge = function (datestr) {
     //    var birthday = new Date($scope.parseJsonDate(datestr).replace(/:/g, "\/"));
     //    var d = new Date();
@@ -114,10 +106,6 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     //}
 
     $http.post($sitecore.urls["userCurrentUser"], {}).success(function (data) {
-=======
-    
-    $http.post($sitecore.urls["userCurrentUser"], {  }).success(function (data) {
->>>>>>> 1a5074f05c2878cba6a388a9c424e474dbc1a450
         console.log(data);
         if (data.Error) {
             alert(data.ErrorMessage);

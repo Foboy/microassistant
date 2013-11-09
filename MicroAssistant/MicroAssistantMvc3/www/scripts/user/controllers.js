@@ -69,7 +69,6 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
         }
     }
 }
-<<<<<<< HEAD
 
 
 function UserMainCtrl($scope, $http, $location) {
@@ -148,5 +147,3 @@ function UserMainCtrl($scope, $http, $location) {
         }
     }
 }
-=======
->>>>>>> 1a5074f05c2878cba6a388a9c424e474dbc1a450
