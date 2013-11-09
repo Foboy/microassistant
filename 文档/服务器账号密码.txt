@@ -1,0 +1,14 @@
+ftp:
+mba
+YJ^CBdTAsKewzE3#
+
+云主机IP：103.27.208.102
+云主机端口：51389
+云主机管理账号：administrator
+远程管理初始密码：tGgp5IkU
+产品控制面板密码：enQKQ7nK
+云主机软件库：http://download.51chost.com
+产品控制面板：http://www.cdnhost.cn
+官网：www.dpbar.com
+
+微企助手：p.dpbar.com
