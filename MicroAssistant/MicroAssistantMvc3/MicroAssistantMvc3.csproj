@@ -249,6 +249,7 @@
     <Content Include="www\partials\sales\contract-detail.html" />
     <Content Include="www\partials\sales\contract-edit.html" />
     <Content Include="www\partials\sales\visit-detail.html" />
+    <Content Include="www\partials\staffmangement.html" />
     <Content Include="www\partials\userinfo.html" />
     <Content Include="www\register.html" />
     <Content Include="www\scripts\app.js" />

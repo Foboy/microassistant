@@ -423,7 +423,7 @@ a:hover{text-decoration:underline;}
 .staffList ul{margin:0;}
 .staffList ul li{height:45px; line-height:45px; list-style:none;}
 .staffList ul li a{display:inline-block; width:210px; height:45px; line-height:45px; color:#FFFFFF; text-decoration:none;}
-.staffList ul li a:hover{background:#248faf;}
+.staffList ul li a:hover,.staffList ul li a.cur{background:#248faf;}
 .staffList ul li a span{display:inline-block; padding-left:15px; width:170px; margin:0;}
 .add-section{width:180px; margin:20px 0 0 15px;}
 

@@ -25,6 +25,7 @@
     <script src="scripts/client/controller.js"></script>
     <script src="js/uploadify/jquery.uploadify.js"></script>
     <script src="js/uploadify/uploadify.extention.js"></script>
+    <script src="../Scripts/jquery-1.7.1.js"></script>
     <link rel="stylesheet" type="text/css" href="js/bootstro/bootstro.css">
     <script src="js/bootstro/bootstro.js"></script>
     <link rel="stylesheet" type="text/css" href="js/uploadify/uploadify.css">
@@ -50,7 +51,13 @@
             $("#myinfodiv").bind("mouseleave", function () {
                 $(this).removeClass("cur");
                 $("#uinfolist").hide();
-            })
+            });
+            $(".peop-box").live("mouseenter", function () {
+                $(this).find(".s-c").show();
+            });
+            $(".peop-box").live("mouseleave", function () {
+                $(this).find(".s-c").hide();
+            });
         })
     </script>
 </head>
