@@ -6,6 +6,7 @@ using MicroAssistant.Meta;
 using MicroAssistantMvc.Controllers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,15 +18,112 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
         //
         // GET: /FileManagement/File
 
-        public JsonResult UploadImage(int saveSource,List<ImageSaveInfo> saveInfo)
+        public JsonResult SourceFileClipOrThumb(string sourcePath, PicType fileType, List<FileSaveInfo> saveInfo)
+        {
+            var Res = new JsonResult();
+            AdvancedResult<List<FileSaveResult>> result = new AdvancedResult<List<FileSaveResult>>();
+            result.Data = new List<FileSaveResult>();
+            sourcePath = Server.MapPath(sourcePath);
+            if (!System.IO.File.Exists(sourcePath))
+            {
+                result.Error = AppError.ERROR_PERSON_NOT_FOUND;
+                result.ExMessage = result.ErrorMessage = "源文件不存在";
+            }
+            else if (saveInfo != null)
+            {
+                int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                if (userid > 0)
+                {
+                    
+                    string itempath = FileHelper.GetFileSavePath(userid, fileType, null);
+                    string itemfullpath = Server.MapPath(itempath);
+                    string saveName = FileHelper.GetFileSaveName(".png");
+                    foreach (FileSaveInfo item in saveInfo)
+                    {
+                        if (item.IsClipping)
+                        {
+                            FileHelper.ClipAndSaveFile(sourcePath, itemfullpath, item.SavePrefix + saveName, item);
+                        }
+                        else
+                        {
+                            FileHelper.ThumbAndSaveFile(sourcePath, itemfullpath, item.SavePrefix + saveName, item);
+                        }
+                        result.Data.Add(new FileSaveResult()
+                        {
+                            FileName = item.SavePrefix + saveName,
+                            FilePath = itempath,
+                            FileUrl = FileHelper.GetFileSavePath(userid, fileType, item.SavePrefix + saveName)
+                        });
+                    }
+                }
+                else
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                    result.ExMessage = result.ErrorMessage = "用户未登陆，不允许进行该操作！";
+                }
+            }
+            else
+            {
+                result.Error = AppError.ERROR_SUCCESS;
+            }
+
+            return Res;
+        }
+
+        public JsonResult UploadFile(bool saveSource,PicType fileType)
         {
             var Res = new JsonResult();
             AdvancedResult<ResPic> result = new AdvancedResult<ResPic>();
+            if (Request.Files.Count > 0)
+            {
+
+                HttpPostedFileBase file = Request.Files[0];
+
+                int seat = file.FileName.LastIndexOf('.');
+
+                //返回位于String对象中指定位置的子字符串并转换为小写.  
+                string extension = file.FileName.Substring(seat).ToLower();
+                string fileSaveName = FileHelper.GetFileSaveName(extension);
+
+                string path;
+                if (saveSource)
+                {
+                    path = FileHelper.GetFileSavePath(0, fileType, null);
+                }
+                else
+                {
+                    path = FileHelper.GetFileSavePath(0, PicType.Ignore, null);
+                }
+
+                string savepath = FileHelper.CreatePath(Server.MapPath(path));
+                string fullpath = Path.Combine(savepath, fileSaveName);
+                file.SaveAs(fullpath);
+
+
+
+
+                ResPic pic = new ResPic();
+                if (saveSource)
+                {
+                    pic.PicUrl = FileHelper.GetFileSavePath(0, fileType, fileSaveName);
+                }
+                else
+                {
+                    pic.PicUrl = FileHelper.GetFileSavePath(0, PicType.Ignore, fileSaveName);
+                }
+                result.Data = pic;
+                result.Error = AppError.ERROR_SUCCESS;
+            }
+            else
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ErrorMessage = result.ExMessage = "请选择上传的文件！";
+            }
 
             Res.Data = result;
-            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
+
 
 
         public JsonResult UploadPic(byte[] fileByte, int picHeight, int picWidth)

@@ -8,7 +8,7 @@ namespace MicroAssistant.DataStructure
     public enum PicType
     {
         /// <summary>
-        /// Temp
+        /// 临时文件，定期清理
         /// </summary>
         Ignore=0,
         /// <summary>

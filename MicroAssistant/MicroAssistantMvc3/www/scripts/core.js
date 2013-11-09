@@ -6,7 +6,7 @@ $sitecore.urls.add = function(name,url){
 	$sitecore.urls[name] = $sitecore.urls.base + url +"?timestamp="+ new Date().getTime();
 };
 
-$sitecore.urls.add("uploadPic", "/FileManagement/File/UploadPic");
+$sitecore.urls.add("uploadPic", "/FileManagement/File/UploadFile");
 
 $sitecore.urls.add("userLogin", "/UserManagement/User/Login"); 
 $sitecore.urls.add("userRegister", "/UserManagement/User/UserRegister");
