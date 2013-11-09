@@ -70,6 +70,7 @@
     <Compile Include="SysRoleUserAccessor.cs" />
     <Compile Include="SysUserAccessor.cs" />
     <Compile Include="SysUserTimemachineAccessor.cs" />
+    <Compile Include="BossAccessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MicroAssistant.Common\MicroAssistant.Common.csproj">

@@ -587,7 +587,45 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
+        //关联用户头像
+        public JsonResult EditeUserHeadImg(int picid)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                    if (userid > 0)
+                    {
+                        SysUser olduser = SysUserAccessor.Instance.Get(userid);
+                        olduser.PicId = picid;
 
+
+                        SysUserAccessor.Instance.Update(olduser);
+                        result.Error = AppError.ERROR_SUCCESS;
+
+                    }
+                    else
+                    {
+                        result.Error = AppError.ERROR_FAILED;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
 
 
 

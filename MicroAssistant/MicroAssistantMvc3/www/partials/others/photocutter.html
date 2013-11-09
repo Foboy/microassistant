@@ -5,6 +5,7 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
     <script src="../../js/jquery.js"></script>
     <script src="../../scripts/core.js"></script>
+    <script src="../../scripts/utilities.js"></script>
     <script src="../../js/jscop/jquery.Jcrop.js"></script>
     <script src="../../js/jscop/jquery.Jcrop.extend.js"></script>
     <script src="../../js/uploadify/jquery.uploadify.js"></script>
@@ -14,6 +15,8 @@
 
         jQuery(document).ready(function () {
             var jcrop_api;
+            var sourceUrl;
+            var startLeft, startTop, clipWidth, clipHeight;
             $('#imgLoad').bind('load', function () {
                 if (jcrop_api)
                 {
@@ -26,7 +29,7 @@
                 var imgHeight = img.height();
                 var imgSrc = img.attr('src');
                 img.attr('src', '');
-
+                sourceUrl = imgSrc;
 
                 var boundx,
                     boundy,
@@ -94,6 +97,13 @@
                         if (parseInt(c.w) > 0) {
                             var rx = xsize / c.w;
                             var ry = ysize / c.h;
+
+                            var scale = imgWidth / boundx;
+                            startLeft = Math.floor(scale * c.x);
+                            startTop = Math.floor(scale * c.y);
+                            clipWidth = Math.floor(scale * c.w);
+                            clipHeight = Math.floor(scale * c.h);
+
                             $circle.css({ width: c.w + 'px', height: c.h + 'px' })
                             $pimg.css({
                                 width: Math.round(rx * boundx) + 'px',
@@ -108,13 +118,11 @@
             $("#imgLoad").attr('src', '../../img/testpic.jpg');
             $('#selected_btn').cuploadify({
                 'formData': {
-                    saveSource: false,
-                    fileType: 0,
-                    saveInfo: []
-
+                    saveSource: 0,
+                    fileType: 0
                 },
                 'swf': '../../js/uploadify/uploadify.swf',
-                'uploader': $sitecore.urls["uploadPic"],
+                'uploader': $sitecore.urls["UploadFile"],
                 'height': 70,
                 'width': 190,
                 'auto':true,
@@ -126,6 +134,45 @@
                     else {
                         $("#imgLoad").attr('src', data.Data.PicUrl);
                     }
+                }
+            });
+
+            $('#reselect_btn').click(function () {
+                if (sourceUrl && clipWidth && clipHeight) {
+                    $.post($sitecore.urls["SourceFileClipOrThumb"], utilities.mvcParamMatch({
+                        sourcePath: sourceUrl, fileType: 2, saveInfo: [{
+                            IsClipping: 1,
+                            SavePrefix: '',
+                            StartLeft: startLeft,
+                            StartTop: startTop,
+                            Width: clipWidth,
+                            Height: clipHeight,
+                            SaveWidth: 200,
+                            SaveHeight: 200
+                        }]
+                    }), function (data) {
+                        if (data.Error) {
+                            alert(data.ErrorMessage);
+                        }
+                        else {
+                            $.post($sitecore.urls["AddPic"], { sourcePath: data.Data[0].FileUrl, picType: 2 }, function (data) {
+                                if (data.Error) {
+                                    alert(data.ErrorMessage);
+                                }
+                                else {
+                                    $.post($sitecore.urls["EditeUserHeadImg"], { picId: data.Id }, function (data) {
+
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+                else if (!sourceUrl) {
+                    alert("请上传本地图片!")
+                }
+                else {
+                    alert("请选取头像区域!")
                 }
             });
         });
