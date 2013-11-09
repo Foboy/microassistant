@@ -36,7 +36,7 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertSysUser
 
-            cmdInsertSysUser = new MySqlCommand("INSERT INTO sys_user(user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id,birthday,sex) values (@UserName,@UserAccount,@Pwd,@Mobile,@Email,@CreateTime,@EndTime,@EntAdminId,@IsEnable,@Type,@EntId,@Birthday,@Sex)");
+            cmdInsertSysUser = new MySqlCommand("INSERT INTO sys_user(user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id,birthday,sex,pic_id) values (@UserName,@UserAccount,@Pwd,@Mobile,@Email,@CreateTime,@EndTime,@EntAdminId,@IsEnable,@Type,@EntId,@Birthday,@Sex,@PicId)");
 
             cmdInsertSysUser.Parameters.Add("@UserName", MySqlDbType.String);
             cmdInsertSysUser.Parameters.Add("@UserAccount", MySqlDbType.String);
@@ -51,6 +51,7 @@ namespace MicroAssistant.DataAccess
             cmdInsertSysUser.Parameters.Add("@EntId", MySqlDbType.Int32);
             cmdInsertSysUser.Parameters.Add("@Birthday", MySqlDbType.DateTime);
             cmdInsertSysUser.Parameters.Add("@Sex", MySqlDbType.Int32);
+            cmdInsertSysUser.Parameters.Add("@PicId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateSysUserEntId
@@ -63,7 +64,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateSysUser
 
-            cmdUpdateSysUser = new MySqlCommand(" update sys_user set birthday = @Birthday,sex = @Sex,user_name = @UserName,user_account = @UserAccount,pwd = @Pwd,mobile = @Mobile,email = @Email,create_time = @CreateTime,end_time = @EndTime,ent_admin_id = @EntAdminId,is_enable = @IsEnable,type = @Type,ent_id = @EntId where user_id = @UserId");
+            cmdUpdateSysUser = new MySqlCommand(" update sys_user set birthday = @Birthday,sex = @Sex,user_name = @UserName,user_account = @UserAccount,pwd = @Pwd,mobile = @Mobile,email = @Email,create_time = @CreateTime,end_time = @EndTime,ent_admin_id = @EntAdminId,is_enable = @IsEnable,type = @Type,ent_id = @EntId,pic_id=@PicId where user_id = @UserId");
             cmdUpdateSysUser.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdUpdateSysUser.Parameters.Add("@UserName", MySqlDbType.String);
             cmdUpdateSysUser.Parameters.Add("@UserAccount", MySqlDbType.String);
@@ -78,6 +79,7 @@ namespace MicroAssistant.DataAccess
             cmdUpdateSysUser.Parameters.Add("@EntId", MySqlDbType.Int32);
             cmdUpdateSysUser.Parameters.Add("@Birthday", MySqlDbType.DateTime);
                      cmdUpdateSysUser.Parameters.Add("@Sex", MySqlDbType.Int32);
+                     cmdUpdateSysUser.Parameters.Add("@PicId", MySqlDbType.Int32);
 
             #endregion
 
@@ -89,7 +91,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadSysUser
 
-            cmdLoadSysUser = new MySqlCommand(@" select birthday,sex, user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user limit @PageIndex,@PageSize");
+            cmdLoadSysUser = new MySqlCommand(@" select pic_id,birthday,sex, user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user limit @PageIndex,@PageSize");
             cmdLoadSysUser.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadSysUser.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -103,27 +105,27 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllSysUser
 
-            cmdLoadAllSysUser = new MySqlCommand(" select birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user");
+            cmdLoadAllSysUser = new MySqlCommand(" select pic_id,birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user");
 
             #endregion
 
             #region cmdGetSysUser
 
-            cmdGetSysUser = new MySqlCommand(" select birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_id = @UserId");
+            cmdGetSysUser = new MySqlCommand(" select pic_id,birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_id = @UserId");
             cmdGetSysUser.Parameters.Add("@UserId", MySqlDbType.Int32);
 
             #endregion
 
             #region cmdGetSysUserByAcount
 
-            cmdGetSysUserByAcount = new MySqlCommand(" select user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_account = @UserAccount");
+            cmdGetSysUserByAcount = new MySqlCommand(" select pic_id,birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_account = @UserAccount");
             cmdGetSysUserByAcount.Parameters.Add("@UserAccount", MySqlDbType.String);
 
             #endregion
 
             #region cmdGetSysUserByAcountAndPwd
 
-            cmdGetSysUserByAcountAndPwd = new MySqlCommand("  select birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_account = @UserAccount and pwd = @Pwd and is_enable=1");
+            cmdGetSysUserByAcountAndPwd = new MySqlCommand("  select pic_id,birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where user_account = @UserAccount and pwd = @Pwd and is_enable=1");
             cmdGetSysUserByAcountAndPwd.Parameters.Add("@UserAccount", MySqlDbType.String);
             cmdGetSysUserByAcountAndPwd.Parameters.Add("@Pwd", MySqlDbType.String);
 
@@ -175,6 +177,7 @@ where
                 _cmdInsertSysUser.Parameters["@EntId"].Value = e.EntId;
                 _cmdInsertSysUser.Parameters["@Birthday"].Value = e.Birthday;
                 _cmdInsertSysUser.Parameters["@Sex"].Value = e.Sex;
+                _cmdInsertSysUser.Parameters["@PicId"].Value = e.PicId;
 
                 _cmdInsertSysUser.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertSysUser.LastInsertedId);
@@ -284,6 +287,7 @@ where
                 _cmdUpdateSysUser.Parameters["@EntId"].Value = e.EntId;
                 _cmdUpdateSysUser.Parameters["@Sex"].Value = e.Sex;
                 _cmdUpdateSysUser.Parameters["@Birthday"].Value = e.Birthday;
+                _cmdUpdateSysUser.Parameters["@PicId"].Value = e.PicId;
 
                 _cmdUpdateSysUser.ExecuteNonQuery();
 

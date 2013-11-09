@@ -91,7 +91,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             RespResult result = new RespResult();
             try
             {
-                if (!SysRoleAccessor.Instance.Delete(userId))
+                if (!SysRoleAccessor.Instance.DeleteByUserId(userId))
                 {
                     result.Error = AppError.ERROR_FAILED;
                 }
@@ -102,6 +102,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                         SysRoleUser item = new SysRoleUser();
                         item.UserId = userId;
                         item.RoleId = roleId;
+                        item.EntId = CurrentUser.EntId;
                         SysRoleUserAccessor.Instance.Insert(item);
                     }
                 }
@@ -133,6 +134,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                     SysRoleUser item = new SysRoleUser();
                     item.UserId = userId;
                     item.RoleId = roleId;
+                    item.EntId = CurrentUser.EntId;
                     SysRoleUserAccessor.Instance.Insert(item);
                 }
                 result.Error = AppError.ERROR_SUCCESS;
@@ -166,6 +168,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                     SysRoleUser item = new SysRoleUser();
                     item.UserId = userId;
                     item.RoleId = roleId;
+                    item.EntId = CurrentUser.EntId;
                     SysRoleUserAccessor.Instance.Insert(item);
                 }
                 result.Error = AppError.ERROR_SUCCESS;
@@ -257,32 +260,9 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
-        /// <summary>
-        /// 判断用户是否有此页面权限(暂未实现)
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <param name="functionCode"></param>
-        /// <returns></returns>
-        public JsonResult CheckUserFunction(int userId, string functionCode)
-        {
-            var Res = new JsonResult();
-            RespResult result = new RespResult();
-            try
-            {
+       
 
-                result.Error = AppError.ERROR_SUCCESS;
-            }
-            catch (Exception e)
-            {
-                result.Error = AppError.ERROR_FAILED;
-                result.ExMessage = e.ToString();
-            }
-            Res.Data = result;
-            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            return Res;
-        }
-
-        //--------------------------------
+        //---------------员工管理-----------------
 
 //        通过token获取企业所有权限 返回 权限列表（权限ID，全部（人数））
 
@@ -296,7 +276,13 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                  
+                    if (!CheckUserFunction("1301"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
                    rolelist = SysRoleAccessor.Instance.LoadEntRole(CurrentUser.EntId);
                   
                     result.Error = AppError.ERROR_SUCCESS;
@@ -334,7 +320,13 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-
+                    if (!CheckUserFunction("1301"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
                     userlist = SysUserAccessor.Instance.LoadSysUserByRoleId(CurrentUser.EntId, roleId);
 
                     result.Error = AppError.ERROR_SUCCESS;
@@ -367,6 +359,13 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                    if (!CheckUserFunction("1301"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
                     SysRoleUserAccessor.Instance.UpdateUserRole(userId, roleId);
                     result.Error = AppError.ERROR_SUCCESS;
                 }

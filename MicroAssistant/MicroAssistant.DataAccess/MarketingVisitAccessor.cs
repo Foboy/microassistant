@@ -31,7 +31,7 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertMarketingVisit
 
-            cmdInsertMarketingVisit = new MySqlCommand("INSERT INTO marketing_visit(visit_type,amount,address,remark,visit_time,chance_id) values (@VisitType,@Amount,@Address,@Remark,@VisitTime,@ChanceId)");
+            cmdInsertMarketingVisit = new MySqlCommand("INSERT INTO marketing_visit(visit_type,amount,address,remark,visit_time,chance_id,ent_id) values (@VisitType,@Amount,@Address,@Remark,@VisitTime,@ChanceId,@EntId)");
 
             cmdInsertMarketingVisit.Parameters.Add("@VisitType", MySqlDbType.Int32);
             cmdInsertMarketingVisit.Parameters.Add("@Amount", MySqlDbType.Decimal);
@@ -39,11 +39,12 @@ namespace MicroAssistant.DataAccess
             cmdInsertMarketingVisit.Parameters.Add("@Remark", MySqlDbType.String);
             cmdInsertMarketingVisit.Parameters.Add("@VisitTime", MySqlDbType.DateTime);
             cmdInsertMarketingVisit.Parameters.Add("@ChanceId", MySqlDbType.Int32);
+            cmdInsertMarketingVisit.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateMarketingVisit
 
-            cmdUpdateMarketingVisit = new MySqlCommand(" update marketing_visit set visit_type = @VisitType,amount = @Amount,address = @Address,remark = @Remark,visit_time = @VisitTime,chance_id = @ChanceId where idmarketing_visit = @IdmarketingVisit");
+            cmdUpdateMarketingVisit = new MySqlCommand(" update marketing_visit set ent_id=@EntId,visit_type = @VisitType,amount = @Amount,address = @Address,remark = @Remark,visit_time = @VisitTime,chance_id = @ChanceId where idmarketing_visit = @IdmarketingVisit");
             cmdUpdateMarketingVisit.Parameters.Add("@IdmarketingVisit", MySqlDbType.Int32);
             cmdUpdateMarketingVisit.Parameters.Add("@VisitType", MySqlDbType.Int32);
             cmdUpdateMarketingVisit.Parameters.Add("@Amount", MySqlDbType.Decimal);
@@ -51,6 +52,7 @@ namespace MicroAssistant.DataAccess
             cmdUpdateMarketingVisit.Parameters.Add("@Remark", MySqlDbType.String);
             cmdUpdateMarketingVisit.Parameters.Add("@VisitTime", MySqlDbType.DateTime);
             cmdUpdateMarketingVisit.Parameters.Add("@ChanceId", MySqlDbType.Int32);
+            cmdUpdateMarketingVisit.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
 
@@ -62,7 +64,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadMarketingVisit
 
-            cmdLoadMarketingVisit = new MySqlCommand(@" select idmarketing_visit,visit_type,amount,address,remark,visit_time,chance_id from marketing_visit where chance_id=@ChanceId order by visit_time desc limit @PageIndex,@PageSize");
+            cmdLoadMarketingVisit = new MySqlCommand(@" select ent_id,idmarketing_visit,visit_type,amount,address,remark,visit_time,chance_id from marketing_visit where chance_id=@ChanceId order by visit_time desc limit @PageIndex,@PageSize");
             cmdLoadMarketingVisit.Parameters.Add("@ChanceId", MySqlDbType.Int32);
             cmdLoadMarketingVisit.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadMarketingVisit.Parameters.Add("@pageSize", MySqlDbType.Int32);
@@ -77,13 +79,13 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllMarketingVisit
 
-            cmdLoadAllMarketingVisit = new MySqlCommand(" select idmarketing_visit,visit_type,amount,address,remark,visit_time,chance_id from marketing_visit");
+            cmdLoadAllMarketingVisit = new MySqlCommand(" select ent_id,idmarketing_visit,visit_type,amount,address,remark,visit_time,chance_id from marketing_visit");
 
             #endregion
 
             #region cmdGetMarketingVisit
 
-            cmdGetMarketingVisit = new MySqlCommand(" select idmarketing_visit,visit_type,amount,address,remark,visit_time,chance_id from marketing_visit where idmarketing_visit = @IdmarketingVisit");
+            cmdGetMarketingVisit = new MySqlCommand(" select ent_id,idmarketing_visit,visit_type,amount,address,remark,visit_time,chance_id from marketing_visit where idmarketing_visit = @IdmarketingVisit");
             cmdGetMarketingVisit.Parameters.Add("@IdmarketingVisit", MySqlDbType.Int32);
 
             #endregion
@@ -110,6 +112,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertMarketingVisit.Parameters["@Remark"].Value = e.Remark;
                 _cmdInsertMarketingVisit.Parameters["@VisitTime"].Value = e.VisitTime;
                 _cmdInsertMarketingVisit.Parameters["@ChanceId"].Value = e.ChanceId;
+                _cmdInsertMarketingVisit.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdInsertMarketingVisit.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertMarketingVisit.LastInsertedId);
@@ -179,6 +182,7 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateMarketingVisit.Parameters["@Remark"].Value = e.Remark;
                 _cmdUpdateMarketingVisit.Parameters["@VisitTime"].Value = e.VisitTime;
                 _cmdUpdateMarketingVisit.Parameters["@ChanceId"].Value = e.ChanceId;
+                _cmdUpdateMarketingVisit.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdUpdateMarketingVisit.ExecuteNonQuery();
 
