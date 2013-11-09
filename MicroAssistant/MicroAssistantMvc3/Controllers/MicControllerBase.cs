@@ -11,7 +11,7 @@ using System.Web.Security;
 
 namespace MicroAssistantMvc.Controllers
 {
-    public class MicControllerBase : Controller
+    public class MicControllerBase :Controller,IController
     {
         #region token
         private string currentToken;
@@ -100,6 +100,7 @@ namespace MicroAssistantMvc.Controllers
             ViewBag.CurrentToken = token;
             base.OnAuthorization(filterContext);
         }
-    
+
+
     }
 }
