@@ -588,7 +588,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             return Res;
         }
         //关联用户头像
-        public JsonResult EditeUserHeadImg(string picurl)
+        public JsonResult EditeUserHeadImg(int picid)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -603,13 +603,6 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                     if (userid > 0)
                     {
-                        ResPic pic = new ResPic();
-                        pic.ObjId = 0;
-                        pic.ObjType = PicType.UserHeadImg;
-                        pic.PicUrl = picurl;
-                        pic.State = StateType.Active;
-
-                        int picid = ResPicAccessor.Instance.Insert(pic);
                         SysUser olduser = SysUserAccessor.Instance.Get(userid);
                         olduser.PicId = picid;
 

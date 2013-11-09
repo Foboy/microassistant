@@ -1,5 +1,6 @@
 ﻿using MicroAssistant.Cache;
 using MicroAssistant.Common;
+using MicroAssistant.DataAccess;
 using MicroAssistant.DataStructure;
 using MicroAssistantMvc.Areas.BossManagement.Models;
 using MicroAssistantMvc.Controllers;
@@ -16,7 +17,12 @@ namespace MicroAssistantMvc.Areas.BossManagement.Controllers
         //
         // GET: /BossManagement/Boss/
 
-        public JsonResult SearchSalesReport()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="timeType">1:月 2：季度 3：年</param>
+        /// <returns></returns>
+        public JsonResult SearchSalesReport(int timeType)
         {
             var Res = new JsonResult();
             AdvancedResult<List<int>> result = new AdvancedResult<List<int>>();
@@ -32,16 +38,33 @@ namespace MicroAssistantMvc.Areas.BossManagement.Controllers
                     //    return Res;
                     //}
 
+                    DateTime stime = DateTime.Now;
+                    DateTime etime = DateTime.Now;
+                    switch (timeType)
+                    {
+                        case 1:
+                            stime = GetStartTime(TimeType.month);
+                            etime = GetEndTime(TimeType.month);
+                            break;
+                        case 2:
+                               stime = GetStartTime(TimeType.month);
+                            etime = GetEndTime(TimeType.month);
+                            break;
+                        case 3:
+                               stime = GetStartTime(TimeType.month);
+                            etime = GetEndTime(TimeType.month);
+                            break;
+                        default:
+                            break;
+                    }
 
                     List<int> list = new List<int>();
-
-                    list.Add(1152);
-                    list.Add(234);
-                    list.Add(532);
-                    list.Add(321);
-                    list.Add(23);
-
-                    //list = CustomerEntAccessor.Instance.SearchCustomerEntByName(name);
+                    int entid = CurrentUser.EntId;
+                    list.Add(BossAccessor.Instance.GetMarketingChanceCount(entid, 1, stime, etime));
+                    list.Add(BossAccessor.Instance.GetFirstAndMoreVisitCount(entid, 1, stime, etime));
+                    list.Add(BossAccessor.Instance.GetFirstAndMoreVisitCount(entid, 2, stime, etime));
+                    list.Add(BossAccessor.Instance.GetFirstAndMoreVisitCount(entid, 3, stime, etime));
+                    list.Add(BossAccessor.Instance.GetContractInfoCount(entid, stime, etime));
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = list;
 
@@ -62,7 +85,12 @@ namespace MicroAssistantMvc.Areas.BossManagement.Controllers
             return Res;
         }
 
-        public JsonResult SearchSalesOppReport()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="timeType">1:月 2：季度 3：年</param>
+        /// <returns></returns>
+        public JsonResult SearchSalesOppReport(int timeType)
         {
             var Res = new JsonResult();
             AdvancedResult<List<SalesOppReport>> result = new AdvancedResult<List<SalesOppReport>>();
@@ -78,6 +106,25 @@ namespace MicroAssistantMvc.Areas.BossManagement.Controllers
                     //    return Res;
                     //}
 
+                    DateTime stime = DateTime.Now;
+                    DateTime etime = DateTime.Now;
+                    switch (timeType)
+                    {
+                        case 1:
+                            stime = GetStartTime(TimeType.month);
+                            etime = GetEndTime(TimeType.month);
+                            break;
+                        case 2:
+                            stime = GetStartTime(TimeType.month);
+                            etime = GetEndTime(TimeType.month);
+                            break;
+                        case 3:
+                            stime = GetStartTime(TimeType.month);
+                            etime = GetEndTime(TimeType.month);
+                            break;
+                        default:
+                            break;
+                    }
 
                     List<SalesOppReport> list = new List<SalesOppReport>();
 
@@ -111,7 +158,13 @@ namespace MicroAssistantMvc.Areas.BossManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
-        public JsonResult SalesFinanceReport()
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="timeType">1:月 2：季度 3：年</param>
+        /// <returns></returns>
+        public JsonResult SalesFinanceReport(int timeType)
         {
             var Res = new JsonResult();
             AdvancedResult<List<SalesFinanceReport>> result = new AdvancedResult<List<SalesFinanceReport>>();
@@ -127,6 +180,25 @@ namespace MicroAssistantMvc.Areas.BossManagement.Controllers
                     //    return Res;
                     //}
 
+                    DateTime stime = DateTime.Now;
+                    DateTime etime = DateTime.Now;
+                    switch (timeType)
+                    {
+                        case 1:
+                            stime = GetStartTime(TimeType.month);
+                            etime = GetEndTime(TimeType.month);
+                            break;
+                        case 2:
+                            stime = GetStartTime(TimeType.month);
+                            etime = GetEndTime(TimeType.month);
+                            break;
+                        case 3:
+                            stime = GetStartTime(TimeType.month);
+                            etime = GetEndTime(TimeType.month);
+                            break;
+                        default:
+                            break;
+                    }
 
                     List<SalesFinanceReport> list = new List<SalesFinanceReport>();
 

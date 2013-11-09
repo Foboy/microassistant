@@ -79,7 +79,8 @@ namespace MicroAssistant.DataAccess
 
             #region cmdGetContractInfoCount
 
-            cmdGetContractInfoCount = new MySqlCommand(" select count(*)  from contract_info ");
+            cmdGetContractInfoCount = new MySqlCommand(" select count(*)  from contract_info where ent_id = @EntId ");
+            cmdGetContractInfoCount.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
 
@@ -252,6 +253,7 @@ namespace MicroAssistant.DataAccess
                     returnValue.Items.Add(new ContractInfo().BuildSampleEntity(reader));
                 }
                 reader.Close();
+                _cmdGetContractInfoCount.Parameters["@EntId"].Value = EntId;
                 returnValue.RecordsCount = Convert.ToInt32(_cmdGetContractInfoCount.ExecuteScalar());
             }
             finally
@@ -261,6 +263,39 @@ namespace MicroAssistant.DataAccess
                 oc = null;
                 _cmdLoadContractInfo.Dispose();
                 _cmdLoadContractInfo = null;
+                _cmdGetContractInfoCount.Dispose();
+                _cmdGetContractInfoCount = null;
+                GC.Collect();
+            }
+            return returnValue;
+
+        }
+        /// <summary>
+        /// 获取企业合同数
+        /// </summary>
+        /// <param name="EntId"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public int GetContractInfoCount(Int32 EntId)
+        {
+            int returnValue = 0;
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdGetContractInfoCount = cmdGetContractInfoCount.Clone() as MySqlCommand;
+            _cmdGetContractInfoCount.Connection = oc;
+
+            try
+            {
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+                _cmdGetContractInfoCount.Parameters["@EntId"].Value = EntId;
+                returnValue = Convert.ToInt32(_cmdGetContractInfoCount.ExecuteScalar());
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
                 _cmdGetContractInfoCount.Dispose();
                 _cmdGetContractInfoCount = null;
                 GC.Collect();

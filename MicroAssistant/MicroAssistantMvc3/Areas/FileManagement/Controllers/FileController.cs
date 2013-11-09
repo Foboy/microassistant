@@ -91,11 +91,11 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
                 {
                     int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                     string fileUrl = string.Empty;
-                    fileUrl = FileHelper.UploadFile(userid, fileByte, "jpg", PicType.BBPicture);
+                    fileUrl = FileHelper.UploadFile(userid, fileByte, "jpg", PicType.ProTypePicture);
 
                     ResPic pic = new ResPic();
                     pic.ObjId = 0;
-                    pic.ObjType = PicType.BBPicture;
+                    pic.ObjType = PicType.ProTypePicture;
                     pic.PicUrl = fileUrl;
                     pic.PicHeight = picHeight;
                     pic.PicWidth = picWidth;
