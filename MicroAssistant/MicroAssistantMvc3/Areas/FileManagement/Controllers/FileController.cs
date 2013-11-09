@@ -40,7 +40,8 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
                     string saveName = FileHelper.GetFileSaveName(".png");
                     foreach (FileSaveInfo item in saveInfo)
                     {
-                        if (item.IsClipping)
+                        item.SavePrefix = item.SavePrefix != null ? item.SavePrefix : string.Empty;
+                        if (item.IsClipping == 1)
                         {
                             FileHelper.ClipAndSaveFile(sourcePath, itemfullpath, item.SavePrefix + saveName, item);
                         }
@@ -66,11 +67,11 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
             {
                 result.Error = AppError.ERROR_SUCCESS;
             }
-
+            Res.Data = result;
             return Res;
         }
 
-        public JsonResult UploadFile(bool saveSource,PicType fileType)
+        public JsonResult UploadFile(int saveSource,PicType fileType)
         {
             var Res = new JsonResult();
             AdvancedResult<ResPic> result = new AdvancedResult<ResPic>();
@@ -86,7 +87,7 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
                 string fileSaveName = FileHelper.GetFileSaveName(extension);
 
                 string path;
-                if (saveSource)
+                if (saveSource == 1)
                 {
                     path = FileHelper.GetFileSavePath(0, fileType, null);
                 }
@@ -103,7 +104,7 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
 
 
                 ResPic pic = new ResPic();
-                if (saveSource)
+                if (saveSource == 1)
                 {
                     pic.PicUrl = FileHelper.GetFileSavePath(0, fileType, fileSaveName);
                 }
@@ -124,6 +125,43 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
             return Res;
         }
 
+
+        public JsonResult SetUserHeadPic(string sourcePath)
+        {
+            var Res = new JsonResult();
+            AdvancedResult<ResPic> result = new AdvancedResult<ResPic>();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+
+                    ResPic pic = new ResPic();
+                    pic.ObjId = 0;
+                    pic.ObjType = PicType.Ignore;
+                    pic.PicUrl = sourcePath;
+                    pic.State = StateType.Active;
+                    int picid = ResPicAccessor.Instance.Insert(pic);
+                    pic.PicId = picid;
+
+                    result.Data = pic;
+                    result.Error = AppError.ERROR_SUCCESS;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
 
 
         public JsonResult UploadPic(byte[] fileByte, int picHeight, int picWidth)
