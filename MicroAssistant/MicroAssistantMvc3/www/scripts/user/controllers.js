@@ -198,17 +198,17 @@ function AddCompanyCtrl($scope, $http, $location) {
     $scope.AddCompanySubmit = function (data) {
         if ($scope.AddCompanyForm.$valid) {
             $scope.showerror = false;
-            //$http.post($sitecore.urls["EditeUserEntId"], { customerEntId: $scope.Data.CustomerEntId, entName: $scope.Data.EntName, industy: $scope.EnterpriseItem.Industy, contactUsername: $scope.EnterpriseItem.ContactUsername, contactMobile: $scope.EnterpriseItem.ContactMobile, phone: $scope.EnterpriseItem.ContactPhone, email: $scope.EnterpriseItem.ContactEmail, qq: '', address: $scope.EnterpriseItem.Address, Detail: $scope.EnterpriseItem.Detail }).success(function (data) {
-            //    if (!data.Error) {
-            //        $("#AddEnterpriseBox").modal('hide');
-            //    }
-            //    else {
-            //        alert(data.ErrorMessage);
-            //    }
-            //}).
-            //error(function (data, status, headers, config) {
-            //    //$scope.product = {};
-            //});
+            $http.post($sitecore.urls["EditeUserEntId"], { username: data.username, entId: data.enterpriseid }).success(function (data) {
+                if (!data.Error) {
+                    $("#AddEnterpriseBox").modal('hide');
+                }
+                else {
+                    alert(data.ErrorMessage);
+                }
+            }).
+            error(function (data, status, headers, config) {
+                //$scope.product = {};
+            });
         }
         else {
             $scope.showerror = true;
