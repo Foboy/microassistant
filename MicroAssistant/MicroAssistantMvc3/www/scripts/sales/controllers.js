@@ -366,11 +366,14 @@ function SalesContractDetailCtrl($scope, $routeParams, $http, $location) {
 function SalesAfterDetailCtrl($scope, $routeParams, $http, $location){
 };
 
-function SalesChanceEditCtrl($scope, $routeParams, $http, $location) {
+function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
     var from;
+    console.log('SalesChanceEditCtrl')
+    console.log($element)
     $scope.$on('EventAddChance', function (event, fromscope) {
         console.log("EventAddChance");
         console.log(fromscope);
+        console.log($scope);
         from = fromscope;
         $scope.EditChance = {ChanceType:1,CustomerType:1,Isasyn:false};
         $('#addChanceModal').modal('show');
