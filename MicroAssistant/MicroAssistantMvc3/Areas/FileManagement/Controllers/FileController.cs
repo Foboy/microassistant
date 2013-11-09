@@ -10,7 +10,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MicroAssistantMvc3.Areas.FileManagement.Controllers
+namespace MicroAssistantMvc.Areas.FileManagement.Controllers
 {
     public class FileController : MicControllerBase
     {

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace MicroAssistantMvc3.Areas.FileManagement
+namespace MicroAssistantMvc.Areas.FileManagement
 {
     public class FileManagementAreaRegistration : AreaRegistration
     {
