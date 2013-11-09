@@ -153,11 +153,11 @@ a:hover{text-decoration:underline;}
 .navList{margin-left:0;border-top:1px solid #e5e3d4;}
 .navList li{text-align:center; height:45px; list-style:none; width:170px; font-size:12px; margin-bottom:1px; border-bottom:1px solid #e5e3d4;border-right:1px solid #e5e3d4; color:#6d6b6c;}
 .navList li a{color:#6d6b6c;}
-.navList li .homeIcon,.navList li .productIcon,.navList li .clientIcon{float:left; margin:15px 10px 0 10px;}
-.navList li .saleIcon,.navList li .financeIcon,.navList li .peopleIcon{float:left; margin:12px 10px 0 10px;}
+.navList li .homeIcon,.navList li .productIcon,.navList li .clientIcon{float:left; margin:15px 0 0 18px;}
+.navList li .saleIcon,.navList li .financeIcon,.navList li .peopleIcon{float:left; margin:12px 0 0 18px;}
 .navList li .saleIcon{margin-top:15px;}
-.navList li p{float:right; width:99px; height:45px; line-height:45px; font-size:14px; text-align:center;  margin:0;}
-.navList li.cur,.navList li:hover{background:#1ABC9C;}
+.navList li p{float:right; width:125px; height:45px; line-height:45px; font-size:14px; text-align:center;  margin:0;}
+.navList li.cur,.navList li:hover{background:#1ABC9C; font-weight:bold;}
 .navList li:hover a,.navList li.cur a{color:#FFFFFF; text-decoration:none;}
 .navList li:hover .homeIcon,.navList li.cur .homeIcon{background-position:-1px -122px; float:left;}
 .navList li:hover .productIcon,.navList li.cur .productIcon{background-position:-2px -182px;float:left; }
@@ -408,11 +408,12 @@ a:hover{text-decoration:underline;}
 /*用户名称*/
 .user-name{width:150px; height:50px; background:#2C3E50; color:#FFFFFF; float:right; position:relative; z-index:998; font-size:14px; cursor:pointer;}
 .user-name span{width:150px; height:50px; line-height:45px; text-align:center; display:inline-block;}
-.user-name i{position:absolute; right:10px; top:19px; width:13px; height:10px; background:url(../img/icon.png) no-repeat -154px -384px; display:inline-block;}
-.user-name.cur i{background-position:-179px -384px;}
+.user-name i{position:absolute; right:10px; top:19px; width:8px; height:7px; background:url(../img/icon.png) no-repeat -154px -384px; display:inline-block;}
+.user-name.cur i{background-position:-171px -384px;}
 .u-info-list{position:absolute; top:50px; left:0; width:150px; background:#2C3E50; margin:0; z-index:999;}
 .u-info-list li{border-top:1px solid #dedede; list-style:none;}
-.u-info-list li a{height:34px; line-height:34px; text-align:center; display:inline-block; width:150px;}
+.u-info-list li a{height:34px; line-height:34px; text-align:center; display:inline-block; width:150px; }
+.u-info-list li a:hover{text-decoration:none;}
 /*用户名称 END*/
 
 /*员工管理*/
