@@ -24,6 +24,19 @@
   }]).value('$anchorScroll', angular.noop);
 
 function MainCtrl($scope, $routeParams, $http, $location, $filter) {
+    $scope.UserLoginOut = function () {
+        $http.post($sitecore.urls["Logout"], {}).success(function (data) {
+            if (data.Error) {
+                window.location.href = "login.html";
+            } else {
+                window.location.href = "login.html";
+            }
+        }).error(function (data, status, headers, config) {
+            alert('error');
+        })
+    }
+
+
 
     $scope.$on('$routeChangeSuccess', function () {
         $scope.checkpage();
