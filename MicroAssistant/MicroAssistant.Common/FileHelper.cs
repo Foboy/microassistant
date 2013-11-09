@@ -15,7 +15,6 @@ namespace MicroAssistant.Common
     public class ImageSaveInfo
     {
         public int IsClipping { get; set; }
-        public int IsThumb { get; set; }
         public string SavePrefix { get; set; }
         public int StartLeft { get; set; }
         public int StartTop { get; set; }
@@ -51,6 +50,13 @@ namespace MicroAssistant.Common
         {
             DateTime time = DateTime.Now;
             return time.Ticks + "." + fileExtention;
+        
+        
+        }
+
+        public static string SaveFile()
+        {
+            return null;
         }
         #region 上传图片
         /// <summary>

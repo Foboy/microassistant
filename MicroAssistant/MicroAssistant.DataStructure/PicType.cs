@@ -8,7 +8,7 @@ namespace MicroAssistant.DataStructure
     public enum PicType
     {
         /// <summary>
-        /// 不考虑
+        /// Temp
         /// </summary>
         Ignore=0,
         /// <summary>
