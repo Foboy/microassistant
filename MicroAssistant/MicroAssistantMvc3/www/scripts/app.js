@@ -32,11 +32,8 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     $scope.CurrentUser = null;
 
     $scope.checkpage = function () {
-        if ($location.path().indexOf('/home') == 0) {
+        if ($location.path().indexOf('/home') == 0 ||$location.path().indexOf('/user') == 0 || $location.path().indexOf('/changepassword') == 0 || $location.path().indexOf('/changeemail') == 0) {
             $scope.page = "home";
-        }
-        else if ($location.path().indexOf('/user') == 0 || $location.path().indexOf('/changepassword') == 0 || $location.path().indexOf('/changeemail') == 0) {
-            $scope.page = "user";
         }
         else if ($location.path().indexOf('/product') == 0) {
             $scope.page = "product";

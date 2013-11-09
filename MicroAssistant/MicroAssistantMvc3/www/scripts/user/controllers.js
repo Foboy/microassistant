@@ -147,3 +147,8 @@ function UserMainCtrl($scope, $http, $location) {
         }
     }
 }
+
+function UserTimeShaftCtrl($scope, $http, $location)
+{
+
+}
