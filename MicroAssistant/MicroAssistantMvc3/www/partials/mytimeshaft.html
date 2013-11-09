@@ -1,6 +1,6 @@
 ﻿<h1 class="titSec">我的时间轴</h1>
 <div class="time-box">
-    <div><a ng-click="ShowAddCompany()" class="time-add">添加企业</a></div>
+    <div><a href="" ng-click="ShowAddCompany()" class="time-add">添加企业</a></div>
     <ul class="time-shaft" ng-repeat="timeshaftItem in UserTimeShafts">
         <li class="clearfix">
             <div class="time-q">{{parseJsonDate(timeshaftItem.StartTime)|date:'yyyy/MM/dd'}}<span>至</span>{{parseJsonDate(timeshaftItem.EndTime)|date:'yyyy/MM/dd'}}</div>
@@ -12,4 +12,4 @@
     </ul>
     <div class="w-bg"></div>
 </div>
-<div ng-include="'partials/others/addcompany.html'"></div>
+<div  ng-include="'partials/others/addcompany.html'"></div>

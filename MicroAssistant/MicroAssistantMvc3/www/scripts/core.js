@@ -6,7 +6,8 @@ $sitecore.urls.add = function(name,url){
 	$sitecore.urls[name] = $sitecore.urls.base + url +"?timestamp="+ new Date().getTime();
 };
 
-$sitecore.urls.add("uploadPic", "/FileManagement/File/UploadPic");
+$sitecore.urls.add("UploadFile", "/FileManagement/File/UploadFile");
+$sitecore.urls.add("SourceFileClipOrThumb", "/FileManagement/File/SourceFileClipOrThumb");
 
 $sitecore.urls.add("userLogin", "/UserManagement/User/Login"); 
 $sitecore.urls.add("userRegister", "/UserManagement/User/UserRegister");
@@ -20,6 +21,7 @@ $sitecore.urls.add("UpdatePwd", "/UserManagement/User/UpdatePwd");//修改密码
 $sitecore.urls.add("UpdateEmail", "/UserManagement/User/UpdateEmail");//修改邮箱
 $sitecore.urls.add("Logout", "/UserManagement/User/Logout");//用户退出登录
 $sitecore.urls.add("SearchUserTimeMachine", "/UserManagement/User/SearchUserTimeMachine");//用户时间轴
+$sitecore.urls.add("EditeUserEntId", "/UserManagement/User/EditeUserEntId")//关联企业
 
 $sitecore.urls.add("productCat", "/ProductManagement/Production/SearchProductTypeListByEntID");
 $sitecore.urls.add("productAddCat", "/ProductManagement/Production/AddProductionType"); 

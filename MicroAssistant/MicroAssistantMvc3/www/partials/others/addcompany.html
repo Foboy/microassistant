@@ -1,12 +1,12 @@
-﻿<div class="popupBox popupBox2 clearfix popupbox4" ng-controller="AddCompanyCtrl" id="AddCompanyBox">
+﻿<div class="popupBox popupBox2 clearfix popupbox4 modal hide fade" ng-controller="AddCompanyCtrl" id="AddCompanyBox" >
     <form name="AddCompanyForm" ng-class="showerror?'showerror':''">
         <ul class="listContent peopleInfo pact-w" style="float: left;">
-            <li class="clearfix"><span class="span1">企业代号：</span><span><input type="text" ng-required="true" name="enterpriseid" ng-model="" placeholder="企业代号" class="span3"></span></li>
-            <li class="clearfix"><span class="span1">真实姓名：</span><span><input type="text" ng-required="true" name="username" ng-model=""  placeholder="真实姓名" class="span3"></span></li>
+            <li class="clearfix"><span class="span1">企业代号：</span><span><input type="text" ng-required="true" name="enterpriseid" ng-model="AddComItem.enterpriseid" placeholder="企业代号" class="span3"></span></li>
+            <li class="clearfix"><span class="span1">真实姓名：</span><span><input type="text" ng-required="true" name="username" ng-model="AddComItem.username"  placeholder="真实姓名" class="span3"></span></li>
         </ul>
         <div class="saveBox">
             <span>
-                <a ng-click="AddCompanySubmit()" class="btn btn-large btn-block btn-danger">保存</a>
+                <a ng-click="AddCompanySubmit(AddComItem)" class="btn btn-large btn-block btn-danger">保存</a>
             </span>
         </div>
     </form>
