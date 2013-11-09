@@ -177,7 +177,7 @@ function UserTimeShaftCtrl($scope, $http, $location) {
             if (!data.Error) {
                 $scope.UserTimeShafts = data.Data;
             } else {
-               
+
             }
             console.log(data);
         }).
@@ -186,27 +186,24 @@ function UserTimeShaftCtrl($scope, $http, $location) {
               });
     }
     $scope.LoadMyTimeShaft();
-    $http.ShowAddCompany = function () {
-        $scope.$broadcast('EventAddCompany', this.timeshaftItem);
+    $scope.ShowAddCompany = function () {
+        $scope.$broadcast('EventAddCompany');
     }
 }
-function AddCompanyCtrl($scope, $http, $location)
-{
-    var formdata;
-    $scope.$on("EventAddCompany", function (event, data) {
-        formdata = data;
+function AddCompanyCtrl($scope, $http, $location) {
+    $scope.$on("EventAddCompany", function (event) {
+        $scope.AddComItem = { username: $scope.CurrentUser.UserName };
         $("#AddCompanyBox").modal('show');
     });
-    $scope.AddCompanySubmit = function () {
+    $scope.AddCompanySubmit = function (data) {
         if ($scope.AddCompanyForm.$valid) {
             $scope.showerror = false;
-            $http.post($sitecore.urls["AddOrUpdateEnterPriseClient"], { customerEntId: $scope.EnterpriseItem.CustomerEntId, entName: $scope.EnterpriseItem.EntName, industy: $scope.EnterpriseItem.Industy, contactUsername: $scope.EnterpriseItem.ContactUsername, contactMobile: $scope.EnterpriseItem.ContactMobile, phone: $scope.EnterpriseItem.ContactPhone, email: $scope.EnterpriseItem.ContactEmail, qq: '', address: $scope.EnterpriseItem.Address, Detail: $scope.EnterpriseItem.Detail }).success(function (data) {
-                if (data.Error) {
-                    alert(data.ErrorMessage);
+            $http.post($sitecore.urls["EditeUserEntId"], { username: data.username, entId: data.enterpriseid }).success(function (data) {
+                if (!data.Error) {
+                    $("#AddEnterpriseBox").modal('hide');
                 }
                 else {
-                    $("#AddEnterpriseBox").modal('hide');
-                    $scope.loadCurrentSortList();
+                    alert(data.ErrorMessage);
                 }
             }).
             error(function (data, status, headers, config) {

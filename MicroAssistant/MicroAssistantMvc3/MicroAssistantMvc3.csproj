@@ -94,10 +94,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\BossManagement\BossManagementAreaRegistration.cs" />
-    <Compile Include="Areas\BossManagement\Controllers\BossController.cs" />
-    <Compile Include="Areas\BossManagement\Models\SalesFinanceReport.cs" />
-    <Compile Include="Areas\BossManagement\Models\SalesOppReport.cs" />
     <Compile Include="Areas\ContractManagement\ContractManagementAreaRegistration.cs" />
     <Compile Include="Areas\ContractManagement\Controllers\ContractInfoController.cs" />
     <Compile Include="Areas\CustomerManagement\Controllers\CustomerController.cs" />
@@ -239,6 +235,7 @@
     <Content Include="www\partials\finance\receivables-detail.html" />
     <Content Include="www\partials\home.html" />
     <Content Include="www\partials\mytimeshaft.html" />
+    <Content Include="www\partials\others\addcompany.html" />
     <Content Include="www\partials\others\locationselectmap.html" />
     <Content Include="www\partials\others\photocutter.html" />
     <Content Include="www\partials\product.html" />
@@ -252,6 +249,7 @@
     <Content Include="www\partials\sales\contract-detail.html" />
     <Content Include="www\partials\sales\contract-edit.html" />
     <Content Include="www\partials\sales\visit-detail.html" />
+    <Content Include="www\partials\userinfo.html" />
     <Content Include="www\register.html" />
     <Content Include="www\scripts\app.js" />
     <Content Include="www\scripts\client\controller.js" />
@@ -264,7 +262,6 @@
     <Content Include="www\scripts\user\controllers.js" />
     <Content Include="www\scripts\utilities.js" />
     <Content Include="Areas\FileManagement\Views\Web.config" />
-    <Content Include="Areas\BossManagement\Views\Web.config" />
     <None Include="Properties\PublishProfiles\MicroAssistant.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -305,7 +302,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\BossManagement\Views\Shared\" />
     <Folder Include="Areas\ContractManagement\Models\" />
     <Folder Include="Areas\ContractManagement\Views\Shared\" />
     <Folder Include="Areas\CustomerManagement\Models\" />
@@ -320,9 +316,7 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MicroAssistant.Cache\MicroAssistant.Cache.csproj">
