@@ -19,6 +19,15 @@
             $scope.showerror = true;
         }
     }
+
+    $(document).keyup(function (e) {
+        if (e.keyCode == 13)
+        {
+            $scope.$apply(function () {
+                $scope.UserLogin();
+            });
+        }
+    });
 }
 
 function UserRegisterMainCtrl($scope, $http) {
@@ -44,6 +53,14 @@ function UserRegisterMainCtrl($scope, $http) {
             $scope.showerror = true;
         }
     }
+
+    $(document).keyup(function (e) {
+        if (e.keyCode == 13) {
+            $scope.$apply(function () {
+                $scope.UserRegister();
+            });
+        }
+    });
 }
 
 function EnterpriseRegisterMainCtrl($scope, $http) {
@@ -68,6 +85,14 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
             $scope.showerror = true;
         }
     }
+
+    $(document).keyup(function (e) {
+        if (e.keyCode == 13) {
+            $scope.$apply(function () {
+                $scope.EnterpriseRegister();
+            });
+        }
+    });
 }
 
 

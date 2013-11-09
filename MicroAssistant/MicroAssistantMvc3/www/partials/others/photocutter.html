@@ -106,8 +106,12 @@
                 'uploader': $sitecore.urls["uploadPic"],
                 'height': 70,
                 'width': 190,
+                'auto':false,
                 onUploadComplete: function (response) {
 
+                },
+                onSelect: function () {
+                    console.log(arguments);
                 }
             });
         });
