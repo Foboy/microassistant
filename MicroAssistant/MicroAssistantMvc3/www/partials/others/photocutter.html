@@ -13,15 +13,22 @@
     <script type="text/javascript">
 
         jQuery(document).ready(function () {
+            var jcrop_api;
             $('#imgLoad').bind('load', function () {
+                if (jcrop_api)
+                {
+                    jcrop_api.destroy();
+                }
+
+
                 var img = $(this);
                 var imgWidth = img.width();
                 var imgHeight = img.height();
+                var imgSrc = img.attr('src');
                 img.attr('src', '');
 
 
-                var jcrop_api,
-                    boundx,
+                var boundx,
                     boundy,
 
 
@@ -37,9 +44,12 @@
                     ysize = $pcnt.height(),
                     widthScale = imgWidth / $container.width(),
                     heightScale = imgHeight / $container.height();
+
+                $pimg.attr('src', imgSrc);
+                $photo.attr('src', imgSrc);
                     
                 var disWidth, disHeight, selectWidth, selectHeight;
-                    if (widthScale > 1 || heightScale > 1) {
+                    //if (widthScale > 1 || heightScale > 1) {
                         if (widthScale > heightScale) {
                             disWidth = $container.width() - 4;
                             disHeight = parseInt(imgHeight / widthScale);
@@ -51,15 +61,16 @@
                             selectWidth = disWidth;
                             selectHeight = disWidth;
                         }
-                    }
-                    else {
-                        disWidth = imgWidth;
-                        disHeight = imgHeight;
-                        selectWidth = $container.height() - 4;
-                        selectHeight = $container.height() - 4;
-                    }
+                    //}
+                    //else {
+
+                    //    disWidth = imgWidth;
+                    //    disHeight = imgHeight;
+                    //    selectWidth = $container.height() - 4;
+                    //    selectHeight = $container.height() - 4;
+                    //}
                     $photo.css({ width: disWidth + "px", height: disHeight + "px" });
-                    $photowraper.css({ width: disWidth + "px", height: disHeight + "px" });
+                    $photowraper.css({ width: disWidth + "px", height: disHeight + "px",'margin':Math.floor(($container.height() - 4 - disHeight) / 2)+'px auto' });
 
                     var selectLeft = Math.floor((disWidth - selectWidth) / 2), selectTop = Math.floor((disHeight - selectHeight) / 2);
 
@@ -97,21 +108,24 @@
             $("#imgLoad").attr('src', '../../img/testpic.jpg');
             $('#selected_btn').cuploadify({
                 'formData': {
-                    'token': 'sss',
-                    'picHeight': 0,
-                    'picWidth':0
+                    saveSource: false,
+                    fileType: 0,
+                    saveInfo: []
 
                 },
                 'swf': '../../js/uploadify/uploadify.swf',
                 'uploader': $sitecore.urls["uploadPic"],
                 'height': 70,
                 'width': 190,
-                'auto':false,
-                onUploadComplete: function (response) {
-
-                },
-                onSelect: function () {
-                    console.log(arguments);
+                'auto':true,
+                onUploadSuccess: function (file, data, response) {
+                    var data = $.parseJSON(data);
+                    if (data.Error) {
+                        alert(data.ErrorMessage);
+                    }
+                    else {
+                        $("#imgLoad").attr('src', data.Data.PicUrl);
+                    }
                 }
             });
         });

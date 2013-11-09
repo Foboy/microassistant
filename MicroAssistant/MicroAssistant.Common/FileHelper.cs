@@ -12,9 +12,9 @@ using System.Reflection;
 
 namespace MicroAssistant.Common
 {
-    public class ImageSaveInfo
+    public class FileSaveInfo
     {
-        public int IsClipping { get; set; }
+        public bool IsClipping { get; set; }
         public string SavePrefix { get; set; }
         public int StartLeft { get; set; }
         public int StartTop { get; set; }
@@ -24,40 +24,128 @@ namespace MicroAssistant.Common
         public int SaveHeight { get; set; }
     }
 
-    public class PhotoCutInfo
+    public class FileSaveResult
     {
-        public PhotoCutInfo()
-        {
-        }
-
-        public string DocMuid { get; set; }
-        public string DocName { get; set; }
-        public string SaveName { get; set; }
-        public int Saved { get; set; }
-        public string Msg { get; set; }
+        public string FileName { get; set; }
+        public string FilePath { get; set; }
+        public string FileUrl { get; set; }
     }
 
     public class FileHelper
     {
 
-        private static string GetFileSavePath(int objid, PicType type)
+        public static string GetFileSavePath(int objid, PicType type, string fileName)
         {
             DateTime time = DateTime.Now;
-            return string.Format("/UploadPicture/{0}/{1}/{2}/", type.ToString(), time.ToString("yyyyMM"), objid);
+            return string.Format("/UploadPicture/{0}/{1}/{2}/{3}", type.ToString(), time.ToString("yyyyMM"), objid, fileName);
         }
 
-        private static string GetFileSaveName(string fileExtention)
+        public static string GetFileSaveName(string fileExtention)
         {
             DateTime time = DateTime.Now;
-            return time.Ticks + "." + fileExtention;
+            return time.Ticks + fileExtention;
         
         
         }
 
-        public static string SaveFile()
-        {
-            return null;
+        public static string CreatePath(string path) {
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+            return path;
         }
+
+        public static void ClipAndSaveFile(string sourcePath, string savePath, string saveName, FileSaveInfo saveInfo)
+        {
+            if (!File.Exists(sourcePath))
+            {
+                throw new Exception("文件不存在!");
+            }
+            else
+            {
+                int level = 100;
+                ImageCodecInfo ici = ImageCodecInfo.GetImageEncoders().SingleOrDefault(c => c.MimeType == "image/jpeg");
+                EncoderParameters ep = new EncoderParameters();
+                ep.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, level);
+
+                System.Drawing.Image bitmap = null;
+                System.Drawing.Image source = null;
+                try
+                {
+
+                    bitmap = new System.Drawing.Bitmap(saveInfo.SaveWidth, saveInfo.SaveHeight);
+                    source = System.Drawing.Image.FromFile(sourcePath);
+                    System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(bitmap);
+
+                    //设定缩略图的生成质量
+                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+
+                    g.Clear(System.Drawing.Color.Transparent);
+
+                    g.DrawImage(source, new System.Drawing.Rectangle(0, 0, saveInfo.SaveWidth, saveInfo.SaveHeight), new System.Drawing.Rectangle(saveInfo.StartLeft, saveInfo.StartTop, saveInfo.Width, saveInfo.Height), System.Drawing.GraphicsUnit.Pixel);
+
+                    CreatePath(savePath);
+
+                    bitmap.Save(Path.Combine(savePath, saveName), ici, ep);
+
+                }
+                catch (Exception ex)
+                {
+                    //保存缩略图出错处理
+                    throw ex;
+                }
+                finally
+                {
+                    if (source != null)
+                    {
+                        source.Dispose();
+                    }
+                    if (bitmap != null)
+                    {
+                        bitmap.Dispose();
+                    }
+                }
+            }
+        }
+
+        public static void ThumbAndSaveFile(string sourcePath, string savePath, string saveName, FileSaveInfo saveInfo)
+        {
+            if (!File.Exists(sourcePath))
+            {
+                throw new Exception("文件不存在!");
+            }
+            else
+            {
+                Image source = null, img = null;
+                try
+                {
+                    source = System.Drawing.Image.FromFile(sourcePath);
+                    float bl = Math.Min((float)saveInfo.Width / source.Width, (float)saveInfo.Height / source.Height);
+
+                    img = source.GetThumbnailImage((int)(source.Width * bl), (int)(source.Height * bl), null, new IntPtr());
+
+                    CreatePath(savePath);
+
+                    img.Save(Path.Combine(savePath, saveName), ImageFormat.Jpeg);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    if (source != null)
+                    {
+                        source.Dispose();
+                    }
+                    if (img != null)
+                    {
+                        img.Dispose();
+                    }
+                }
+            }
+        }
+
         #region 上传图片
         /// <summary>
         /// 上传图片
@@ -73,7 +161,7 @@ namespace MicroAssistant.Common
         public static string UploadFile(int objid, byte[] fileByte, string fileExtention, PicType type)
         {
             DateTime time = DateTime.Now;
-            string fileName = GetFileSaveName(fileExtention);
+            string fileName = GetFileSaveName( "." + fileExtention);
             string fileSaveUrl = string.Format("/UploadPicture/{0}/{1}/{2}/{3}", type.ToString(), time.ToString("yyyyMM"), objid, fileName);
 
             try
@@ -112,84 +200,6 @@ namespace MicroAssistant.Common
             }
         }
         #endregion 上传图片
-
-        public PhotoCutInfo CutPhotoFromSource(int objid, string url, int startX, int startY, int width, int height, int swidth, int sheight, PicType type)
-        {
-            PhotoCutInfo cutresult = new PhotoCutInfo();
-            DateTime time = DateTime.Now;
-
-            string fileSaveUrl = string.Format("/UploadPicture/{0}/{1}/{2}", type.ToString(), time.ToString("yyyyMM"), objid);
-
-            string filepath = HttpContext.Current.Server.MapPath(url);
-            string sspath = HttpContext.Current.Server.MapPath(fileSaveUrl);
-
-            cutresult.DocName = time.Ticks.ToString();
-
-            string saveName = cutresult.DocName + ".jpg";
-
-            if (!File.Exists(filepath) || !filepath.Contains(sspath))
-            {
-                cutresult.Msg = "文件不存在！";
-                cutresult.Saved = 0;
-            }
-            else
-            {
-                int level = 100;
-                ImageCodecInfo ici = ImageCodecInfo.GetImageEncoders().SingleOrDefault(c => c.MimeType == "image/jpeg");
-                EncoderParameters ep = new EncoderParameters();
-                ep.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, level);
-
-                string _savepath = HttpContext.Current.Server.MapPath(fileSaveUrl);
-                if (!Directory.Exists(_savepath))
-                {
-                    //如果目录不存在
-                    //创建目录
-                    Directory.CreateDirectory(_savepath);
-                }
-
-                System.Drawing.Image bitmap = null;
-                System.Drawing.Image source = null;
-                try
-                {
-
-                    bitmap = new System.Drawing.Bitmap(swidth, sheight);
-                    source = System.Drawing.Image.FromFile(filepath);
-                    System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(bitmap);
-
-                    //设定缩略图的生成质量
-                    g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-
-                    g.Clear(System.Drawing.Color.Transparent);
-
-                    g.DrawImage(source, new System.Drawing.Rectangle(0, 0, swidth, sheight), new System.Drawing.Rectangle(startX, startY, width, height), System.Drawing.GraphicsUnit.Pixel);
-
-                    bitmap.Save(_savepath + saveName, ici, ep);
-
-                    cutresult.SaveName = fileSaveUrl + saveName;
-                    cutresult.Saved = 1;
-
-                }
-                catch (Exception ex)
-                {
-                    //保存缩略图出错处理
-                    cutresult.Msg = ex.Message;
-                    cutresult.Saved = 0;
-                }
-                finally
-                {
-                    if (source != null)
-                    {
-                        source.Dispose();
-                    }
-                    if (bitmap != null)
-                    {
-                        bitmap.Dispose();
-                    }
-                }
-            }
-            return cutresult;
-        }
 
     }
 }
