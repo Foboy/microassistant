@@ -121,7 +121,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Config\Role.xml" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -235,6 +234,8 @@
     <Content Include="www\partials\finance\makesure-pay.html" />
     <Content Include="www\partials\finance\receivables-detail.html" />
     <Content Include="www\partials\home.html" />
+    <Content Include="www\partials\mytimeshaft.html" />
+    <Content Include="www\partials\others\addcompany.html" />
     <Content Include="www\partials\others\locationselectmap.html" />
     <Content Include="www\partials\others\photocutter.html" />
     <Content Include="www\partials\product.html" />
@@ -248,6 +249,7 @@
     <Content Include="www\partials\sales\contract-detail.html" />
     <Content Include="www\partials\sales\contract-edit.html" />
     <Content Include="www\partials\sales\visit-detail.html" />
+    <Content Include="www\partials\userinfo.html" />
     <Content Include="www\register.html" />
     <Content Include="www\scripts\app.js" />
     <Content Include="www\scripts\client\controller.js" />
@@ -314,9 +316,7 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MicroAssistant.Cache\MicroAssistant.Cache.csproj">
@@ -356,7 +356,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>2725</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:4311/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

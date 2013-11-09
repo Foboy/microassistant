@@ -11,7 +11,7 @@ using System.Web.Security;
 
 namespace MicroAssistantMvc.Controllers
 {
-    public class MicControllerBase : Controller
+    public class MicControllerBase :Controller,IController
     {
         #region token
         private string currentToken;
@@ -94,12 +94,71 @@ namespace MicroAssistantMvc.Controllers
         }
         #endregion
 
+        #region common
+
+        /// <summary>
+        /// 获取当前年月季度的第一天
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        protected DateTime GetStartTime(TimeType type)
+        {
+            DateTime now = DateTime.Now;
+            switch (type)
+            {
+                case TimeType.month:
+                    now = new DateTime(now.Year, now.Month, 1); //本月第一天
+
+                    break;
+                case TimeType.quarter:
+                    now = now.AddMonths(0 - (now.Month - 1) % 3).AddDays(1 - now.Day);  //本季度初
+
+                    break;
+                case TimeType.year:
+                    now = new DateTime(now.Year, 1, 1); //本月第一天
+                    break;
+                default:
+                    break;
+            }
+            return now;
+        }
+        /// <summary>
+        /// 获取当前年份的第二年第一天，获取当前月份的第二个月的第一天,获取当前季度下个季度的最后一天
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        protected DateTime GetEndTime(TimeType type)
+        {
+            DateTime now = DateTime.Now;
+            switch (type)
+            {
+                case TimeType.month:
+                    DateTime d1 = new DateTime(now.Year, now.Month, 1); //本月第一天
+                    now = d1.AddMonths(1);
+                    break;
+                case TimeType.quarter:
+                    DateTime startQuarter = now.AddMonths(0 - (now.Month - 1) % 3).AddDays(1 - now.Day);
+                    now = startQuarter.AddMonths(4);  //本季度末
+                    break;
+                case TimeType.year:
+                    DateTime d3 = new DateTime(now.Year, 1, 1); //本月第一天
+                    now = d3.AddYears(1);
+                    break;
+                default:
+                    break;
+            }
+            return now;
+        }
+
+#endregion common
+
         protected override void OnAuthorization(AuthorizationContext filterContext)
         {
             ViewBag.LoginUser = CurrentUser;
             ViewBag.CurrentToken = token;
             base.OnAuthorization(filterContext);
         }
-    
+
+
     }
 }

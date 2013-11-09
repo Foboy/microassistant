@@ -1,35 +1,15 @@
 ﻿<h1 class="titSec">我的时间轴</h1>
 <div class="time-box">
-    <div><a href="#" class="time-add">添加企业</a></div>
-    <ul class="time-shaft">
+    <div><a href="" ng-click="ShowAddCompany()" class="time-add">添加企业</a></div>
+    <ul class="time-shaft" ng-repeat="timeshaftItem in UserTimeShafts">
         <li class="clearfix">
-            <div class="time-q">2013/10/23<span>至</span>2013/10/23</div>
+            <div class="time-q">{{parseJsonDate(timeshaftItem.StartTime)|date:'yyyy/MM/dd'}}<span>至</span>{{parseJsonDate(timeshaftItem.EndTime)|date:'yyyy/MM/dd'}}</div>
             <div class="com-info">
-                <h2 title="四川新迎顺信息技术有限公司">四川新迎顺信息技术有限公司</h2>
-                <p>职位：销售专员</p>
-            </div>
-        </li>
-        <li class="clearfix">
-            <div class="time-q">2013/10/23<span>至</span>2013/10/23</div>
-            <div class="com-info">
-                <h2 title="四川新迎顺信息技术有限公司">四川新迎顺信息技术有限公司</h2>
-                <p><span class="colorRed">申请中...</span></p>
-            </div>
-        </li>
-        <li class="clearfix old">
-            <div class="time-q">2013/10/23<span>至</span>2013/10/23</div>
-            <div class="com-info">
-                <h2 title="四川新迎顺信息技术有限公司">四川新迎顺信息技术有限公司</h2>
-                <p><span>职位：销售专员</span></p>
-            </div>
-        </li>
-        <li class="clearfix old">
-            <div class="time-q">2013/10/23<span>至</span>2013/10/23</div>
-            <div class="com-info">
-                <h2 title="四川新迎顺信息技术有限公司">四川新迎顺信息技术有限公司</h2>
-                <p>职位：销售专员</p>
+                <h2 title="{{timeshaftItme.EntName}}">{{timeshaftItem.EntName}}</h2>
+                <p>职位：{{timeshaftItem.RoleName}}</p>
             </div>
         </li>
     </ul>
     <div class="w-bg"></div>
 </div>
+<div  ng-include="'partials/others/addcompany.html'"></div>

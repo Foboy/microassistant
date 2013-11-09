@@ -21,8 +21,7 @@
     }
 
     $(document).keyup(function (e) {
-        if (e.keyCode == 13)
-        {
+        if (e.keyCode == 13) {
             $scope.$apply(function () {
                 $scope.UserLogin();
             });
@@ -36,8 +35,7 @@ function UserRegisterMainCtrl($scope, $http) {
         if ($scope.UserRegisterForm.$valid) {
             $scope.showerror = false;
             $http.post($sitecore.urls["userRegister"], { username: $scope.User.name, account: $scope.User.email, pwd: $scope.User.pwd, entId: $scope.User.enterprise || 0 }).success(function (data) {
-                if (data.Error)
-                {
+                if (data.Error) {
                     alert(data.ErrorMessage);
                 }
                 else {
@@ -173,7 +171,47 @@ function UserMainCtrl($scope, $http, $location) {
     }
 }
 
-function UserTimeShaftCtrl($scope, $http, $location)
-{
+function UserTimeShaftCtrl($scope, $http, $location) {
+    $scope.LoadMyTimeShaft = function () {
+        $http.post($sitecore.urls["SearchUserTimeMachine"], {}).success(function (data) {
+            if (!data.Error) {
+                $scope.UserTimeShafts = data.Data;
+            } else {
 
+            }
+            console.log(data);
+        }).
+              error(function (data, status, headers, config) {
+                  alert("error")
+              });
+    }
+    $scope.LoadMyTimeShaft();
+    $scope.ShowAddCompany = function () {
+        $scope.$broadcast('EventAddCompany');
+    }
+}
+function AddCompanyCtrl($scope, $http, $location) {
+    $scope.$on("EventAddCompany", function (event) {
+        $scope.AddComItem = { username: $scope.CurrentUser.UserName };
+        $("#AddCompanyBox").modal('show');
+    });
+    $scope.AddCompanySubmit = function (data) {
+        if ($scope.AddCompanyForm.$valid) {
+            $scope.showerror = false;
+            $http.post($sitecore.urls["EditeUserEntId"], { username: data.username, entId: data.enterpriseid }).success(function (data) {
+                if (!data.Error) {
+                    $("#AddEnterpriseBox").modal('hide');
+                }
+                else {
+                    alert(data.ErrorMessage);
+                }
+            }).
+            error(function (data, status, headers, config) {
+                //$scope.product = {};
+            });
+        }
+        else {
+            $scope.showerror = true;
+        }
+    };
 }
