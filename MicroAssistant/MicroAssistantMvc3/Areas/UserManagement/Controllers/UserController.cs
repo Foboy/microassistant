@@ -10,6 +10,8 @@ using MicroAssistant.DataStructure;
 using MicroAssistant.Meta;
 using MicroAssistantMvc.Controllers;
 using System.Web.Security;
+using System.Xml;
+using System.IO;
 
 namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 {
@@ -56,6 +58,8 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 if (i>0)
                 {
                     SysUserAccessor.Instance.UpdateUserEntId(i, i);//更新所属企业ID
+                    //初始化权限
+                    initEntRole(i);
                     string token = SecurityHelper.GetToken(i.ToString());
                     CacheManagerFactory.GetMemoryManager().Set(token, i.ToString());
                     result.Error = AppError.ERROR_SUCCESS;
@@ -426,7 +430,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="newpwd"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public JsonResult UpdatePwd(string oldpwd, string newpwd, string token)
+        public JsonResult UpdatePwd(string oldpwd, string newpwd)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -601,6 +605,8 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             throw new NotImplementedException();
         }
 
+        #region 私有方法
+
         private void WriteAuthCookie(string username, string token)
         {
             DateTime issueDate = DateTime.Now;
@@ -620,9 +626,75 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 
         }
 
+        protected static XmlDocument roleXmlModel = null;
+        //初始化企业权限(后期改为异步)
+        private void initEntRole(int entId)
+        {
+            try
+            {
+            if (roleXmlModel == null)
+            {
+                string filePath = System.AppDomain.CurrentDomain.BaseDirectory + "Config/Role.xml";
+                if (System.IO.File.Exists(filePath) == false) throw new FileNotFoundException("默认权限模板配置文件没有找到", filePath);
+                string roleConfig = System.IO.File.ReadAllText(filePath);
+                roleXmlModel = new XmlDocument();
+                roleXmlModel.LoadXml(roleConfig);
+            }
+            int newadminId = 0;
+
+                    foreach (XmlNode rolenode in roleXmlModel.SelectNodes("//role"))
+                    {
+                        string rolenodename = rolenode.Attributes["name"].Value;
+                           //添加企业角色
+                            SysRole erole=new SysRole();
+                            erole.EntId = entId;
+                            erole.FatherId = 0;
+                            erole.RoleName = rolenodename;
+                            int eroleid = SysRoleAccessor.Instance.Insert(erole);
+                            if (rolenodename == "管理员")
+                            {
+                                newadminId = eroleid;
+                            }
+                        foreach (XmlNode fathernode in rolenode.ChildNodes)
+                        {
+                            string fnname = fathernode.Attributes["name"].Value;
+                            string fnid = fathernode.Attributes["id"].Value;
+                            //添加企业角色权限
+                            SysRoleFunction frf = new SysRoleFunction();
+                            frf.EntId = entId;
+                            frf.RoleId = eroleid;
+                            frf.FunctionId = Convert.ToInt32(fnid);
+                            SysRoleFunctionAccessor.Instance.Insert(frf);
+                            foreach (XmlNode sonnode in fathernode.ChildNodes)
+                            {
+                                string sname = sonnode.Attributes["name"].Value;
+                                string sid = sonnode.Attributes["id"].Value;
+                                SysRoleFunction srf = new SysRoleFunction();
+                                srf.EntId = entId;
+                                srf.RoleId = eroleid;
+                                srf.FunctionId = Convert.ToInt32(sid);
+                                SysRoleFunctionAccessor.Instance.Insert(srf);
+                            }
+                        }
+                    }
+                SysRoleUser ru=new SysRoleUser();
+                ru.EntId=entId;
+                ru.UserId=entId;
+                ru.RoleId=newadminId;
+                SysRoleUserAccessor.Instance.Insert(ru);
+
+            }
+            catch
+            {
+                throw new InvalidDataException("Cache配置文件内容不正确");
+            }
+        }
+
         #endregion
 
-       
+        #endregion
+
+
 
     }
 }

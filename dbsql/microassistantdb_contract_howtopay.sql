@@ -32,6 +32,7 @@ CREATE TABLE `contract_howtopay` (
   `received_time` datetime DEFAULT NULL COMMENT '实际收款时间',
   `IsReceived` int(11) NOT NULL DEFAULT '1' COMMENT '1:没确认收款 2：已收款',
   `contract_no` varchar(45) NOT NULL COMMENT '合同编号',
+  `ent_id` int(11) NOT NULL,
   PRIMARY KEY (`howtopay_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='付款方式';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-06 20:12:09
+-- Dump completed on 2013-11-09 11:59:17

@@ -57,6 +57,12 @@ namespace MicroAssistant.Meta
         public String ContractNo
         { get; set; }
 
+        /// <summary>
+        /// 所属企业ID
+        /// </summary>
+        public Int32 EntId
+        { get; set; }
+
 
         /// <summary>
         /// 从读取器向完整实例对象赋值
@@ -71,6 +77,7 @@ namespace MicroAssistant.Meta
             this.ReceivedTime = DBConvert.ToDateTime(reader["received_time"]);
             this.Isreceived = DBConvert.ToInt32(reader["IsReceived"]);
             this.ContractNo = DBConvert.ToString(reader["contract_no"]);
+            this.EntId = DBConvert.ToInt32(reader["ent_id"]);
             return this;
         }
     }
