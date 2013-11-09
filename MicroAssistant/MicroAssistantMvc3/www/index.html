@@ -41,15 +41,28 @@
             border-color: #50a729;
         }
     </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#myinfodiv").bind("mouseenter", function () {
+                $(this).addClass("cur");
+                $("#uinfolist").show();
+            });
+            $("#myinfodiv").bind("mouseleave", function () {
+                $(this).removeClass("cur");
+                $("#uinfolist").hide();
+            })
+        })
+    </script>
 </head>
 <body ng-controller="MainCtrl">
-    <div class="navbar">
+    <div class="navbar" >
         <div class="main clearfix">
-            <div class="user-name cur">
-                <span>yuwojiusi</span><i></i>
-                <ul class="u-info-list">
+            <div class="user-name" id="myinfodiv">
+                <span>{{CurrentUser.UserName}}</span><i></i>
+                <ul class="u-info-list" style="display:none" id="uinfolist" >
                     <li><a ng-href="#!/user" class="writeLink">基本资料</a></li>
                     <li><a ng-href="#!/mytimeshaft" class="writeLink">我的时间轴</a></li>
+                    <li><a ng-href="#!/staffmangement" class="writeLink">我的员工管理</a></li>
                     <li><a ng-click="UserLoginOut()" class="writeLink">退出</a></li>
                 </ul>
             </div>

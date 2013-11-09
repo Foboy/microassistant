@@ -215,3 +215,7 @@ function AddCompanyCtrl($scope, $http, $location) {
         }
     };
 }
+function StaffMangementCtrl($scope, $http, $location)
+{
+
+}
