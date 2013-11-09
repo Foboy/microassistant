@@ -57,6 +57,12 @@ namespace MicroAssistant.Meta
         public Int32 ChanceId
         { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Int32 EntId
+        { get; set; }
+
 
         /// <summary>
         /// 从读取器向完整实例对象赋值
@@ -71,6 +77,7 @@ namespace MicroAssistant.Meta
             this.Remark = DBConvert.ToString(reader["remark"]);
             this.VisitTime = DBConvert.ToDateTime(reader["visit_time"]);
             this.ChanceId = DBConvert.ToInt32(reader["chance_id"]);
+            this.EntId = DBConvert.ToInt32(reader["ent_id"]);
             return this;
         }
     }

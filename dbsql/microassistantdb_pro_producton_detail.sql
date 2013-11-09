@@ -35,7 +35,7 @@ CREATE TABLE `pro_producton_detail` (
   `ent_id` int(11) NOT NULL,
   `is_pay` int(11) NOT NULL DEFAULT '1' COMMENT '1:未付款 2:已付款',
   PRIMARY KEY (`p_d_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='产品入库单表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品入库单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-06 20:12:11
+-- Dump completed on 2013-11-09 11:59:19

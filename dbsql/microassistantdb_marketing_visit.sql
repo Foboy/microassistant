@@ -32,6 +32,7 @@ CREATE TABLE `marketing_visit` (
   `remark` varchar(100) DEFAULT NULL,
   `visit_time` datetime DEFAULT NULL COMMENT '拜访时间',
   `chance_id` int(11) NOT NULL,
+  `ent_id` int(11) NOT NULL,
   PRIMARY KEY (`idmarketing_visit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='拜访记录表';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-06 20:12:10
+-- Dump completed on 2013-11-09 11:59:18

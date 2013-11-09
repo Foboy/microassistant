@@ -102,6 +102,9 @@ namespace MicroAssistant.Meta
         public Int32 RoleId
         { get; set; }
 
+        public int PicId
+        { get; set; }
+
         //登陆后用户权限
         public List<SysFunction> userFuns
         { get; set; }
@@ -128,6 +131,7 @@ namespace MicroAssistant.Meta
             if (reader["birthday"] != null)
                 this.Birthday = DBConvert.ToDateTime(reader["birthday"]);
             this.Sex = DBConvert.ToInt32(reader["sex"]);
+            this.PicId = DBConvert.ToInt32(reader["pic_id"]);
             return this;
         }
         /// <summary>
@@ -152,6 +156,7 @@ namespace MicroAssistant.Meta
             if (reader["birthday"] != null)
                 this.Birthday = DBConvert.ToDateTime(reader["birthday"]);
             this.Sex = DBConvert.ToInt32(reader["sex"]);
+            this.PicId = DBConvert.ToInt32(reader["pic_id"]);
             return this;
         }
     }

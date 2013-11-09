@@ -28,6 +28,14 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             AdvancedResult<PageEntity<CustomerEnt>> result = new AdvancedResult<PageEntity<CustomerEnt>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
+                if (!CheckUserFunction("1001"))
+                {
+                    result.Error = AppError.ERROR_PERMISSION_FORBID;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                }
+
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
@@ -62,6 +70,14 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             AdvancedResult<PageEntity<CustomerPrivate>> result = new AdvancedResult<PageEntity<CustomerPrivate>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
+                if (!CheckUserFunction("1002"))
+                {
+                    result.Error = AppError.ERROR_PERMISSION_FORBID;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                }
+
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
@@ -93,6 +109,14 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             int _customerEntId = 0;
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
+                if (!CheckUserFunction("1003"))
+                {
+                    result.Error = AppError.ERROR_PERMISSION_FORBID;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                }
+
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
@@ -149,6 +173,14 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             int _pivid = 0;
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
+                if (!CheckUserFunction("1004"))
+                {
+                    result.Error = AppError.ERROR_PERMISSION_FORBID;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                }
+
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
@@ -204,6 +236,14 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             AdvancedResult<List<CustomerEnt>> result = new AdvancedResult<List<CustomerEnt>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
+                if (!CheckUserFunction("1001"))
+                {
+                    result.Error = AppError.ERROR_PERMISSION_FORBID;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                }
+
                 try
                 {
                     List<CustomerEnt> list = new List<CustomerEnt>();
@@ -233,6 +273,14 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             AdvancedResult<List<CustomerPrivate>> result = new AdvancedResult<List<CustomerPrivate>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
+                if (!CheckUserFunction("1002"))
+                {
+                    result.Error = AppError.ERROR_PERMISSION_FORBID;
+                    Res.Data = result;
+                    Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                    return Res;
+                }
+
                 try
                 {
                     List<CustomerPrivate> list = new List<CustomerPrivate>();

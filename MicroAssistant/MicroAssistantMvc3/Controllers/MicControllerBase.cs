@@ -15,10 +15,8 @@ namespace MicroAssistantMvc.Controllers
     {
         #region token
         private string currentToken;
-        public string token
-        {
-            get
-            {
+        public string token {
+            get {
                 if (currentToken != null)
                     return currentToken;
                 if (FormsAuthentication.CookiesSupported)
@@ -34,13 +32,13 @@ namespace MicroAssistantMvc.Controllers
                         catch (Exception e)
                         {
                             // 票据解密失败
-
+                            
                         }
                     }
                 }
                 else
                 {
-                    //客户端不支持Cookie
+                      //客户端不支持Cookie
                 }
                 return currentToken;
             }
@@ -64,6 +62,7 @@ namespace MicroAssistantMvc.Controllers
                 {
                     int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                     currentUser = SysUserAccessor.Instance.Get(userid);
+                    currentUser.userFuns = SysFunctionAccessor.Instance.SearchSysUserRolePermisson(userid);
                 }
                 else
                 {
@@ -71,6 +70,27 @@ namespace MicroAssistantMvc.Controllers
                 }
                 return currentUser;
             }
+        }
+        /// <summary>
+        /// 判断用户是否有此页面权限
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="functionCode"></param>
+        /// <returns></returns>
+        protected bool CheckUserFunction(string functionCode)
+        {
+            bool result = false;
+            List<SysFunction> fs = CurrentUser.userFuns;
+
+           foreach(SysFunction sf in fs)
+           {
+               if(sf.FunctionCode==functionCode)
+               {
+                   result=true;
+               }
+           }
+
+            return result;
         }
         #endregion
 
@@ -80,6 +100,6 @@ namespace MicroAssistantMvc.Controllers
             ViewBag.CurrentToken = token;
             base.OnAuthorization(filterContext);
         }
-
+    
     }
 }

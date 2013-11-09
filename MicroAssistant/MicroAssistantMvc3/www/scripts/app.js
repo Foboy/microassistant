@@ -102,6 +102,11 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     //    return age;
     //}
 
+    $scope.PLog = function(obj)
+    {
+        console.log(obj);
+    }
+
     $http.post($sitecore.urls["userCurrentUser"], {}).success(function (data) {
         console.log(data);
         if (data.Error) {

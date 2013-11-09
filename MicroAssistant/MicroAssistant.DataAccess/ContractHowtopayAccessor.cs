@@ -32,7 +32,7 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertContractHowtopay
 
-            cmdInsertContractHowtopay = new MySqlCommand("INSERT INTO contract_howtopay(instalments_no,amount,pay_time,received_time,IsReceived,contract_no) values (@InstalmentsNo,@Amount,@PayTime,@ReceivedTime,@Isreceived,@ContractNo)");
+            cmdInsertContractHowtopay = new MySqlCommand("INSERT INTO contract_howtopay(instalments_no,amount,pay_time,received_time,IsReceived,contract_no,ent_id) values (@InstalmentsNo,@Amount,@PayTime,@ReceivedTime,@Isreceived,@ContractNo,@EntId)");
 
             cmdInsertContractHowtopay.Parameters.Add("@InstalmentsNo", MySqlDbType.Int32);
             cmdInsertContractHowtopay.Parameters.Add("@Amount", MySqlDbType.Decimal);
@@ -40,11 +40,12 @@ namespace MicroAssistant.DataAccess
             cmdInsertContractHowtopay.Parameters.Add("@ReceivedTime", MySqlDbType.DateTime);
             cmdInsertContractHowtopay.Parameters.Add("@Isreceived", MySqlDbType.Int32);
             cmdInsertContractHowtopay.Parameters.Add("@ContractNo", MySqlDbType.String);
+            cmdInsertContractHowtopay.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdUpdateContractHowtopay
 
-            cmdUpdateContractHowtopay = new MySqlCommand(" update contract_howtopay set instalments_no = @InstalmentsNo,amount = @Amount,pay_time = @PayTime,received_time = @ReceivedTime,IsReceived = @Isreceived,contract_no = @ContractNo where howtopay_id = @HowtopayId");
+            cmdUpdateContractHowtopay = new MySqlCommand(" update contract_howtopay set ent_id=@EntId, instalments_no = @InstalmentsNo,amount = @Amount,pay_time = @PayTime,received_time = @ReceivedTime,IsReceived = @Isreceived,contract_no = @ContractNo where howtopay_id = @HowtopayId");
             cmdUpdateContractHowtopay.Parameters.Add("@HowtopayId", MySqlDbType.Int32);
             cmdUpdateContractHowtopay.Parameters.Add("@InstalmentsNo", MySqlDbType.Int32);
             cmdUpdateContractHowtopay.Parameters.Add("@Amount", MySqlDbType.Decimal);
@@ -52,6 +53,7 @@ namespace MicroAssistant.DataAccess
             cmdUpdateContractHowtopay.Parameters.Add("@ReceivedTime", MySqlDbType.DateTime);
             cmdUpdateContractHowtopay.Parameters.Add("@Isreceived", MySqlDbType.Int32);
             cmdUpdateContractHowtopay.Parameters.Add("@ContractNo", MySqlDbType.String);
+            cmdUpdateContractHowtopay.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
 
@@ -63,7 +65,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadContractHowtopay
 
-            cmdLoadContractHowtopay = new MySqlCommand(@" select howtopay_id,instalments_no,amount,pay_time,received_time,IsReceived,contract_no from contract_howtopay where contract_no = @ContractNo and (IsReceived = @IsReceived or @IsReceived = 0 ) order by pay_time ");
+            cmdLoadContractHowtopay = new MySqlCommand(@" select ent_id,howtopay_id,instalments_no,amount,pay_time,received_time,IsReceived,contract_no from contract_howtopay where contract_no = @ContractNo and (IsReceived = @IsReceived or @IsReceived = 0 ) order by pay_time ");
             cmdLoadContractHowtopay.Parameters.Add("@ContractNo", MySqlDbType.String);
             cmdLoadContractHowtopay.Parameters.Add("@IsReceived", MySqlDbType.Int32);
 
@@ -77,13 +79,13 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllContractHowtopay
 
-            cmdLoadAllContractHowtopay = new MySqlCommand(" select howtopay_id,instalments_no,amount,pay_time,received_time,IsReceived,contract_no from contract_howtopay");
+            cmdLoadAllContractHowtopay = new MySqlCommand(" select ent_id,howtopay_id,instalments_no,amount,pay_time,received_time,IsReceived,contract_no from contract_howtopay");
 
             #endregion
 
             #region cmdGetContractHowtopay
 
-            cmdGetContractHowtopay = new MySqlCommand(" select howtopay_id,instalments_no,amount,pay_time,received_time,IsReceived,contract_no from contract_howtopay where howtopay_id = @HowtopayId");
+            cmdGetContractHowtopay = new MySqlCommand(" select ent_id,howtopay_id,instalments_no,amount,pay_time,received_time,IsReceived,contract_no from contract_howtopay where howtopay_id = @HowtopayId");
             cmdGetContractHowtopay.Parameters.Add("@HowtopayId", MySqlDbType.Int32);
 
             #endregion
@@ -120,6 +122,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertContractHowtopay.Parameters["@ReceivedTime"].Value = e.ReceivedTime;
                 _cmdInsertContractHowtopay.Parameters["@Isreceived"].Value = e.Isreceived;
                 _cmdInsertContractHowtopay.Parameters["@ContractNo"].Value = e.ContractNo;
+                _cmdInsertContractHowtopay.Parameters["@EntId"].Value = e.EntId;
 
                 _cmdInsertContractHowtopay.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertContractHowtopay.LastInsertedId);
@@ -189,6 +192,7 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateContractHowtopay.Parameters["@ReceivedTime"].Value = e.ReceivedTime;
                 _cmdUpdateContractHowtopay.Parameters["@Isreceived"].Value = e.Isreceived;
                 _cmdUpdateContractHowtopay.Parameters["@ContractNo"].Value = e.ContractNo;
+                _cmdUpdateContractHowtopay.Parameters["@EntId"].Value = e.EntId ;
 
                 _cmdUpdateContractHowtopay.ExecuteNonQuery();
 
