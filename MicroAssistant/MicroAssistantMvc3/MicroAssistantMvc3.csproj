@@ -235,6 +235,7 @@
     <Content Include="www\partials\finance\receivables-detail.html" />
     <Content Include="www\partials\home.html" />
     <Content Include="www\partials\mytimeshaft.html" />
+    <Content Include="www\partials\others\addcompany.html" />
     <Content Include="www\partials\others\locationselectmap.html" />
     <Content Include="www\partials\others\photocutter.html" />
     <Content Include="www\partials\product.html" />
@@ -314,9 +315,7 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MicroAssistant.Cache\MicroAssistant.Cache.csproj">
