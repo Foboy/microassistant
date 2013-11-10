@@ -6,7 +6,8 @@
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
     <!--    <link href="css/flat-ui.css" rel="stylesheet" media="screen">-->
     <link href="css/master.css" rel="stylesheet" media="screen">
-    <script src="js/jquery.js"></script>
+   <!-- <script src="js/jquery.js"></script>-->
+    <script src="../Scripts/jquery-1.7.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
     <link href="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" />
@@ -25,7 +26,6 @@
     <script src="scripts/client/controller.js"></script>
     <script src="js/uploadify/jquery.uploadify.js"></script>
     <script src="js/uploadify/uploadify.extention.js"></script>
-    <script src="../Scripts/jquery-1.7.1.js"></script>
     <link rel="stylesheet" type="text/css" href="js/bootstro/bootstro.css">
     <script src="js/bootstro/bootstro.js"></script>
     <link rel="stylesheet" type="text/css" href="js/uploadify/uploadify.css">
@@ -62,11 +62,11 @@
     </script>
 </head>
 <body ng-controller="MainCtrl">
-    <div class="navbar" >
+    <div class="navbar">
         <div class="main clearfix">
             <div class="user-name" id="myinfodiv">
                 <span>{{CurrentUser.UserName}}</span><i></i>
-                <ul class="u-info-list" style="display:none" id="uinfolist" >
+                <ul class="u-info-list" style="display: none" id="uinfolist">
                     <li><a ng-href="#!/user" class="writeLink">基本资料</a></li>
                     <li><a ng-href="#!/mytimeshaft" class="writeLink">我的时间轴</a></li>
                     <li><a ng-href="#!/staffmangement" class="writeLink">我的员工管理</a></li>
@@ -75,21 +75,21 @@
             </div>
         </div>
     </div>
-    <div id="userHeadImageSelectModal" class="modal hide fade" style="width:900px;height:550px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-            <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">×</button>
+    <div id="userHeadImageSelectModal" class="modal hide fade" style="width: 900px; height: 550px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="myAPModalLabel">选择头像</h3>
-          </div>
-          <div class="modal-body" style="width:900px;">
-            <div class="popupBox clearfix"  style="width:900px;">
-                <iframe id="salesUserHeadImageIframe" src="" style="width:900px;height:500px;border:none;"></iframe>
+        </div>
+        <div class="modal-body" style="width: 900px;">
+            <div class="popupBox clearfix" style="width: 900px;">
+                <iframe id="salesUserHeadImageIframe" src="" style="width: 900px; height: 500px; border: none;"></iframe>
             </div>
-          </div>
+        </div>
     </div>
     <div class="Nav">
-        <div class="headImg" style="position:relative;">
+        <div class="headImg" style="position: relative;">
             <img ng-src="{{HeadPicUrl}}" />
-            <img src="img/c-img-cover.png" style="position:absolute;top:20px;left:55px;cursor:pointer;" ng-click="setUserHeadImg()"/>
+            <img src="img/c-img-cover.png" style="position: absolute; top: 20px; left: 55px; cursor: pointer;" ng-click="setUserHeadImg()" />
         </div>
         <ul class="navList">
             <li ng-class="page=='home'?'cur':''">

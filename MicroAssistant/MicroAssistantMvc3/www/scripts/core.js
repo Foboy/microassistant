@@ -26,7 +26,8 @@ $sitecore.urls.add("UpdateEmail", "/UserManagement/User/UpdateEmail");//修改�
 $sitecore.urls.add("Logout", "/UserManagement/User/Logout");//用户退出登录
 $sitecore.urls.add("SearchUserTimeMachine", "/UserManagement/User/SearchUserTimeMachine");//用户时间轴
 $sitecore.urls.add("EditeUserEntId", "/UserManagement/User/EditeUserEntId")//关联企业
-$sitecore.urls.add("SearchEntRole", "/SystemManagement/Permission/");//员工管理权限列表
+$sitecore.urls.add("SearchEntRole", "/SystemManagement/Permission/SearchEntRole");//员工管理权限列表
+$sitecore.urls.add("SearchUserListByRoleId", "/SystemManagement/Permission/SearchUserListByRoleId"); //通过权限ID获取用户信息列表
 
 $sitecore.urls.add("productCat", "/ProductManagement/Production/SearchProductTypeListByEntID");
 $sitecore.urls.add("productAddCat", "/ProductManagement/Production/AddProductionType"); 

@@ -217,14 +217,28 @@ function AddCompanyCtrl($scope, $http, $location) {
 }
 function StaffMangementCtrl($scope, $http, $location)
 {
-    $scope.SearchEntRole = function (item) {
+    $scope.selectedRoleid = 0;
+    $scope.SearchEntRole = function () {
         $http.post($sitecore.urls["SearchEntRole"], {}).success(function (data) {
             if (!data.Error) {
-
-            }
+                $scope.SysRoles = data.Data;
+            } else { $scope.SysRoles = []; }
         }).error(function (data, status, headers, config) {
-
+            $scope.SysRoles = [];
         });
     }
-    $scope.SearchEntRole("");
+    $scope.SearchEntRole();
+    $scope.SearchUserListByRoleId = function (RoleId) {
+        if (RoleId != null) {
+            $scope.selectedRoleid = RoleId;
+            $http.post($sitecore.urls["SearchUserListByRoleId"], { roleId: RoleId }).success(function (data) {
+                if (!data.Error) {
+                    $scope.SysUsers = data.Data;
+                } else { $scope.SysUsers = []; }
+            }).error(function (data, status, headers, config) {
+                $scope.SysUsers = [];
+            });
+        }
+    };
+    $scope.SearchUserListByRoleId(0);
 }
