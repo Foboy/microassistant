@@ -1,11 +1,40 @@
 ﻿function UserBossMainCtrl($scope, $http, $location) {
+    $scope.funnelTimeType = 1;
+    $scope.funnelTimeTypeLabel = '本月';
+
+    $scope.setFunnelTimeType = function (timeType) {
+        $scope.funnelTimeType = timeType;
+        switch (timeType)
+        {
+            case 1:
+                $scope.funnelTimeTypeLabel = '本月';
+                break;
+            case 2:
+                $scope.funnelTimeTypeLabel = '本季度';
+                break;
+            case 3:
+                $scope.funnelTimeTypeLabel = '本年度';
+                break;
+        }
+    };
+
     $scope.salesFunnel = function () {
         var totalHeight = 326;
-        var sales = [1152, 234, 532, 321, 323], total = 0;
+        var sales = [0, 0, 0,0, 1], total = 0;
         var colors = ['#f00', '#f0f', '#0f0', '#0ff', '#ff0'];
         var titles = ['销售机会', '初步接洽', '多次拜访', '报价', '签订合同'];
         var labelTop = [60, 110, 160, 210, 250];
         $scope.salesFunnelList = [];
+
+        $http.post($sitecore.urls["salesSalesReport"], { timeType: $scope.funnelTimeType }).success(function (data) {
+            console.log(data);
+            if (data.Error) {
+                alert(data.ErrorMessage);
+            }
+        }).
+        error(function (data, status, headers, config) {
+           
+        });
 
         for (var i = 0; i < sales.length; i++) {
             total += sales[i];

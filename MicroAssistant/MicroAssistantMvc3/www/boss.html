@@ -54,12 +54,23 @@
                             </div>
                     	</li>
                     </ul>
-                    <div class="time-change">
-                    	本月<i></i>
+                    <div class="time-change" style="display:none">
+                    	{{funnelTimeTypeLabel}}<i></i>
                         <ul>
-                        	<li>本季度</li>
-                            <li>本年度</li>
+                            <li ng-click="setFunnelTimeType(1)" ng-hide="funnelTimeType==1">本月</li>
+                        	<li ng-click="setFunnelTimeType(2)" ng-hide="funnelTimeType==2">本季度</li>
+                            <li ng-click="setFunnelTimeType(3)" ng-hide="funnelTimeType==3">本年度</li>
                         </ul>
+                    </div>
+                    <div class="btn-group time-change">
+                      <button class="dropdown-toggle" style="width:150px;height:30px;border: none;background:#fff;" type="button" data-toggle="dropdown">
+                        <span style="margin-left:40px;">{{funnelTimeTypeLabel}}</span><span class="caret" style="margin-left:30px;margin-top:5px;"></span>
+                      </button>
+                      <ul class="dropdown-menu" style="width:150px;min-width: 150px;top:15px;border-radius: 0px;">
+                            <li ng-click="setFunnelTimeType(1)" ng-hide="funnelTimeType==1">本月</li>
+                        	<li ng-click="setFunnelTimeType(2)" ng-hide="funnelTimeType==2">本季度</li>
+                            <li ng-click="setFunnelTimeType(3)" ng-hide="funnelTimeType==3">本年度</li>
+                      </ul>
                     </div>
                 </div>
             </div>
@@ -69,11 +80,24 @@
     	<div class="main">
         	<div class="chance-box">
             	<h1>销售机会对比
-                	<div class="time-change">按月<i></i>
+                	<div class="time-change" style="display:none">按月<i></i>
                         <ul>
                         	<li>按季</li>
                             <li>按年</li>
                         </ul>
+                    </div>
+                    <div class="btn-group time-change">
+                      <button class="dropdown-toggle" style="width:100px;height:30px;border: none;background:#fff;" type="button" data-toggle="dropdown">
+                        <span style="margin-left:30px;">按月</span><span class="caret" style="margin-left:20px;margin-top:5px;"></span>
+                      </button>
+                      <ul class="dropdown-menu" style="width:100px;min-width: 100px;top:15px;border-radius: 0px;">
+                        <li>
+                            按季
+                        </li>
+                          <li>
+                            按年
+                        </li>
+                      </ul>
                     </div>
                 </h1>
                 <div class="histogram">

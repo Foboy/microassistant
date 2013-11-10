@@ -49,7 +49,10 @@ $sitecore.urls.add("salesConractList", "/ContractManagement/ContractInfo/GetCont
 $sitecore.urls.add("salesAddConract", "/ContractManagement/ContractInfo/AddContractInfo");
 
 
-
+//boss
+$sitecore.urls.add("salesSalesReport", "/BossManagement/Boss/SearchSalesReport");
+$sitecore.urls.add("salesSalesOppReport", "/BossManagement/Boss/SearchSalesOppReport");
+$sitecore.urls.add("salesFinanceReport", "/BossManagement/Boss/SalesFinanceReport");
 
 
 $sitecore.urls.add("receivablesfinanceList", "/FinancialManagement/Financial/SearchReceivables");//根据企业ID获取应收款列表 返回 应收款列表
