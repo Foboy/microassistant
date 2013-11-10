@@ -1,9 +1,9 @@
 ﻿<div class="clearfix">
     <div class="staffList">
         <h2>员工管理</h2>
-        <ul>
-            <li><a href="" class="cur"><span>全部员工 （21）</span> ></a></li>
-            <li><a href=""><span>新申请员工 （21）</span> ></a></li>
+        <ul ng-repeat="">
+            <li><a href="" ng-click="SearchEntRole(1)" class="cur"><span>全部员工 （21）</span> ></a></li>
+            <li><a href="" ng-click="SearchEntRole(2)"><span>新申请员工 （21）</span> ></a></li>
             <li><a href=""><span>销售部门 （21）</span> ></a></li>
             <li><a href=""><span>财务部门 （21）</span> ></a></li>
         </ul>
@@ -18,7 +18,7 @@
                 <input type="button" class="seBtn">
             </span>
         </div>
-        <div class="clearfix">
+        <div class="clearfix" >
             <div class="peop-box" >
                 <img src="img/Adimg/h1.jpg">
                 <div class="p-b-info">

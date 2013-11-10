@@ -217,5 +217,14 @@ function AddCompanyCtrl($scope, $http, $location) {
 }
 function StaffMangementCtrl($scope, $http, $location)
 {
+    $scope.SearchEntRole = function (item) {
+        $http.post($sitecore.urls["SearchEntRole"], {}).success(function (data) {
+            if (!data.Error) {
 
+            }
+        }).error(function (data, status, headers, config) {
+
+        });
+    }
+    $scope.SearchEntRole("");
 }
