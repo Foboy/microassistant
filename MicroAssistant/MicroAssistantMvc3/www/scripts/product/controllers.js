@@ -79,42 +79,34 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
   };	
   
   $scope.addCatalog = function(){
-	  if($scope.addCatalogFlag)
-	  {
-		  if($scope.ProductCatalogForm.$valid)
-		  {
-			  $scope.showerror = false;
-		      $http.post($sitecore.urls["productAddCat"], { fatherid: 0, pTypeName: $scope.AddedCatalog.PTypeName, ptypepicid: $scope.AddedCatalog.PicId || 0 }).success(function (data) {
-		          console.log(data);
-		          if (data.Error) {
-		              alert(data.ErrorMessage);
-		          }
-		          else {
-		              $scope.catalogs = $scope.catalogs || [];
-		              data.PTypeName = $scope.AddedCatalog.PTypeName;
-		              data.PicId = $scope.AddedCatalog.PicId;
-		              $scope.catalogs.push(data);
-		              $scope.addCatalogFlag = false;
-		          }
-			  }).
-			  error(function(data, status, headers, config) {
-				$scope.product = {};
-			  });
-		  }
-		  else
-		  {
-			  $scope.showerror = true;
-		  }
-	  }
-	  else
-	  {
-		  $scope.addCatalogFlag = true;
-		  $scope.showerror = false;
-	  }
+      $('#productCatalogAddModal').modal('show');
+      $scope.ProductCatalogForm.$setPristine();
   };
-  
-  $scope.addCatalogCancel = function(){
-	  $scope.addCatalogFlag = false;
+
+  $scope.addCatalogSubmit = function () {
+      if ($scope.ProductCatalogForm.$valid) {
+          $scope.showerror = false;
+          $http.post($sitecore.urls["productAddCat"], { fatherid: 0, pTypeName: $scope.AddedCatalog.PTypeName, ptypepicid: $scope.AddedCatalog.PicId || 0 }).success(function (data) {
+              console.log(data);
+              if (data.Error) {
+                  alert(data.ErrorMessage);
+              }
+              else {
+                  $scope.catalogs = $scope.catalogs || [];
+                  var catalog = angular.copy($scope.AddedCatalog)
+                  catalog.PTypeId = data.Id;
+                  catalog.PicId = $scope.AddedCatalog.PicId;
+                  $scope.catalogs.push(catalog);
+                  $('#productCatalogAddModal').modal('hide');
+              }
+          }).
+          error(function (data, status, headers, config) {
+              $scope.product = {};
+          });
+      }
+      else {
+          $scope.showerror = true;
+      }
   };
   
   
@@ -133,18 +125,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
   };
   
   $scope.showCatalogs($routeParams.catalogId,$routeParams.pageIndex || 1);
-  $('#file_upload').cuploadify({
-				'formData'     : {
-					'token'     : 'sss'
-				},
-				'swf'      : 'js/uploadify/uploadify.swf',
-				'uploader' : '/Upload/Uploader/71358f72c447e0ec2ecba71636907898?queryData=width-126,height-126&imageWidth=470&imageHeight=0',
-				'height'   : 70,
-				'width'    : 190,
-				onUploadComplete : function(response){
-					
-				}
-			});
+
 
   //bootstro.start('.bootstro', {
   //    url : 'partials/product/help.json',

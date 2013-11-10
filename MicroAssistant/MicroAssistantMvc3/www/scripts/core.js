@@ -8,7 +8,8 @@ $sitecore.urls.add = function(name,url){
 
 $sitecore.urls.add("UploadFile", "/FileManagement/File/UploadFile");
 $sitecore.urls.add("SourceFileClipOrThumb", "/FileManagement/File/SourceFileClipOrThumb");
-$sitecore.urls.add("AddPic", "/FileManagement/File/AddPic");
+$sitecore.urls.add("AddPic", "/FileManagement/File/AddPic"); 
+$sitecore.urls.add("GetPic", "/FileManagement/File/GetPic");
 
 
 $sitecore.urls.add("userLogin", "/UserManagement/User/Login"); 
@@ -43,10 +44,16 @@ $sitecore.urls.add("salesChanceVisitsList", "/MarketingManagement/Marketing/GetV
 $sitecore.urls.add("salesAddChanceVisits", "/MarketingManagement/Marketing/ToVisit"); 
 $sitecore.urls.add("salesRateChange", "/MarketingManagement/Marketing/EditCustomerRate");
 $sitecore.urls.add("salesChanceVisitList", "/MarketingManagement/Marketing/SearchVisitInfoList");
+$sitecore.urls.add("salesGetMarketingCount", "/MarketingManagement/Marketing/GetMarketingCount");
 
 $sitecore.urls.add("salesConractList", "/ContractManagement/ContractInfo/GetContractInfoByEID");
 $sitecore.urls.add("salesAddConract", "/ContractManagement/ContractInfo/AddContractInfo");
 
+
+//boss
+$sitecore.urls.add("salesSalesReport", "/BossManagement/Boss/SearchSalesReport");
+$sitecore.urls.add("salesSalesOppReport", "/BossManagement/Boss/SearchSalesOppReport");
+$sitecore.urls.add("salesFinanceReport", "/BossManagement/Boss/SalesFinanceReport");
 
 
 $sitecore.urls.add("receivablesfinanceList", "/FinancialManagement/Financial/SearchReceivables");//根据企业ID获取应收款列表 返回 应收款列表
