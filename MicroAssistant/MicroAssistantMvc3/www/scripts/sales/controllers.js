@@ -431,13 +431,14 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
     };
 }
 
-function SalesContractEditCtrl($scope, $routeParams, $http, $location) {
+function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) {
     var from;
     $scope.$on('EventAddContract', function (event, fromscope) {
         console.log("EventAddContract");
         console.log(fromscope);
         from = fromscope;
-        $scope.EditContract = { HowtopayListCount: 3, Howtopay: 0 };
+        
+        $scope.EditContract = { HowtopayListCount: 3, Howtopay: 0, ContractNo: $filter('date')(new Date(), 'yyyyMMddHHmmss') };
         $scope.salesContractEditPage = 1;
         $scope.ContractPayChanced();
         $('#salesContractEditModal').modal('show');

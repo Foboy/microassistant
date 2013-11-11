@@ -88,13 +88,16 @@
                     </div>
                     <div class="btn-group time-change">
                       <button class="dropdown-toggle" style="width:100px;height:30px;border: none;background:#fff;" type="button" data-toggle="dropdown">
-                        <span style="margin-left:30px;">按月</span><span class="caret" style="margin-left:20px;margin-top:5px;"></span>
+                        <span style="margin-left:30px;">{{oppTimeTypeLabel}}</span><span class="caret" style="margin-left:20px;margin-top:5px;"></span>
                       </button>
                       <ul class="dropdown-menu" style="width:100px;min-width: 100px;top:15px;border-radius: 0px;">
-                        <li>
+                          <li ng-click="setOppTimeType(1)" ng-hide="oppTimeType==1">
+                            按月
+                        </li>
+                        <li ng-click="setOppTimeType(2)" ng-hide="oppTimeType==2">
                             按季
                         </li>
-                          <li>
+                          <li ng-click="setOppTimeType(3)" ng-hide="oppTimeType==3">
                             按年
                         </li>
                       </ul>

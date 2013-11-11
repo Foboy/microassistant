@@ -46,11 +46,11 @@ from
     FROM
         microassistantdb.marketing_visit
     where
-        ent_id = @EntId and and visit_time >=@StartTime and visit_time < @EndTime
+        ent_id = @EntId and visit_time >=@StartTime and visit_time < @EndTime
     group by chance_id) a {0} ");
             cmdGetFirstAndMoreVisitCount.Parameters.Add("@EntId", MySqlDbType.Int32);
-            cmdGetMarketingChanceCount.Parameters.Add("@StartTime", MySqlDbType.DateTime);
-            cmdGetMarketingChanceCount.Parameters.Add("@EndTime", MySqlDbType.DateTime);
+            cmdGetFirstAndMoreVisitCount.Parameters.Add("@StartTime", MySqlDbType.DateTime);
+            cmdGetFirstAndMoreVisitCount.Parameters.Add("@EndTime", MySqlDbType.DateTime);
 
             #endregion
 
@@ -135,9 +135,11 @@ from
                 }
                 _cmdGetFirstAndMoreVisitCount.CommandText = string.Format(_cmdGetFirstAndMoreVisitCount.CommandText, strsql);
 
-                _cmdGetFirstAndMoreVisitCount.Parameters["@EndId"].Value = entId;
+                _cmdGetFirstAndMoreVisitCount.Parameters["@EntId"].Value = entId;
                 _cmdGetFirstAndMoreVisitCount.Parameters["@StartTime"].Value = startTime;
                 _cmdGetFirstAndMoreVisitCount.Parameters["@EndTime"].Value = endTime;
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
                 returnValue = Convert.ToInt32(_cmdGetFirstAndMoreVisitCount.ExecuteScalar());
             }
             finally
