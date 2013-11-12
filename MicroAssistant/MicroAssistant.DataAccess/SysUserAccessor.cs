@@ -628,7 +628,7 @@ limit 0,1" );
             _cmdGetEntUserByEntCode.Connection = oc;
             try
             {
-                _cmdGetEntUserByEntCode.Parameters["@EntCode"].Value = EntCode;
+                _cmdGetEntUserByEntCode.Parameters["@EntCode"].Value = EntCode.ToUpper();
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();

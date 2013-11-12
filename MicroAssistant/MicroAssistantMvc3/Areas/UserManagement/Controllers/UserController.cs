@@ -44,16 +44,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     
                 }
                 SysUser lastuser = new SysUser();
-                string EntCode = string.Empty;
-                lastuser=SysUserAccessor.Instance.GetLastSysUser();
-                if (lastuser != null)
-                {
-                    EntCode = "ent" + (Convert.ToInt32(lastuser.EntCode.Substring(2, lastuser.EntCode.Length - 1)) + 1);
-                }
-                else
-                {
-                    EntCode = "ent1001";
-                }
+                string EntCode = GetEntCode(GenCode(6));
                 SysUser user = new SysUser();
                 user.UserName = entName;
                 user.UserAccount = account;
@@ -113,11 +104,18 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 SysUser user = new SysUser();
                 if (!string.IsNullOrEmpty(entCode.Trim()))
                 {
-                    entUser = SysUserAccessor.Instance.GetEntUserByEntCode(entCode.Trim());
+                    entUser = SysUserAccessor.Instance.GetEntUserByEntCode(entCode.ToUpper().Trim());
                     if (entUser != null)
                     {
                         user.EntId = entUser.EntId;
-                        user.EntCode = entCode;
+                        user.EntCode = entCode.ToUpper();
+                    }
+                    else
+                    {
+                        result.Error = AppError.ERROR_FAILED;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
                     }
                 }
                 user.UserAccount = account;
@@ -762,6 +760,14 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             {
                 throw new InvalidDataException("Cache配置文件内容不正确");
             }
+        }
+        private string GetEntCode(string entCode)
+        {
+            if (SysUserAccessor.Instance.GetEntUserByEntCode(entCode) != null)
+            {
+                entCode = GetEntCode(GenCode(6));
+            }
+            return entCode;
         }
 
         #endregion
