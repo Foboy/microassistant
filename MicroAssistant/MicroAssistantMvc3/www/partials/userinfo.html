@@ -5,7 +5,10 @@
             <li class="clearfix">
                 <span class="span1">邮箱账号</span>
                 <span class="span2">{{UserInfo.Email}}</span>
-
+				<span class="span3">
+                    <a class="grayLink" ng-href="#!/changepassword" >修改密码</a>
+                    <a class="grayLink" ng-href="#!/changeemail">修改邮箱</a>
+                </span>
             </li>
             <li class="clearfix">
                 <span class="span1">昵称</span>
@@ -18,10 +21,7 @@
                 <span class="span2">
                     <!--王晓-->
                     <input type="text" name="UserName" ng-model="UserInfo.UserName" class="t-p"></span>
-                <span class="span3">
-                    <a class="grayLink" ng-href="#!/changepassword" >修改密码</a>
-                    <a class="grayLink" ng-href="#!/changeemail">修改邮箱</a>
-                </span>
+                
             </li>
             <li class="clearfix">
                 <span class="span1">性别</span>
@@ -41,9 +41,6 @@
                         <input type="radio" ng-model="UserInfo.Sex" data-toggle="radio" value="2">女
                     </label>
                 </span>
-                <span class="span3">
-                    <a class="grayLink" href="" ng-click="EditUserInfo(UserInfo)">保存</a>
-                </span>
             </li>
             <li class="clearfix">
                 <span class="span1">年龄</span>
@@ -53,4 +50,7 @@
             </li>
         </ul>
     </div>
+	<div class="save-btn">
+            <a class="btn btn-large btn-block btn-info" href="" ng-click="EditUserInfo(UserInfo)">保存</a>
+        </div>
 </form>

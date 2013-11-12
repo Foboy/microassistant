@@ -1091,11 +1091,11 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
   display: inline-block;
-  height: 20px;
+  height: 30px;
   padding: 4px 6px;
   margin-bottom: 10px;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 30px;
   color: #555555;
   vertical-align: middle;
 /*  -webkit-border-radius: 4px;
@@ -1186,13 +1186,13 @@ input[type="checkbox"] {
 
 select,
 input[type="file"] {
-  height: 30px;
+  height: 40px;
   /* In IE7, the height of the select element cannot be changed by height, only font-size */
 
   *margin-top: 4px;
   /* For IE7, add top margin to align select with labels */
 
-  line-height: 30px;
+  line-height: 40px;
 }
 
 select {
@@ -3330,7 +3330,7 @@ button.close {
 
 .btn-block {
   display: block;
-  width: 100%;
+  /*width: 100%;*/
   padding-right: 0;
   padding-left: 0;
   -webkit-box-sizing: border-box;
