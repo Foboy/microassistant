@@ -155,7 +155,16 @@
                             alert(data.ErrorMessage);
                         }
                         else {
-                            alert("保存成功")
+                            $.post($sitecore.urls["AddPic"], { sourcePath: data.Data[0].FileUrl, picType: 2 }, function (picdata) {
+                                if (picdata.Error) {
+                                    alert(picdata.ErrorMessage);
+                                }
+                                else {
+                                    $.post($sitecore.urls["EditeUserHeadImg"], { picId: picdata.Data.PicId }, function (userdata) {
+                                        utilities.fireiframelistener("event:userHeadImageSeted", data.Data[0].FileUrl);
+                                    });
+                                }
+                            });
                         }
                     });
                 }

@@ -56,6 +56,9 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
                             FileUrl = FileHelper.GetFileSavePath(userid, fileType, item.SavePrefix + saveName)
                         });
                     }
+
+                    result.Error = AppError.ERROR_SUCCESS;
+                    result.ErrorMessage = result.ExMessage = "成功";
                 }
                 else
                 {
@@ -304,6 +307,70 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
+
+
+        public JsonResult GetPic(int picid)
+        {
+            var Res = new JsonResult();
+            AdvancedResult<ResPic> result = new AdvancedResult<ResPic>();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                    result.Data =ResPicAccessor.Instance.Get(picid);
+                    result.Error = AppError.ERROR_SUCCESS;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
+        public JsonResult AddPic(string sourcePath,PicType picType)
+        {
+            var Res = new JsonResult();
+            AdvancedResult<ResPic> result = new AdvancedResult<ResPic>();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                    ResPic pic = new ResPic();
+                    pic.ObjId = userid;
+                    pic.ObjType = picType;
+                    pic.PicUrl = sourcePath;
+                    pic.State = StateType.Active;
+
+                    int picid = ResPicAccessor.Instance.Insert(pic);
+                    pic.PicId = picid;
+                    result.Data = pic;
+                    result.Error = AppError.ERROR_SUCCESS;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
+
         public JsonResult DeleteBBPic(int picId)
         {
             var Res = new JsonResult();

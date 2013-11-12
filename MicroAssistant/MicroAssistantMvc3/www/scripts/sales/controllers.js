@@ -2,7 +2,11 @@
 function SalesMainCtrl($scope, $routeParams, $http, $location){
 	$scope.steps = $routeParams.steps;
 	if(!$scope.steps)
-		$scope.steps = "chance";
+	    $scope.steps = "chance";
+	$scope.SalesChanceCount = 0;
+	$scope.SalesVisitCount = 0;
+	$scope.SalesContractCount = 0;
+	$scope.SalesAfterCount = 0;
 	console.log( $routeParams)
 	//显示列表内容
 	$scope.loadCurrentStepList = function(){
@@ -91,6 +95,18 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 	};
 
 	$scope.loadCurrentStepList();
+
+    $http.post($sitecore.urls["salesGetMarketingCount"], {}).success(function (data) {
+        console.log(data);
+        $scope.SalesChanceCount = data.Data[0];
+        $scope.SalesVisitCount = data.Data[1];
+        $scope.SalesContractCount = data.Data[2];
+        $scope.SalesAfterCount = 0;
+	}).
+    error(function (data, status, headers, config) {
+        $scope.afters = [];
+    });
+	
 }
 
 function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) {
@@ -415,13 +431,14 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
     };
 }
 
-function SalesContractEditCtrl($scope, $routeParams, $http, $location) {
+function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) {
     var from;
     $scope.$on('EventAddContract', function (event, fromscope) {
         console.log("EventAddContract");
         console.log(fromscope);
         from = fromscope;
-        $scope.EditContract = { HowtopayListCount: 3, Howtopay: 0 };
+        
+        $scope.EditContract = { HowtopayListCount: 3, Howtopay: 0, ContractNo: $filter('date')(new Date(), 'yyyyMMddHHmmss') };
         $scope.salesContractEditPage = 1;
         $scope.ContractPayChanced();
         $('#salesContractEditModal').modal('show');

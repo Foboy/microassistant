@@ -125,3 +125,32 @@ utilities.mvcParamMatch = (function () {
         return MvcParameterAdaptive.convertObject("", json);
     };
 })();
+
+utilities.loading = function (title) {
+    var id = 'globalloadingbox_' + (Math.round(Math.random() * 10000));
+    $(document.body).append('\
+        <div id="'+ id + '" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:150px;height:56px;text-align:center;"> \
+            <img src="/www/img/loading26.gif" alt="正在努力加载..." /> \
+            <p> ' + (title || '正在努力加载...') + ' </p> \
+        </div>');
+    return {
+        show: function () {
+            $('#' + id).modal('show').css(
+            {
+                'margin-left': function () {
+                    return -($(this).width() / 2);
+                },
+                'top': '50%',
+                'margin-top': function () {
+                    return -($(this).height() / 2);
+                }
+            });
+        },
+        hide: function () {
+            $('#' + id).modal('hide');
+        },
+        destory: function () {
+            $('#' + id).remove();
+        }
+    }
+};

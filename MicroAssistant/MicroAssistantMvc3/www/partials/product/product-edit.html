@@ -7,13 +7,14 @@
         <div class="popupBox clearfix">
     	<div class="listBox">
             <ul>
-            	<li ng-class="productEditPageOne?'cur':''"><i>1</i>产品资料</li>
-                <li ng-class="!productEditPageOne?'cur':''"><i>2</i>产品报价</li>
+            	<li ng-class="productEditPage==1?'cur':''" ng-click="productEditPage=1"><i>1</i>产品资料</li>
+                <li ng-class="productEditPage==2?'cur':''" ng-click="productEditPage=2"><i>2</i>产品报价</li>
             </ul>
         </div>
-        <form name="ProductEditForm" ng-class="showerror?'showerror':''">
-        <div class="madeBox" ng-show="productEditPageOne">
-        <ul class="listContent">
+        
+        <div class="madeBox" ng-show="productEditPage==1">
+            <form name="ProductEditFormOne" ng-class="showerror1?'showerror':''">
+                <ul class="listContent">
         	<li><span class="span1">产品名称：</span><span><input type="text" name="PName" ng-model="EditProduct.PName" ng-required="true" placeholder="请输入产品名称" class="span3"></span></li>
             <li><span class="span1">产品分类：</span><span>
             <select class="span3" name="PType" ng-model="EditProduct.PType" ng-options="t.PTypeName for t in PTypes " ng-required="true">
@@ -38,18 +39,21 @@
 </label>
 				</span></li>
             <li><span class="span1">产品描述：</span><span><textarea rows="3" name="PInfo" ng-model="EditProduct.PInfo" ng-required="true" placeholder="请输入产品描述" class="span3"></textarea></span></li>
-            <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" class="btn btn-large btn-block btn-success" ng-click="editProductPageNext()">下一步</a></span></li>
+            <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" class="btn btn-large btn-block btn-success" ng-click="productEditPage=2">下一步</a></span></li>
         </ul>
+            </form>
         </div>
-        <div class="madeBox" ng-hide="productEditPageOne">
-        <ul class="listContent">
-        	<li><span class="span1">最低售价：</span><span><input type="number" ng-model="EditProduct.LowestPrice" ng-required="true" placeholder="最低售价" class="span3"></span></li>
-            <li><span class="span1">市场售价：</span><span><input type="number" ng-model="EditProduct.MarketPrice"  ng-required="true" placeholder="市场售价" class="span3"></span></li>
-            <!--<li><span class="span1">&nbsp;</span><span class="priceBox">采购总价：<b class="colorBlue">{{(EditProduct.StockCount || 0)*(EditProduct.PurchasePrice||0)}}</b><span class="colorGray">元</span></span></li>-->
-            <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" class="btn btn-large btn-block btn-success" ng-click="ProductEditSubmit()">确 定</a><a href="" class="btn btn-large btn-block btn-success" ng-click="productEditPageOne = true">上一步</a></span></li>
-        </ul>
+        <div class="madeBox" ng-show="productEditPage==2">
+            <form name="ProductEditFormTwo" ng-class="showerror2?'showerror':''">
+                <ul class="listContent">
+        	        <li><span class="span1">最低售价：</span><span><input type="number" ng-model="EditProduct.LowestPrice" ng-required="true" placeholder="最低售价" class="span3"></span></li>
+                    <li><span class="span1">市场售价：</span><span><input type="number" ng-model="EditProduct.MarketPrice"  ng-required="true" placeholder="市场售价" class="span3"></span></li>
+                    <!--<li><span class="span1">&nbsp;</span><span class="priceBox">采购总价：<b class="colorBlue">{{(EditProduct.StockCount || 0)*(EditProduct.PurchasePrice||0)}}</b><span class="colorGray">元</span></span></li>-->
+                    <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" class="btn btn-large btn-block btn-success" ng-click="ProductEditSubmit()">确 定</a><a href="" class="btn btn-large btn-block btn-success" ng-click="productEditPage = 1">上一步</a></span></li>
+                </ul>
+            </form>
         </div>
-        </form>
+
     </div>
       </div>
     </div>
