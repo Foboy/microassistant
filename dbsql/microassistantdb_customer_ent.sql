@@ -38,7 +38,7 @@ CREATE TABLE `customer_ent` (
   `ent_id` int(11) NOT NULL COMMENT '销售所属企业ID，第一次写入后就不会改变',
   `owner_id` int(11) NOT NULL COMMENT '所属销售ID',
   PRIMARY KEY (`customer_ent_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='企业客户';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='企业客户';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,6 +47,7 @@ CREATE TABLE `customer_ent` (
 
 LOCK TABLES `customer_ent` WRITE;
 /*!40000 ALTER TABLE `customer_ent` DISABLE KEYS */;
+INSERT INTO `customer_ent` VALUES (1,'444',NULL,'444','444','444',NULL,NULL,NULL,'4444',14,14);
 /*!40000 ALTER TABLE `customer_ent` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-09 11:59:18
+-- Dump completed on 2013-11-12  9:11:03

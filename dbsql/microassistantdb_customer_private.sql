@@ -39,7 +39,7 @@ CREATE TABLE `customer_private` (
   `ent_id` int(11) NOT NULL COMMENT '所属企业ID',
   `owner_id` int(11) NOT NULL,
   PRIMARY KEY (`customer_private_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='个人客户';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='个人客户';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,6 +48,7 @@ CREATE TABLE `customer_private` (
 
 LOCK TABLES `customer_private` WRITE;
 /*!40000 ALTER TABLE `customer_private` DISABLE KEYS */;
+INSERT INTO `customer_private` VALUES (1,'sfds',0,'0001-01-01 00:00:00',NULL,'sdf','df','sdf','sdf',NULL,'fdsafd',14,14);
 /*!40000 ALTER TABLE `customer_private` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-09 11:59:19
+-- Dump completed on 2013-11-12  9:11:04
