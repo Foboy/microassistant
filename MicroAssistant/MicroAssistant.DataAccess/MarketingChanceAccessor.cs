@@ -102,7 +102,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdGetMarketingChanceCount
 
-            cmdGetMarketingChanceCount = new MySqlCommand(" select count(1)  from marketing_chance where  user_id = @UserId and @IsVisit=0 or isvisit = @IsVisit ");
+            cmdGetMarketingChanceCount = new MySqlCommand(" select count(1)  from marketing_chance where  user_id = @UserId and (@IsVisit=0 or isvisit = @IsVisit) ");
             cmdGetMarketingChanceCount.Parameters.Add("@IsVisit", MySqlDbType.Int32);
             cmdGetMarketingChanceCount.Parameters.Add("@UserId", MySqlDbType.Int32);
             #endregion
@@ -360,7 +360,7 @@ namespace MicroAssistant.DataAccess
         /// </summary>
         /// <param name="IsVisit"></param>
         /// <returns></returns>
-        public int GetMarketingChanceCount(int IsVisit)
+        public int GetMarketingChanceCount(int userid,int IsVisit)
         {
             int returnValue =0;
             MySqlConnection oc = ConnectManager.Create();
@@ -371,6 +371,8 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
+                _cmdGetMarketingChanceCount.Parameters["@IsVisit"].Value = IsVisit;
+                _cmdGetMarketingChanceCount.Parameters["@UserId"].Value = userid;
                 returnValue = Convert.ToInt32(_cmdGetMarketingChanceCount.ExecuteScalar());
             }
             finally

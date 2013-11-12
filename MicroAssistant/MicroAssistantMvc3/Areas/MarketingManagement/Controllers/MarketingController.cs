@@ -495,8 +495,8 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                         Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         return Res;
                     }
-                    nums.Add(MarketingChanceAccessor.Instance.GetMarketingChanceCount(1));//获取销售机会数量
-                    nums.Add(MarketingChanceAccessor.Instance.GetMarketingChanceCount(2));//获取拜访记录数以销售机会为基准
+                    nums.Add(MarketingChanceAccessor.Instance.GetMarketingChanceCount(CurrentUser.UserId, 1));//获取销售机会数量
+                    nums.Add(MarketingChanceAccessor.Instance.GetMarketingChanceCount(CurrentUser.UserId,2));//获取拜访记录数以销售机会为基准
                     nums.Add(ContractInfoAccessor.Instance.GetContractInfoCount(CurrentUser.EntId));
                    
                     result.Error = AppError.ERROR_SUCCESS;
