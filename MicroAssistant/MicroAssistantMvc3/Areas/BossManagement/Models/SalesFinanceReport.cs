@@ -9,13 +9,13 @@ namespace MicroAssistantMvc.Areas.BossManagement.Models
     {
         public string month
         { get; set; }
-        public int paydone
+        public double paydone
         { get; set; }
-        public int notpay
+        public double notpay
         { get; set; }
-        public int received
+        public double received
         { get; set; }
-        public int notreceive
+        public double notreceive
         { get; set; }
     }
 }

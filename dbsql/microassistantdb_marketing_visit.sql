@@ -34,7 +34,7 @@ CREATE TABLE `marketing_visit` (
   `chance_id` int(11) NOT NULL,
   `ent_id` int(11) NOT NULL,
   PRIMARY KEY (`idmarketing_visit`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='拜访记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='拜访记录表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +43,7 @@ CREATE TABLE `marketing_visit` (
 
 LOCK TABLES `marketing_visit` WRITE;
 /*!40000 ALTER TABLE `marketing_visit` DISABLE KEYS */;
+INSERT INTO `marketing_visit` VALUES (1,1,3333.00,'dfd','dfdf','2013-11-08 15:30:36',1,14),(2,2,0.00,'4444','4444','2013-11-07 15:53:10',1,14),(3,2,0.00,'23232','3333','2013-11-09 16:04:23',1,14),(4,3,3333.00,'fff','ffff','2013-11-09 16:09:43',7,14),(5,2,0.00,'gggg','gggggg','2013-11-09 16:10:23',8,14);
 /*!40000 ALTER TABLE `marketing_visit` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-09 11:59:18
+-- Dump completed on 2013-11-12 17:46:33

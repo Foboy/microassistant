@@ -31,7 +31,7 @@ CREATE TABLE `pro_production_type` (
   `father_id` int(11) NOT NULL DEFAULT '0' COMMENT '父类ID',
   `pic_id` int(11) NOT NULL DEFAULT '0' COMMENT '图片ID',
   PRIMARY KEY (`p_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='产品分类表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='产品分类表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `pro_production_type` (
 
 LOCK TABLES `pro_production_type` WRITE;
 /*!40000 ALTER TABLE `pro_production_type` DISABLE KEYS */;
-INSERT INTO `pro_production_type` VALUES (5,'222',1,0,0),(6,'33',1,0,0);
+INSERT INTO `pro_production_type` VALUES (5,'222',1,0,0),(6,'33',1,0,0),(7,'33',14,0,0);
 /*!40000 ALTER TABLE `pro_production_type` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-09 11:59:16
+-- Dump completed on 2013-11-12 17:46:31

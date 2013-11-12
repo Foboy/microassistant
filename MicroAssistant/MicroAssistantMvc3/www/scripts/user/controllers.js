@@ -38,7 +38,7 @@ function UserRegisterMainCtrl($scope, $http) {
         console.log(angular.toJson($scope.User));
         if ($scope.UserRegisterForm.$valid) {
             $scope.showerror = false;
-            $http.post($sitecore.urls["userRegister"], { username: $scope.User.name, account: $scope.User.email, pwd: $scope.User.pwd, entId: $scope.User.enterprise || 0 }).success(function (data) {
+            $http.post($sitecore.urls["userRegister"], { username: $scope.User.name, account: $scope.User.email, pwd: $scope.User.pwd, entCode: $scope.User.enterprise }).success(function (data) {
                 if (data.Error) {
                     alert(data.ErrorMessage);
                 }
@@ -202,7 +202,7 @@ function AddCompanyCtrl($scope, $http, $location) {
     $scope.AddCompanySubmit = function (data) {
         if ($scope.AddCompanyForm.$valid) {
             $scope.showerror = false;
-            $http.post($sitecore.urls["EditeUserEntId"], { username: data.username, entId: data.enterpriseid }).success(function (data) {
+            $http.post($sitecore.urls["EditeUserEntCode"], { username: data.username, entCode: data.enterpriseid }).success(function (data) {
                 if (!data.Error) {
                     $("#AddEnterpriseBox").modal('hide');
                 }

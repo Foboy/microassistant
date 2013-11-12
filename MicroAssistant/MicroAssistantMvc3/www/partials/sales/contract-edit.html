@@ -66,6 +66,13 @@
                 </form>
         </div>
         <div class="madeBox" ng-show="salesContractEditPage==3">
+            <ul style="">
+                <li ng-repeat="file in EditContract.FileList" >
+                    {{file.File.name}}
+                    <a ng-click="DeleteFile()">删除</a>
+                </li>
+            </ul>
+            <div id="salesContractFileQueue"></div>
             <ul class="listContent">
                 <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a id="salesContractUpload" href="" class="btn btn-large btn-block btn-success" >上传附件</a><a href="" class="btn btn-large btn-block btn-success" ng-click="SalesContractEditSubmit()">确 定</a></span></li>
             </ul>

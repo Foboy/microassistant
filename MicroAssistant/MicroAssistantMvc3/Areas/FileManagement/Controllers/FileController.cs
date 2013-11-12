@@ -23,42 +23,44 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
             var Res = new JsonResult();
             AdvancedResult<List<FileSaveResult>> result = new AdvancedResult<List<FileSaveResult>>();
             result.Data = new List<FileSaveResult>();
-            sourcePath = Server.MapPath(sourcePath);
-            if (!System.IO.File.Exists(sourcePath))
-            {
-                result.Error = AppError.ERROR_PERSON_NOT_FOUND;
-                result.ExMessage = result.ErrorMessage = "源文件不存在";
-            }
-            else if (saveInfo != null)
+            if (saveInfo != null)
             {
                 int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 if (userid > 0)
                 {
-                    
-                    string itempath = FileHelper.GetFileSavePath(userid, fileType, null);
-                    string itemfullpath = Server.MapPath(itempath);
-                    string saveName = FileHelper.GetFileSaveName(".png");
-                    foreach (FileSaveInfo item in saveInfo)
+                    sourcePath = Server.MapPath(sourcePath);
+                    if (!System.IO.File.Exists(sourcePath))
                     {
-                        item.SavePrefix = item.SavePrefix != null ? item.SavePrefix : string.Empty;
-                        if (item.IsClipping == 1)
-                        {
-                            FileHelper.ClipAndSaveFile(sourcePath, itemfullpath, item.SavePrefix + saveName, item);
-                        }
-                        else
-                        {
-                            FileHelper.ThumbAndSaveFile(sourcePath, itemfullpath, item.SavePrefix + saveName, item);
-                        }
-                        result.Data.Add(new FileSaveResult()
-                        {
-                            FileName = item.SavePrefix + saveName,
-                            FilePath = itempath,
-                            FileUrl = FileHelper.GetFileSavePath(userid, fileType, item.SavePrefix + saveName)
-                        });
+                        result.Error = AppError.ERROR_PERSON_NOT_FOUND;
+                        result.ExMessage = result.ErrorMessage = "源文件不存在";
                     }
+                    else
+                    {
+                        string itempath = FileHelper.GetFileSavePath(userid, fileType, null);
+                        string itemfullpath = Server.MapPath(itempath);
+                        string saveName = FileHelper.GetFileSaveName(".png");
+                        foreach (FileSaveInfo item in saveInfo)
+                        {
+                            item.SavePrefix = item.SavePrefix != null ? item.SavePrefix : string.Empty;
+                            if (item.IsClipping == 1)
+                            {
+                                FileHelper.ClipAndSaveFile(sourcePath, itemfullpath, item.SavePrefix + saveName, item);
+                            }
+                            else
+                            {
+                                FileHelper.ThumbAndSaveFile(sourcePath, itemfullpath, item.SavePrefix + saveName, item);
+                            }
+                            result.Data.Add(new FileSaveResult()
+                            {
+                                FileName = item.SavePrefix + saveName,
+                                FilePath = itempath,
+                                FileUrl = FileHelper.GetFileSavePath(userid, fileType, item.SavePrefix + saveName)
+                            });
+                        }
 
-                    result.Error = AppError.ERROR_SUCCESS;
-                    result.ErrorMessage = result.ExMessage = "成功";
+                        result.Error = AppError.ERROR_SUCCESS;
+                        result.ErrorMessage = result.ExMessage = "成功";
+                    }
                 }
                 else
                 {
@@ -128,187 +130,6 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
             return Res;
         }
 
-
-        public JsonResult SetUserHeadPic(string sourcePath)
-        {
-            var Res = new JsonResult();
-            AdvancedResult<ResPic> result = new AdvancedResult<ResPic>();
-            try
-            {
-                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
-                {
-                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
-                }
-                else
-                {
-                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
-
-                    ResPic pic = new ResPic();
-                    pic.ObjId = 0;
-                    pic.ObjType = PicType.Ignore;
-                    pic.PicUrl = sourcePath;
-                    pic.State = StateType.Active;
-                    int picid = ResPicAccessor.Instance.Insert(pic);
-                    pic.PicId = picid;
-
-                    result.Data = pic;
-                    result.Error = AppError.ERROR_SUCCESS;
-                }
-            }
-            catch (Exception e)
-            {
-                result.Error = AppError.ERROR_FAILED;
-                result.ExMessage = e.ToString();
-            }
-
-            Res.Data = result;
-            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            return Res;
-        }
-
-
-        public JsonResult UploadPic(byte[] fileByte, int picHeight, int picWidth)
-        {
-            var Res = new JsonResult();
-            AdvancedResult<ResPic> result = new AdvancedResult<ResPic>();
-            try
-            {
-                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
-                {
-                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
-                }
-                else
-                {
-                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
-                    string fileUrl = string.Empty;
-                    fileUrl = FileHelper.UploadFile(userid, fileByte, "jpg", PicType.Ignore);
-
-                    ResPic pic = new ResPic();
-                    pic.ObjId = 0;
-                    pic.ObjType = PicType.Ignore;
-                    pic.PicUrl = fileUrl;
-                    pic.PicHeight = picHeight;
-                    pic.PicWidth = picWidth;
-                    pic.State = StateType.Active;
-
-                    int picid = ResPicAccessor.Instance.Insert(pic);
-                    pic.PicId = picid;
-
-                    result.Data = pic;
-                    result.Error = AppError.ERROR_SUCCESS;
-                }
-            }
-            catch (Exception e)
-            {
-                result.Error = AppError.ERROR_FAILED;
-                result.ExMessage = e.ToString();
-            }
-
-            Res.Data = result;
-            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            return Res;
-        }
-
-        /// <summary>
-        /// 添加产品分类图片
-        /// </summary>
-        /// <param name="fileByte"></param>
-        /// <param name="picHeight"></param>
-        /// <param name="picWidth"></param>
-        /// <returns></returns>
-        public JsonResult UploadProTypePic(byte[] fileByte, int picHeight, int picWidth)
-        {
-            var Res = new JsonResult();
-            AdvancedResult<ResPic> result = new AdvancedResult<ResPic>();
-            try
-            {
-                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
-                {
-                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
-                }
-                else
-                {
-                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
-                    string fileUrl = string.Empty;
-                    fileUrl = FileHelper.UploadFile(userid, fileByte, "jpg", PicType.ProTypePicture);
-
-                    ResPic pic = new ResPic();
-                    pic.ObjId = 0;
-                    pic.ObjType = PicType.ProTypePicture;
-                    pic.PicUrl = fileUrl;
-                    pic.PicHeight = picHeight;
-                    pic.PicWidth = picWidth;
-                    pic.State = StateType.Active;
-
-                    int picid = ResPicAccessor.Instance.Insert(pic);
-                    pic.PicId = picid;
-
-                    result.Data = pic;
-                    result.Error = AppError.ERROR_SUCCESS;
-                }
-            }
-            catch (Exception e)
-            {
-                result.Error = AppError.ERROR_FAILED;
-                result.ExMessage = e.ToString();
-            }
-
-            Res.Data = result;
-            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            return Res;
-        }
-        /// <summary>
-        /// 添加用户头像图片
-        /// </summary>
-        /// <param name="fileByte"></param>
-        /// <param name="picHeight"></param>
-        /// <param name="picWidth"></param>
-        /// <returns></returns>
-        public JsonResult UploadUserImage(byte[] fileByte, int picHeight, int picWidth)
-        {
-            var Res = new JsonResult();
-            AdvancedResult<ResPic> result = new AdvancedResult<ResPic>();
-            try
-            {
-                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
-                {
-                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
-                }
-                else
-                {
-                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
-                    string fileUrl = string.Empty;
-                    fileUrl = FileHelper.UploadFile(userid, fileByte, "jpg", PicType.UserHeadImg);
-                    SysUser user = SysUserAccessor.Instance.Get(userid);
-                    ResPic pic = new ResPic();
-                    pic.ObjId = userid;
-                    pic.ObjType = PicType.UserHeadImg;
-                    pic.PicUrl = fileUrl;
-                    pic.PicHeight = picHeight;
-                    pic.PicWidth = picWidth;
-                    pic.State = StateType.Active;
-                    //if (user.PicId > 0)
-                    //{
-                    //    ResPicAccessor.Instance.Delete(user.PicId);
-                    //}
-
-                    int picid = ResPicAccessor.Instance.Insert(pic);
-
-                    result.Data = pic;
-                    result.Error = AppError.ERROR_SUCCESS;
-                }
-            }
-            catch (Exception e)
-            {
-                result.Error = AppError.ERROR_FAILED;
-                result.ExMessage = e.ToString();
-            }
-            Res.Data = result;
-            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            return Res;
-        }
-
-
         public JsonResult GetPic(int picid)
         {
             var Res = new JsonResult();
@@ -371,7 +192,7 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
         }
 
 
-        public JsonResult DeleteBBPic(int picId)
+        public JsonResult DeleteFile(int picId)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();

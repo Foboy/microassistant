@@ -308,6 +308,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\BossManagement\Views\Shared\" />
     <Folder Include="Areas\ContractManagement\Models\" />
     <Folder Include="Areas\ContractManagement\Views\Shared\" />
     <Folder Include="Areas\CustomerManagement\Models\" />
