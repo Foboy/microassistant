@@ -114,7 +114,7 @@
     //    }
     //});
 
-    $scope.histogram = function (ione, itwo, maxTotal, totalHeight, totalLabelHeight) {
+    $scope.histogram = function (month,ione, itwo, maxTotal, totalHeight, totalLabelHeight) {
 
         totalHeight = totalHeight - totalLabelHeight;
         maxTotal = maxTotal <= 0 ? 1 : maxTotal;
@@ -128,6 +128,7 @@
         var totalSpaceStyle = { height: (theight > totalLabelHeight ? theight - totalLabelHeight : 0) + 'px' };
 
         return {
+            month: month,
             total: ione + itwo,
             totalStyle: totalStyle,
             totalSpaceStyle: totalSpaceStyle,
@@ -150,7 +151,7 @@
 
         for (var i = 0; i < sales.length; i++) {
             var item = sales[i];
-            var node = $scope.histogram(item.newc, item.old, maxTotal, totalHeight, 20);
+            var node = $scope.histogram(item.month,item.newc, item.old, maxTotal, totalHeight, 20);
             if ($scope.salesOppList[i]) {
                 $scope.salesOppList[i] = node;
             }

@@ -80,10 +80,10 @@
     	<div class="main">
         	<div class="chance-box">
             	<h1>销售机会对比
-                	<div class="time-change" style="display:none">按月<i></i>
+                	<div class="time-change" style="display:none">本月<i></i>
                         <ul>
-                        	<li>按季</li>
-                            <li>按年</li>
+                        	<li>本季度</li>
+                            <li>本年度</li>
                         </ul>
                     </div>
                     <div class="btn-group time-change">
@@ -92,13 +92,13 @@
                       </button>
                       <ul class="dropdown-menu" style="width:100px;min-width: 100px;top:15px;border-radius: 0px;">
                           <li ng-click="setOppTimeType(1)" ng-hide="oppTimeType==1">
-                            按月
+                            本月
                         </li>
                         <li ng-click="setOppTimeType(2)" ng-hide="oppTimeType==2">
-                            按季
+                            本季度
                         </li>
                           <li ng-click="setOppTimeType(3)" ng-hide="oppTimeType==3">
-                            按年
+                            本年度
                         </li>
                       </ul>
                     </div>
@@ -116,7 +116,7 @@
                             <div ng-style="item.itwoStyle" style="width:80px;background:#7ac0a8">{{item.itwo}}</div>
                         </div>
                 	</div>
-                    <ul class="time-s clearfix"><li>六月</li><li>七月</li><li>本月</li></ul>
+                    <ul class="time-s clearfix" ><li ng-repeat="item in salesOppList" >{{item.month}}</li></ul>
                     <div class="caption">
                     	<span class="g-bg"></span>老客户
                         <span class="o-bg"></span>新客户
