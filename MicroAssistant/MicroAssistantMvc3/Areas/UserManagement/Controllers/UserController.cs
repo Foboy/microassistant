@@ -102,7 +102,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 
                 SysUser entUser = new SysUser();
                 SysUser user = new SysUser();
-                if (!string.IsNullOrEmpty(entCode.Trim()))
+                if (!string.IsNullOrEmpty(entCode))
                 {
                     entUser = SysUserAccessor.Instance.GetEntUserByEntCode(entCode.ToUpper().Trim());
                     if (entUser != null)
