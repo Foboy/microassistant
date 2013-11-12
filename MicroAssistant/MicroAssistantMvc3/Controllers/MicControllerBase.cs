@@ -107,15 +107,16 @@ namespace MicroAssistantMvc.Controllers
             switch (type)
             {
                 case TimeType.month:
-                    now = new DateTime(now.Year, now.Month, 1); //本月第一天
+                    now = new DateTime(now.Year, now.Month, 1,0,0,0,0); //本月第一天
 
                     break;
                 case TimeType.quarter:
-                    now = now.AddMonths(0 - (now.Month - 1) % 3).AddDays(1 - now.Day);  //本季度初
-
+                    now = new DateTime(now.Year, now.Month, 1,0,0,0,0);  //本季度初
+                    now = now.AddMonths(0 - (now.Month - 1) % 3).AddDays(1 - now.Day);
+                    now =now.AddDays(1 - now.Day);
                     break;
                 case TimeType.year:
-                    now = new DateTime(now.Year, 1, 1); //本月第一天
+                    now = new DateTime(now.Year, 1, 1,0,0,0,0); //本月第一天
                     break;
                 default:
                     break;
@@ -133,15 +134,18 @@ namespace MicroAssistantMvc.Controllers
             switch (type)
             {
                 case TimeType.month:
-                    DateTime d1 = new DateTime(now.Year, now.Month, 1); //本月第一天
+                    DateTime d1 = new DateTime(now.Year, now.Month, 1,0,0,0,0); //本月第一天
                     now = d1.AddMonths(1);
                     break;
                 case TimeType.quarter:
-                    DateTime startQuarter = now.AddMonths(0 - (now.Month - 1) % 3).AddDays(1 - now.Day);
-                    now = startQuarter.AddMonths(4);  //本季度末
+                      DateTime startQuarter = new DateTime(now.Year, now.Month, 1,0,0,0,0);  //本季度初
+                      startQuarter = startQuarter.AddMonths(0 - (startQuarter.Month - 1) % 3).AddDays(1 - startQuarter.Day);
+                      startQuarter = startQuarter.AddDays(1 - startQuarter.Day);
+
+                    now = startQuarter.AddMonths(3);  //本季度末
                     break;
                 case TimeType.year:
-                    DateTime d3 = new DateTime(now.Year, 1, 1); //本月第一天
+                    DateTime d3 = new DateTime(now.Year, 1, 1,0,0,0,0); //本月第一天
                     now = d3.AddYears(1);
                     break;
                 default:

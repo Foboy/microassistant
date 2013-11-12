@@ -35,9 +35,9 @@ namespace MicroAssistant.Meta
         /// <returns>返回本对象实例</returns>
         public BossFinancial BuildSampleEntity(IDataReader reader)
         {
-            this.PType = DBConvert.ToInt32(reader["instalments_no"]);
+            this.PType = DBConvert.ToInt32(reader["ptype"]);
             this.Amount = DBConvert.ToDouble(reader["amount"]);
-            this.PayTime = DBConvert.ToDateTime(reader["pay_time"]);
+            this.PayTime = DBConvert.ToDateTime(reader["ptime"]);
             return this;
         }
     }

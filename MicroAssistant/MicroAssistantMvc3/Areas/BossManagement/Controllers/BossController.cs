@@ -107,8 +107,8 @@ namespace MicroAssistantMvc.Areas.BossManagement.Controllers
                     //    return Res;
                     //}
 
-                    DateTime stime = DateTime.Now;
-                    DateTime etime = DateTime.Now;
+                    DateTime stime = new DateTime();
+                    DateTime etime = new DateTime();
                     switch (timeType)
                     {
                         case 1:
@@ -147,8 +147,10 @@ namespace MicroAssistantMvc.Areas.BossManagement.Controllers
                             {
                                 SalesOppReport objq = new SalesOppReport();
                                 objq.month = (stime.Month+i).ToString() + "月";
-                                objq.newc = clist.Select(o => o.ChanceType == 1 && o.AddTime >= stime.AddMonths(i) && o.AddTime < stime.AddMonths(i+1)).Count();
-                                objq.old = clist.Select(o => o.ChanceType == 0 && o.AddTime >= stime.AddMonths(i) && o.AddTime < stime.AddMonths(i+1)).Count();
+                                List<MarketingChance> newclist=clist.FindAll(o => o.ChanceType == 1 && o.AddTime >= stime.AddMonths(i) && o.AddTime < stime.AddMonths(i+1));
+                                objq.newc = newclist.Count();
+                                List<MarketingChance> oldlist = clist.FindAll(o => o.ChanceType == 2 && o.AddTime >= stime.AddMonths(i) && o.AddTime < stime.AddMonths(i + 1));
+                                objq.old = oldlist.Count();
                                 list.Add(objq);
                             }
                             break;
@@ -157,8 +159,10 @@ namespace MicroAssistantMvc.Areas.BossManagement.Controllers
                             {
                                 SalesOppReport objy = new SalesOppReport();
                                 objy.month = (stime.Month + i).ToString() + "月";
-                                objy.newc = clist.Select(o => o.ChanceType == 1 && o.AddTime >= stime.AddMonths(i) && o.AddTime < stime.AddMonths(i+1)).Count();
-                                objy.old = clist.Select(o => o.ChanceType == 0 && o.AddTime >= stime.AddMonths(i) && o.AddTime < stime.AddMonths(i+1)).Count();
+                                List<MarketingChance> newclist = clist.FindAll(o => o.ChanceType == 1 && o.AddTime >= stime.AddMonths(i) && o.AddTime < stime.AddMonths(i + 1));
+                                objy.newc = newclist.Count();
+                                List<MarketingChance> oldlist = clist.FindAll(o => o.ChanceType == 2 && o.AddTime >= stime.AddMonths(i) && o.AddTime < stime.AddMonths(i + 1));
+                                objy.old = oldlist.Count();
                                 list.Add(objy);
                             }
                             break;
