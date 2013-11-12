@@ -438,7 +438,12 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
         console.log(fromscope);
         from = fromscope;
         
-        $scope.EditContract = { HowtopayListCount: 3, Howtopay: 0, ContractNo: $filter('date')(new Date(), 'yyyyMMddHHmmss') };
+        $scope.EditContract = {
+            HowtopayListCount: 3,
+            Howtopay: 0,
+            ContractNo: $filter('date')(new Date(), 'yyyyMMddHHmmss'),
+            FileList: []
+        };
         $scope.salesContractEditPage = 1;
         $scope.ContractPayChanced();
         $('#salesContractEditModal').modal('show');
@@ -471,17 +476,47 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
 
         $('#salesContractUpload').cuploadify({
             'formData': {
-                'token': 'sss'
+                saveSource: 1,
+                fileType: 3
             },
             'swf': 'js/uploadify/uploadify.swf',
-            'uploader': '/Upload/Uploader/71358f72c447e0ec2ecba71636907898?queryData=width-126,height-126&imageWidth=470&imageHeight=0',
+            'uploader': $sitecore.urls["UploadFile"],
             'height': 70,
             'width': 190,
-            onUploadComplete: function (response) {
-
+            'queueID': 'salesContractFileQueue',
+            onUploadSuccess: function (file, data, response) {
+                var data = $.parseJSON(data);
+                if (data.Error) {
+                    alert(data.ErrorMessage);
+                }
+                else {
+                    $.post($sitecore.urls["AddPic"], { sourcePath: data.Data.PicUrl, picType: 3 }, function (picdata) {
+                        if (picdata.Error) {
+                            alert(picdata.ErrorMessage);
+                        }
+                        else {
+                            $scope.$apply(function () {
+                                picdata.Data.File = file;
+                                $scope.EditContract.FileList.push(picdata.Data);
+                            });
+                        }
+                    });
+                }
             }
         });
     });
+
+    $scope.DeleteFile = function () {
+        var file = this.file;
+        for (var i = 0; i < $scope.EditContract.FileList.length; i++)
+        {
+            if (file.PicId == $scope.EditContract.FileList[i].PicId)
+            {
+                $scope.EditContract.FileList.splice(i, 1);
+                return;
+            }
+        }
+    }
 
     $scope.$on('animate-enter', function (event, element) {
         $(element).find('input.form_datetime_dynamic').datetimepicker({

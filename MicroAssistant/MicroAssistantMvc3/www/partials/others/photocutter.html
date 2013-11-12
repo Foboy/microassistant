@@ -125,7 +125,10 @@
                 'uploader': $sitecore.urls["UploadFile"],
                 'height': 70,
                 'width': 190,
-                'auto':true,
+                'auto': true,
+                'queueID': 'queue',
+                'fileTypeDesc':'图片文件',
+                'fileTypeExts':'*.jpg;*.gif;*.jpeg;*.png',
                 onUploadSuccess: function (file, data, response) {
                     var data = $.parseJSON(data);
                     if (data.Error) {
@@ -221,6 +224,7 @@
                 </div>
             </div>
             <a href="javascript:void(0)" id="selected_btn" class="btn selected">本地照片</a>
+            <div id="queue"></div>
             <a href="javascript:void(0)" id="reselect_btn" class="btn selected" style="margin: 20px 0;">保存头像</a>
         </div>
     </div>
