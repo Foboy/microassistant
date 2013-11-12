@@ -110,29 +110,24 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 }
                 
                 SysUser entUser = new SysUser();
+                SysUser user = new SysUser();
                 if (!string.IsNullOrEmpty(entCode.Trim()))
                 {
                     entUser = SysUserAccessor.Instance.GetEntUserByEntCode(entCode.Trim());
-                    if (entUser == null)
+                    if (entUser != null)
                     {
-                        result.Error = AppError.ERROR_PERSON_NOT_FOUND;
-                        Res.Data = result;
-                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-                        return Res;
+                        user.EntId = entUser.EntId;
+                        user.EntCode = entCode;
                     }
                 }
-
-                SysUser user = new SysUser();
                 user.UserAccount = account;
                 user.UserName = username;
                 user.Pwd = SecurityHelper.MD5(pwd);
                 user.Email = account;
-                user.EntId = entUser.EntId;
                 user.CreateTime = DateTime.Now;
                 user.EndTime = DateTime.Now.AddDays(90);
                 user.IsEnable = 1;
                 user.Type = 1;
-                user.EntCode = entCode;
                 int i = SysUserAccessor.Instance.Insert(user);
 
                 if (i > 0)
