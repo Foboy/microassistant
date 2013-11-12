@@ -2,34 +2,34 @@
         <ul class="clearfix salesList">
             <li ng-class="steps=='chance'?'cur':''">
                 <a ng-href="#!/sales/chance"><em><i class="sales-oppr-icon"></i></em></a>
-                <p>销售机会（30）</p>
+                <p>销售机会（{{SalesChanceCount}}）</p>
                 <span class="arrowD"></span>
             </li>
             <li>
             	<div class="bentArrow"></div>
-                <p>转换率<span class="colorBlue">20%</span></p>
+                <p>转换率<span class="colorBlue">{{(SalesVisitCount/(SalesChanceCount+SalesVisitCount))*100 | number:0}}%</span></p>
             </li>
             <li ng-class="steps=='visit'?'cur':''">
                 <a ng-href="#!/sales/visit"><em><i class="visit-icon"></i></em></a>
-                <p>拜访（5）</p>
+                <p>拜访（{{SalesVisitCount}}）</p>
                 <span class="arrowD"></span>
             </li>
             <li>
             	<div class="bentArrow"></div>
-                <p>转换率<span class="colorBlue">20%</span></p>
+                <p>转换率<span class="colorBlue">{{(SalesContractCount/(SalesVisitCount+SalesContractCount))*100 | number:0}}%</span></p>
             </li>
             <li ng-class="steps=='contract'?'cur':''">
                 <a ng-href="#!/sales/contract"><em><i class="contract-icon"></i></em></a>
-                <p>签订合同（5）</p>
+                <p>签订合同（{{SalesContractCount}}）</p>
                 <span class="arrowD"></span>
             </li>
             <li>
             	<div class="bentArrow"></div>
-                <p>转换率<span class="colorBlue">20%</span></p>
+                <p>转换率<span class="colorBlue">{{(SalesAfterCount/(SalesAfterCount+SalesContractCount))*100 | number:0}}%</span></p>
             </li>
             <li ng-class="steps=='after'?'cur':''">
                 <a ng-href="#!/sales/after"><em><i class="sales-follow-icon"></i></em></a>
-                <p>售后跟进（5）</p>
+                <p>售后跟进（{{SalesAfterCount}}）</p>
                 <span class="arrowD"></span>
             </li>
         </ul>

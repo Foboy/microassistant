@@ -14,7 +14,7 @@ namespace MicroAssistant.Common
 {
     public class FileSaveInfo
     {
-        public bool IsClipping { get; set; }
+        public int IsClipping { get; set; }
         public string SavePrefix { get; set; }
         public int StartLeft { get; set; }
         public int StartTop { get; set; }

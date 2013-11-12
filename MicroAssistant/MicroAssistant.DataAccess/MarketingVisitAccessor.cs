@@ -73,9 +73,11 @@ namespace MicroAssistant.DataAccess
 
             #region cmdGetMarketingVisitCount
 
-            cmdGetMarketingVisitCount = new MySqlCommand(" select count(*)  from marketing_visit ");
+            cmdGetMarketingVisitCount = new MySqlCommand(" select count(*)  from marketing_visit where chance_id=@ChanceId ");
+            cmdGetMarketingVisitCount.Parameters.Add("@ChanceId", MySqlDbType.Int32);
 
             #endregion
+
 
             #region cmdLoadAllMarketingVisit
 
@@ -229,6 +231,7 @@ namespace MicroAssistant.DataAccess
                     returnValue.Items.Add(new MarketingVisit().BuildSampleEntity(reader));
                 }
                 reader.Close();
+                _cmdGetMarketingVisitCount.Parameters["@ChanceId"].Value = ChanceId;
                 returnValue.RecordsCount = Convert.ToInt32( _cmdGetMarketingVisitCount.ExecuteScalar());
             }
             finally
@@ -315,6 +318,7 @@ namespace MicroAssistant.DataAccess
             return returnValue;
 
         }
+
         private static readonly MarketingVisitAccessor instance = new MarketingVisitAccessor();
         public static MarketingVisitAccessor Instance
         {

@@ -195,7 +195,7 @@ a:hover{text-decoration:underline;}
 .searchBox input{margin-left:10px;border-radius:0;}
 .searchBox .addBtn,.searchBox .delBtn{width:30px; margin-top:-10px;}
 .seCon{position:relative; display:inline-block;}
-.seCon .seBtn{position:absolute; right:10px; display:inline-block; border:none; background:url(../img/icon.png) -137px -135px; width:20px; height:21px; cursor:pointer; top:7px;}
+.seCon .seBtn{position:absolute; right:10px; display:inline-block; border:none; background:url(../img/icon.png) -137px -135px; width:20px; height:21px; cursor:pointer; top:12px;}
 .seCon .setext{padding-right:35px;}
 .tablePad{padding:0 15px 20px 15px; display:block; overflow:hidden;}
 .tablePad table,.tablePad table tr,.tablePad table th,.tablePad table tr td{border:none; border-radius:0; vertical-align:middle;}
@@ -269,7 +269,7 @@ a:hover{text-decoration:underline;}
 .redBtn a{width:260px;height:40px; margin:50px 0 0 45px;}
 .floatW900{width:900px;}
 .chanceB-l{float:left; width:210px; height:100px; padding:5px; background:#FFFFFF; line-height:24px; font-size:14px; overflow:hidden; margin-top:30px;}
-.chanceB-r{float:left; margin-top:30px;width:640px;}
+.chanceB-r{float:left; margin-top:30px;width:630px;}
 .title-f{width:auto; height:140px; border-left:2px solid #999999; padding-left:15px;}
 .title-f h1{font-size:16px; margin:0; float:left;}
 .sign-pact{width:140px; float:right; margin-right:20px;}
@@ -423,21 +423,22 @@ a:hover{text-decoration:underline;}
 .staffList ul{margin:0;}
 .staffList ul li{height:45px; line-height:45px; list-style:none;}
 .staffList ul li a{display:inline-block; width:210px; height:45px; line-height:45px; color:#FFFFFF; text-decoration:none;}
-.staffList ul li a:hover{background:#248faf;}
+.staffList ul li a:hover,.staffList ul li a.cur{background:#248faf;}
 .staffList ul li a span{display:inline-block; padding-left:15px; width:170px; margin:0;}
 .add-section{width:180px; margin:20px 0 0 15px;}
 
-.staffCon{float:left; width:960px;}
+.staffCon{float:left; width:880px;}
 .staffCon .searchBox{padding:15px 0;}
 
-.peop-box{width:200px; height:65px; background:#f5f5f5; padding:10px; position:relative; z-index:9; font-size:14px; margin:10px; float:left;}
+.peop-box{width:200px; height:65px; background:#f5f5f5; padding:10px; position:relative;font-size:14px; margin:10px 15px 10px 50px; float:left;}
 .peop-box img{border-radius: 40px;height: 60px;width: 60px; float:left;}
 .p-b-info{width:140px; float:left;}
 .p-b-info p{line-height:20px; margin:0 0 5px 0; padding-left:15px;}
 .p-b-info p .p-t{color:#999999; text-align:right;}
+.p-b-info p .p-n{display:inline-block; width:82px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .p-b-info p.p-s-f{font-size:12px;}
 
-.s-c{position:absolute; top:85px; left:0; width:220px;   background:#f5f5f5; border-top:3px solid #50a729;z-index:10;}
+.s-c{position:absolute; top:85px; left:0; width:220px;   background:#f5f5f5; border-top:3px solid #50a729;z-index:10; }
 .s-c .p-t{width:80px; display:inline-block;text-align:right;}
 .s-c p{border-bottom:1px solid #FFFFFF; padding:10px 0; margin:0;}
 .s-c p select{width:100px; font-size:12px; height:25px; margin:0;}
