@@ -4,6 +4,7 @@
     $scope.oppTimeType = 1;
     $scope.oppTimeTypeLabel = '按月';
     $scope.financeTimeType = 1;
+    $scope.financeTimeTypeLabel = '本月';
     $scope.salesFunnelList = [];
     $scope.salesOppList = [];
     $scope.salesFinanceList = [];
@@ -39,6 +40,21 @@
                 break;
         }
         $scope.loadSalesOpp();
+    };
+    $scope.setFinanceTimeType = function (timeType) {
+        $scope.financeTimeType = timeType;
+        switch (timeType) {
+            case 1:
+                $scope.financeTimeTypeLabel = '本月';
+                break;
+            case 2:
+                $scope.financeTimeTypeLabel = '本季度';
+                break;
+            case 3:
+                $scope.financeTimeTypeLabel = '本年度';
+                break;
+        }
+        $scope.loadSalesFinance();
     };
 
     $scope.displaySalesFunnel = function (sales) {
@@ -114,7 +130,7 @@
     //    }
     //});
 
-    $scope.histogram = function (ione, itwo, maxTotal, totalHeight, totalLabelHeight) {
+    $scope.histogram = function (month, ione, itwo, maxTotal, totalHeight, totalLabelHeight) {
 
         totalHeight = totalHeight - totalLabelHeight;
         maxTotal = maxTotal <= 0 ? 1 : maxTotal;
@@ -122,12 +138,13 @@
         var itwoHeight = Math.floor((itwo / maxTotal) * totalHeight);
         var theight = totalHeight - ioneHeight - itwoHeight + totalLabelHeight;
 
-        var ioneStyle = { height: ioneHeight + 'px', 'line-height': ioneHeight + 'px' };
-        var itwoStyle = { height: itwoHeight + 'px', 'line-height': itwoHeight + 'px' };
+        var ioneStyle = { height: ioneHeight + 'px', 'line-height': ioneHeight + 'px', 'overflow': 'hidden' };
+        var itwoStyle = { height: itwoHeight + 'px', 'line-height': itwoHeight + 'px', 'overflow': 'hidden' };
         var totalStyle = { height: theight + 'px' };
         var totalSpaceStyle = { height: (theight > totalLabelHeight ? theight - totalLabelHeight : 0) + 'px' };
 
         return {
+            month: month,
             total: ione + itwo,
             totalStyle: totalStyle,
             totalSpaceStyle: totalSpaceStyle,
@@ -138,10 +155,25 @@
         };
     }
 
+    $scope.salesOppShowPage = 1;
+    $scope.salesOppPageCount = 1;
+    $scope.salesOppBoxScroll = function (pageAdd) {
+        $scope.salesOppShowPage += pageAdd;
+        var left = ($scope.salesOppShowPage - 1) * 420;
+        $('#salesOppListBox').animate({ 'scrollLeft': left });
+    };
+
     $scope.displaySalesOpp = function (sales)
     {
+        $scope.salesOppShowPage = 1;
+        $scope.salesOppPageCount = Math.ceil(sales.length / 3);
+        $('#salesOppListBox').animate({ 'scrollLeft': 0 });
         var totalHeight = 300;
         var maxTotal = 0;
+        var list = [];
+        if (sales.length == 1) {
+            list.push({});
+        }
         for (var i = 0; i < sales.length; i++) {
             var item = sales[i];
             if (item.newc + item.old > maxTotal)
@@ -150,14 +182,14 @@
 
         for (var i = 0; i < sales.length; i++) {
             var item = sales[i];
-            var node = $scope.histogram(item.newc, item.old, maxTotal, totalHeight, 20);
-            if ($scope.salesOppList[i]) {
-                $scope.salesOppList[i] = node;
-            }
-            else {
-                $scope.salesOppList.push(node);
-            }
+            var node = $scope.histogram(item.month,item.newc, item.old, maxTotal, totalHeight, 20);
+            list.push(node);
         }
+        if (list.length < 3) {
+            list.push({});
+        }
+        console.log(list);
+        $scope.salesOppList = angular.copy(list);
     }
 
     $scope.loadSalesOpp = function ()
@@ -186,10 +218,24 @@
     };
     $scope.salesOpp();
 
-    $scope.displaySalesFinance = function (sales)
-    {
+
+    $scope.salesFinanceShowPage = 1;
+    $scope.salesFinancePageCount = 1;
+    $scope.salesFinanceBoxScroll = function (pageAdd) {
+        $scope.salesFinanceShowPage += pageAdd;
+        var left = ($scope.salesFinanceShowPage - 1) * 750;
+        $('#salesFinanceListBox').animate({ 'scrollLeft': left });
+    };
+    $scope.displaySalesFinance = function (sales) {
+        $scope.salesFinanceShowPage = 1;
+        $scope.salesFinancePageCount = Math.ceil(sales.length / 3);
+        $('#salesFinanceListBox').animate({ 'scrollLeft': 0 });
         var totalHeight = 300;
         var maxTotal = 0;
+        var list = [];
+        if (sales.length == 1) {
+            list.push({ pay: {}, receive: {}});
+        }
         for (var i = 0; i < sales.length; i++) {
             var item = sales[i];
             if (item.paydone + item.notpay > maxTotal)
@@ -202,16 +248,16 @@
         for (var i = 0; i < sales.length; i++) {
             var item = sales[i];
             var node = {
-                pay: $scope.histogram(item.paydone, item.notpay, maxTotal, totalHeight, 20),
-                receive: $scope.histogram(item.received, item.notreceive, maxTotal, totalHeight, 20)
+                pay: $scope.histogram(item.month, item.paydone, item.notpay, maxTotal, totalHeight, 20),
+                receive: $scope.histogram(item.month, item.received, item.notreceive, maxTotal, totalHeight, 20)
             };
-            if ($scope.salesFinanceList[i]) {
-                $scope.salesFinanceList[i] = node;
-            }
-            else {
-                $scope.salesFinanceList.push(node);
-            }
+            list.push(node);
         }
+        if (list.length < 3) {
+            list.push({ pay: {}, receive: {} });
+        }
+        console.log(list);
+        $scope.salesFinanceList = angular.copy(list);
     }
 
     $scope.loadSalesFinance = function () {
@@ -232,9 +278,9 @@
     $scope.salesFinance = function () {
        
         
-        var sales = [{ paydone: 100, notpay: 300, received: 200, notreceive: 230 },
-            { paydone: 500, notpay: 200, received: 240, notreceive: 530 },
-        { paydone: 140, notpay: 380, received: 80, notreceive: 330 }];
+        var sales = [{ month: 5, paydone: 100, notpay: 300, received: 200, notreceive: 230 },
+            { month: 6, paydone: 500, notpay: 200, received: 240, notreceive: 530 },
+        { month: 7, paydone: 140, notpay: 380, received: 80, notreceive: 330 }];
 
         $scope.displaySalesFinance(sales);
         $scope.loadSalesFinance();

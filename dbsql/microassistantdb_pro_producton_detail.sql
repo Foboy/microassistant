@@ -34,8 +34,9 @@ CREATE TABLE `pro_producton_detail` (
   `p_id` int(11) NOT NULL,
   `ent_id` int(11) NOT NULL,
   `is_pay` int(11) NOT NULL DEFAULT '1' COMMENT '1:未付款 2:已付款',
+  `pay_time` datetime DEFAULT NULL,
   PRIMARY KEY (`p_d_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品入库单表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='产品入库单表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +45,7 @@ CREATE TABLE `pro_producton_detail` (
 
 LOCK TABLES `pro_producton_detail` WRITE;
 /*!40000 ALTER TABLE `pro_producton_detail` DISABLE KEYS */;
+INSERT INTO `pro_producton_detail` VALUES (1,333.00,444,'20131709011746362','2013-11-09 05:17:46',14,5,14,1,NULL),(2,555.00,555,'20135111115151874','2013-11-11 15:51:52',14,5,14,1,NULL);
 /*!40000 ALTER TABLE `pro_producton_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-09 11:59:19
+-- Dump completed on 2013-11-12 17:46:34

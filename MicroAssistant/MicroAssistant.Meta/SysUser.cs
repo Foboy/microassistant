@@ -15,6 +15,9 @@ namespace MicroAssistant.Meta
     [Serializable]
     public class SysUser
     {
+        public string EntCode
+        { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -116,6 +119,7 @@ namespace MicroAssistant.Meta
         /// <returns>返回本对象实例</returns>
         public SysUser BuildSampleEntity(IDataReader reader)
         {
+            this.EntCode = DBConvert.ToString(reader["ent_code"]);
             this.UserId = DBConvert.ToInt32(reader["user_id"]);
             this.UserName = DBConvert.ToString(reader["user_name"]);
             this.UserAccount = DBConvert.ToString(reader["user_account"]);
@@ -140,6 +144,7 @@ namespace MicroAssistant.Meta
         /// <returns>返回本对象实例</returns>
         public SysUser BuildUserRoleEntity(IDataReader reader)
         {
+            this.EntCode = DBConvert.ToString(reader["ent_code"]);
             this.UserId = DBConvert.ToInt32(reader["user_id"]);
             this.UserName = DBConvert.ToString(reader["user_name"]);
             this.UserAccount = DBConvert.ToString(reader["user_account"]);

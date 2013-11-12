@@ -18,6 +18,10 @@ namespace MicroAssistant.DataStructure
         /// <summary>
         /// 用户头像
         /// </summary>
-        UserHeadImg=2
+        UserHeadImg=2,
+        /// <summary>
+        /// 合同附件
+        /// </summary>
+        ContractFile = 3
     }
 }

@@ -47,6 +47,7 @@
     <Compile Include="LevelType.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PayOrRecType.cs" />
     <Compile Include="PicType.cs">
       <SubType>Code</SubType>
     </Compile>
