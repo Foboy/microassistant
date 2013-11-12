@@ -69,6 +69,12 @@ namespace MicroAssistant.Meta
         public Int32 IsPay
         { get; set; }
 
+        /// <summary>
+        /// 付款时间
+        /// </summary>
+        public DateTime PayTime
+        { get; set; }
+
 
         /// <summary>
         /// 从读取器向完整实例对象赋值
@@ -85,6 +91,8 @@ namespace MicroAssistant.Meta
             this.PId = DBConvert.ToInt32(reader["p_id"]);
             this.EntId = DBConvert.ToInt32(reader["ent_id"]);
             this.IsPay = DBConvert.ToInt32(reader["is_pay"]);
+            if (reader["pay_time"] != null)
+                this.PayTime = DBConvert.ToDateTime(reader["pay_time"]);
             return this;
         }
     }

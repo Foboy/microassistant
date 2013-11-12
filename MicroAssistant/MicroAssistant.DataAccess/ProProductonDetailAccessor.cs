@@ -67,7 +67,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadProProductonDetail
 
-            cmdLoadProProductonDetail = new MySqlCommand(@" select p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail 
+            cmdLoadProProductonDetail = new MySqlCommand(@" select pay_time,p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail 
 where (@EntId = 0 or ent_id = @EntId)
 and (@UserId = 0 or user_id = @UserId )  
 and (@PId = 0 or p_id = @PId)  
@@ -95,22 +95,23 @@ and (@PId = 0 or p_id = @PId)");
 
             #region cmdLoadAllProProductonDetail
 
-            cmdLoadAllProProductonDetail = new MySqlCommand(" select p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail");
+            cmdLoadAllProProductonDetail = new MySqlCommand(" select pay_time,p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail");
 
             #endregion
 
             #region cmdGetProProductonDetail
 
-            cmdGetProProductonDetail = new MySqlCommand(" select p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail where p_d_id = @PDId");
+            cmdGetProProductonDetail = new MySqlCommand(" select pay_time,p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail where p_d_id = @PDId");
             cmdGetProProductonDetail.Parameters.Add("@PDId", MySqlDbType.Int32);
 
             #endregion
 
             #region cmdUpdateIsPay
 
-            cmdUpdateIsPay = new MySqlCommand(" update pro_producton_detail set is_pay = @IsPay where p_code = @PCode");
+            cmdUpdateIsPay = new MySqlCommand(" update pro_producton_detail set is_pay = @IsPay,pay_time = @PayTime where p_code = @PCode");
             cmdUpdateIsPay.Parameters.Add("@PCode", MySqlDbType.String);
             cmdUpdateIsPay.Parameters.Add("@IsPay", MySqlDbType.Int32);
+            cmdUpdateIsPay.Parameters.Add("@PayTime", MySqlDbType.DateTime);
 
             #endregion
         }
@@ -353,7 +354,7 @@ and (@PId = 0 or p_id = @PId)");
 /// </summary>
 /// <param name="PCode">采购批次</param>
         /// <param name="IsPay">1:未付款 2:已付款</param>
-        public void UpdateIsPay(string PCode, int IsPay)
+        public void ConfirmPay(string PCode)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdUpdateIsPay = cmdUpdateIsPay.Clone() as MySqlCommand;
@@ -364,7 +365,8 @@ and (@PId = 0 or p_id = @PId)");
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
                 _cmdUpdateIsPay.Parameters["@PCode"].Value = PCode;
-                _cmdUpdateIsPay.Parameters["@IsPay"].Value = IsPay;
+                _cmdUpdateIsPay.Parameters["@IsPay"].Value = 2;
+                _cmdUpdateIsPay.Parameters["@PayTime"].Value = DateTime.Now;
 
                 _cmdUpdateIsPay.ExecuteNonQuery();
 

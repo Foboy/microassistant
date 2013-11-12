@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BossFinancial.cs" />
     <Compile Include="ContractHowtopay.cs" />
     <Compile Include="ContractInfo.cs" />
     <Compile Include="Customer.cs" />

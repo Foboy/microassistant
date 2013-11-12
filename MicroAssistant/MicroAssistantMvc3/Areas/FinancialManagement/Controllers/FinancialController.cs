@@ -238,7 +238,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                         Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         return Res;
                     }
-                    ProProductonDetailAccessor.Instance.UpdateIsPay(PCode, 2);
+                    ProProductonDetailAccessor.Instance.ConfirmPay(PCode);
                     result.Error = AppError.ERROR_SUCCESS;
                 }
                 else

@@ -111,12 +111,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MicroAssistantMvc4\MicroAssistantMvc4.csproj">
-      <Project>{b2a3fc67-3077-447a-bbd1-dca801094dc7}</Project>
-      <Name>MicroAssistantMvc4</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
