@@ -9,7 +9,6 @@
     <script src="js/jquery.js"></script>
     <script src="js/jquery-migrate-1.2.1.js"></script>
     <script src="js/angular.js"></script>
-    <script src="js/angular-animate.js"></script>
     <script src="scripts/core.js"></script>
     <script src="js/jquery-drawing.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -92,31 +91,41 @@
                       </button>
                       <ul class="dropdown-menu" style="width:100px;min-width: 100px;top:15px;border-radius: 0px;">
                           <li ng-click="setOppTimeType(1)" ng-hide="oppTimeType==1">
-                            本月
+                            按月
                         </li>
                         <li ng-click="setOppTimeType(2)" ng-hide="oppTimeType==2">
-                            本季度
+                            按季
                         </li>
                           <li ng-click="setOppTimeType(3)" ng-hide="oppTimeType==3">
-                            本年度
+                            按年
                         </li>
                       </ul>
                     </div>
                 </h1>
                 <div class="histogram">
-                	<div class="info-show">
-                        <div ng-repeat="item in salesOppList" style="height:300px;width:80px;margin:0 30px;float:left;text-align:center;">
-                            <div ng-style="item.totalStyle" style="width:80px;">
-                                <div style="width:80px;" ng-style="item.totalSpaceStyle"></div>
-                                <div style="width:80px;height:20px;line-height:20px;">
-                                    {{item.total}}
-                                </div>
-                            </div>
-                            <div ng-style="item.ioneStyle" style="width:80px;background:#f09b2d">{{item.ione}}</div>
-                            <div ng-style="item.itwoStyle" style="width:80px;background:#7ac0a8">{{item.itwo}}</div>
+                    <div style="width:420px;height:335px;position:relative;">
+                        <div ng-show="salesOppShowPage>1" ng-click="salesOppBoxScroll(-1)" style="position:absolute;top:150px;left:0;width:40px;height:40px;font-size:40px;line-height:40px;color:#fff;cursor:pointer;">
+                            <
                         </div>
-                	</div>
-                    <ul class="time-s clearfix" ><li ng-repeat="item in salesOppList" >{{item.month}}</li></ul>
+                        <div ng-show="salesOppShowPage<salesOppPageCount" ng-click="salesOppBoxScroll(1)" style="position:absolute;top:150px;left:390px;width:40px;height:40px;font-size:40px;line-height:40px;color:#fff;cursor:pointer;">
+                            >
+                        </div>
+                        <div style="width:420px;height:335px;overflow:hidden;" id="salesOppListBox">
+                	        <div class="info-show" ng-style="{'width':(salesOppList.length*140)+'px'}">
+                                <div ng-repeat="item in salesOppList" style="height:300px;width:80px;margin:0 30px;float:left;text-align:center;">
+                                    <div ng-style="item.totalStyle" style="width:80px;">
+                                        <div style="width:80px;" ng-style="item.totalSpaceStyle"></div>
+                                        <div style="width:80px;height:20px;line-height:20px;">
+                                            {{item.total}}
+                                        </div>
+                                    </div>
+                                    <div ng-style="item.ioneStyle" style="width:80px;background:#f09b2d">{{item.ione}}</div>
+                                    <div ng-style="item.itwoStyle" style="width:80px;background:#7ac0a8">{{item.itwo}}</div>
+                                </div>
+                	        </div>
+                            <ul class="time-s clearfix" ng-style="{'width':(salesOppList.length*140)+'px'}"><li ng-repeat="item in salesOppList" >{{item.month}}</li></ul>
+                        </div>
+                    </div>
                     <div class="caption">
                     	<span class="g-bg"></span>老客户
                         <span class="o-bg"></span>新客户
@@ -128,34 +137,61 @@
     <div class="finance">
     	<div class="main">
         	<div class="finance-box">
-            	<h1>财务收款对比</h1>
-                <div class="finance-columnar">
-                    <div ng-repeat="item in salesFinanceList" style="height:300px;width:160px;float:left;margin:0 45px;">
-                        <div style="height:300px;width:80px;float:left;text-align:center;">
-                            <div ng-style="item.pay.totalStyle" style="width:80px;">
-                                <div style="width:80px;" ng-style="item.pay.totalSpaceStyle"></div>
-                                <div style="width:80px;height:20px;line-height:20px;">
-                                    {{item.pay.total}}
-                                </div>
-                            </div>
-                            <div ng-style="item.pay.ioneStyle" style="width:80px;background:#f09b2d">{{item.pay.ione}}</div>
-                            <div ng-style="item.pay.itwoStyle" style="width:80px;background:#7ac0a8">{{item.pay.itwo}}</div>
-                        </div>
-                        <div style="height:300px;width:80px;float:left;text-align:center;">
-                            <div ng-style="item.receive.totalStyle" style="width:80px;">
-                                <div style="width:80px;" ng-style="item.receive.totalSpaceStyle"></div>
-                                <div style="width:80px;height:20px;line-height:20px;">
-                                    {{item.receive.total}}
-                                </div>
-                            </div>
-                            <div ng-style="item.receive.ioneStyle" style="width:80px;background:#348a95">{{item.receive.ione}}</div>
-                            <div ng-style="item.receive.itwoStyle" style="width:80px;background:#d7a363">{{item.receive.itwo}}</div>
-                        </div>
+            	<h1>财务收款对比
+                    <div class="btn-group time-change">
+                      <button class="dropdown-toggle" style="width:150px;height:30px;border: none;background:#fff;" type="button" data-toggle="dropdown">
+                        <span style="margin-left:30px;">{{financeTimeTypeLabel}}</span><span class="caret" style="margin-left:20px;margin-top:5px;"></span>
+                      </button>
+                      <ul class="dropdown-menu" style="width:150px;min-width: 150px;top:15px;border-radius: 0px;">
+                          <li ng-click="setFinanceTimeType(1)" ng-hide="financeTimeType==1">
+                            本月
+                        </li>
+                        <li ng-click="setFinanceTimeType(2)" ng-hide="financeTimeType==2">
+                            本季度
+                        </li>
+                          <li ng-click="setFinanceTimeType(3)" ng-hide="financeTimeType==3">
+                            本年度
+                        </li>
+                      </ul>
                     </div>
+            	</h1>
+                <div style="width:750px;height:362px;position:relative;">
+                    <div ng-show="salesFinanceShowPage>1" ng-click="salesFinanceBoxScroll(-1)" style="position:absolute;top:130px;left:0;width:40px;height:40px;font-size:40px;line-height:40px;color:#248faf;cursor:pointer;">
+                        <
+                    </div>
+                    <div ng-show="salesFinanceShowPage<salesFinancePageCount" ng-click="salesFinanceBoxScroll(1)" style="position:absolute;top:130px;left:720px;width:40px;height:40px;font-size:40px;line-height:40px;color:#248faf;cursor:pointer;">
+                        >
+                    </div>
+                    <div style="width:750px;height:362px;overflow:hidden;" id="salesFinanceListBox">
+                        <div class="finance-columnar" ng-style="{'width':(salesFinanceList.length*750)+'px'}">
+                            <div ng-repeat="item in salesFinanceList" style="height:300px;width:160px;float:left;margin:0 45px;">
+                                <div style="height:300px;width:80px;float:left;text-align:center;">
+                                    <div ng-style="item.pay.totalStyle" style="width:80px;">
+                                        <div style="width:80px;" ng-style="item.pay.totalSpaceStyle"></div>
+                                        <div style="width:80px;height:20px;line-height:20px;">
+                                            {{item.pay.total}}
+                                        </div>
+                                    </div>
+                                    <div ng-style="item.pay.ioneStyle" style="width:80px;background:#f09b2d">{{item.pay.ione}}</div>
+                                    <div ng-style="item.pay.itwoStyle" style="width:80px;background:#7ac0a8">{{item.pay.itwo}}</div>
+                                </div>
+                                <div style="height:300px;width:80px;float:left;text-align:center;">
+                                    <div ng-style="item.receive.totalStyle" style="width:80px;">
+                                        <div style="width:80px;" ng-style="item.receive.totalSpaceStyle"></div>
+                                        <div style="width:80px;height:20px;line-height:20px;">
+                                            {{item.receive.total}}
+                                        </div>
+                                    </div>
+                                    <div ng-style="item.receive.ioneStyle" style="width:80px;background:#348a95">{{item.receive.ione}}</div>
+                                    <div ng-style="item.receive.itwoStyle" style="width:80px;background:#d7a363">{{item.receive.itwo}}</div>
+                                </div>
+                            </div>
 
+                        </div>
+                        <ul class="time-s clearfix m-s" ng-style="{'width':(salesFinanceList.length*750)+'px'}"><li ng-repeat="item in salesFinanceList"><span>{{item.pay.totalSpaceStyle?'应收款':''}}</span><span>{{item.pay.totalSpaceStyle?'应付款':''}}</span></li></ul>
+                        <ul class="time-s clearfix" ng-style="{'width':(salesFinanceList.length*750)+'px'}"><li ng-repeat="item in salesFinanceList">{{item.pay.month}}</li></ul>
+                    </div>
                 </div>
-                <ul class="time-s clearfix m-s"><li><span>应收款</span><span>应付款</span></li><li><span>应收款</span><span>应付款</span></li><li><span>应收款</span><span>应付款</span></li></ul>
-                <ul class="time-s clearfix"><li>六月</li><li>七月</li><li>本月</li></ul>
                 <div class="caption">
                     <span class="g-bg"></span>未付款
                     <span class="o-bg"></span>已付款
