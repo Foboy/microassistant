@@ -5,20 +5,25 @@
                 <p class="colorGrayadd">{{catalog.PTypeName}}</p>
                 <span class="arrowD"></span>
             </li>
-            <li ng-show="addCatalogFlag">
-            	<div class="newAddBox">
-                	<i class="aClose" ng-click="addCatalogCancel()"></i>
-                    <div class="clearfix addImg" id="file_upload"><em><i class="askIcon"></i></em><a href="" >点击添加图片</a></div>
-                    <form name="ProductCatalogForm" ng-class="showerror?'showerror':''">
-                    <input type="text" ng-model="AddedCatalog.PicId" style="display:none" />
-                     <input type="text" placeholder="输入分类名称" ng-model="AddedCatalog.PTypeName" ng-required="true" class="addName"/>
-                     </form>
-                </div>
-            </li>
             <li>
                 <div class="addG bootstro" id="add_catalog_btn" ng-click="addCatalog()">添加</div>
             </li>
         </ul>
+<div id="productCatalogAddModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="popupBox popupBox2 clearfix popupbox4">
+        <form name="ProductCatalogForm" ng-class="showerror?'showerror':''">
+        <ul class="listContent peopleInfo pact-w" style="float:left;">
+        	<li class="clearfix"><span class="span1">分类名称：</span><span>
+                <input type="text" ng-model="AddedCatalog.PTypeName" ng-required="true" value="" placeholder="Inactive" class="span3"></span></li>
+        </ul>
+        <div class="saveBox">
+            <span>
+              <a href="#fakelink" class="btn btn-large btn-block btn-danger" ng-click="addCatalogSubmit()">保存</a>
+            </span>
+        </div>
+        </form>
+    </div>
+</div>
         <div class="searchBox">
             <input type="button" class="addBtn bootstro" id="add_product_btn" ng-click="editProduct()"/>
             <input type="button" class="delBtn"/>

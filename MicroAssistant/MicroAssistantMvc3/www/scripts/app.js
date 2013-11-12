@@ -4,6 +4,7 @@
           .when('/home', { templateUrl: 'partials/home.html', controller: HomeMainCtrl })
           .when('/user', { templateUrl: 'partials/userinfo.html', controller: UserMainCtrl })
           .when('/mytimeshaft', { templateUrl: 'partials/mytimeshaft.html', controller: UserTimeShaftCtrl })
+          .when('/staffmangement', { templateUrl: 'partials/staffmangement.html', controller: StaffMangementCtrl })
           .when('/changepassword', { templateUrl: 'partials/changepassword.html', controller: UserMainCtrl })
           .when('/changeemail', { templateUrl: 'partials/changeemail.html', controller: UserMainCtrl })
           .when('/product/:catalogId?/:pageIndex?', { templateUrl: 'partials/product.html', controller: ProductMainCtrl })
@@ -47,7 +48,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     $scope.CurrentUser = null;
 
     $scope.checkpage = function () {
-        if ($location.path().indexOf('/home') == 0 || $location.path().indexOf('/user') == 0 || $location.path().indexOf('/changepassword') == 0 || $location.path().indexOf('/changeemail') == 0 || $location.path().indexOf('/mytimeshaft')==0) {
+        if ($location.path().indexOf('/home') == 0 || $location.path().indexOf('/user') == 0 || $location.path().indexOf('/changepassword') == 0 || $location.path().indexOf('/changeemail') == 0 || $location.path().indexOf('/mytimeshaft') == 0 || $location.path().indexOf('/staffmangement') == 0) {
             $scope.page = "home";
         }
         else if ($location.path().indexOf('/product') == 0) {
@@ -84,7 +85,6 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     }
 
     $scope.parseJsonDate = function (datestr, format) {
-        debugger;
         //console.log(typeof (new Date()));
         var date;
         if (!datestr) {
@@ -118,6 +118,19 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     //    return age;
     //}
 
+    $scope.setUserHeadImg = function () {
+        $("#salesUserHeadImageIframe").attr({ src: 'partials/others/photocutter.html' })
+        $('#userHeadImageSelectModal').modal('show');
+    }
+    $scope.HeadPicUrl = 'img/Adimg/h1.jpg';
+    utilities.registeriframelistener("event:userHeadImageSeted", function () {
+        $('#userHeadImageSelectModal').modal('hide');
+        var imgUrl = arguments[0];
+        $scope.$apply(function () {
+            $scope.HeadPicUrl = imgUrl;
+        });
+    });
+
     $scope.PLog = function(obj)
     {
         console.log(obj);
@@ -129,6 +142,15 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
             alert(data.ErrorMessage);
         }
         $scope.CurrentUser = data.Data;
+        if (data.Data.PicId > 0)
+        {
+            $http.post($sitecore.urls["GetPic"], { picid: data.Data.PicId }).success(function (picdata) {
+                $scope.HeadPicUrl = picdata.Data.PicUrl;
+            }).
+            error(function (data, status, headers, config) {
+                $scope.HeadPicUrl = '';
+            });
+        }
     }).
     error(function (data, status, headers, config) {
         $scope.CurrentUser = {};

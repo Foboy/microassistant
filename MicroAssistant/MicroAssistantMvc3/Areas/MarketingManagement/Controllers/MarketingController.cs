@@ -366,6 +366,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                        VisitModel vm = new VisitModel();
                        vm.Rate = clist.Items[i].Rate;
                        vm.Remark = clist.Items[i].Remark;
+                       vm.IdmarketingChance = clist.Items[i].IdmarketingChance;
                  
                       PageEntity<MarketingVisit> pmvlist =  MarketingVisitAccessor.Instance.Search(clist.Items[i].IdmarketingChance, 0, 100);
                       if (pmvlist.RecordsCount > 0)
@@ -469,6 +470,49 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                 result.Error = AppError.ERROR_FAILED;
                 result.ExMessage = e.ToString();
             }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+        /// <summary>
+        /// 获取机会数量，拜访数量，合同数量
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult GetMarketingCount()
+        {
+            var Res = new JsonResult();
+            AdvancedResult<List<int>> result = new AdvancedResult<List<int>>();
+            List<int> nums = new List<int>();
+            try
+            {
+                if (CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+
+                    if (!CheckUserFunction("12"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
+                    nums.Add(MarketingChanceAccessor.Instance.GetMarketingChanceCount(1));//获取销售机会数量
+                    nums.Add(MarketingChanceAccessor.Instance.GetMarketingChanceCount(2));//获取拜访记录数以销售机会为基准
+                    nums.Add(ContractInfoAccessor.Instance.GetContractInfoCount(CurrentUser.EntId));
+                   
+                    result.Error = AppError.ERROR_SUCCESS;
+                    result.Data = nums;
+                }
+                else
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;

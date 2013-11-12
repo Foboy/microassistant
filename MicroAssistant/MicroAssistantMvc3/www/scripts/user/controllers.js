@@ -1,11 +1,14 @@
 ﻿function UserLoginMainCtrl($scope, $http, $location) {
+    var loading = utilities.loading('登陆中...');
     $scope.UserLogin = function () {
         console.log(angular.toJson($scope.User));
         if ($scope.UserLoginForm.$valid) {
             $scope.showerror = false;
+            loading.show();
             $http.post($sitecore.urls["userLogin"], { account: $scope.User.email, pwd: $scope.User.pwd }).success(function (data) {
                 if (data.Error) {
                     alert(data.ErrorMessage);
+                    loading.hide();
                 }
                 else {
                     window.location.href = "index.html";
@@ -13,6 +16,7 @@
                 console.log(data);
             }).
             error(function (data, status, headers, config) {
+                loading.hide();
             });
         }
         else {
@@ -214,4 +218,31 @@ function AddCompanyCtrl($scope, $http, $location) {
             $scope.showerror = true;
         }
     };
+}
+function StaffMangementCtrl($scope, $http, $location)
+{
+    $scope.selectedRoleid = 0;
+    $scope.SearchEntRole = function () {
+        $http.post($sitecore.urls["SearchEntRole"], {}).success(function (data) {
+            if (!data.Error) {
+                $scope.SysRoles = data.Data;
+            } else { $scope.SysRoles = []; }
+        }).error(function (data, status, headers, config) {
+            $scope.SysRoles = [];
+        });
+    }
+    $scope.SearchEntRole();
+    $scope.SearchUserListByRoleId = function (RoleId) {
+        if (RoleId != null) {
+            $scope.selectedRoleid = RoleId;
+            $http.post($sitecore.urls["SearchUserListByRoleId"], { roleId: RoleId }).success(function (data) {
+                if (!data.Error) {
+                    $scope.SysUsers = data.Data;
+                } else { $scope.SysUsers = []; }
+            }).error(function (data, status, headers, config) {
+                $scope.SysUsers = [];
+            });
+        }
+    };
+    $scope.SearchUserListByRoleId(0);
 }
