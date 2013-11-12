@@ -254,7 +254,7 @@ namespace MicroAssistantMvc.Areas.BossManagement.Controllers
                             {
                                 SalesFinanceReport objq = new SalesFinanceReport();
 
-                                objq.month = stime.Month.ToString() + "月";
+                                objq.month = (stime.Month + i).ToString() + "月";
                                 objq.paydone = flist.FindAll(o => o.PType == 2 && o.PayTime >= stime.AddMonths(i) && o.PayTime < stime.AddMonths(i + 1)).Sum(o => o.Amount);
                                 objq.notpay = flist.FindAll(o => o.PType == 1 && o.PayTime >= stime.AddMonths(i) && o.PayTime < stime.AddMonths(i + 1)).Sum(o => o.Amount);
                                 objq.received = flist.FindAll(o => o.PType == 3 && o.PayTime >= stime.AddMonths(i) && o.PayTime < stime.AddMonths(i + 1)).Sum(o => o.Amount);
@@ -268,7 +268,7 @@ namespace MicroAssistantMvc.Areas.BossManagement.Controllers
                             {
                                 SalesFinanceReport objy = new SalesFinanceReport();
 
-                                objy.month = stime.Month.ToString() + "月";
+                                objy.month = (stime.Month + i).ToString() + "月";
                                 objy.paydone = flist.FindAll(o => o.PType == 2 && o.PayTime >= stime.AddMonths(i) && o.PayTime < stime.AddMonths(i + 1)).Sum(o => o.Amount);
                                 objy.notpay = flist.FindAll(o => o.PType == 1 && o.PayTime >= stime.AddMonths(i) && o.PayTime < stime.AddMonths(i + 1)).Sum(o => o.Amount);
                                 objy.received = flist.FindAll(o => o.PType == 3 && o.PayTime >= stime.AddMonths(i) && o.PayTime < stime.AddMonths(i + 1)).Sum(o => o.Amount);

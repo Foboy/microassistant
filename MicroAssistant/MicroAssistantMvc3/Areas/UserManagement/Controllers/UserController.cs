@@ -43,7 +43,17 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     return Res;
                     
                 }
-
+                SysUser lastuser = new SysUser();
+                string EntCode = string.Empty;
+                lastuser=SysUserAccessor.Instance.GetLastSysUser();
+                if (lastuser != null)
+                {
+                    EntCode = "ent" + (Convert.ToInt32(lastuser.EntCode.Substring(2, lastuser.EntCode.Length - 1)) + 1);
+                }
+                else
+                {
+                    EntCode = "ent1001";
+                }
                 SysUser user = new SysUser();
                 user.UserName = entName;
                 user.UserAccount = account;
@@ -53,7 +63,9 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 user.EndTime = DateTime.Now.AddDays(90);
                 user.IsEnable = 1;
                 user.Type = 2;
+                user.EntCode = EntCode;
                 int i = SysUserAccessor.Instance.Insert(user);
+
 
                 if (i>0)
                 {
@@ -82,7 +94,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="account">员工账号是邮箱格式</param>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public JsonResult UserRegister(string username,string account, string pwd, int entId)
+        public JsonResult UserRegister(string username,string account, string pwd, string entCode)
         {
             var Res = new JsonResult();
             AdvancedResult<string> result = new AdvancedResult<string>();
@@ -96,13 +108,22 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                     return Res;
                 }
-
+                
+                SysUser entUser = new SysUser();
                 SysUser user = new SysUser();
+                if (!string.IsNullOrEmpty(entCode.Trim()))
+                {
+                    entUser = SysUserAccessor.Instance.GetEntUserByEntCode(entCode.Trim());
+                    if (entUser != null)
+                    {
+                        user.EntId = entUser.EntId;
+                        user.EntCode = entCode;
+                    }
+                }
                 user.UserAccount = account;
                 user.UserName = username;
                 user.Pwd = SecurityHelper.MD5(pwd);
                 user.Email = account;
-                user.EntId = entId;
                 user.CreateTime = DateTime.Now;
                 user.EndTime = DateTime.Now.AddDays(90);
                 user.IsEnable = 1;
@@ -549,7 +570,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         }
 
         //关联企业
-        public JsonResult EditeUserEntId(string username,int entId)
+        public JsonResult EditeUserEntCode(string username,string entCode)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -564,8 +585,22 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                     if (userid > 0)
                     {
+                        SysUser entUser = new SysUser();
+                        if (!string.IsNullOrEmpty(entCode.Trim()))
+                        {
+                            entUser = SysUserAccessor.Instance.GetEntUserByEntCode(entCode.Trim());
+                            if (entUser == null)
+                            {
+                                result.Error = AppError.ERROR_PERSON_NOT_FOUND;
+                                Res.Data = result;
+                                Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                                return Res;
+                            }
+                        }
+
                         SysUser olduser = SysUserAccessor.Instance.Get(userid);
-                        olduser.EntId = entId;
+                        olduser.EntId = entUser.EntId;
+                        olduser.EntCode = entUser.EntCode;
                         olduser.UserName = username;
 
                         SysUserAccessor.Instance.Update(olduser);
