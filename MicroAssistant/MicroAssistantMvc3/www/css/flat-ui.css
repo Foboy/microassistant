@@ -162,17 +162,6 @@ you can use the generic selector below, but it's slower:
   zoom: 1;
   *display: inline;
 }
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-}
-.clearfix:after {
-  clear: both;
-}
 .drop-ie-gradient {
   filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
 }
