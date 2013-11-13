@@ -88,6 +88,16 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
+                    ContractInfo con = new ContractInfo();
+                    con = ContractInfoAccessor.Instance.Get(ContractNo);
+                    if (con != null)
+                    {
+                        result.Error = AppError.ERROR_CONTRACTNO_EXIST;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
+
                     ContractInfo co = new ContractInfo();
                     co.OwnerId = Convert.ToInt32(ownerid);
                     co.CName = CName;
@@ -106,6 +116,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
 
                     for (int i = 0; i < HowtopayList.Count; i++)
                     {
+                        HowtopayList[i].EntId = CurrentUser.EntId;
                         ContractHowtopayAccessor.Instance.Insert(HowtopayList[i]);
                     }
                         //}

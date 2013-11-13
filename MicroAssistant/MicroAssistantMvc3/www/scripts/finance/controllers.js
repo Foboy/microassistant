@@ -9,7 +9,7 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
                 $http.post($sitecore.urls["receivablesfinanceList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: pageSize }).success(function (data) {
                     console.log(data.Data);
                     //$scope.ActPageIndex = $routeParams.pageIndex || 0;
-                    //$scope.receivables = data.Data.Items;
+                    $scope.receivables = data.Data.Items;
                 }).error(function (data, status, headers, config) {
                     $scope.receivables = [];
                 });
