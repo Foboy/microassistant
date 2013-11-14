@@ -70,7 +70,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
         /// </summary>
         /// <param name="contract"></param>
         /// <returns></returns>
-        public JsonResult AddContractInfo(String ContractNo, String CName, string CustomerName, DateTime StartTime, DateTime EndTime,
+        public JsonResult AddContractInfo(int ChanceId,String ContractNo, String CName, string CustomerName, DateTime StartTime, DateTime EndTime,
             DateTime ContractTime, double Amount, int HowToPay, List<ContractHowtopay> HowtopayList)
         {
             var Res = new JsonResult();
@@ -88,6 +88,16 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                 int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                 try
                 {
+                    ContractInfo con = new ContractInfo();
+                    con = ContractInfoAccessor.Instance.Get(ContractNo);
+                    if (con != null)
+                    {
+                        result.Error = AppError.ERROR_CONTRACTNO_EXIST;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
+
                     ContractInfo co = new ContractInfo();
                     co.OwnerId = Convert.ToInt32(ownerid);
                     co.CName = CName;
@@ -100,12 +110,14 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                     co.Howtopay = HowToPay;
                     co.HowtopayList = HowtopayList;
                     co.EntId = CurrentUser.EntId;
+                    co.ChanceId = ChanceId;
                     //if (entid == 0)
                     //{
                     _conid = ContractInfoAccessor.Instance.Insert(co);
 
                     for (int i = 0; i < HowtopayList.Count; i++)
                     {
+                        HowtopayList[i].EntId = CurrentUser.EntId;
                         ContractHowtopayAccessor.Instance.Insert(HowtopayList[i]);
                     }
                         //}
@@ -165,6 +177,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                     ContractInfo con = new ContractInfo();
                     con = ContractInfoAccessor.Instance.Get(contractNo);
                     con.HowtopayList = ContractHowtopayAccessor.Instance.Search(contractNo, 0);
+                    con.Chance = MarketingChanceAccessor.Instance.Get(con.ChanceId);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = con;
 

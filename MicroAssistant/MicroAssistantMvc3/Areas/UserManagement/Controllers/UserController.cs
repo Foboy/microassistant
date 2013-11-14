@@ -102,7 +102,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 
                 SysUser entUser = new SysUser();
                 SysUser user = new SysUser();
-                if (!string.IsNullOrEmpty(entCode.Trim()))
+                if (!string.IsNullOrEmpty(entCode))
                 {
                     entUser = SysUserAccessor.Instance.GetEntUserByEntCode(entCode.ToUpper().Trim());
                     if (entUser != null)
@@ -659,7 +659,62 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
+        /// <summary>
+        /// 修改现有企业CODE
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="entCode"></param>
+        /// <returns></returns>
+        public JsonResult EditeCurrentEntCode(string entCode)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                    if (userid > 0)
+                    {
+                        SysUser entUser = new SysUser();
+                        if (!string.IsNullOrEmpty(entCode.Trim()))
+                        {
+                            entUser = SysUserAccessor.Instance.GetEntUserByEntCode(entCode.Trim());
+                            if (entUser != null)
+                            {
+                                result.Error = AppError.ERROR_FAILED;
+                                Res.Data = result;
+                                Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                                return Res;
+                            }
+                        }
 
+                        SysUser olduser = SysUserAccessor.Instance.Get(userid);
+                        olduser.EntCode = entUser.EntCode;
+
+                        SysUserAccessor.Instance.Update(olduser);
+                        result.Error = AppError.ERROR_SUCCESS;
+
+                    }
+                    else
+                    {
+                        result.Error = AppError.ERROR_FAILED;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
 
 
         public RespResult GetOldPwd(string token)

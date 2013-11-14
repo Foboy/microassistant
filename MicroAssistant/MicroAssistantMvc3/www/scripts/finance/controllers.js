@@ -9,7 +9,7 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
                 $http.post($sitecore.urls["receivablesfinanceList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: pageSize }).success(function (data) {
                     console.log(data.Data);
                     //$scope.ActPageIndex = $routeParams.pageIndex || 0;
-                    //$scope.receivables = data.Data.Items;
+                    $scope.receivables = data.Data.Items;
                 }).error(function (data, status, headers, config) {
                     $scope.receivables = [];
                 });
@@ -27,8 +27,8 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
         }
     };
 
-    $scope.ShowReceivableDetail = function () {
-        $scope.$broadcast('EventShowReceivableDetail', this.receivableitem);//应收款详情
+    $scope.ShowReceivableDetail = function (dataItem) {
+        $scope.$broadcast('EventShowReceivableDetail', dataItem);//应收款详情
     };
     $scope.MakeSurePayable = function () {
         $scope.$broadcast('EventMakeSurePayable', this.payableitem);//确认付款
@@ -36,53 +36,64 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
     $scope.loadCurrentStepList(10);
 }
 function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
-    console.log($scope)
     $scope.$on('EventShowReceivableDetail', function (event, item) {
-        console.log("EventShowReceivableDetail");
-        console.log(item);
-        $("#receivablesDetailBox").animate({ width: "600px" }, 500);
+        $scope.tabIndex = 1;
+        $("#receivablesDetailBox").show();
         $scope.receivableDetail(item);
+        $("#receivablesDetailBox").animate({ width: "500px" }, 400);
     });
+    //隐藏收款详情
+    $scope.hideReceivableDetail = function () {
+        $("#receivablesDetailBox").animate({ width: "0px" }, 400, function () { $("#receivablesDetailBox").hide(); });
+
+    };
     $scope.receivableDetail = function (item) {
-        console.log(item);
         $http.post($sitecore.urls["receivablesDetail"], {
-            contractNo: itme.contractNo
+            contractNo: item.ContractNo
         }).success(function (data) {
-            console.log(data.Data);
-            $scope.receivableDetailInfo = data.Data;
+            if (!data.Error) {
+                $scope.receivableDetailInfos = data.Data;
+                if (data.Data != null) {
+                    $scope.howpaylists = data.Data.HowtopayList;
+                }
+            } else {
+                $scope.receivableDetailInfos = [];
+            }
         }).error(function (data, status, headers, config) {
-            $scope.receivableDetailInfo = [];
+            $scope.receivableDetailInfos = [];
         });
     };
     $scope.$on('EventMakeSurePayable', function (event, item) {
-        console.log(item);
+        $scope.MakeItem = item;
         $("#makesurePayBox").modal('show');
-        //$scope.makeSurePay(item);
-        //$scope.cancelPay();
     });
-    $scope.makeSurePay = function (item) {
-        console.log(item);
-        $http.post($sitecore.urls["makeSurePay"], { PCode: item.PCode }).success(function (data) {
-            console.log(data.Data);
-            $("#makesurePayBox").modal('hide');
+    $scope.makeSurePay = function () {
+        $http.post($sitecore.urls["makeSurePay"], { PCode: $scope.MakeItem.PCode }).success(function (data) {
+            if (!data.Error) {
+                $("#makesurePayBox").modal('hide');
+            } else {
+                alert("确认失败！");
+            }
         }).error(function (data, status, headers, config) {
-            console.log(data.Data);
+            $("#makesurePayBox").modal('hide');
         })
     };
     $scope.cancelPay = function () {
         $("#makesurePayBox").modal('hide');
     };
-
     $scope.makeSureTimesReceivable = function (item)//确认分期收款
     {
-        console.log(item);
         $http.post($sitecore.urls["makeSureTimesReceivable"], {
-            contractNo: itme.contractNo,
-            rNum:item.rNum
+            contractNo: item.ContractNo,
+            rNum: item.InstalmentsNo
         }).success(function (data) {
+            if (!data.Error)
+            {
+                $scope.hideReceivableDetail();
+            }
             console.log(data.Data);
         }).error(function (data, status, headers, config) {
-          
+            $scope.hideReceivableDetail();
         });
     };
 };

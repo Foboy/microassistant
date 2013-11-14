@@ -26,7 +26,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         public JsonResult SearchReceivables(int pageIndex,int pageSize)
         {
             var Res = new JsonResult();
-            AdvancedResult<List<ReceivablesModel>> result = new AdvancedResult<List<ReceivablesModel>>();
+            AdvancedResult<PageEntity<ReceivablesModel>> result = new AdvancedResult<PageEntity<ReceivablesModel>>();
             List<ReceivablesModel> rmlist = new List<ReceivablesModel>();
 
                 try
@@ -45,7 +45,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                         SysUser user = SysUserAccessor.Instance.Get(userid);
 
                         PageEntity<ContractInfo> clist = new PageEntity<ContractInfo>();
-                        clist = ContractInfoAccessor.Instance.Search(pageIndex, pageSize, user.EntId);
+                        clist = ContractInfoAccessor.Instance.Search(user.EntId,pageIndex, pageSize);
                         for (int i = 0; i < clist.Items.Count; i++)
                         {
                             ReceivablesModel rm = new ReceivablesModel();
@@ -58,6 +58,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                             {
                                 rm.PayTime = hplist[0].PayTime;
                                 rm.ReceivedTime = hplist[0].ReceivedTime;
+                                rm.Amount = hplist[0].Amount;
                                 rmlist.Add(rm);
                             }
                             else
@@ -65,11 +66,15 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                                 hplist = ContractHowtopayAccessor.Instance.Search(rm.ContractNo, 2);
                                 rm.PayTime = hplist[hplist.Count - 1].PayTime;
                                 rm.ReceivedTime = hplist[hplist.Count - 1].ReceivedTime;
+                                rm.Amount = hplist[hplist.Count - 1].Amount;
                                 rmlist.Add(rm);
                             }
                         }
                         result.Error = AppError.ERROR_SUCCESS;
-                        result.Data = rmlist;
+                        result.Data.Items = rmlist;
+                        result.Data.PageIndex = pageIndex;
+                        result.Data.PageSize = pageSize;
+                        result.Data.RecordsCount = clist.RecordsCount;
                     }
                     else
                     {
@@ -160,6 +165,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                         ContractInfo con = new ContractInfo();
                         con = ContractInfoAccessor.Instance.Get(contractNo);
                         con.HowtopayList = ContractHowtopayAccessor.Instance.Search(contractNo, 0);
+                        con.Chance = MarketingChanceAccessor.Instance.Get(con.ChanceId);
                         result.Error = AppError.ERROR_SUCCESS;
                         result.Data = con;
                     }

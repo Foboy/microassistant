@@ -380,7 +380,7 @@ namespace MicroAssistant.DataAccess
             MySqlCommand _cmdSearchCustomerPrivByOwnerId = cmdSearchCustomerPrivByOwnerId.Clone() as MySqlCommand;
             _cmdSearchCustomerPrivByOwnerId.Connection = oc;
             MySqlCommand _cmdSearchCustomerPrivByOwnerIdCount = cmdSearchCustomerPrivByOwnerIdCount.Clone() as MySqlCommand;
-            _cmdSearchCustomerPrivByOwnerIdCount.Connection = oc;
+            _cmdSearchCustomerPrivByOwnerIdCount.Connection = oc1;
             PageEntity<CustomerPrivate> returnValue = new PageEntity<CustomerPrivate>();
             try
             {
@@ -392,7 +392,9 @@ namespace MicroAssistant.DataAccess
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-
+                if (oc1.State == ConnectionState.Closed)
+                    oc1.Open();
+                    
                 MySqlDataReader reader = _cmdSearchCustomerPrivByOwnerId.ExecuteReader();
                 while (reader.Read())
                 {
@@ -405,8 +407,13 @@ namespace MicroAssistant.DataAccess
                 oc.Close();
                 oc.Dispose();
                 oc = null;
+                oc1.Clone();
+                oc1.Dispose();
+                oc1 = null;
                 _cmdSearchCustomerPrivByOwnerId.Dispose();
                 _cmdSearchCustomerPrivByOwnerId = null;
+                _cmdSearchCustomerPrivByOwnerIdCount.Dispose();
+                _cmdSearchCustomerPrivByOwnerIdCount = null;
                 GC.Collect();
             }
             return returnValue;
