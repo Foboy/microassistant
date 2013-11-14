@@ -97,6 +97,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
             if ((/Date/ig).test(datestr)) {
                 datestr = datestr.replace(/\//g, '');
                 date = eval(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
+                console.log(date);
                 //console.log(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
                 //console.log(date);
             }
