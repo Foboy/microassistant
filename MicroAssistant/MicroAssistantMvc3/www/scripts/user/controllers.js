@@ -245,4 +245,22 @@ function StaffMangementCtrl($scope, $http, $location)
         }
     };
     $scope.SearchUserListByRoleId(0);
+    //$scope.
+}
+function EnterPriseCodeCtrl($scope, $http, $location)
+{
+    $scope.EditeCurrentEntCodeSubmit = function (data) {
+        if ($scope.ChangeEnterprsieCodeForm.$valid) {
+            $scope.showerror = false;
+            $http.post($sitecore.urls["EditeCurrentEntCode"], { entCode: data.code }).success(function (data) {
+                if (!data.Error) {
+                    alert("修改成功！");
+                } else { }
+            }).error(function (data, status, headers, config) {
+                $scope.SysUsers = [];
+            });
+        } else {
+            $scope.showerror = true;
+        }
+    }
 }
