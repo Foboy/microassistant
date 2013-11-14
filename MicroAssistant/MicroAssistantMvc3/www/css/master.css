@@ -291,10 +291,9 @@ a:hover{text-decoration:underline;}
 .ul-f2 li .li-boxs{position:relative; width:400px; min-height:120px; margin:8px 0 0 9px; background:#FFFFFF;}
 .ul-f2 li .li-boxs i{display:inline-block; width:10px; height:15px; background:url(../img/icon.png) no-repeat -182px -218px; position:absolute; left:-9px; top:0;}
 .floatBox .fCon ul.ul-f1 li .s-text{width:270px;}
-.basicProfit{width:200px; height:80px; border:1px solid #DDDDDD; position:absolute; background:#FFFFFF; right:10px; top:150px;}
-.basicProfit .pTop{height:39px; line-height:39px; border-bottom:1px solid #DDDDDD; padding:0 10px; font-size:14px;}
-.basicProfit .pDown{padding:0 10px;height:39px; line-height:39px;}
-.basicProfit .colorBlue{font-size:18px;}
+.basicProfit{width:200px; height:80px;position:absolute; background:#F1C40F; right:10px; top:150px;}
+.bp_ptitle{height:30px; line-height:30px; font-size:14px; margin:5px 0 5px 10px; color:#fff;}
+.bp_pcount{font-size:18px; font-weight:600; color:#F25749; text-align:center;}
 .visit-num{width:240px; height:36px; line-height:36px; color:#FFFFFF; background:#248FAF; float:left;}
 .visit-num .span1{width:180px;}
 .visit-num .span2{width:31px; height:31px; display:inline-block; background:url(../img/icon.png) no-repeat -98px -281px; margin:2px 0 0 0;}
