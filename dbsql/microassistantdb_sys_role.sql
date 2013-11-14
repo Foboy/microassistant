@@ -30,7 +30,7 @@ CREATE TABLE `sys_role` (
   `ent_id` int(11) NOT NULL DEFAULT '0' COMMENT '所属企业ID',
   `father_id` int(11) DEFAULT NULL COMMENT '上级角色(部门)ID，顶级为0',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `sys_role` (
 
 LOCK TABLES `sys_role` WRITE;
 /*!40000 ALTER TABLE `sys_role` DISABLE KEYS */;
-INSERT INTO `sys_role` VALUES (1,'销售部',1,0),(2,'财务部',1,0),(3,'管理员',1,0),(16,'管理员',14,0),(17,'财务部',14,0),(18,'销售部',14,0),(19,'老板',14,0);
+INSERT INTO `sys_role` VALUES (1,'销售部',1,0),(2,'财务部',1,0),(3,'管理员',1,0),(16,'管理员',14,0),(17,'财务部',14,0),(18,'销售部',14,0),(19,'老板',14,0),(20,'管理员',15,0),(21,'财务部',15,0),(22,'销售部',15,0),(23,'老板',15,0),(24,'管理员',16,0),(25,'财务部',16,0),(26,'销售部',16,0),(27,'老板',16,0);
 /*!40000 ALTER TABLE `sys_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-12 17:46:31
+-- Dump completed on 2013-11-14 16:10:55

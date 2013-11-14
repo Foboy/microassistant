@@ -433,17 +433,20 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
 
 function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) {
     var from;
+    var chance;
     $scope.$on('EventAddContract', function (event, fromscope) {
         console.log("EventAddContract");
         console.log(fromscope);
         from = fromscope;
-        
+        chance =  from.cvisit;
+        $scope.chance = chance;
         $scope.EditContract = {
             HowtopayListCount: 3,
             Howtopay: 0,
             ContractNo: $filter('date')(new Date(), 'yyyyMMddHHmmss'),
             FileList: []
         };
+        $scope.EditContract.chanceId = $scope.chance.IdmarketingChance;
         $scope.salesContractEditPage = 1;
         $scope.ContractPayChanced();
         $('#salesContractEditModal').modal('show');
@@ -589,8 +592,8 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
 
             if (paylist.length == 0)
                 paylist.push({ InstalmentsNo: 1, Amount: $scope.EditContract.Amount, PayTime: $scope.EditContract.StartTime, ReceivedTime: $scope.EditContract.StartTime, Isreceived: 1, ContractNo: $scope.EditContract.ContractNo });
-
-            $http.post($scope.EditContract.ContractInfoId ? $sitecore.urls["salesAddConract"] : $sitecore.urls["salesAddConract"], { ContractNo: $scope.EditContract.ContractNo, CName: $scope.EditContract.CName, CustomerName: $scope.EditContract.CustomerName, StartTime: $scope.EditContract.StartTime, EndTime: $scope.EditContract.EndTime, ContractTime: $scope.EditContract.ContractTime, Amount: $scope.EditContract.Amount, HowToPay: $scope.EditContract.Howtopay, HowtopayList: paylist }).success(function (data) {
+  
+            $http.post($scope.EditContract.ContractInfoId ? $sitecore.urls["salesAddConract"] : $sitecore.urls["salesAddConract"], { ChanceId:$scope.EditContract.chanceId, ContractNo: $scope.EditContract.ContractNo, CName: $scope.EditContract.CName, CustomerName: $scope.EditContract.CustomerName, StartTime: $scope.EditContract.StartTime, EndTime: $scope.EditContract.EndTime, ContractTime: $scope.EditContract.ContractTime, Amount: $scope.EditContract.Amount, HowToPay: $scope.EditContract.Howtopay, HowtopayList: paylist }).success(function (data) {
                 console.log(data);
                 if (data.Error) {
                     alert(data.ErrorMessage);

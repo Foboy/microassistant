@@ -165,6 +165,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                         ContractInfo con = new ContractInfo();
                         con = ContractInfoAccessor.Instance.Get(contractNo);
                         con.HowtopayList = ContractHowtopayAccessor.Instance.Search(contractNo, 0);
+                        con.Chance = MarketingChanceAccessor.Instance.Get(con.ChanceId);
                         result.Error = AppError.ERROR_SUCCESS;
                         result.Data = con;
                     }

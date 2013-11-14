@@ -30,7 +30,7 @@ CREATE TABLE `sys_role_user` (
   `user_id` int(11) NOT NULL,
   `ent_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`sys_role_user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `sys_role_user` (
 
 LOCK TABLES `sys_role_user` WRITE;
 /*!40000 ALTER TABLE `sys_role_user` DISABLE KEYS */;
-INSERT INTO `sys_role_user` VALUES (1,1,1,1),(2,1,3,1),(3,2,2,1),(7,16,14,14);
+INSERT INTO `sys_role_user` VALUES (1,1,1,1),(2,1,3,1),(3,2,2,1),(7,16,14,14),(8,20,15,15),(9,24,16,16);
 /*!40000 ALTER TABLE `sys_role_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-12 17:46:30
+-- Dump completed on 2013-11-14 16:10:54

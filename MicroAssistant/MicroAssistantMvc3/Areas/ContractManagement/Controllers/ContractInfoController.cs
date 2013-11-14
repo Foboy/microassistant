@@ -70,7 +70,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
         /// </summary>
         /// <param name="contract"></param>
         /// <returns></returns>
-        public JsonResult AddContractInfo(String ContractNo, String CName, string CustomerName, DateTime StartTime, DateTime EndTime,
+        public JsonResult AddContractInfo(int ChanceId,String ContractNo, String CName, string CustomerName, DateTime StartTime, DateTime EndTime,
             DateTime ContractTime, double Amount, int HowToPay, List<ContractHowtopay> HowtopayList)
         {
             var Res = new JsonResult();
@@ -110,6 +110,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                     co.Howtopay = HowToPay;
                     co.HowtopayList = HowtopayList;
                     co.EntId = CurrentUser.EntId;
+                    co.ChanceId = ChanceId;
                     //if (entid == 0)
                     //{
                     _conid = ContractInfoAccessor.Instance.Insert(co);
@@ -176,6 +177,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                     ContractInfo con = new ContractInfo();
                     con = ContractInfoAccessor.Instance.Get(contractNo);
                     con.HowtopayList = ContractHowtopayAccessor.Instance.Search(contractNo, 0);
+                    con.Chance = MarketingChanceAccessor.Instance.Get(con.ChanceId);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = con;
 
