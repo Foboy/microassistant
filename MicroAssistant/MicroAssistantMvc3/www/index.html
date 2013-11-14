@@ -64,12 +64,14 @@
 <body ng-controller="MainCtrl">
     <div class="navbar">
         <div class="main clearfix">
+			<div class="logo2"></div>
             <div class="user-name" id="myinfodiv">
                 <span>{{CurrentUser.UserName}}</span><i></i>
                 <ul class="u-info-list" style="display: none" id="uinfolist">
                     <li><a ng-href="#!/user" class="writeLink">基本资料</a></li>
                     <li><a ng-href="#!/mytimeshaft" class="writeLink">我的时间轴</a></li>
                     <li><a ng-href="#!/staffmangement" class="writeLink">我的员工管理</a></li>
+                    <li><a ng-href="#!/changeEntcode" class="writeLink">企业代码</a></li>
                     <li><a ng-click="UserLoginOut()" class="writeLink">退出</a></li>
                 </ul>
             </div>

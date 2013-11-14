@@ -105,6 +105,10 @@ namespace MicroAssistant.Meta
         public Int32 RoleId
         { get; set; }
 
+     
+        public string RoleName
+        { get; set; }
+
         public int PicId
         { get; set; }
 

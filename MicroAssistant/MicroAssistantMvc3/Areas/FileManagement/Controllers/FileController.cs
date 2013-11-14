@@ -218,5 +218,27 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
             return Res;
         }
 
+        public JsonResult SearchResPicByProId(int ObjId, int objType)
+        {
+            var Res = new JsonResult();
+            AdvancedResult<List<ResPic>> result = new AdvancedResult<List<ResPic>>();
+            List<ResPic> ress = new List<ResPic>();
+            try
+            {
+
+                ress = ResPicAccessor.Instance.Search(ObjId, (PicType)objType);
+                result.Data = ress;
+                result.Error = AppError.ERROR_SUCCESS;
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
     }
 }

@@ -35,7 +35,7 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 0：产品 1：用户头像 2：投票；3：微印书
+        /// 1：产品分类图片 2：用户头像 3：合同附件
         /// </summary>
         public PicType ObjType
         { get; set; }
