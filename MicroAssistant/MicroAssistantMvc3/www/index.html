@@ -47,10 +47,15 @@
             $("#myinfodiv").bind("mouseenter", function () {
                 $(this).addClass("cur");
                 $("#uinfolist").show();
+                $(this).bind("click", function () {
+                    $(this).removeClass("cur");
+                    $("#uinfolist").hide();
+                })
             });
             $("#myinfodiv").bind("mouseleave", function () {
                 $(this).removeClass("cur");
                 $("#uinfolist").hide();
+                
             });
             $(".peop-box").live("mouseenter", function () {
                 $(this).find(".s-c").show();
