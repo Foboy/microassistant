@@ -266,7 +266,6 @@ function StaffMangementCtrl($scope, $http, $location) {
             $scope.selectedRoleid = RoleId;
             $http.post($sitecore.urls["SearchUserListByRoleId"], { roleId: RoleId }).success(function (data) {
                 if (!data.Error) {
-                    debugger;
                     var Datas = data.Data;
                     var SelectItems = [];
                     for (var i = 0; i < data.Data.length; i++) {
@@ -276,7 +275,7 @@ function StaffMangementCtrl($scope, $http, $location) {
                             }
                         }
                     }
-                   
+                    debugger;
                     $scope.SysUsers = { Datas: Datas, SelectItems: SelectItems };
 
                 } else { $scope.SysUsers = []; }
@@ -286,8 +285,9 @@ function StaffMangementCtrl($scope, $http, $location) {
         }
     };
     $scope.SearchUserListByRoleId(0);
-    $scope.ChangeUserRole = function (item) {
-        $http.post($sitecore.urls["UpdateUserRole"], { userId: item.UserId, roleId: item.RoleId }).success(function (data) {
+    $scope.ChangeUserRole = function (item,user) {
+        debugger;
+        $http.post($sitecore.urls["UpdateUserRole"], { userId: user.UserId, roleId: item.RoleId }).success(function (data) {
             if (!data.Error) {
                 alert("修改成功");
             } else { }
