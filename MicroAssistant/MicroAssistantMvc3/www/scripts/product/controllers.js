@@ -146,7 +146,16 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
 		console.log(showproduct);
 		product = showproduct;
 		$("#productDetailBox").animate({width:"600px"},500);
-		$scope.productInfo();
+		$scope.tabIndex = 1;
+		if (!$scope.product || product.PId != $scope.product.PId) {
+		    $http.post($sitecore.urls["productDetail"], { pid: product.PId }).success(function (data) {
+		        console.log(data);
+		        $scope.product = data.Data;
+		    }).
+            error(function (data, status, headers, config) {
+                $scope.product = {};
+            });
+		}
 	});
 	
 	$scope.hideProductDetail = function(){
@@ -156,29 +165,20 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
 	
 	$scope.productInfo = function () {
 	    $scope.tabIndex = 1;
-	    if (!$scope.product || product.PId != $scope.product.PId) {
-	        $http.post($sitecore.urls["productDetail"], { pid: product.PId }).success(function (data) {
-	            console.log(data);
-	            $scope.product = data.Data;
-	        }).
-            error(function (data, status, headers, config) {
-                $scope.product = {};
-            });
-	    }
-  };
+    };
   
-  $scope.productStore = function(){
-      $scope.tabIndex = 2;
-      if (!$scope.stores || !$scope.stores.length || product.PId != $scope.stores[0].PId) {
-	      $http.post($sitecore.urls["productStoresList"], { pid: product.PId,pageIndex:0,pageSize:10 }).success(function (data) {
-	          console.log(data);
-	          $scope.stores = data.Data.Items;
-	      }).
-          error(function (data, status, headers, config) {
-              $scope.stores = {};
-          });
-	  }
-  };
+      $scope.productStore = function(){
+          $scope.tabIndex = 2;
+          if (!$scope.stores || !$scope.stores.length || product.PId != $scope.stores[0].PId) {
+	          $http.post($sitecore.urls["productStoresList"], { pid: product.PId,pageIndex:0,pageSize:10 }).success(function (data) {
+	              console.log(data);
+	              $scope.stores = data.Data.Items;
+	          }).
+              error(function (data, status, headers, config) {
+                  $scope.stores = {};
+              });
+	      }
+      };
   
   $scope.productPurchase = function(){
 	  $scope.tabIndex=3;

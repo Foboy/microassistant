@@ -280,6 +280,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     else
                     {
                         result.Error = AppError.ERROR_SUCCESS;
+                        user.Pwd = string.Empty;
                         result.Data = user;
                     }
                 }

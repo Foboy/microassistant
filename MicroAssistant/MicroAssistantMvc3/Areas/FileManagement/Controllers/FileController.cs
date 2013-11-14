@@ -156,7 +156,7 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
             return Res;
         }
 
-        public JsonResult AddPic(string sourcePath,PicType picType)
+        public JsonResult AddPic(string sourcePath,PicType picType,string description)
         {
             var Res = new JsonResult();
             AdvancedResult<ResPic> result = new AdvancedResult<ResPic>();
@@ -173,6 +173,7 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
                     pic.ObjId = userid;
                     pic.ObjType = picType;
                     pic.PicUrl = sourcePath;
+                    pic.PicDescription = description;
                     pic.State = StateType.Active;
 
                     int picid = ResPicAccessor.Instance.Insert(pic);
