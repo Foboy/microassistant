@@ -32,12 +32,12 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertContractHowtopay
 
-            cmdInsertContractHowtopay = new MySqlCommand("INSERT INTO contract_howtopay(instalments_no,amount,pay_time,received_time,IsReceived,contract_no,ent_id) values (@InstalmentsNo,@Amount,@PayTime,@ReceivedTime,@Isreceived,@ContractNo,@EntId)");
+            cmdInsertContractHowtopay = new MySqlCommand("INSERT INTO contract_howtopay(instalments_no,amount,pay_time,IsReceived,contract_no,ent_id) values (@InstalmentsNo,@Amount,@PayTime,@Isreceived,@ContractNo,@EntId)");
 
             cmdInsertContractHowtopay.Parameters.Add("@InstalmentsNo", MySqlDbType.Int32);
             cmdInsertContractHowtopay.Parameters.Add("@Amount", MySqlDbType.Decimal);
             cmdInsertContractHowtopay.Parameters.Add("@PayTime", MySqlDbType.DateTime);
-            cmdInsertContractHowtopay.Parameters.Add("@ReceivedTime", MySqlDbType.DateTime);
+           // cmdInsertContractHowtopay.Parameters.Add("@ReceivedTime", MySqlDbType.DateTime);
             cmdInsertContractHowtopay.Parameters.Add("@Isreceived", MySqlDbType.Int32);
             cmdInsertContractHowtopay.Parameters.Add("@ContractNo", MySqlDbType.String);
             cmdInsertContractHowtopay.Parameters.Add("@EntId", MySqlDbType.Int32);
@@ -119,7 +119,7 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertContractHowtopay.Parameters["@InstalmentsNo"].Value = e.InstalmentsNo;
                 _cmdInsertContractHowtopay.Parameters["@Amount"].Value = e.Amount;
                 _cmdInsertContractHowtopay.Parameters["@PayTime"].Value = e.PayTime;
-                _cmdInsertContractHowtopay.Parameters["@ReceivedTime"].Value = e.ReceivedTime;
+               // _cmdInsertContractHowtopay.Parameters["@ReceivedTime"].Value = e.ReceivedTime;
                 _cmdInsertContractHowtopay.Parameters["@Isreceived"].Value = e.Isreceived;
                 _cmdInsertContractHowtopay.Parameters["@ContractNo"].Value = e.ContractNo;
                 _cmdInsertContractHowtopay.Parameters["@EntId"].Value = e.EntId;
