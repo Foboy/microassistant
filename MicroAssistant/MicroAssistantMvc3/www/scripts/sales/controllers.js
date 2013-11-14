@@ -369,7 +369,8 @@ function SalesContractDetailCtrl($scope, $routeParams, $http, $location) {
 
 	});
 	
-	$scope.hideContractDetail = function(){
+    $scope.hideContractDetail = function () {
+        debugger;
 	    $("#contractDetailBox").animate({ width: "0px" }, 400, function () { $("#contractDetailBox").hide(); });
 	    
 	};

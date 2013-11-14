@@ -1,21 +1,29 @@
-﻿<div class="popupBox clearfix" id="receivablesDetailBox" style="width: 0; position: fixed; right: 0; top: 0;" ng-controller="FinaceDetailCtrl">
-    <div class="flat-l">
-        <div class="comTitle">四川新迎顺信息技术有限公司</div>
-        <ul class="paymentList">
-            <li class="clearfix"><span class="span1">合同编号：</span><span>20130515090301001</span></li>
-            <li class="clearfix"><span class="span1">合同总额：</span><span>1,345,000.00  元</span></li>
-            <li class="clearfix"><span class="span1">合同签署日期：</span><span>2013/07/12</span></li>
-            <li class="clearfix"><span class="span1">承办人：</span><span>张三</span></li>
-            <li class="clearfix"><span class="span1">联系人：</span><span>王晓</span></li>
-            <li class="clearfix"><span class="span1">联系方式：</span><span class="span2">18628188705<br />
-                028-8847636</span></li>
+﻿<div class="floatBox pactBox" id="receivablesDetailBox" style="width: 0; right: 0; top: 0;">
+    <div class="fBg"></div>
+    <div class="fCon clearfix" ng-controller="FinaceDetailCtrl">
+        <i class="arrR" ng-click="hideReceivableDetail()" ></i>
+        <ul class="pact-ul clearfix">
+            <li ng-class="tabIndex==1?'cur':''" ng-click="tabIndex=1">合同详情</li>
+            <li ng-class="tabIndex==2?'cur':''" ng-click="tabIndex=2">合同动态</li>
         </ul>
-    </div>
-    <div class="flat-l">
-        <ul class="ul-f3 ul-f4">
-            <li class="clearfix cur">
+        <ul class="ul-f1" ng-show="tabIndex==1" >
+            <li class="clearfix"><span class="colorBlue namS">合同名字：</span><span class="conS">{{receivableDetailInfos.CName}}
+            </span></li>
+            <li class="clearfix"><span class="colorBlue namS">合同编号：</span><span class="conS">{{receivableDetailInfos.ContractNo}}
+            </span></li>
+            <li class="clearfix"><span class="colorBlue namS">合同总额：</span><span class="conS">{{receivableDetailInfos.Amount | currency:''}}</span></li>
+            <li class="clearfix"><span class="colorBlue namS">合同签署日期：</span><span class="conS">{{parseJsonDate(receivableDetailInfos.ContractTime,'yyyy/MM/dd')}}</span></li>
+            <li class="clearfix"><span class="colorBlue namS">合同承办人：</span><span class="conS">{{receivableDetailInfos.CustomerName}}
+            </span></li>
+            <li class="clearfix"><span class="colorBlue namS">合同联系人：</span><span class="conS">{{receivableDetailInfos.CustomerName}}
+            </span></li>
+            <li class="clearfix"><span class="colorBlue namS">联系方式：</span><span class="conS">15828670324
+            </span></li>
+        </ul>
+        <ul class="ul-f3" ng-show="tabIndex==2" ng-repeat="howpayItem in howpaylists">
+            <li class="clearfix cur" ng-class="">
                 <div class="li-timeb colorRed">
-                    三期
+                    {{$index+1}}期
                             <span class="cir-w"><i></i></span>
                 </div>
                 <div class="li-conb">
@@ -23,30 +31,11 @@
                         <i></i>
                         <div class="tim-list">
                             <div class="colorBlue">收款时间：</div>
-                            2013/06/02
+                           {{parseJsonDate(howpayItem.PayTime,'yyyy/MM/dd')}}
                         </div>
                         <div class="tim-list">
                             <div class="colorBlue">实际收款时间：</div>
-                            <span class="colorRed">未到收款日</span><span class="span3"><a href="" ng-click="makeSureTimesReceivable()" class="btn btn-large btn-block btn-info">确认收款</a></span>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="clearfix none">
-                <div class="li-timeb colorRed">
-                    二期
-                            <span class="cir-w"><i></i></span>
-                </div>
-                <div class="li-conb">
-                    <div class="li-boxs">
-                        <i></i>
-                        <div class="tim-list">
-                            <div class="colorBlue">收款时间：</div>
-                            2013/06/02
-                        </div>
-                        <div class="tim-list">
-                            <div class="colorBlue">实际收款时间：</div>
-                            <span class="date">2013/06/19</span><span class="colorRed">已收</span>
+                            <span class="colorRed">{{parseJsonDate(howpayItem.ReceivedTime,'yyyy/MM/dd')}}<a>click</a></span>
                         </div>
                     </div>
                 </div>
