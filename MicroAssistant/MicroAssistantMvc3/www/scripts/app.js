@@ -15,15 +15,6 @@
           .otherwise({ redirectTo: '/home' });
       $locationProvider.hashPrefix('!');
 
-      $provide.decorator('$animate', ['$delegate', '$injector', '$sniffer', '$rootElement', '$timeout', '$rootScope',
-        function ($delegate, $injector, $sniffer, $rootElement, $timeout, $rootScope) {
-            var enter = $delegate.enter;
-            $delegate.enter = function (element, parent, after, done) {
-                enter(element, parent, after);
-                $rootScope.$broadcast('animate-enter', element);
-            }
-            return $delegate;
-        }]);
   }]).value('$anchorScroll', angular.noop);
 
 function MainCtrl($scope, $routeParams, $http, $location, $filter) {
@@ -70,18 +61,33 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     };
     $scope.checkpage();
 
+    $scope.hasPermission = function (id) {
+        if ($scope.CurrentUser && $scope.CurrentUser.userFuns && $scope.CurrentUser.userFuns.length) {
+            angular.forEach($scope.CurrentUser.userFuns, function (value, key) {
+                if (value.IdsysFunction == id)
+                    return true;
+            });
+        }
+        return false;
+    };
+
     $scope.parseNumberToChinese = function (num) {
         console.log(num);
         if (!isNaN(num))
             num = Math.abs(num);
         if (isNaN(num) || num == 0)
-            return '初次';
-        var result = '第';
+            return '零';
+        var result = '';
         var chinese = '一二三四五六七八九';
-        if (num > 10) {
-            result += chinese.charAt(Math.floor(num / 10)) + '十';
+        if (num >= 10 && num < 20) {
+            result += '十';
         }
-        result += chinese.charAt(num % 10);
+        else if (num >= 20)
+        {
+            result += chinese.charAt(Math.floor(num / 10) - 1) + '十';
+        }
+        if ((num % 10) >0)
+            result += chinese.charAt((num % 10) - 1);
         return result;
     }
 
@@ -97,8 +103,8 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
         else if (typeof datestr == 'string') {
             if ((/Date/ig).test(datestr)) {
                 datestr = datestr.replace(/\//g, '');
-                date = eval(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
-                console.log(date);
+                date = eval(datestr.replace(/Date\(([\-\d]+)\)/gi, "new Date($1)"));
+                //console.log(date);
                 //console.log(datestr.replace(/Date\((\d+)\)/gi, "new Date($1)"));
                 //console.log(date);
             }
@@ -157,4 +163,6 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     error(function (data, status, headers, config) {
         $scope.CurrentUser = {};
     });
+
+
 }

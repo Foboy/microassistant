@@ -1,5 +1,15 @@
 ﻿function UserLoginMainCtrl($scope, $http, $location) {
     var loading = utilities.loading('登陆中...');
+    $scope.CurrentUser = null;
+    $scope.hasPermission = function (id) {
+        if ($scope.CurrentUser && $scope.CurrentUser.userFuns && $scope.CurrentUser.userFuns.length) {
+            angular.forEach($scope.CurrentUser.userFuns, function (value, key) {
+                if (value.IdsysFunction == id)
+                    return true;
+            });
+        }
+        return false;
+    };
     $scope.UserLogin = function () {
         console.log(angular.toJson($scope.User));
         if ($scope.UserLoginForm.$valid) {
@@ -11,7 +21,23 @@
                     loading.hide();
                 }
                 else {
-                    window.location.href = "index.html";
+                    $http.post($sitecore.urls["userCurrentUser"], {}).success(function (data) {
+                        console.log(data);
+                        if (data.Error) {
+                            alert(data.ErrorMessage);
+                        }
+                        $scope.CurrentUser = data.Data;
+                        if ($scope.hasPermission(27)) {
+                            window.location.href = "boss.html";
+                        }
+                        else {
+                            window.location.href = "index.html";
+                        }
+                    }).
+                    error(function (data, status, headers, config) {
+                        $scope.CurrentUser = {};
+                    });
+                    
                 }
                 console.log(data);
             }).

@@ -49,8 +49,8 @@ $sitecore.urls.add("salesChanceVisitList", "/MarketingManagement/Marketing/Searc
 $sitecore.urls.add("salesGetMarketingCount", "/MarketingManagement/Marketing/GetMarketingCount");
 
 $sitecore.urls.add("salesConractList", "/ContractManagement/ContractInfo/GetContractInfoByEID");
-$sitecore.urls.add("salesAddConract", "/ContractManagement/ContractInfo/AddContractInfo");
-
+$sitecore.urls.add("salesAddConract", "/ContractManagement/ContractInfo/AddContractInfo"); 
+$sitecore.urls.add("salesGetConractByContractNo", "/ContractManagement/ContractInfo/GetContractInfoByContractNo");
 
 //boss
 $sitecore.urls.add("salesSalesReport", "/BossManagement/Boss/SearchSalesReport");

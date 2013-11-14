@@ -42,8 +42,7 @@ namespace MicroAssistant.Common
 
         public static string GetFileSaveName(string fileExtention)
         {
-            DateTime time = DateTime.Now;
-            return time.Ticks + fileExtention;
+            return Guid.NewGuid().ToString("N") + fileExtention;
         
         
         }
