@@ -62,6 +62,9 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
             $scope.receivableDetailInfos = [];
         });
     };
+    $scope.IsReceviableItem = function (item) {
+
+    }
     $scope.$on('EventMakeSurePayable', function (event, item) {
         $scope.MakeItem = item;
         $("#makesurePayBox").modal('show');
