@@ -21,7 +21,7 @@
             </span></li>
         </ul>
         <ul class="ul-f3" ng-show="tabIndex==2" ng-repeat="howpayItem in howpaylists">
-            <li class="clearfix cur" ng-class="">
+            <li  ng-class="howpayItem.Isreceived==1?'clearfix cur':'clearfix '">
                 <div class="li-timeb colorRed">
                     {{$index+1}}期
                             <span class="cir-w"><i></i></span>
