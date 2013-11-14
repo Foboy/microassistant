@@ -362,11 +362,20 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 function SalesContractDetailCtrl($scope, $routeParams, $http, $location) {
     $("#contractDetailBox").hide();
     $scope.tabIndex = 1;
+    var contract;
     $scope.$on('EventContractDetail', function (event,from) {
         $("#contractDetailBox").show();
         $("#contractDetailBox").animate({ width: "500px" }, 400);
-        $scope.contract = from.contract;
-
+        contract = from.contract;
+        if (!$scope.contract || contract.ContractNo != $scope.contract.ContractNo) {
+            $http.post($sitecore.urls["salesGetConractByContractNo"], { contractNo: contract.ContractNo }).success(function (data) {
+                console.log(data);
+                $scope.contract = data.Data;
+            }).
+            error(function (data, status, headers, config) {
+                $scope.contract = {};
+            });
+        }
 	});
 	
     $scope.hideContractDetail = function () {
@@ -439,13 +448,13 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
         console.log("EventAddContract");
         console.log(fromscope);
         from = fromscope;
-        chance =  from.cvisit;
+        chance = from.cvisit || { IdmarketingChance: 0 };
         $scope.chance = chance;
         $scope.EditContract = {
             HowtopayListCount: 3,
             Howtopay: 0,
             ContractNo: $filter('date')(new Date(), 'yyyyMMddHHmmss'),
-            FileList: []
+            attachments: []
         };
         $scope.EditContract.chanceId = $scope.chance.IdmarketingChance;
         $scope.salesContractEditPage = 1;
@@ -494,14 +503,13 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
                     alert(data.ErrorMessage);
                 }
                 else {
-                    $.post($sitecore.urls["AddPic"], { sourcePath: data.Data.PicUrl, picType: 3 }, function (picdata) {
+                    $.post($sitecore.urls["AddPic"], { sourcePath: data.Data.PicUrl, picType: 3, description: file.name }, function (picdata) {
                         if (picdata.Error) {
                             alert(picdata.ErrorMessage);
                         }
                         else {
                             $scope.$apply(function () {
-                                picdata.Data.File = file;
-                                $scope.EditContract.FileList.push(picdata.Data);
+                                $scope.EditContract.attachments.push(picdata.Data);
                             });
                         }
                     });
@@ -512,18 +520,19 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
 
     $scope.DeleteFile = function () {
         var file = this.file;
-        for (var i = 0; i < $scope.EditContract.FileList.length; i++)
+        for (var i = 0; i < $scope.EditContract.attachments.length; i++)
         {
-            if (file.PicId == $scope.EditContract.FileList[i].PicId)
+            if (file.PicId == $scope.EditContract.attachments[i].PicId)
             {
-                $scope.EditContract.FileList.splice(i, 1);
+                $scope.EditContract.attachments.splice(i, 1);
                 return;
             }
         }
     }
 
-    $scope.$on('animate-enter', function (event, element) {
-        $(element).find('input.form_datetime_dynamic').datetimepicker({
+    $scope.ShowDatePicker = function (ev) {
+        var item = this.payItem;
+        $(ev.target).datetimepicker({
             minView: 2,
             language: 'zh-CN',
             format: "yyyy/mm/dd",
@@ -534,15 +543,16 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
         .on('changeDate', function (ev) {
             $scope.$apply(function () {
                 console.log(ev);
-                var index = $(ev.target).attr('item-index');
                 angular.forEach($scope.EditContract.HowtopayList, function (value, key) {
-                    if (value.$index == index)
+                    if (value.$index == item.$index)
                         value.PayTime = ev.target.value;
 
                 });
             });
         });
-    });
+        $(ev.target).datetimepicker('update');
+        $(ev.target).datetimepicker('show');
+    };
 
     $scope.ContractPayChanced = function () {
         var count = $scope.EditContract.Howtopay == 1 ? $scope.EditContract.HowtopayListCount : 0;
@@ -585,16 +595,33 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
             $scope.showerror2 = false;
 
             var paylist = [];
+            var files = [];
             angular.forEach($scope.EditContract.HowtopayList, function (value, key) {
                 if (value.enable == 'display')
                     paylist.push({ InstalmentsNo: key, Amount: value.Amount, PayTime: value.PayTime, ReceivedTime: value.PayTime, Isreceived: 1, ContractNo: $scope.EditContract.ContractNo });
                 
             });
+            angular.forEach($scope.EditContract.attachments, function (value, key) {
+                files.push(value.PicId);
+
+            });
 
             if (paylist.length == 0)
                 paylist.push({ InstalmentsNo: 1, Amount: $scope.EditContract.Amount, PayTime: $scope.EditContract.StartTime, ReceivedTime: $scope.EditContract.StartTime, Isreceived: 1, ContractNo: $scope.EditContract.ContractNo });
   
-            $http.post($scope.EditContract.ContractInfoId ? $sitecore.urls["salesAddConract"] : $sitecore.urls["salesAddConract"], { ChanceId:$scope.EditContract.chanceId, ContractNo: $scope.EditContract.ContractNo, CName: $scope.EditContract.CName, CustomerName: $scope.EditContract.CustomerName, StartTime: $scope.EditContract.StartTime, EndTime: $scope.EditContract.EndTime, ContractTime: $scope.EditContract.ContractTime, Amount: $scope.EditContract.Amount, HowToPay: $scope.EditContract.Howtopay, HowtopayList: paylist }).success(function (data) {
+            $http.post($scope.EditContract.ContractInfoId ? $sitecore.urls["salesAddConract"] : $sitecore.urls["salesAddConract"], {
+                ChanceId: $scope.EditContract.chanceId,
+                ContractNo: $scope.EditContract.ContractNo,
+                CName: $scope.EditContract.CName,
+                CustomerName: $scope.EditContract.CustomerName,
+                StartTime: $scope.EditContract.StartTime,
+                EndTime: $scope.EditContract.EndTime,
+                ContractTime: $scope.EditContract.ContractTime,
+                Amount: $scope.EditContract.Amount,
+                HowToPay: $scope.EditContract.Howtopay,
+                HowtopayList: paylist,
+                attachments:files
+            }).success(function (data) {
                 console.log(data);
                 if (data.Error) {
                     alert(data.ErrorMessage);

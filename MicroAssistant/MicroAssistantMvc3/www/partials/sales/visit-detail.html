@@ -21,7 +21,7 @@
                     	<div class="title-f clearfix">
                         	<h1 class="colorBlue">机会描述</h1>
                             <div class="sign-pact">
-                            	<a href="#fakelink" class="btn btn-large btn-block btn-danger">签订合同</a>
+                            	<a href="" class="btn btn-large btn-block btn-danger">签订合同</a>
                                 <a href="#" class="grayLink">结束拜访，转回到机会</a>
                             </div>
                             <div class="rate-cur">
@@ -60,7 +60,7 @@
 										<i></i>
 										<div class="clearfix">
                                         	<div class="visit-num">
-                                            	<span class="span1">{{parseNumberToChinese(chance_visits.length || 0)}}次拜访</span>
+                                            	<span class="span1">{{((chance_visits.length||0) + 1)==1?'初':'第'+parseNumberToChinese((chance_visits.length||0) + 1)}}次拜访</span>
                                             </div>
                                         </div>
 										<div class="clearfix">
@@ -106,7 +106,7 @@
 										    </div>
                                             <div class="clearfix">
                                         	    <div class="visit-num">
-                                            	    <span class="span1">{{parseNumberToChinese($index-chance_visits.length + 1)}}次拜访</span>
+                                            	    <span class="span1">{{($index-chance_visits.length)==-1?'初':'第'+parseNumberToChinese($index-chance_visits.length)}}次拜访</span>
                                                     <span class="span2"><b class="peo-wIcon"></b></span>
                                                 </div>
 

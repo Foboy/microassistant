@@ -103,19 +103,19 @@
                 <a ng-href="#!/home" class="homeIcon"></a>
                 <p><a ng-href="#!/home">主页</a></p>
             </li>
-            <li ng-class="page=='product'?'cur':''">
+            <li ng-class="page=='product'?'cur':''" ng-show="hasPermission(1)">
                 <a ng-href="#!/product" class="productIcon"></a>
                 <p><a ng-href="#!/product">产品管理</a></p>
             </li>
-            <li ng-class="page=='sales'?'cur':''">
+            <li ng-class="page=='sales'?'cur':''" ng-show="hasPermission(17)">
                 <a ng-href="#!/sales" class="saleIcon"></a>
                 <p><a ng-href="#!/sales">销售管理</a></p>
             </li>
-            <li ng-class="page=='finance'?'cur':''">
+            <li ng-class="page=='finance'?'cur':''" ng-show="hasPermission(11)">
                 <a ng-href="#!/finance" class="financeIcon"></a>
                 <p><a ng-href="#!/finance">财务管理</a></p>
             </li>
-            <li ng-class="page=='client'?'cur':''">
+            <li ng-class="page=='client'?'cur':''" ng-show="hasPermission(6)">
                 <a ng-href="#!/client" class="clientIcon"></a>
                 <p><a ng-href="#!/client">客户管理</a></p>
             </li>
