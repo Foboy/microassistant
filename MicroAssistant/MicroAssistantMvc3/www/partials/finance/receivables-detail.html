@@ -17,11 +17,11 @@
             </span></li>
             <li class="clearfix"><span class="colorBlue namS">合同联系人：</span><span class="conS">{{receivableDetailInfos.CustomerName}}
             </span></li>
-            <li class="clearfix"><span class="colorBlue namS">联系方式：</span><span class="conS">15828670324
+            <li class="clearfix"><span class="colorBlue namS">联系方式：</span><span class="conS">{{receivableDetailInfos.Chance.Tel}}
             </span></li>
         </ul>
         <ul class="ul-f3" ng-show="tabIndex==2" ng-repeat="howpayItem in howpaylists">
-            <li class="clearfix cur" ng-class="">
+            <li ng-class="howpayItem.Isreceived==1?'clearfix cur':'clearfix '">
                 <div class="li-timeb colorRed">
                     {{$index+1}}期
                             <span class="cir-w"><i></i></span>
@@ -33,9 +33,12 @@
                             <div class="colorBlue">收款时间：</div>
                            {{parseJsonDate(howpayItem.PayTime,'yyyy/MM/dd')}}
                         </div>
-                        <div class="tim-list">
+                        <div class="tim-list" ng-show="howpayItem.Isreceived==2">
                             <div class="colorBlue">实际收款时间：</div>
-                            <span class="colorRed">{{parseJsonDate(howpayItem.ReceivedTime,'yyyy/MM/dd')}}<a>click</a></span>
+                            <span class="colorRed">{{parseJsonDate(howpayItem.ReceivedTime,'yyyy/MM/dd')}}</span>
+                        </div>
+                        <div class="tim-list" ng-show="howpayItem.Isreceived==1">
+                            <a ng-click="makeSureTimesReceivable(howpayItem)" href="">确认收款</a>
                         </div>
                     </div>
                 </div>
