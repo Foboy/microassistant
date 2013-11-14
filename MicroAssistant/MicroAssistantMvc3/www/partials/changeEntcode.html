@@ -1,10 +1,23 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+﻿<h1 class="titSec">修改企业代码</h1>
+<div>
+    <form name="ChangeEnterprsieCodeForm" ng-class="showerror?'showerror':''">
+        <div class="basicInfo">
+            <ul class="ul-s1">
+                <li class="clearfix">
+                    <span class="span1">当前企业代码</span>
+                    <span class="span2">{{EnterpriseData.currentCode=CurrentUser.EntCode}}
+                    </span>
+                </li>
+                <li class="clearfix">
+                    <span class="span1">新的企业代码</span>
+                    <span class="span3">
+                        <input type="text" name="code" placeholder="企业代码必须由字母和数字组成的不少于6位的字符" ng-model="EnterpriseData.code" ng-pattern="/^[A-Za-z0-9]+$/" ng-maxlength="6"  ng-required="true" class="t-p">
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="save-btn">
+            <a href="" ng-click="EditeCurrentEntCodeSubmit(EnterpriseData)" class="btn btn-large btn-block btn-info">保 存</a>
+        </div>
+    </form>
+</div>

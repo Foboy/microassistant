@@ -1,8 +1,9 @@
 function ProductMainCtrl($scope, $routeParams, $http, $location){
 	console.log("pmc");
 	console.log($scope);
-	$scope.ActCatalogId = 0;
-	$scope.ActPageIndex = 1;
+	var $parent = $scope.$parent;
+	$parent.ActCatalogId = 0;
+	$parent.ProductActPageIndex = 1;
 	
   //获取产品列表
   $scope.getCatProducts = function(catalogId, pageIndex){
@@ -11,30 +12,30 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
           if (data.Error) {
               alert(data.ErrorMessage);
           }
-		  $scope.ActPageIndex = pageIndex;
-		  $scope.products = data.Data.Items;
+          $parent.ProductActPageIndex = pageIndex;
+          $parent.products = data.Data.Items;
 	  }).
 	  error(function(data, status, headers, config) {
-		$scope.products = [];
+	      $parent.products = [];
 	  });
   };
   
   $scope.activeCat = function(catalogId, pageIndex){
 	  console.log($scope);
 	  var actived = false;
-	  for(var i=0;i<$scope.catalogs.length;i++)
+	  for (var i = 0; i < $parent.catalogs.length; i++)
 	  {
-		if($scope.catalogs[i].PTypeId == catalogId)
+	      if ($parent.catalogs[i].PTypeId == catalogId)
 		{
 			actived = true;
-			$scope.ActCatalogId = $scope.catalogs[i].PTypeId;
-			$scope.getCatProducts($scope.catalogs[i].PTypeId, pageIndex);
+			$parent.ActCatalogId = $parent.catalogs[i].PTypeId;
+			$scope.getCatProducts($parent.catalogs[i].PTypeId, pageIndex);
 			break;
 		}
 	  }
 	  if(!actived)
 	  {
-		  $location.path("/product/"+$scope.catalogs[0].PTypeId+"/1");
+	      $location.path("/product/" + $parent.catalogs[0].PTypeId + "/1");
 		  //$scope.catalogs[0].active = true;
 		  //$scope.getCatProducts($scope.catalogs[0].PTypeId, pageIndex);
 	  }
@@ -42,9 +43,9 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
   
   //获取产品分类列表
   $scope.showCatalogs = function(catalogId, pageIndex){
-	  if(catalogId == $scope.ActCatalogId && pageIndex == actPageIndex)
+      if (catalogId == $parent.ActCatalogId && pageIndex == $parent.ProductActPageIndex)
 	  	return;
-	  if($scope.catalogs)
+      if ($parent.catalogs)
 	  {
 		  if(catalogId)
 		  {
@@ -54,12 +55,12 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 	  else
 	  {
 	      $http.post($sitecore.urls["productCat"], {pageIndex:0,pageSize:50}).success(function (data) {
-	          $scope.catalogs = data.Data || [];
+	          $parent.catalogs = data.Data || [];
 	          if (data.Error) {
 	              alert(data.ErrorMessage);
 	          }
-		      console.log($scope.catalogs)
-		      if($scope.catalogs && $scope.catalogs.length)
+	          console.log($parent.catalogs)
+	          if ($parent.catalogs && $parent.catalogs.length)
 		      {
 			      if(catalogId)
 			      {
@@ -68,12 +69,12 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 			      else
 			      {
 				      //$location.path("/product/"+$scope.catalogs[0].PTypeId+"/1");
-				      $scope.activeCat($scope.catalogs[0].PTypeId, pageIndex);
+			          $scope.activeCat($parent.catalogs[0].PTypeId, pageIndex);
 			      }
 		      }
 		}).
 		error(function(data, status, headers, config) {
-		  $scope.catalogs = [];
+		    $parent.catalogs = [];
 		});
 	  }
   };	
@@ -146,7 +147,16 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
 		console.log(showproduct);
 		product = showproduct;
 		$("#productDetailBox").animate({width:"600px"},500);
-		$scope.productInfo();
+		$scope.tabIndex = 1;
+		if (!$scope.product || product.PId != $scope.product.PId) {
+		    $http.post($sitecore.urls["productDetail"], { pid: product.PId }).success(function (data) {
+		        console.log(data);
+		        $scope.product = data.Data;
+		    }).
+            error(function (data, status, headers, config) {
+                $scope.product = {};
+            });
+		}
 	});
 	
 	$scope.hideProductDetail = function(){
@@ -156,29 +166,20 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location){
 	
 	$scope.productInfo = function () {
 	    $scope.tabIndex = 1;
-	    if (!$scope.product || product.PId != $scope.product.PId) {
-	        $http.post($sitecore.urls["productDetail"], { pid: product.PId }).success(function (data) {
-	            console.log(data);
-	            $scope.product = data.Data;
-	        }).
-            error(function (data, status, headers, config) {
-                $scope.product = {};
-            });
-	    }
-  };
+    };
   
-  $scope.productStore = function(){
-      $scope.tabIndex = 2;
-      if (!$scope.stores || !$scope.stores.length || product.PId != $scope.stores[0].PId) {
-	      $http.post($sitecore.urls["productStoresList"], { pid: product.PId,pageIndex:0,pageSize:10 }).success(function (data) {
-	          console.log(data);
-	          $scope.stores = data.Data.Items;
-	      }).
-          error(function (data, status, headers, config) {
-              $scope.stores = {};
-          });
-	  }
-  };
+      $scope.productStore = function(){
+          $scope.tabIndex = 2;
+          if (!$scope.stores || !$scope.stores.length || product.PId != $scope.stores[0].PId) {
+	          $http.post($sitecore.urls["productStoresList"], { pid: product.PId,pageIndex:0,pageSize:10 }).success(function (data) {
+	              console.log(data);
+	              $scope.stores = data.Data.Items;
+	          }).
+              error(function (data, status, headers, config) {
+                  $scope.stores = {};
+              });
+	      }
+      };
   
   $scope.productPurchase = function(){
 	  $scope.tabIndex=3;

@@ -71,6 +71,7 @@
                     <li><a ng-href="#!/user" class="writeLink">基本资料</a></li>
                     <li><a ng-href="#!/mytimeshaft" class="writeLink">我的时间轴</a></li>
                     <li><a ng-href="#!/staffmangement" class="writeLink">我的员工管理</a></li>
+                    <li><a ng-href="#!/changeEntcode" class="writeLink">企业代码</a></li>
                     <li><a ng-click="UserLoginOut()" class="writeLink">退出</a></li>
                 </ul>
             </div>
@@ -97,19 +98,19 @@
                 <a ng-href="#!/home" class="homeIcon"></a>
                 <p><a ng-href="#!/home">主页</a></p>
             </li>
-            <li ng-class="page=='product'?'cur':''">
+            <li ng-class="page=='product'?'cur':''" ng-show="productPermission">
                 <a ng-href="#!/product" class="productIcon"></a>
                 <p><a ng-href="#!/product">产品管理</a></p>
             </li>
-            <li ng-class="page=='sales'?'cur':''">
+            <li ng-class="page=='sales'?'cur':''" ng-show="salesPermission">
                 <a ng-href="#!/sales" class="saleIcon"></a>
                 <p><a ng-href="#!/sales">销售管理</a></p>
             </li>
-            <li ng-class="page=='finance'?'cur':''">
+            <li ng-class="page=='finance'?'cur':''" ng-show="financePermission">
                 <a ng-href="#!/finance" class="financeIcon"></a>
                 <p><a ng-href="#!/finance">财务管理</a></p>
             </li>
-            <li ng-class="page=='client'?'cur':''">
+            <li ng-class="page=='client'?'cur':''" ng-show="clientPermission">
                 <a ng-href="#!/client" class="clientIcon"></a>
                 <p><a ng-href="#!/client">客户管理</a></p>
             </li>

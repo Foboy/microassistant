@@ -53,10 +53,10 @@
 			                </select>
                             <br />
                             <ul>
-                                <li ng-repeat="item in EditContract.HowtopayList | filter:'display' track by item.$index">
+                                <li ng-repeat="payItem in EditContract.HowtopayList | filter:'display' track by payItem.$index">
                                     <span class="span1">&nbsp;</span>{{$index+1}}期:
-                                    <input type="text" ng-model="item.Amount" class="span1" />元
-                                    <input type="text" item-index="{{item.$index}}" ng-model="item.PayTime" placeholder="时间"  class="span1 form_datetime_dynamic" ng-required="true"/>
+                                    <input type="number" ng-model="payItem.Amount" class="span1"  ng-required="true"/>元
+                                    <input type="text" ng-click="ShowDatePicker($event)" ng-focus="ShowDatePicker($event)" item-index="{{payItem.$index}}" ng-model="payItem.PayTime" placeholder="时间"  class="span1" ng-required="true"/>
                                 </li>
                             </ul>
                          </span>
@@ -66,12 +66,12 @@
                 </form>
         </div>
         <div class="madeBox" ng-show="salesContractEditPage==3">
-            <ul style="">
-                <li ng-repeat="file in EditContract.FileList" >
-                    {{file.File.name}}
-                    <a ng-click="DeleteFile()">删除</a>
-                </li>
-            </ul>
+            <div class="textpact" ng-repeat="attachment in EditContract.attachments">
+                <i class="textIcon"></i>
+                <div class="textNam">{{attachment.PicDescription}}</div>
+                <a href="{{attachment.PicUrl}}" class="downloadIcon"></a>
+                <a ng-click="DeleteFile()">删除</a>
+            </div>
             <div id="salesContractFileQueue"></div>
             <ul class="listContent">
                 <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a id="salesContractUpload" href="" class="btn btn-large btn-block btn-success" >上传附件</a><a href="" class="btn btn-large btn-block btn-success" ng-click="SalesContractEditSubmit()">确 定</a></span></li>

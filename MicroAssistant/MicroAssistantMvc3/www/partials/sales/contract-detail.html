@@ -21,38 +21,25 @@
                     <li class="clearfix"><span class="colorBlue namS">附件：</span><span class="conS">
                     <div class="textpact" ng-repeat="attachment in contract.attachments">
                         <i class="textIcon"></i>
-                        <div class="textNam">鼠标购买合同.doc</div>
-                        <a href="#" class="downloadIcon"></a>
+                        <div class="textNam">{{attachment.PicDescription}}</div>
+                        <a href="{{attachment.PicUrl}}" class="downloadIcon"></a>
                 	</div>
                 </span></li>
                 </ul> 
                 <ul class="ul-f3" ng-show="tabIndex==2">
-                    <li class="clearfix cur">
+                    <li class="clearfix"  ng-repeat="pay in contract.HowtopayList" ng-class="$index==0?'cur':'none'">
                         <div class="li-timeb colorRed">
-                           三期
+                           {{parseNumberToChinese(contract.HowtopayList.length - $index)}}期
                             <span class="cir-w"><i></i></span>
                         </div>
                         <div class="li-conb">
                             <div class="li-boxs">
                                 <i></i>
-                                <div class="tim-list"><div class="colorBlue">收款时间：</div>2013/06/02</div>
-								<div class="tim-list"><div class="colorBlue">实际收款时间：</div><span class="colorRed">未到收款日</span></div>
+                                <div class="tim-list"><div class="colorBlue">收款时间：</div>{{parseJsonDate(pay.PayTime,'yyyy/MM/dd')}}</div>
+								<div class="tim-list"><div class="colorBlue">实际收款时间：</div><span class="colorRed">{{parseJsonDate(pay.ReceivedTime,'yyyy/MM/dd')}}</span></div>
                             </div>
                         </div>
-                    </li> 
-                    <li class="clearfix none">
-                        <div class="li-timeb colorRed">
-                           二期
-                            <span class="cir-w"><i></i></span>
-                        </div>
-                        <div class="li-conb">
-                            <div class="li-boxs">
-                                <i></i>
-                                <div class="tim-list"><div class="colorBlue">收款时间：</div>2013/06/02</div>
-								<div class="tim-list"><div class="colorBlue">实际收款时间：</div><span class="colorRed">未到收款日</span></div>
-                            </div>
-                        </div>
-                    </li>                            
+                    </li>                           
                 </ul>        
             </div>
         </div>

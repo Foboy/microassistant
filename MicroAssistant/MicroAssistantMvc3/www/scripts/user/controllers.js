@@ -1,5 +1,15 @@
 ﻿function UserLoginMainCtrl($scope, $http, $location) {
     var loading = utilities.loading('登陆中...');
+    $scope.CurrentUser = null;
+    $scope.hasPermission = function (id) {
+        if ($scope.CurrentUser && $scope.CurrentUser.userFuns && $scope.CurrentUser.userFuns.length) {
+            for (var i = 0; i < $scope.CurrentUser.userFuns.length; i++) {
+                if ($scope.CurrentUser.userFuns[i].IdsysFunction == id)
+                    return true;
+            }
+        }
+        return false;
+    };
     $scope.UserLogin = function () {
         console.log(angular.toJson($scope.User));
         if ($scope.UserLoginForm.$valid) {
@@ -11,7 +21,23 @@
                     loading.hide();
                 }
                 else {
-                    window.location.href = "index.html";
+                    $http.post($sitecore.urls["userCurrentUser"], {}).success(function (data) {
+                        console.log(data);
+                        if (data.Error) {
+                            alert(data.ErrorMessage);
+                        }
+                        $scope.CurrentUser = data.Data;
+                        if ($scope.hasPermission(27)) {
+                            window.location.href = "boss.html";
+                        }
+                        else {
+                            window.location.href = "index.html";
+                        }
+                    }).
+                    error(function (data, status, headers, config) {
+                        $scope.CurrentUser = {};
+                    });
+                    
                 }
                 console.log(data);
             }).
@@ -245,4 +271,22 @@ function StaffMangementCtrl($scope, $http, $location)
         }
     };
     $scope.SearchUserListByRoleId(0);
+    //$scope.
+}
+function EnterPriseCodeCtrl($scope, $http, $location)
+{
+    $scope.EditeCurrentEntCodeSubmit = function (data) {
+        if ($scope.ChangeEnterprsieCodeForm.$valid) {
+            $scope.showerror = false;
+            $http.post($sitecore.urls["EditeCurrentEntCode"], { entCode: data.code }).success(function (data) {
+                if (!data.Error) {
+                    alert("修改成功！");
+                } else { }
+            }).error(function (data, status, headers, config) {
+                $scope.SysUsers = [];
+            });
+        } else {
+            $scope.showerror = true;
+        }
+    }
 }

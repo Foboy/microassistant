@@ -28,6 +28,7 @@ $sitecore.urls.add("SearchUserTimeMachine", "/UserManagement/User/SearchUserTime
 $sitecore.urls.add("EditeUserEntCode", "/UserManagement/User/EditeUserEntCode")//关联企业
 $sitecore.urls.add("SearchEntRole", "/SystemManagement/Permission/SearchEntRole");//员工管理权限列表
 $sitecore.urls.add("SearchUserListByRoleId", "/SystemManagement/Permission/SearchUserListByRoleId"); //通过权限ID获取用户信息列表
+$sitecore.urls.add("EditeCurrentEntCode", "/UserManagement/User/EditeCurrentEntCode");//修改现有企业CODE
 
 $sitecore.urls.add("productCat", "/ProductManagement/Production/SearchProductTypeListByEntID");
 $sitecore.urls.add("productAddCat", "/ProductManagement/Production/AddProductionType"); 
@@ -48,8 +49,8 @@ $sitecore.urls.add("salesChanceVisitList", "/MarketingManagement/Marketing/Searc
 $sitecore.urls.add("salesGetMarketingCount", "/MarketingManagement/Marketing/GetMarketingCount");
 
 $sitecore.urls.add("salesConractList", "/ContractManagement/ContractInfo/GetContractInfoByEID");
-$sitecore.urls.add("salesAddConract", "/ContractManagement/ContractInfo/AddContractInfo");
-
+$sitecore.urls.add("salesAddConract", "/ContractManagement/ContractInfo/AddContractInfo"); 
+$sitecore.urls.add("salesGetConractByContractNo", "/ContractManagement/ContractInfo/GetContractInfoByContractNo");
 
 //boss
 $sitecore.urls.add("salesSalesReport", "/BossManagement/Boss/SearchSalesReport");
