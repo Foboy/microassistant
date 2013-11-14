@@ -25,8 +25,7 @@
                     <p><span class="p-t">入职时间：</span><span>{{parseJsonDate(SysUser.CreateTime)|date:'yyyy/MM/dd' }}</span></p>
                     <p>
                         <span class="p-t">所属部门：</span><span>
-                            <select ng-options="c.RoleName for c in SysRoles" ><option ng-selected="true">123</option>
-                                <option ng-selected="">324</option>
+                            <select ng-model="SysUser.RoleId" ng-options="c.RoleName for c in Killers" >
                             </select>
                        </span>
                     </p>
