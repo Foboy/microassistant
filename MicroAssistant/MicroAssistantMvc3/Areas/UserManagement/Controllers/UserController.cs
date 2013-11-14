@@ -315,25 +315,9 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 }
                 else
                 {
-                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
-                    if (userid > 0)
-                    {
-                        SysUser user = SysUserAccessor.Instance.Get(userid);
-                        if (user.IsEnable == 2)
-                        {
-                            result.Error = AppError.ERROR_USER_FORBID;
-                        }
-                        else
-                        {
-                            user.userFuns = SysFunctionAccessor.Instance.SearchSysUserRolePermisson(userid);
-                            result.Error = AppError.ERROR_SUCCESS;
-                            result.Data = user;
-                        }
-                    }
-                    else
-                    {
-                        result.Error = AppError.ERROR_FAILED;
-                    }
+
+                    result.Error = AppError.ERROR_SUCCESS;
+                    result.Data = CurrentUser;
                 }
             }
             catch (Exception e)
