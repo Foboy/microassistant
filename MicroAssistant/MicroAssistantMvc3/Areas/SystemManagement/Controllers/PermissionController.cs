@@ -327,7 +327,12 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                         Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         return Res;
                     }
+                  string rolename =  SysRoleAccessor.Instance.Get(roleId).RoleName;
                     userlist = SysUserAccessor.Instance.LoadSysUserByRoleId(CurrentUser.EntId, roleId);
+                    for (int i = 0; i < userlist.Count; i++)
+                    {
+                        userlist[i].RoleName = rolename;
+                    }
 
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = userlist;
