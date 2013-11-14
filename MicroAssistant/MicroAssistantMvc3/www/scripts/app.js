@@ -7,6 +7,7 @@
           .when('/staffmangement', { templateUrl: 'partials/staffmangement.html', controller: StaffMangementCtrl })
           .when('/changepassword', { templateUrl: 'partials/changepassword.html', controller: UserMainCtrl })
           .when('/changeemail', { templateUrl: 'partials/changeemail.html', controller: UserMainCtrl })
+          .when('/changeEntcode', { templateUrl: 'partials/changeEntcode.html', controller: EnterPriseCodeCtrl })
           .when('/product/:catalogId?/:pageIndex?', { templateUrl: 'partials/product.html', controller: ProductMainCtrl })
           .when('/sales/:steps?/:pageIndex?', { templateUrl: 'partials/sales.html', controller: SalesMainCtrl })
           .when('/finance/:steps?/:pageIndex?', { templateUrl: 'partials/finance.html', controller: FinanceMainCtrl })
@@ -48,7 +49,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     $scope.CurrentUser = null;
 
     $scope.checkpage = function () {
-        if ($location.path().indexOf('/home') == 0 || $location.path().indexOf('/user') == 0 || $location.path().indexOf('/changepassword') == 0 || $location.path().indexOf('/changeemail') == 0 || $location.path().indexOf('/mytimeshaft') == 0 || $location.path().indexOf('/staffmangement') == 0) {
+        if ($location.path().indexOf('/home') == 0 || $location.path().indexOf('/user') == 0 || $location.path().indexOf('/changepassword') == 0 || $location.path().indexOf('/changeemail') == 0 || $location.path().indexOf('/mytimeshaft') == 0 || $location.path().indexOf('/staffmangement') == 0 || $location.path().indexOf('/changeEntcode') == 0) {
             $scope.page = "home";
         }
         else if ($location.path().indexOf('/product') == 0) {

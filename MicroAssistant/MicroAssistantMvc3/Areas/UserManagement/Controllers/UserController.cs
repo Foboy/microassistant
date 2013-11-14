@@ -679,7 +679,8 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                         }
 
                         SysUser olduser = SysUserAccessor.Instance.Get(userid);
-                        olduser.EntCode = entUser.EntCode;
+                        //olduser.EntCode = entUser.EntCode;
+                        olduser.EntCode = entCode;
 
                         SysUserAccessor.Instance.Update(olduser);
                         result.Error = AppError.ERROR_SUCCESS;
