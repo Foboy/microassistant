@@ -152,12 +152,12 @@ a:hover{text-decoration:underline;}
 .headImg{width:170px; height:60px; text-align:center; padding:20px 0;}
 .headImg img{border-radius:40px; height:60px; width:60px;}
 .navList{margin-left:0;border-top:1px solid #e5e3d4;}
-.navList li{text-align:center; height:45px; list-style:none; width:170px; font-size:12px; margin-bottom:1px; border-bottom:1px solid #e5e3d4;border-right:1px solid #e5e3d4; color:#6d6b6c;}
+.navList li{text-align:center; height:45px; list-style:none; width:170px; font-size:12px; margin-bottom:1px; border-bottom:1px solid #e5e3d4;color:#6d6b6c;}
 .navList li a{color:#6d6b6c;}
 .navList li .homeIcon,.navList li .productIcon,.navList li .clientIcon{float:left; margin:15px 0 0 18px;}
 .navList li .saleIcon,.navList li .financeIcon,.navList li .peopleIcon{float:left; margin:12px 0 0 18px;}
 .navList li .saleIcon{margin-top:15px;}
-.navList li p{float:right; width:125px; height:45px; line-height:45px; font-size:14px; text-align:center;  margin:0;}
+.navList li p{float:left; width:125px; height:45px; line-height:45px; font-size:16px; text-align:center;  margin:0;}
 .navList li.cur,.navList li:hover{background:#1ABC9C; font-weight:bold;}
 .navList li:hover a,.navList li.cur a{color:#FFFFFF; text-decoration:none;}
 .navList li:hover .homeIcon,.navList li.cur .homeIcon{background-position:-1px -122px; float:left;}
@@ -192,9 +192,9 @@ a:hover{text-decoration:underline;}
 .newAddBox .addName{width:170px; border-radius:0;}
 
 
-.searchBox{height:40px; line-height:30px; text-align:right; padding:0 15px 10px 15px;}
+.searchBox{height:30px; line-height:30px; text-align:right; padding:0 15px 10px 15px;}
 .searchBox input{margin-left:10px;border-radius:0;}
-.searchBox .addBtn,.searchBox .delBtn{width:30px; margin-top:-10px;}
+.searchBox .addBtn,.searchBox .delBtn{width:30px;}
 .seCon{position:relative; display:inline-block;}
 .seCon .seBtn{position:absolute; right:10px; display:inline-block; border:none; background:url(../img/icon.png) -137px -135px; width:20px; height:21px; cursor:pointer; top:12px;}
 .seCon .setext{padding-right:35px;}
@@ -232,10 +232,10 @@ a:hover{text-decoration:underline;}
 /*=== 产品详情页面 END ===*/
 
 /*=== 销售管理 ===*/
-.salesList{border-bottom:3px solid #f25749; margin-left:0; padding-left:20px;}
+.salesList{border-bottom:3px solid #1ABC9C; margin:0 0 8px 0px; padding-left:20px;}
 .salesList li{ text-align:center; float:left; list-style:none; margin:0 20px; cursor:pointer; height:100px; position:relative;}
 .salesList li .arrowD{display:none;}
-.salesList li.cur .arrowD{display:block; position:absolute; bottom:-9px; left:45%;}
+.salesList li.cur .arrowD{display:block; position:absolute; bottom:-8px; left:45%;}
 .salesList li em{display:inline-block; width:65px; height:65px; background:url(../img/icon.png) -150px 0; margin-bottom:5px;}
 .salesList li:hover em,.salesList li.cur em{background-position:0 0;}
 .salesList li .bentArrow{margin-top:10px;}
@@ -249,7 +249,7 @@ a:hover{text-decoration:underline;}
 /*=== 财务管理 ===*/
 .financeList li{height:35px; line-height:35px; padding:0 20px;}
 .financeList li a{color:#666666; text-decoration:none;}
-.financeList li.cur{ background:#f25749; color:#FFFFFF;}
+.financeList li.cur{ background:#1ABC9C; color:#FFFFFF;}
 .financeList li.cur a{color:#FFFFFF;}
 /*=== 财务管理 END ===*/
 /*=== 悬浮窗口 ===*/
@@ -484,4 +484,7 @@ a:hover{text-decoration:underline;}
 .finance-box .time-s li{width:250px; height:30px; line-height:30px; float:left; text-align:center;list-style:none;}
 .finance-box .m-s li span{margin-left:20px; color:#666666;}
 /*老板模式 END*/
+
+/*search*/
+.searchh { height:25px; line-height:25px;}
 
