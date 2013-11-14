@@ -3,10 +3,10 @@
     $scope.CurrentUser = null;
     $scope.hasPermission = function (id) {
         if ($scope.CurrentUser && $scope.CurrentUser.userFuns && $scope.CurrentUser.userFuns.length) {
-            angular.forEach($scope.CurrentUser.userFuns, function (value, key) {
-                if (value.IdsysFunction == id)
+            for (var i = 0; i < $scope.CurrentUser.userFuns.length; i++) {
+                if ($scope.CurrentUser.userFuns[i].IdsysFunction == id)
                     return true;
-            });
+            }
         }
         return false;
     };
