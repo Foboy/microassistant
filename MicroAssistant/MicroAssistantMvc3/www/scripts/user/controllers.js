@@ -226,7 +226,6 @@ function StaffMangementCtrl($scope, $http, $location)
         $http.post($sitecore.urls["SearchEntRole"], {}).success(function (data) {
             if (!data.Error) {
                 $scope.SysRoles = data.Data;
-                $scope.Killers = data.Data;
             } else { $scope.SysRoles = []; }
         }).error(function (data, status, headers, config) {
             $scope.SysRoles = [];
@@ -246,6 +245,7 @@ function StaffMangementCtrl($scope, $http, $location)
         }
     };
     $scope.SearchUserListByRoleId(0);
+    //$scope.
 }
 function EnterPriseCodeCtrl($scope, $http, $location)
 {
