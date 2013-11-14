@@ -63,12 +63,19 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
 
     $scope.hasPermission = function (id) {
         if ($scope.CurrentUser && $scope.CurrentUser.userFuns && $scope.CurrentUser.userFuns.length) {
-            angular.forEach($scope.CurrentUser.userFuns, function (value, key) {
-                if (value.IdsysFunction == id)
+            for (var i = 0; i < $scope.CurrentUser.userFuns.length; i++) {
+                if ($scope.CurrentUser.userFuns[i].IdsysFunction == id)
                     return true;
-            });
+            }
         }
         return false;
+    };
+
+    $scope.permissionCheck = function () {
+        $scope.productPermission = $scope.hasPermission(1);
+        $scope.salesPermission = $scope.hasPermission(17);
+        $scope.financePermission = $scope.hasPermission(11);
+        $scope.clientPermission = $scope.hasPermission(6);
     };
 
     $scope.parseNumberToChinese = function (num) {
@@ -150,6 +157,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
             alert(data.ErrorMessage);
         }
         $scope.CurrentUser = data.Data;
+        $scope.permissionCheck();
         if (data.Data.PicId > 0)
         {
             $http.post($sitecore.urls["GetPic"], { picid: data.Data.PicId }).success(function (picdata) {
