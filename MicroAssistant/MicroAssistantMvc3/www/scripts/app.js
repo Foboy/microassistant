@@ -61,6 +61,16 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     };
     $scope.checkpage();
 
+    $scope.hasPermission = function (id) {
+        if ($scope.CurrentUser && $scope.CurrentUser.userFuns && $scope.CurrentUser.userFuns.length) {
+            angular.forEach($scope.CurrentUser.userFuns, function (value, key) {
+                if (value.IdsysFunction == id)
+                    return true;
+            });
+        }
+        return false;
+    };
+
     $scope.parseNumberToChinese = function (num) {
         console.log(num);
         if (!isNaN(num))
@@ -153,4 +163,6 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     error(function (data, status, headers, config) {
         $scope.CurrentUser = {};
     });
+
+
 }
