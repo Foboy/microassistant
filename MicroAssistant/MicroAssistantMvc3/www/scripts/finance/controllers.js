@@ -42,6 +42,7 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
         $scope.receivableDetail(item);
         $("#receivablesDetailBox").animate({ width: "500px" }, 400);
     });
+    //隐藏收款详情
     $scope.hideReceivableDetail = function () {
         $("#receivablesDetailBox").animate({ width: "0px" }, 400, function () { $("#receivablesDetailBox").hide(); });
 
@@ -62,9 +63,6 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
             $scope.receivableDetailInfos = [];
         });
     };
-    $scope.IsReceviableItem = function (item) {
-
-    }
     $scope.$on('EventMakeSurePayable', function (event, item) {
         $scope.MakeItem = item;
         $("#makesurePayBox").modal('show');
@@ -85,14 +83,17 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
     };
     $scope.makeSureTimesReceivable = function (item)//确认分期收款
     {
-        console.log(item);
         $http.post($sitecore.urls["makeSureTimesReceivable"], {
-            contractNo: itme.contractNo,
-            rNum:item.rNum
+            contractNo: item.ContractNo,
+            rNum: item.InstalmentsNo
         }).success(function (data) {
+            if (!data.Error)
+            {
+                $scope.hideReceivableDetail();
+            }
             console.log(data.Data);
         }).error(function (data, status, headers, config) {
-          
+            $scope.hideReceivableDetail();
         });
     };
 };
