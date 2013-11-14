@@ -27,6 +27,33 @@
     $scope.ShowAddPersonalForm = function () {
         $scope.$broadcast('EventAddPersonal', this.personclientItem);
     }
+    ///个人客户资料详细
+    $scope.ShowPersonalClientDetail = function (personclientItem) {
+        $("#personalclientDetailBox").show();
+        $scope.PersonData = personclientItem;
+        $("#personalclientDetailBox").animate({ width: "350px" }, 300);
+    }
+    $scope.hidePersonalClientDetail = function (callback) {
+        $("#personalclientDetailBox").animate({ width: "0px" }, 300, function () {
+            $("#personalclientDetailBox").hide();
+            if (typeof callback === 'function') {
+                callback();
+            }
+        });
+    };
+    $scope.ShowEnterpriseClientDetail = function (enterpriseclientItem) {
+        $("#enterpriseclientDetailBox").show();
+        $scope.EnterpriseData = enterpriseclientItem;
+        $("#enterpriseclientDetailBox").animate({ width: "350px" }, 300);
+    }
+    $scope.hideEnterprsieClientDetail = function (callback) {
+        $("#enterpriseclientDetailBox").animate({ width: "0px" }, 300, function () {
+            $("#enterpriseclientDetailBox").hide();
+            if (typeof callback === 'function') {
+                callback();
+            }
+        });
+    }
 }
 function AddClientCtrl($scope, $routeParams, $http, $location) {
     switch ($scope.sorts) {
@@ -97,6 +124,4 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
             };
             break;
     }
-
-
 };

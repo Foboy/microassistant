@@ -41,7 +41,7 @@
                     <p>{{enterpriseclientItem.ContactPhone}}</p>
                 </td>
                 <td>{{enterpriseclientItem.Address}}</td>
-                <td><a href="#myModal" role="button" data-toggle="modal">查看</a>|<a href="" ng-click="ShowAddEnterpriseForm()" role="button" data-toggle="modal">编辑</a></td>
+                <td><a href="" ng-click="ShowEnterpriseClientDetail(enterpriseclientItem)" role="button" data-toggle="modal">查看</a>|<a href="" ng-click="ShowAddEnterpriseForm()" role="button" data-toggle="modal">编辑</a></td>
             </tr>
         </tbody>
     </table>
@@ -73,10 +73,11 @@
                   <td class="colorBlue">{{personclientItem.Industy}}</td>                  
                   <td><p>{{personclientItem.Mobile}}</p><p>{{personclientItem.Email}}</p></td>
                   <td>{{personclientItem.Address}}</td>
-                  <td><a href="#myModal" role="button" data-toggle="modal">查看</a>|<a href="" ng-click="ShowAddPersonalForm()" role="button" data-toggle="modal">编辑</a></td>
+                  <td><a href="" ng-click="ShowPersonalClientDetail(personclientItem)" role="button" data-toggle="modal">查看</a>|<a href="" ng-click="ShowAddPersonalForm()" role="button" data-toggle="modal">编辑</a></td>
                 </tr>
               </tbody>
             </table>
         </div>
 <div  ng-include="sorts=='enterprise'?'partials/client/client-addenterprise.html':'partials/client/client-addpersonal.html'" ></div>
+<div  ng-include="sorts=='enterprise'?'partials/client/enterpriseclient-detail.html':'partials/client/personalclient-detail.html'" ></div>
 
