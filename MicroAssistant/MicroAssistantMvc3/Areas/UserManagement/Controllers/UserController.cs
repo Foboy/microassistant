@@ -325,6 +325,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                         }
                         else
                         {
+                            user.userFuns = SysFunctionAccessor.Instance.SearchSysUserRolePermisson(userid);
                             result.Error = AppError.ERROR_SUCCESS;
                             result.Data = user;
                         }
