@@ -29,6 +29,7 @@ $sitecore.urls.add("EditeUserEntCode", "/UserManagement/User/EditeUserEntCode")/
 $sitecore.urls.add("SearchEntRole", "/SystemManagement/Permission/SearchEntRole");//员工管理权限列表
 $sitecore.urls.add("SearchUserListByRoleId", "/SystemManagement/Permission/SearchUserListByRoleId"); //通过权限ID获取用户信息列表
 $sitecore.urls.add("EditeCurrentEntCode", "/UserManagement/User/EditeCurrentEntCode");//修改现有企业CODE
+$sitecore.urls.add("UpdateUserRole", "/SystemManagement/Permission/UpdateUserRole");//修改用户角色
 
 $sitecore.urls.add("productCat", "/ProductManagement/Production/SearchProductTypeListByEntID");
 $sitecore.urls.add("productAddCat", "/ProductManagement/Production/AddProductionType"); 

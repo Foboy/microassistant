@@ -37,7 +37,7 @@
                     error(function (data, status, headers, config) {
                         $scope.CurrentUser = {};
                     });
-                    
+
                 }
                 console.log(data);
             }).
@@ -245,13 +245,16 @@ function AddCompanyCtrl($scope, $http, $location) {
         }
     };
 }
-function StaffMangementCtrl($scope, $http, $location)
-{
+function StaffMangementCtrl($scope, $http, $location) {
     $scope.selectedRoleid = 0;
     $scope.SearchEntRole = function () {
         $http.post($sitecore.urls["SearchEntRole"], {}).success(function (data) {
             if (!data.Error) {
                 $scope.SysRoles = data.Data;
+                $scope.SelectedOptions = [];
+                for (var i = 1; i < $scope.SysRoles.length; i++) {
+                    $scope.SelectedOptions.push($scope.SysRoles[i])
+                }
             } else { $scope.SysRoles = []; }
         }).error(function (data, status, headers, config) {
             $scope.SysRoles = [];
@@ -263,7 +266,18 @@ function StaffMangementCtrl($scope, $http, $location)
             $scope.selectedRoleid = RoleId;
             $http.post($sitecore.urls["SearchUserListByRoleId"], { roleId: RoleId }).success(function (data) {
                 if (!data.Error) {
-                    $scope.SysUsers = data.Data;
+                    var Datas = data.Data;
+                    var SelectItems = [];
+                    for (var i = 0; i < data.Data.length; i++) {
+                        for (var j = 0; j < $scope.SelectedOptions.length; j++) {
+                            if (data.Data[i].RoleId == $scope.SelectedOptions[j].RoleId) {
+                                SelectItems.push($scope.SelectedOptions[j]);
+                            }
+                        }
+                    }
+                    debugger;
+                    $scope.SysUsers = { Datas: Datas, SelectItems: SelectItems };
+
                 } else { $scope.SysUsers = []; }
             }).error(function (data, status, headers, config) {
                 $scope.SysUsers = [];
@@ -271,10 +285,17 @@ function StaffMangementCtrl($scope, $http, $location)
         }
     };
     $scope.SearchUserListByRoleId(0);
-    //$scope.
+    $scope.ChangeUserRole = function (item) {
+        $http.post($sitecore.urls["UpdateUserRole"], { userId: item.UserId, roleId: item.RoleId }).success(function (data) {
+            if (!data.Error) {
+                alert("修改成功");
+            } else { }
+        }).error(function (data, status, headers, config) {
+
+        });
+    }
 }
-function EnterPriseCodeCtrl($scope, $http, $location)
-{
+function EnterPriseCodeCtrl($scope, $http, $location) {
     $scope.EditeCurrentEntCodeSubmit = function (data) {
         if ($scope.ChangeEnterprsieCodeForm.$valid) {
             $scope.showerror = false;
