@@ -24,6 +24,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdGetContractInfoCount;
         private MySqlCommand cmdLoadChanceByEntId;
         private MySqlCommand cmdLoadPayOrRecDatas;
+        private MySqlCommand cmdDelAllTable;
 
         private BossAccessor()
         {
@@ -112,6 +113,13 @@ where
             cmdLoadPayOrRecDatas.Parameters.Add("@EntId", MySqlDbType.Int32);
             cmdLoadPayOrRecDatas.Parameters.Add("@StartTime", MySqlDbType.DateTime);
             cmdLoadPayOrRecDatas.Parameters.Add("@EndTime", MySqlDbType.DateTime);
+
+            #endregion
+
+            #region cmdDelAllTable
+
+            cmdDelAllTable = new MySqlCommand(@" select idmarketing_chance,chance_type,customer_type,contact_name,remark,add_time,qq,email,tel,phone,rate,ent_id,user_id,IsVisit from marketing_chance  where  ent_id = @EntId and add_time >= @StartTime and add_time < @EndTime ");
+            cmdDelAllTable.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
         }

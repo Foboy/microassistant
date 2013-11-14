@@ -85,7 +85,17 @@ namespace MicroAssistant.DataStructure
         ERROR_PERMISSION_FORBID = 13,
         
         [Description("错误:用户已禁用")]
-        ERROR_USER_FORBID =12
+        ERROR_USER_FORBID =12,
+        /// <summary>
+        /// 邮件已被占用
+        /// </summary>
+        [Description("错误:产品分类已存在")]
+        ERROR_DUP_PRO_TYPE = 14,
+        /// <summary>
+        /// 系统中不存在该邮件地址
+        /// </summary>
+        [Description("错误:合同编号已存在")]
+        ERROR_CONTRACTNO_EXIST = 15,
         
     }
 }

@@ -125,6 +125,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\Role.xml" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -234,6 +235,8 @@
     <Content Include="www\partials\client.html" />
     <Content Include="www\partials\client\client-addenterprise.html" />
     <Content Include="www\partials\client\client-addpersonal.html" />
+    <Content Include="www\partials\client\enterpriseclient-detail.html" />
+    <Content Include="www\partials\client\personalclient-detail.html" />
     <Content Include="www\partials\finance.html" />
     <Content Include="www\partials\finance\makesure-pay.html" />
     <Content Include="www\partials\finance\receivables-detail.html" />

@@ -87,6 +87,18 @@ namespace MicroAssistant.Meta
         public Int32 EntId
         { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Int32 ChanceId
+        { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public MarketingChance Chance
+        { get; set; }
+
 
         /// <summary>
         /// 从读取器向完整实例对象赋值
@@ -94,6 +106,7 @@ namespace MicroAssistant.Meta
         /// <returns>返回本对象实例</returns>
         public ContractInfo BuildSampleEntity(IDataReader reader)
         {
+            this.ChanceId = DBConvert.ToInt32(reader["chance_id"]);
             this.ContractInfoId = DBConvert.ToInt32(reader["contract_info_id"]);
             this.ContractNo = DBConvert.ToString(reader["contract_no"]);
             this.CName = DBConvert.ToString(reader["c_name"]);
