@@ -266,6 +266,7 @@ function StaffMangementCtrl($scope, $http, $location) {
             $scope.selectedRoleid = RoleId;
             $http.post($sitecore.urls["SearchUserListByRoleId"], { roleId: RoleId }).success(function (data) {
                 if (!data.Error) {
+                    debugger;
                     var Datas = data.Data;
                     var SelectItems = [];
                     for (var i = 0; i < data.Data.length; i++) {
@@ -275,7 +276,7 @@ function StaffMangementCtrl($scope, $http, $location) {
                             }
                         }
                     }
-                    debugger;
+                   
                     $scope.SysUsers = { Datas: Datas, SelectItems: SelectItems };
 
                 } else { $scope.SysUsers = []; }
