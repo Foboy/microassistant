@@ -247,10 +247,12 @@ a:hover{text-decoration:underline;}
 /*=== 销售管理 END ===*/
 
 /*=== 财务管理 ===*/
-.financeList li{height:35px; line-height:35px; padding:0 20px;}
+.financeList{border-color:#1ABC9C; padding-left:40px;}
+.financeList li{height:35px; line-height:35px; width:120px; text-align:center; margin:0;}
 .financeList li a{color:#666666; text-decoration:none;}
-.financeList li.cur{ background:#f25749; color:#FFFFFF;}
+.financeList li.cur{ background:#1ABC9C; color:#FFFFFF;}
 .financeList li.cur a{color:#FFFFFF;}
+.financeList li.cur .arrowD{background-position:-110px -74px;}
 /*=== 财务管理 END ===*/
 /*=== 悬浮窗口 ===*/
 .floatBox{width:350px; min-height:800px;  position:absolute; z-index:999; right:0; top:0;}
@@ -388,6 +390,7 @@ a:hover{text-decoration:underline;}
 .basicInfo .ul-s1 li .span3 .t-p,.basicInfo .ul-s1 li .span2 .t-p{width:300px; border-radius:0; margin-left:20px; height:28px; margin-top:5px;}
 .basicInfo .ul-s1 li .span2 .t-p{width:150px; margin-left:0;}
 .basicInfo .ul-s1 li .span2 label{float:left; margin:30px 10px 0 0;}
+.basicInfo .ul-s1 li .clearBtn{width:162px; display:inline-block; margin-left:20px;}
 .save-btn{margin-left:192px; padding:20px 0;}
 .save-btn a{width:215px; display:inline-block;}
 
