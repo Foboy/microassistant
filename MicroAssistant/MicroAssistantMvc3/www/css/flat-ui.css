@@ -1645,12 +1645,6 @@ textarea {
   height: auto;
   width: 100% !important;
 }
-textarea[class*="span"] {
-  width: 100% !important;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 .checkbox,
 .radio {
   margin-bottom: 12px;

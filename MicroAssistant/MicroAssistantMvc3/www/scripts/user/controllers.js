@@ -296,17 +296,26 @@ function StaffMangementCtrl($scope, $http, $location) {
         });
     }
 }
-function EnterPriseCodeCtrl($scope, $http, $location) {
-    $scope.EditeCurrentEntCodeSubmit = function (data) {
-        if ($scope.ChangeEnterprsieCodeForm.$valid) {
+function EnterPriseInfoCtrl($scope, $http, $location) {
+    $scope.EditCurrentEntCode = function (data) {
+        if ($scope.ChangeEnterprsieForm.$valid) {
             $scope.showerror = false;
-            $http.post($sitecore.urls["EditeCurrentEntCode"], { entCode: data.code }).success(function (data) {
+            $http.post($sitecore.urls["EditeCurrentEntCode"], { entCode: data.EntCode }).success(function (data) {
                 if (!data.Error) {
                     alert("修改成功！");
                 } else { }
             }).error(function (data, status, headers, config) {
                 $scope.SysUsers = [];
             });
+        } else {
+            $scope.showerror = true;
+        }
+    }
+    $scope.EditCurrentUserName = function () {
+        if ($scope.ChangeEnterprsieForm.Name.$valid) {
+            alert(123);
+            $scope.showerror = false;
+            //$scope.Ntype = false;
         } else {
             $scope.showerror = true;
         }
