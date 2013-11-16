@@ -319,6 +319,58 @@ where
 
         }
 
+        /// <summary>
+        /// 删除数据
+        /// <param name="es">数据实体对象数组</param>
+        /// <returns></returns>
+        /// </summary>
+        public bool DeleteAllData()
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdDeleteAllData = new MySqlCommand();
+            bool returnValue = false;
+            _cmdDeleteAllData.Connection = oc;
+            try
+            {
+                List<string> sqllist = new List<string>();
+                sqllist.Add(@" delete from contract_info where contract_info.ent_id = 14 ");
+                sqllist.Add(@" delete from  contract_howtopay where contract_howtopay.ent_id = 14 ");
+                sqllist.Add(@" delete from marketing_visit where marketing_visit.ent_id = 14 ");
+                sqllist.Add(@" delete from marketing_chance where marketing_chance.ent_id = 14 ");
+                sqllist.Add(@" delete from customer_ent where customer_ent.ent_id = 14");
+                sqllist.Add(@" delete from customer_private where customer_private.ent_id = 14 ");
+                sqllist.Add(@" delete from  pro_production where pro_production.ent_id = 14 ");
+                sqllist.Add(@" delete from pro_production_type where pro_production_type.ent_id = 14 ");
+                sqllist.Add(@" delete from pro_producton_detail where pro_producton_detail.ent_id = 14 ");
+                sqllist.Add(@" delete from res_pic where res_pic.ent_id = 14 ");
+//                sqllist.Add(@" delete from sys_role_user where sys_role_user.ent_id = 14 ");
+//                sqllist.Add(@" delete from 
+//    sys_user
+//where
+//    sys_user.ent_id=14
+//    and sys_user.type = 1 ");
+//                sqllist.Add(@" delete from sys_user_timemachine where sys_user_timemachine.ent_id = 14 ");
+                for (int i = 0; i < sqllist.Count; i++)
+                {
+                    if (oc.State == ConnectionState.Closed)
+                        oc.Open();
+                    _cmdDeleteAllData.CommandText = sqllist[0];
+                    //returnValue = Convert.ToInt32(_cmdDeleteAllData.ExecuteNonQuery()) > 0 ? true : false;
+                    //if (!returnValue)
+                    //    return returnValue;
+                }
+                return returnValue;
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdDeleteAllData.Dispose();
+                _cmdDeleteAllData = null;
+            }
+        }
+
         private static readonly BossAccessor instance = new BossAccessor();
         public static BossAccessor Instance
         {

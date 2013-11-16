@@ -314,5 +314,40 @@ namespace MicroAssistantMvc.Areas.BossManagement.Controllers
             return Res;
         }
 
+
+        /// <summary>
+        /// 一键清除
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult DeleteAllData()
+        {
+            var Res = new JsonResult();
+
+            RespResult result = new RespResult();
+            try
+            {
+                if (CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+
+                    BossAccessor.Instance.DeleteAllData();
+                    result.Error = AppError.ERROR_SUCCESS;
+
+                }
+                else
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
     }
 }
