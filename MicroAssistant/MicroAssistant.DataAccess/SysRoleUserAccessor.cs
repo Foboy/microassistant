@@ -50,8 +50,9 @@ namespace MicroAssistant.DataAccess
 
             #region cmdDeleteSysRoleUser
 
-            cmdDeleteSysRoleUser = new MySqlCommand(" delete from sys_role_user where sys_role_user_id = @SysRoleUserId");
-            cmdDeleteSysRoleUser.Parameters.Add("@SysRoleUserId", MySqlDbType.Int32);
+            cmdDeleteSysRoleUser = new MySqlCommand(" delete from sys_role_user where user_id = @UserId and ent_id = @EntId ");
+            cmdDeleteSysRoleUser.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdDeleteSysRoleUser.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdLoadSysRoleUser
@@ -76,9 +77,9 @@ namespace MicroAssistant.DataAccess
 
             #region cmdGetSysRoleUser
 
-            cmdGetSysRoleUser = new MySqlCommand(" select sys_role_user_id,role_id,user_id,ent_id from sys_role_user where user_id = @UserId and role_id = @RoleId");
+            cmdGetSysRoleUser = new MySqlCommand(" select sys_role_user_id,role_id,user_id,ent_id from sys_role_user where user_id = @UserId and ent_id = @EntId");
             cmdGetSysRoleUser.Parameters.Add("@UserId", MySqlDbType.Int32);
-            cmdGetSysRoleUser.Parameters.Add("@RoleId", MySqlDbType.Int32);
+            cmdGetSysRoleUser.Parameters.Add("@EntId", MySqlDbType.Int32);
 
             #endregion
         }
@@ -121,7 +122,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Delete(int SysRoleUserId)
+        public bool Delete(int UserId,int entId)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdDeleteSysRoleUser = cmdDeleteSysRoleUser.Clone() as MySqlCommand;
@@ -131,8 +132,8 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                _cmdDeleteSysRoleUser.Parameters["@SysRoleUserId"].Value = SysRoleUserId;
-
+                _cmdDeleteSysRoleUser.Parameters["@UserId"].Value = UserId;
+                _cmdDeleteSysRoleUser.Parameters["@EntId"].Value = entId;
 
                 _cmdDeleteSysRoleUser.ExecuteNonQuery();
                 return returnValue;
@@ -266,7 +267,7 @@ namespace MicroAssistant.DataAccess
         /// 获取指定记录
         /// <param name="id">Id值</param>
         /// </summary>
-        public bool CheckExist(int UserId,int RoleId)
+        public bool CheckExist(int UserId,int EntId)
         {
             bool returnValue = false;
             MySqlConnection oc = ConnectManager.Create();
@@ -276,8 +277,7 @@ namespace MicroAssistant.DataAccess
             try
             {
                 _cmdGetSysRoleUser.Parameters["@UserId"].Value = UserId;
-                _cmdGetSysRoleUser.Parameters["@RoleId"].Value = RoleId;
-
+                _cmdGetSysRoleUser.Parameters["@EntId"].Value = EntId;
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
 
