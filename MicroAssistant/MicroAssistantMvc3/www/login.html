@@ -12,6 +12,9 @@
     <script src="scripts/core.js"></script>
     <script src="scripts/user/controllers.js"></script>
     <script src="scripts/utilities.js"></script>
+    <link href="js/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <script src="js/fancybox/jquery.fancybox.js"></script>
+    <script src="js/fancybox.msgbox.js"></script>
     <style type="text/css">
         #form.showerror .ng-invalid {
             border-color: #fa787e;
@@ -89,10 +92,15 @@
                     <div class="icon-box"><i class="passw-icon"></i></div>
                     <input type="password" name="pwd" ng-model="User.pwd" maxlength="18" title="请输入登录密码"  placeholder="请输入登录密码"  ng-required="true"/>
                 </div>
+                <div class="input-box">
+                    <span>{{LoginErrors}}</span>
+                </div>
                 <div class="sc-box"><a href="javascript:void(0)" ng-click="UserLogin()" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>
                 <div class="f-l"><a href="#" target="_blank" class="grayLink">忘记密码？</a></div>
             </div>
         </form>
+    </div>
+    <div>
     </div>
 </body>
 </html>

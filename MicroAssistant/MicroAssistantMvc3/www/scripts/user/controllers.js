@@ -1,5 +1,4 @@
 ﻿function UserLoginMainCtrl($scope, $http, $location) {
-    var loading = utilities.loading('登陆中...');
     $scope.CurrentUser = null;
     $scope.hasPermission = function (id) {
         if ($scope.CurrentUser && $scope.CurrentUser.userFuns && $scope.CurrentUser.userFuns.length) {
@@ -14,25 +13,29 @@
         console.log(angular.toJson($scope.User));
         if ($scope.UserLoginForm.$valid) {
             $scope.showerror = false;
-            loading.show();
+            //$.showMsg("登陆成功", 's');
+
             $http.post($sitecore.urls["userLogin"], { account: $scope.User.email, pwd: $scope.User.pwd }).success(function (data) {
                 if (data.Error) {
-                    alert(data.ErrorMessage);
-                    loading.hide();
+                    $scope.LoginErrors = data.ErrorMessage;
                 }
                 else {
                     $http.post($sitecore.urls["userCurrentUser"], {}).success(function (data) {
                         console.log(data);
                         if (data.Error) {
-                            alert(data.ErrorMessage);
+                            $scope.LoginErrors = data.ErrorMessage;
                         }
                         $scope.CurrentUser = data.Data;
+                        var loadingUrl = 'index.html';
+
                         if ($scope.hasPermission(27)) {
-                            window.location.href = "boss.html";
+                            loadingUrl = "boss.html";
                         }
                         else {
-                            window.location.href = "index.html";
+                            loadingUrl = "index.html";
                         }
+                        $.pagePreLoading(loadingUrl, function () { window.location.href = loadingUrl; });
+
                     }).
                     error(function (data, status, headers, config) {
                         $scope.CurrentUser = {};
@@ -42,7 +45,6 @@
                 console.log(data);
             }).
             error(function (data, status, headers, config) {
-                loading.hide();
             });
         }
         else {
@@ -66,7 +68,7 @@ function UserRegisterMainCtrl($scope, $http) {
             $scope.showerror = false;
             $http.post($sitecore.urls["userRegister"], { username: $scope.User.name, account: $scope.User.email, pwd: $scope.User.pwd, entCode: $scope.User.enterprise }).success(function (data) {
                 if (data.Error) {
-                    alert(data.ErrorMessage);
+                    $scope.LoginErrors =data.ErrorMessage;
                 }
                 else {
                     window.location.href = "index.html";
@@ -98,10 +100,29 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
             $scope.showerror = false;
             $http.post($sitecore.urls["enterpriseRegister"], { entName: $scope.Enterprise.name, account: $scope.Enterprise.email, pwd: $scope.Enterprise.pwd }).success(function (data) {
                 if (data.Error) {
-                    alert(data.ErrorMessage);
+                    $scope.LoginErrors =data.ErrorMessage;
                 }
                 else {
-                    window.location.href = "index.html";
+                    $http.post($sitecore.urls["userCurrentUser"], {}).success(function (data) {
+                        console.log(data);
+                        if (data.Error) {
+                            $scope.LoginErrors = data.ErrorMessage;
+                        }
+                        else {
+                            $scope.EntCode = data.Data.EntCode;
+                            $.fancybox.open($('#enterpriseCodePanle'), {
+                                'closeBtn': false,
+                                helpers: {
+                                    overlay: null
+                                }
+                            });
+                        }
+
+                    }).
+                    error(function (data, status, headers, config) {
+                        $scope.CurrentUser = {};
+                    });
+
                 }
                 console.log(data);
             }).
@@ -113,6 +134,11 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
             $scope.showerror = true;
         }
     }
+
+    $scope.loginToSystem = function () {
+        $.fancybox.close();
+        $.pagePreLoading("index.html", function () { window.location.href = "index.html"; });
+    };
 
     $(document).keyup(function (e) {
         if (e.keyCode == 13) {
