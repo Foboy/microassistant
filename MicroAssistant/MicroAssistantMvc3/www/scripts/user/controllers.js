@@ -297,10 +297,11 @@ function StaffMangementCtrl($scope, $http, $location) {
     }
 }
 function EnterPriseInfoCtrl($scope, $http, $location) {
+    //修改企业code
     $scope.EditCurrentEntCode = function (data) {
-        if ($scope.ChangeEnterprsieForm.$valid) {
+        if ($scope.ChangeEnterprsieForm.Code.$valid) {
             $scope.showerror = false;
-            $http.post($sitecore.urls["EditeCurrentEntCode"], { entCode: data.EntCode }).success(function (data) {
+            $http.post($sitecore.urls["AdminEditEntCode"], { entCode: data.EntCode, entId: data.EntId }).success(function (data) {
                 if (!data.Error) {
                     alert("修改成功！");
                 } else { }
@@ -311,11 +312,17 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
             $scope.showerror = true;
         }
     }
-    $scope.EditCurrentUserName = function () {
+    //修改企业名字entName
+    $scope.EditCurrentUserName = function (data) {
         if ($scope.ChangeEnterprsieForm.Name.$valid) {
-            alert(123);
             $scope.showerror = false;
-            //$scope.Ntype = false;
+            $http.post($sitecore.urls["AdminEditEntName"], { entName: data.UserName, entId: data.EntId }).success(function (data) {
+                if (!data.Error) {
+                    alert("修改成功！");
+                } else { }
+            }).error(function (data, status, headers, config) {
+                $scope.SysUsers = [];
+            });
         } else {
             $scope.showerror = true;
         }

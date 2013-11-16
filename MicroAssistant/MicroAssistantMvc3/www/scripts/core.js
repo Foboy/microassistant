@@ -28,7 +28,8 @@ $sitecore.urls.add("SearchUserTimeMachine", "/UserManagement/User/SearchUserTime
 $sitecore.urls.add("EditeUserEntCode", "/UserManagement/User/EditeUserEntCode")//关联企业
 $sitecore.urls.add("SearchEntRole", "/SystemManagement/Permission/SearchEntRole");//员工管理权限列表
 $sitecore.urls.add("SearchUserListByRoleId", "/SystemManagement/Permission/SearchUserListByRoleId"); //通过权限ID获取用户信息列表
-$sitecore.urls.add("EditeCurrentEntCode", "/UserManagement/User/EditeCurrentEntCode");//修改现有企业CODE
+$sitecore.urls.add("AdminEditEntCode", "/UserManagement/User/AdminEditEntCode");//修改现有企业CODE
+$sitecore.urls.add("AdminEditEntName", "/UserManagement/User/AdminEditEntName");//修改企业名称
 $sitecore.urls.add("UpdateUserRole", "/SystemManagement/Permission/UpdateUserRole");//修改用户角色
 $sitecore.urls.add("GetUserInfoByID", "/UserManagement/User/GetUserInfoByID");//查询企业信息
 
