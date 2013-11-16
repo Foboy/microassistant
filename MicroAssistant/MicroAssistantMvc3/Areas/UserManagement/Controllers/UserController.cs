@@ -551,7 +551,14 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         //添加用户入职记录
         public void AddUserTimeMachine(int entid)
         {
- 
+            /*
+             * 
+             * 用户注册
+             * 企业注册
+             * 用户绑定企业code
+             * 未审核修改为有权限时
+             * 
+             */
         }
 
         //关联企业
