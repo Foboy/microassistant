@@ -18,7 +18,7 @@
         <form name="ProductCatalogForm" ng-class="showerror?'showerror':''">
         <ul class="listContent peopleInfo pact-w" style="float:left;">
         	<li class="clearfix"><span class="span1">分类图片：</span>
-               <em class="pcategory"><i class="pcIcon"></i></em> 
+               <em class="pcategory"><i class="pcIcon" ng-click="AddedCatalog.PicId = 1"></i></em> 
         	</li>
             <li class="clearfix"><span class="span1">分类名称：</span><span>
                 <input type="text" ng-model="AddedCatalog.PTypeName" ng-required="true" value="" class="span3"></span>
@@ -31,7 +31,7 @@
     </div>
 </div>
         <div class="searchBox">
-            <span class="padd"><a class="btn btn-large btn-block btn-primary" id="add_product_btn" ng-click="editProduct()">添加产品</a></span>
+            <span class="padd"><a class="btn btn-large btn-block btn-primary" id="add_product_btn" ng-click="editProduct()">新增产品</a></span>
             <!--<input type="button" class="addBtn bootstro" id="add_product_btn" ng-click="editProduct()"/>-->
             <!--<input type="button" class="delBtn"/>-->
             <!--<span class="seCon"><input type="text" class="setext" placeholder="Type something…"><input type="button" class="seBtn"/></span>-->
@@ -40,7 +40,7 @@
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th width="5%">#</th>
+                  <th width="5%"></th>
                   <th width="35%">产品名称</th>
                   <!--<th width="10%">成本价格</th>-->
                   <th width="10%">售价</th>
@@ -64,6 +64,21 @@
               </tbody>
             </table>
         </div>
+        <div class="pagination">
+            <ul>
+              <li class="previous"><a href="#"><img src="img/previous.png" /></a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">6</a></li>
+              <li><a href="#">7</a></li>
+              <li><a href="#">8</a></li>
+              <li><a href="#">9</a></li>
+              <li class="next"><a href="#"><img src="img/next.png" /></a></li>
+            </ul>
+          </div>
     </div>
 	<div ng-include="'partials/product/product-detail.html'"></div>
     <div ng-include="'partials/product/product-edit.html'"></div>

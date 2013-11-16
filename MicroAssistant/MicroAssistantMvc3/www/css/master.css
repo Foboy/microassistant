@@ -1,7 +1,6 @@
 ﻿@charset "utf-8";
 /* CSS Document */
 a{text-decoration:none;}
-a:hover{text-decoration:underline;}
 /*=== 颜色样式 ===*/
 .colorBlue{color:#25aae2;}
 .colorGray{color:#DDDDDD;}
@@ -86,10 +85,10 @@ a:hover{text-decoration:underline;}
 
 /*=== 弹出框样式 ===*/
 
-.addm{width:530px; margin-left:-435px;border-radius:0;}
+.addm{width:530px; margin-left:-375px;border-radius:0;}
 .addProduct{width:700px; margin-left:-375px;border-radius:0; height:450px;}
 .modal .modal-body{max-height:530px; padding:0;}
-.modal-header h3{font-family:"微软雅黑"; font-weight:600; color:#25aae2; font-size:16px; padding:6px 15px; float:left;}
+.modal-header h3{font-family:"微软雅黑"; font-weight:550; color:#2C3E50; font-size:16px; padding:6px 15px; float:left;}
 .popupBox{width:870px; min-height:530px; background:#ffffff;}
 .popupBox2{width:1100px;}
 .listBox{width:130px; height:404px; float:left; padding-left:20px; background-color:#F0F0F0;}
@@ -114,7 +113,7 @@ a:hover{text-decoration:underline;}
 .listContent li .priceBox .colorGray,.listContent li .priceBox b{font-size:18px;}
 .listContent li .priceBox b{ margin:0 5px;}
 .listContent li .spanBtn{margin-left:0;}
-.listContent li .spanBtn a{float:left; width:90px; margin:0 20px 0 0;}
+.listContent li .spanBtn a{float:left; width:90px; margin:0 20px 0 0; height:15px; line-height:15px;}
 .listContent li textarea{border-radius:0;}
 .checkbox input, .radio input{display:inline-block;}
 .listContent li label{display:inline-block;}
@@ -235,11 +234,12 @@ a:hover{text-decoration:underline;}
 .basicsList li .colorRed{margin-right:5px;}
 .goodsIntro{width:100%; height:270px; border:1px solid #DDDDDD; background:#FFFFFF;}
 .goodsIntro .introCon{padding:15px;}
+.addcai {position:absolute;right:0px; text-decoration:none;}
 /*=== 产品详情页面 END ===*/
 
 /*=== 销售管理 ===*/
 .salesList{border-bottom:3px solid #1ABC9C; margin:0 0 8px 0px; padding-left:20px;}
-.salesList li{ text-align:center; float:left; list-style:none; margin:0 20px; cursor:pointer; height:100px; position:relative;}
+.salesList li{ text-align:center; float:left; list-style:none; margin:0 15px; cursor:pointer; height:100px; position:relative;}
 .salesList li .arrowD{display:none;}
 .salesList li.cur .arrowD{display:block; position:absolute; bottom:-8px; left:45%;}
 .salesList li em{display:inline-block; width:65px; height:65px; background:url(../img/icon.png) -150px 0; margin-bottom:5px;}
@@ -261,10 +261,10 @@ a:hover{text-decoration:underline;}
 .financeList li.cur .arrowD{background-position:-110px -74px;}
 /*=== 财务管理 END ===*/
 /*=== 悬浮窗口 ===*/
-.floatBox{width:350px; min-height:800px;  position:absolute; z-index:999; right:0; top:0;}
+.floatBox{width:350px; min-height:800px;  position:absolute; z-index:999; right:0; top:0; overflow:hidden;}
 .floatBox .fBg{background:#ECF0F5;width:100%; min-height:800px; position:absolute; right:0; top:0; z-index:1000;filter:alpha(opacity=98); /* IE */ -moz-opacity:0.98; /* Moz + FF */ opacity: 0.98;}
 .floatBox .fCon{position:absolute; z-index:1001;width:100%; right:0; top:0;}
-.floatBox .fCon .arrR{float:left; margin:10px;}
+.floatBox .fCon .arrR{ margin:10px; position:absolute; margin:5px; left:1px;}
 .floatBox .fCon ul.ul-f1{list-style:none; float:left; margin:30px 0 0 0;}
 .floatBox .fCon ul.ul-f1 li{color:#16A085; font-size:16px; line-height:35px;}
 .floatBox .fCon ul.ul-f1 li .namS,.floatBox .fCon ul.ul-f1 li .conS,.floatBox .fCon ul.ul-f1 li .editIcon{float:left; display:inline-block;}
@@ -326,10 +326,10 @@ a:hover{text-decoration:underline;}
 .liedit-close-box input{margin-top:10px;}
 
 .pactBox{width:500px;}
-.pact-ul{width:450px;list-style:none; float:left; border-bottom:2px solid #1ABC9C; margin-left:0;padding-left:50px;}
-.pact-ul li{float:left; padding:0 15px; height:35px; line-height:35px; color:#1ABC9C; margin-right:10px; }
-.pact-ul li.cur{background:#1ABC9C; color:#fff;font-weight:bold;}
-.pactBox .fCon ul.ul-f1{margin-left:25px; margin-top:15px; width:400px;}
+.pact-ul{width:450px;list-style:none; float:left; border-bottom:2px solid #F39C12; margin-left:0;padding-left:50px; cursor:pointer;margin-bottom:25px;}
+.pact-ul li{float:left; padding:0 15px; height:35px; line-height:35px; color:#F39C12; margin-right:10px; }
+.pact-ul li.cur{background:#F39C12; color:#fff;font-weight:bold;}
+.pactBox .fCon ul.ul-f1{margin:0 0 0 25px; width:400px;}
 .pactBox .fCon ul.ul-f1 li { height:40px; line-height:40px;}
 .pactBox .fCon ul.ul-f1 li .namS{width:120px; color:#34495E; font-size:16px;}
 

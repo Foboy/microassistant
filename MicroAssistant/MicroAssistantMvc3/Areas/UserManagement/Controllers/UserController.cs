@@ -68,6 +68,8 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = token;
                     WriteAuthCookie(user.UserName, token);
+
+                    AddUserTimeMachine(i, 2, 0);//添加时光轴
                 }
             }
             catch (Exception e)
@@ -135,6 +137,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = token;
                     WriteAuthCookie(user.UserName, token);
+                    AddUserTimeMachine(i, 1, 0);
                 }
             }
             catch (Exception e)
@@ -548,11 +551,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
-        //添加用户入职记录
-        public void AddUserTimeMachine(int entid)
-        {
- 
-        }
+     
 
         //关联企业
         public JsonResult EditeUserEntCode(string username,string entCode)
@@ -590,7 +589,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 
                         SysUserAccessor.Instance.Update(olduser);
                         result.Error = AppError.ERROR_SUCCESS;
-
+                        AddUserTimeMachine(userid, 3, 0);
                     }
                     else
                     {
