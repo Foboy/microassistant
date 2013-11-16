@@ -76,6 +76,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
         $scope.salesPermission = $scope.hasPermission(17);
         $scope.financePermission = $scope.hasPermission(11);
         $scope.clientPermission = $scope.hasPermission(6);
+        $scope.bossPerission = $scope.hasPermission(27);
     };
 
     $scope.parseNumberToChinese = function (num) {
