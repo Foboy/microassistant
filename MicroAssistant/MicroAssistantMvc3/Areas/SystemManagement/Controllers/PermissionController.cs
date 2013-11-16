@@ -369,7 +369,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                     }
                     else
                     {
-                        if (SysRoleUserAccessor.Instance.CheckExist(userId, roleId))
+                        if (SysRoleUserAccessor.Instance.CheckExist(userId, CurrentUser.EntId))
                         {
                             SysRoleUserAccessor.Instance.UpdateUserRole(userId, roleId);
                         }
