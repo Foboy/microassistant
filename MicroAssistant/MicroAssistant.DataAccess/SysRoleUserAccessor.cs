@@ -76,8 +76,9 @@ namespace MicroAssistant.DataAccess
 
             #region cmdGetSysRoleUser
 
-            cmdGetSysRoleUser = new MySqlCommand(" select sys_role_user_id,role_id,user_id,ent_id from sys_role_user where sys_role_user_id = @SysRoleUserId");
-            cmdGetSysRoleUser.Parameters.Add("@SysRoleUserId", MySqlDbType.Int32);
+            cmdGetSysRoleUser = new MySqlCommand(" select sys_role_user_id,role_id,user_id,ent_id from sys_role_user where user_id = @UserId and role_id = @RoleId");
+            cmdGetSysRoleUser.Parameters.Add("@UserId", MySqlDbType.Int32);
+            cmdGetSysRoleUser.Parameters.Add("@RoleId", MySqlDbType.Int32);
 
             #endregion
         }
@@ -265,16 +266,17 @@ namespace MicroAssistant.DataAccess
         /// 获取指定记录
         /// <param name="id">Id值</param>
         /// </summary>
-        public SysRoleUser Get(int SysRoleUserId)
+        public bool CheckExist(int UserId,int RoleId)
         {
-            SysRoleUser returnValue = null;
+            bool returnValue = false;
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdGetSysRoleUser = cmdGetSysRoleUser.Clone() as MySqlCommand;
 
             _cmdGetSysRoleUser.Connection = oc;
             try
             {
-                _cmdGetSysRoleUser.Parameters["@SysRoleUserId"].Value = SysRoleUserId;
+                _cmdGetSysRoleUser.Parameters["@UserId"].Value = UserId;
+                _cmdGetSysRoleUser.Parameters["@RoleId"].Value = RoleId;
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
@@ -282,8 +284,7 @@ namespace MicroAssistant.DataAccess
                 MySqlDataReader reader = _cmdGetSysRoleUser.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    reader.Read();
-                    returnValue = new SysRoleUser().BuildSampleEntity(reader);
+                    returnValue = true;
                 }
             }
             finally

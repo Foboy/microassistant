@@ -366,7 +366,18 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                         Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         return Res;
                     }
-                    SysRoleUserAccessor.Instance.UpdateUserRole(userId, roleId);
+                    if (SysRoleUserAccessor.Instance.CheckExist(userId, roleId))
+                    {
+                        SysRoleUserAccessor.Instance.UpdateUserRole(userId, roleId);
+                    }
+                    else
+                    {
+                        SysRoleUser item = new SysRoleUser();
+                        item.UserId = userId;
+                        item.RoleId = roleId;
+                        item.EntId = CurrentUser.EntId;
+                        SysRoleUserAccessor.Instance.Insert(item);
+                    }
                     result.Error = AppError.ERROR_SUCCESS;
                 }
                 else
