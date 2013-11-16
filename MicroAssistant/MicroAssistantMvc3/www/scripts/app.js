@@ -128,6 +128,17 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
             return $filter('date')(date, format);
         return date;
     };
+    //根据生日计算年龄
+    $scope.parseAgeFromBirthday = function (time) {
+        var birthday = $scope.parseJsonDate(time);
+        if (typeof birthday == 'object') {
+            var d = new Date();
+            var age = d.getFullYear() - birthday.getFullYear() - ((d.getMonth() < birthday.getMonth() || d.getMonth() == birthday.getMonth() && d.getDate() < birthday.getDate()) ? 1 : 0);
+            return age;
+        } else {
+            return 0;
+        }
+    }
     //$scope.parseAge = function (datestr) {
     //    var birthday = new Date($scope.parseJsonDate(datestr).replace(/:/g, "\/"));
     //    var d = new Date();

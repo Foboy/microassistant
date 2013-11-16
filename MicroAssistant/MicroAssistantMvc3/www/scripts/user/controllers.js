@@ -131,11 +131,10 @@ function UserMainCtrl($scope, $http, $location) {
                 alert(data.ErrorMessage);
             } else {
                 $scope.UserInfo = data.Data;
+                $scope.UserInfo.Age = $scope.parseAgeFromBirthday($scope.UserInfo.Birthday);
                 if ($scope.UserInfo != null && $scope.UserInfo.Sex == 0) {
                     $scope.UserInfo.Sex = 1;
                 }
-                //$scope.parseAge(data.Data.Birthday)
-                $scope.UserInfo.Age = 12;
             }
         }).error(function (data, status, headers, config) {
             alert('error');
@@ -286,6 +285,7 @@ function StaffMangementCtrl($scope, $http, $location) {
         $http.post($sitecore.urls["UpdateUserRole"], { userId: user.UserId, roleId: item.RoleId }).success(function (data) {
             if (!data.Error) {
                 alert("修改成功");
+                window.location.reload();
             } else { }
         }).error(function (data, status, headers, config) {
                
