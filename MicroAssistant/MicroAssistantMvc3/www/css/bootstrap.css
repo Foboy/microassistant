@@ -4244,7 +4244,8 @@ button.close {
 }
 
 .pagination {
-  margin: 20px 0;
+  width:400px;
+  margin:0 auto;
 }
 
 .pagination ul {
