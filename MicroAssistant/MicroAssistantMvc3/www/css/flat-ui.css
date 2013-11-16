@@ -512,10 +512,10 @@ h6 {
   filter: alpha(opacity=70);
 }
 .btn.btn-large {
-  font-size: 16.996px;
+  font-size: 14px;
   /* 17px */
 
-  line-height: 20px;
+  line-height: 10px;
   padding: 10px 18px 11px;
 }
 .btn.btn-large > [class^="fui-"] {
@@ -525,7 +525,7 @@ h6 {
   margin-right: -2px;
 }
 .btn.btn-primary {
-  background-color: #50a729;
+  background-color: #1ABC9C;
 }
 .btn.btn-primary:hover,
 .btn.btn-primary:focus,

@@ -9,12 +9,20 @@
                 <div class="addG bootstro" id="add_catalog_btn" ng-click="addCatalog()">添加</div>
             </li>
         </ul>
-<div id="productCatalogAddModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="productCatalogAddModal" class="addm modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="popupBox popupBox2 clearfix popupbox4">
+       <div class="m-modal-header modal-header">
+         <h3 id="myAPModalLabel">添加产品</h3>
+         <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
         <form name="ProductCatalogForm" ng-class="showerror?'showerror':''">
         <ul class="listContent peopleInfo pact-w" style="float:left;">
-        	<li class="clearfix"><span class="span1">分类名称：</span><span>
-                <input type="text" ng-model="AddedCatalog.PTypeName" ng-required="true" value="" placeholder="Inactive" class="span3"></span></li>
+        	<li class="clearfix"><span class="span1">分类图片：</span>
+               <em class="pcategory"><i class="pcIcon"></i></em> 
+        	</li>
+            <li class="clearfix"><span class="span1">分类名称：</span><span>
+                <input type="text" ng-model="AddedCatalog.PTypeName" ng-required="true" value="" class="span3"></span>
+        	</li>
         </ul>
         <div class="saveBox">
             <span>
@@ -25,7 +33,8 @@
     </div>
 </div>
         <div class="searchBox">
-            <input type="button" class="addBtn bootstro" id="add_product_btn" ng-click="editProduct()"/>
+            <span class="padd"><a class="btn btn-large btn-block btn-primary" id="add_product_btn" ng-click="editProduct()">添加产品</a></span>
+            <!--<input type="button" class="addBtn bootstro" id="add_product_btn" ng-click="editProduct()"/>-->
             <!--<input type="button" class="delBtn"/>-->
             <!--<span class="seCon"><input type="text" class="setext" placeholder="Type something…"><input type="button" class="seBtn"/></span>-->
         </div>

@@ -47,10 +47,12 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 	  	return;
       if ($parent.catalogs)
 	  {
-		  if(catalogId)
-		  {
-			$scope.activeCat(catalogId, pageIndex);
-		  }
+          if (catalogId) {
+              $scope.activeCat(catalogId, pageIndex);
+          }
+          else {
+              $scope.activeCat($parent.catalogs[0].PTypeId, pageIndex);
+          }
 	  }
 	  else
 	  {
