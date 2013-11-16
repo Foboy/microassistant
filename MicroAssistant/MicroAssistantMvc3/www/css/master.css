@@ -85,10 +85,10 @@ a{text-decoration:none;}
 
 /*=== 弹出框样式 ===*/
 
-.addm{width:530px; margin-left:-435px;border-radius:0;}
+.addm{width:530px; margin-left:-375px;border-radius:0;}
 .addProduct{width:700px; margin-left:-375px;border-radius:0; height:450px;}
 .modal .modal-body{max-height:530px; padding:0;}
-.modal-header h3{font-family:"微软雅黑"; font-weight:600; color:#25aae2; font-size:16px; padding:6px 15px; float:left;}
+.modal-header h3{font-family:"微软雅黑"; font-weight:550; color:#2C3E50; font-size:16px; padding:6px 15px; float:left;}
 .popupBox{width:870px; min-height:530px; background:#ffffff;}
 .popupBox2{width:1100px;}
 .listBox{width:130px; height:404px; float:left; padding-left:20px; background-color:#F0F0F0;}
@@ -113,7 +113,7 @@ a{text-decoration:none;}
 .listContent li .priceBox .colorGray,.listContent li .priceBox b{font-size:18px;}
 .listContent li .priceBox b{ margin:0 5px;}
 .listContent li .spanBtn{margin-left:0;}
-.listContent li .spanBtn a{float:left; width:90px; margin:0 20px 0 0;}
+.listContent li .spanBtn a{float:left; width:90px; margin:0 20px 0 0; height:15px; line-height:15px;}
 .listContent li textarea{border-radius:0;}
 .checkbox input, .radio input{display:inline-block;}
 .listContent li label{display:inline-block;}
