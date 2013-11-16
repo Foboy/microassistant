@@ -175,6 +175,70 @@ namespace MicroAssistantMvc.Controllers
 
 #endregion common
 
+        //添加用户入职记录
+        protected void AddUserTimeMachine(int userId, int changeType, int roleId)
+        {
+            /*
+             * changeType
+             * 1用户注册
+             * 2企业注册
+             * 3用户绑定企业code 或者是有权限变没权限
+             * 4未审核修改为有权限时
+             * 
+             */
+            SysUserTimemachine ut = new SysUserTimemachine();
+            SysUser user = new SysUser();
+            user = SysUserAccessor.Instance.Get(userId);
+            switch (changeType)
+            {
+                case 1:
+                    if (!string.IsNullOrEmpty(user.EntCode))
+                    {
+                        ut.EntId = user.EntId;
+                        ut.EntName = SysUserAccessor.Instance.Get(user.EntId).UserName;
+                        ut.RoleName = "未审核";
+                    }
+                        ut.UserId = userId;
+                        ut.UserName = user.UserName;
+                       
+                    ut.StartTime = DateTime.Now;
+                    SysUserTimemachineAccessor.Instance.Insert(ut);
+                    break;
+                case 2:
+                    ut.EntId = user.EntId;
+                    ut.EntName = user.UserName;
+                    ut.RoleName = "管理员";
+                    ut.StartTime = DateTime.Now;
+                    ut.UserId = userId;
+                    ut.UserName = user.UserName;
+                    SysUserTimemachineAccessor.Instance.Insert(ut);
+                    break;
+                case 3:
+                    ut.EntId = user.EntId;
+                    ut.EntName = SysUserAccessor.Instance.Get(user.EntId).UserName;
+                    ut.RoleName = "未审核";
+                    ut.StartTime = DateTime.Now;
+                    ut.UserId = userId;
+                    ut.UserName = user.UserName;
+                    SysUserTimemachineAccessor.Instance.Insert(ut);
+                    break;
+                case 4:
+                    ut.EntId = user.EntId;
+                    ut.EntName = SysUserAccessor.Instance.Get(user.EntId).UserName;
+                    ut.RoleName = SysRoleAccessor.Instance.Get(roleId).RoleName;
+                    ut.StartTime = DateTime.Now;
+                    ut.UserId = user.UserId;
+                    ut.UserName = user.UserName;
+                    SysUserTimemachineAccessor.Instance.Insert(ut);
+                    break;
+                default:
+                    break;
+            }
+
+
+
+        }
+
         protected override void OnAuthorization(AuthorizationContext filterContext)
         {
             ViewBag.LoginUser = CurrentUser;
