@@ -284,7 +284,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                         return Res;
                     }
                    rolelist = SysRoleAccessor.Instance.LoadEntRole(CurrentUser.EntId);
-                  
+                   rolelist.Single(o => o.RoleId == 0).Count = rolelist.Single(o => o.RoleId == 0).Count + rolelist.Single(o => o.RoleId == -1).Count;
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = rolelist;
                 }

@@ -106,7 +106,10 @@ namespace MicroAssistant.Meta
         public Int32 RoleId
         {
             get { return _roleid; }
-            set { _roleid = value; }
+            set {
+                if (value > 0)
+                    _roleid = value;
+            }
         }
 
      
