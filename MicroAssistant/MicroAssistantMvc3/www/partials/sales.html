@@ -33,9 +33,10 @@
                 <span class="arrowD"></span>
             </li>
         </ul>
-        <!--<div class="searchBox addL">
-            <input type="button" class="addBtn" ng-click="addCurrentStepItem()" ng-show="steps=='chance'||steps=='contract'" />
-        </div>-->
+        <div class="searchBox">
+            <!--<input type="button" class="addBtn" ng-click="addCurrentStepItem()" ng-show="steps=='chance'||steps=='contract'" />-->
+            <span class="padd"><a class="btn btn-large btn-block btn-primary" ng-click="addCurrentStepItem()"  ng-show="steps=='chance'||steps=='contract'" >新增机会</a></span>
+        </div>
         <div class="tablePad" ng-show="steps=='chance'">
             <table class="table table-bordered table-striped">
               <thead>
