@@ -260,7 +260,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             return Res;
         }
         /// <summary>
-        /// 获取用户信息
+        /// 获取用户信息||企业信息
         /// </summary>
         /// <param name="userid"></param>
         /// <returns></returns>
@@ -647,7 +647,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             return Res;
         }
         /// <summary>
-        /// 修改现有企业CODE
+        /// 普通用户绑定企业CODE
         /// </summary>
         /// <param name="username"></param>
         /// <param name="entCode"></param>
@@ -673,7 +673,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                             entUser = SysUserAccessor.Instance.GetEntUserByEntCode(entCode.Trim());
                             if (entUser != null)
                             {
-                                result.Error = AppError.ERROR_FAILED;
+                                result.Error = AppError.ERROR_ENTCODE_EXIST;
                                 Res.Data = result;
                                 Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                                 return Res;
@@ -703,6 +703,120 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
+
+        /// <summary>
+        /// 管理员修改所管理企业CODE
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="entCode"></param>
+        /// <returns></returns>
+        public JsonResult AdminEditEntCode(string entCode,int entId)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                    if (!CheckUserFunction("13"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
+
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                    if (userid > 0)
+                    {
+                        SysUser entUser = new SysUser();
+                        if (!string.IsNullOrEmpty(entCode.Trim()))
+                        {
+                            entUser = SysUserAccessor.Instance.GetEntUserByEntCode(entCode.Trim());
+                            if (entUser != null)
+                            {
+                                result.Error = AppError.ERROR_ENTCODE_EXIST;
+                                Res.Data = result;
+                                Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                                return Res;
+                            }
+                        }
+
+                        SysUser olduser = SysUserAccessor.Instance.Get(entId);
+                        //olduser.EntCode = entUser.EntCode;
+                        olduser.EntCode = entCode;
+
+                        SysUserAccessor.Instance.Update(olduser);
+                        result.Error = AppError.ERROR_SUCCESS;
+
+                    }
+                    else
+                    {
+                        result.Error = AppError.ERROR_FAILED;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
+        public JsonResult AdminEditEntName(string entName, int entId)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                    if (!CheckUserFunction("13"))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                    if (userid > 0)
+                    {
+                      
+                        SysUser olduser = SysUserAccessor.Instance.Get(entId);
+                        //olduser.EntCode = entUser.EntCode;
+                        olduser.UserName = entName;
+
+                        SysUserAccessor.Instance.Update(olduser);
+                        result.Error = AppError.ERROR_SUCCESS;
+
+                    }
+                    else
+                    {
+                        result.Error = AppError.ERROR_FAILED;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
 
 
         public RespResult GetOldPwd(string token)
