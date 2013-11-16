@@ -915,7 +915,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             }
             catch
             {
-                throw new InvalidDataException("Cache配置文件内容不正确");
+                throw new InvalidDataException("权限模板配置文件内容不正确");
             }
         }
         private string GetEntCode(string entCode)
