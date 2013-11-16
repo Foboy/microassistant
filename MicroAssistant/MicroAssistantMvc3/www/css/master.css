@@ -239,7 +239,7 @@ a{text-decoration:none;}
 
 /*=== 销售管理 ===*/
 .salesList{border-bottom:3px solid #1ABC9C; margin:0 0 8px 0px; padding-left:20px;}
-.salesList li{ text-align:center; float:left; list-style:none; margin:0 20px; cursor:pointer; height:100px; position:relative;}
+.salesList li{ text-align:center; float:left; list-style:none; margin:0 15px; cursor:pointer; height:100px; position:relative;}
 .salesList li .arrowD{display:none;}
 .salesList li.cur .arrowD{display:block; position:absolute; bottom:-8px; left:45%;}
 .salesList li em{display:inline-block; width:65px; height:65px; background:url(../img/icon.png) -150px 0; margin-bottom:5px;}
