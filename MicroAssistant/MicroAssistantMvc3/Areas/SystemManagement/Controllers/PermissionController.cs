@@ -85,7 +85,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
         /// <param name="userId"></param>
         /// <param name="roleIds"></param>
         /// <returns></returns>
-        public JsonResult UpdateUserRole(int userId, List<int> roleIds)
+        public JsonResult UpdateUserRoles(int userId, List<int> roleIds)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -284,7 +284,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                         return Res;
                     }
                    rolelist = SysRoleAccessor.Instance.LoadEntRole(CurrentUser.EntId);
-                  
+                   rolelist.Single(o => o.RoleId == 0).Count = rolelist.Single(o => o.RoleId == 0).Count + rolelist.Single(o => o.RoleId == -1).Count;
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = rolelist;
                 }
@@ -327,20 +327,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                         Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         return Res;
                     }
-                    string rolename = string.Empty;
-
-                    if (roleId > 0)
-                        rolename = SysRoleAccessor.Instance.Get(roleId).RoleName;
-
                     userlist = SysUserAccessor.Instance.LoadSysUserByRoleId(CurrentUser.EntId, roleId);
-                    for (int i = 0; i < userlist.Count; i++)
-                    {
-                        if (roleId == 0)
-                        {
-                            rolename = SysRoleAccessor.Instance.Get(userlist[i].RoleId).RoleName;
-                        }
-                        userlist[i].RoleName = rolename;
-                    }
 
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = userlist;

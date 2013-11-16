@@ -71,7 +71,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
         /// <param name="contract"></param>
         /// <returns></returns>
         public JsonResult AddContractInfo(int ChanceId,String ContractNo, String CName, string CustomerName, DateTime StartTime, DateTime EndTime,
-            DateTime ContractTime, double Amount, int HowToPay, List<ContractHowtopay> HowtopayList)
+            DateTime ContractTime, double Amount, int HowToPay, List<ContractHowtopay> HowtopayList, List<int> attachments)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -115,10 +115,16 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                     //{
                     _conid = ContractInfoAccessor.Instance.Insert(co);
 
-                    for (int i = 0; i < HowtopayList.Count; i++)
+                    try
                     {
-                        HowtopayList[i].EntId = CurrentUser.EntId;
-                        ContractHowtopayAccessor.Instance.Insert(HowtopayList[i]);
+                        for (int i = 0; i < HowtopayList.Count; i++)
+                        {
+                            HowtopayList[i].EntId = CurrentUser.EntId;
+                            ContractHowtopayAccessor.Instance.Insert(HowtopayList[i]);
+                        }
+                    }
+                    catch
+                    {
                     }
                         //}
                         //else
@@ -128,6 +134,19 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                         //    ce.EntId = _entid;
                         //    ContractInfoAccessor.Instance.Update(ce);
                         //}
+                    try
+                    {
+                        for (int i = 0; i < attachments.Count; i++)
+                        {
+                            ResPic oldpic = ResPicAccessor.Instance.Get(attachments[i]);
+                            oldpic.ObjId = _conid;
+                            oldpic.ObjType = PicType.ContractFile;
+                            ResPicAccessor.Instance.Update(oldpic);
+                        }
+                    }
+                    catch
+                    {
+                    }
                         result.Error = AppError.ERROR_SUCCESS;
                 }
                 catch (Exception e)
@@ -146,15 +165,6 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
-        }
-        /// <summary>
-        /// 上传合同附件（合同编号，file，token）
-        /// </summary>
-        /// <param name="file"></param>
-        /// <returns></returns>
-        public JsonResult UploadContractAttachedFile(object file)
-        {
-            return null;
         }
 
         //根据合同编号获取合同信息（合同编号，token）返回（合同名称，合同编号，客户名称，合同金额，付款方式（xml），合同有效期，合同承办人，合同时间，附件{附件url1，附件url2}）
