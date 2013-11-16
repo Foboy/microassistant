@@ -288,7 +288,7 @@ function StaffMangementCtrl($scope, $http, $location) {
                 alert("修改成功");
             } else { }
         }).error(function (data, status, headers, config) {
-            
+               
         });
     }
 }
