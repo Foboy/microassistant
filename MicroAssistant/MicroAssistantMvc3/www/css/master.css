@@ -146,6 +146,12 @@ a{text-decoration:none;}
 .popupBox3 h1{font-size:16px; }
 .popupBox3 .btnbox span{width:80px; display:inline-block; margin:10px;}
 .popupBox3 .btnbox span a{line-height:30px; padding:0 5px;}
+.addsales {
+    border-radius: 0;
+    margin-left: -375px;
+    margin-top:20px;
+    width: 700px;
+}
 
 /*=== 弹出框样式 END ===*/
 .navbar{min-width:960px;width:100%;height:50px; background:#34495E; margin-bottom:0; position:fixed; z-index:1;}
