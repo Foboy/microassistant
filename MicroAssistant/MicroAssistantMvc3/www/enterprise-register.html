@@ -10,6 +10,9 @@
     <script src="js/angular.js"></script>
     <script src="scripts/core.js"></script>
     <script src="scripts/user/controllers.js"></script>
+    <link href="js/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <script src="js/fancybox/jquery.fancybox.js"></script>
+    <script src="js/fancybox.msgbox.js"></script>
     <style type="text/css">
         #form.showerror .ng-invalid {
             border-color: #fa787e;
@@ -50,9 +53,17 @@
             	    <div class="icon-box"><i class="passw-icon"></i></div>
                     <input type="password" ng-model="Enterprise.pwd"  ng-required="true" title="请输入密码"  placeholder="请输入密码"/>
                 </div>
+                <div class="input-box">
+                    <span>{{LoginErrors}}</span>
+                </div>
                 <div class="sc-box"><a href="javascript:void(0)" ng-click="EnterpriseRegister()" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>   
              </form>         
         </div>
     </div>
+      <div id="enterpriseCodePanle" style="display:none;width:200px;height:auto;">
+          <p>恭喜您已成功注册企业！</p>
+          <p>您的企业代码为：{{EntCode}}</p>
+          <a href="" ng-click="loginToSystem()">登陆系统</a>
+      </div>
   </body>
 </html>

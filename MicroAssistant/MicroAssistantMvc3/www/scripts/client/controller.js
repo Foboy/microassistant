@@ -99,8 +99,22 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                 }
                 else {
                     $scope.PersonalItem = { CustomerPrivateId: 0, Sex: 1 };
+                    $("#adadada").datetimepicker({
+                        minView: 2,
+                        language: 'zh-CN',
+                        format: "yyyy/mm/dd",
+                        autoclose: true,
+                        todayBtn: true,
+                        pickerPosition: "bottom-left"
+                    }).on('changeDate', function (ev) {
+                        $scope.$apply(function () {
+                          alert($scope.PersonalItem);
+                            $scope.PersonalItem.Birthday = ev.target.value;
+                        });
+                    });
                 }
                 $("#AddPersonalBox").modal('show');
+                
             });
             $scope.AddPersonalSubmit = function () {
                 if ($scope.AddPersonalForm.$valid) {

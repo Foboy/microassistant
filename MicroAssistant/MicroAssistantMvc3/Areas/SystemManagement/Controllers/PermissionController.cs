@@ -366,6 +366,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                     if (roleId == -1)//移除全部权限
                     {
                         SysRoleUserAccessor.Instance.Delete(userId, CurrentUser.EntId);
+                        AddUserTimeMachine(userId, 3, 0);
                     }
                     else
                     {
@@ -381,6 +382,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                             item.EntId = CurrentUser.EntId;
                             SysRoleUserAccessor.Instance.Insert(item);
                         }
+                        AddUserTimeMachine(userId, 4, roleId);
                     }
                     result.Error = AppError.ERROR_SUCCESS;
                 }

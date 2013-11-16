@@ -18,7 +18,7 @@
         <form name="ProductCatalogForm" ng-class="showerror?'showerror':''">
         <ul class="listContent peopleInfo pact-w" style="float:left;">
         	<li class="clearfix"><span class="span1">分类图片：</span>
-               <em class="pcategory"><i class="pcIcon"></i></em> 
+               <em class="pcategory"><i class="pcIcon" ng-click="AddedCatalog.PicId = 1"></i></em> 
         	</li>
             <li class="clearfix"><span class="span1">分类名称：</span><span>
                 <input type="text" ng-model="AddedCatalog.PTypeName" ng-required="true" value="" class="span3"></span>
