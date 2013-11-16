@@ -260,7 +260,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             return Res;
         }
         /// <summary>
-        /// 获取用户信息
+        /// 获取用户信息||企业信息
         /// </summary>
         /// <param name="userid"></param>
         /// <returns></returns>
