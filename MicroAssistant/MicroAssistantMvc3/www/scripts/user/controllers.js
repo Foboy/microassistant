@@ -68,7 +68,7 @@ function UserRegisterMainCtrl($scope, $http) {
             $scope.showerror = false;
             $http.post($sitecore.urls["userRegister"], { username: $scope.User.name, account: $scope.User.email, pwd: $scope.User.pwd, entCode: $scope.User.enterprise }).success(function (data) {
                 if (data.Error) {
-                    $scope.LoginErrors =data.ErrorMessage;
+                    $scope.LoginErrors = data.ErrorMessage;
                 }
                 else {
                     window.location.href = "index.html";
@@ -100,7 +100,7 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
             $scope.showerror = false;
             $http.post($sitecore.urls["enterpriseRegister"], { entName: $scope.Enterprise.name, account: $scope.Enterprise.email, pwd: $scope.Enterprise.pwd }).success(function (data) {
                 if (data.Error) {
-                    $scope.LoginErrors =data.ErrorMessage;
+                    $scope.LoginErrors = data.ErrorMessage;
                 }
                 else {
                     $http.post($sitecore.urls["userCurrentUser"], {}).success(function (data) {
@@ -314,7 +314,7 @@ function StaffMangementCtrl($scope, $http, $location) {
                 window.location.reload();
             } else { }
         }).error(function (data, status, headers, config) {
-               
+
         });
     }
 }
@@ -348,5 +348,15 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
         } else {
             $scope.showerror = true;
         }
+    }
+    //一键清空数据（boss）
+    $scope.DeleteAllData = function () {
+        $http.post($sitecore.urls["DeleteAllData"], {}).success(function (data) {
+            if (!data.Error) {
+                alert("清除成功");
+            } else { }
+        }).error(function (data, status, headers, config) {
+
+        });
     }
 }
