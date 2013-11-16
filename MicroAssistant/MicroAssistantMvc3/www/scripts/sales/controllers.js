@@ -449,14 +449,14 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
         console.log(fromscope);
         from = fromscope;
         chance = from.cvisit || { IdmarketingChance: 0 };
-        $scope.chance = chance;
+        //$scope.chance = chance;
         $scope.EditContract = {
             HowtopayListCount: 3,
             Howtopay: 0,
             ContractNo: $filter('date')(new Date(), 'yyyyMMddHHmmss'),
             attachments: []
         };
-        $scope.EditContract.chanceId = $scope.chance.IdmarketingChance;
+        $scope.EditContract.chanceId = chance.IdmarketingChance;
         $scope.salesContractEditPage = 1;
         $scope.ContractPayChanced();
         $('#salesContractEditModal').modal('show');
@@ -610,7 +610,7 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
                 paylist.push({ InstalmentsNo: 1, Amount: $scope.EditContract.Amount, PayTime: $scope.EditContract.StartTime, ReceivedTime: $scope.EditContract.StartTime, Isreceived: 1, ContractNo: $scope.EditContract.ContractNo });
   
             $http.post($scope.EditContract.ContractInfoId ? $sitecore.urls["salesAddConract"] : $sitecore.urls["salesAddConract"], {
-                ChanceId: $scope.EditContract.chanceId,
+                ChanceId: chance.IdmarketingChance,
                 ContractNo: $scope.EditContract.ContractNo,
                 CName: $scope.EditContract.CName,
                 CustomerName: $scope.EditContract.CustomerName,
@@ -628,7 +628,12 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
                 }
                 else {
                     $scope.EditContract.ContractInfoId = data.Id;
-                    $scope.contracts.push(angular.copy($scope.EditContract));
+                    if (from.contracts) {
+                        from.contracts.push(angular.copy($scope.EditContract));
+                    }
+                    else if ($scope.contracts) {
+                        from.contracts.push(angular.copy($scope.EditContract));
+                    }
                     $('#salesContractEditModal').modal('hide');
                 }
                 $scope.product = data;
