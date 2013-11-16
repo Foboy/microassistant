@@ -13,7 +13,7 @@
             </span>
         </div>
         <div class="clearfix">
-            <div class="peop-box" ng-repeat="SysUser in SysUsers.Datas">
+            <div class="peop-box" ng-repeat="SysUser in SysUsers">
                 <img src="img/Adimg/h1.jpg">
                 <div class="p-b-info">
                     <p><span class="p-t">昵称：</span><span class="p-n">{{SysUser.UserAccount}}</span></p>
@@ -25,7 +25,7 @@
                     <p><span class="p-t">入职时间：</span><span>{{parseJsonDate(SysUser.CreateTime)|date:'yyyy/MM/dd' }}</span></p>
                     <p>
                         <span class="p-t">所属部门：</span><span>
-                            <select ng-repeat="item in SysUsers.SelectItems" ng-model="item" ng-options="c.RoleName for c in SelectedOptions" ng-change="ChangeUserRole(item,SysUser)" >
+                            <select ng-model="SysUser.SelectedItem" ng-options="c.RoleName for c in SelectedOptions" ng-change="ChangeUserRole(SysUser.SelectedItem,SysUser)" >
                             </select>
                        </span>
                     </p>

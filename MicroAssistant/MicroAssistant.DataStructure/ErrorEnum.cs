@@ -92,10 +92,14 @@ namespace MicroAssistant.DataStructure
         [Description("错误:产品分类已存在")]
         ERROR_DUP_PRO_TYPE = 14,
         /// <summary>
-        /// 系统中不存在该邮件地址
+        /// 合同编号已存在
         /// </summary>
         [Description("错误:合同编号已存在")]
         ERROR_CONTRACTNO_EXIST = 15,
-        
+        /// <summary>
+        /// 企业编码已存在
+        /// </summary>
+        [Description("错误:企业编码已存在")]
+        ERROR_ENTCODE_EXIST = 16
     }
 }

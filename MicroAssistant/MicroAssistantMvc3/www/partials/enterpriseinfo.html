@@ -1,0 +1,31 @@
+﻿<h1 class="titSec">企业信息</h1>
+<div class="basicInfo">
+    <form name="ChangeEnterprsieForm" ng-class="showerror?'showerror':''">
+        <ul class="ul-s1">
+            <li class="clearfix">
+                <span class="span1">企业名称</span>
+                <span class="span2">{{!Ntype?CurrentUser.UserName:''}}
+                <input type="text" ng-required="true" name="Name" ng-model="CurrentUser.UserName" ng-show="Ntype?true:false" class="t-p" />
+                </span>
+                <span class="span3">
+                    <a class="grayLink" ng-click="Ntype=!Ntype;!Ntype?EditCurrentUserName(CurrentUser):''">{{!Ntype?'编辑':'保存'}}</a>
+                </span>
+            </li>
+            <li class="clearfix">
+                <span class="span1">企业代号</span>
+                <span class="span2">{{!Type? CurrentUser.EntCode:''}}
+                <input type="text" ng-pattern="/^[A-Za-z0-9]+$/" ng-maxlength="6" name="Code" ng-required="true" ng-model="CurrentUser.EntCode" ng-show="Type?true:false" class="t-p">
+                </span>
+                <span class="span3">
+                    <a class="grayLink" ng-click="Type=!Type;!Type?EditCurrentEntCode(CurrentUser):''">{{!Type?'编辑':'保存'}}</a>
+                </span>
+            </li>
+            <li class="clearfix">
+                <span class="span1"></span>
+                <span class="clearBtn">
+                    <a href="" class="btn btn-block btn-large">一键清空</a>
+                </span>
+            </li>
+        </ul>
+    </form>
+</div>

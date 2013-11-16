@@ -16,6 +16,8 @@ namespace MicroAssistantMvc
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            //注册全局过滤器
+            //filters.Add(new LogFilterAttribute() { Message = "全局" });
         }
 
         public static void RegisterRoutes(RouteCollection routes)

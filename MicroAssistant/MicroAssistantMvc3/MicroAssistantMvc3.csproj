@@ -122,6 +122,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LogFilterAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +256,7 @@
     <Content Include="www\partials\client\client-addpersonal.html" />
     <Content Include="www\partials\client\enterpriseclient-detail.html" />
     <Content Include="www\partials\client\personalclient-detail.html" />
+    <Content Include="www\partials\enterpriseinfo.html" />
     <Content Include="www\partials\finance.html" />
     <Content Include="www\partials\finance\makesure-pay.html" />
     <Content Include="www\partials\finance\receivables-detail.html" />

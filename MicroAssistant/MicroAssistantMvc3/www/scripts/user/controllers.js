@@ -292,17 +292,14 @@ function StaffMangementCtrl($scope, $http, $location) {
             $scope.selectedRoleid = RoleId;
             $http.post($sitecore.urls["SearchUserListByRoleId"], { roleId: RoleId }).success(function (data) {
                 if (!data.Error) {
-                    var Datas = data.Data;
-                    var SelectItems = [];
+                    $scope.SysUsers = data.Data;
                     for (var i = 0; i < data.Data.length; i++) {
                         for (var j = 0; j < $scope.SelectedOptions.length; j++) {
                             if (data.Data[i].RoleId == $scope.SelectedOptions[j].RoleId) {
-                                SelectItems.push($scope.SelectedOptions[j]);
+                                data.Data[i].SelectedItem = $scope.SelectedOptions[j];
                             }
                         }
                     }
-                    debugger;
-                    $scope.SysUsers = { Datas: Datas, SelectItems: SelectItems };
 
                 } else { $scope.SysUsers = []; }
             }).error(function (data, status, headers, config) {
@@ -311,22 +308,37 @@ function StaffMangementCtrl($scope, $http, $location) {
         }
     };
     $scope.SearchUserListByRoleId(0);
-    $scope.ChangeUserRole = function (item,user) {
-        debugger;
+    $scope.ChangeUserRole = function (item, user) {
         $http.post($sitecore.urls["UpdateUserRole"], { userId: user.UserId, roleId: item.RoleId }).success(function (data) {
             if (!data.Error) {
                 alert("修改成功");
             } else { }
         }).error(function (data, status, headers, config) {
-
+               
         });
     }
 }
-function EnterPriseCodeCtrl($scope, $http, $location) {
-    $scope.EditeCurrentEntCodeSubmit = function (data) {
-        if ($scope.ChangeEnterprsieCodeForm.$valid) {
+function EnterPriseInfoCtrl($scope, $http, $location) {
+    //修改企业code
+    $scope.EditCurrentEntCode = function (data) {
+        if ($scope.ChangeEnterprsieForm.Code.$valid) {
             $scope.showerror = false;
-            $http.post($sitecore.urls["EditeCurrentEntCode"], { entCode: data.code }).success(function (data) {
+            $http.post($sitecore.urls["AdminEditEntCode"], { entCode: data.EntCode, entId: data.EntId }).success(function (data) {
+                if (!data.Error) {
+                    alert("修改成功！");
+                } else { }
+            }).error(function (data, status, headers, config) {
+                $scope.SysUsers = [];
+            });
+        } else {
+            $scope.showerror = true;
+        }
+    }
+    //修改企业名字entName
+    $scope.EditCurrentUserName = function (data) {
+        if ($scope.ChangeEnterprsieForm.Name.$valid) {
+            $scope.showerror = false;
+            $http.post($sitecore.urls["AdminEditEntName"], { entName: data.UserName, entId: data.EntId }).success(function (data) {
                 if (!data.Error) {
                     alert("修改成功！");
                 } else { }
