@@ -2,11 +2,14 @@
 /* CSS Document */
 a{text-decoration:none;}
 /*=== 颜色样式 ===*/
+.colorblack{ color:#000;}
 .colorBlue{color:#25aae2;}
 .colorGray{color:#DDDDDD;}
 .colorRed{color:#f25749;}
 .colorGreen{color:#50a729;}
 .colorGrayadd { color:#656565;}
+.colorwhite{color:#fff;}
+
 .writeLink:link,.writeLink:visited,.writeLink:active{
 	color:#FFFFFF;
 	text-decoration:none;
@@ -224,6 +227,7 @@ a{text-decoration:none;}
 .tablePad table tr td .t-himg i{position:absolute; right:0; bottom:0; color:#333333; background-color:#f5f5f5; font-size:12px; line-height:12px;}
 .padd {width:160px;}
 .padd a {text-decoration:none;}
+.pinfolast {margin-left:10px; color:#828282;}
 /*=== 产品详情页面 ===*/
 .titleStyle{color:#333333; font-size:16px; height:30px; line-height:30px;}
 .goodsInfo{margin:40px 20px 0 20px;}
@@ -276,7 +280,7 @@ a{text-decoration:none;}
 .floatBox .fCon ul.ul-f1 li .namS,.floatBox .fCon ul.ul-f1 li .conS,.floatBox .fCon ul.ul-f1 li .editIcon{float:left; display:inline-block;}
 .floatBox .fCon ul.ul-f1 li .editIcon{margin-top:12px; cursor:pointer;}
 .floatBox .fCon ul.ul-f1 li .namS{width:80px; text-align:right;}
-.floatBox .fCon ul.ul-f1 li .conS{width:210px; color:#16A085; font-weight:500;}
+.floatBox .fCon ul.ul-f1 li .conS{width:350px;  font-weight:500; margin-left:15px;}
 .floatBox .fCon ul.ul-f1 li .textS{width:180px; border-radius:0;}
 .floatBox .fCon ul.ul-f1 li .textA{width:184px; padding:0 5px; height:120px; background:#FFFFFF; color:#525252; font-size:12px;}
 .floatBox .fCon ul.ul-f1 li .textpact{margin:0 10px 20px 0;}
@@ -305,15 +309,15 @@ a{text-decoration:none;}
 .ul-f2 li .li-boxs{position:relative; width:400px; min-height:120px; margin:8px 0 0 9px; background:#FFFFFF;}
 .ul-f2 li .li-boxs i{display:inline-block; width:10px; height:15px; background:url(../img/icon.png) no-repeat -182px -218px; position:absolute; left:-9px; top:0;}
 .floatBox .fCon ul.ul-f1 li .s-text{width:270px;}
-.basicProfit{width:200px; height:80px;position:absolute; background:#F39C12; right:10px; top:150px;}
+.basicProfit{width:350px; height:40px; line-height:40px;position:relative; background:#F39C12; float:left;  margin-left:70px; margin-top:15px; text-align:center;}
 .bp_ptitle{height:30px; line-height:30px; font-size:14px; margin:5px 0 5px 10px; color:#fff;}
 .bp_pcount{font-size:18px; font-weight:600; color:#F25749; text-align:center;}
-.visit-num{width:240px; height:36px; line-height:36px; color:#FFFFFF; background:#248FAF; float:left;}
+.visit-num{width:240px; height:36px; line-height:36px; color:#FFFFFF; background:#248FAF; float:left;text-align:center;}
 .visit-num .span1{width:180px;}
 .visit-num .span2{width:31px; height:31px; display:inline-block; background:url(../img/icon.png) no-repeat -98px -281px; margin:2px 0 0 0;}
 .ul-f2 li .visit-num .span2 .peo-wIcon{margin:2px 0 0 6px;}
 .ul-f2 li .visit-num .span2 .tel-wIcon{margin:2px 0 0 8px;}
-.quote-info{float:left; width:160px; height:36px; line-height:36px; text-align:center; color:#999999;}
+.quote-info{float:left; width:160px; height:36px; line-height:36px; color:#999999;}
 .ul-f2 li .li-boxs p{padding:5px 10px; margin:0; font-size:12px; min-height:45px;}
 .ul-f2 li .li-address{ margin:0 10px; padding:1px 0; height:25px; line-height:25px; border-top:1px solid #CCCCCC; color:#999999;font-size:12px;}
 .ul-f2 li .li-address .mapIcon{margin-right:5px; float:left;}
@@ -335,9 +339,9 @@ a{text-decoration:none;}
 .pact-ul{width:450px;list-style:none; float:left; border-bottom:2px solid #F39C12; margin-left:0;padding-left:50px; cursor:pointer;margin-bottom:25px;}
 .pact-ul li{float:left; padding:0 15px; height:35px; line-height:35px; color:#F39C12; margin-right:10px; }
 .pact-ul li.cur{background:#F39C12; color:#fff;font-weight:bold;}
-.pactBox .fCon ul.ul-f1{margin:0 0 0 25px; width:400px;}
-.pactBox .fCon ul.ul-f1 li { height:40px; line-height:40px;}
-.pactBox .fCon ul.ul-f1 li .namS{width:120px; color:#34495E; font-size:16px;}
+.pactBox .fCon ul.ul-f1{margin:0 0 0 25px; width:550px;}
+.pactBox .fCon ul.ul-f1 li { height:45px; line-height:45px;}
+.pactBox .fCon ul.ul-f1 li .namS{width:120px; color:#828282; font-size:16px;}
 
 .ul-f3{padding:50px 0 0 90px; clear:both;}
 .ul-f3 li{list-style:none; border-left:2px solid #999999; padding-bottom:50px;}
