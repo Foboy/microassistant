@@ -114,7 +114,7 @@ function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) 
     $("#chanceDetailBox").hide();
     $scope.$on('EventChanceDetail', function (event, from) {
         $("#chanceDetailBox").show();
-        $("#chanceDetailBox").animate({ width: "350px" }, 300, function () {
+        $("#chanceDetailBox").animate({ width: "500px" }, 300, function () {
             $("#chanceDetailBox .form_datetime").datetimepicker({
                 minView:2,
                 language:'zh-CN',
