@@ -96,10 +96,8 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                 formdata = data;
                 if (formdata) {
                     $scope.PersonalItem = angular.copy(formdata);
-                }
-                else {
-                    $scope.PersonalItem = { CustomerPrivateId: 0, Sex: 1 };
-                    $("#adadada").datetimepicker({
+                    $scope.PersonalItem.Birthday = $scope.parseJsonDate($scope.PersonalItem.Birthday, 'yyyy/MM/dd');
+                     $("#DateControl").datetimepicker({
                         minView: 2,
                         language: 'zh-CN',
                         format: "yyyy/mm/dd",
@@ -108,13 +106,26 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                         pickerPosition: "bottom-left"
                     }).on('changeDate', function (ev) {
                         $scope.$apply(function () {
-                          alert($scope.PersonalItem);
+                            $scope.PersonalItem.Birthday = ev.target.value;
+                        });
+                    });
+                }
+                else {
+                    $scope.PersonalItem = { CustomerPrivateId: 0, Sex: 1 };
+                    $("#DateControl").datetimepicker({
+                        minView: 2,
+                        language: 'zh-CN',
+                        format: "yyyy/mm/dd",
+                        autoclose: true,
+                        todayBtn: true,
+                        pickerPosition: "bottom-left"
+                    }).on('changeDate', function (ev) {
+                        $scope.$apply(function () {
                             $scope.PersonalItem.Birthday = ev.target.value;
                         });
                     });
                 }
                 $("#AddPersonalBox").modal('show');
-                
             });
             $scope.AddPersonalSubmit = function () {
                 if ($scope.AddPersonalForm.$valid) {

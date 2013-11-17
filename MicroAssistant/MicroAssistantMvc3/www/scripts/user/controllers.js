@@ -68,7 +68,7 @@ function UserRegisterMainCtrl($scope, $http) {
             $scope.showerror = false;
             $http.post($sitecore.urls["userRegister"], { username: $scope.User.name, account: $scope.User.email, pwd: $scope.User.pwd, entCode: $scope.User.enterprise }).success(function (data) {
                 if (data.Error) {
-                    $scope.LoginErrors =data.ErrorMessage;
+                    $scope.LoginErrors = data.ErrorMessage;
                 }
                 else {
                     window.location.href = "index.html";
@@ -100,7 +100,7 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
             $scope.showerror = false;
             $http.post($sitecore.urls["enterpriseRegister"], { entName: $scope.Enterprise.name, account: $scope.Enterprise.email, pwd: $scope.Enterprise.pwd }).success(function (data) {
                 if (data.Error) {
-                    $scope.LoginErrors =data.ErrorMessage;
+                    $scope.LoginErrors = data.ErrorMessage;
                 }
                 else {
                     $http.post($sitecore.urls["userCurrentUser"], {}).success(function (data) {
@@ -185,6 +185,7 @@ function UserMainCtrl($scope, $http, $location) {
         if ($scope.ChangePwdForm.$valid) {
             if (data.surepwd != data.newpwd) {
                 $scope.ChangePwdForm.newpwd.$valid = false;
+                alert("新密码和错误密码不一致",'s');
                 $scope.showerror = true;
             } else {
                 $scope.showerror = false;
@@ -192,7 +193,6 @@ function UserMainCtrl($scope, $http, $location) {
                     if (data.Error) {
                         alert(data.ErrorMessage);
                     }
-                    console.log(data);
                 }).
                 error(function (data, status, headers, config) {
                     alert("error")
@@ -255,7 +255,8 @@ function AddCompanyCtrl($scope, $http, $location) {
             $scope.showerror = false;
             $http.post($sitecore.urls["EditeUserEntCode"], { username: data.username, entCode: data.enterpriseid }).success(function (data) {
                 if (!data.Error) {
-                    $("#AddEnterpriseBox").modal('hide');
+                    $("#AddCompanyBox").modal('hide');
+                    $scope.LoadMyTimeShaft();
                 }
                 else {
                     alert(data.ErrorMessage);
@@ -271,6 +272,12 @@ function AddCompanyCtrl($scope, $http, $location) {
     };
 }
 function StaffMangementCtrl($scope, $http, $location) {
+        $(".peop-box").live("mouseenter", function () {
+            $(this).find(".s-c").show();
+        });
+        $(".peop-box").live("mouseleave", function () {
+            $(this).find(".s-c").hide();
+        });
     $scope.selectedRoleid = 0;
     $scope.SearchEntRole = function () {
         $http.post($sitecore.urls["SearchEntRole"], {}).success(function (data) {
@@ -278,7 +285,7 @@ function StaffMangementCtrl($scope, $http, $location) {
                 $scope.SysRoles = data.Data;
                 $scope.SelectedOptions = [];
                 for (var i = 1; i < $scope.SysRoles.length; i++) {
-                    $scope.SelectedOptions.push($scope.SysRoles[i])
+                    $scope.SelectedOptions.push($scope.SysRoles[i]);
                 }
             } else { $scope.SysRoles = []; }
         }).error(function (data, status, headers, config) {
@@ -292,6 +299,7 @@ function StaffMangementCtrl($scope, $http, $location) {
             $http.post($sitecore.urls["SearchUserListByRoleId"], { roleId: RoleId }).success(function (data) {
                 if (!data.Error) {
                     $scope.SysUsers = data.Data;
+                    console.log($scope.SysUsers);
                     for (var i = 0; i < data.Data.length; i++) {
                         for (var j = 0; j < $scope.SelectedOptions.length; j++) {
                             if (data.Data[i].RoleId == $scope.SelectedOptions[j].RoleId) {
@@ -314,7 +322,7 @@ function StaffMangementCtrl($scope, $http, $location) {
                 window.location.reload();
             } else { }
         }).error(function (data, status, headers, config) {
-               
+
         });
     }
 }
@@ -348,5 +356,15 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
         } else {
             $scope.showerror = true;
         }
+    }
+    //一键清空数据（boss）
+    $scope.DeleteAllData = function () {
+        $http.post($sitecore.urls["DeleteAllData"], {}).success(function (data) {
+            if (!data.Error) {
+                alert("清除成功");
+            } else { }
+        }).error(function (data, status, headers, config) {
+
+        });
     }
 }

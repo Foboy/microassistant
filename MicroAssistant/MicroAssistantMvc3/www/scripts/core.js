@@ -32,6 +32,7 @@ $sitecore.urls.add("AdminEditEntCode", "/UserManagement/User/AdminEditEntCode");
 $sitecore.urls.add("AdminEditEntName", "/UserManagement/User/AdminEditEntName");//修改企业名称
 $sitecore.urls.add("UpdateUserRole", "/SystemManagement/Permission/UpdateUserRole");//修改用户角色
 $sitecore.urls.add("GetUserInfoByID", "/UserManagement/User/GetUserInfoByID");//查询企业信息
+$sitecore.urls.add("DeleteAllData", "/BossManagement/Boss/DeleteAllData");//一键清空数据
 
 $sitecore.urls.add("productCat", "/ProductManagement/Production/SearchProductTypeListByEntID");
 $sitecore.urls.add("productAddCat", "/ProductManagement/Production/AddProductionType"); 
