@@ -44,13 +44,13 @@
                         <span class="conS" ng-hide="AddTimeEdit">{{chance.FormatAddTime}}</span>
                         <input type="text" ng-model="chance.FormatAddTime" ng-show="AddTimeEdit" value="" class="span3 form_datetime">
                         <i class="editIcon" ng-click="AddTimeEdit=!AddTimeEdit"></i></li>
-                    <li class="clearfix"><span class="conS"><a href="#">添加其他联系方式</a></span></li>
+                    <!--<li class="clearfix"><span class="conS"><a href="#">添加其他联系方式</a></span></li>-->
 
                 </ul>
                     </form>
 					<div class="redBtn clearfix">
                     <a href="" class="btn btn-large btn-block btn-danger" ng-show="chanceDetailHasChanged()" ng-click="SalesChanceDetailSubmit()">保存修改</a>
-                    <a href="" class="btn btn-large btn-block btn-danger" ng-click="visit()">拜访该客户</a>
+                    <a href="" class="btn salesbtn btn-danger" ng-click="visit()">拜访该客户</a>
 					</div>
             </div>
         </div>
