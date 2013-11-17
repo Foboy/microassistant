@@ -4,10 +4,10 @@
     <title>Bootstrap 101 Template</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-    <!--    <link href="css/flat-ui.css" rel="stylesheet" media="screen">-->
+    <link href="css/flat-ui.css" rel="stylesheet" media="screen">
     <link href="css/master.css" rel="stylesheet" media="screen">
-   <!-- <script src="js/jquery.js"></script>-->
-    <script src="../Scripts/jquery-1.7.1.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-migrate-1.2.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
     <link href="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" />
@@ -39,39 +39,22 @@
         }
 
         .ng-valid.ng-dirty {
-            border-color: #50a729;
+            border-color: #1ABC9C;
         }
     </style>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#myinfodiv").bind("mouseenter", function () {
-                $(this).addClass("cur");
-                $("#uinfolist").show();
-            });
-            $("#myinfodiv").bind("mouseleave", function () {
-                $(this).removeClass("cur");
-                $("#uinfolist").hide();
-            });
-            $(".peop-box").live("mouseenter", function () {
-                $(this).find(".s-c").show();
-            });
-            $(".peop-box").live("mouseleave", function () {
-                $(this).find(".s-c").hide();
-            });
-        })
-    </script>
 </head>
 <body ng-controller="MainCtrl">
     <div class="navbar">
         <div class="main clearfix">
 			<div class="logo2"></div>
-            <div class="user-name" id="myinfodiv">
+            <div class="user-name" id="myinfodiv"  ng-mouseenter="RightMenuMouserEnter()" ng-mouseleave="RightMenuMouseLeave()">
                 <span>{{CurrentUser.UserName}}</span><i></i>
                 <ul class="u-info-list" style="display: none" id="uinfolist">
                     <li><a ng-href="#!/user" class="writeLink">基本资料</a></li>
                     <li><a ng-href="#!/mytimeshaft" class="writeLink">我的时间轴</a></li>
-                    <li><a ng-href="#!/staffmangement" class="writeLink">我的员工管理</a></li>
-                    <li><a ng-href="#!/changeEntcode" class="writeLink">企业代码</a></li>
+                    <li><a ng-href="#!/staffmangement" class="writeLink" ng-show="staffManagementPerission">我的员工管理</a></li>
+                    <li><a ng-href="#!/enterpriseinfo" class="writeLink" ng-show="enterpriseManagementPerission">企业信息</a></li>
+                    <li><a href="boss.html" class="writeLink" ng-show="bossPerission">老板模式</a></li>
                     <li><a ng-click="UserLoginOut()" class="writeLink">退出</a></li>
                 </ul>
             </div>
@@ -114,10 +97,10 @@
                 <a ng-href="#!/client" class="clientIcon"></a>
                 <p><a ng-href="#!/client">客户管理</a></p>
             </li>
-            <li ng-class="page=='user'?'cur':''">
+<!--            <li ng-class="page=='user'?'cur':''">
                 <a ng-href="#!/user" class="peopleIcon"></a>
                 <p><a ng-href="#!/user">个人管理</a></p>
-            </li>
+            </li>-->
         </ul>
     </div>
     <div class="conBox">

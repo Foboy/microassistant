@@ -85,7 +85,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
         /// <param name="userId"></param>
         /// <param name="roleIds"></param>
         /// <returns></returns>
-        public JsonResult UpdateUserRole(int userId, List<int> roleIds)
+        public JsonResult UpdateUserRoles(int userId, List<int> roleIds)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -183,21 +183,18 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             return Res;
         }
         /// <summary>
-        /// 移除用户角色
+        /// 移除用户全部角色
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="roleIds"></param>
         /// <returns></returns>
-        public JsonResult RemoveUserRole(int userId, List<int> roleIds)
+        public JsonResult RemoveAllUserRole(int userId)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
             try
             {
-                foreach (int roleId in roleIds)
-                {
-                    //SysRoleUserAccessor.Instance.Delete(userId, roleId);
-                }
+                SysRoleUserAccessor.Instance.Delete(userId, CurrentUser.EntId);
                 result.Error = AppError.ERROR_SUCCESS;
             }
             catch (Exception e)
@@ -284,7 +281,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                         return Res;
                     }
                    rolelist = SysRoleAccessor.Instance.LoadEntRole(CurrentUser.EntId);
-                  
+                   rolelist.Single(o => o.RoleId == 0).Count = rolelist.Single(o => o.RoleId == 0).Count + rolelist.Single(o => o.RoleId == -1).Count;
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = rolelist;
                 }
@@ -327,20 +324,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                         Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         return Res;
                     }
-                    string rolename = string.Empty;
-
-                    if (roleId > 0)
-                        rolename = SysRoleAccessor.Instance.Get(roleId).RoleName;
-
                     userlist = SysUserAccessor.Instance.LoadSysUserByRoleId(CurrentUser.EntId, roleId);
-                    for (int i = 0; i < userlist.Count; i++)
-                    {
-                        if (roleId == 0)
-                        {
-                            rolename = SysRoleAccessor.Instance.Get(userlist[i].RoleId).RoleName;
-                        }
-                        userlist[i].RoleName = rolename;
-                    }
 
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = userlist;
@@ -379,7 +363,27 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
                         Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         return Res;
                     }
-                    SysRoleUserAccessor.Instance.UpdateUserRole(userId, roleId);
+                    if (roleId == -1)//移除全部权限
+                    {
+                        SysRoleUserAccessor.Instance.Delete(userId, CurrentUser.EntId);
+                        AddUserTimeMachine(userId, 3, 0);
+                    }
+                    else
+                    {
+                        if (SysRoleUserAccessor.Instance.CheckExist(userId, CurrentUser.EntId))
+                        {
+                            SysRoleUserAccessor.Instance.UpdateUserRole(userId, roleId);
+                        }
+                        else
+                        {
+                            SysRoleUser item = new SysRoleUser();
+                            item.UserId = userId;
+                            item.RoleId = roleId;
+                            item.EntId = CurrentUser.EntId;
+                            SysRoleUserAccessor.Instance.Insert(item);
+                        }
+                        AddUserTimeMachine(userId, 4, roleId);
+                    }
                     result.Error = AppError.ERROR_SUCCESS;
                 }
                 else

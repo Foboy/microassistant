@@ -29,7 +29,7 @@
                 <td>1</td>
                 <td>{{receivableitem.CustomerName}}</td>
                 <td class="colorBlue">{{receivableitem.ContractNo}}</td>
-                <td><span class="money">{{receivableitem.Amount}}元</span><b class="colorBlue">{{parseJsonDate(receivableitem.ReceivedTime)|date:'yyyy/MM/dd'}}</b></td>
+                <td><span class="money">{{receivableitem.Amount}}元</span>/<b class="colorBlue">{{parseJsonDate(receivableitem.ReceivedTime)|date:'yyyy/MM/dd'}}</b></td>
                 <td><a href="" role="button" ng-click="ShowReceivableDetail(receivableitem)" data-toggle="modal">详情</a>|<a href="" ng-click="ShowReceivableDetail(receivableitem)" role="button" data-toggle="modal">确认收款</a></td>
             </tr>
         </tbody>

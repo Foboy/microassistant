@@ -7,7 +7,7 @@
           .when('/staffmangement', { templateUrl: 'partials/staffmangement.html', controller: StaffMangementCtrl })
           .when('/changepassword', { templateUrl: 'partials/changepassword.html', controller: UserMainCtrl })
           .when('/changeemail', { templateUrl: 'partials/changeemail.html', controller: UserMainCtrl })
-          .when('/changeEntcode', { templateUrl: 'partials/changeEntcode.html', controller: EnterPriseCodeCtrl })
+          .when('/enterpriseinfo', { templateUrl: 'partials/enterpriseinfo.html', controller: EnterPriseInfoCtrl })
           .when('/product/:catalogId?/:pageIndex?', { templateUrl: 'partials/product.html', controller: ProductMainCtrl })
           .when('/sales/:steps?/:pageIndex?', { templateUrl: 'partials/sales.html', controller: SalesMainCtrl })
           .when('/finance/:steps?/:pageIndex?', { templateUrl: 'partials/finance.html', controller: FinanceMainCtrl })
@@ -30,8 +30,20 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
             alert('error');
         })
     }
-
-
+    //右上角效果
+    $scope.RightMenuMouserEnter = function () {
+        var div = $("#myinfodiv");
+        div.addClass("cur");
+        $("#uinfolist").show();
+        div.live("click", function () {
+            $(this).removeClass("cur");
+            $("#uinfolist").hide();
+        });
+    }
+    $scope.RightMenuMouseLeave = function () {
+        $("#myinfodiv").removeClass("cur");
+        $("#uinfolist").hide();
+    }
 
     $scope.$on('$routeChangeSuccess', function () {
         $scope.checkpage();
@@ -40,7 +52,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     $scope.CurrentUser = null;
 
     $scope.checkpage = function () {
-        if ($location.path().indexOf('/home') == 0 || $location.path().indexOf('/user') == 0 || $location.path().indexOf('/changepassword') == 0 || $location.path().indexOf('/changeemail') == 0 || $location.path().indexOf('/mytimeshaft') == 0 || $location.path().indexOf('/staffmangement') == 0 || $location.path().indexOf('/changeEntcode') == 0) {
+        if ($location.path().indexOf('/home') == 0 || $location.path().indexOf('/user') == 0 || $location.path().indexOf('/changepassword') == 0 || $location.path().indexOf('/changeemail') == 0 || $location.path().indexOf('/mytimeshaft') == 0 || $location.path().indexOf('/staffmangement') == 0 || $location.path().indexOf('/enterpriseinfo') == 0) {
             $scope.page = "home";
         }
         else if ($location.path().indexOf('/product') == 0) {
@@ -76,6 +88,9 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
         $scope.salesPermission = $scope.hasPermission(17);
         $scope.financePermission = $scope.hasPermission(11);
         $scope.clientPermission = $scope.hasPermission(6);
+        $scope.bossPerission = $scope.hasPermission(27);
+        $scope.enterpriseManagementPerission = $scope.hasPermission(25);
+        $scope.staffManagementPerission = $scope.hasPermission(26);
     };
 
     $scope.parseNumberToChinese = function (num) {
@@ -125,6 +140,17 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
             return $filter('date')(date, format);
         return date;
     };
+    //根据生日计算年龄
+    $scope.parseAgeFromBirthday = function (time) {
+        var birthday = $scope.parseJsonDate(time);
+        if (typeof birthday == 'object') {
+            var d = new Date();
+            var age = d.getFullYear() - birthday.getFullYear() - ((d.getMonth() < birthday.getMonth() || d.getMonth() == birthday.getMonth() && d.getDate() < birthday.getDate()) ? 1 : 0);
+            return age;
+        } else {
+            return 0;
+        }
+    }
     //$scope.parseAge = function (datestr) {
     //    var birthday = new Date($scope.parseJsonDate(datestr).replace(/:/g, "\/"));
     //    var d = new Date();

@@ -102,12 +102,17 @@ namespace MicroAssistant.Meta
         public Int32 EntId
         { get; set; }
 
+        private int _roleid = -1;
         public Int32 RoleId
-        { get; set; }
+        {
+            get { return _roleid; }
+            set {
+                if (value > 0)
+                    _roleid = value;
+            }
+        }
 
      
-        public string RoleName
-        { get; set; }
 
         public int PicId
         { get; set; }

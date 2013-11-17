@@ -13,19 +13,23 @@
             </span>
         </div>
         <div class="clearfix">
-            <div class="peop-box" ng-repeat="SysUser in SysUsers">
+            <div class="peop-box" ng-repeat="SysUser in SysUsers" >
                 <img src="img/Adimg/h1.jpg">
                 <div class="p-b-info">
                     <p><span class="p-t">昵称：</span><span class="p-n">{{SysUser.UserAccount}}</span></p>
                     <p class="p-s-f"><span class="p-t">姓名：</span>{{SysUser.UserName}}</p>
+<<<<<<< HEAD
                     <p class="clearfix"><i class="boy-icon flat-l"></i><a href="javascript:void(0);" class="d-o flat-r grayLink p-arrow"></a></p>
+=======
+                    <p class="clearfix"><i ng-class="SysUser.Sex==2?'girl-icon flat-l':'boy-icon flat-l'" ></i><a href="javascript:void(0);" class="d-o flat-r grayLink">向下</a></p>
+>>>>>>> 9ed538109317b093de916ee932b77cfce8eb900b
                 </div>
-                <div class="s-c" style="display: none">
+                <div class="s-c" style="display: none"  >
                     <p><span class="p-t">手机：</span><span>{{SysUser.Mobile}}</span></p>
                     <p><span class="p-t">入职时间：</span><span>{{parseJsonDate(SysUser.CreateTime)|date:'yyyy/MM/dd' }}</span></p>
                     <p>
                         <span class="p-t">所属部门：</span><span>
-                            <select ng-model=" SysRoles[1]" ng-options="c.RoleName for c in SysRoles"  ng->
+                            <select ng-model="SysUser.SelectedItem" ng-options="c.RoleName for c in SelectedOptions" ng-change="ChangeUserRole(SysUser.SelectedItem,SysUser)" >
                             </select>
                        </span>
                     </p>

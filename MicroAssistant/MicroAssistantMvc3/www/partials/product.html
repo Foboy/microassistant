@@ -9,23 +9,30 @@
                 <div class="addG bootstro" id="add_catalog_btn" ng-click="addCatalog()">添加</div>
             </li>
         </ul>
-<div id="productCatalogAddModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="productCatalogAddModal" class="addm modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="popupBox popupBox2 clearfix popupbox4">
+       <div class="m-modal-header modal-header">
+         <h3 id="myAPModalLabel">添加分类</h3>
+         <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
         <form name="ProductCatalogForm" ng-class="showerror?'showerror':''">
         <ul class="listContent peopleInfo pact-w" style="float:left;">
-        	<li class="clearfix"><span class="span1">分类名称：</span><span>
-                <input type="text" ng-model="AddedCatalog.PTypeName" ng-required="true" value="" placeholder="Inactive" class="span3"></span></li>
+        	<li class="clearfix"><span class="span1">分类图片：</span>
+               <em class="pcategory"><i class="pcIcon" ng-click="AddedCatalog.PicId = 1"></i></em> 
+        	</li>
+            <li class="clearfix"><span class="span1">分类名称：</span><span>
+                <input type="text" ng-model="AddedCatalog.PTypeName" ng-required="true" value="" class="span3"></span>
+        	</li>
         </ul>
         <div class="saveBox">
-            <span>
-              <a href="" class="btn btn-large btn-block btn-danger" ng-click="addCatalogSubmit()">保存</a>
-            </span>
+              <a href="" class="btn btn-block btn-danger" ng-click="addCatalogSubmit()">保存</a>
         </div>
         </form>
     </div>
 </div>
         <div class="searchBox">
-            <input type="button" class="addBtn bootstro" id="add_product_btn" ng-click="editProduct()"/>
+            <span class="padd"><a class="btn btn-large btn-block btn-primary" id="add_product_btn" ng-click="editProduct()">新增产品</a></span>
+            <!--<input type="button" class="addBtn bootstro" id="add_product_btn" ng-click="editProduct()"/>-->
             <!--<input type="button" class="delBtn"/>-->
             <!--<span class="seCon"><input type="text" class="setext" placeholder="Type something…"><input type="button" class="seBtn"/></span>-->
         </div>
@@ -33,7 +40,7 @@
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th width="5%">#</th>
+                  <th width="5%"></th>
                   <th width="35%">产品名称</th>
                   <!--<th width="10%">成本价格</th>-->
                   <th width="10%">售价</th>
@@ -47,8 +54,8 @@
                   <td>1</td>
                   <td>{{product.PName}}</td>
                   <!--<td class="colorBlue">8300.00</td>-->
-                  <td class="colorBlue">{{product.MarketPrice}}</td>
-                  <td class="colorBlue">{{product.LowestPrice}}</td>
+                  <td class="colorRed">{{product.MarketPrice}}<span class="pinfolast colorlight">元</span></td>
+                  <td class="colorRed">{{product.LowestPrice}}<span class="pinfolast colorlight">元</span></td>
                   <td>{{product.StockCount}}</td>
                   <td><a href="" role="button" data-toggle="modal" ng-click="showProductDetail()">查看</a>|
                   <a role="button" data-toggle="modal" href="" ng-click="editProduct()">编辑产品资料</a>|
@@ -57,6 +64,21 @@
               </tbody>
             </table>
         </div>
+        <div class="pagination">
+            <ul>
+              <li class="previous"><a href="#"><img src="img/previous.png" /></a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">6</a></li>
+              <li><a href="#">7</a></li>
+              <li><a href="#">8</a></li>
+              <li><a href="#">9</a></li>
+              <li class="next"><a href="#"><img src="img/next.png" /></a></li>
+            </ul>
+          </div>
     </div>
 	<div ng-include="'partials/product/product-detail.html'"></div>
     <div ng-include="'partials/product/product-edit.html'"></div>

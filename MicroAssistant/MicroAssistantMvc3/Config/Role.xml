@@ -34,6 +34,7 @@
     </father>
     <father name="企业管理" id="25">
       <son name="员工管理" id="26"></son>
+      <son name="企业信息" id="29"></son>
     </father>
   </role>
   <role name="财务部">
@@ -98,6 +99,7 @@
     </father>
     <father name="企业管理" id="25">
       <son name="员工管理" id="26"></son>
+      <son name="企业信息" id="29"></son>
     </father>
     <father name="老板模式" id="27">
       <son name="统计" id="28"></son>

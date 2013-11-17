@@ -6,7 +6,7 @@
         <ul class="ul-f1">
             <li class="clearfix"><span class="colorBlue namS">姓名：</span><span class="conS">{{PersonData.Name}}</span></li>
             <li class="clearfix"><span class="colorBlue namS">性别：</span><span class="conS">{{PersonData.Sex==1?'男':'女'}}</span></li>
-            <li class="clearfix"><span class="colorBlue namS">出生日期：</span><span class="conS">{{PersonData.Birthday}}</span></li>
+            <li class="clearfix"><span class="colorBlue namS">出生日期：</span><span class="conS">{{parseJsonDate(PersonData.Birthday,'yyyy/MM/dd')}}</span></li>
             <li class="clearfix"><span class="colorBlue namS">手机：</span><span class="conS">{{PersonData.Mobile}}</li>
             <li class="clearfix"><span class="colorBlue namS">座机：</span><span class="conS">{{PersonData.Phone}}</span></li>
             <li class="clearfix"><span class="colorBlue namS">邮箱：</span><span class="conS">{{PersonData.Email}}</span></li>
