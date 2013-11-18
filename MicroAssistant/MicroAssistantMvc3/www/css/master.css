@@ -204,7 +204,7 @@ a{text-decoration:none;}
 .newAddBox .addName{width:170px; border-radius:0;}
 
 
-.searchBox{height:40px; line-height:40px; text-align:right; padding:0 15px 10px 15px;}
+.searchBox{height:35px; line-height:35px; text-align:right; padding:0 15px 5px 15px;}
 .searchBox input{margin-left:10px;border-radius:0;}
 .searchBox .addBtn,.searchBox .delBtn{width:30px;}
 .seCon{position:relative; display:inline-block;}
@@ -259,7 +259,7 @@ a{text-decoration:none;}
 .salesList li em .visit-icon {background-position:-256px -227px; width:40px; height:26px;margin-top: 21px;}
 .salesList li em .contract-icon {background-position:-268px -1px; width:31px; height:30px;margin-top: 18px;}
 .salesList li em .sales-follow-icon {background-position:-261px -122px; width:38px; height:25px;margin-top: 19px;}
-.saleskuang { padding-left:30px;}
+.saleskuang { padding-left:30px; padding-top:10px;}
 .salesbtn { font-size: 14px;line-height: 15px;padding: 10px 18px 11px;}
 /*=== 销售管理 END ===*/
 
@@ -277,31 +277,33 @@ a{text-decoration:none;}
 .floatBox .fCon{position:absolute; z-index:1001;width:100%; right:0; top:0;}
 .floatBox .fCon .arrR{ margin:10px; position:absolute; margin:5px; left:1px;}
 .floatBox .fCon ul.ul-f1{list-style:none; float:left; margin:30px 0 0 0;}
-.floatBox .fCon ul.ul-f1 li{font-size:16px; line-height:35px;}
+.floatBox .fCon ul.ul-f1 li{font-size:16px; height:45px;}
 .floatBox .fCon ul.ul-f1 li .namS,.floatBox .fCon ul.ul-f1 li .conS,.floatBox .fCon ul.ul-f1 li .editIcon{float:left; display:inline-block;}
 .floatBox .fCon ul.ul-f1 li .editIcon{margin-top:12px; cursor:pointer;}
 .floatBox .fCon ul.ul-f1 li .namS{width:80px; text-align:right;}
-.floatBox .fCon ul.ul-f1 li .conS{width:350px;  font-weight:500; margin-left:15px;}
+.floatBox .fCon ul.ul-f1 li .conS{width:350px;  font-weight:500; margin-left:15px; word-break:break-all;}
+.huanlin { line-height:28px;}
 .floatBox .fCon ul.ul-f1 li .textS{width:180px; border-radius:0;}
 .floatBox .fCon ul.ul-f1 li .textA{width:184px; padding:0 5px; height:120px; background:#FFFFFF; color:#525252; font-size:12px;}
 .floatBox .fCon ul.ul-f1 li .textpact{margin:0 10px 20px 0;}
 .redBtn{width:500px;}
-.redBtn a{width:200px;height:15px; margin:50px 0 0 110px;}
+.redBtn a{width:200px;height:15px; margin:20px 0 0 110px;}
 .floatW900{width:900px;}
-.chanceB-l{float:left; width:210px; height:100px; padding:5px; background:#FFFFFF; line-height:24px; font-size:14px; overflow:hidden; margin-top:30px;}
-.chanceB-r{float:left; margin-top:30px;width:630px;}
-.title-f{width:auto; height:140px; border-left:2px solid #999999; padding-left:15px;}
+.contentbaifang { margin:40px 0 0 20px;}
+.chanceB-l{float:left; width:210px; height:100px; padding:5px; background:#FFFFFF; line-height:24px; font-size:14px; overflow:hidden;}
+.chanceB-r{float:left;width:630px;}
+.title-f{width:auto; height:140px; border-left:3px solid #ccc; padding-left:15px;}
 .title-f h1{font-size:16px; margin:0; float:left;}
 .sign-pact{width:140px; float:right; margin-right:20px;}
 .sign-pact a{margin-bottom:5px;}
 .rate-cur{float:right; margin-right:20px;}
-.rate-show{position:relative; z-index:1005; width:140px; line-height:20px; padding: 10px 10px 11px;font-size: 16.996px; color:#FFFFFF; background:#50A729; text-align:center;}
+.rate-show{position:relative; z-index:1005; width:140px; line-height:15px; padding: 10px 10px 11px;font-size:16px; color:#FFFFFF; background:#16a085; text-align:center;}
 .alter{text-align:center; width:140px; position:absolute; top:40px;}
 .alter b{display:inline-block; width:19px; height:7px; background:url(../img/icon.png) no-repeat -100px -254px;}
 .alter div{background:#F5DFAB; height:35px; line-height:35px; color:#999; font-size:14px; margin-top:-5px; cursor:pointer;}
 .close-alert{background:url(../img/icon.png) no-repeat -148px -219px; width:9px; height:10px; border:none; position:absolute; top:20px; right:5px;}
 .ul-f2{margin:0;}
-.ul-f2 li{list-style:none; border-left:2px solid #999999; padding-bottom:50px;}
+.ul-f2 li{list-style:none; border-left:3px solid #333; padding-bottom:50px;}
 .ul-f2 li.none{border:none; padding-left:2px;padding-bottom:0;}
 .ul-f2 li .li-timeb{float:left; width:120px; height:21px; line-height:21px; margin-left:-110px;}
 .ul-f2 li .li-conb{float:left; padding-left:15px;}
