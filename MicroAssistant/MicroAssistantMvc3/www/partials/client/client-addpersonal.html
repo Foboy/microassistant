@@ -1,16 +1,16 @@
-﻿<div tabindex="-1" class="addclient modal hide fade" id="AddPersonalBox" role="dialog" aria-labelledby="myModalLabel" style="width: 580px;" aria-hidden="true">
+﻿<div tabindex="-1" class="addclient modal hide fade" id="AddPersonalBox" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myAPModalLabel">编辑个人客户</h3>
     </div>
-    <div class="modal-body" style="width: 580px;" ng-controller="AddClientCtrl">
-        <div class="popupBox clearfix" style="width: 580px;">
-            <div class="madeBox" style="width: 580px;">
+    <div class="modal-body" ng-controller="AddClientCtrl">
+       
+            <div class="madeBox" >
                 <form ng-class="showerror?'showerror':''" name="AddPersonalForm">
                     <ul class="listContent">
                         <input type="text" style="display: none" name="CustomerPrivateId" ng-model="PersonalItem.CustomerPrivateId" />
-                        <li class="clearfix"><span class="span1">姓名：</span><span><input type="text" name="Name" ng-model="PersonalItem.Name" ng-required="true" class="span3"></span></li>
-                        <li class="clearfix"><span class="span1">性别：</span><span><label class="checkbox-inline">
+                        <li><span class="span1">姓名：</span><span><input type="text" name="Name" ng-model="PersonalItem.Name" ng-required="true" class="span3"></span></li>
+                        <li><span class="span1">性别：</span><span><label class="checkbox-inline">
                             <input type="radio" ng-model="PersonalItem.Sex" value="1" />
                             男&nbsp;
                         </label>
@@ -27,10 +27,10 @@
                         <!--<li class="clearfix"><span class="span1">从事行业：</span><span><input type="text" name="Industy" ng-model="PersonalItem.Industy"  class="span3"></span></li>
             <li class="clearfix"><span class="span1">所在地：</span><span><input type="text" name="Address" ng-model="PersonalItem.Address"  class="span3"></span></li>-->
                         <li><span class="span1">个人信息：</span><span><textarea style="width: 350px;" name="Detail" ng-model="PersonalItem.Detail"></textarea></span></li>
-                        <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" ng-click="AddPersonalSubmit()" class="btn btn-large btn-block btn-success">保 存</a></span></li>
+                        <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" ng-click="AddPersonalSubmit()" class="btn btn-block btn-danger">保 存</a></span></li>
                     </ul>
                 </form>
             </div>
-        </div>
+      
     </div>
 </div>

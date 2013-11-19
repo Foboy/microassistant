@@ -1,11 +1,10 @@
-﻿<div class="addclient modal hide fade" id="AddEnterpriseBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 580px;">
+﻿<div class="addclient modal hide fade" id="AddEnterpriseBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myAPModalLabel">编辑企业客户</h3>
     </div>
-    <div class="modal-body" style="width: 580px;" ng-controller="AddClientCtrl">
-        <div class="popupBox clearfix" style="width: 580px;">
-            <div class="madeBox" style="width: 580px;">
+    <div class="modal-body"  ng-controller="AddClientCtrl">
+            <div class="madeBox" >
                 <form ng-class="showerror?'showerror':''" name="AddEnterpriseForm">
                     <ul class="listContent">
                         <input type="text" style="display: none" name="CustomerEntId" ng-model="EnterpriseItem.CustomerEntId" />
@@ -18,10 +17,10 @@
                         <li><span class="span1"></span><span><input type="text" name="ContactEmail" ng-model="EnterpriseItem.ContactEmail" placeholder="Email" class="span3"></span></li>
                         <li><span class="span1">企业地址：</span><span><input type="text" name="Address" ng-model="EnterpriseItem.Address" class="span3"></span></li>
                         <li><span class="span1">企业资料：</span><span><textarea placeholder="请输入企业资料" name="Detail" ng-model="EnterpriseItem.Detail" style="width: 300px; height: 100px;"></textarea></span></li>
-                        <li><span class="span1"></span><span class="spanBtn clearfix"><a href="" ng-click="AddEnterpriseSubmit()" class="btn btn-large btn-block btn-success">保 存</a></span></li>
+                        <li><span class="span1"></span><span class="spanBtn clearfix"><a href="" ng-click="AddEnterpriseSubmit()" class="btn btn-block btn-danger">保 存</a></span></li>
                     </ul>
                 </form>
             </div>
-        </div>
+   
     </div>
 </div>

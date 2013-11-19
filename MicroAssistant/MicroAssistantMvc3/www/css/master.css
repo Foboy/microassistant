@@ -274,12 +274,7 @@ a{text-decoration:none;}
 
 /*===客户管理===*/
 .clientkuang { padding-left:30px; padding-top:10px;}
-.addclient {
-    border-radius: 0;
-    margin-left: -375px;
-    margin-top:20px;
-    width: 700px;
-}
+.addclient {width:700px; margin-left:-375px;border-radius:0; height:600px;}
 /*===客户管理 END===*/
 
 /*=== 悬浮窗口 ===*/
