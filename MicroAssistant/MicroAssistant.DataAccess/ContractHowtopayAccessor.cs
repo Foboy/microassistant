@@ -92,10 +92,11 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateIsreceived
 
-            cmdUpdateIsreceived = new MySqlCommand(" update contract_howtopay set IsReceived = @Isreceived where instalments_no = @InstalmentsNo and IsReceived = @Isreceived and contract_no = @ContractNo");
+            cmdUpdateIsreceived = new MySqlCommand(" update contract_howtopay set IsReceived = @Isreceived,received_time =@ReceivedTime  where instalments_no = @InstalmentsNo and contract_no = @ContractNo");
 
             cmdUpdateIsreceived.Parameters.Add("@InstalmentsNo", MySqlDbType.Int32);
             cmdUpdateIsreceived.Parameters.Add("@Isreceived", MySqlDbType.Int32);
+            cmdUpdateIsreceived.Parameters.Add("@ReceivedTime", MySqlDbType.DateTime);
             cmdUpdateIsreceived.Parameters.Add("@ContractNo", MySqlDbType.String);
 
             #endregion
@@ -337,9 +338,14 @@ namespace MicroAssistant.DataAccess
                 _cmdUpdateIsreceived.Parameters["@InstalmentsNo"].Value = rNum;
                 _cmdUpdateIsreceived.Parameters["@Isreceived"].Value = isReceived;
                 _cmdUpdateIsreceived.Parameters["@ContractNo"].Value = contractNo;
+                _cmdUpdateIsreceived.Parameters["@ReceivedTime"].Value = DateTime.Now;
 
-                _cmdUpdateIsreceived.ExecuteNonQuery();
+                int i = _cmdUpdateIsreceived.ExecuteNonQuery();
 
+            }
+            catch(Exception e)
+            {
+ 
             }
             finally
             {
