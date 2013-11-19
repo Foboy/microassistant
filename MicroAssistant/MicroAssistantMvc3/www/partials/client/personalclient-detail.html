@@ -1,17 +1,17 @@
 ﻿
-<div class="floatBox" id="personalclientDetailBox" style="width: 0; right: 0; top: 0;">
+<div class="floatBox" id="personalclientDetailBox" style="width: 0; right: 0; top: 0;display: block;">
     <div class="fBg"></div>
     <div class="fCon clearfix">
         <i class="arrR" ng-click="hidePersonalClientDetail()"></i>
-        <ul class="ul-f1">
-            <li class="clearfix"><span class="colorBlue namS">姓名：</span><span class="conS">{{PersonData.Name}}</span></li>
-            <li class="clearfix"><span class="colorBlue namS">性别：</span><span class="conS">{{PersonData.Sex==1?'男':'女'}}</span></li>
-            <li class="clearfix"><span class="colorBlue namS">出生日期：</span><span class="conS">{{parseJsonDate(PersonData.Birthday,'yyyy/MM/dd')}}</span></li>
-            <li class="clearfix"><span class="colorBlue namS">手机：</span><span class="conS">{{PersonData.Mobile}}</li>
-            <li class="clearfix"><span class="colorBlue namS">座机：</span><span class="conS">{{PersonData.Phone}}</span></li>
-            <li class="clearfix"><span class="colorBlue namS">邮箱：</span><span class="conS">{{PersonData.Email}}</span></li>
-             <li class="clearfix"><span class="colorBlue namS">QQ：</span><span class="conS">{{PersonData.Qq}}</span></li>
-            <li class="clearfix"><span class="colorBlue namS">个人信息：</span><span class="conS">{{PersonData.Detail}}</span></li>
+        <ul class="ul-f1 clientkuang colorblack">
+            <li class="clearfix"><span class="colorlight namS">姓名：</span><span class="conS">{{PersonData.Name}}</span></li>
+            <li class="clearfix"><span class="colorlight namS">性别：</span><span class="conS">{{PersonData.Sex==1?'男':'女'}}</span></li>
+            <li class="clearfix"><span class="colorlight namS">出生日期：</span><span class="conS">{{parseJsonDate(PersonData.Birthday,'yyyy/MM/dd')}}</span></li>
+            <li class="clearfix"><span class="colorlight namS">手机：</span><span class="conS">{{PersonData.Mobile}}</li>
+            <li class="clearfix"><span class="colorlight namS">座机：</span><span class="conS">{{PersonData.Phone}}</span></li>
+            <li class="clearfix"><span class="colorlight namS">邮箱：</span><span class="conS">{{PersonData.Email}}</span></li>
+             <li class="clearfix"><span class="colorlight namS">QQ：</span><span class="conS">{{PersonData.Qq}}</span></li>
+            <li class="clearfix"><span class="colorlight namS">个人信息：</span><span class="conS">{{PersonData.Detail}}</span></li>
         </ul>
     </div>
 </div>

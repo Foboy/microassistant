@@ -271,6 +271,11 @@ a{text-decoration:none;}
 .financeList li.cur a{color:#FFFFFF;}
 .financeList li.cur .arrowD{background-position:-110px -74px;}
 /*=== 财务管理 END ===*/
+
+/*===客户管理===*/
+.clientkuang { padding-left:30px; padding-top:10px;}
+/*===客户管理 END===*/
+
 /*=== 悬浮窗口 ===*/
 .floatBox{width:350px; min-height:800px;  position:absolute; z-index:999; right:0; top:0; overflow:hidden;}
 .floatBox .fBg{background:#ECF0F5;width:100%; min-height:800px; position:absolute; right:0; top:0; z-index:1000;filter:alpha(opacity=98); /* IE */ -moz-opacity:0.98; /* Moz + FF */ opacity: 0.98;}
