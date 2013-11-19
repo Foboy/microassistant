@@ -12,9 +12,9 @@
     </li>
 </ul>
 <div class="searchBox">
-    <input type="button" class="addBtn" ng-click="sorts=='enterprise'? ShowAddEnterpriseForm():ShowAddPersonalForm()"/>
-    <span class="seCon">
-        <input type="text" class="setext" placeholder="Type something…"><input type="button" class="seBtn" /></span>
+    <span class="padd">
+    <a class="btn btn-large btn-block btn-primary" ng-click="sorts=='enterprise'? ShowAddEnterpriseForm():ShowAddPersonalForm()">新增客户</a>
+   </span>
 </div>
 <!--企业客户信息区域-->
 <div class="tablePad" ng-show="sorts=='enterprise'?'true':'false'">
