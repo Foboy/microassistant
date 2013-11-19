@@ -209,7 +209,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
         $scope.chanceVisitDetail();
         $scope.visitFormReset();
         $("#visitDetailBox").show();
-		$("#visitDetailBox").animate({width:"900px"},500);
+		$("#visitDetailBox").animate({width:"800px"},500);
 		//加载机会数据
     });
     

@@ -31,7 +31,7 @@
     $scope.ShowPersonalClientDetail = function (personclientItem) {
         $("#personalclientDetailBox").show();
         $scope.PersonData = personclientItem;
-        $("#personalclientDetailBox").animate({ width: "350px" }, 300);
+        $("#personalclientDetailBox").animate({ width: "500px" }, 300);
     }
     $scope.hidePersonalClientDetail = function (callback) {
         $("#personalclientDetailBox").animate({ width: "0px" }, 300, function () {
@@ -44,7 +44,7 @@
     $scope.ShowEnterpriseClientDetail = function (enterpriseclientItem) {
         $("#enterpriseclientDetailBox").show();
         $scope.EnterpriseData = enterpriseclientItem;
-        $("#enterpriseclientDetailBox").animate({ width: "350px" }, 300);
+        $("#enterpriseclientDetailBox").animate({ width: "500px" }, 300);
     }
     $scope.hideEnterprsieClientDetail = function (callback) {
         $("#enterpriseclientDetailBox").animate({ width: "0px" }, 300, function () {
