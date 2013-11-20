@@ -163,5 +163,5 @@
 
 })(jQuery);
 
-//var oldAlert = alert;
-//alert = $.showMsg;
+var oldAlert = alert;
+alert = $.showMsg;
