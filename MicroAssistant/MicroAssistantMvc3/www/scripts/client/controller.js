@@ -31,7 +31,7 @@
     $scope.ShowPersonalClientDetail = function (personclientItem) {
         $("#personalclientDetailBox").show();
         $scope.PersonData = personclientItem;
-        $("#personalclientDetailBox").animate({ width: "350px" }, 300);
+        $("#personalclientDetailBox").animate({ width: "500px" }, 300);
     }
     $scope.hidePersonalClientDetail = function (callback) {
         $("#personalclientDetailBox").animate({ width: "0px" }, 300, function () {
@@ -44,7 +44,7 @@
     $scope.ShowEnterpriseClientDetail = function (enterpriseclientItem) {
         $("#enterpriseclientDetailBox").show();
         $scope.EnterpriseData = enterpriseclientItem;
-        $("#enterpriseclientDetailBox").animate({ width: "350px" }, 300);
+        $("#enterpriseclientDetailBox").animate({ width: "500px" }, 300);
     }
     $scope.hideEnterprsieClientDetail = function (callback) {
         $("#enterpriseclientDetailBox").animate({ width: "0px" }, 300, function () {
@@ -96,10 +96,8 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                 formdata = data;
                 if (formdata) {
                     $scope.PersonalItem = angular.copy(formdata);
-                }
-                else {
-                    $scope.PersonalItem = { CustomerPrivateId: 0, Sex: 1 };
-                    $("#adadada").datetimepicker({
+                    $scope.PersonalItem.Birthday = $scope.parseJsonDate($scope.PersonalItem.Birthday, 'yyyy/MM/dd');
+                     $("#DateControl").datetimepicker({
                         minView: 2,
                         language: 'zh-CN',
                         format: "yyyy/mm/dd",
@@ -108,13 +106,26 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                         pickerPosition: "bottom-left"
                     }).on('changeDate', function (ev) {
                         $scope.$apply(function () {
-                          alert($scope.PersonalItem);
+                            $scope.PersonalItem.Birthday = ev.target.value;
+                        });
+                    });
+                }
+                else {
+                    $scope.PersonalItem = { CustomerPrivateId: 0, Sex: 1 };
+                    $("#DateControl").datetimepicker({
+                        minView: 2,
+                        language: 'zh-CN',
+                        format: "yyyy/mm/dd",
+                        autoclose: true,
+                        todayBtn: true,
+                        pickerPosition: "bottom-left"
+                    }).on('changeDate', function (ev) {
+                        $scope.$apply(function () {
                             $scope.PersonalItem.Birthday = ev.target.value;
                         });
                     });
                 }
                 $("#AddPersonalBox").modal('show');
-                
             });
             $scope.AddPersonalSubmit = function () {
                 if ($scope.AddPersonalForm.$valid) {

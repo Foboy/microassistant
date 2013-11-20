@@ -114,7 +114,7 @@ function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) 
     $("#chanceDetailBox").hide();
     $scope.$on('EventChanceDetail', function (event, from) {
         $("#chanceDetailBox").show();
-        $("#chanceDetailBox").animate({ width: "350px" }, 300, function () {
+        $("#chanceDetailBox").animate({ width: "500px" }, 300, function () {
             $("#chanceDetailBox .form_datetime").datetimepicker({
                 minView:2,
                 language:'zh-CN',
@@ -209,7 +209,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
         $scope.chanceVisitDetail();
         $scope.visitFormReset();
         $("#visitDetailBox").show();
-		$("#visitDetailBox").animate({width:"900px"},500);
+		$("#visitDetailBox").animate({width:"800px"},500);
 		//加载机会数据
     });
     

@@ -45,35 +45,12 @@
             border-color: #1ABC9C;
         }
     </style>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#myinfodiv").bind("mouseenter", function () {
-                $(this).addClass("cur");
-                $("#uinfolist").show();
-                $(this).bind("click", function () {
-                    $(this).removeClass("cur");
-                    $("#uinfolist").hide();
-                })
-            });
-            $("#myinfodiv").bind("mouseleave", function () {
-                $(this).removeClass("cur");
-                $("#uinfolist").hide();
-                
-            });
-            $(".peop-box").live("mouseenter", function () {
-                $(this).find(".s-c").show();
-            });
-            $(".peop-box").live("mouseleave", function () {
-                $(this).find(".s-c").hide();
-            });
-        })
-    </script>
 </head>
 <body ng-controller="MainCtrl">
     <div class="navbar">
         <div class="main clearfix">
 			<div class="logo2"></div>
-            <div class="user-name" id="myinfodiv">
+            <div class="user-name" id="myinfodiv"  ng-mouseenter="RightMenuMouserEnter()" ng-mouseleave="RightMenuMouseLeave()">
                 <span>{{CurrentUser.UserName}}</span><i></i>
                 <ul class="u-info-list" style="display: none" id="uinfolist">
                     <li><a ng-href="#!/user" class="writeLink">基本资料</a></li>

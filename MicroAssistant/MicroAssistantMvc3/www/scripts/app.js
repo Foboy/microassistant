@@ -30,8 +30,20 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
             alert('error');
         })
     }
-
-
+    //右上角效果
+    $scope.RightMenuMouserEnter = function () {
+        var div = $("#myinfodiv");
+        div.addClass("cur");
+        $("#uinfolist").show();
+        div.live("click", function () {
+            $(this).removeClass("cur");
+            $("#uinfolist").hide();
+        });
+    }
+    $scope.RightMenuMouseLeave = function () {
+        $("#myinfodiv").removeClass("cur");
+        $("#uinfolist").hide();
+    }
 
     $scope.$on('$routeChangeSuccess', function () {
         $scope.checkpage();
