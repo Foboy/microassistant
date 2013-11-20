@@ -154,3 +154,63 @@ utilities.loading = function (title) {
         }
     }
 };
+
+utilities.format = function (source, params) {
+    if (arguments.length == 1)
+        return function () {
+            var args = $.makeArray(arguments);
+            args.unshift(source);
+            return $.format.apply(this, args);
+        };
+    if (arguments.length > 2 && params.constructor != Array) {
+        params = $.makeArray(arguments).slice(1);
+    }
+    if (params.constructor != Array) {
+        params = [params];
+    }
+    $.each(params, function (i, n) {
+        source = source.replace(new RegExp("\\{" + i + "\\}", "g"), n);
+    });
+    return source;
+};
+
+utilities.paging = function (recordCount, pageIndex, pageSize, url, linkCount) {
+    var linkCount = linkCount || 9;
+    var url = url;
+    if (!isNaN(url)) {
+        linkCount = url;
+    }
+    else {
+        url = url || '';
+    }
+    var pageCount = Math.ceil(recordCount / pageSize);
+    var pageIndex = parseInt(pageIndex);
+    var pageStart = 1;
+    var pageEnd = pageCount;
+    var pages = [];
+    if (pageCount <= 1)
+        return pages;
+    if (pageIndex - Math.floor(linkCount) > 0) {
+        pageStart = pageIndex - Math.floor(linkCount);
+    }
+    if (pageIndex + Math.floor(linkCount) < pageCount) {
+        pageEnd = pageIndex + Math.floor(linkCount);
+    }
+    if (pageIndex > 1) {
+        pages.push({ index: pageIndex - 1, active: false, url: utilities.format(url, pageIndex - 1), type: 'pre' });
+    }
+    else {
+        pages.push({ index: pageIndex, active: false, url: 'javascript:void(0)', type: 'pre' });
+    }
+    for (var i = pageStart; i <= pageEnd; i++) {
+        var page = { index: i, active: i == pageIndex, url: utilities.format(url, i), type: 'page' };
+        pages.push(page);
+    }
+    if (pageIndex < pageCount) {
+        pages.push({ index: pageIndex + 1, active: false, url: utilities.format(url, pageIndex + 1), type: 'next' });
+    }
+    else {
+        pages.push({ index: pageIndex, active: false, url: 'javascript:void(0)', type: 'next' });
+    }
+    return pages;
+};

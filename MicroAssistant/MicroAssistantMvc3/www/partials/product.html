@@ -51,35 +51,26 @@
               </thead>
               <tbody>
                 <tr ng-repeat="product in products">
-                  <td>1</td>
+                  <td>{{$index+1}}</td>
                   <td>{{product.PName}}</td>
                   <!--<td class="colorBlue">8300.00</td>-->
                   <td class="colorRed">{{product.MarketPrice}}<span class="pinfolast colorlight">元</span></td>
                   <td class="colorRed">{{product.LowestPrice}}<span class="pinfolast colorlight">元</span></td>
                   <td>{{product.StockCount}}</td>
-                  <td><a href="" role="button" data-toggle="modal" ng-click="showProductDetail()">查看</a>|
-                  <a role="button" data-toggle="modal" href="" ng-click="editProduct()">编辑产品资料</a>|
-                  <a role="button" data-toggle="modal" href="" ng-click="addPurchase()">添加采购单</a></td>
+                  <td><a href="" role="button" ng-click="showProductDetail()">查看</a>|
+                  <a role="button" href="" ng-click="editProduct()">编辑产品资料</a>|
+                  <a role="button" href="" ng-click="addPurchase()">添加采购单</a></td>
                 </tr>
               </tbody>
             </table>
         </div>
         <div class="pagination">
             <ul>
-              <li class="previous"><a href="#"><img src="img/previous.png" /></a></li>
-              <li class="active"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#">6</a></li>
-              <li><a href="#">7</a></li>
-              <li><a href="#">8</a></li>
-              <li><a href="#">9</a></li>
-              <li class="next"><a href="#"><img src="img/next.png" /></a></li>
+              <li class="previous" ng-repeat="page in pages | filter:'pre'"><a ng-href="{{page.url}}"><img src="img/previous.png" /></a></li>
+              <li ng-class="page.active?'active':''" ng-repeat="page in pages | filter:'page'"><a ng-href="{{page.url}}">{{page.index}}</a></li>
+              <li class="next" ng-repeat="page in pages | filter:'next'"><a ng-href="{{page.url}}"><img src="img/next.png" /></a></li>
             </ul>
-          </div>
-    </div>
+        </div>
 	<div ng-include="'partials/product/product-detail.html'"></div>
     <div ng-include="'partials/product/product-edit.html'"></div>
     <div ng-include="'partials/product/product-purchase.html'"></div>
