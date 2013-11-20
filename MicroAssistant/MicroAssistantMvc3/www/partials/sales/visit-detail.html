@@ -56,12 +56,17 @@
                        <ul class="ul-f2">
                         	<li class="clearfix">
                             	<div class="li-timeb colorBlue">
-                                	<span class="cir-w"><i></i></span>
+                                	<span class="cir-w"></span>
                                 </div>
                                 <div class="li-conb">
-                                	<a href="" class="grayLink" ng-click="addNewVisit($event)">点击添加新的拜访记录</a>
+                                    <i class="add_i"></i>
+                                    <div class="jiantou_bg">
+                                       
+                                        <a href="" class="" ng-click="addNewVisit($event)">点击添加新的拜访记录</a>
+                                    </div>
+                                	
 									<div class="li-boxs add-visit clearfix" ng-show="addvisitpanleshow" id="visitEditBox">
-										<i></i>
+										<i class="jiantou_i"></i>
 										<div class="clearfix">
                                         	<div class="visit-num">
                                             	<span class="span1">{{((chance_visits.length||0) + 1)==1?'初':'第'+parseNumberToChinese((chance_visits.length||0) + 1)}}次拜访</span>
