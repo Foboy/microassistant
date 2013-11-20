@@ -154,3 +154,26 @@ utilities.loading = function (title) {
         }
     }
 };
+
+utilities.paging = function (recordCount, pageIndex, pageSize, linkCount) {
+    var linkCount = linkCount || 9;
+    var pageCount = Math.ceil(recordCount / pageSize);
+    var pageStart = 1;
+    var pageEnd = pageCount;
+    var pages = [];
+    if (pageIndex - Math.floor(linkCount) > 0)
+    {
+        pageStart = pageIndex - Math.floor(linkCount);
+    }
+    if (pageIndex + Math.floor(linkCount) < pageCount)
+    {
+        pageEnd = pageIndex + Math.floor(linkCount);
+    }
+
+    for (var i = pageStart; i <= pageEnd; i++)
+    {
+        var page = { index: i, active: i == pageIndex };
+        pages.push(page);
+    }
+    return pages;
+};

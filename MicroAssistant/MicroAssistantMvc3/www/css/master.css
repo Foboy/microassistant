@@ -85,8 +85,8 @@ a{text-decoration:none;}
 
 /*=== 弹出框样式 ===*/
 
-.addm{width:530px; margin-left:-375px;border-radius:0;}
-.addProduct{width:700px; margin-left:-375px;border-radius:0; height:450px;}
+.addm{width:530px; border-radius:0;}
+.addProduct{width:700px;border-radius:0; height:450px;}
 .modal .modal-body{max-height:530px; padding:0;}
 .modal-header h3{font-family:"微软雅黑"; font-weight:550; color:#2C3E50; font-size:16px; padding:6px 15px; float:left;}
 .popupBox{width:870px; min-height:530px; background:#ffffff;}
