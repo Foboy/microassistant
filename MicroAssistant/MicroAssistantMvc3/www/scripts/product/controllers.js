@@ -7,14 +7,14 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 	
   //获取产品列表
   $scope.getCatProducts = function(catalogId, pageIndex){
-      $http.get($sitecore.urls["productList"], { params: { typeid: catalogId, pageIndex: pageIndex-1,pageSize:2 } }).success(function (data) {
+      $http.get($sitecore.urls["productList"], { params: { typeid: catalogId, pageIndex: pageIndex-1,pageSize:10 } }).success(function (data) {
           console.log(data);
           if (data.Error) {
               alert(data.ErrorMessage);
           }
           $parent.ProductActPageIndex = pageIndex;
           $parent.products = data.Data.Items;
-          $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 2);
+          $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!product/' + catalogId + '/{0}');
 	  }).
 	  error(function(data, status, headers, config) {
 	      $parent.products = [];
@@ -96,11 +96,17 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
                   alert(data.ErrorMessage);
               }
               else {
-                  $scope.catalogs = $scope.catalogs || [];
-                  var catalog = angular.copy($scope.AddedCatalog)
+                  $parent.catalogs = $parent.catalogs || [];
+                  var catalog = angular.copy($scope.AddedCatalog);
                   catalog.PTypeId = data.Id;
                   catalog.PicId = $scope.AddedCatalog.PicId;
-                  $scope.catalogs.push(catalog);
+                  $parent.catalogs.push(catalog);
+                  $location.path("/product/" + data.Id + "/1");
+                  //$scope.catalogs = $scope.catalogs || [];
+                  //var catalog = angular.copy($scope.AddedCatalog)
+                  //catalog.PTypeId = data.Id;
+                  //catalog.PicId = $scope.AddedCatalog.PicId;
+                  //$scope.catalogs.push(catalog);
                   $('#productCatalogAddModal').modal('hide');
               }
           }).

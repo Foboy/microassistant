@@ -89,8 +89,8 @@ a{text-decoration:none;}
 /*=== 弹出框样式 ===*/
 
 .addm{width:530px; border-radius:0;}
-.addProduct{width:700px;border-radius:0; height:450px;}
-.modal .modal-body{max-height:530px; padding:0;}
+.addProduct{width:720px;border-radius:0; height:450px;}
+.addProduct .modal-body{max-height:530px; padding:0;}
 .modal-header h3{font-family:"微软雅黑"; font-weight:550; color:#2C3E50; font-size:16px; padding:6px 15px; float:left;}
 .popupBox{width:870px; min-height:530px; background:#ffffff;}
 .popupBox2{width:1100px;}
@@ -151,10 +151,11 @@ a{text-decoration:none;}
 .popupBox3 .btnbox span a{line-height:30px; padding:0 5px;}
 .addsales {
     border-radius: 0;
-    margin-left: -375px;
-    margin-top:20px;
     width: 700px;
 }
+    .addsales .modal-body {
+        max-height:530px;
+    }
 
 /*=== 弹出框样式 END ===*/
 .navbar{min-width:960px;width:100%;height:50px; background:#34495E; margin-bottom:0; position:fixed; z-index:1;}
@@ -274,7 +275,7 @@ a{text-decoration:none;}
 
 /*===客户管理===*/
 .clientkuang { padding-left:30px; padding-top:10px;}
-.addclient {width:600px; margin-left:-375px;border-radius:0; height:600px;}
+.addclient {width:600px; border-radius:0; height:600px;}
 /*===客户管理 END===*/
 
 /*=== 悬浮窗口 ===*/

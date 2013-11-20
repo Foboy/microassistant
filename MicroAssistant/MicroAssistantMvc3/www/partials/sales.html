@@ -35,7 +35,7 @@
         </ul>
         <div class="searchBox">
             <!--<input type="button" class="addBtn" ng-click="addCurrentStepItem()" ng-show="steps=='chance'||steps=='contract'" />-->
-            <span class="padd"><a class="btn btn-large btn-block btn-primary" ng-click="addCurrentStepItem()"  ng-show="steps=='chance'||steps=='contract'" >新增机会</a></span>
+            <span class="padd"><a class="btn btn-large btn-block btn-primary" ng-click="addCurrentStepItem()"  ng-show="steps=='chance'||steps=='contract'" >{{steps=='chance'?'新增机会':'新增合同'}}</a></span>
         </div>
         <div class="tablePad" ng-show="steps=='chance'">
             <table class="table table-bordered table-striped">
@@ -56,7 +56,7 @@
                   <td class="colorBlue">{{chance.ContactName}}</td>
                   <td class="colorBlue">{{chance.Phone||chance.Tel||chance.Email||chance.Qq}}</td>
                   <td>{{parseJsonDate(chance.AddTime,'yyyy/MM/dd')}}</td>
-                  <td><a href="" role="button" ng-click="showChanceDetail()">详情</a>|<a href="" ng-click="showVisitDetail()" role="button" data-toggle="modal">主动拜访</a></td>
+                  <td><a href="" role="button" ng-click="showChanceDetail()">详情</a>|<a href="" ng-click="showVisitDetail()" role="button">主动拜访</a></td>
                 </tr>
               </tbody>
             </table>
@@ -80,7 +80,7 @@
                   <td class="colorBlue">{{cvisit.VisitNum}}次</td>
                   <td class="colorBlue">{{cvisit.Rate}}%</td>
                   <td>{{parseJsonDate(cvisit.LastVisitTime,'yyyy/MM/dd')}}</td>
-                  <td><a href="" role="button" ng-click="showVisitDetail()">详情</a>|<a href="" role="button" data-toggle="modal" ng-click="addCurrentStepItem('contract')">签订合同</a></td>
+                  <td><a href="" role="button" ng-click="showVisitDetail()">详情</a>|<a href="" role="button" ng-click="addCurrentStepItem('contract')">签订合同</a></td>
                 </tr>
               </tbody>
             </table>
@@ -130,10 +130,17 @@
                   <td class="colorBlue">四川新颖顺信息...</td>
                   <td class="colorBlue">1588234555</td>
                   <td>2013/07/31</td>
-                  <td><a href="" role="button" ng-click="showAfterDetail()">详情</a>|<a href="#myModal" role="button" data-toggle="modal">主动拜访</a></td>
+                  <td><a href="" role="button" ng-click="showAfterDetail()">详情</a>|<a href="#myModal" role="button" data-toggle="_modal">主动拜访</a></td>
                 </tr>
               </tbody>
             </table>
+        </div>
+        <div class="pagination">
+            <ul>
+              <li class="previous" ng-repeat="page in pages | filter:'pre'"><a ng-href="{{page.url}}"><img src="img/previous.png" /></a></li>
+              <li ng-class="page.active?'active':''" ng-repeat="page in pages | filter:'page'"><a ng-href="{{page.url}}">{{page.index}}</a></li>
+              <li class="next" ng-repeat="page in pages | filter:'next'"><a ng-href="{{page.url}}"><img src="img/next.png" /></a></li>
+            </ul>
         </div>
 	<div ng-include="'partials/sales/chance-detail.html'"></div>
     <div ng-include="'partials/sales/chance-edit.html'"></div>
