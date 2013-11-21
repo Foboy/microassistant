@@ -122,7 +122,6 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
                     error(function (data, status, headers, config) {
                         $scope.CurrentUser = {};
                     });
-
                 }
                 console.log(data);
             }).
@@ -171,9 +170,9 @@ function UserMainCtrl($scope, $http, $location) {
         if ($scope.EditUserForm.$valid) {
             $http.post($sitecore.urls["EditCurrentUserInfo"], { username: data.UserName, nickname: data.UserAccount, sex: data.Sex, age: data.Age }).success(function (data) {
                 if (data.Error) {
-                    alert(data.ErrorMessage);
+                    alert(data.ErrorMessage,'e');
                 } else {
-                    alert("修改成功");
+                    alert("修改成功",'s');
                 }
             }).error(function (data, status, headers, config) {
                 alert('error');
@@ -185,13 +184,15 @@ function UserMainCtrl($scope, $http, $location) {
         if ($scope.ChangePwdForm.$valid) {
             if (data.surepwd != data.newpwd) {
                 $scope.ChangePwdForm.newpwd.$valid = false;
-                alert("新密码和错误密码不一致",'s');
+                alert("新密码和确认密码不一致",'w');
                 $scope.showerror = true;
             } else {
                 $scope.showerror = false;
                 $http.post($sitecore.urls["UpdatePwd"], { oldpwd: data.oldpwd, newpwd: data.newpwd }).success(function (data) {
                     if (data.Error) {
-                        alert(data.ErrorMessage);
+                        alert(data.ErrorMessage, 'e');
+                    } else {
+                        alert("修改成功",'s')
                     }
                 }).
                 error(function (data, status, headers, config) {
@@ -209,14 +210,14 @@ function UserMainCtrl($scope, $http, $location) {
             $scope.showerror = false;
             $http.post($sitecore.urls["UpdateEmail"], { email: data.newemail, pwd: data.pwd }).success(function (data) {
                 if (data.Error) {
-                    alert(data.ErrorMessage);
+                    alert(data.ErrorMessage,'e');
                 } else {
-                    alert("修改成功");
+                    alert("修改成功",'s');
                 }
                 console.log(data);
             }).
             error(function (data, status, headers, config) {
-                alert("error")
+                alert("error",'w')
             });
 
         }
@@ -232,12 +233,12 @@ function UserTimeShaftCtrl($scope, $http, $location) {
             if (!data.Error) {
                 $scope.UserTimeShafts = data.Data;
             } else {
-
+                alert(data.Error, 'e');
             }
             console.log(data);
         }).
               error(function (data, status, headers, config) {
-                  alert("error")
+                  alert("error", 'w');
               });
     }
     $scope.LoadMyTimeShaft();
@@ -255,11 +256,12 @@ function AddCompanyCtrl($scope, $http, $location) {
             $scope.showerror = false;
             $http.post($sitecore.urls["EditeUserEntCode"], { username: data.username, entCode: data.enterpriseid }).success(function (data) {
                 if (!data.Error) {
+                    alert("保存成功", 's');
                     $("#AddCompanyBox").modal('hide');
                     $scope.LoadMyTimeShaft();
                 }
                 else {
-                    alert(data.ErrorMessage);
+                    alert(data.ErrorMessage,'e');
                 }
             }).
             error(function (data, status, headers, config) {
@@ -318,9 +320,11 @@ function StaffMangementCtrl($scope, $http, $location) {
     $scope.ChangeUserRole = function (item, user) {
         $http.post($sitecore.urls["UpdateUserRole"], { userId: user.UserId, roleId: item.RoleId }).success(function (data) {
             if (!data.Error) {
-                alert("修改成功");
+                alert("修改成功",'s');
                 window.location.reload();
-            } else { }
+            } else {
+                alert(data.ErrorMessage, 'e');
+            }
         }).error(function (data, status, headers, config) {
 
         });
@@ -333,7 +337,7 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
             $scope.showerror = false;
             $http.post($sitecore.urls["AdminEditEntCode"], { entCode: data.EntCode, entId: data.EntId }).success(function (data) {
                 if (!data.Error) {
-                    alert("修改成功！");
+                    alert("修改成功",'s');
                 } else { }
             }).error(function (data, status, headers, config) {
                 $scope.SysUsers = [];
@@ -348,7 +352,7 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
             $scope.showerror = false;
             $http.post($sitecore.urls["AdminEditEntName"], { entName: data.UserName, entId: data.EntId }).success(function (data) {
                 if (!data.Error) {
-                    alert("修改成功！");
+                    alert("修改成功",'s');
                 } else { }
             }).error(function (data, status, headers, config) {
                 $scope.SysUsers = [];
@@ -361,10 +365,12 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
     $scope.DeleteAllData = function () {
         $http.post($sitecore.urls["DeleteAllData"], {}).success(function (data) {
             if (!data.Error) {
-                alert("清除成功");
-            } else { }
+                alert("清除成功",'s');
+            } else {
+                alert(data.ErrorMessage, 'e');
+            }
         }).error(function (data, status, headers, config) {
-
+            alert(data.ErrorMessage, 'e');
         });
     }
 }
