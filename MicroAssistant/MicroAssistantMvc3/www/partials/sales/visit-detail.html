@@ -14,28 +14,27 @@
             <div class="fCon clearfix">
                 <i class="arrR" ng-click="hideVisitDetail()"></i>
             	<div class="contentbaifang clearfix">
-                	<div class="">
-                    	{{chance.Remark}}
-                    </div>
                     <div class="chanceB-r">
-                        <img src="img/timelinejh.png"/>
-                    	<div class="title-f clearfix">
-                        	<h1 class="colorBlue">机会描述</h1>
-                            <div class="sign-pact">
-                            	<a href="" class="btn btn-large btn-block btn-danger">签订合同</a>
-                                <a href="#" class="grayLink">结束拜访，转回到机会</a>
+                       <div class="visit_title">
+                            <img src="img/timelinejh.png"/>
+                            <div class="visit_title_content">
+                                <h4 class="colorRed">销售机会描述</h4>
+                                <div class="colorlight visit_title_info ">{{chance.Remark}}</div>
                             </div>
-                            <div class="rate-cur">
+                            <div class="visit_title_btn">
+                              <div class="sign-pact">
+                            	<a href="" class="hetong_btn">签订合同</a>
+                              </div>
+                              <div class="rate-cur">
+                                <i class="rate-icon "></i>
                             	<div class="rate-show" ng-hide="rateEditPanleShow" ng-dblclick="rateEditPanleShow=true">
-                                	当前赢率：<strong>{{chance.Rate}}%</strong>
-                                	<div class="alter">
-                                    	<b></b>
-                                        <div>
-                                        	双击修改赢率
-                                        </div>
-                                        <input type="button" class="close-alert"/>
-                                    </div>
-                                </div>
+                                	当前赢率：{{chance.Rate}}%
+                                </div>   
+                               </div>
+                        </div>
+                        
+                    	<!--<div class="title-f clearfix">
+                
                                 <div class="rate-show" ng-show="rateEditPanleShow">
                                     <form name="SalesRateChangeFrom">
                                         <input type="text" ng-model="NewRate" ng-required="true" />
@@ -49,16 +48,25 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                        <ul class="ul-f2">
+                        </div>-->
+                    </div>
+                       
+                       <div class="visit_line"></div>
+
+                       <ul class="ul-f2">
                         	<li class="clearfix">
                             	<div class="li-timeb colorBlue">
-                                	<span class="cir-w"><i></i></span>
+                                	<span class="cir-w"></span>
                                 </div>
                                 <div class="li-conb">
-                                	<a href="" class="grayLink" ng-click="addNewVisit($event)">点击添加新的拜访记录</a>
+                                    <i class="add_i"></i>
+                                    <div class="jiantou_bg">
+                                       
+                                        <a href="" class="" ng-click="addNewVisit($event)">点击添加新的拜访记录</a>
+                                    </div>
+                                	
 									<div class="li-boxs add-visit clearfix" ng-show="addvisitpanleshow" id="visitEditBox">
-										<i></i>
+										<i class="jiantou_i"></i>
 										<div class="clearfix">
                                         	<div class="visit-num">
                                             	<span class="span1">{{((chance_visits.length||0) + 1)==1?'初':'第'+parseNumberToChinese((chance_visits.length||0) + 1)}}次拜访</span>
@@ -123,7 +131,6 @@
                                 </div>
                             </li>
                         </ul>
-                    </div>
                 </div>                
             </div>
         </div>
