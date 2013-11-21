@@ -3,6 +3,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 	$scope.steps = $routeParams.steps;
 	if(!$scope.steps)
 	    $scope.steps = "chance";
+	var pageIndex = parseInt($routeParams.pageIndex || 1);
 	$scope.SalesChanceCount = 0;
 	$scope.SalesVisitCount = 0;
 	$scope.SalesContractCount = 0;
@@ -14,13 +15,14 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 		{
 		    case 'chance':
 		        if (!$scope.chances) {
-		            $http.post($sitecore.urls["salesChanceList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: 20 }).success(function (data) {
+		            $http.post($sitecore.urls["salesChanceList"], { pageIndex: pageIndex - 1, pageSize: 10 }).success(function (data) {
 		                console.log(data);
 		                if (data.Error) {
 		                    alert(data.ErrorMessage);
 		                }
 		                $scope.ActPageIndex = $routeParams.pageIndex || 0;
 		                $scope.chances = data.Data.Items;
+		                $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!sales/chance/{0}');
 		            }).
                     error(function (data, status, headers, config) {
                         $scope.chances = [];
@@ -29,10 +31,11 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 				break;
 		    case 'visit':
 		        if (!$scope.cvisits) {
-		            $http.post($sitecore.urls["salesChanceVisitList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: 20 }).success(function (data) {
+		            $http.post($sitecore.urls["salesChanceVisitList"], { pageIndex: pageIndex - 1, pageSize: 10 }).success(function (data) {
 		                console.log(data);
 		                $scope.ActPageIndex = $routeParams.pageIndex || 0;
 		                $scope.cvisits = data.Data.Items;
+		                $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!sales/visit/{0}');
 		            }).
                     error(function (data, status, headers, config) {
                         $scope.cvisits = [];
@@ -41,10 +44,11 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 				break;
 			case 'contract':
 			    if (!$scope.contracts) {
-			        $http.post($sitecore.urls["salesConractList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: 20 }).success(function (data) {
+			        $http.post($sitecore.urls["salesConractList"], { pageIndex: pageIndex - 1, pageSize: 10 }).success(function (data) {
 			            console.log(data);
 			            $scope.ActPageIndex = $routeParams.pageIndex || 0;
 			            $scope.contracts = data.Data.Items;
+			            $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!sales/contract/{0}');
 			        }).
                     error(function (data, status, headers, config) {
                         $scope.contracts = [];
@@ -52,10 +56,11 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 			    }
 				break;
 			case 'after':
-				$http.get($sitecore.urls["productList"],{params:{pageIndex:$routeParams.pageIndex||1}}).success(function(data) {
+			    $http.get($sitecore.urls["productList"], { params: { pageIndex: pageIndex - 1 } }).success(function (data) {
 					console.log(data);
 				  $scope.ActPageIndex = $routeParams.pageIndex||1;
 				  $scope.afters = data;
+				  $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!sales/after/{0}');
 				}).
 				error(function(data, status, headers, config) {
 				  $scope.afters = [];
@@ -209,7 +214,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
         $scope.chanceVisitDetail();
         $scope.visitFormReset();
         $("#visitDetailBox").show();
-		$("#visitDetailBox").animate({width:"900px"},500);
+		$("#visitDetailBox").animate({width:"800px"},500);
 		//加载机会数据
     });
     
@@ -401,10 +406,11 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
         console.log(fromscope);
         console.log($scope);
         from = fromscope;
-        $scope.EditChance = {ChanceType:1,CustomerType:1,Isasyn:false};
+        $scope.EditChance =$scope.EditChance ||  { ChanceType: 1, CustomerType: 1, Isasyn: false };
         $('#addChanceModal').modal('show');
     });
     $scope.SalesAddChanceSubmit = function () {
+        console.log($scope.EditChance)
         if ($scope.SalesAddChanceForm.$valid) {
             $scope.showerror = false;
             $http.post($sitecore.urls["salesAddChance"], {

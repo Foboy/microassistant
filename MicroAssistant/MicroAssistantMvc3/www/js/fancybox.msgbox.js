@@ -145,7 +145,23 @@
       
     };
 
+    $.fn.modal = function (flag, options) {
+        var options = $.extend({ 'closeBtn': false, padding: 0, margin: 0 }, options);
+        if (flag == 'show') {
+            $(this).removeClass('modal').removeClass('fade');
+            $(this).find('.modal-body').css({ padding: 0, margin: 0,'overflow-x':'hidden' });
+            $(this).find('.close').unbind('click');
+            $(this).find('.close').click(function () {
+                $.fancybox.close();
+            });
+            $.fancybox.open($(this), options);
+        }
+        else {
+            $.fancybox.close();
+        }
+    }
+
 })(jQuery);
 
-//var oldAlert = alert;
-//alert = $.showMsg;
+var oldAlert = alert;
+alert = $.showMsg;
