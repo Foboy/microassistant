@@ -82,7 +82,7 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                         }
                     }).
                     error(function (data, status, headers, config) {
-                        //$scope.product = {};
+                        alert(data.ErrorMessage,'e');
                     });
                 }
                 else {
@@ -132,9 +132,10 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                     $scope.showerror = false;
                     $http.post($sitecore.urls["AddOrUpdatePersonalClient"], { pivid: $scope.PersonalItem.CustomerPrivateId, name: $scope.PersonalItem.Name, sex: $scope.PersonalItem.Sex, birthday: $scope.PersonalItem.Birthday, contactMobile: $scope.PersonalItem.Mobile, phone: $scope.PersonalItem.Phone, email: $scope.PersonalItem.Email, qq: $scope.PersonalItem.Qq, address: $scope.PersonalItem.Address, detail: $scope.PersonalItem.Detail }).success(function (data) {
                         if (data.Error) {
-                            alert(data.ErrorMessage);
+                            alert(data.ErrorMessage,'e');
                         }
                         else {
+                            alert("保存成功", 's');
                             $("#AddPersonalBox").modal('hide');
                             $scope.loadCurrentSortList();
                         }
