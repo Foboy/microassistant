@@ -1,5 +1,5 @@
-﻿angular.module('microassistant', ['ngRoute']).
-  config(['$provide', '$routeProvider', '$locationProvider', function ($provide, $routeProvider, $locationProvider) {
+﻿angular.module('microassistant', ['ngRoute', 'ngLoadMask']).
+  config(['$provide', '$routeProvider', '$locationProvider',function ($provide, $routeProvider, $locationProvider) {
       $routeProvider
           .when('/home', { templateUrl: 'partials/home.html', controller: HomeMainCtrl })
           .when('/user', { templateUrl: 'partials/userinfo.html', controller: UserMainCtrl })

@@ -37,7 +37,7 @@
             <!--<input type="button" class="addBtn" ng-click="addCurrentStepItem()" ng-show="steps=='chance'||steps=='contract'" />-->
             <span class="padd"><a class="btn btn-large btn-block btn-primary" ng-click="addCurrentStepItem()"  ng-show="steps=='chance'||steps=='contract'" >{{steps=='chance'?'新增机会':'新增合同'}}</a></span>
         </div>
-        <div class="tablePad" ng-show="steps=='chance'">
+        <div class="tablePad" ng-show="steps=='chance'" id="salesChanceListBox" style="min-height:200px;">
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -61,7 +61,7 @@
               </tbody>
             </table>
         </div>
-        <div class="tablePad" ng-show="steps=='visit'">
+        <div class="tablePad" ng-show="steps=='visit'" id="salesVisitListBox" style="min-height:200px;">
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -85,7 +85,7 @@
               </tbody>
             </table>
         </div>
-        <div class="tablePad" ng-show="steps=='contract'">
+        <div class="tablePad" ng-show="steps=='contract'" id="salesContractListBox" style="min-height:200px;">
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -111,7 +111,7 @@
               </tbody>
             </table>
         </div>
-        <div class="tablePad" ng-show="steps=='after'">
+        <div class="tablePad" ng-show="steps=='after'" id="salesAfterListBox" style="min-height:200px;">
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>

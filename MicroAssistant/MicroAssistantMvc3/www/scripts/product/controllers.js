@@ -7,7 +7,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
 	
   //获取产品列表
   $scope.getCatProducts = function(catalogId, pageIndex){
-      $http.get($sitecore.urls["productList"], { params: { typeid: catalogId, pageIndex: pageIndex-1,pageSize:10 } }).success(function (data) {
+      $http.get($sitecore.urls["productList"], { params: { typeid: catalogId, pageIndex: pageIndex - 1, pageSize: 10 } }).success(function (data) {
           console.log(data);
           if (data.Error) {
               alert(data.ErrorMessage);
@@ -15,10 +15,10 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
           $parent.ProductActPageIndex = pageIndex;
           $parent.products = data.Data.Items;
           $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!product/' + catalogId + '/{0}');
-	  }).
-	  error(function(data, status, headers, config) {
+      }).
+	  error(function (data, status, headers, config) {
 	      $parent.products = [];
-	  });
+	  }).lock({ selector: '#productListBox', offsetY: 80 });
   };
   
   $scope.activeCat = function(catalogId, pageIndex){
@@ -112,7 +112,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location){
           }).
           error(function (data, status, headers, config) {
               $scope.product = {};
-          });
+          }).lock({ selector: '#productCatalogAddModal' });
       }
       else {
           $scope.showerror = true;
@@ -281,7 +281,7 @@ function ProductEditCtrl($scope, $routeParams, $http, $location) {
             }).
             error(function (data, status, headers, config) {
                 $scope.product = {};
-            });
+            }).lock({ selector: '#productEditModal' });
         }
   };
 }
@@ -302,7 +302,7 @@ function ProductPurchaseCtrl($scope, $routeParams, $http, $location){
 	  {
 		  $scope.showerror = false;
 	      $http.post($sitecore.urls["productAddStores"], { pid: from.product.PId, num: $scope.AddedPurchase.PNum, price: $scope.AddedPurchase.Price }).success(function (data) {
-			console.log(data);
+	          console.log(data);
 			if (data.Error) {
 			    alert(data.ErrorMessage);
 			}
@@ -320,8 +320,8 @@ function ProductPurchaseCtrl($scope, $routeParams, $http, $location){
 			}
 		  }).
 		  error(function(data, status, headers, config) {
-			//$scope.product = {};
-		  });
+		      //$scope.product = {};
+		  }).lock({ selector: '#addPurchaseModal' });
 	  }
 	  else
 	  {

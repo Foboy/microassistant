@@ -1,5 +1,6 @@
 ﻿function UserLoginMainCtrl($scope, $http, $location) {
     $scope.CurrentUser = null;
+
     $scope.hasPermission = function (id) {
         if ($scope.CurrentUser && $scope.CurrentUser.userFuns && $scope.CurrentUser.userFuns.length) {
             for (var i = 0; i < $scope.CurrentUser.userFuns.length; i++) {
@@ -25,31 +26,33 @@
                         if (data.Error) {
                             $scope.LoginErrors = data.ErrorMessage;
                         }
-                        $scope.CurrentUser = data.Data;
-                        var loadingUrl = 'index.html';
-
-                        if ($scope.hasPermission(27)) {
-                            loadingUrl = "boss.html";
-                        }
                         else {
-                            loadingUrl = "index.html";
-                        }
-                        $.pagePreLoading(loadingUrl, function () { window.location.href = loadingUrl; });
+                            $scope.CurrentUser = data.Data;
+                            var loadingUrl = 'index.html';
 
+                            if ($scope.hasPermission(27)) {
+                                loadingUrl = "boss.html";
+                            }
+                            else {
+                                loadingUrl = "index.html";
+                            }
+                            $.pagePreLoading(loadingUrl, function () { window.location.href = loadingUrl; });
+                        }
                     }).
                     error(function (data, status, headers, config) {
                         $scope.CurrentUser = {};
-                    });
+                    }).lock({ selector: '#loginBox' });
 
                 }
                 console.log(data);
             }).
             error(function (data, status, headers, config) {
-            });
+            }).lock({ selector: '#loginBox' });
         }
         else {
             $scope.showerror = true;
         }
+        
     }
 
     $(document).keyup(function (e) {
@@ -77,7 +80,7 @@ function UserRegisterMainCtrl($scope, $http) {
             }).
             error(function (data, status, headers, config) {
                 alert("error")
-            });
+            }).lock({ selector: '#loginBox' });
         }
         else {
             $scope.showerror = true;
@@ -101,6 +104,7 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
             $http.post($sitecore.urls["enterpriseRegister"], { entName: $scope.Enterprise.name, account: $scope.Enterprise.email, pwd: $scope.Enterprise.pwd }).success(function (data) {
                 if (data.Error) {
                     $scope.LoginErrors = data.ErrorMessage;
+
                 }
                 else {
                     $http.post($sitecore.urls["userCurrentUser"], {}).success(function (data) {
@@ -121,14 +125,14 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
                     }).
                     error(function (data, status, headers, config) {
                         $scope.CurrentUser = {};
-                    });
+                    }).lock({ selector: '#loginBox' });
 
                 }
                 console.log(data);
             }).
             error(function (data, status, headers, config) {
-                alert("error")
-            });
+                alert("error");
+            }).lock({ selector: '#loginBox' });
         }
         else {
             $scope.showerror = true;

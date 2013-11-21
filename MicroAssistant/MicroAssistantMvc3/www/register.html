@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app>
+<html ng-app="ngLoadMask">
   <head>
     <title>Bootstrap 101 Template</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,8 +8,11 @@
     <link href="css/master.css" rel="stylesheet" media="screen">
       <script src="js/jquery.js"></script>
     <script src="js/angular.js"></script>
+      <script src="js/angular-loadmask.js"></script>
     <script src="scripts/core.js"></script>
     <script src="scripts/user/controllers.js"></script>
+    <link href="js/jquery-loadmask/jquery.loadmask.css" rel="stylesheet" />
+    <script src="js/jquery-loadmask/jquery.loadmask.js"></script>
     <style type="text/css">
         #form.showerror .ng-invalid {
             border-color: #fa787e;
@@ -33,7 +36,7 @@
 	</div>
     <div class="main clearfix m-box">
     	
-    	<div class="login-box">
+    	<div class="login-box" id="loginBox">
             <form name="UserRegisterForm" id="form" ng-class="showerror?'showerror':''">
         	    <h1>员工注册</h1>
                 <div class="input-box">
@@ -56,7 +59,7 @@
                     <input type="text" ng-model="User.enterprise"  title="请输入企业代号"  placeholder="请输入企业代号"/>
                 </div>
                 <div class="input-box">
-                    <span>{{LoginErrors}}</span>
+                    <span class="alert alert-danger" ng-show="LoginErrors&&LoginErrors.length" style="margin-left:60px;">{{LoginErrors}}</span>
                 </div>
                 <div class="sc-box"><a href="javascript:void(0)" ng-click="UserRegister()" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>   
              </form>         

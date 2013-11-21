@@ -26,7 +26,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 		            }).
                     error(function (data, status, headers, config) {
                         $scope.chances = [];
-                    });
+                    }).lock({ selector: '#salesChanceListBox' });
 		        }
 				break;
 		    case 'visit':
@@ -39,7 +39,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 		            }).
                     error(function (data, status, headers, config) {
                         $scope.cvisits = [];
-                    });
+                    }).lock({ selector: '#salesVisitListBox' });
 		        }
 				break;
 			case 'contract':
@@ -52,7 +52,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 			        }).
                     error(function (data, status, headers, config) {
                         $scope.contracts = [];
-                    });
+                    }).lock({ selector: '#salesContractListBox' });
 			    }
 				break;
 			case 'after':
@@ -64,7 +64,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 				}).
 				error(function(data, status, headers, config) {
 				  $scope.afters = [];
-				});
+				}).lock({ selector: '#salesAfterListBox' });
 				break;
 		}
 	};
@@ -188,7 +188,7 @@ function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) 
 	        }).
             error(function (data, status, headers, config) {
                 //$scope.product = {};
-            });
+            }).lock({ selector: '#chanceDetailBox' });
 	    }
 	    else {
 	        $scope.showerror = true;
@@ -439,7 +439,7 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
             }).
             error(function (data, status, headers, config) {
                 //$scope.product = {};
-            });
+            }).lock({ selector: '#addChanceModal' });
         }
         else {
             $scope.showerror = true;
@@ -646,7 +646,7 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
             }).
             error(function (data, status, headers, config) {
                 $scope.product = {};
-            });
+            }).lock({ selector: '#salesContractEditModal' });
         }
     };
 
