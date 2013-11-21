@@ -59,41 +59,40 @@
                                 	<span class="cir-w"></span>
                                 </div>
                                 <div class="li-conb">
-                                    <i class="add_i"></i>
-                                    <div class="jiantou_bg">
-                                       
+                                    <!--<i class="add_i"></i>
+                                    <div class="jiantou_bg"> 
                                         <a href="" class="" ng-click="addNewVisit($event)">点击添加新的拜访记录</a>
-                                    </div>
+                                    </div>-->
                                 	
-									<div class="li-boxs add-visit clearfix" ng-show="addvisitpanleshow" id="visitEditBox">
+									<div class="li-boxs add-visit clearfix" id="visitEditBox">
 										<i class="jiantou_i"></i>
 										<div class="clearfix">
                                         	<div class="visit-num">
-                                            	<span class="span1">{{((chance_visits.length||0) + 1)==1?'初':'第'+parseNumberToChinese((chance_visits.length||0) + 1)}}次拜访</span>
+                                            	<span class="visit-num-title">{{((chance_visits.length||0) + 1)==1?'初':'第'+parseNumberToChinese((chance_visits.length||0) + 1)}}次拜访</span>
                                             </div>
                                         </div>
 										<div class="clearfix">
                                             <form name ="SalesAddChanceVisitFrom" ng-class="showerror?'showerror':''">
+                                          <div class="add_content">
 											<div class="choice-left">
-												<label><input type="radio" name="visitType" value="1" ng-model="EditVisit.VisitType"/>电话</label>
-                                                <label><input type="radio" name="visitType" value="2" ng-model="EditVisit.VisitType"/>面谈</label>
-												<label><input type="radio" name="visitType" value="3" ng-model="EditVisit.VisitType"/>在线联系</label>
+												<label class="colorlight"><input type="radio" name="visitType" value="1" ng-model="EditVisit.VisitType"/>电话</label>
+                                                <label class="colorlight"><input type="radio" name="visitType" value="2" ng-model="EditVisit.VisitType"/>面谈</label>
+												<label class="colorlight"><input type="radio" name="visitType" value="3" ng-model="EditVisit.VisitType"/>在线联系</label>
                                                 <input type="text" ng-model="visit_lat" style="display:none;" />
                                                 <input type="text" ng-model="visit_lng" style="display:none;" />
-												<a href="" class="grayLink" ng-click="selectVisitLocation()">添加地点</a>
 											</div>
-											<div class="choice-right">
-												<textarea  ng-model="EditVisit.Remark"></textarea>
-												<input type="text" class="text" ng-model="EditVisit.Address"/>
-												<div class="choice-box">
-													<span>
-														<a href="" ng-click="addChanceVisit()" class="btn btn-large btn-block btn-danger">保存 </a>
-													</span>
-                                                    <span>
-                                                    	<a href="" ng-click="addNewVisitCancel()" class="btn btn-block btn-large">取消</a>
-                                                    </span>
-												</div>
+                                            <div class="choice-right">
+												<textarea class="miaoshuborder"  ng-model="EditVisit.Remark"></textarea>
 											</div>
+                                          </div>
+                                          <div class="add_content_btn ">
+                                            <div class="add_xuxian">
+                                                <a href="" class="add_a grayLink" ng-click="selectVisitLocation()"><i class="maker"></i>添加地点</a>
+                                                <a href="" class="add_a grayLink" ><i class="maker"></i>添加报价</a>
+                                                <p class="colorGray"><lable ng-model="EditVisit.Address">阿斯顿撒旦撒</lable></p>
+                                            </div>
+                                            <div class="choice-box"><span><a href="" ng-click="addChanceVisit()" class="btn btn-large btn-danger">保存 </a></span></div>
+                                          </div>
                                             </form>
 										</div>
 										
@@ -102,25 +101,22 @@
                             </li>
                             <li class="clearfix" ng-repeat="visit in chance_visits">
                                 <div>
-                            	    <div class="li-timeb colorBlue">
-                                	    2013/07/31
-                                	    <span class="cir-w"><i></i></span>
-                                    </div>
+                            	    <div class="visit_time">2013/07/31</div>
                                     <div class="li-conb">
                                 	    <div class="li-boxs">
-                                    	    <i></i>
+                                    	    <i class="jiantou_i"></i>
 										    <div class="liedit-close-box">
 											    <input type="button" class="editIcon2" ng-click="editExistVisit($event)"/>
 											    <input type="button" class="closeIcon"/>
 										    </div>
                                             <div class="clearfix">
                                         	    <div class="visit-num">
-                                            	    <span class="span1">{{($index-chance_visits.length)==-1?'初':'第'+parseNumberToChinese($index-chance_visits.length)}}次拜访</span>
-                                                    <span class="span2"><b class="peo-wIcon"></b></span>
+                                            	    <span class="visit-num-title">{{($index-chance_visits.length)==-1?'初':'第'+parseNumberToChinese($index-chance_visits.length)}}次拜访</span>
+                                                    <span class="span2 visit_fs_mt"></span>
                                                 </div>
 
                                                 <div class="quote-info">
-                                            	    报价：<span class="colorBlue">125,600,000</span>
+                                            	    报价：<span class="colorRed">125,600</span>
                                                 </div>
                                             </div>
                                             <p>{{visit.Remark}}</p>
