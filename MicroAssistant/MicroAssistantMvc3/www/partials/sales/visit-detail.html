@@ -119,8 +119,12 @@
                                             	    报价：<span class="colorRed">125,600</span>
                                                 </div>
                                             </div>
-                                            <p>{{visit.Remark}}</p>
-										    <div class="li-address"><b class="mapIcon" ng-click="markAddressOnMap()"></b>{{parseAddress(visit.Address).address}}/17:56</div>
+                                            <p class="visit_info">{{visit.Remark}}</p>
+										    <div class="li-address">
+                                              <i class="maker_info" ng-click="markAddressOnMap()"></i>
+                                              <span class="address_info">{{parseAddress(visit.Address).address}}</span>
+
+										    </div>
 
                                         </div>
                                     </div>
