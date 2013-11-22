@@ -208,8 +208,10 @@
     <Content Include="www\img\icon.png" />
     <Content Include="www\index.html" />
     <Content Include="www\js\angular-animate.js" />
+    <Content Include="www\js\angular-loadmask.js" />
     <Content Include="www\js\angular-route.js" />
     <Content Include="www\js\angular.js" />
+    <Content Include="www\js\angular.pack.js" />
     <Content Include="www\js\bootstrap-datetimepicker\bootstrap-datetimepicker.css" />
     <Content Include="www\js\bootstrap-datetimepicker\bootstrap-datetimepicker.js" />
     <Content Include="www\js\bootstrap-datetimepicker\bootstrap-datetimepicker.min.css" />
@@ -236,6 +238,11 @@
     <Content Include="www\js\fancybox\jquery.fancybox.js" />
     <Content Include="www\js\fancybox\jquery.fancybox.pack.js" />
     <Content Include="www\js\jquery-drawing.js" />
+    <Content Include="www\js\jquery-loadmask\demo\example.html" />
+    <Content Include="www\js\jquery-loadmask\images\loading.gif" />
+    <Content Include="www\js\jquery-loadmask\jquery.loadmask.css" />
+    <Content Include="www\js\jquery-loadmask\jquery.loadmask.js" />
+    <Content Include="www\js\jquery-loadmask\jquery.loadmask.min.js" />
     <Content Include="www\js\jquery-migrate-1.2.1.js" />
     <Content Include="www\js\jquery.js" />
     <Content Include="www\js\jscop\Jcrop.gif" />
@@ -243,6 +250,13 @@
     <Content Include="www\js\jscop\jquery.Jcrop.js" />
     <Content Include="www\js\jscop\jquery.Jcrop.min.css" />
     <Content Include="www\js\jscop\jquery.Jcrop.min.js" />
+    <Content Include="www\js\showLoading\css\showLoading.css" />
+    <Content Include="www\js\showLoading\images\loading-bars.gif" />
+    <Content Include="www\js\showLoading\images\loading.gif" />
+    <Content Include="www\js\showLoading\jquery.showLoading.example.html" />
+    <Content Include="www\js\showLoading\js\jquery-1.3.2.min.js" />
+    <Content Include="www\js\showLoading\js\jquery.showLoading.js" />
+    <Content Include="www\js\showLoading\js\jquery.showLoading.min.js" />
     <Content Include="www\js\uploadify\jquery.uploadify.js" />
     <Content Include="www\js\uploadify\uploadify.css" />
     <Content Include="www\js\uploadify\uploadify.extention.js" />
