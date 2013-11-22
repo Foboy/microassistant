@@ -4501,14 +4501,14 @@ button.close {
 }
 
 .modal-header {
-  height:45px;
+  height:40px;
   border-bottom: 1px solid #eee;
 }
 
 .modal-header .close {
   float:right;
-  height:45px;
-  width:45px;
+  height:40px;
+  width:40px;
   background-color:#2C3E50;
 }
 
