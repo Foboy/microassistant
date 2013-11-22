@@ -38,7 +38,7 @@ a{text-decoration:none;}
 .flat-l{float:left;}
 .flat-r{float:right;}
 /*===  图标样式 ===*/
-.homeIcon,.peopleIcon,.productIcon,.saleIcon,.financeIcon,.clientIcon,.askIcon,.arrowD,.pcIcon,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon,.boy-icon,.girl-icon,.b-i,.g-i,.sales-oppr-icon,.visit-icon,.contract-icon,.sales-follow-icon,.com-pIcon,.sim-pIcon,.email-icon,.num-icon,.rate-icon,.cir-icon,.maker{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
+.homeIcon,.peopleIcon,.productIcon,.saleIcon,.financeIcon,.clientIcon,.askIcon,.arrowD,.pcIcon,.maker_info,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon,.boy-icon,.girl-icon,.b-i,.g-i,.sales-oppr-icon,.visit-icon,.contract-icon,.sales-follow-icon,.com-pIcon,.sim-pIcon,.email-icon,.num-icon,.rate-icon,.cir-icon,.maker{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
 .pcIcon{background-position:-60px -139px; width:29px; height:27px;}
 .homeIcon{background-position:-31px -122px; width:18px; height:16px;}
 .homeIcon:hover{background-position:-1px -122px;}
@@ -348,8 +348,8 @@ a{text-decoration:none;}
 .add_content_btn {position:relative; height:60px; margin-top:5px; font-size:12px;}
 .ul-f2 li .visit-num .span2 .peo-wIcon{margin:2px 0 0 6px;}
 .ul-f2 li .visit-num .span2 .tel-wIcon{margin:2px 0 0 8px;}
-.quote-info{float:right; width:140px; padding-left:20px; height:36px; line-height:36px; color:#ddd;;}
-.ul-f2 li .li-address{ margin:0 10px; padding:1px 0; height:25px; line-height:25px; border-top:1px solid #CCCCCC; color:#999999;font-size:12px;}
+.quote-info{float:right; width:140px; padding-left:20px; height:36px; line-height:36px; color:#ddd;}
+.ul-f2 li .li-address{padding:1px 5px 0 5px; height:25px; line-height:25px; border-top:1px solid #CCCCCC; color:#999999;font-size:12px;}
 .ul-f2 li .li-address .mapIcon{margin-right:5px; float:left;}
 .ul-f2 li .add-visit{width:530px;}
 .choice-right p{ padding:0px; margin:0px; font-size:12px;}
@@ -366,6 +366,9 @@ a{text-decoration:none;}
 .add_xuxian { float:left; width:400px;}
 .add_xuxian p{margin:8px 0px 0px 20px; font-size:12px; padding:0px;}
 .add_xuxian a:hover { text-decoration:none;}
+.visit_info { padding:10px 20px 0px 10px; margin:0px; min-height:40px; color:#828282; font-size:14px;}
+.maker_info{ background-position:-171px -539px; width:20px; height:18px; margin-top:6px; float:left;}
+.address_info { height:25px; line-height:25px; float:left; margin-top:3px;}
 
 .liedit-close-box{background:#FFFFFF; width:12px; padding:0 6px 10px 6px; position:absolute; right:-24px; top:10px;}
 .liedit-close-box input{margin-top:10px;}
