@@ -2,34 +2,34 @@
         <ul class="clearfix salesList">
             <li ng-class="steps=='chance'?'cur':''">
                 <a ng-href="#!/sales/chance"><em><i class="sales-oppr-icon"></i></em></a>
-                <p>销售机会（{{SalesChanceCount}}）</p>
+                <p class="colorlight">销售机会({{SalesChanceCount}})</p>
                 <span class="arrowD"></span>
             </li>
             <li>
             	<div class="bentArrow"></div>
-                <p>转换率<span class="colorBlue">{{(SalesVisitCount/(SalesChanceCount+SalesVisitCount))*100 | number:0}}%</span></p>
+                <p class="colorlight">转换率<span class="colorg zhuanhuan_lf">{{(SalesVisitCount/(SalesChanceCount+SalesVisitCount))*100 | number:0}}%</span></p>
             </li>
             <li ng-class="steps=='visit'?'cur':''">
                 <a ng-href="#!/sales/visit"><em><i class="visit-icon"></i></em></a>
-                <p>拜访（{{SalesVisitCount}}）</p>
+                <p class="colorlight">拜访({{SalesVisitCount}})</p>
                 <span class="arrowD"></span>
             </li>
             <li>
             	<div class="bentArrow"></div>
-                <p>转换率<span class="colorBlue">{{(SalesContractCount/(SalesVisitCount+SalesContractCount))*100 | number:0}}%</span></p>
+                <p class="colorlight">转换率<span class="colorg zhuanhuan_lf">{{(SalesContractCount/(SalesVisitCount+SalesContractCount))*100 | number:0}}%</span></p>
             </li>
             <li ng-class="steps=='contract'?'cur':''">
                 <a ng-href="#!/sales/contract"><em><i class="contract-icon"></i></em></a>
-                <p>签订合同（{{SalesContractCount}}） </p>
+                <p class="colorlight">签订合同({{SalesContractCount}})</p>
                 <span class="arrowD"></span>
             </li>
             <li>
             	<div class="bentArrow"></div>
-                <p>转换率<span class="colorBlue">{{(SalesAfterCount/(SalesAfterCount+SalesContractCount))*100 | number:0}}%</span></p>
+                <p class="colorlight">转换率<span class="colorg zhuanhuan_lf">{{(SalesAfterCount/(SalesAfterCount+SalesContractCount))*100 | number:0}}%</span></p>
             </li>
             <li ng-class="steps=='after'?'cur':''">
                 <a ng-href="#!/sales/after"><em><i class="sales-follow-icon"></i></em></a>
-                <p>售后跟进（{{SalesAfterCount}}）</p>
+                <p class="colorlight">售后跟进({{SalesAfterCount}})</p>
                 <span class="arrowD"></span>
             </li>
         </ul>
@@ -41,7 +41,7 @@
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th></th>
                   <th width="30%">机会描述</th>
                   <th width="20%">联系人</th>
                   <th width="20%">联系方式</th>
@@ -51,12 +51,12 @@
               </thead>
               <tbody>
                 <tr ng-repeat="chance in chances">
-                  <td>{{$index +1}}</td>
+                  <td class="colorlight">{{$index +1}}</td>
                   <td>{{chance.Remark}}</td>
-                  <td class="colorBlue">{{chance.ContactName}}</td>
-                  <td class="colorBlue">{{chance.Phone||chance.Tel||chance.Email||chance.Qq}}</td>
+                  <td >{{chance.ContactName}}</td>
+                  <td >{{chance.Phone||chance.Tel||chance.Email||chance.Qq}}</td>
                   <td>{{parseJsonDate(chance.AddTime,'yyyy/MM/dd')}}</td>
-                  <td><a href="" role="button" ng-click="showChanceDetail()">详情</a>|<a href="" ng-click="showVisitDetail()" role="button">主动拜访</a></td>
+                  <td class="colorGray"><a href="" role="button" ng-click="showChanceDetail()">详情</a>|<a href="" ng-click="showVisitDetail()" role="button">主动拜访</a></td>
                 </tr>
               </tbody>
             </table>
@@ -75,12 +75,12 @@
               </thead>
               <tbody>
                 <tr ng-repeat="cvisit in cvisits">
-                  <td>{{$index +1}}</td>
+                  <td class="colorlight">{{$index +1}}</td>
                   <td>{{cvisit.Remark}}</td>
-                  <td class="colorBlue">{{cvisit.VisitNum}}次</td>
-                  <td class="colorBlue">{{cvisit.Rate}}%</td>
+                  <td >{{cvisit.VisitNum}}次</td>
+                  <td >{{cvisit.Rate}}%</td>
                   <td>{{parseJsonDate(cvisit.LastVisitTime,'yyyy/MM/dd')}}</td>
-                  <td><a href="" role="button" ng-click="showVisitDetail()">详情</a>|<a href="" role="button" ng-click="addCurrentStepItem('contract')">签订合同</a></td>
+                  <td class="colorGray"><a href="" role="button" ng-click="showVisitDetail()">详情</a>|<a href="" role="button" ng-click="addCurrentStepItem('contract')">签订合同</a></td>
                 </tr>
               </tbody>
             </table>
@@ -100,13 +100,13 @@
               </thead>
               <tbody>
                 <tr ng-repeat="contract in contracts">
-                  <td>{{$index +1}}</td>
+                  <td class="colorlight">{{$index +1}}</td>
                   <td>{{contract.CName}}</td>
-                  <td class="colorBlue">{{contract.ContractNo}}</td>
-                  <td class="colorBlue">{{contract.CustomerName}}</td>
+                  <td >{{contract.ContractNo}}</td>
+                  <td >{{contract.CustomerName}}</td>
                   <td>{{contract.Amount | currency:''}}</td>
                   <td>{{parseJsonDate(contract.StartTime,'yyyy/MM/dd')}}<span>至</span>{{parseJsonDate(contract.EndTime,'yyyy/MM/dd')}}</td>
-                  <td><a href="" role="button" ng-click="showContractDetail()">详情</a></td>
+                  <td class="colorGray"><a href="" role="button" ng-click="showContractDetail()">详情</a></td>
                 </tr>
               </tbody>
             </table>
@@ -130,7 +130,7 @@
                   <td class="colorBlue">四川新颖顺信息...</td>
                   <td class="colorBlue">1588234555</td>
                   <td>2013/07/31</td>
-                  <td><a href="" role="button" ng-click="showAfterDetail()">详情</a>|<a href="#myModal" role="button" data-toggle="_modal">主动拜访</a></td>
+                  <td class="colorGray"><a href="" role="button" ng-click="showAfterDetail()">详情</a>|<a href="#myModal" role="button" data-toggle="_modal">主动拜访</a></td>
                 </tr>
               </tbody>
             </table>

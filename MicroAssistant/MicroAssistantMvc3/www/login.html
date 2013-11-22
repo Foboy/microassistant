@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html ng-app="ngLoadMask">
 <head>
-    <title>Bootstrap 101 Template</title>
+    <title>微企助手-登录</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/flat-ui.css" rel="stylesheet" />
@@ -20,15 +20,15 @@
     <script src="js/fancybox.msgbox.js"></script>
     <style type="text/css">
         #form.showerror .ng-invalid {
-            border-color: #fa787e;
+            border:2px solid #fa787e;
         }
 
         #form .ng-invalid.ng-dirty {
-            border-color: #fa787e;
+            border:2px solid #f25749;
         }
 
         #form .ng-valid.ng-dirty {
-            border-color: #1ABC9C;
+            border:2px solid #1ABC9C;
         }
     </style>
 </head>
@@ -47,7 +47,7 @@
                 <div class="input-box">
                     <div class="icon-box"><i class="peop-icon"></i></div>
                     <input type="email" name="emial" ng-model="User.email" ng-required="true" title="请输入登录邮箱"  placeholder="请输入登录邮箱" />
-                    <p ng-show="UserLoginForm.emial.$dirty && !UserLoginForm.emial.$valid" style="padding-left:60px;padding-top:5px;color:#f00;">请输入正确的邮箱地址</p>
+                    <p class="error_info colorRed" ng-show="UserLoginForm.emial.$dirty && !UserLoginForm.emial.$valid">请输入正确的邮箱地址</p>
                 </div>
 
                 <div class="input-box">

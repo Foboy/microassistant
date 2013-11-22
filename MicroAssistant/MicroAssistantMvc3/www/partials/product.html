@@ -51,13 +51,13 @@
               </thead>
               <tbody>
                 <tr ng-repeat="product in products">
-                  <td>{{$index+1}}</td>
+                  <td class="colorlight">{{$index+1}}</td>
                   <td>{{product.PName}}</td>
                   <!--<td class="colorBlue">8300.00</td>-->
                   <td class="colorRed">{{product.MarketPrice}}<span class="pinfolast colorlight">元</span></td>
                   <td class="colorRed">{{product.LowestPrice}}<span class="pinfolast colorlight">元</span></td>
                   <td>{{product.StockCount}}</td>
-                  <td><a href="" role="button" ng-click="showProductDetail()">查看</a>|
+                  <td class="colorGray"><a href="" role="button" ng-click="showProductDetail()">查看</a>|
                   <a role="button" href="" ng-click="editProduct()">编辑产品资料</a>|
                   <a role="button" href="" ng-click="addPurchase()">添加采购单</a></td>
                 </tr>

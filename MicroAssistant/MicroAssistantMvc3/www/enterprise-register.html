@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html ng-app="ngLoadMask">
   <head>
-    <title>Bootstrap 101 Template</title>
+    <title>微企助手-企业注册</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="css/flat-ui.css" rel="stylesheet" media="screen">
@@ -18,15 +18,15 @@
     <script src="js/jquery-loadmask/jquery.loadmask.js"></script>
     <style type="text/css">
         #form.showerror .ng-invalid {
-            border-color: #fa787e;
+            border:2px solid #fa787e;
         }
 
         #form .ng-invalid.ng-dirty {
-            border-color: #fa787e;
+           border:2px solid #f25749;
         }
 
         #form .ng-valid.ng-dirty {
-            border-color: #50a729;
+            border:2px solid #1ABC9C;
         }
     </style>
   </head>
@@ -56,9 +56,9 @@
             	    <div class="icon-box"><i class="passw-icon"></i></div>
                     <input type="password" ng-model="Enterprise.pwd"  ng-required="true" title="请输入密码"  placeholder="请输入密码"/>
                 </div>
-                <div class="input-box">
+                <!--<div class="input-box">
                     <span class="alert alert-danger" ng-show="LoginErrors&&LoginErrors.length" style="margin-left:60px;">{{LoginErrors}}</span>
-                </div>
+                </div>-->
                 <div class="sc-box"><a href="javascript:void(0)" ng-click="EnterpriseRegister()" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>   
              </form>         
         </div>

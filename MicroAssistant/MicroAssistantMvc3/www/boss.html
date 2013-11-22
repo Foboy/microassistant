@@ -33,8 +33,8 @@
 	<div class="sell-funnel">
     	<div class="main">
         	<div class="funnel-box">
-            	<h1>销售漏斗</h1>
                 <div class="clearfix">
+                    <div class="loudou_title colorg">销售漏斗</div>
                 	<div class="funnel-img">
                     	<div class="f-shade"></div>
                     	<div style="width:400px;height:350px;margin-top:16px;">
@@ -45,9 +45,9 @@
                         <!--lines-->
                         <div style="width:200px;height:350px;position:absolute;top:0;left:200px;z-index:2" id="salesLines"></div>
                     </div>
-                    <ul class="funnel-num" style="width:400px;">
+                    <ul class="funnel-num" style="width:200px;">
                     	<li ng-repeat="item in salesFunnelList" style="width:400px;clear:both;">
-                            <span ng-style="item.labelStyle" style="display:block;width:12px;height:12px;float:left;margin-top:15px;border:solid 1px #777;"></span>
+                            <span ng-style="item.labelStyle" style="display:block;width:12px;height:12px;float:left;margin-top:15px;"></span>
                             <div style="float:left;">
                                 <span class="f-t">{{item.title}}</span>（<span class="colorRed">{{item.data | number}}</span>）
                             </div>
@@ -65,7 +65,7 @@
                       <button class="dropdown-toggle" style="width:150px;height:30px;border: none;background:#fff;" type="button" data-toggle="dropdown">
                         <span style="margin-left:40px;">{{funnelTimeTypeLabel}}</span><span class="caret" style="margin-left:30px;margin-top:5px;"></span>
                       </button>
-                      <ul class="dropdown-menu" style="width:150px;min-width: 150px;top:15px;border-radius: 0px;">
+                      <ul class="dropdown-menu" style="width:150px;min-width: 150px;top:31px;border-radius: 0px;">
                             <li ng-click="setFunnelTimeType(1)" ng-hide="funnelTimeType==1">本月</li>
                         	<li ng-click="setFunnelTimeType(2)" ng-hide="funnelTimeType==2">本季度</li>
                             <li ng-click="setFunnelTimeType(3)" ng-hide="funnelTimeType==3">本年度</li>

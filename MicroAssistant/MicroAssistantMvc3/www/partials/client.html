@@ -21,7 +21,7 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>#</th>
+                <th></th>
                 <th width="20%">名称</th>
                 <th width="15%">所属行业</th>
                 <th width="10%">联系人</th>
@@ -32,16 +32,19 @@
         </thead>
         <tbody>
             <tr ng-repeat="enterpriseclientItem in enterpriseclients">
-                <td>{{$index+1}}</td>
-                <td class="colorBlue">{{enterpriseclientItem.EntName}}</td>
-                <td class="colorBlue">{{enterpriseclientItem.Industy}}</td>
+                <td class="colorlight">{{$index+1}}</td>
+                <td class="colorg">{{enterpriseclientItem.EntName}}</td>
+                <td>{{enterpriseclientItem.Industy}}</td>
                 <td>{{enterpriseclientItem.ContactUsername}}</td>
                 <td>
                     <p>{{enterpriseclientItem.ContactMobile}} {{enterpriseclientItem.ContactEmail}}</p>
                     <p>{{enterpriseclientItem.ContactPhone}}</p>
                 </td>
                 <td>{{enterpriseclientItem.Address}}</td>
-                <td><a href="" ng-click="ShowEnterpriseClientDetail(enterpriseclientItem)" role="button" data-toggle="modal">查看</a>|<a href="" ng-click="ShowAddEnterpriseForm()" role="button" data-toggle="modal">编辑</a></td>
+                <td class="colorGray">
+                    <a href="" ng-click="ShowEnterpriseClientDetail(enterpriseclientItem)" role="button" data-toggle="modal">查看</a>|
+                    <a href="" ng-click="ShowAddEnterpriseForm()" role="button" data-toggle="modal">编辑</a>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -51,7 +54,7 @@
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th></th>
                   <th width="10%">姓名</th>
                   <th width="15%">年龄</th>
                   <th width="15%">所属行业</th>
@@ -62,18 +65,18 @@
               </thead>
               <tbody>
                 <tr ng-repeat="personclientItem in personalclients" >
-                  <td>
-                  <div class="t-himg">
+                  <td class="colorlight">
+                   <!--<div class="t-himg">
                         <img src="img/Adimg/h1.jpg">
                         <i class="b-i"></i>
-                  </div>
+                  </div>-->
                   </td>
-                  <td>{{personclientItem.Name}}</td>
+                  <td class="colorg">{{personclientItem.Name}}</td>
                   <td>{{parseAgeFromBirthday(personclientItem.Birthday)}}</td>
-                  <td class="colorBlue">{{personclientItem.Industy}}</td>                  
+                  <td>{{personclientItem.Industy}}</td>                  
                   <td><p>{{personclientItem.Mobile}}</p><p>{{personclientItem.Email}}</p></td>
                   <td>{{personclientItem.Address}}</td>
-                  <td><a href="" ng-click="ShowPersonalClientDetail(personclientItem)" role="button" data-toggle="modal">查看</a>|<a href="" ng-click="ShowAddPersonalForm()" role="button" data-toggle="modal">编辑</a></td>
+                  <td class="colorGray"><a href="" ng-click="ShowPersonalClientDetail(personclientItem)" role="button" data-toggle="modal">查看</a>|<a href="" ng-click="ShowAddPersonalForm()" role="button" data-toggle="modal">编辑</a></td>
                 </tr>
               </tbody>
             </table>

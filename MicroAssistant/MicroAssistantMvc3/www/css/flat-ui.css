@@ -1304,7 +1304,7 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus,
 .uneditable-input:focus {
-  border-color: #50a729;
+  border-color: #1ABC9C;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
