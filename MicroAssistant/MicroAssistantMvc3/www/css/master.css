@@ -414,7 +414,8 @@ a{text-decoration:none;}
 .logo2{background:url(../img/logo2.png); width:90px; height:31px; float:left; margin:10px 0 0 50px;}
 .bg-blue{background:#1ABC9C;}
 .logo-box{height:120px;}
-.main{width:980px; margin:0 auto; position:relative;}
+.main_boss{width:980px; margin:0 auto; position:relative;}
+.main{max-width:1366px; min-width:960px; margin:0 auto; position:relative;}
 .m-box{position:relative;}
 .cp-box .blue-btn{background:#34495E; display:inline-block; width:120px; height:35px; line-height:35px; text-align:center; color:#FFFFFF; font-size:14px; text-decoration:none;}
 .cp-box .blue-btn:hover{background:#2C3E50;}
