@@ -191,7 +191,6 @@
     <Content Include="Areas\SystemManagement\Views\Web.config" />
     <Content Include="Areas\UserManagement\Views\Web.config" />
     <Content Include="Config\Cache.config" />
-    <Content Include="www\boss.html" />
     <Content Include="www\css\bootstrap-responsive.css" />
     <Content Include="www\css\bootstrap-responsive.min.css" />
     <Content Include="www\css\bootstrap.css" />
@@ -263,6 +262,7 @@
     <Content Include="www\js\uploadify\uploadify.extention.js" />
     <Content Include="www\js\uploadify\uploadify.swf" />
     <Content Include="www\login.html" />
+    <Content Include="www\partials\boss.html" />
     <Content Include="www\partials\changeemail.html" />
     <Content Include="www\partials\changeEntcode.html" />
     <Content Include="www\partials\changepassword.html" />
