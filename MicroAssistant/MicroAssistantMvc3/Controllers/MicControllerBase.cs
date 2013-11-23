@@ -199,6 +199,7 @@ namespace MicroAssistantMvc.Controllers
             SysUserTimemachine ut = new SysUserTimemachine();
             SysUser user = new SysUser();
             user = SysUserAccessor.Instance.Get(userId);
+
             switch (changeType)
             {
                 case 1:
