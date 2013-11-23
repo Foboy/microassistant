@@ -14,14 +14,14 @@
                         <div style="width:200px;height:350px;position:absolute;top:0;left:200px;z-index:2" id="salesLines"></div>
                     </div>
                     <ul class="funnel-num" style="width:200px;">
-                    	<li ng-repeat="item in salesFunnelList" style="width:400px;clear:both;">
+                    	<li ng-repeat="item in salesFunnelList" style="width:200px;clear:both;">
                             <span ng-style="item.labelStyle" style="display:block;width:12px;height:12px;float:left;margin-top:15px;"></span>
                             <div style="float:left;">
                                 <span class="f-t">{{item.title}}</span>（<span class="colorRed">{{item.data | number}}</span>）
                             </div>
                     	</li>
                     </ul>
-                    <div class="time-change" style="display:none">
+                    <div class="time-change colorlight" style="display:none">
                     	{{funnelTimeTypeLabel}}<i></i>
                         <ul>
                             <li ng-click="setFunnelTimeType(1)" ng-hide="funnelTimeType==1">本月</li>
@@ -29,11 +29,11 @@
                             <li ng-click="setFunnelTimeType(3)" ng-hide="funnelTimeType==3">本年度</li>
                         </ul>
                     </div>
-                    <div class="btn-group time-change">
-                      <button class="dropdown-toggle" style="width:150px;height:30px;border: none;background:#fff;" type="button" data-toggle="dropdown">
-                        <span style="margin-left:40px;">{{funnelTimeTypeLabel}}</span><span class="caret" style="margin-left:30px;margin-top:5px;"></span>
+                    <div class="btn-group time-change colorlight">
+                      <button class="dropdown-toggle" style="width:130px;height:30px;border: none;background:#fff;" type="button" data-toggle="dropdown">
+                        <span class="colorlight">{{funnelTimeTypeLabel}}</span><span class="caret" style="margin-top:5px; float:right;"></span>
                       </button>
-                      <ul class="dropdown-menu" style="width:150px;min-width: 150px;top:31px;border-radius: 0px;">
+                      <ul class="dropdown-menu" style="width:130px;min-width: 130px;top:31px;border-radius: 0px;">
                             <li ng-click="setFunnelTimeType(1)" ng-hide="funnelTimeType==1">本月</li>
                         	<li ng-click="setFunnelTimeType(2)" ng-hide="funnelTimeType==2">本季度</li>
                             <li ng-click="setFunnelTimeType(3)" ng-hide="funnelTimeType==3">本年度</li>
@@ -45,45 +45,24 @@
     </div>  
     <div class="sales-opp">
     	<div class="main_boss">
+          <div class="clearfix">
+            <div class="loudou_title colorwhite">销售机会对比</div>
         	<div class="chance-box">
-            	<h1>销售机会对比
-                	<div class="time-change" style="display:none">本月<i></i>
-                        <ul>
-                        	<li>本季度</li>
-                            <li>本年度</li>
-                        </ul>
-                    </div>
-                    <div class="btn-group time-change">
-                      <button class="dropdown-toggle" style="width:100px;height:30px;border: none;background:#fff;" type="button" data-toggle="dropdown">
-                        <span style="margin-left:30px;">{{oppTimeTypeLabel}}</span><span class="caret" style="margin-left:20px;margin-top:5px;"></span>
-                      </button>
-                      <ul class="dropdown-menu" style="width:100px;min-width: 100px;top:15px;border-radius: 0px;">
-                          <li ng-click="setOppTimeType(1)" ng-hide="oppTimeType==1">
-                            按月
-                        </li>
-                        <li ng-click="setOppTimeType(2)" ng-hide="oppTimeType==2">
-                            按季
-                        </li>
-                          <li ng-click="setOppTimeType(3)" ng-hide="oppTimeType==3">
-                            按年
-                        </li>
-                      </ul>
-                    </div>
-                </h1>
+                    
                 <div class="histogram">
-                    <div style="width:420px;height:335px;position:relative;">
+                    <div style="width:635px;height:335px;position:relative;">
                         <div ng-show="salesOppShowPage>1" ng-click="salesOppBoxScroll(-1)" style="position:absolute;top:150px;left:0;width:40px;height:40px;font-size:40px;line-height:40px;color:#fff;cursor:pointer;">
                             <
                         </div>
                         <div ng-show="salesOppShowPage<salesOppPageCount" ng-click="salesOppBoxScroll(1)" style="position:absolute;top:150px;left:390px;width:40px;height:40px;font-size:40px;line-height:40px;color:#fff;cursor:pointer;">
                             >
                         </div>
-                        <div style="width:420px;height:335px;overflow:hidden;" id="salesOppListBox">
+                        <div style="width:635px;height:335px;overflow:hidden;" id="salesOppListBox">
                 	        <div class="info-show" ng-style="{'width':(salesOppList.length*140)+'px'}">
                                 <div ng-repeat="item in salesOppList" style="height:300px;width:80px;margin:0 30px;float:left;text-align:center;">
                                     <div ng-style="item.totalStyle" style="width:80px;">
                                         <div style="width:80px;" ng-style="item.totalSpaceStyle"></div>
-                                        <div style="width:80px;height:20px;line-height:20px;">
+                                        <div class="colorlight" style="width:80px;height:20px;line-height:20px;">
                                             {{item.total}}
                                         </div>
                                     </div>
@@ -100,29 +79,31 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>  
-    <div class="finance">
-    	<div class="main_boss">
-        	<div class="finance-box">
-            	<h1>财务收款对比
-                    <div class="btn-group time-change">
-                      <button class="dropdown-toggle" style="width:150px;height:30px;border: none;background:#fff;" type="button" data-toggle="dropdown">
-                        <span style="margin-left:30px;">{{financeTimeTypeLabel}}</span><span class="caret" style="margin-left:20px;margin-top:5px;"></span>
+            <div class="colorlight btn-group time-change">
+                      <button class="dropdown-toggle" style="width:130px;height:30px;border: none;background:#fff;" type="button" data-toggle="dropdown">
+                        <span class="colorlight">{{oppTimeTypeLabel}}</span><span class="caret" style=" float:right; margin-top:5px;"></span>
                       </button>
-                      <ul class="dropdown-menu" style="width:150px;min-width: 150px;top:15px;border-radius: 0px;">
-                          <li ng-click="setFinanceTimeType(1)" ng-hide="financeTimeType==1">
+                      <ul class="dropdown-menu" style="top:31px; width:130px; min-width: 130px;border-radius: 0px;">
+                          <li ng-click="setOppTimeType(1)" ng-hide="oppTimeType==1">
                             本月
                         </li>
-                        <li ng-click="setFinanceTimeType(2)" ng-hide="financeTimeType==2">
+                        <li ng-click="setOppTimeType(2)" ng-hide="oppTimeType==2">
                             本季度
                         </li>
-                          <li ng-click="setFinanceTimeType(3)" ng-hide="financeTimeType==3">
+                          <li ng-click="setOppTimeType(3)" ng-hide="oppTimeType==3">
                             本年度
                         </li>
                       </ul>
                     </div>
-            	</h1>
+          </div>
+        </div>
+    </div>  
+
+    <div class="finance">
+    	<div class="main_boss">
+           <div class="clearfix">
+            <div class="loudou_title colorg">财务收款对比</div>
+        	<div class="finance-box">
                 <div style="width:750px;height:362px;position:relative;">
                     <div ng-show="salesFinanceShowPage>1" ng-click="salesFinanceBoxScroll(-1)" style="position:absolute;top:130px;left:0;width:40px;height:40px;font-size:40px;line-height:40px;color:#248faf;cursor:pointer;">
                         <
@@ -136,7 +117,7 @@
                                 <div style="height:300px;width:80px;float:left;text-align:center;">
                                     <div ng-style="item.pay.totalStyle" style="width:80px;">
                                         <div style="width:80px;" ng-style="item.pay.totalSpaceStyle"></div>
-                                        <div style="width:80px;height:20px;line-height:20px;">
+                                        <div class="colorlight" style="width:80px;height:20px;line-height:20px;">
                                             {{item.pay.total}}
                                         </div>
                                     </div>
@@ -146,7 +127,7 @@
                                 <div style="height:300px;width:80px;float:left;text-align:center;">
                                     <div ng-style="item.receive.totalStyle" style="width:80px;">
                                         <div style="width:80px;" ng-style="item.receive.totalSpaceStyle"></div>
-                                        <div style="width:80px;height:20px;line-height:20px;">
+                                        <div class="colorlight"  style="width:80px;height:20px;line-height:20px;">
                                             {{item.receive.total}}
                                         </div>
                                     </div>
@@ -156,7 +137,7 @@
                             </div>
 
                         </div>
-                        <ul class="time-s clearfix m-s" ng-style="{'width':(salesFinanceList.length*750)+'px'}"><li ng-repeat="item in salesFinanceList"><span>{{item.pay.totalSpaceStyle?'应收款':''}}</span><span>{{item.pay.totalSpaceStyle?'应付款':''}}</span></li></ul>
+                        <ul class="time-s clearfix m-s" ng-style="{'width':(salesFinanceList.length*750)+'px'}"><li ng-repeat="item in salesFinanceList"><div class="ysyf flat-l">{{item.pay.totalSpaceStyle?'应收款':''}}</div><div class="ysyf flat-r">{{item.pay.totalSpaceStyle?'应付款':''}}</div></li></ul>
                         <ul class="time-s clearfix" ng-style="{'width':(salesFinanceList.length*750)+'px'}"><li ng-repeat="item in salesFinanceList">{{item.pay.month}}</li></ul>
                     </div>
                 </div>
@@ -167,5 +148,22 @@
                     <span class="r-bg"></span>已收款
                </div>
             </div>
+            <div class="menu_cw colorlight btn-group time-change">
+                      <button class="dropdown-toggle" style="width:130px;height:29px;border: none;background:#fff;" type="button" data-toggle="dropdown">
+                        <span class="colorlight">{{financeTimeTypeLabel}}</span><span class="caret" style="margin-top:5px; float:right;"></span>
+                      </button>
+                      <ul class="dropdown-menu" style="width:130px;min-width:130px;top:31px;border-radius: 0px;">
+                          <li ng-click="setFinanceTimeType(1)" ng-hide="financeTimeType==1">
+                            本月
+                        </li>
+                        <li ng-click="setFinanceTimeType(2)" ng-hide="financeTimeType==2">
+                            本季度
+                        </li>
+                          <li ng-click="setFinanceTimeType(3)" ng-hide="financeTimeType==3">
+                            本年度
+                        </li>
+                      </ul>
+             </div>
+           </div>
         </div>
     </div>
