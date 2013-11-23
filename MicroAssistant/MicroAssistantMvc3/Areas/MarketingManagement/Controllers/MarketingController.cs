@@ -28,10 +28,11 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
         /// <summary>
         /// 添加销售机会（机会类型，客户类型，联系人，机会描述，联系方式{}，是否同步，token）返回（true/false）
         /// 客户类型分为：1:企业客户2:个人客户；默认为企业客户
+        /// 新客户customerId 为0  旧客户customerId大于0
         /// </summary>
         public JsonResult AddMarketingChance(int chanceType, int customerType,
             string username, string chanceDetail, string tel,
-            string phone, string email, string qq, bool Isasyn)
+            string phone, string email, string qq, int customerId)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -60,7 +61,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                     chance.Remark = chanceDetail;
                     chance.Tel = tel;
                     chance.UserId = CurrentUser.UserId;
-                    if (Isasyn)
+                    if (customerId == 0)
                     {
                         switch (customerType)
                         {
@@ -93,6 +94,37 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                                 break;
                         }
                     }
+                    else
+                    {
+                        switch (customerType)
+                        {
+                            case 1:
+                                //编辑企业客户
+                                CustomerEnt ce = CustomerEntAccessor.Instance.Get(customerId);
+                                ce.EntName = username;
+                                ce.ContactUsername = username;
+                                ce.ContactMobile = phone;
+                                ce.ContactPhone = phone;
+                                ce.ContactEmail = email;
+                                ce.ContactQq = qq;
+                                ce.Detail = chanceDetail;
+                                CustomerEntAccessor.Instance.Update(ce);
+                                break;
+                            case 2:
+                                //编辑个人客户
+                                CustomerPrivate cp = CustomerPrivateAccessor.Instance.Get(customerId);
+                                cp.Name = username;
+                                cp.Mobile = phone;
+                                cp.Phone = phone;
+                                cp.Email = email;
+                                cp.Qq = qq;
+                                cp.Detail = chanceDetail;
+
+                                CustomerPrivateAccessor.Instance.Update(cp);
+                                break;
+                        }
+                    }
+
                     int i = MarketingChanceAccessor.Instance.Insert(chance);
                     if (i > 0)
                     {
