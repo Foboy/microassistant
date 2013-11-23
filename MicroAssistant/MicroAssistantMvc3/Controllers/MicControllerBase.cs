@@ -221,15 +221,27 @@ namespace MicroAssistantMvc.Controllers
                     ut.UserId = userId;
                     ut.UserName = user.UserName;
                     SysUserTimemachineAccessor.Instance.Insert(ut);
+
+                    List<SysUserTimemachine> utlist = new List<SysUserTimemachine>();
+                    utlist = SysUserTimemachineAccessor.Instance.Search(userId);
+                    SysUserTimemachine oldut = new SysUserTimemachine();
+                    if (utlist.Count > 1)
+                    {
+                        oldut = utlist[1];
+                        oldut.EndTime = DateTime.Now;
+                        SysUserTimemachineAccessor.Instance.Update(oldut);
+                    }
+
+
                     break;
                 case 4:
-                    ut.EntId = user.EntId;
-                    ut.EntName = SysUserAccessor.Instance.Get(user.EntId).UserName;
-                    ut.RoleName = SysRoleAccessor.Instance.Get(roleId).RoleName;
-                    ut.StartTime = DateTime.Now;
-                    ut.UserId = user.UserId;
-                    ut.UserName = user.UserName;
-                    SysUserTimemachineAccessor.Instance.Insert(ut);
+                    //ut.EntId = user.EntId;
+                    //ut.EntName = SysUserAccessor.Instance.Get(user.EntId).UserName;
+                    //ut.RoleName = SysRoleAccessor.Instance.Get(roleId).RoleName;
+                    //ut.StartTime = DateTime.Now;
+                    //ut.UserId = user.UserId;
+                    //ut.UserName = user.UserName;
+                    //SysUserTimemachineAccessor.Instance.Insert(ut);
                     break;
                 default:
                     break;
