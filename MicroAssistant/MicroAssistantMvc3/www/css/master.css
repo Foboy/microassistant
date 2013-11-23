@@ -89,7 +89,7 @@ a{text-decoration:none;}
 
 
 /*=== 弹出框样式 ===*/
-
+.popup-header {border-bottom: 1px solid #EEEEEE; height: 35px;}
 .addm{width:530px; border-radius:0;}
 .addProduct{width:720px;border-radius:0; height:450px;}
 .addProduct .modal-body{max-height:530px; padding:0;}

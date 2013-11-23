@@ -13,7 +13,7 @@
     <span class="seCon">
         <input type="text" class="searchh setext" placeholder="Type something…"><input type="button" class="seBtn"></span>
 </div>-->
-<div class="tablePad finance_table" ng-show="steps=='receivable'?'true':'false'">
+<div class="tablePad finance_table" id="receivableList" ng-show="steps=='receivable'?'true':'false'">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -35,7 +35,7 @@
         </tbody>
     </table>
 </div>
-<div class="tablePad" ng-show="steps=='payable'?'true':'false'">
+<div class="tablePad" ng-show="steps=='payable'?'true':'false'" id="payablesList">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
