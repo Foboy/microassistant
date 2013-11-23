@@ -210,6 +210,7 @@
     <Content Include="www\js\angular-animate.js" />
     <Content Include="www\js\angular-loadmask.js" />
     <Content Include="www\js\angular-route.js" />
+    <Content Include="www\js\angular-ui-router.js" />
     <Content Include="www\js\angular.js" />
     <Content Include="www\js\angular.pack.js" />
     <Content Include="www\js\bootstrap-datetimepicker\bootstrap-datetimepicker.css" />
@@ -275,6 +276,7 @@
     <Content Include="www\partials\finance\makesure-pay.html" />
     <Content Include="www\partials\finance\receivables-detail.html" />
     <Content Include="www\partials\home.html" />
+    <Content Include="www\partials\main.html" />
     <Content Include="www\partials\mytimeshaft.html" />
     <Content Include="www\partials\others\addcompany.html" />
     <Content Include="www\partials\others\locationselectmap.html" />

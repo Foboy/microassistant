@@ -26,11 +26,11 @@
             <li><span class="span1">机会描述：</span><span><textarea rows="3" name="PInfo" ng-model="EditChance.Remark" ng-required="true" placeholder="请输入机会描述" class="span3"></textarea></span></li>
             <li><span class="span1">联系方式：</span>
                 <span>
-                    <input type="text" ng-model="EditChance.Phone" value="" placeholder="手机" class="span3">
+                    <input type="text" ng-model="EditChance.Phone" value="" ng-pattern="/^[1][358]\d{9}$/" placeholder="手机" class="span3">
                 </span>
             </li>
-            <li><span class="span1">&nbsp;</span><span><input type="text" ng-model="EditChance.Tel" value="" placeholder="座机" class="span3"></span></li>
-            <li><span class="span1">&nbsp;</span><span><input type="text" ng-model="EditChance.Email" value="" placeholder="E-mail" class="span3"></span></li>
+            <li><span class="span1">&nbsp;</span><span><input type="text" ng-pattern="/(\(\d{3,4}\)|\d{3,4}-|\s)?\d{8}/" ng-model="EditChance.Tel" value="" placeholder="座机" class="span3"></span></li>
+            <li><span class="span1">&nbsp;</span><span><input type="text" ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" ng-model="EditChance.Email" value="" placeholder="E-mail" class="span3" ></span></li>
             <li><span class="span1">&nbsp;</span><span><input type="text" ng-model="EditChance.Qq" value="" placeholder="QQ" class="span3"></span></li>
             <li><span class="span1">&nbsp;</span><span><input type="checkbox" ng-model="EditChance.Isasyn" checked="false" />是否把该新客户的信息同步到客户管理模块</span></li>
             <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a ng-href="" class="btn btn-large btn-block btn-success" ng-click="SalesAddChanceSubmit()">保存</a></span></li>
