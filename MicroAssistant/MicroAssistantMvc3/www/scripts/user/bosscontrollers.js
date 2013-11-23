@@ -60,7 +60,7 @@
     $scope.displaySalesFunnel = function (sales) {
         var totalHeight = 326;
         var total = 0;
-        var colors = ['#f00', '#f0f', '#0f0', '#0ff', '#ff0'];
+        var colors = ['#F09B2D', '#7AC0A8', '#E74C3C', '#95A5A6', '#16A085'];
         var titles = ['销售机会', '初步接洽', '多次拜访', '报价', '签订合同'];
         var labelTop = [60, 110, 160, 210, 250];
 

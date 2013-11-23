@@ -1,5 +1,5 @@
-﻿angular.module('microassistant', ['ngRoute']).
-  config(['$provide', '$routeProvider', '$locationProvider', function ($provide, $routeProvider, $locationProvider) {
+﻿angular.module('microassistant', ['ngRoute', 'ngLoadMask']).
+  config(['$provide', '$routeProvider', '$locationProvider',function ($provide, $routeProvider, $locationProvider) {
       $routeProvider
           .when('/home', { templateUrl: 'partials/home.html', controller: HomeMainCtrl })
           .when('/user', { templateUrl: 'partials/userinfo.html', controller: UserMainCtrl })
@@ -163,7 +163,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
         $("#salesUserHeadImageIframe").attr({ src: 'partials/others/photocutter.html' })
         $('#userHeadImageSelectModal').modal('show');
     }
-    $scope.HeadPicUrl = 'img/Adimg/h1.jpg';
+    $scope.HeadPicUrl = 'img/Adimg/tx.png';
     utilities.registeriframelistener("event:userHeadImageSeted", function () {
         $('#userHeadImageSelectModal').modal('hide');
         var imgUrl = arguments[0];
