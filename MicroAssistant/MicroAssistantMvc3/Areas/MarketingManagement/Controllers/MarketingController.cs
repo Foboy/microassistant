@@ -133,6 +133,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
+                  
                     if (!CheckUserFunction("1201"))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
@@ -140,8 +141,24 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                         Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         return Res;
                     }
+
+                    UserType userType = UserType.User;
+                    int sid =  CurrentUser.UserId;
+
+                    if (CheckUserFunction("18"))
+                    {
+                        userType = UserType.Boss;
+                        sid = CurrentUser.EntId;
+                    }
+                    if (CheckUserFunction("13"))
+                    {
+                        userType = UserType.Admin;
+                        sid = CurrentUser.EntId;
+                    }
+
+
                     PageEntity<MarketingChance> returnValue = new PageEntity<MarketingChance>();
-                    returnValue = MarketingChanceAccessor.Instance.Search(1, CurrentUser.UserId, pageIndex, pageSize);//1:未拜访 2：已拜访
+                    returnValue = MarketingChanceAccessor.Instance.Search(userType,1,sid, pageIndex, pageSize);//1:未拜访 2：已拜访
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = returnValue;
                 }
@@ -356,7 +373,23 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                         Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         return Res;
                     }
-                   PageEntity<MarketingChance> clist = MarketingChanceAccessor.Instance.Search(2,CurrentUser.UserId, pageIndex, pageSize);
+
+                    UserType userType = UserType.User;
+                    int sid = CurrentUser.UserId;
+
+                    if (CheckUserFunction("18"))
+                    {
+                        userType = UserType.Boss;
+                        sid = CurrentUser.EntId;
+                    }
+                    if (CheckUserFunction("13"))
+                    {
+                        userType = UserType.Admin;
+                        sid = CurrentUser.EntId;
+                    }
+
+
+                    PageEntity<MarketingChance> clist = MarketingChanceAccessor.Instance.Search(userType,2, sid, pageIndex, pageSize);
                    result.Data.RecordsCount = clist.RecordsCount;
                    result.Data.PageIndex = pageIndex;
                    result.Data.PageSize = pageSize;
@@ -495,9 +528,25 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                         Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         return Res;
                     }
-                    nums.Add(MarketingChanceAccessor.Instance.GetMarketingChanceCount(CurrentUser.UserId, 1));//获取销售机会数量
-                    nums.Add(MarketingChanceAccessor.Instance.GetMarketingChanceCount(CurrentUser.UserId,2));//获取拜访记录数以销售机会为基准
-                    nums.Add(ContractInfoAccessor.Instance.GetContractInfoCount(CurrentUser.EntId));
+
+                    UserType userType = UserType.User;
+                    int sid = CurrentUser.UserId;
+
+                    if (CheckUserFunction("18"))
+                    {
+                        userType = UserType.Boss;
+                        sid = CurrentUser.EntId;
+                    }
+                    if (CheckUserFunction("13"))
+                    {
+                        userType = UserType.Admin;
+                        sid = CurrentUser.EntId;
+                    }
+
+
+                    nums.Add(MarketingChanceAccessor.Instance.GetMarketingChanceCount(userType,sid, 1));//获取销售机会数量
+                    nums.Add(MarketingChanceAccessor.Instance.GetMarketingChanceCount(userType,sid, 2));//获取拜访记录数以销售机会为基准
+                    nums.Add(ContractInfoAccessor.Instance.GetContractInfoCount(userType,sid));
                    
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = nums;

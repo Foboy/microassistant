@@ -13,6 +13,7 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using MicroAssistant.Common;
 using MicroAssistant.Meta;
+using MicroAssistant.DataStructure;
 
 
 namespace MicroAssistant.DataAccess
@@ -72,8 +73,8 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadContractInfo
 
-            cmdLoadContractInfo = new MySqlCommand(@" select chance_id,contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,ent_id from contract_info where ent_id = @EntId order by contract_time desc limit @PageIndex,@PageSize");
-            cmdLoadContractInfo.Parameters.Add("@EntId", MySqlDbType.Int32);
+            cmdLoadContractInfo = new MySqlCommand(@" select chance_id,contract_info_id,contract_no,c_name,customer_name,start_time,end_time,owner_id,contract_time,amount,howtopay,ent_id from contract_info where {0} order by contract_time desc limit @PageIndex,@PageSize");
+       
             cmdLoadContractInfo.Parameters.Add("@pageIndex", MySqlDbType.Int32);
             cmdLoadContractInfo.Parameters.Add("@pageSize", MySqlDbType.Int32);
 
@@ -81,8 +82,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdGetContractInfoCount
 
-            cmdGetContractInfoCount = new MySqlCommand(" select count(*)  from contract_info where ent_id = @EntId ");
-            cmdGetContractInfoCount.Parameters.Add("@EntId", MySqlDbType.Int32);
+            cmdGetContractInfoCount = new MySqlCommand(" select count(*)  from contract_info where {0}");
 
             #endregion
 
@@ -222,7 +222,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>Int32 ContractInfoId, String ContractNo, String CName, Int32 CustomerName, DateTime StartTime, DateTime EndTime, Int32 OwnerId, DateTime ContractTime, Decimal Amount, Int32 Howtopay, Int32 HowtopayId, 
-        public PageEntity<ContractInfo> Search(Int32 EntId, int pageIndex, int pageSize)
+        public PageEntity<ContractInfo> Search(UserType userType, Int32 sId, int pageIndex, int pageSize)
         {
             PageEntity<ContractInfo> returnValue = new PageEntity<ContractInfo>();
             MySqlConnection oc = ConnectManager.Create();
@@ -246,8 +246,17 @@ namespace MicroAssistant.DataAccess
                 //_cmdLoadContractInfo.Parameters["@Amount"].Value = Amount;
                 //_cmdLoadContractInfo.Parameters["@Howtopay"].Value = Howtopay;
                 //_cmdLoadContractInfo.Parameters["@HowtopayId"].Value = HowtopayId;
-                _cmdLoadContractInfo.Parameters["@EntId"].Value = EntId;
-
+               // _cmdLoadContractInfo.Parameters["@EntId"].Value = EntId;
+                if (userType == UserType.User)
+                {
+                    _cmdLoadContractInfo.CommandText = string.Format(_cmdLoadContractInfo.CommandText, " owner_id =  " + sId);
+                    _cmdGetContractInfoCount.CommandText = string.Format(_cmdGetContractInfoCount.CommandText, " owner_id =  " + sId);
+                }
+                else
+                {
+                    _cmdLoadContractInfo.CommandText = string.Format(_cmdLoadContractInfo.CommandText, " ent_id = " + sId);
+                    _cmdGetContractInfoCount.CommandText = string.Format(_cmdGetContractInfoCount.CommandText, " ent_id = " + sId);
+                }
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
 
@@ -257,7 +266,7 @@ namespace MicroAssistant.DataAccess
                     returnValue.Items.Add(new ContractInfo().BuildSampleEntity(reader));
                 }
                 reader.Close();
-                _cmdGetContractInfoCount.Parameters["@EntId"].Value = EntId;
+               // _cmdGetContractInfoCount.Parameters["@EntId"].Value = EntId;
                 returnValue.RecordsCount = Convert.ToInt32(_cmdGetContractInfoCount.ExecuteScalar());
             }
             finally
@@ -277,11 +286,10 @@ namespace MicroAssistant.DataAccess
         /// <summary>
         /// 获取企业合同数
         /// </summary>
-        /// <param name="EntId"></param>
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public int GetContractInfoCount(Int32 EntId)
+        public int GetContractInfoCount(UserType userType, Int32 sId)
         {
             int returnValue = 0;
             MySqlConnection oc = ConnectManager.Create();
@@ -292,7 +300,14 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                _cmdGetContractInfoCount.Parameters["@EntId"].Value = EntId;
+                if (userType == UserType.User)
+                {
+                    _cmdGetContractInfoCount.CommandText = string.Format(_cmdGetContractInfoCount.CommandText, " owner_id =  " + sId);
+                }
+                else
+                {
+                    _cmdGetContractInfoCount.CommandText = string.Format(_cmdGetContractInfoCount.CommandText, " ent_id = " + sId);
+                }
                 returnValue = Convert.ToInt32(_cmdGetContractInfoCount.ExecuteScalar());
             }
             finally

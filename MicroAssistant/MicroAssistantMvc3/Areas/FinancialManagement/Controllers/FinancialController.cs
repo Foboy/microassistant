@@ -45,7 +45,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                         SysUser user = SysUserAccessor.Instance.Get(userid);
 
                         PageEntity<ContractInfo> clist = new PageEntity<ContractInfo>();
-                        clist = ContractInfoAccessor.Instance.Search(user.EntId,pageIndex, pageSize);
+                        clist = ContractInfoAccessor.Instance.Search(UserType.Boss,user.EntId,pageIndex, pageSize);
                         for (int i = 0; i < clist.Items.Count; i++)
                         {
                             ReceivablesModel rm = new ReceivablesModel();
