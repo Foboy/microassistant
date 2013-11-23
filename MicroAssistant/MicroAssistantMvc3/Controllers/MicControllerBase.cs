@@ -235,6 +235,16 @@ namespace MicroAssistantMvc.Controllers
                     break;
             }
 
+            List<SysUserTimemachine> utlist = new List<SysUserTimemachine>();
+            utlist = SysUserTimemachineAccessor.Instance.Search(userId);
+            SysUserTimemachine oldut = new SysUserTimemachine();
+            if (utlist.Count > 1)
+            {
+                oldut = utlist[1];
+                oldut.EndTime = DateTime.Now;
+                SysUserTimemachineAccessor.Instance.Update(oldut);
+            }
+
 
 
         }
