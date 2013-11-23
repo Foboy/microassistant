@@ -120,8 +120,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdSearchCustomerPrivByName
 
-            cmdSearchCustomerPrivByName = new MySqlCommand(" select customer_private_id,name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id,owner_id from customer_private where name = @Name");
-            cmdSearchCustomerPrivByName.Parameters.Add("@Name", MySqlDbType.String);
+            cmdSearchCustomerPrivByName = new MySqlCommand(" select customer_private_id,name,sex,birthday,industy,mobile,email,qq,phone,address,detail,ent_id,owner_id from customer_private where {0}  ");
 
             #endregion
         }
@@ -427,7 +426,7 @@ namespace MicroAssistant.DataAccess
             List<CustomerPrivate> returnValue = new List<CustomerPrivate>();
             try
             {
-                _cmdSearchCustomerPrivByName.Parameters["@Name"].Value = name;
+                _cmdSearchCustomerPrivByName.CommandText = string.Format(_cmdSearchCustomerPrivByName.CommandText, " name like \"%" + name + "%\" ");
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
