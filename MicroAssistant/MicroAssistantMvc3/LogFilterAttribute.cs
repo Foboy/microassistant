@@ -11,6 +11,9 @@ using System.Text;
 using System.IO;
 using System.Web.Security;
 using MicroAssistant.Cache;
+using System.Threading.Tasks;
+using MicroAssistant.Meta;
+using MicroAssistant.DataAccess;
 
 namespace MicroAssistantMvc
 {
@@ -21,19 +24,26 @@ namespace MicroAssistantMvc
         {
             base.OnActionExecuting(filterContext);
             string actionName = filterContext.ActionDescriptor.ActionName;
+            string parms = string.Empty;
             var parameters = filterContext.ActionDescriptor.GetParameters();
             foreach (var parameter in parameters)
             {
-                if (parameter.ParameterType == typeof(string))
-                {
+                //if (parameter.ParameterType == typeof(string))
+                //{
                     //获取字符串参数原值
-                    var orginalValue = filterContext.ActionParameters[parameter.ParameterName] as string;
+                    string orginalValue = Convert.ToString(filterContext.ActionParameters[parameter.ParameterName]);
+                    parms += parameter.ParameterName + ":" + orginalValue + ";";
                     //使用过滤算法处理字符串
                     //var filteredValue = SensitiveWordsFilter.Instance.Filter(orginalValue);
                     ////将处理后值赋给参数
                     //filterContext.ActionParameters[parameter.ParameterName] = filteredValue;
-                }
+                //}
             }
+
+            Task tt = new Task(() => {
+                AddActionlog(actionName, parms, string.Empty, filterContext);
+            });
+            tt.Start();
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -55,14 +65,18 @@ namespace MicroAssistantMvc
 
             string res = JsonHelper.Serialize(filterContext.Result);
 
-       
+            Task tt = new Task(() =>
+            {
+                AddActionlog(filterContext.RequestContext.HttpContext.Request.Path, string.Empty, res, filterContext);
+            });
+            tt.Start();
         }
 
 
 
         private void AddActionlog(string actionname, string prams, string result, ControllerContext filterContext)
         {
-            //filterContext.RequestContext.HttpContext.Request
+            int userid = 0;
             if (FormsAuthentication.CookiesSupported)
             {
                 if (filterContext.RequestContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
@@ -72,7 +86,7 @@ namespace MicroAssistantMvc
                         FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(
                           filterContext.RequestContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName].Value);
                         string currentToken = ticket.UserData;
-                        int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(currentToken));
+                        userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(currentToken));
                     }
                     catch (Exception e)
                     {
@@ -81,6 +95,14 @@ namespace MicroAssistantMvc
                     }
                 }
             }
+
+            SysLog log = new SysLog();
+            log.Action = actionname;
+            log.AddTime = DateTime.Now;
+            log.Parameter = prams;
+            log.UserId = userid;
+            log.Result = result;
+            SysLogAccessor.Instance.Insert(log);
         }
 
 
