@@ -31,7 +31,7 @@ namespace MicroAssistant.DataAccess
         {
             #region cmdInsertSysUserTimemachine
 
-            cmdInsertSysUserTimemachine = new MySqlCommand("INSERT INTO sys_user_timemachine(user_id,user_name,role_name,ent_name,ent_id,start_time,end_time) values (@UserId,@UserName,@RoleName,@EntName,@EntId,@StartTime,@EndTime)");
+            cmdInsertSysUserTimemachine = new MySqlCommand("INSERT INTO sys_user_timemachine(user_id,user_name,role_name,ent_name,ent_id,start_time) values (@UserId,@UserName,@RoleName,@EntName,@EntId,@StartTime)");
 
             cmdInsertSysUserTimemachine.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdInsertSysUserTimemachine.Parameters.Add("@UserName", MySqlDbType.String);
@@ -39,7 +39,6 @@ namespace MicroAssistant.DataAccess
             cmdInsertSysUserTimemachine.Parameters.Add("@EntName", MySqlDbType.String);
             cmdInsertSysUserTimemachine.Parameters.Add("@EntId", MySqlDbType.Int32);
             cmdInsertSysUserTimemachine.Parameters.Add("@StartTime", MySqlDbType.DateTime);
-            cmdInsertSysUserTimemachine.Parameters.Add("@EndTime", MySqlDbType.DateTime);
             #endregion
 
             #region cmdUpdateSysUserTimemachine
@@ -111,7 +110,6 @@ namespace MicroAssistant.DataAccess
                 _cmdInsertSysUserTimemachine.Parameters["@EntName"].Value = e.EntName;
                 _cmdInsertSysUserTimemachine.Parameters["@EntId"].Value = e.EntId;
                 _cmdInsertSysUserTimemachine.Parameters["@StartTime"].Value = e.StartTime;
-                _cmdInsertSysUserTimemachine.Parameters["@EndTime"].Value = e.EndTime;
 
                 _cmdInsertSysUserTimemachine.ExecuteNonQuery();
                 returnValue = Convert.ToInt32(_cmdInsertSysUserTimemachine.LastInsertedId);
