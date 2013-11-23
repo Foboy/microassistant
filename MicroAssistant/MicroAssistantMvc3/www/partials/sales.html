@@ -1,7 +1,7 @@
         <h1 class="titSec">销售管理</h1>
         <ul class="clearfix salesList">
             <li ng-class="steps=='chance'?'cur':''">
-                <a ng-href="#!/sales/chance"><em><i class="sales-oppr-icon"></i></em></a>
+                <a ng-href="#/sales/chance"><em><i class="sales-oppr-icon"></i></em></a>
                 <p class="colorlight">销售机会({{SalesChanceCount}})</p>
                 <span class="arrowD"></span>
             </li>
@@ -10,7 +10,7 @@
                 <p class="colorlight">转换率<span class="colorg zhuanhuan_lf">{{(SalesVisitCount/(SalesChanceCount+SalesVisitCount))*100 | number:0}}%</span></p>
             </li>
             <li ng-class="steps=='visit'?'cur':''">
-                <a ng-href="#!/sales/visit"><em><i class="visit-icon"></i></em></a>
+                <a ng-href="#/sales/visit"><em><i class="visit-icon"></i></em></a>
                 <p class="colorlight">拜访({{SalesVisitCount}})</p>
                 <span class="arrowD"></span>
             </li>
@@ -19,7 +19,7 @@
                 <p class="colorlight">转换率<span class="colorg zhuanhuan_lf">{{(SalesContractCount/(SalesVisitCount+SalesContractCount))*100 | number:0}}%</span></p>
             </li>
             <li ng-class="steps=='contract'?'cur':''">
-                <a ng-href="#!/sales/contract"><em><i class="contract-icon"></i></em></a>
+                <a ng-href="#/sales/contract"><em><i class="contract-icon"></i></em></a>
                 <p class="colorlight">签订合同({{SalesContractCount}})</p>
                 <span class="arrowD"></span>
             </li>
@@ -28,7 +28,7 @@
                 <p class="colorlight">转换率<span class="colorg zhuanhuan_lf">{{(SalesAfterCount/(SalesAfterCount+SalesContractCount))*100 | number:0}}%</span></p>
             </li>
             <li ng-class="steps=='after'?'cur':''">
-                <a ng-href="#!/sales/after"><em><i class="sales-follow-icon"></i></em></a>
+                <a ng-href="#/sales/after"><em><i class="sales-follow-icon"></i></em></a>
                 <p class="colorlight">售后跟进({{SalesAfterCount}})</p>
                 <span class="arrowD"></span>
             </li>
