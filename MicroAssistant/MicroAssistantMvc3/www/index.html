@@ -60,9 +60,9 @@
                 <ul class="u-info-list" style="display: none" id="uinfolist">
                     <li><a ng-href="#/user" class="writeLink">基本资料</a></li>
                     <li><a ng-href="#/mytimeshaft" class="writeLink">我的时间轴</a></li>
-                    <li><a ng-href="#/staffmangement" class="writeLink" ng-show="staffManagementPerission">我的员工管理</a></li>
-                    <li><a ng-href="#/enterpriseinfo" class="writeLink" ng-show="enterpriseManagementPerission">企业名片信息</a></li>
-                    <li><a href="boss.html" class="writeLink" ng-show="bossPerission">老板模式</a></li>
+                    <li ng-show="staffManagementPerission"><a ng-href="#/staffmangement" class="writeLink" >我的员工管理</a></li>
+                    <li ng-show="enterpriseManagementPerission"><a ng-href="#/enterpriseinfo" class="writeLink" >企业名片信息</a></li>
+                    <li ng-show="bossPerission"><a href="boss.html" class="writeLink" >老板模式</a></li>
                     <li><a ng-click="UserLoginOut()" class="writeLink">退出</a></li>
                 </ul>
             </div>

@@ -252,7 +252,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
         //编辑销售机会详情（机会ID，机会类型，客户类型，机会描述，联系人，联系方式，token） 返回（true/false）
         public JsonResult EditMarketingInfo(int cid,int chanceType, int customerType,
             string username, string chanceDetail, string tel,
-            string phone, string email, string qq)
+            string phone, string email, string qq, int customerId)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -280,6 +280,36 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                     chance.Remark = chanceDetail;
                     chance.Tel = tel;
                     MarketingChanceAccessor.Instance.Update(chance);
+
+                     switch (customerType)
+                        {
+                            case 1:
+                                //编辑企业客户
+                                CustomerEnt ce = CustomerEntAccessor.Instance.Get(customerId);
+                                ce.EntName = username;
+                                ce.ContactUsername = username;
+                                ce.ContactMobile = phone;
+                                ce.ContactPhone = phone;
+                                ce.ContactEmail = email;
+                                ce.ContactQq = qq;
+                                ce.Detail = chanceDetail;
+                                CustomerEntAccessor.Instance.Update(ce);
+                                break;
+                            case 2:
+                                //编辑个人客户
+                                CustomerPrivate cp = CustomerPrivateAccessor.Instance.Get(customerId);
+                                cp.Name = username;
+                                cp.Mobile = phone;
+                                cp.Phone = phone;
+                                cp.Email = email;
+                                cp.Qq = qq;
+                                cp.Detail = chanceDetail;
+
+                                CustomerPrivateAccessor.Instance.Update(cp);
+                                break;
+                        }
+
+
                     result.Error = AppError.ERROR_SUCCESS;
 
                 }
