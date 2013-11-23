@@ -3,15 +3,12 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myPEModalLabel">{{EditProduct.PId>0?'编辑产品':'新增产品'}}</h3>
     </div>
-    <div class="modal-body">
- 
-            <div class="listBox">
-                <ul>
-                    <li ng-class="productEditPage==1?'cur':''" ng-click="productEditPage=1"><i>1</i>产品资料</li>
-                    <li ng-class="productEditPage==2?'cur':''" ng-click="productEditPage=2"><i>2</i>产品报价</li>
-                </ul>
-            </div>
-
+    <div class="listBox">
+       <ul>
+          <li ng-class="productEditPage==1?'cur':''" ng-click="productEditPage=1"><i>1</i>产品资料</li>
+          <li ng-class="productEditPage==2?'cur':''" ng-click="productEditPage=2"><i>2</i>产品报价</li>
+       </ul>
+     </div>
             <div class="madeBox" ng-show="productEditPage==1">
                 <form name="ProductEditFormOne" ng-class="showerror1?'showerror':''">
                     <ul class="listContent">

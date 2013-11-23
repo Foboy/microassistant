@@ -27,6 +27,12 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Models
         public string CustomerName
         { get; set; }
 
+          /// <summary>
+          /// 合同承办人
+          /// </summary>
+        public string OpUser
+        { get; set; }
+
         /// <summary>
         /// 金额
         /// </summary>

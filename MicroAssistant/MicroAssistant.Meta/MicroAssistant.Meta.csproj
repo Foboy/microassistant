@@ -57,6 +57,7 @@
     <Compile Include="ProProductonDetail.cs" />
     <Compile Include="ResPic.cs" />
     <Compile Include="SysFunction.cs" />
+    <Compile Include="SysLog.cs" />
     <Compile Include="SysRole.cs" />
     <Compile Include="SysRoleFunction.cs" />
     <Compile Include="SysRoleUser.cs" />

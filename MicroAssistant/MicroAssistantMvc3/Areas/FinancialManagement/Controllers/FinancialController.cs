@@ -51,6 +51,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                             ReceivablesModel rm = new ReceivablesModel();
                             rm.ContractNo = clist.Items[i].ContractNo;
                             rm.CustomerName = clist.Items[i].CustomerName;
+                            rm.OpUser = SysUserAccessor.Instance.Get(clist.Items[i].OwnerId).UserName;
 
                             List<ContractHowtopay> hplist = new List<ContractHowtopay>();
                             hplist = ContractHowtopayAccessor.Instance.Search(rm.ContractNo, 1);

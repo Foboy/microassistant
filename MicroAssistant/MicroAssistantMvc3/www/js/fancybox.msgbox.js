@@ -61,7 +61,7 @@
     };
     $.pagePreLoading = function (url, loaded) {
         var loader = $('<iframe style="display:none"></iframe>');
-        var loadingwrap = $('<div class="pagepreloadingbox" style="width:220px;"><p>正在跳转...</p><br /><div style="width:200px;text-align:center;margin:20px auto;" class="perLoading"><span style="font-size:80px;float: none;margin-left: none;" class="loadingspan">0</span>%</div><div style="height:3px;background:#1e2eb0;width:0%;margin-top:10px;" class="loadingProcess"></div></div>');
+        var loadingwrap = $('<div class="pagepreloadingbox" style="width:220px;"><p>正在跳转...</p><br /><div style="width:200px;text-align:center;margin:20px auto;" class="perLoading"><span style="font-size:80px;float: none;margin-left: none;" class="loadingspan">0</span>%</div><div style="height:3px;background:#1ABC9C;width:0%;margin-top:10px;" class="loadingProcess"></div></div>');
         $(document.body).append(loader);
         $(document.body).append(loadingwrap);
         var loadingSpan = loadingwrap.find(".loadingspan");

@@ -18,7 +18,7 @@
                                 女&nbsp;
                             </label>
                         </span></li>
-                        <li><span class="span1">出生日期：</span><span><input type="text" name="Birthday" ng-model="PersonalItem.Birthday" class="span3 " ng-pattern="/^(\d{4})(-|\/)(\d{1,2})\2(\d{1,2})$/" ng-required="true" id="DateControl"></span></li>
+                        <li><span class="span1">出生日期：</span><span><input type="text" name="Birthday" ng-model="PersonalItem.Birthday" readonly="readonly" class="span3 " ng-pattern="/^(\d{4})(-|\/)(\d{1,2})\2(\d{1,2})$/" ng-required="true" id="DateControl"></span></li>
                         <li><span class="span1">联系方式：</span><span><input type="text" name="Mobile" ng-model="PersonalItem.Mobile" placeholder="手机" ng-pattern="/^[1][358]\d{9}$/" class="span3"></span></li>
                         <li><span class="span1"></span><span><input type="text" name="Email" ng-model="PersonalItem.Email" placeholder="邮箱" ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" class="span3"></span></li>
                         <li><span class="span1">&nbsp;</span><span><input type="text" name="Phone" ng-model="PersonalItem.Phone" placeholder="座机" ng-pattern="/(\(\d{3,4}\)|\d{3,4}-|\s)?\d{8}/" class="span3"></li>

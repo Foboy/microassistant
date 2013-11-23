@@ -49,6 +49,7 @@ namespace MicroAssistantMvc
                           filterContext.RequestContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName].Value);
                        string currentToken = ticket.UserData;
                        int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(currentToken));
+                       
                     }
                     catch (Exception e)
                     {

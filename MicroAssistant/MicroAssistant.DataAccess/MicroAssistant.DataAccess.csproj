@@ -65,6 +65,7 @@
     <Compile Include="ProProductonDetailAccessor.cs" />
     <Compile Include="ResPicAccessor.cs" />
     <Compile Include="SysFunctionAccessor.cs" />
+    <Compile Include="SysLogAccessor.cs" />
     <Compile Include="SysRoleAccessor.cs" />
     <Compile Include="SysRoleFunctionAccessor.cs" />
     <Compile Include="SysRoleUserAccessor.cs" />
