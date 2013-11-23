@@ -9,6 +9,8 @@ using System.Resources;
 using MicroAssistant.Common;
 using System.Text;
 using System.IO;
+using System.Web.Security;
+using MicroAssistant.Cache;
 
 namespace MicroAssistantMvc
 {
@@ -23,6 +25,7 @@ namespace MicroAssistantMvc
 
 
             var parameters = filterContext.ActionDescriptor.GetParameters();
+            string strPar = JsonHelper.Serialize(parameters);
             foreach (var parameter in parameters)
             {
                 if (parameter.ParameterType == typeof(string))
@@ -35,6 +38,28 @@ namespace MicroAssistantMvc
                     //filterContext.ActionParameters[parameter.ParameterName] = filteredValue;
                 }
             }
+
+            if (FormsAuthentication.CookiesSupported)
+            {
+                if (filterContext.RequestContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                {
+                    try
+                    {
+                        FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(
+                          filterContext.RequestContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName].Value);
+                       string currentToken = ticket.UserData;
+                       int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(currentToken));
+                       
+                    }
+                    catch (Exception e)
+                    {
+                        // 票据解密失败
+
+                    }
+                }
+            }
+
+
             string res = JsonHelper.Serialize(filterContext.Result);
             //filterContext.HttpContext.Response.Write("执行之前ActionName" + des + "<br />");
         }
@@ -87,6 +112,26 @@ namespace MicroAssistantMvc
 
             string res = JsonHelper.Serialize(filterContext.Result);
 
+
+            if (FormsAuthentication.CookiesSupported)
+            {
+                if (filterContext.RequestContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                {
+                    try
+                    {
+                        FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(
+                          filterContext.RequestContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName].Value);
+                        string currentToken = ticket.UserData;
+                        int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(currentToken));
+                    }
+                    catch (Exception e)
+                    {
+                        // 票据解密失败
+
+                    }
+                }
+            }
+
             //filterContext.HttpContext.Response.Write("返回Result之前" + Message + "<br />");
         }
 
@@ -96,6 +141,25 @@ namespace MicroAssistantMvc
             base.OnResultExecuted(filterContext);
 
             string res = JsonHelper.Serialize(filterContext.Result);
+
+            if (FormsAuthentication.CookiesSupported)
+            {
+                if (filterContext.RequestContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+                {
+                    try
+                    {
+                        FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(
+                          filterContext.RequestContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName].Value);
+                        string currentToken = ticket.UserData;
+                        int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(currentToken));
+                    }
+                    catch (Exception e)
+                    {
+                        // 票据解密失败
+
+                    }
+                }
+            }
             //filterContext.HttpContext.Response.Write("返回Result之后" + Message + "<br />");
         }
 

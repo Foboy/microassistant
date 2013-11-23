@@ -1,4 +1,5 @@
-﻿    <div class="staffList">
+﻿<div id="staffmanagementZone">
+<div class="staffList">
         <h2>员工管理</h2>
         <ul ng-repeat="SysRole in SysRoles">
             <li><a href="" ng-click="SearchUserListByRoleId(SysRole.RoleId)" ng-class="selectedRoleid==SysRole.RoleId?'cur':''"><span>{{SysRole.RoleName}} （{{SysRole.Count}}）</span></a></li>
@@ -13,7 +14,7 @@
         </div>-->
         <div class="clearfix">
             <div class="peop-box" ng-repeat="SysUser in SysUsers" >
-                <img src="img/Adimg/h1.jpg">
+                <img src="img/Adimg/tx.png">
                 <div class="p-b-info">
                     <p>{{SysUser.UserName}}</p>
                     <p class="colorlight font12">{{SysUser.UserAccount}}</p>
@@ -36,5 +37,5 @@
             </div>
         </div>
     </div>
-
+</div>
 

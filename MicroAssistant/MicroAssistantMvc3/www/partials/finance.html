@@ -1,11 +1,11 @@
 <h1 class="titSec">财务管理</h1>
 <ul class="clearfix salesList financeList">
     <li ng-class="steps=='receivable'?'cur':''">
-        <a ng-href="#!/finance/receivable/0">应收款</a>
+        <a ng-href="#/finance/receivable/0">应收款</a>
         <span class="arrowD"></span>
     </li>
     <li ng-class="steps=='payable'?'cur':''">
-        <a ng-href="#!/finance/payable/0">应付款</a>
+        <a ng-href="#/finance/payable/0">应付款</a>
         <span class="arrowD"></span>
     </li>
 </ul>
@@ -13,7 +13,7 @@
     <span class="seCon">
         <input type="text" class="searchh setext" placeholder="Type something…"><input type="button" class="seBtn"></span>
 </div>-->
-<div class="tablePad finance_table" ng-show="steps=='receivable'?'true':'false'">
+<div class="tablePad finance_table" id="receivableList" ng-show="steps=='receivable'?'true':'false'">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -35,7 +35,7 @@
         </tbody>
     </table>
 </div>
-<div class="tablePad" ng-show="steps=='payable'?'true':'false'">
+<div class="tablePad" ng-show="steps=='payable'?'true':'false'" id="payablesList">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>

@@ -167,7 +167,7 @@ function UserMainCtrl($scope, $http, $location) {
             }
         }).error(function (data, status, headers, config) {
             alert('error');
-        })
+        }).lock({ selector: '#EditUserFormZone' });
     };
     $scope.GetCurrentUserInfo();
     $scope.EditUserInfo = function (data) {
@@ -180,7 +180,7 @@ function UserMainCtrl($scope, $http, $location) {
                 }
             }).error(function (data, status, headers, config) {
                 alert('error');
-            })
+            }).lock({ selector: '#EditUserFormZone' });
         }
     };
     //修改密码
@@ -196,12 +196,12 @@ function UserMainCtrl($scope, $http, $location) {
                     if (data.Error) {
                         alert(data.ErrorMessage, 'e');
                     } else {
-                        alert("修改成功",'s')
+                        alert("修改成功", 's')
                     }
                 }).
                 error(function (data, status, headers, config) {
                     alert("error")
-                });
+                }).lock({ selector: '#ChangePwdFormZone' });
             }
         }
         else {
@@ -222,7 +222,7 @@ function UserMainCtrl($scope, $http, $location) {
             }).
             error(function (data, status, headers, config) {
                 alert("error",'w')
-            });
+            }).lock({ selector: '#ChangeEmailFormZone' });
 
         }
         else {
@@ -239,11 +239,10 @@ function UserTimeShaftCtrl($scope, $http, $location) {
             } else {
                 alert(data.Error, 'e');
             }
-            console.log(data);
         }).
               error(function (data, status, headers, config) {
                   alert("error", 'w');
-              });
+              }).lock({ selector: '#mytimeshaftZone' });
     }
     $scope.LoadMyTimeShaft();
     $scope.ShowAddCompany = function () {
@@ -270,7 +269,7 @@ function AddCompanyCtrl($scope, $http, $location) {
             }).
             error(function (data, status, headers, config) {
                 //$scope.product = {};
-            });
+            }).lock({ selector: '#AddCompanyBox' });
         }
         else {
             $scope.showerror = true;
@@ -306,7 +305,6 @@ function StaffMangementCtrl($scope, $http, $location) {
             $http.post($sitecore.urls["SearchUserListByRoleId"], { roleId: RoleId }).success(function (data) {
                 if (!data.Error) {
                     $scope.SysUsers = data.Data;
-                    console.log($scope.SysUsers);
                     for (var i = 0; i < data.Data.length; i++) {
                         for (var j = 0; j < $scope.SelectedOptions.length; j++) {
                             if (data.Data[i].RoleId == $scope.SelectedOptions[j].RoleId) {
@@ -318,7 +316,7 @@ function StaffMangementCtrl($scope, $http, $location) {
                 } else { $scope.SysUsers = []; }
             }).error(function (data, status, headers, config) {
                 $scope.SysUsers = [];
-            });
+            }).lock({ selector: '#staffmanagementZone' });
         }
     };
     $scope.ChangeUserRole = function (item, user) {
@@ -344,8 +342,8 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
                     alert("修改成功",'s');
                 } else { }
             }).error(function (data, status, headers, config) {
-                $scope.SysUsers = [];
-            });
+                $scope.SysUsers = []; 
+            }).lock({ selector: '#ChangeEnterprsieZone' });
         } else {
             $scope.showerror = true;
         }
@@ -360,7 +358,7 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
                 } else { }
             }).error(function (data, status, headers, config) {
                 $scope.SysUsers = [];
-            });
+            }).lock({ selector: '#ChangeEnterprsieZone' });
         } else {
             $scope.showerror = true;
         }
@@ -375,6 +373,6 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
             }
         }).error(function (data, status, headers, config) {
             alert(data.ErrorMessage, 'e');
-        });
+        }).lock({ selector: '#ChangeEnterprsieZone' });
     }
 }

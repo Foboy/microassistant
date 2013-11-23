@@ -1,28 +1,41 @@
 function FinanceMainCtrl($scope, $routeParams, $http, $location) {
+    var $parent = $scope.$parent;
     $scope.steps = $routeParams.steps;
-    if (!$scope.steps)
+    if (!$scope.steps) {
         $scope.steps = "receivable";//应收款步骤
-    console.log($routeParams);
-    $scope.loadCurrentStepList = function (pageSize) {
+        $parent.receivableActPageIndex = 1;
+    } else {
+        $parent.payableActPageIndex = 1;
+    }
+    $scope.loadCurrentStepList = function (pageIndex) {
+        if (pageIndex == 0) pageIndex = 1;
         switch ($scope.steps) {
             case 'receivable'://应收款步骤
-                $http.post($sitecore.urls["receivablesfinanceList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: pageSize }).success(function (data) {
-                    console.log(data.Data);
-                    //$scope.ActPageIndex = $routeParams.pageIndex || 0;
-                    $scope.receivables = data.Data.Items;
+                $http.post($sitecore.urls["receivablesfinanceList"], { pageIndex: pageIndex - 1, pageSize: 10 }).success(function (data) {
+                    if (data.Error) {
+                        alert(data.ErrorMessage, 'e');
+                    } else {
+                        $scope.receivables = data.Data.Items;
+                        $parent.receivableActPageIndex = pageIndex;
+                        $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!finance/' + $scope.steps + '/{0}');
+                    }
                 }).error(function (data, status, headers, config) {
                     $scope.receivables = [];
-                });
+                }).lock({ selector: '#receivableList' });
                 break;
             case 'payable'://应付款步骤
-                $http.post($sitecore.urls["payablesfinanceList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: pageSize }).success(function (data) {
-                    console.log(data.Data);
-                    $scope.ActPageIndex = $routeParams.pageIndex || 0;
-                    $scope.payables = data.Data.Items;
+                $http.post($sitecore.urls["payablesfinanceList"], { pageIndex: pageIndex - 1, pageSize: 10 }).success(function (data) {
+                    if (data.Error) {
+                        alert(data.ErrorMessage, 'e');
+                    } else {
+                        $scope.payables = data.Data.Items;
+                        $parent.payableActPageIndex = pageIndex;
+                        $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!finance/' + $scope.steps + '/{0}');
+                    }
                     
                 }).error(function (data, status, headers, config) {
                     $scope.payables = [];
-                });
+                }).lock({ selector: '#payablesList' });
                 break;
         }
     };
@@ -33,7 +46,7 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
     $scope.MakeSurePayable = function () {
         $scope.$broadcast('EventMakeSurePayable', this.payableitem);//确认付款
     };
-    $scope.loadCurrentStepList(10);
+    $scope.loadCurrentStepList($routeParams.pageIndex || 1);
 }
 function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
     $scope.$on('EventShowReceivableDetail', function (event, item) {
@@ -61,7 +74,7 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
             }
         }).error(function (data, status, headers, config) {
             $scope.receivableDetailInfos = [];
-        });
+        }).lock({ selector: '#receivablesDetailBox' });
     };
     $scope.$on('EventMakeSurePayable', function (event, item) {
         $scope.MakeItem = item;
@@ -88,8 +101,7 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
             contractNo: item.ContractNo,
             rNum: item.InstalmentsNo
         }).success(function (data) {
-            if (!data.Error)
-            {
+            if (!data.Error) {
                 $scope.hideReceivableDetail();
             }
             console.log(data.Data);

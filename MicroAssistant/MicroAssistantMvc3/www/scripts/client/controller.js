@@ -1,26 +1,44 @@
 ﻿function ClientMainCtrl($scope, $routeParams, $http, $location) {
+    var $parent = $scope.$parent;
     $scope.sorts = $routeParams.sorts;
-    if (!$scope.sorts)
-        $scope.sorts = "enterprise";//企业
-    $scope.loadCurrentSortList = function () {
+    if (!$scope.sorts) {
+        $scope.sorts = "enterprise";
+        $parent.enterpriseActPageIndex = 1;
+    }//企业
+    else {
+        $parent.personalActPageIndex = 1;
+    }
+    $scope.loadCurrentSortList = function (pageIndex) {
+        if (pageIndex == 0) pageIndex = 1;
         switch ($scope.sorts) {
             case 'enterprise'://获取企业用户
-                $http.post($sitecore.urls["SearchCustomerEntByOwnerId"], { pageIndex: $routeParams.pageIndex || 0, pageSize: 20 }).success(function (data) {
-                    $scope.enterpriseclients = data.Data.Items;
+                $http.post($sitecore.urls["SearchCustomerEntByOwnerId"], { pageIndex: pageIndex - 1, pageSize: 10 }).success(function (data) {
+                    if (data.Error) {
+                        alert(data.ErrorMessage, 'e');
+                    } else {
+                        $scope.enterpriseclients = data.Data.Items;
+                        $parent.enterpriseActPageIndex = pageIndex;
+                        $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!client/' + $scope.sorts + '/{0}');
+                    }
                 }).error(function (data, status, headers, config) {
                     $scope.enterpriseclients = [];
-                });
+                }).lock({ selector: '#EClientList' });
                 break;
             case 'personal'://获取个人用户
-                $http.post($sitecore.urls["SearchCustomerPrivByOwnerId"], { pageIndex: $routeParams.pageIndex || 0, pageSize: 20 }).success(function (data) {
-                    $scope.personalclients = data.Data.Items;
+                $http.post($sitecore.urls["SearchCustomerPrivByOwnerId"], { pageIndex: pageIndex - 1, pageSize: 10 }).success(function (data) {
+                    if (data.Error) { alert(data.ErrorMessage, 'e'); } else
+                    {
+                        $scope.personalclients = data.Data.Items;
+                        $parent.personalActPageIndex = pageIndex;
+                        $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!client/' + $scope.sorts + '/{0}');
+                    }
                 }).error(function (data, status, headers, config) {
                     $scope.personalclients = [];
-                });
+                }).lock({ selector: '#PClientList' });
                 break;
         }
     };
-    $scope.loadCurrentSortList();
+    $scope.loadCurrentSortList($routeParams.pageIndex||1);
     $scope.ShowAddEnterpriseForm = function () {
         $scope.$broadcast('EventAddEnterprise', this.enterpriseclientItem);
     };
@@ -83,7 +101,7 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                     }).
                     error(function (data, status, headers, config) {
                         alert(data.ErrorMessage,'e');
-                    });
+                    }).lock({ selector: '#AddEnterpriseBox' });
                 }
                 else {
                     $scope.showerror = true;
@@ -142,7 +160,7 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                     }).
                     error(function (data, status, headers, config) {
                         //$scope.product = {};
-                    });
+                    }).lock({ selector: '#AddPersonalBox' });
                 }
                 else {
                     $scope.showerror = true;

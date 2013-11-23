@@ -121,8 +121,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdSearchCustomerEntByName
 
-            cmdSearchCustomerEntByName = new MySqlCommand(" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,ent_id,owner_id from customer_ent where ent_name = @EntName");
-            cmdSearchCustomerEntByName.Parameters.Add("@EntName", MySqlDbType.String);
+            cmdSearchCustomerEntByName = new MySqlCommand(" select customer_ent_id,ent_name,industy,contact_username,contact_mobile,contact_phone,contact_email,contact_qq,address,detail,ent_id,owner_id from customer_ent where {0} ");
 
             #endregion
         }
@@ -429,7 +428,8 @@ namespace MicroAssistant.DataAccess
             List<CustomerEnt> returnValue = new List<CustomerEnt>();
             try
             {
-                _cmdSearchCustomerEntByName.Parameters["@EntName"].Value = name;
+
+                _cmdSearchCustomerEntByName.CommandText = string.Format(_cmdSearchCustomerEntByName.CommandText, " ent_name like \"%" + name + "%\" ");
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
