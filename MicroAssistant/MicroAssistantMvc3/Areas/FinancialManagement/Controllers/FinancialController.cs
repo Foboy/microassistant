@@ -60,6 +60,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                                 rm.PayTime = hplist[0].PayTime;
                                 rm.ReceivedTime = hplist[0].ReceivedTime;
                                 rm.Amount = hplist[0].Amount;
+                                rm.IsAllRec = false;
                                 rmlist.Add(rm);
                             }
                             else
@@ -68,6 +69,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                                 rm.PayTime = hplist[hplist.Count - 1].PayTime;
                                 rm.ReceivedTime = hplist[hplist.Count - 1].ReceivedTime;
                                 rm.Amount = hplist[hplist.Count - 1].Amount;
+                                rm.IsAllRec = true;
                                 rmlist.Add(rm);
                             }
                         }
@@ -167,6 +169,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                         con = ContractInfoAccessor.Instance.Get(contractNo);
                         con.HowtopayList = ContractHowtopayAccessor.Instance.Search(contractNo, 0);
                         con.Chance = MarketingChanceAccessor.Instance.Get(con.ChanceId);
+                        con.OwnerName = SysUserAccessor.Instance.Get(con.OwnerId).UserName;
                         result.Error = AppError.ERROR_SUCCESS;
                         result.Data = con;
                     }

@@ -52,9 +52,15 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 操作人ID
+        /// 合同承办人ID
         /// </summary>
         public Int32 OwnerId
+        { get; set; }
+
+        /// <summary>
+        /// 操作人名称
+        /// </summary>
+        public string OwnerName
         { get; set; }
 
         /// <summary>

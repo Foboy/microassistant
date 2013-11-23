@@ -50,5 +50,11 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Models
         /// </summary>
         public DateTime ReceivedTime
         { get; set; }
+
+          /// <summary>
+          /// 是否全部收完
+          /// </summary>
+        public bool IsAllRec
+        { get; set; }
     }
 }
