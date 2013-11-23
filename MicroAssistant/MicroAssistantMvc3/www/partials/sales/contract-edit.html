@@ -20,16 +20,16 @@
         	        <li><span class="span1">客户名称：</span><span><input type="text" name="PName" ng-model="EditContract.CustomerName" ng-required="true" placeholder="请输入客户名称" class="span3"></span></li>
         	        <li><span class="span1">有效期：</span>
                         <span>
-                            <input type="text" name="PName" ng-model="EditContract.StartTime" ng-required="true" class="span3 form_datetime">
+                            <input type="text" name="PName" ng-model="EditContract.StartTime" readonly="readonly" ng-required="true" class="span3 form_datetime">
                             <br />
                             <span class="span1">&nbsp;</span> 至
                             <br />
-                            <span class="span1">&nbsp;</span><input type="text" name="PName" ng-model="EditContract.EndTime" ng-required="true" class="span3 form_datetime">
+                            <span class="span1">&nbsp;</span><input type="text" name="PName" readonly="readonly" ng-model="EditContract.EndTime" ng-required="true" class="span3 form_datetime">
         	            </span>
 
         	        </li>
         	        <li><span class="span1">承办人：</span><span><input type="text" name="PName" ng-model="EditContract.ManagerName" placeholder="合同承办人" class="span3"></span></li>
-        	        <li><span class="span1">签订时间：</span><span><input type="text" name="PName" ng-model="EditContract.ContractTime" ng-required="true" class="span3 form_datetime"></span></li>
+        	        <li><span class="span1">签订时间：</span><span><input type="text" name="PName"  ng-model="EditContract.ContractTime" ng-required="true" class="span3 form_datetime"></span></li>
                     <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" class="btn btn-large btn-block btn-success" ng-click="salesContractEditPage=2">付款信息</a></span></li>
                 </ul>
             </form>
@@ -56,7 +56,7 @@
                                 <li ng-repeat="payItem in EditContract.HowtopayList | filter:'display' track by payItem.$index">
                                     <span class="span1">&nbsp;</span>{{$index+1}}期:
                                     <input type="number" ng-model="payItem.Amount" class="span1"  ng-required="true"/>元
-                                    <input type="text" ng-click="ShowDatePicker($event)" ng-focus="ShowDatePicker($event)" item-index="{{payItem.$index}}" ng-model="payItem.PayTime" placeholder="时间"  class="span1" ng-required="true"/>
+                                    <input type="text" ng-click="ShowDatePicker($event)" readonly="readonly" ng-focus="ShowDatePicker($event)" item-index="{{payItem.$index}}" ng-model="payItem.PayTime" placeholder="时间"  class="span1" ng-required="true"/>
                                 </li>
                             </ul>
                          </span>
