@@ -428,6 +428,7 @@ namespace MicroAssistant.DataAccess
             List<CustomerEnt> returnValue = new List<CustomerEnt>();
             try
             {
+
                 _cmdSearchCustomerEntByName.CommandText = string.Format(_cmdSearchCustomerEntByName.CommandText, " ent_name like \"%" + name + "%\" ");
 
                 if (oc.State == ConnectionState.Closed)
