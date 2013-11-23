@@ -1,4 +1,4 @@
-﻿<div tabindex="-1" class="addclient modal hide fade" id="AddPersonalBox" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
+﻿<div tabindex="-1" class="addclient modal hide fade" id="AddPersonalBox" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true" style="width:800px">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myAPModalLabel">添加编辑个人客户</h3>
@@ -19,9 +19,9 @@
                             </label>
                         </span></li>
                         <li><span class="span1">出生日期：</span><span><input type="text" name="Birthday" ng-model="PersonalItem.Birthday" class="span3 " ng-pattern="/^(\d{4})(-|\/)(\d{1,2})\2(\d{1,2})$/" ng-required="true" id="DateControl"></span></li>
-                        <li><span class="span1">联系方式：</span><span><input type="text" name="Mobile" ng-model="PersonalItem.Mobile" placeholder="手机" class="span3"></span></li>
-                        <li><span class="span1"></span><span><input type="text" name="Email" ng-model="PersonalItem.Email" placeholder="邮箱" class="span3"></span></li>
-                        <li><span class="span1">&nbsp;</span><span><input type="text" name="Phone" ng-model="PersonalItem.Phone" placeholder="座机" class="span3"></li>
+                        <li><span class="span1">联系方式：</span><span><input type="text" name="Mobile" ng-model="PersonalItem.Mobile" placeholder="手机" ng-pattern="/^[1][358]\d{9}$/" class="span3"></span></li>
+                        <li><span class="span1"></span><span><input type="text" name="Email" ng-model="PersonalItem.Email" placeholder="邮箱" ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" class="span3"></span></li>
+                        <li><span class="span1">&nbsp;</span><span><input type="text" name="Phone" ng-model="PersonalItem.Phone" placeholder="座机" ng-pattern="/(\(\d{3,4}\)|\d{3,4}-|\s)?\d{8}/" class="span3"></li>
                         <li><span class="span1"></span><span><input type="text" name="Qq" ng-model="PersonalItem.Qq" placeholder="QQ" class="span3"></span></span></li>
                         <!--<li class="clearfix"><span class="span1">从事行业：</span><span><input type="text" name="Industy" ng-model="PersonalItem.Industy"  class="span3"></span></li>
             <li class="clearfix"><span class="span1">所在地：</span><span><input type="text" name="Address" ng-model="PersonalItem.Address"  class="span3"></span></li>-->

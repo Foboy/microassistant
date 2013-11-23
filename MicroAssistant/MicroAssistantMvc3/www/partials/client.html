@@ -17,7 +17,7 @@
    </span>
 </div>
 <!--企业客户信息区域-->
-<div class="tablePad" ng-show="sorts=='enterprise'?'true':'false'">
+<div class="tablePad" id="EClientList" ng-show="sorts=='enterprise'?'true':'false'">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -37,20 +37,19 @@
                 <td>{{enterpriseclientItem.Industy}}</td>
                 <td>{{enterpriseclientItem.ContactUsername}}</td>
                 <td>
-                    <p>{{enterpriseclientItem.ContactMobile}} {{enterpriseclientItem.ContactEmail}}</p>
-                    <p>{{enterpriseclientItem.ContactPhone}}</p>
+                    <p>{{enterpriseclientItem.ContactMobile||enterpriseclientItem.ContactPhone||enterpriseclientItem.ContactEmail}}</p>
                 </td>
                 <td>{{enterpriseclientItem.Address}}</td>
                 <td class="colorGray">
-                    <a href="" ng-click="ShowEnterpriseClientDetail(enterpriseclientItem)" role="button" data-toggle="modal">查看</a>|
-                    <a href="" ng-click="ShowAddEnterpriseForm()" role="button" data-toggle="modal">编辑</a>
+                    <a href="" ng-click="ShowEnterpriseClientDetail(enterpriseclientItem)" role="button" >查看</a>|
+                    <a href="" ng-click="ShowAddEnterpriseForm()" role="button" >编辑</a>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
  <!--个人客户信息区域-->
-<div class="tablePad" ng-show="sorts=='personal'?'true':'false'">
+<div class="tablePad" ng-show="sorts=='personal'?'true':'false'" id="PClientList">
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -74,9 +73,9 @@
                   <td class="colorg">{{personclientItem.Name}}</td>
                   <td>{{parseAgeFromBirthday(personclientItem.Birthday)}}</td>
                   <td>{{personclientItem.Industy}}</td>                  
-                  <td><p>{{personclientItem.Mobile}}</p><p>{{personclientItem.Email}}</p></td>
+                  <td><p>{{personclientItem.Mobile||personclientItem.Phone||personclientItem.Email}}</p></td>
                   <td>{{personclientItem.Address}}</td>
-                  <td class="colorGray"><a href="" ng-click="ShowPersonalClientDetail(personclientItem)" role="button" data-toggle="modal">查看</a>|<a href="" ng-click="ShowAddPersonalForm()" role="button" data-toggle="modal">编辑</a></td>
+                  <td class="colorGray"><a href="" ng-click="ShowPersonalClientDetail(personclientItem)" role="button">查看</a>|<a href="" ng-click="ShowAddPersonalForm()" role="button" >编辑</a></td>
                 </tr>
               </tbody>
             </table>

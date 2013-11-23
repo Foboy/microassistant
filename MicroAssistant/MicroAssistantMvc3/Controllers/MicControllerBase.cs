@@ -5,6 +5,7 @@ using MicroAssistant.Meta;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -178,6 +179,15 @@ namespace MicroAssistantMvc.Controllers
         //添加用户入职记录
         protected void AddUserTimeMachine(int userId, int changeType, int roleId)
         {
+            Task tt = new Task(() => {
+                AddUTM(userId, changeType, roleId);
+            });
+            tt.Start();
+        }
+
+        //添加用户入职记录
+        private void AddUTM(int userId, int changeType, int roleId)
+        {
             /*
              * changeType
              * 1用户注册
@@ -189,6 +199,7 @@ namespace MicroAssistantMvc.Controllers
             SysUserTimemachine ut = new SysUserTimemachine();
             SysUser user = new SysUser();
             user = SysUserAccessor.Instance.Get(userId);
+
             switch (changeType)
             {
                 case 1:
@@ -198,9 +209,9 @@ namespace MicroAssistantMvc.Controllers
                         ut.EntName = SysUserAccessor.Instance.Get(user.EntId).UserName;
                         ut.RoleName = "未审核";
                     }
-                        ut.UserId = userId;
-                        ut.UserName = user.UserName;
-                       
+                    ut.UserId = userId;
+                    ut.UserName = user.UserName;
+
                     ut.StartTime = DateTime.Now;
                     SysUserTimemachineAccessor.Instance.Insert(ut);
                     break;
@@ -233,6 +244,16 @@ namespace MicroAssistantMvc.Controllers
                     break;
                 default:
                     break;
+            }
+
+            List<SysUserTimemachine> utlist = new List<SysUserTimemachine>();
+            utlist = SysUserTimemachineAccessor.Instance.Search(userId);
+            SysUserTimemachine oldut = new SysUserTimemachine();
+            if (utlist.Count > 1)
+            {
+                oldut = utlist[1];
+                oldut.EndTime = DateTime.Now;
+                SysUserTimemachineAccessor.Instance.Update(oldut);
             }
 
 

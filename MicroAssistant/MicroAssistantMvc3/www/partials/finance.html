@@ -13,7 +13,7 @@
     <span class="seCon">
         <input type="text" class="searchh setext" placeholder="Type something…"><input type="button" class="seBtn"></span>
 </div>-->
-<div class="tablePad finance_table" ng-show="steps=='receivable'?'true':'false'">
+<div class="tablePad finance_table" id="receivableList" ng-show="steps=='receivable'?'true':'false'">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -26,16 +26,16 @@
         </thead>
         <tbody>
             <tr ng-repeat="receivableitem in receivables">
-                <td class="colorlight">1</td>
+                <td class="colorlight">{{$index+1}}</td>
                 <td>{{receivableitem.CustomerName}}</td>
                 <td >{{receivableitem.ContractNo}}</td>
                 <td><span class="money">{{receivableitem.Amount}}元</span>/<b class="colorBlue">{{parseJsonDate(receivableitem.ReceivedTime)|date:'yyyy/MM/dd'}}</b></td>
-                <td ><a href="" role="button" ng-click="ShowReceivableDetail(receivableitem)" data-toggle="modal">详情</a>|<a href="" ng-click="ShowReceivableDetail(receivableitem)" role="button" data-toggle="modal">确认收款</a></td>
+                <td ><a href="" role="button" ng-click="ShowReceivableDetail(receivableitem)" >详情</a>|<a href="" ng-click="ShowReceivableDetail(receivableitem)" role="button" >确认收款</a></td>
             </tr>
         </tbody>
     </table>
 </div>
-<div class="tablePad" ng-show="steps=='payable'?'true':'false'">
+<div class="tablePad" ng-show="steps=='payable'?'true':'false'" id="payablesList">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -50,13 +50,13 @@
         </thead>
         <tbody>
             <tr ng-repeat="payableitem in payables">
-                <td class="colorlight">1</td>
+                <td class="colorlight">{{$index+1}}</td>
                 <td>{{payableitem.PCode}}</td>
                 <td class="colorBlue">{{payableitem.Price}}</td>
                 <td>{{payableitem.PNum}} 件</td>
                 <td class="colorRed">{{payableitem.Price*payableitem.PNum| currency:''}}</td>
                 <td>{{parseJsonDate(payableitem.CreateTime)|date:'yyyy/MM/dd'}}</td>
-                <td class="colorGray"><a href="" ng-click="MakeSurePayable()" role="button" data-toggle="modal" ng-hide="payableitem.IsPay==2">确认付款</a>{{payableitem.IsPay==2?'已付款':''}}</td>
+                <td class="colorGray"><a href="" ng-click="MakeSurePayable()" role="button"  ng-hide="payableitem.IsPay==2">确认付款</a>{{payableitem.IsPay==2?'已付款':''}}</td>
             </tr>
         </tbody>
     </table>

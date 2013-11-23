@@ -2,7 +2,7 @@
     $scope.funnelTimeType = 1;
     $scope.funnelTimeTypeLabel = '本月';
     $scope.oppTimeType = 1;
-    $scope.oppTimeTypeLabel = '按月';
+    $scope.oppTimeTypeLabel = '本月';
     $scope.financeTimeType = 1;
     $scope.financeTimeTypeLabel = '本月';
     $scope.salesFunnelList = [];
@@ -30,13 +30,13 @@
         $scope.oppTimeType = timeType;
         switch (timeType) {
             case 1:
-                $scope.oppTimeTypeLabel = '按月';
+                $scope.oppTimeTypeLabel = '本月';
                 break;
             case 2:
-                $scope.oppTimeTypeLabel = '按季';
+                $scope.oppTimeTypeLabel = '本季度';
                 break;
             case 3:
-                $scope.oppTimeTypeLabel = '按年';
+                $scope.oppTimeTypeLabel = '本年度';
                 break;
         }
         $scope.loadSalesOpp();

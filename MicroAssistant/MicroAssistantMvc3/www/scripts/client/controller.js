@@ -9,14 +9,14 @@
                     $scope.enterpriseclients = data.Data.Items;
                 }).error(function (data, status, headers, config) {
                     $scope.enterpriseclients = [];
-                });
+                }).lock({ selector: '#EClientList' });
                 break;
             case 'personal'://获取个人用户
                 $http.post($sitecore.urls["SearchCustomerPrivByOwnerId"], { pageIndex: $routeParams.pageIndex || 0, pageSize: 20 }).success(function (data) {
                     $scope.personalclients = data.Data.Items;
                 }).error(function (data, status, headers, config) {
                     $scope.personalclients = [];
-                });
+                }).lock({ selector: '#PClientList' });
                 break;
         }
     };
@@ -83,7 +83,7 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                     }).
                     error(function (data, status, headers, config) {
                         alert(data.ErrorMessage,'e');
-                    });
+                    }).lock({ selector: '#AddEnterpriseBox' });
                 }
                 else {
                     $scope.showerror = true;
@@ -142,7 +142,7 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                     }).
                     error(function (data, status, headers, config) {
                         //$scope.product = {};
-                    });
+                    }).lock({ selector: '#AddPersonalBox' });
                 }
                 else {
                     $scope.showerror = true;

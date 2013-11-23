@@ -12,7 +12,7 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
                     $scope.receivables = data.Data.Items;
                 }).error(function (data, status, headers, config) {
                     $scope.receivables = [];
-                });
+                }).lock({ selector: '#receivableList' });
                 break;
             case 'payable'://Ó¦¸¶¿î²½Öè
                 $http.post($sitecore.urls["payablesfinanceList"], { pageIndex: $routeParams.pageIndex || 0, pageSize: pageSize }).success(function (data) {
@@ -22,7 +22,7 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
                     
                 }).error(function (data, status, headers, config) {
                     $scope.payables = [];
-                });
+                }).lock({ selector: '#payablesList' });
                 break;
         }
     };
@@ -61,7 +61,7 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
             }
         }).error(function (data, status, headers, config) {
             $scope.receivableDetailInfos = [];
-        });
+        }).lock({ selector: '#receivablesDetailBox' });
     };
     $scope.$on('EventMakeSurePayable', function (event, item) {
         $scope.MakeItem = item;
@@ -88,8 +88,7 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
             contractNo: item.ContractNo,
             rNum: item.InstalmentsNo
         }).success(function (data) {
-            if (!data.Error)
-            {
+            if (!data.Error) {
                 $scope.hideReceivableDetail();
             }
             console.log(data.Data);
