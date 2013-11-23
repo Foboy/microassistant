@@ -65,7 +65,7 @@
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th></th>
                   <th width="30%">机会描述</th>
                   <th width="20%">共拜访</th>
                   <th width="20%">赢率</th>
@@ -89,12 +89,12 @@
             <table class="table table-bordered table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th></th>
                   <th width="25%">合同名称</th>
                   <th width="20%">合同编号</th>
                   <th width="15%">客户</th>
-                  <th width="15%">合同金额</th>
-                  <th width="15%">合同时间</th>
+                  <th width="12%">合同金额</th>
+                  <th width="18%">合同时间</th>
                   <th width="10%">&nbsp;</th>
                 </tr>
               </thead>
@@ -104,8 +104,8 @@
                   <td>{{contract.CName}}</td>
                   <td >{{contract.ContractNo}}</td>
                   <td >{{contract.CustomerName}}</td>
-                  <td>{{contract.Amount | currency:''}}</td>
-                  <td>{{parseJsonDate(contract.StartTime,'yyyy/MM/dd')}}<span>至</span>{{parseJsonDate(contract.EndTime,'yyyy/MM/dd')}}</td>
+                  <td class="colorRed">{{contract.Amount | currency:''}}</td>
+                  <td class="colorlight font12">{{parseJsonDate(contract.StartTime,'yyyy/MM/dd')}}<span>至</span>{{parseJsonDate(contract.EndTime,'yyyy/MM/dd')}}</td>
                   <td class="colorGray"><a href="" role="button" ng-click="showContractDetail()">详情</a></td>
                 </tr>
               </tbody>

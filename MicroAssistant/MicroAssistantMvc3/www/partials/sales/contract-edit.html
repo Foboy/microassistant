@@ -1,18 +1,16 @@
-﻿<div id="salesContractEditModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+﻿<div id="salesContractEditModal" ng-controller="SalesContractEditCtrl" class="modal addht hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
         <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myPEModalLabel">添加合同</h3>
       </div>
-      <div class="modal-body" style="max-height:600px;"  ng-controller="SalesContractEditCtrl">
-        <div class="popupBox clearfix">
-    	<div class="listBox">
+      <div class="listBox">
             <ul>
             	<li ng-class="salesContractEditPage==1?'cur':''" ng-click="salesContractEditPage=1"><i>1</i>合同信息</li>
                 <li ng-class="salesContractEditPage==2?'cur':''" ng-click="salesContractEditPage=2"><i>2</i>合同付款</li>
                 <li ng-class="salesContractEditPage==3?'cur':''" ng-click="salesContractEditPage=3"><i>3</i>合同附件</li>
             </ul>
         </div>
-        <div class="madeBox" ng-show="salesContractEditPage==1" id="salesContractEditPageOne">
+      <div class="madeBox" ng-show="salesContractEditPage==1" id="salesContractEditPageOne">
             <form name="SalesContractEditFormOne" ng-class="showerror1?'showerror':''">
                 <ul class="listContent">
         	        <li><span class="span1">合同编号：</span><span><input type="text" name="PName" ng-model="EditContract.ContractNo" ng-required="true" placeholder="请输入合同编号" class="span3"></span></li>
@@ -20,26 +18,22 @@
         	        <li><span class="span1">客户名称：</span><span><input type="text" name="PName" ng-model="EditContract.CustomerName" ng-required="true" placeholder="请输入客户名称" class="span3"></span></li>
         	        <li><span class="span1">有效期：</span>
                         <span>
-                            <input type="text" name="PName" ng-model="EditContract.StartTime" ng-required="true" class="span3 form_datetime">
-                            <br />
-                            <span class="span1">&nbsp;</span> 至
-                            <br />
-                            <span class="span1">&nbsp;</span><input type="text" name="PName" ng-model="EditContract.EndTime" ng-required="true" class="span3 form_datetime">
+                            <input type="text" style="width:105px;" name="PName" ng-model="EditContract.StartTime" ng-required="true" class="span3 form_datetime"> 至
+                            <input type="text" style="width:105px; margin-left:10px;" name="PName" ng-model="EditContract.EndTime" ng-required="true" class="span3 form_datetime">
         	            </span>
 
         	        </li>
         	        <li><span class="span1">承办人：</span><span><input type="text" name="PName" ng-model="EditContract.ManagerName" placeholder="合同承办人" class="span3"></span></li>
         	        <li><span class="span1">签订时间：</span><span><input type="text" name="PName" ng-model="EditContract.ContractTime" ng-required="true" class="span3 form_datetime"></span></li>
-                    <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" class="btn btn-large btn-block btn-success" ng-click="salesContractEditPage=2">付款信息</a></span></li>
+                    <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" class="btn btn-block btn-danger" ng-click="salesContractEditPage=2">下一步</a></span></li>
                 </ul>
             </form>
         </div>
-        <div class="madeBox" ng-show="salesContractEditPage==2" id="salesContractEditPageTwo">
+      <div class="madeBox" ng-show="salesContractEditPage==2" id="salesContractEditPageTwo">
             <form name="SalesContractEditFormTwo" ng-class="showerror2?'showerror':''">
                 <ul class="listContent">
-        	        <li><span class="span1">合同金额：</span><span><input type="number" ng-model="EditContract.Amount" ng-required="true" placeholder="合同金额" class="span3"></span></li>
+        	        <li><span class="span1">合同总额：</span><span><input type="number" ng-model="EditContract.Amount" ng-required="true" placeholder="合同金额" class="span3"></span></li>
                     <li><span class="span1">付款方式：</span>
-                        <span>
                             <select class="span3" name="Howtopay" ng-model="EditContract.Howtopay" ng-change="ContractPayChanced()">
                                 <option value="0">一次结清</option>
                                 <option value="1">分期付款</option>
@@ -51,21 +45,19 @@
                                 <option value="12">十二期</option>
                                 <option value="24">二十四期</option>
 			                </select>
-                            <br />
-                            <ul>
-                                <li ng-repeat="payItem in EditContract.HowtopayList | filter:'display' track by payItem.$index">
+                            <ul class="fq_input">
+                                <li class="colorlight" ng-repeat="payItem in EditContract.HowtopayList | filter:'display' track by payItem.$index">
                                     <span class="span1">&nbsp;</span>{{$index+1}}期:
-                                    <input type="number" ng-model="payItem.Amount" class="span1"  ng-required="true"/>元
-                                    <input type="text" ng-click="ShowDatePicker($event)" ng-focus="ShowDatePicker($event)" item-index="{{payItem.$index}}" ng-model="payItem.PayTime" placeholder="时间"  class="span1" ng-required="true"/>
+                                    <input type="number" ng-model="payItem.Amount" ng-required="true"/>元 <span class="jianju">&nbsp;</span>
+                                    <input type="text" ng-click="ShowDatePicker($event)" ng-focus="ShowDatePicker($event)" item-index="{{payItem.$index}}" ng-model="payItem.PayTime" placeholder="付款时间" ng-required="true"/>
                                 </li>
                             </ul>
-                         </span>
                     </li>
-                    <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" class="btn btn-large btn-block btn-success" ng-click="SalesContractEditSubmit()">确 定</a><a href="" class="btn btn-large btn-block btn-success" ng-click="SalesContractEditFormTwo.$valid? (salesContractEditPage=3):(showerror2=true)">合同附件</a></span></li>
+                    <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" class="btn btn-block btn-danger" ng-click="SalesContractEditSubmit()">确 定</a><a href="" class="btn btn-large btn-block btn-primary" ng-click="SalesContractEditFormTwo.$valid? (salesContractEditPage=3):(showerror2=true)">合同附件</a></span></li>
                 </ul>
                 </form>
         </div>
-        <div class="madeBox" ng-show="salesContractEditPage==3">
+      <div class="madeBox" ng-show="salesContractEditPage==3">
             <div class="textpact" ng-repeat="attachment in EditContract.attachments">
                 <i class="textIcon"></i>
                 <div class="textNam">{{attachment.PicDescription}}</div>
@@ -74,9 +66,7 @@
             </div>
             <div id="salesContractFileQueue"></div>
             <ul class="listContent">
-                <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a id="salesContractUpload" href="" class="btn btn-large btn-block btn-success" >上传附件</a><a href="" class="btn btn-large btn-block btn-success" ng-click="SalesContractEditSubmit()">确 定</a></span></li>
+                <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a id="salesContractUpload" href="" class="btn btn-large btn-block btn-primary" >上传附件</a><a href="" class="btn btn-large btn-block btn-primary" ng-click="SalesContractEditSubmit()">保存</a></span></li>
             </ul>
         </div>
-    </div>
-      </div>
-    </div>
+</div>
