@@ -84,7 +84,7 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
         $http.post($sitecore.urls["makeSurePay"], { PCode: $scope.MakeItem.PCode }).success(function (data) {
             if (!data.Error) {
                 $("#makesurePayBox").modal('hide');
-                $scope.loadCurrentStepList(10);
+                $scope.loadCurrentStepList($routeParams.pageIndex || 1);
             } else {
                 alert("»∑»œ ß∞‹£°");
             }
@@ -103,8 +103,8 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
         }).success(function (data) {
             if (!data.Error) {
                 $scope.hideReceivableDetail();
+                $scope.loadCurrentStepList($routeParams.pageIndex || 1);
             }
-            console.log(data.Data);
         }).error(function (data, status, headers, config) {
             $scope.hideReceivableDetail();
         });

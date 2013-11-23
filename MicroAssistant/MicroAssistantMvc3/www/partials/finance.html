@@ -29,8 +29,8 @@
                 <td class="colorlight">{{$index+1}}</td>
                 <td>{{receivableitem.CustomerName}}</td>
                 <td >{{receivableitem.ContractNo}}</td>
-                <td><span class="money">{{receivableitem.Amount}}元</span>/<b class="colorBlue">{{parseJsonDate(receivableitem.ReceivedTime)|date:'yyyy/MM/dd'}}</b></td>
-                <td ><a href="" role="button" ng-click="ShowReceivableDetail(receivableitem)" >详情</a>|<a href="" ng-click="ShowReceivableDetail(receivableitem)" role="button" >确认收款</a></td>
+                <td><span class="money">{{receivableitem.Amount}}元</span><b class="colorBlue">{{parseJsonDate(receivableitem.ReceivedTime)|date:'yyyy/MM/dd'}}</b></td>
+                <td ><a href="" role="button" ng-click="ShowReceivableDetail(receivableitem)" >详情</a>{{receivableitem.IsAllRec?'':'|'}}<a href="" ng-hide="{{receivableitem.IsAllRec}}" ng-click="ShowReceivableDetail(receivableitem)" role="button" >确认收款</a></td>
             </tr>
         </tbody>
     </table>
