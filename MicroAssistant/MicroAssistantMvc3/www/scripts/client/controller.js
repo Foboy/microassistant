@@ -96,7 +96,7 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                         }
                         else {
                             $("#AddEnterpriseBox").modal('hide');
-                            $scope.loadCurrentSortList();
+                            $scope.loadCurrentSortList($routeParams.pageIndex || 1);
                         }
                     }).
                     error(function (data, status, headers, config) {
@@ -155,7 +155,7 @@ function AddClientCtrl($scope, $routeParams, $http, $location) {
                         else {
                             alert("保存成功", 's');
                             $("#AddPersonalBox").modal('hide');
-                            $scope.loadCurrentSortList();
+                            $scope.loadCurrentSortList($routeParams.pageIndex || 1);
                         }
                     }).
                     error(function (data, status, headers, config) {
