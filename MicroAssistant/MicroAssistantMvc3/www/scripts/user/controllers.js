@@ -293,12 +293,13 @@ function StaffMangementCtrl($scope, $http, $location) {
                 for (var i = 1; i < $scope.SysRoles.length; i++) {
                     $scope.SelectedOptions.push($scope.SysRoles[i]);
                 }
+                $scope.SearchUserListByRoleId(0);
             } else { $scope.SysRoles = []; }
         }).error(function (data, status, headers, config) {
             $scope.SysRoles = [];
         });
     }
-    $scope.SearchEntRole();
+    $scope.SearchEntRole();//初始化
     $scope.SearchUserListByRoleId = function (RoleId) {
         if (RoleId != null) {
             $scope.selectedRoleid = RoleId;
@@ -320,7 +321,6 @@ function StaffMangementCtrl($scope, $http, $location) {
             });
         }
     };
-    $scope.SearchUserListByRoleId(0);
     $scope.ChangeUserRole = function (item, user) {
         $http.post($sitecore.urls["UpdateUserRole"], { userId: user.UserId, roleId: item.RoleId }).success(function (data) {
             if (!data.Error) {
