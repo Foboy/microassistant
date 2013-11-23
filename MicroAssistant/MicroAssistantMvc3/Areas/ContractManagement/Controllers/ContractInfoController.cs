@@ -38,11 +38,25 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                     Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                     return Res;
                 }
-                int ownerid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+
+                UserType userType = UserType.User;
+                int sid = CurrentUser.UserId;
+
+                if (CheckUserFunction("18"))
+                {
+                    userType = UserType.Boss;
+                    sid = CurrentUser.EntId;
+                }
+                if (CheckUserFunction("13"))
+                {
+                    userType = UserType.Admin;
+                    sid = CurrentUser.EntId;
+                }
+                    
                 try
                 {
                     PageEntity<ContractInfo> list = new PageEntity<ContractInfo>();
-                    list = ContractInfoAccessor.Instance.Search(ownerid, pageIndex, pageSize);
+                    list = ContractInfoAccessor.Instance.Search(userType, sid, pageIndex, pageSize);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = list;
 
