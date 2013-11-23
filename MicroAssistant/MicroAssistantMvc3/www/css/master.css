@@ -179,7 +179,7 @@ a{text-decoration:none;}
 .navList li:hover .clientIcon,.navList li.cur .clientIcon{background-position:-2px -419px; float:left;}
 .navList li:hover .peopleIcon,.navList li.cur .peopleIcon{background-position:-1px -150px;float:left;}
 
-.conBox{position:relative; margin-left:170px; min-height:530px;background:#FFFFFF; max-width:1286px; top:50px;}
+.conBox{position:relative; margin-left:170px;height:100%;background:#FFFFFF; max-width:1286px; top:50px;}
 .titSec{height:30px; line-height:30px; color:#34495e; font-size:20px; font-weight:normal; font-family:"微软雅黑"; padding:5px 0 10px 15px; margin:0;}
 .goodsList{border-bottom:4px solid #f25749; margin-left:0; padding-left:20px;}
 .goodsList li{ text-align:center; float:left; list-style:none; margin:0 20px; cursor:pointer; height:90px; position:relative;}
@@ -282,10 +282,9 @@ a{text-decoration:none;}
 /*===客户管理 END===*/
 
 /*=== 悬浮窗口 ===*/
-.floatBox{width:350px; min-height:800px;  position:absolute; z-index:999; right:0; top:0; overflow:hidden;}
-.floatBox .fBg{background:#ECF0F5;width:100%; min-height:800px; position:absolute; right:0; top:0; z-index:1000;filter:alpha(opacity=98); /* IE */ -moz-opacity:0.98; /* Moz + FF */ opacity: 0.98;}
-.floatBox .fCon{position:absolute; z-index:1001;width:100%; right:0; top:0;}
-.floatBox .fCon .arrR{ margin:10px; position:absolute; margin:5px; left:1px;}
+.floatBox{position:fixed; overflow-y:scroll; overflow-x:hidden; height:100%; z-index:999; background:#ECF0F5;width:100%;filter:alpha(opacity=98); /* IE */ -moz-opacity:0.98; /* Moz + FF */ opacity: 0.98;}
+.floatBox .fCon{ z-index:1001;width:100%; right:0; top:0; height:100%;}
+.floatBox .fCon .arrR{ margin:10px;  margin:5px; left:1px;}
 .floatBox .fCon ul.ul-f1{list-style:none; float:left; margin:30px 0 0 0;}
 .floatBox .fCon ul.ul-f1 li{font-size:16px; height:45px;}
 .floatBox .fCon ul.ul-f1 li .namS,.floatBox .fCon ul.ul-f1 li .conS,.floatBox .fCon ul.ul-f1 li .editIcon{float:left; display:inline-block;}
@@ -328,7 +327,7 @@ a{text-decoration:none;}
 .ul-f2 li .li-conb{float:left; padding-left:12px;}
 .visit_time{float:left; width:70px; height:22px; line-height:22px; margin-right:8px; text-align:center; margin-left:-70px; font-size:12px; background-color:#248FAF; color:#fff; border-radius:2px;}
 .miaoshuborder { border:1px solid #DDDDDD; margin-bottom:8px;}
-.ul-f2 li .cir-w{display:inline-block; width:22px; height:22px; background:url("../img/icon.png") no-repeat scroll -169.5px -509px; text-align:center; float:right;}
+.ul-f2 li .cir-w{display:inline-block; width:23px; height:22px; background:url("../img/icon.png") no-repeat scroll -169.5px -509px; text-align:center; float:right;}
 .cir-icon {display:inline-block; width:20px; height:20px; background-position:-173px -508px;float:right;}
 .ul-f2 li .li-boxs{position:relative; width:400px; min-height:120px; margin:8px 0 0 9px; background:#FFFFFF;}
 .jiantou_i{display:inline-block; width:10px; height:15px; background:url(../img/icon.png) no-repeat -182px -218px; position:absolute; left:-9px; top:0;}
@@ -396,7 +395,7 @@ a{text-decoration:none;}
 .ul-f3 li .li-boxs{position:relative; width:300px; min-height:100px; padding-top:20px; margin:8px 0 0 9px; background:#FFFFFF;}
 .ul-f3 li .li-boxs i{display:inline-block; width:10px; height:15px; background:url(../img/icon.png) no-repeat -182px -248px; position:absolute; left:-9px; top:0;}
 .ul-f3 li .tim-list{height:40px; line-height:40px; color:#999;}
-.ul-f3 li .tim-list div{width:140px; text-align:right; float:left; font-weight:bold;}
+ li .tim-list div{width:140px; text-align:right; float:left; font-weight:bold;}
 .prouBox{width:600px;}
 .prouBox .pact-ul{width:550px;}
 .ul-f4 li .li-boxs{background:#f5f5f5; width:330px;}
