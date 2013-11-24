@@ -27,24 +27,18 @@
                               </div>
                               <div class="rate-cur">
                                 <i class="rate-icon "></i>
-                            	<div class="rate-show" id="rateShowPanle" ng-click="visitDetailRateEdit($event)">
+                            	<div class="rate-show" id="rateShowPanle" ng-click="changeRateShow()">
                                 	当前赢率：{{chance.Rate}}%
                                 </div>   
                                </div>
                         </div>
                         
-                    	<div class="title-f clearfix hide">
-                
-                                <div class="rate-show" id="salesRateEditePanle">
+                    	<div class="hide" id="salesRateEditePanleBox">
+                                <div class="rate-show" id="salesRateEditePanle" style="width:150px;">
                                     <form name="SalesRateChangeFrom">
-                                        <input type="text" ng-model="NewRate" ng-required="true" />
-                                        <div class="alter">
-                                            <b></b>
-                                            <div>
-                                                <a href="" ng-click="changeRateSubmit()">保存</a>
-                                                <a href="" ng-click="rateEditPanleShow=false">取消</a>
-                                            </div>
-                                        </div>
+                                        <input type="text" ng-model="NewRate" ng-required="true" style="width:50px;height:20px;display:inline;" />
+                                        <a href="javascript:void(0)" ng-click="changeRateSubmit()">保存</a>
+                                        <a href="javascript:void(0)" ng-click="changeRateCancel()">取消</a>
                                     </form>
                                 </div>
                             </div>

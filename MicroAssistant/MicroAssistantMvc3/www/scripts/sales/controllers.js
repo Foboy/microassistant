@@ -209,7 +209,7 @@ function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) 
 function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
     var chance;
     $("#visitDetailBox").hide();
-    $('#rateShowPanle').popover({ content: $("#salesRateEditePanle"), placement: 'bottom', html: true });
+
     $scope.$on('EventVisitDetail', function (event, from) {
         console.log(from)
         chance = from.chance || from.cvisit;
@@ -326,13 +326,25 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	        $scope.showerror = true;
 	    }
 	};
-	$scope.visitDetailRateEdit = function (ev) {
-	    $('#rateShowPanle').popover('show');
+	$scope.changeRateShow = function () {
+	    if ($('#rateShowPanle').data('popover')) {
+	        $scope.changeRateCancel();
+	    }
+	    else {
+	        $('#rateShowPanle').popover({ content: $("#salesRateEditePanle"), placement: 'bottom', html: true, trigger: 'manual' });
+	        $('#rateShowPanle').popover('show');
+	    }
+	}
+	$scope.changeRateCancel = function () {
+	    var parent = $("#salesRateEditePanle").parent();
+	    $('#salesRateEditePanleBox').append($("#salesRateEditePanle"));
+	    parent.append($("#salesRateEditePanle").clone());
+	    $('#rateShowPanle').popover('destroy');
 	};
 	$scope.changeRateSubmit = function () {
 	    if ($scope.chance.Rate == $scope.NewRate)
 	    {
-	        $scope.rateEditPanleShow = false;
+	        $scope.changeRateCancel();
 	        return;
 	    }
 	    if ($scope.SalesRateChangeFrom.$valid) {
@@ -344,15 +356,12 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	            }
 	            else {
 	                $scope.chance.Rate = $scope.NewRate;
-	                $scope.rateEditPanleShow = false;
+	                $scope.changeRateCancel();
 	            }
 	        }).
             error(function (data, status, headers, config) {
                 //$scope.product = {};
             });
-	    }
-	    else {
-	        $scope.rateEditPanleShow = false;
 	    }
 	};
 	$scope.addNewVisit = function (ev) {
