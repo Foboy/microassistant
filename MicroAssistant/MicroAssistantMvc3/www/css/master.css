@@ -41,7 +41,7 @@ a{text-decoration:none;}
 .flat-l{float:left;}
 .flat-r{float:right;}
 /*===  图标样式 ===*/
-.homeIcon,.peopleIcon,.productIcon,.saleIcon,.financeIcon,.clientIcon,.ht_criw,.askIcon,.arrowD,.pcIcon,.maker_info,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon,.boy-icon,.girl-icon,.b-i,.g-i,.sales-oppr-icon,.visit-icon,.contract-icon,.sales-follow-icon,.com-pIcon,.sim-pIcon,.email-icon,.num-icon,.rate-icon,.cir-icon,.maker{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
+.homeIcon,.peopleIcon,.productIcon,.saleIcon,.financeIcon,.boss_arrow_left,.boss_arrow_right,.clientIcon,.ht_criw,.askIcon,.arrowD,.pcIcon,.maker_info,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon,.boy-icon,.girl-icon,.b-i,.g-i,.sales-oppr-icon,.visit-icon,.contract-icon,.sales-follow-icon,.com-pIcon,.sim-pIcon,.email-icon,.num-icon,.rate-icon,.cir-icon,.maker{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
 .pcIcon{background-position:-60px -139px; width:29px; height:27px;}
 .homeIcon{background-position:-31px -122px; width:18px; height:16px;}
 .homeIcon:hover{background-position:-1px -122px;}
@@ -607,6 +607,8 @@ left: -10px; top:0px;
 .finance-box .time-s li{width:160px; height:30px; margin:0 45px; line-height:30px; float:left;list-style:none; text-align:center;}
 .finance-box .m-s li span{ display:block; width:80px; text-align:center; color:#666666;}
 .ysyf {width:80px; text-align:center; color:#666666;}
+.boss_arrow_left{ background-position:-254px -492px; width:45px; height:45px;}
+.boss_arrow_right{background-position:-254px -547px; width:45px; height:45px;}
 /*老板模式 END*/
 
 /*search*/
