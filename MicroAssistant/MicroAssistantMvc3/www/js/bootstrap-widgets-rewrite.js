@@ -10,94 +10,61 @@
 !function ($) {
 
     "use strict"; // jshint ;_;
+    var displayPopover;
 
+    var CoolPopover = function (element, options) {
+        var $element = element;
+        var $content = options.content;
+        var $contentContainer = $content.parent();
+        var display = false;
+        var me = this;
 
-    /* POPOVER PUBLIC CLASS DEFINITION
-     * =============================== */
+        $content.find('.class').click(function () {
+            me.hide();
+        });
 
-    var Popover = function (element, options) {
-        this.init('popover', element, options)
-    }
-
-
-    /* NOTE: POPOVER EXTENDS BOOTSTRAP-TOOLTIP.js
-       ========================================== */
-
-    Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype, {
-
-        constructor: Popover
-
-    , setContent: function () {
-        var $tip = this.tip()
-          , title = this.getTitle()
-          , content = this.getContent()
-
-        $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
-        $tip.find('.popover-content')[this.options.html ? 'html' : 'text'](content)
-
-        $tip.removeClass('fade top bottom left right in')
-    }
-
-    , hasContent: function () {
-        return this.getTitle() || this.getContent()
-    }
-
-    , getContent: function () {
-        var content
-          , $e = this.$element
-          , o = this.options
-
-        content = (typeof o.content == 'function' ? o.content.call($e[0]) :  o.content)
-          || $e.attr('data-content')
-
-        return content
-    }
-
-    , tip: function () {
-        if (!this.$tip) {
-            this.$tip = $(this.options.template)
+        this.id = Math.round(Math.random() * 9999);
+        this.show = function () {
+            options.trigger = 'manual';
+            $element.popover(options);
+            $element.popover('show');
+            display = true;
+            if (displayPopover && displayPopover.hasShow() && displayPopover.id != this.id)
+            {
+                displayPopover.hide();
+            }
+            displayPopover = this;
+        };
+        this.hide = function () {
+            var popoverContainer = $content.parent();
+            $contentContainer.append($content);
+            popoverContainer.append($content.clone());
+            $element.popover('destroy');
+            display = false;
+        };
+        this.toggle = function () {
+            if (display) {
+                this.hide();
+                display = false;
+            }
+            else {
+                this.show();
+                display = true;
+            }
+        };
+        this.hasShow = function () {
+            return display;
         }
-        return this.$tip
     }
 
-    , destroy: function () {
-        this.hide().$element.off('.' + this.type).removeData(this.type)
-    }
-
-    })
-
-
-    /* POPOVER PLUGIN DEFINITION
-     * ======================= */
-
-    var old = $.fn.popover
-
-    $.fn.popover = function (option) {
+    $.fn.coolpopover = function (option) {
         return this.each(function () {
             var $this = $(this)
-              , data = $this.data('popover')
+              , data = $this.data('coolpopover')
               , options = typeof option == 'object' && option
-            if (!data) $this.data('popover', (data = new Popover(this, options)))
+            if (!data) $this.data('coolpopover', (data = new CoolPopover($this, options)))
             if (typeof option == 'string') data[option]()
         })
-    }
-
-    $.fn.popover.Constructor = Popover
-
-    $.fn.popover.defaults = $.extend({} , $.fn.tooltip.defaults, {
-        placement: 'right'
-    , trigger: 'click'
-    , content: ''
-    , template: '<div class="popover"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
-    })
-
-
-    /* POPOVER NO CONFLICT
-     * =================== */
-
-    $.fn.popover.noConflict = function () {
-        $.fn.popover = old
-        return this
     }
 
 }(window.jQuery);
