@@ -17,6 +17,7 @@
                     <div class="chanceB-r">
                        <div class="visit_title">
                             <img src="img/timelinejh.png"/>
+
                             <div class="visit_title_content">
                                 <h4 class="colorRed">销售机会描述</h4>
                                 <div class="colorlight visit_title_info ">{{chance.Remark}}</div>
@@ -34,11 +35,11 @@
                         </div>
                         
                     	<div class="hide">
-                                <div class="rate-show" id="salesRateEditePanle" style="width:150px;">
+                                <div class="rate-show" id="salesRateEditePanle" style="width:200px; height:27px; line-height:27px;">
                                     <form name="SalesRateChangeFrom">
-                                        <input type="text" ng-model="NewRate" ng-required="true" style="width:50px;height:20px;display:inline;" />
-                                        <a href="javascript:void(0)" ng-click="changeRateSubmit()">保存</a>
-                                        <a href="javascript:void(0)" ng-click="changeRateCancel()">取消</a>
+                                        <input type="text" ng-model="NewRate" ng-required="true" style="width:100px; float:left; height:25px;display:inline; padding:0px; margin:0px; border-radius:0px; border:1px solid #ccc;" />
+                                        <a href="javascript:void(0)" class="yl_a_btn" ng-click="changeRateSubmit()">保存</a>
+                                        <a href="javascript:void(0)" class="yl_a_btn_canle" ng-click="changeRateCancel()">取消</a>
                                     </form>
                                 </div>
                             </div>

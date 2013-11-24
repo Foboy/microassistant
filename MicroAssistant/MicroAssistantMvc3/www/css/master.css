@@ -41,7 +41,7 @@ a{text-decoration:none;}
 .flat-l{float:left;}
 .flat-r{float:right;}
 /*===  图标样式 ===*/
-.homeIcon,.peopleIcon,.productIcon,.saleIcon,.financeIcon,.clientIcon,.ht_criw,.askIcon,.arrowD,.pcIcon,.maker_info,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon,.boy-icon,.girl-icon,.b-i,.g-i,.sales-oppr-icon,.visit-icon,.contract-icon,.sales-follow-icon,.com-pIcon,.sim-pIcon,.email-icon,.num-icon,.rate-icon,.cir-icon,.maker{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
+.homeIcon,.peopleIcon,.productIcon,.saleIcon,.financeIcon,.boss_arrow_left,.boss_arrow_right,.clientIcon,.ht_criw,.askIcon,.arrowD,.pcIcon,.maker_info,.phoneIcon,.addG,.addBtn,.delBtn,.arrR,.editIcon,.editIcon2,.aClose,.mapIcon,.closeIcon,.peo-wIcon,.tel-wIcon,.textIcon,.downloadIcon,.drawIcon,.boy-icon,.girl-icon,.b-i,.g-i,.sales-oppr-icon,.visit-icon,.contract-icon,.sales-follow-icon,.com-pIcon,.sim-pIcon,.email-icon,.num-icon,.rate-icon,.cir-icon,.maker{background:url(../img/icon.png) no-repeat; display:inline-block; border:none;}
 .pcIcon{background-position:-60px -139px; width:29px; height:27px;}
 .homeIcon{background-position:-31px -122px; width:18px; height:16px;}
 .homeIcon:hover{background-position:-1px -122px;}
@@ -365,7 +365,7 @@ left: -10px; top:0px;
 .sign-pact{width:140px; float:right;}
 .sign-pact a{width:140px; line-height:40px; height:40px; background-color:#F25749; color:#fff; display:block; text-align:center;}
 .sign-pact a:hover { text-decoration:none; color:#fff;}
-.rate-cur{float:right; margin-right:15px; background:#16A085;padding: 10px 10px 11px; }
+.rate-cur{float:right; margin-right:15px; background:#16A085;padding: 10px 10px 11px; cursor:pointer; }
 .rate-icon { float:left; background-position:-168px -466px; width:20px; height:20px;}
 .rate-show{position:relative; z-index:1005; width:130px; line-height:20px; font-size:16px; color:#FFFFFF; text-align:center;}
 .alter{text-align:center; width:140px; position:absolute; top:40px;}
@@ -607,6 +607,8 @@ left: -10px; top:0px;
 .finance-box .time-s li{width:160px; height:30px; margin:0 45px; line-height:30px; float:left;list-style:none; text-align:center;}
 .finance-box .m-s li span{ display:block; width:80px; text-align:center; color:#666666;}
 .ysyf {width:80px; text-align:center; color:#666666;}
+.boss_arrow_left{ background-position:-254px -492px; width:45px; height:45px;}
+.boss_arrow_right{background-position:-254px -547px; width:45px; height:45px;}
 /*老板模式 END*/
 
 /*search*/
@@ -618,3 +620,7 @@ left: -10px; top:0px;
 .load-line{width:257px; height:4px; background:url(../img/loading.png) no-repeat 0 -37px; margin:10px 0 0 29px;}
 .load-line .load-up{background:url(../img/loading.png) no-repeat 0 -22px; height:4px; position:relative; }
 .load-line .load-up b{display:inline-block; width:13px; height:13px; background:url(../img/loading.png) no-repeat -3px 0; margin-top:-5px; float:right;}
+
+/*提示框*/
+.yl_a_btn { display:inline-block; font-size:12px; width:35px; float:left; margin:3px 0 0 6px; height:18px; line-height:18px; background-color:#16A085; color:#fff; text-align:center; text-decoration:none;}
+.yl_a_btn_canle { display:inline-block; font-size:12px; width:35px;float:left; margin:3px 0 0 6px;  height:18px; line-height:18px; background-color:#ddd; color:#fff; text-align:center; text-decoration:none;}
