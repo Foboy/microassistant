@@ -31,7 +31,7 @@
                             var loadingUrl = 'index.html';
 
                             if ($scope.hasPermission(27)) {
-                                loadingUrl = "boss.html";
+                                loadingUrl = "index.html#/boss";
                             }
                             else {
                                 loadingUrl = "index.html";
