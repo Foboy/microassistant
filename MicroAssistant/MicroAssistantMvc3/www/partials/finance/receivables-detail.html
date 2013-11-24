@@ -1,27 +1,45 @@
-﻿<div class="floatBox pactBox" id="receivablesDetailBox" style="width: 0; right: 0; top: 0;">
-    <div class="fBg"></div>
+﻿<div class="floatBox" id="receivablesDetailBox" style="width: 0; right: 0; top: 0;">
+    <!--<div class="fBg"></div>-->
     <div class="fCon clearfix" ng-controller="FinaceDetailCtrl">
         <i class="arrR" ng-click="hideReceivableDetail()" ></i>
         <ul class="pact-ul clearfix">
             <li ng-class="tabIndex==1?'cur':''" ng-click="tabIndex=1">合同详情</li>
             <li ng-class="tabIndex==2?'cur':''" ng-click="tabIndex=2">合同动态</li>
         </ul>
-        <ul class="ul-f1" ng-show="tabIndex==1" >
-            <li class="clearfix"><span class="colorBlue namS">合同名字：</span><span class="conS">{{receivableDetailInfos.CName}}
+        <ul class="finance_info_ul" ng-show="tabIndex==1" >
+            <li class="clearfix"><span class="draw_title">合同名字：</span><span class="draw_content">{{receivableDetailInfos.CName}}
             </span></li>
-            <li class="clearfix"><span class="colorBlue namS">合同编号：</span><span class="conS">{{receivableDetailInfos.ContractNo}}
+            <li class="clearfix"><span class=" draw_title">合同编号：</span><span class="draw_content">{{receivableDetailInfos.ContractNo}}
             </span></li>
-            <li class="clearfix"><span class="colorBlue namS">合同总额：</span><span class="conS">{{receivableDetailInfos.Amount | currency:''}}</span></li>
-            <li class="clearfix"><span class="colorBlue namS">合同签署日期：</span><span class="conS">{{parseJsonDate(receivableDetailInfos.ContractTime,'yyyy/MM/dd')}}</span></li>
-            <li class="clearfix"><span class="colorBlue namS">合同承办人：</span><span class="conS">{{receivableDetailInfos.OwnerName}}
+            <li class="clearfix"><span class=" draw_title">合同总额：</span><span class="draw_content">{{receivableDetailInfos.Amount | currency:''}}</span></li>
+            <li class="clearfix"><span class=" draw_title">合同签署日期：</span><span class="draw_content">{{parseJsonDate(receivableDetailInfos.ContractTime,'yyyy/MM/dd')}}</span></li>
+            <li class="clearfix"><span class=" draw_title">合同承办人：</span><span class="draw_content">{{receivableDetailInfos.OwnerName}}
             </span></li>
-            <li class="clearfix"><span class="colorBlue namS">合同联系人：</span><span class="conS">{{receivableDetailInfos.CustomerName}}
+            <li class="clearfix"><span class=" draw_title">合同联系人：</span><span class="draw_content">{{receivableDetailInfos.CustomerName}}
             </span></li>
-            <li class="clearfix"><span class="colorBlue namS">联系方式：</span><span class="conS">{{receivableDetailInfos.Chance.Tel}}
+            <li class="clearfix"><span class=" draw_title">联系方式：</span><span class="draw_content">{{receivableDetailInfos.Chance.Tel}}
             </span></li>
         </ul>
-        <ul class="ul-f3" ng-show="tabIndex==2" ng-repeat="howpayItem in howpaylists">
-            <li ng-class="howpayItem.Isreceived==1?'clearfix cur':'clearfix '">
+        <div class="finance_info_ul" ng-show="tabIndex==2">
+          <img class="finance_htimg" src="img/htsk.png" />
+          <div  ng-repeat="howpayItem in howpaylists" ng-class="howpayItem.Isreceived==1?'clearfix cur':'clearfix '" >
+              <div class="ht_date">{{$index+1}}期</div>
+              <div class="ht_content">
+                    <div class="ht_datecontent">
+                        <i></i>
+                        <div class="ht_dateinfo colorlight">合同收款时间:
+                           <span class="colorRed">{{parseJsonDate(howpayItem.PayTime,'yyyy/MM/dd')}}</span>
+                        </div>
+                        <div class="ht_dateinfo colorlight" ng-show="howpayItem.Isreceived==2">实际收款时间:
+                            <span class="colorRed">{{parseJsonDate(howpayItem.ReceivedTime,'yyyy/MM/dd')}}</span>
+                        </div>
+                        <div class="ht_datebtn" ng-show="howpayItem.Isreceived==1">
+                            <a ng-click="makeSureTimesReceivable(howpayItem)" href="">确认收款</a>
+                        </div>
+                    </div>
+                </div>
+            
+            <!--<li ng-class="howpayItem.Isreceived==1?'clearfix cur':'clearfix '">
                 <div class="li-timeb colorRed">
                     {{$index+1}}期
                             <span class="cir-w"><i></i></span>
@@ -42,7 +60,8 @@
                         </div>
                     </div>
                 </div>
-            </li>
-        </ul>
+            </li>-->
+        </div>
     </div>
+   </div>
 </div>
