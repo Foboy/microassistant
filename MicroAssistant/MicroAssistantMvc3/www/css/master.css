@@ -282,6 +282,10 @@ left: -10px; top:0px;
 .sale_ht_dateinfo { margin-bottom:10px; height:20px; line-height:20px;}
 .sale_ht_dateinfo span { display:inline-block; line-height:20px; height:20px; margin-left:10px;}
 
+.chance_ht_ul { margin:20px 0 0 0; width: 500px; float:left; overflow:hidden;}
+.chance_ht_ul li{font-size:16px; height:45px; line-height:45px; border-bottom:1px solid #F9F9F9; list-style:none;}
+.chance_bf_btn { padding:50px 0 0 150px; height:40px; overflow:hidden; }
+
 /*=== 销售管理 END ===*/
 
 /*=== 财务管理 ===*/
@@ -302,6 +306,8 @@ left: -10px; top:0px;
 .draw_content_width_c { width:240px;}  
 .draw_content_width_k{ width:330px;}
 .draw_content_width_sale{ width:330px;}
+.draw_content_width_chance{ width:330px;}
+
 
 
 .finance_htimg { margin:0 0 20px 0px;}
@@ -344,7 +350,7 @@ left: -10px; top:0px;
 .redBtn{width:500px;}
 .redBtn a{width:200px;height:15px; margin:20px 0 0 110px;}
 .floatW900{width:900px;}
-.contentbaifang { margin:0px 0 0 40px;}
+.contentbaifang { margin:20px 0 0 40px;}
 .chanceB-l{float:left; width:210px; height:100px; padding:5px; background:#FFFFFF; line-height:24px; font-size:14px; overflow:hidden;}
 .visit_title {display:block; width:760px; height:80px; position:relative;}
 .visit_line {display:block; width:720px; height:25px; position:relative; margin-top:-10px; margin-left:34px; border-left:3px solid #248FAF;}
