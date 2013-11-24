@@ -27,15 +27,15 @@
                               </div>
                               <div class="rate-cur">
                                 <i class="rate-icon "></i>
-                            	<div class="rate-show" ng-hide="rateEditPanleShow" ng-dblclick="rateEditPanleShow=true">
+                            	<div class="rate-show" id="rateShowPanle" ng-click="visitDetailRateEdit($event)">
                                 	当前赢率：{{chance.Rate}}%
                                 </div>   
                                </div>
                         </div>
                         
-                    	<!--<div class="title-f clearfix">
+                    	<div class="title-f clearfix hide">
                 
-                                <div class="rate-show" ng-show="rateEditPanleShow">
+                                <div class="rate-show" id="salesRateEditePanle">
                                     <form name="SalesRateChangeFrom">
                                         <input type="text" ng-model="NewRate" ng-required="true" />
                                         <div class="alter">
@@ -48,7 +48,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>-->
+                        </div>
                     </div>
                        
                        <div class="visit_line"></div>
