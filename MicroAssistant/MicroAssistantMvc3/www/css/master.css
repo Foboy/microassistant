@@ -365,7 +365,7 @@ left: -10px; top:0px;
 .sign-pact{width:140px; float:right;}
 .sign-pact a{width:140px; line-height:40px; height:40px; background-color:#F25749; color:#fff; display:block; text-align:center;}
 .sign-pact a:hover { text-decoration:none; color:#fff;}
-.rate-cur{float:right; margin-right:15px; background:#16A085;padding: 10px 10px 11px; }
+.rate-cur{float:right; margin-right:15px; background:#16A085;padding: 10px 10px 11px; cursor:pointer; }
 .rate-icon { float:left; background-position:-168px -466px; width:20px; height:20px;}
 .rate-show{position:relative; z-index:1005; width:130px; line-height:20px; font-size:16px; color:#FFFFFF; text-align:center;}
 .alter{text-align:center; width:140px; position:absolute; top:40px;}
@@ -618,3 +618,7 @@ left: -10px; top:0px;
 .load-line{width:257px; height:4px; background:url(../img/loading.png) no-repeat 0 -37px; margin:10px 0 0 29px;}
 .load-line .load-up{background:url(../img/loading.png) no-repeat 0 -22px; height:4px; position:relative; }
 .load-line .load-up b{display:inline-block; width:13px; height:13px; background:url(../img/loading.png) no-repeat -3px 0; margin-top:-5px; float:right;}
+
+/*提示框*/
+.yl_a_btn { display:inline-block; font-size:12px; width:35px; float:left; margin:3px 0 0 6px; height:18px; line-height:18px; background-color:#16A085; color:#fff; text-align:center; text-decoration:none;}
+.yl_a_btn_canle { display:inline-block; font-size:12px; width:35px;float:left; margin:3px 0 0 6px;  height:18px; line-height:18px; background-color:#ddd; color:#fff; text-align:center; text-decoration:none;}
