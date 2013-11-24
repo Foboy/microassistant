@@ -357,19 +357,36 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	$scope.addChanceVisit = function () {
 	    if ($scope.SalesAddChanceVisitFrom.$valid) {
 	        $scope.showerror = false;
-	        $http.post($sitecore.urls["salesAddChanceVisits"], { cid: chance.IdmarketingChance, visitType: $scope.EditVisit.VisitType, remark: $scope.EditVisit.Remark, amount: $scope.EditVisit.Amount, address: $scope.combineAdderess() }).success(function (data) {
+	        $http.post(
+                $scope.EditVisit.IdmarketingVisit ? $sitecore.urls["salesEditChanceVisits"] : $sitecore.urls["salesAddChanceVisits"], {
+	            cid: chance.IdmarketingChance,
+	            vid: $scope.EditVisit.IdmarketingVisit,
+	            visitType: $scope.EditVisit.VisitType,
+	            remark: $scope.EditVisit.Remark,
+	            amount: $scope.EditVisit.Amount,
+	            address: $scope.combineAdderess()
+	        }).success(function (data) {
 	            console.log(data);
 	            if (data.Error) {
 	                alert(data.ErrorMessage);
 	            }
 	            else {
-	                var addedvisit = angular.copy($scope.EditVisit);
-	                addedvisit.Address = $scope.combineAdderess();
-	                $scope.chance_visits.unshift(addedvisit);
-	                $scope.addvisitpanleshow = false;
-	                $scope.visitFormReset();
-	                chance.LastVisitTime = new Date();
-	                chance.VisitNum = (chance.VisitNum || 0) + 1;
+	                if ($scope.EditVisit.IdmarketingVisit)
+	                {
+	                    angular.extend($scope.EditVisit_SourceObject, $scope.EditVisit);
+	                    $scope.EditVisit = angular.copy(emptyVisit);
+	                    $scope.addNewVisit();
+	                }
+                    else
+	                {
+	                    var addedvisit = angular.copy($scope.EditVisit);
+	                    addedvisit.Address = $scope.combineAdderess();
+	                    $scope.chance_visits.unshift(addedvisit);
+	                    $scope.addvisitpanleshow = false;
+	                    $scope.visitFormReset();
+	                    chance.LastVisitTime = new Date();
+	                    chance.VisitNum = (chance.VisitNum || 0) + 1;
+	                }
 	            }
 	        }).
             error(function (data, status, headers, config) {
@@ -440,6 +457,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	$scope.editExistVisit = function (ev) {
 	    $scope.VisitNewNum = $scope.parseVisitNum(this.$index - $scope.chance_visits.length);
 	    $scope.EditVisit = angular.copy(this.visit);
+	    $scope.EditVisit_SourceObject = this.visit;
 	    $("#visitEditBox").siblings('.li-boxs').show();
 	    $(ev.target).parents('.li-boxs').hide().after($("#visitEditBox"));
 	    $scope.addvisitpanleshow = true;
