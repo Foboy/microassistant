@@ -52,7 +52,7 @@
             <tr ng-repeat="payableitem in payables">
                 <td class="colorlight">{{$index+1}}</td>
                 <td class="colorlight">{{payableitem.PCode}}</td>
-                <td class="colorRed">{{payableitem.Price}}</td>
+                <td class="colorRed">{{payableitem.Price}}元</td>
                 <td class="colorRed">{{payableitem.PNum}} 件</td>
                 <td class="colorRed">{{payableitem.Price*payableitem.PNum| currency:''}}</td>
                 <td class="colorlight">{{parseJsonDate(payableitem.CreateTime)|date:'yyyy/MM/dd'}}</td>

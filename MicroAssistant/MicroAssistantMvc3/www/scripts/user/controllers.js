@@ -115,6 +115,8 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
                         else {
                             $scope.EntCode = data.Data.EntCode;
                             $.fancybox.open($('#enterpriseCodePanle'), {
+                                'width': 370,
+                                'height':320,
                                 'closeBtn': false,
                                 helpers: {
                                     overlay: null
