@@ -1,9 +1,9 @@
-﻿<div tabindex="-1" class="addclient modal hide fade" id="AddPersonalBox" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true" style="width:800px">
+﻿<div tabindex="-1" class="addclient modal hide fade" id="AddPersonalBox" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myAPModalLabel">添加编辑个人客户</h3>
+        <h3 id="myAPModalLabel">添加个人客户</h3>
     </div>
-    <div class="modal-body" ng-controller="AddClientCtrl">
+    <div class="" ng-controller="AddClientCtrl">
             <div class="madeBox" >
                 <form ng-class="showerror?'showerror':''" name="AddPersonalForm">
                     <ul class="listContent">
@@ -25,7 +25,7 @@
                         <li><span class="span1"></span><span><input type="text" name="Qq" ng-model="PersonalItem.Qq" placeholder="QQ" class="span3"></span></span></li>
                         <!--<li class="clearfix"><span class="span1">从事行业：</span><span><input type="text" name="Industy" ng-model="PersonalItem.Industy"  class="span3"></span></li>
             <li class="clearfix"><span class="span1">所在地：</span><span><input type="text" name="Address" ng-model="PersonalItem.Address"  class="span3"></span></li>-->
-                        <li><span class="span1">个人信息：</span><span><textarea style="width: 350px;" name="Detail" ng-model="PersonalItem.Detail"></textarea></span></li>
+                        <li><span class="span1">客户简介：</span><span><textarea style="width: 350px;" name="Detail" ng-model="PersonalItem.Detail"></textarea></span></li>
                         <li><span class="span1">&nbsp;</span><span class="spanBtn clearfix"><a href="" ng-click="AddPersonalSubmit()" class="btn btn-block btn-danger">保 存</a></span></li>
                     </ul>
                 </form>

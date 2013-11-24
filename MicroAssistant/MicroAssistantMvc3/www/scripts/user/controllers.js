@@ -322,14 +322,14 @@ function StaffMangementCtrl($scope, $http, $location) {
     $scope.ChangeUserRole = function (item, user) {
         $http.post($sitecore.urls["UpdateUserRole"], { userId: user.UserId, roleId: item.RoleId }).success(function (data) {
             if (!data.Error) {
-                alert("修改成功",'s');
-                window.location.reload();
+                alert("修改成功", 's');
+                $scope.SearchEntRole();
             } else {
                 alert(data.ErrorMessage, 'e');
             }
         }).error(function (data, status, headers, config) {
 
-        });
+        })
     }
 }
 function EnterPriseInfoCtrl($scope, $http, $location) {
