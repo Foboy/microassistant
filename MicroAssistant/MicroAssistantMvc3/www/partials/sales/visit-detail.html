@@ -90,18 +90,18 @@
                                           </div>
                                             </form>
                                             <div class="hide">
-                                                <div id="addressInputPanle">
+                                                <div id="addressInputPanle" style="width:250px; height:27px; line-height:27px;">
                                                     <form name="SalesVisitAddressInputFrom" ng-class="showerror1?'showerror':''">
-                                                        <input type="text" ng-model="EditVisit.NewAddress" ng-required="true" style="display:inline;" />
-                                                        <a href="javascript:void(0)" ng-click="newAddressSubmit()">保存</a>
-                                                        <a href="javascript:void(0)" ng-click="newAddressCancel()">取消</a>
+                                                        <input type="text" ng-model="EditVisit.NewAddress" ng-required="true"  style="width:150px; float:left; height:25px;display:inline; padding:0px; margin:0px; border-radius:0px; border:1px solid #ccc;" />
+                                                        <a href="javascript:void(0)" class="yl_a_btn" ng-click="newAddressSubmit()">保存</a>
+                                                        <a href="javascript:void(0)" class="yl_a_btn_canle" ng-click="newAddressCancel()">取消</a>
                                                     </form>
                                                 </div>
-                                                <div id="priceInputPanle">
+                                                <div id="priceInputPanle" style="width:200px; height:27px; line-height:27px;">
                                                     <form name="SalesVisitPriceInputFrom" ng-class="showerror2?'showerror':''">
-                                                        <input type="number" ng-model="EditVisit.NewAmount" ng-required="true" style="display:inline;" />
-                                                        <a href="javascript:void(0)" ng-click="newAmountSubmit()">保存</a>
-                                                        <a href="javascript:void(0)" ng-click="newAmountCancel()">取消</a>
+                                                        <input type="number" ng-model="EditVisit.NewAmount" ng-required="true"  style="width:100px; float:left; height:25px;display:inline; padding:0px; margin:0px; border-radius:0px; border:1px solid #ccc;" />
+                                                        <a href="javascript:void(0)" class="yl_a_btn" ng-click="newAmountSubmit()">保存</a>
+                                                        <a href="javascript:void(0)" class="yl_a_btn_canle" ng-click="newAmountCancel()">取消</a>
                                                     </form>
                                                 </div>
                                             </div>
