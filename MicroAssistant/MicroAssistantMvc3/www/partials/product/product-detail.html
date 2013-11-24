@@ -37,11 +37,11 @@
                       <tbody>
                         <tr  ng-repeat="store in stores">
                           <td class="colorlight">{{$index+1}}</td>
-                          <td class="colorlight">20130515090301001</td>
+                          <td class="colorlight">{{store.PCode}}</td>
                           <td class="colorRed ">{{store.Price| currency:''}}</td>
                           <td class="colorlight">{{store.PNum}}</td>
                           <td class="colorRed ">{{(store.PNum || 0)*(store.Price||0)| currency:''}}</td>
-                          <td class="colorlight">2013/04/13</td>
+                          <td class="colorlight">{{parseJsonDate(store.CreateTime,'yyyy/MM/dd')}}</td>
                         </tr>
                         
                       </tbody>
@@ -62,11 +62,11 @@
                       <tbody>
                         <tr  ng-repeat="store in stores">
                           <td class="colorlight">{{$index+1}}</td>
-                          <td class="colorlight">20130515090301001</td>
+                          <td class="colorlight">{{store.PCode}}</td>
                           <td class="colorRed ">{{store.Price| currency:''}}</td>
                           <td class="colorlight">{{store.PNum}}</td>
                           <td class="colorRed ">{{(store.PNum || 0)*(store.Price||0)| currency:''}}</td>
-                          <td class="colorlight">2013/04/13</td>
+                          <td class="colorlight">{{parseJsonDate(store.CreateTime,'yyyy/MM/dd')}}</td>
                         </tr>
                         
                       </tbody>

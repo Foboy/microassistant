@@ -89,6 +89,9 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 	$scope.showChanceDetail = function(){
 	    $scope.$broadcast('EventChanceDetail', this);
 	};
+	$scope.editChance = function () {
+	    $scope.$broadcast('EventAddChance', this);
+	};
 	$scope.showVisitDetail = function(){
 	    $scope.$broadcast('EventVisitDetail', this);
 	};
@@ -206,6 +209,7 @@ function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) 
 function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
     var chance;
     $("#visitDetailBox").hide();
+    $('#rateShowPanle').popover({ content: $("#salesRateEditePanle"), placement: 'bottom', html: true });
     $scope.$on('EventVisitDetail', function (event, from) {
         console.log(from)
         chance = from.chance || from.cvisit;
@@ -214,7 +218,8 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
         $scope.chanceVisitDetail();
         $scope.visitFormReset();
         $("#visitDetailBox").show();
-		$("#visitDetailBox").animate({width:"800px"},500);
+        $("#visitDetailBox").animate({ width: "800px" }, 500);
+
 		//加载机会数据
     });
     
@@ -321,7 +326,9 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	        $scope.showerror = true;
 	    }
 	};
-
+	$scope.visitDetailRateEdit = function (ev) {
+	    $('#rateShowPanle').popover('show');
+	};
 	$scope.changeRateSubmit = function () {
 	    if ($scope.chance.Rate == $scope.NewRate)
 	    {
@@ -384,7 +391,6 @@ function SalesContractDetailCtrl($scope, $routeParams, $http, $location) {
 	});
 	
     $scope.hideContractDetail = function () {
-        debugger;
 	    $("#contractDetailBox").animate({ width: "0px" }, 400, function () { $("#contractDetailBox").hide(); });
 	    
 	};
@@ -399,6 +405,7 @@ function SalesAfterDetailCtrl($scope, $routeParams, $http, $location){
 
 function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
     var from;
+    var chance;
     console.log('SalesChanceEditCtrl')
     console.log($element)
     $scope.$on('EventAddChance', function (event, fromscope) {
@@ -406,14 +413,38 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
         console.log(fromscope);
         console.log($scope);
         from = fromscope;
-        $scope.EditChance =$scope.EditChance ||  { ChanceType: 1, CustomerType: 1, Isasyn: false };
+        chance = fromscope.chance || {};
+        $scope.EditChance = chance.IdmarketingChance ? angular.copy(chance) : { ChanceType: 1, CustomerType: 1 };
         $('#addChanceModal').modal('show');
     });
+
+    $scope.contactNameChange = function () {
+        $http.post($scope.EditChance.CustomerType == 1 ? $sitecore.urls["salesSearchCustomerEntByName"] : $sitecore.urls["salesSearchCustomerPrivateByName"], {
+            name: $scope.EditChance.ContactName
+        }).success(function (data) {
+            console.log(data)
+            var datasource = [];
+            $scope.searchCustomers = data.Data;
+            for (var i = 0; i < data.Data.length; i++)
+            {
+                datasource.push(data.Data[i].ContactUsername);
+            }
+            $('#salesChanceContactNameInput').data('typeahead', null);
+            $('#salesChanceContactNameInput').typeahead({ source: datasource });
+        }).
+        error(function (data, status, headers, config) {
+
+        });
+
+    };
+
     $scope.SalesAddChanceSubmit = function () {
         console.log($scope.EditChance)
         if ($scope.SalesAddChanceForm.$valid) {
             $scope.showerror = false;
-            $http.post($sitecore.urls["salesAddChance"], {
+
+            $http.post(chance.IdmarketingChance ? $sitecore.urls["salesChanceEdit"] : $sitecore.urls["salesAddChance"], {
+                cid: chance.IdmarketingChance || 0,
                 chanceType: $scope.EditChance.ChanceType,
                 customerType: $scope.EditChance.CustomerType,
                 username: $scope.EditChance.ContactName,
@@ -422,17 +453,25 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
                 phone: $scope.EditChance.Phone,
                 email: $scope.EditChance.Email,
                 qq: $scope.EditChance.Qq,
-                Isasyn: $scope.EditChance.Isasyn
+                customerId: $scope.EditChance.UserId ||0
             }).success(function (data) {
                 console.log(data);
                 if (data.Error) {
                     alert(data.ErrorMessage);
                 }
                 else {
-                    if (from && angular.isArray(from.chances)) {
+                    if (from && angular.isArray($scope.chances)) {
                         $scope.EditChance.IdmarketingChance = data.Id;
                         $scope.EditChance.AddTime = new Date();
-                        from.chances.push(angular.copy($scope.EditChance));
+                        if (chance.IdmarketingChance) {
+                            angular.forEach($scope.chances, function (value) {
+                                if (value.IdmarketingChance == $scope.EditChance.IdmarketingChance)
+                                    angular.extend(value, $scope.EditChance);
+                            });
+                        }
+                        else {
+                            from.chances.push(angular.copy($scope.EditChance));
+                        }
                     }
                     $('#addChanceModal').modal('hide');
                 }

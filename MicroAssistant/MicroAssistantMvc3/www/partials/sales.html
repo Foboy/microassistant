@@ -56,7 +56,9 @@
                   <td >{{chance.ContactName}}</td>
                   <td >{{chance.Phone||chance.Tel||chance.Email||chance.Qq}}</td>
                   <td>{{parseJsonDate(chance.AddTime,'yyyy/MM/dd')}}</td>
-                  <td class="colorGray"><a href="" role="button" ng-click="showChanceDetail()">详情</a>|<a href="" ng-click="showVisitDetail()" role="button">主动拜访</a></td>
+                  <td class="colorGray"><a href="" role="button" ng-click="showChanceDetail()">详情</a>|
+                      <a role="button" href="" ng-click="editChance()">编辑</a>|
+                      <a href="" ng-click="showVisitDetail()" role="button">主动拜访</a></td>
                 </tr>
               </tbody>
             </table>

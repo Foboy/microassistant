@@ -21,7 +21,7 @@
 			        </select>
         	    </span>
         	</li>
-            <li><span class="span1">联系人：</span><span><input type="text" ng-model="EditChance.ContactName" value="" ng-required="true" placeholder="联系人" class="span3"></span></li>
+            <li><span class="span1">联系人：</span><span><input type="text" id="salesChanceContactNameInput" ng-model="EditChance.ContactName" value="" ng-required="true" placeholder="联系人" class="span3" data-provide="typeahead" autocomplete="off" ng-change="contactNameChange()" ></span></li>
             <li><span class="span1">机会描述：</span><span><textarea rows="3" name="PInfo" ng-model="EditChance.Remark" ng-required="true" placeholder="请输入机会描述" class="span3"></textarea></span></li>
             <li><span class="span1">联系方式：</span>
                 <span>
