@@ -500,6 +500,28 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
     var chance;
     console.log('SalesChanceEditCtrl')
     console.log($element)
+    var customSource = [];
+    var selectCustomId = 0;
+
+    $('#salesChanceContactNameInput').change(function () {
+        var name = $(this).val();
+        console.log('matchname' + name);
+        var matched = false;
+        for (var i = 0; i < customSource.length; i++)
+        {
+            if (name == customSource[i].ContactUsername)
+            {
+                matched = true;
+                selectCustomId = customSource[i].CustomerEntId || customSource[i].CustomerPrivateId;
+                if ($.trim(name) != name)
+                {
+                    $(this).val($.trim(name));
+                }
+            }
+        }
+        selectCustomId = matched ? selectCustomId : 0;
+    });
+
     $scope.$on('EventAddChance', function (event, fromscope) {
         console.log("EventAddChance");
         console.log(fromscope);
@@ -516,11 +538,23 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
         }).success(function (data) {
             console.log(data)
             var datasource = [];
+            customSource = [];
             $scope.searchCustomers = data.Data;
             for (var i = 0; i < data.Data.length; i++)
             {
-                datasource.push(data.Data[i].ContactUsername);
+                var item = data.Data[i];
+                var samecount = 1;
+                for (var j = i + 1; j < data.Data.length; j++) {
+                    var sitem = data.Data[j];
+                    if (item.ContactUsername == sitem.ContactUsername) {
+                        samecount++;
+                        sitem.ContactUsername = sitem.ContactUsername + (new Array(samecount).join(' '));
+                    }
+                }
+                customSource.push(item);
+                datasource.push(item.ContactUsername);
             }
+            
             $('#salesChanceContactNameInput').data('typeahead', null);
             $('#salesChanceContactNameInput').typeahead({ source: datasource });
         }).
@@ -545,7 +579,7 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
                 phone: $scope.EditChance.Phone,
                 email: $scope.EditChance.Email,
                 qq: $scope.EditChance.Qq,
-                customerId: $scope.EditChance.UserId ||0
+                customerId: $scope.EditChance.UserId || selectCustomId
             }).success(function (data) {
                 console.log(data);
                 if (data.Error) {
