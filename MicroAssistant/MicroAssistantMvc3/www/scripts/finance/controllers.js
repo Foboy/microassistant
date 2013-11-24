@@ -53,7 +53,7 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
         $scope.tabIndex = 1;
         $("#receivablesDetailBox").show();
         $scope.receivableDetail(item);
-        $("#receivablesDetailBox").animate({ width: "500px" }, 400);
+        $("#receivablesDetailBox").animate({ width: "900px" }, 400);
     });
     //Òþ²ØÊÕ¿îÏêÇé
     $scope.hideReceivableDetail = function () {

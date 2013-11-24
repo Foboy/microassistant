@@ -267,6 +267,9 @@ a{text-decoration:none;}
 .saleskuang { padding-left:30px; padding-top:10px;}
 .salesbtn { font-size: 14px;line-height: 15px;padding: 10px 18px 11px;}
 .fq_input { margin:15px 0 0 0;}
+.sale_ht_ul { margin:0; width: 500px; float:left; overflow:hidden;}
+.sale_ht_ul li{font-size:16px; height:45px; line-height:45px; border-bottom:1px solid #F9F9F9; list-style:none;}
+.sale_time_space { margin:0 5px;}
 /*=== 销售管理 END ===*/
 
 /*=== 财务管理 ===*/
@@ -277,19 +280,22 @@ a{text-decoration:none;}
 .financeList li.cur a{color:#FFFFFF;}
 .financeList li.cur .arrowD{background-position:-110px -74px;}
 .finance_table { margin-top:20px;}
-.finance_info_ul { margin: 0; width: 600px; float:left; overflow:hidden;}
-.finance_info_ul li{font-size:16px; height:45px; line-height:45px; border-bottom:1px solid #F9F9F9;}
+.finance_info_ul { margin:35px 0 0 0; width: 400px; float:left; overflow:hidden;}
+.finance_info_ul li{font-size:16px; height:45px; line-height:45px; list-style:none;}
+.finance_info_timeline { float:left; width:403px;  margin:35px 0 0 0;}
 
 /*右侧划出公共css*/
 .draw_title{text-align:right;color: #828282;font-size: 16px;width: 140px; display: inline-block;float: left;}
 .draw_content{font-weight:500; margin-left:15px; word-break:break-all; display: inline-block;float: left;}
-.draw_content_width_c { width:440px;}  
+.draw_content_width_c { width:240px;}  
 .draw_content_width_k{ width:330px;}
+.draw_content_width_sale{ width:330px;}
 
-.finance_htimg { margin:0 0 20px 60px;}
-.ht_date { float:left; margin-left:58px; height:20px; line-height:20px; width:50px; font-size:12px; text-align:center; background-color:#1ABC9C; color:#fff; border-radius:2px 0 0 2px;}
+
+.finance_htimg { margin:0 0 20px 0px;}
+.ht_date { float:left; height:20px; line-height:20px; width:50px; font-size:12px; text-align:center; background-color:#1ABC9C; color:#fff; border-radius:2px 0 0 2px;}
 .ht_criw {background-position: -204px -470px; display: inline-block; height: 20px;width: 20px;}
-.ht_content { float:left; height:120px; width:350px;position: relative; border-left:3px solid #1ABC9C;}
+.ht_content { float:right; height:120px; width:350px;position: relative; border-left:3px solid #1ABC9C;}
 .ht_datecontent { background: none repeat scroll 0 0 #FFFFFF; height:70px; width:300px; margin-top:5px; margin-left:20px; position:relative; padding:10px 0 0 10px; }
 .ht_datecontent i { background:url("../img/icon.png") no-repeat scroll -182px -248px rgba(0, 0, 0, 0); display: inline-block;height: 15px;
 left: -10px; top:0px;
