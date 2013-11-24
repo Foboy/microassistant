@@ -481,6 +481,10 @@ left: -10px; top:0px;
 .login-box .r-t{margin:-25px 30px 30px 30px;}
 .error-box{position:relative; height:500px;}
 .error-box img{margin:100px 0 0 200px;}
+.success_title { font-size:14px; color:#828282; text-align:center; margin-top:15px;}
+.success_info { font-size:18px; color:#16A085; font-weight:bold; display:inline-block;}
+.enter_i { display:block; margin-left:120px; margin-top:30px; width:120px; height:30px; line-height:30px; color:#fff; text-decoration:none; background-color:#16A085; text-align:center; }
+ .enter_i a:hover { text-decoration:none; color:#fff;}
 .error-box p{width:200px; line-height:18px; font-size:14px; color:#FFFFFF; position:absolute; right:250px; top:350px; font-family:'微软雅黑';}
 /*================ 注册/登录 END ==================*/
 
