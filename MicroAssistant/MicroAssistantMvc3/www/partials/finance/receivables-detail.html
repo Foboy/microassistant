@@ -7,17 +7,17 @@
             <li ng-class="tabIndex==2?'cur':''" ng-click="tabIndex=2">合同动态</li>
         </ul>
         <ul class="finance_info_ul" ng-show="tabIndex==1" >
-            <li class="clearfix"><span class="draw_title">合同名字：</span><span class="draw_content">{{receivableDetailInfos.CName}}
+            <li class="clearfix"><span class="draw_title">合同名字：</span><span class="draw_content draw_content_width_c">{{receivableDetailInfos.CName}}
             </span></li>
-            <li class="clearfix"><span class=" draw_title">合同编号：</span><span class="draw_content">{{receivableDetailInfos.ContractNo}}
+            <li class="clearfix"><span class=" draw_title">合同编号：</span><span class="draw_content draw_content_width_c">{{receivableDetailInfos.ContractNo}}
             </span></li>
-            <li class="clearfix"><span class=" draw_title">合同总额：</span><span class="draw_content">{{receivableDetailInfos.Amount | currency:''}}</span></li>
-            <li class="clearfix"><span class=" draw_title">合同签署日期：</span><span class="draw_content">{{parseJsonDate(receivableDetailInfos.ContractTime,'yyyy/MM/dd')}}</span></li>
-            <li class="clearfix"><span class=" draw_title">合同承办人：</span><span class="draw_content">{{receivableDetailInfos.OwnerName}}
+            <li class="clearfix"><span class=" draw_title">合同总额：</span><span class="draw_content draw_content_width_c">{{receivableDetailInfos.Amount | currency:''}}</span></li>
+            <li class="clearfix"><span class=" draw_title">合同签署日期：</span><span class="draw_content draw_content_width_c">{{parseJsonDate(receivableDetailInfos.ContractTime,'yyyy/MM/dd')}}</span></li>
+            <li class="clearfix"><span class=" draw_title">合同承办人：</span><span class="draw_content draw_content_width_c">{{receivableDetailInfos.OwnerName}}
             </span></li>
-            <li class="clearfix"><span class=" draw_title">合同联系人：</span><span class="draw_content">{{receivableDetailInfos.CustomerName}}
+            <li class="clearfix"><span class=" draw_title">合同联系人：</span><span class="draw_content draw_content_width_c">{{receivableDetailInfos.CustomerName}}
             </span></li>
-            <li class="clearfix"><span class=" draw_title">联系方式：</span><span class="draw_content">{{receivableDetailInfos.Chance.Tel}}
+            <li class="clearfix"><span class=" draw_title">联系方式：</span><span class="draw_conten draw_content_width_ct">{{receivableDetailInfos.Chance.Tel}}
             </span></li>
         </ul>
         <div class="finance_info_ul" ng-show="tabIndex==2">

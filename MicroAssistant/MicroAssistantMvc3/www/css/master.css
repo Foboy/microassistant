@@ -230,7 +230,7 @@ a{text-decoration:none;}
 .tablePad table tr td .t-himg i{position:absolute; right:0; bottom:0; color:#333333; background-color:#f5f5f5; font-size:12px; line-height:12px;}
 .padd {width:160px;}
 .padd a {text-decoration:none;}
-.pinfolast {margin-left:10px; color:#828282;}
+.pinfolast {margin-left:5px; color:#828282;}
 .num_info { text-align:center;}
 /*=== 产品详情页面 ===*/
 .titleStyle{color:#333333; font-size:16px; height:30px; line-height:30px;}
@@ -279,8 +279,13 @@ a{text-decoration:none;}
 .finance_table { margin-top:20px;}
 .finance_info_ul { margin: 0; width: 600px; float:left; overflow:hidden;}
 .finance_info_ul li{font-size:16px; height:45px; line-height:45px; border-bottom:1px solid #F9F9F9;}
+
+/*右侧划出公共css*/
 .draw_title{text-align:right;color: #828282;font-size: 16px;width: 140px; display: inline-block;float: left;}
-.draw_content{width:440px;  font-weight:500; margin-left:15px; word-break:break-all; display: inline-block;float: left;}
+.draw_content{font-weight:500; margin-left:15px; word-break:break-all; display: inline-block;float: left;}
+.draw_content_width_c { width:440px;}  
+.draw_content_width_k{ width:330px;}
+
 .finance_htimg { margin:0 0 20px 60px;}
 .ht_date { float:left; margin-left:58px; height:20px; line-height:20px; width:50px; font-size:12px; text-align:center; background-color:#1ABC9C; color:#fff; border-radius:2px 0 0 2px;}
 .ht_criw {background-position: -204px -470px; display: inline-block; height: 20px;width: 20px;}
@@ -299,6 +304,9 @@ left: -10px; top:0px;
 /*===客户管理===*/
 .clientkuang { padding-left:30px; padding-top:10px;}
 .addclient {width:600px; border-radius:0; height:600px;}
+.client_info_ul { margin:35px 0 0; width: 500px; float:left; overflow:hidden;}
+.client_info_ul li{font-size:16px; height:45px; line-height:45px; border-bottom:1px solid #F9F9F9; list-style:none;}
+
 /*===客户管理 END===*/
 
 /*=== 悬浮窗口 ===*/

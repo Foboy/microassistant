@@ -1,17 +1,17 @@
 ﻿
-<div class="floatBox" id="personalclientDetailBox" style="width: 0; right: 0; top: 0;display: block;">
-    <div class="fBg"></div>
+<div class="floatBox" id="personalclientDetailBox" style="width: 0; right: 0; top: 0;">
+    <!--<div class="fBg"></div>-->
     <div class="fCon clearfix">
         <i class="arrR" ng-click="hidePersonalClientDetail()"></i>
-        <ul class="ul-f1 clientkuang colorblack">
-            <li class="clearfix"><span class="colorlight namS">姓名：</span><span class="conS">{{PersonData.Name}}</span></li>
-            <li class="clearfix"><span class="colorlight namS">性别：</span><span class="conS">{{PersonData.Sex==1?'男':'女'}}</span></li>
-            <li class="clearfix"><span class="colorlight namS">出生日期：</span><span class="conS">{{parseJsonDate(PersonData.Birthday,'yyyy/MM/dd')}}</span></li>
-            <li class="clearfix"><span class="colorlight namS">手机：</span><span class="conS">{{PersonData.Mobile}}</li>
-            <li class="clearfix"><span class="colorlight namS">座机：</span><span class="conS">{{PersonData.Phone}}</span></li>
-            <li class="clearfix"><span class="colorlight namS">邮箱：</span><span class="conS">{{PersonData.Email}}</span></li>
-             <li class="clearfix"><span class="colorlight namS">QQ：</span><span class="conS">{{PersonData.Qq}}</span></li>
-            <li class="clearfix"><span class="colorlight namS">个人信息：</span><span class="conS">{{PersonData.Detail}}</span></li>
+        <ul class="client_info_ul">
+            <li class="clearfix"><span class="draw_title">姓名：</span><span class="draw_content draw_content_width_k">{{PersonData.Name}}</span></li>
+            <li class="clearfix"><span class="draw_title">性别：</span><span class="draw_content draw_content_width_k">{{PersonData.Sex==1?'男':'女'}}</span></li>
+            <li class="clearfix"><span class="draw_title">出生日期：</span><span class="draw_content draw_content_width_k">{{parseJsonDate(PersonData.Birthday,'yyyy/MM/dd')}}</span></li>
+            <li class="clearfix"><span class="draw_title">手机：</span><span class="draw_content draw_content_width_k">{{PersonData.Mobile}}</li>
+            <li class="clearfix"><span class="draw_title">座机：</span><span class="draw_content draw_content_width_k">{{PersonData.Phone}}</span></li>
+            <li class="clearfix"><span class="draw_title">邮箱：</span><span class="draw_content draw_content_width_k">{{PersonData.Email}}</span></li>
+             <li class="clearfix"><span class="draw_title">QQ：</span><span class="draw_content draw_content_width_k">{{PersonData.Qq}}</span></li>
+            <li class="clearfix"><span class="draw_title">个人信息：</span><span class="draw_content draw_content_width_k">{{PersonData.Detail}}</span></li>
         </ul>
     </div>
 </div>
