@@ -26,20 +26,18 @@
                 	</div>
                 </span></li>
                 </ul> 
-                <ul class="ul-f3" ng-show="tabIndex==2">
-                    <li class="clearfix"  ng-repeat="pay in contract.HowtopayList" ng-class="$index==0?'cur':'none'">
-                        <div class="li-timeb colorRed">
-                           {{parseNumberToChinese(contract.HowtopayList.length - $index)}}期
-                            <span class="cir-w"><i></i></span>
-                        </div>
-                        <div class="li-conb">
-                            <div class="li-boxs">
+                <div class="sale_ht_info" ng-show="tabIndex==2">
+                    <img class="finance_htimg" src="img/htsk.png" />
+                    <div class="clearfix"  ng-repeat="pay in contract.HowtopayList" ng-class="$index==0?'cur':'none'">
+                        <div class="sale_ht_date ">{{parseNumberToChinese(contract.HowtopayList.length - $index)}}期</div>
+                        <div class="sale_ht_content ">
+                            <div class="sale_ht_datecontent">
                                 <i></i>
-                                <div class="tim-list"><div class="colorBlue">收款时间：</div>{{parseJsonDate(pay.PayTime,'yyyy/MM/dd')}}</div>
-								<div class="tim-list"><div class="colorBlue">实际收款时间：</div><span class="colorRed">{{parseJsonDate(pay.ReceivedTime,'yyyy/MM/dd')}}</span></div>
+                                <div class="sale_ht_dateinfo colorlight">合同收款时间：<span class="colorg">{{parseJsonDate(pay.PayTime,'yyyy/MM/dd')}}</span></div>
+								<div class="sale_ht_dateinfo colorlight">实际收款时间：<span class="colorRed">{{parseJsonDate(pay.ReceivedTime,'yyyy/MM/dd')}}</span></div>
                             </div>
                         </div>
-                    </li>                           
-                </ul>        
+                    </div>                           
+                </div>        
             </div>
         </div>

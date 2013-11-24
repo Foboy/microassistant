@@ -270,6 +270,18 @@ a{text-decoration:none;}
 .sale_ht_ul { margin:0; width: 500px; float:left; overflow:hidden;}
 .sale_ht_ul li{font-size:16px; height:45px; line-height:45px; border-bottom:1px solid #F9F9F9; list-style:none;}
 .sale_time_space { margin:0 5px;}
+.sale_ht_info { float:left; width:403px;  margin:0 0 0 35px;}
+.sale_ht_infoimg { margin:0 0 20px 0px;}
+.sale_ht_date { float:left; height:20px; line-height:20px; width:50px; font-size:12px; text-align:center; background-color:#1ABC9C; color:#fff; border-radius:2px 0 0 2px;}
+.sale_ht_content { float:left; height:120px; width:350px;position: relative; border-left:3px solid #1ABC9C;}
+.sale_ht_datecontent { background: none repeat scroll 0 0 #FFFFFF; height:70px; width:300px; margin-top:5px; margin-left:20px; position:relative; padding:10px 0 0 10px; }
+.sale_ht_datecontent i { background:url("../img/icon.png") no-repeat scroll -182px -248px rgba(0, 0, 0, 0); display: inline-block;height: 15px;
+left: -10px; top:0px;
+    position: absolute;
+    width: 10px;}
+.sale_ht_dateinfo { margin-bottom:10px; height:20px; line-height:20px;}
+.sale_ht_dateinfo span { display:inline-block; line-height:20px; height:20px; margin-left:10px;}
+
 /*=== 销售管理 END ===*/
 
 /*=== 财务管理 ===*/
