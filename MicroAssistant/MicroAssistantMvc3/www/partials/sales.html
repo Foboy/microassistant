@@ -52,7 +52,7 @@
               <tbody>
                 <tr ng-repeat="chance in chances">
                   <td class="colorlight">{{$index +1}}</td>
-                  <td>{{chance.Remark}}</td>
+                  <td title="{{chance.Remark}}">{{chance.Remark| limitTo:15}}</td>
                   <td >{{chance.ContactName}}</td>
                   <td >{{chance.Phone||chance.Tel||chance.Email||chance.Qq}}</td>
                   <td>{{parseJsonDate(chance.AddTime,'yyyy/MM/dd')}}</td>

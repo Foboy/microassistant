@@ -837,6 +837,8 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 
         private void WriteAuthCookie(string username, string token)
         {
+            base.currentToken = token;
+
             DateTime issueDate = DateTime.Now;
             DateTime expiration = issueDate.AddDays(1);
             string userData = token;
