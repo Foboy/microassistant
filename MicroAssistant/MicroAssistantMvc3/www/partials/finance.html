@@ -61,5 +61,15 @@
         </tbody>
     </table>
 </div>
+<div class="pagination">
+    <ul>
+        <li class="previous" ng-repeat="page in pages | filter:'pre'"><a ng-href="{{page.url}}">
+            <img src="img/previous.png" /></a></li>
+        <li ng-class="page.active?'active':''" ng-repeat="page in pages | filter:'page'"><a ng-href="{{page.url}}">{{page.index}}</a></li>
+        <li class="next" ng-repeat="page in pages | filter:'next'"><a ng-href="{{page.url}}">
+            <img src="img/next.png" /></a></li>
+    </ul>
+</div>
+
 <div ng-include="'partials/finance/receivables-detail.html'" ></div>
 <div ng-include="'partials/finance/makesure-pay.html'" ></div>
