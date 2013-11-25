@@ -17,9 +17,10 @@ namespace MicroAssistant.Cache
     /// </summary>
     public class MemoryCacheDepository : ICacheManager
     {
-        private static Dictionary<string, object> _depository = new Dictionary<string, object>();
+        //private static Dictionary<string, object> _depository = new Dictionary<string, object>();
 
-        //private MemoryCache _depository = MemoryCache.Default;
+        private MemoryCache _depository = MemoryCache.Default;
+        
 
         /// <summary>
         /// 存储数据
@@ -29,10 +30,13 @@ namespace MicroAssistant.Cache
         /// <remarks></remarks>
         public void Set(string key, object value)
         {
+            CacheItemPolicy policy = new CacheItemPolicy();
+            policy.SlidingExpiration = new TimeSpan(1, 0, 0);
+
             if (!string.IsNullOrEmpty(key))
             {
             if (!Contains(key))
-                _depository.Add(key, value);
+                _depository.Add(key, value, policy);
             else
                 _depository[key] = value;
             }
@@ -40,10 +44,13 @@ namespace MicroAssistant.Cache
 
         public void Set(string key, object value, TimeSpan cacheTime)
         {
+            CacheItemPolicy policy = new CacheItemPolicy();
+            policy.SlidingExpiration = cacheTime;
+
             if (!string.IsNullOrEmpty(key))
             {
                 if (!Contains(key))
-                    _depository.Add(key, value);
+                    _depository.Add(key, value, policy);
                 else
                     _depository[key] = value;
             }
@@ -63,7 +70,7 @@ namespace MicroAssistant.Cache
             }
             else
             {
-                return _depository.ContainsKey(key);
+                return _depository.Contains(key);
             }
         }
 
@@ -86,17 +93,15 @@ namespace MicroAssistant.Cache
         /// <remarks></remarks>
         public object Get(string key)
         {
-            object value;
-            _depository.TryGetValue(key, out value);
-            return value;
+            //object value;
+
+            return _depository.Get(key);
         }
 
 
         public T Get<T>(string key)
         {
-            object value;
-            _depository.TryGetValue(key, out value);
-            return (T)value;
+            return (T)_depository.Get(key);
         }
 
 
