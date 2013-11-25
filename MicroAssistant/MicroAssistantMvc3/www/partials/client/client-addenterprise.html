@@ -1,9 +1,9 @@
-﻿<div class="addclient modal hide fade" id="AddEnterpriseBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+﻿<div ng-controller="AddClientCtrl" class="addclient modal hide fade" id="AddEnterpriseBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myAPModalLabel">添加企业客户</h3>
+        <h3 id="myAPModalLabel">{{EnterpriseItem.CustomerEntId==0?'添加企业客户':'编辑企业用户'}}</h3>
     </div>
-    <div class=""  ng-controller="AddClientCtrl" >
+    <div class=""   >
             <div class="madeBox" >
                 <form ng-class="showerror?'showerror':''" name="AddEnterpriseForm">
                     <ul class="listContent">

@@ -1,9 +1,9 @@
-﻿<div tabindex="-1" class="addclient modal hide fade" id="AddPersonalBox" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true">
+﻿<div tabindex="-1" class="addclient modal hide fade" id="AddPersonalBox" role="dialog" aria-labelledby="myModalLabel"  aria-hidden="true" ng-controller="AddClientCtrl">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myAPModalLabel">添加个人客户</h3>
+        <h3 id="myAPModalLabel">{{PersonalItem.CustomerPrivateId==0?'添加个人客户':'编辑个人客户'}}</h3>
     </div>
-    <div class="" ng-controller="AddClientCtrl">
+    <div class="" >
             <div class="madeBox" >
                 <form ng-class="showerror?'showerror':''" name="AddPersonalForm">
                     <ul class="listContent">

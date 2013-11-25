@@ -142,7 +142,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             return Res;
         }
         /// <summary>
-        /// 添加入库单
+        /// 添加采购库单
         /// </summary>
         /// <param name="ppd"></param>
         /// <returns></returns>
@@ -176,9 +176,9 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
                     if (result.Id > 0)
                     {
                         result.Error = AppError.ERROR_SUCCESS;
-                        
-                        ProProduction pro = ProProductionAccessor.Instance.Get(pid);
-                        ProProductionAccessor.Instance.UpdateStockCount(pid, pro.StockCount + num);
+                        //不更新库存
+                        //ProProduction pro = ProProductionAccessor.Instance.Get(pid);
+                        //ProProductionAccessor.Instance.UpdateStockCount(pid, pro.StockCount + num);
                     }
                     else
                         result.Error = AppError.ERROR_FAILED;
@@ -198,11 +198,11 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             return Res;
         }
         /// <summary>
-        /// 获取产品入库单列表
+        /// 获取产品（采购单或入库信息）列表   (采购单 type=0 入库信息 type=1)
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
-        public JsonResult SearchProductonDetailList(int pid, int pageIndex, int pageSize)
+        public JsonResult SearchProductonDetailList(int pid, int pageIndex, int pageSize,int type)
         {
             var Res = new JsonResult();
             AdvancedResult<PageEntity<ProProductonDetail>> result = new AdvancedResult<PageEntity<ProProductonDetail>>();
@@ -217,9 +217,8 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
                         Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         return Res;
                     }
-
                     PageEntity<ProProductonDetail> list = new PageEntity<ProProductonDetail>();
-                    list = ProProductonDetailAccessor.Instance.Search(CurrentUser.UserId, pid, CurrentUser.EntId, pageIndex, pageSize);
+                    list = ProProductonDetailAccessor.Instance.Search(CurrentUser.UserId, pid, CurrentUser.EntId, pageIndex, pageSize,type);//采购单列表信息
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = list;
                  }
