@@ -19,6 +19,8 @@ namespace MicroAssistantMvc
 {
     public class LogFilterAttribute : ActionFilterAttribute
     {
+        private const string RequestActionKey = "RequestActionCacheName";
+        private const string RequestParamKey = "RequestParamCacheName";
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -39,11 +41,12 @@ namespace MicroAssistantMvc
                     //filterContext.ActionParameters[parameter.ParameterName] = filteredValue;
                 //}
             }
-
-            Task tt = new Task(() => {
-                AddActionlog(actionName, parms, string.Empty, filterContext);
-            });
-            tt.Start();
+            filterContext.HttpContext.Items[RequestActionKey] = actionName;
+            filterContext.HttpContext.Items[RequestParamKey] = parms;
+            //Task tt = new Task(() => {
+            //    AddActionlog(actionName, parms, string.Empty, filterContext);
+            //});
+            //tt.Start();
         }
 
         public override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -64,10 +67,11 @@ namespace MicroAssistantMvc
             base.OnResultExecuted(filterContext);
 
             string res = JsonHelper.Serialize(filterContext.Result);
-
+            object actionName = filterContext.HttpContext.Items[RequestActionKey];
+            object parms = filterContext.HttpContext.Items[RequestParamKey];
             Task tt = new Task(() =>
             {
-                AddActionlog(filterContext.RequestContext.HttpContext.Request.Path, string.Empty, res, filterContext);
+                AddActionlog(actionName.ToString(), parms.ToString(), res, filterContext);
             });
             tt.Start();
         }
@@ -77,23 +81,11 @@ namespace MicroAssistantMvc
         private void AddActionlog(string actionname, string prams, string result, ControllerContext filterContext)
         {
             int userid = 0;
-            if (FormsAuthentication.CookiesSupported)
+            if (filterContext.Controller is Controllers.MicControllerBase)
             {
-                if (filterContext.RequestContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName] != null)
-                {
-                    try
-                    {
-                        FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(
-                          filterContext.RequestContext.HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName].Value);
-                        string currentToken = ticket.UserData;
-                        userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(currentToken));
-                    }
-                    catch (Exception e)
-                    {
-                        // 票据解密失败
-
-                    }
-                }
+                Controllers.MicControllerBase controller = filterContext.Controller as Controllers.MicControllerBase;
+                if(controller.token!=null)
+                    userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(controller.token));
             }
 
             SysLog log = new SysLog();

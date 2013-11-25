@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Text.RegularExpressions;
 
 namespace MicroAssistantMvc.Areas.FileManagement.Controllers
 {
@@ -17,6 +18,7 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
     {
         //
         // GET: /FileManagement/File
+        private static Regex anymouseAllowAccess = new Regex(@"img[\\/]{1,2}Adimg[\\/]{1,2}([^\.]*?)\.([^\.]*?)$", RegexOptions.IgnoreCase);
 
         public JsonResult SourceFileClipOrThumb(string sourcePath, PicType fileType, List<FileSaveInfo> saveInfo)
         {
@@ -29,15 +31,16 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
                 if (userid > 0)
                 {
                     sourcePath = Server.MapPath(sourcePath);
-                    if (!System.IO.File.Exists(sourcePath))
+                    
+                    string itempath = FileHelper.GetFileSavePath(userid, fileType, null);
+                    string itemfullpath = Server.MapPath(itempath);
+                    if (!System.IO.File.Exists(sourcePath) || (!sourcePath.StartsWith(itemfullpath) && !anymouseAllowAccess.IsMatch(sourcePath)))
                     {
                         result.Error = AppError.ERROR_PERSON_NOT_FOUND;
-                        result.ExMessage = result.ErrorMessage = "源文件不存在";
+                        result.ExMessage = result.ErrorMessage = "源文件不存在或没有访问权限";
                     }
                     else
                     {
-                        string itempath = FileHelper.GetFileSavePath(userid, fileType, null);
-                        string itemfullpath = Server.MapPath(itempath);
                         string saveName = FileHelper.GetFileSaveName(".png");
                         foreach (FileSaveInfo item in saveInfo)
                         {

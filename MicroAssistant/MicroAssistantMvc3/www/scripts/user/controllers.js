@@ -31,7 +31,7 @@
                             var loadingUrl = 'index.html';
 
                             if ($scope.hasPermission(27)) {
-                                loadingUrl = "boss.html";
+                                loadingUrl = "index.html#/boss";
                             }
                             else {
                                 loadingUrl = "index.html";
@@ -115,6 +115,8 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
                         else {
                             $scope.EntCode = data.Data.EntCode;
                             $.fancybox.open($('#enterpriseCodePanle'), {
+                                'width': 370,
+                                'height':320,
                                 'closeBtn': false,
                                 helpers: {
                                     overlay: null

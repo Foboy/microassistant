@@ -1,24 +1,24 @@
-    	<div class="floatBox pactBox" id="contractDetailBox" style="width:0;right:0;top:0;">
-        	<div class="fBg"></div>
+    	<div class="floatBox" id="contractDetailBox" style="width:0;right:0;top:0;">
+        	<!--<div class="fBg"></div>-->
             <div class="fCon clearfix"  ng-controller="SalesContractDetailCtrl">
                 <i class="arrR" ng-click="hideContractDetail()"></i>
                 <ul class="pact-ul clearfix">
                 	<li ng-class="tabIndex==1?'cur':''" ng-click="tabIndex=1">合同详情</li>
                     <li ng-class="tabIndex==2?'cur':''" ng-click="contractDynamic()">合同动态</li>
                 </ul>
-            	<ul class="ul-f1" ng-show="tabIndex==1">
-                	<li class="clearfix"><span class="colorBlue namS">合同名称：</span><span class="conS">{{contract.CName}}</span></li>
-                    <li class="clearfix"><span class="colorBlue namS">合同编号：</span><span class="conS">{{contract.ContractNo}}
+            	<ul class="sale_ht_ul" ng-show="tabIndex==1">
+                	<li class="clearfix"><span class="draw_title">合同名称：</span><span class="draw_content draw_content_width_sale">{{contract.CName}}</span></li>
+                    <li class="clearfix"><span class="draw_title">合同编号：</span><span class="draw_content draw_content_width_sale">{{contract.ContractNo}}
 </span></li>
-                    <li class="clearfix"><span class="colorBlue namS">客户：</span><span class="conS">{{contract.CustomerName}}</span></li>
-                    <li class="clearfix"><span class="colorBlue namS">合同金额：</span><span class="conS">{{contract.Amount | currency:''}}</span></li>
-                    <li class="clearfix"><span class="colorBlue namS">付款方式：</span><span class="conS">{{contract.Howtopay ==0?'全额':'分期'}} <span ng-show="contract.Howtopay ==1">共<b class="colorRed">{{contract.HowtopayList.length}}</b> 期</span>
+                    <li class="clearfix"><span class="draw_title">客户：</span><span class="draw_content draw_content_width_sale">{{contract.CustomerName}}</span></li>
+                    <li class="clearfix"><span class="draw_title">合同金额：</span><span class="draw_content draw_content_width_sale">{{contract.Amount | currency:''}}</span></li>
+                    <li class="clearfix"><span class="draw_title">付款方式：</span><span class="draw_content draw_content_width_sale">{{contract.Howtopay ==0?'全额':'分期'}} <span ng-show="contract.Howtopay ==1">共<span class="colorRed">{{contract.HowtopayList.length}}</span> 期</span>
 </span></li>
-                    <li class="clearfix"><span class="colorBlue namS">合同有效期：</span><span class="conS">{{parseJsonDate(contract.StartTime,'yyyy/MM/dd')}} <span class="colorBlue">至</span>{{parseJsonDate(contract.EndTime,'yyyy/MM/dd')}}</span></li>
-                    <li class="clearfix"><span class="colorBlue namS">合同承办人：</span><span class="conS">{{contract.UserName}}
+                    <li class="clearfix"><span class="draw_title">合同有效期：</span><span class="draw_content draw_content_width_sale">{{parseJsonDate(contract.StartTime,'yyyy/MM/dd')}} <span class="sale_time_space colorlight">至</span>{{parseJsonDate(contract.EndTime,'yyyy/MM/dd')}}</span></li>
+                    <li class="clearfix"><span class="draw_title">合同承办人：</span><span class="draw_content draw_content_width_sale">{{contract.UserName}}
 </span></li>
-                    <li class="clearfix"><span class="colorBlue namS">合同签订时间：</span><span class="conS">{{parseJsonDate(contract.ContractTime,'yyyy/MM/dd')}}</span></li>
-                    <li class="clearfix"><span class="colorBlue namS">附件：</span><span class="conS">
+                    <li class="clearfix"><span class="draw_title">合同签订时间：</span><span class="draw_content draw_content_width_sale">{{parseJsonDate(contract.ContractTime,'yyyy/MM/dd')}}</span></li>
+                    <li class="clearfix"><span class="draw_title">附件：</span><span class="draw_content draw_content_width_sale">
                     <div class="textpact" ng-repeat="attachment in contract.attachments">
                         <i class="textIcon"></i>
                         <div class="textNam">{{attachment.PicDescription}}</div>
@@ -26,20 +26,18 @@
                 	</div>
                 </span></li>
                 </ul> 
-                <ul class="ul-f3" ng-show="tabIndex==2">
-                    <li class="clearfix"  ng-repeat="pay in contract.HowtopayList" ng-class="$index==0?'cur':'none'">
-                        <div class="li-timeb colorRed">
-                           {{parseNumberToChinese(contract.HowtopayList.length - $index)}}期
-                            <span class="cir-w"><i></i></span>
-                        </div>
-                        <div class="li-conb">
-                            <div class="li-boxs">
+                <div class="sale_ht_info" ng-show="tabIndex==2">
+                    <img class="finance_htimg" src="img/htsk.png" />
+                    <div class="clearfix"  ng-repeat="pay in contract.HowtopayList" ng-class="$index==0?'cur':'none'">
+                        <div class="sale_ht_date ">{{parseNumberToChinese(contract.HowtopayList.length - $index)}}期</div>
+                        <div class="sale_ht_content ">
+                            <div class="sale_ht_datecontent">
                                 <i></i>
-                                <div class="tim-list"><div class="colorBlue">收款时间：</div>{{parseJsonDate(pay.PayTime,'yyyy/MM/dd')}}</div>
-								<div class="tim-list"><div class="colorBlue">实际收款时间：</div><span class="colorRed">{{parseJsonDate(pay.ReceivedTime,'yyyy/MM/dd')}}</span></div>
+                                <div class="sale_ht_dateinfo colorlight">合同收款时间：<span class="colorg">{{parseJsonDate(pay.PayTime,'yyyy/MM/dd')}}</span></div>
+								<div class="sale_ht_dateinfo colorlight">实际收款时间：<span class="colorRed">{{parseJsonDate(pay.ReceivedTime,'yyyy/MM/dd')}}</span></div>
                             </div>
                         </div>
-                    </li>                           
-                </ul>        
+                    </div>                           
+                </div>        
             </div>
         </div>

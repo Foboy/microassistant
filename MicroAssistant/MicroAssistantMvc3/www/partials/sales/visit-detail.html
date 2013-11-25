@@ -9,7 +9,7 @@
         </div>
       </div>
 </div>
-    	<div class="floatBox" id="visitDetailBox" style="width:0;right:0;top:0;"  ng-controller="SalesVisitDetailCtrl">
+    	<div class="floatBox" id="visitDetailBox" style="width:0;right:0;top:50px;"  ng-controller="SalesVisitDetailCtrl">
         	<!--<div class="fBg"></div>-->
             <div class="fCon clearfix">
                 <i class="arrR" ng-click="hideVisitDetail()"></i>
@@ -17,6 +17,7 @@
                     <div class="chanceB-r">
                        <div class="visit_title">
                             <img src="img/timelinejh.png"/>
+
                             <div class="visit_title_content">
                                 <h4 class="colorRed">销售机会描述</h4>
                                 <div class="colorlight visit_title_info ">{{chance.Remark}}</div>
@@ -27,38 +28,32 @@
                               </div>
                               <div class="rate-cur">
                                 <i class="rate-icon "></i>
-                            	<div class="rate-show" ng-hide="rateEditPanleShow" ng-dblclick="rateEditPanleShow=true">
+                            	<div class="rate-show" ng-click="changeRateShow($event)">
                                 	当前赢率：{{chance.Rate}}%
                                 </div>   
                                </div>
                         </div>
                         
-                    	<!--<div class="title-f clearfix">
-                
-                                <div class="rate-show" ng-show="rateEditPanleShow">
+                    	<div class="hide">
+                                <div class="rate-show" id="salesRateEditePanle" style="width:200px; height:27px; line-height:27px;">
                                     <form name="SalesRateChangeFrom">
-                                        <input type="text" ng-model="NewRate" ng-required="true" />
-                                        <div class="alter">
-                                            <b></b>
-                                            <div>
-                                                <a href="" ng-click="changeRateSubmit()">保存</a>
-                                                <a href="" ng-click="rateEditPanleShow=false">取消</a>
-                                            </div>
-                                        </div>
+                                        <input type="text" ng-model="NewRate" ng-required="true" style="width:100px; float:left; height:25px;display:inline; padding:0px; margin:0px; border-radius:0px; border:1px solid #ccc;" />
+                                        <a href="javascript:void(0)" class="yl_a_btn" ng-click="changeRateSubmit()">保存</a>
+                                        <a href="javascript:void(0)" class="yl_a_btn_canle" ng-click="changeRateCancel()">取消</a>
                                     </form>
                                 </div>
                             </div>
-                        </div>-->
+                        </div>
                     </div>
                        
-                       <div class="visit_line"></div>
+                       <!--<div class="visit_line"></div>-->
 
                        <ul class="ul-f2">
                         	<li class="clearfix">
                             	<div class="li-timeb colorBlue">
-                                	<span class="cir-w"></span>
+                                	<span class="cir-w" ng-click="addNewVisit($event)"></span>
                                 </div>
-                                <div class="li-conb">
+                                <div class="li-conb" id="newVisitEditContainer">
                                     <!--<i class="add_i"></i>
                                     <div class="jiantou_bg"> 
                                         <a href="" class="" ng-click="addNewVisit($event)">点击添加新的拜访记录</a>
@@ -68,7 +63,7 @@
 										<i class="jiantou_i"></i>
 										<div class="clearfix">
                                         	<div class="visit-num">
-                                            	<span class="visit-num-title">{{((chance_visits.length||0) + 1)==1?'初':'第'+parseNumberToChinese((chance_visits.length||0) + 1)}}次拜访</span>
+                                            	<span class="visit-num-title">{{VisitNewNum}}次拜访</span>
                                             </div>
                                         </div>
 										<div class="clearfix">
@@ -87,13 +82,29 @@
                                           </div>
                                           <div class="add_content_btn ">
                                             <div class="add_xuxian">
-                                                <a href="" class="add_a grayLink" ng-click="selectVisitLocation()"><i class="maker"></i>添加地点</a>
-                                                <a href="" class="add_a grayLink" ><i class="maker"></i>添加报价</a>
-                                                <p class="colorGray"><lable ng-model="EditVisit.Address">阿斯顿撒旦撒</lable></p>
+                                                <a href="" class="add_a grayLink" ng-click="addVisitLocation($event)"><i class="maker"></i>添加地点</a>
+                                                <a href="" class="add_a grayLink" ng-click="addVisitPrise($event)"><i class="maker"></i>{{(EditVisit.Amount?(EditVisit.Amount| currency:'') : '添加报价')}}</a>
+                                                <p class="colorGray"><label>{{EditVisit.Address}}</label></p>
                                             </div>
                                             <div class="choice-box"><span><a href="" ng-click="addChanceVisit()" class="btn btn-large btn-danger">保存 </a></span></div>
                                           </div>
                                             </form>
+                                            <div class="hide">
+                                                <div id="addressInputPanle" style="width:250px; height:27px; line-height:27px;">
+                                                    <form name="SalesVisitAddressInputFrom" ng-class="showerror1?'showerror':''">
+                                                        <input type="text" ng-model="EditVisit.NewAddress" ng-required="true"  style="width:150px; float:left; height:25px;display:inline; padding:0px; margin:0px; border-radius:0px; border:1px solid #ccc;" />
+                                                        <a href="javascript:void(0)" class="yl_a_btn" ng-click="newAddressSubmit()">保存</a>
+                                                        <a href="javascript:void(0)" class="yl_a_btn_canle" ng-click="newAddressCancel()">取消</a>
+                                                    </form>
+                                                </div>
+                                                <div id="priceInputPanle" style="width:200px; height:27px; line-height:27px;">
+                                                    <form name="SalesVisitPriceInputFrom" ng-class="showerror2?'showerror':''">
+                                                        <input type="number" ng-model="EditVisit.NewAmount" ng-required="true"  style="width:100px; float:left; height:25px;display:inline; padding:0px; margin:0px; border-radius:0px; border:1px solid #ccc;" />
+                                                        <a href="javascript:void(0)" class="yl_a_btn" ng-click="newAmountSubmit()">保存</a>
+                                                        <a href="javascript:void(0)" class="yl_a_btn_canle" ng-click="newAmountCancel()">取消</a>
+                                                    </form>
+                                                </div>
+                                            </div>
 										</div>
 										
 									</div>
@@ -101,7 +112,7 @@
                             </li>
                             <li class="clearfix" ng-repeat="visit in chance_visits">
                                 <div>
-                            	    <div class="visit_time">2013/07/31</div>
+                            	    <div class="visit_time">{{parseJsonDate(visit.VisitTime,'yyyy/MM/dd')}}</div>
                                     <div class="li-conb">
                                 	    <div class="li-boxs">
                                     	    <i class="jiantou_i"></i>
@@ -111,17 +122,17 @@
 										    </div>
                                             <div class="clearfix">
                                         	    <div class="visit-num">
-                                            	    <span class="visit-num-title">{{($index-chance_visits.length)==-1?'初':'第'+parseNumberToChinese($index-chance_visits.length)}}次拜访</span>
+                                            	    <span class="visit-num-title">{{parseVisitNum($index-chance_visits.length)}}次拜访</span>
                                                     <span class="span2 visit_fs_mt"></span>
                                                 </div>
 
                                                 <div class="quote-info">
-                                            	    报价：<span class="colorRed">125,600</span>
+                                            	    报价：<span class="colorRed">{{visit.Amount | currency:''}}</span>
                                                 </div>
                                             </div>
                                             <p class="visit_info">{{visit.Remark}}</p>
 										    <div class="li-address">
-                                              <i class="maker_info" ng-click="markAddressOnMap()"></i>
+                                              <i class="maker_info"></i><!-- ng-click="markAddressOnMap()"-->
                                               <span class="address_info">{{parseAddress(visit.Address).address}}</span>
 
 										    </div>
@@ -133,5 +144,4 @@
                         </ul>
                 </div>                
             </div>
-        </div>
         </div>

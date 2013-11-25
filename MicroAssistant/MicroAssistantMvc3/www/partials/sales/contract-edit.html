@@ -63,7 +63,7 @@
       <div class="madeBox" ng-show="salesContractEditPage==3">
             <div class="textpact" ng-repeat="attachment in EditContract.attachments">
                 <i class="textIcon"></i>
-                <div class="textNam">{{attachment.PicDescription}}</div>
+                <div class="textNam" title="{{attachment.PicDescription}}">{{attachment.PicDescription| limitTo:8}}</div>
                 <a href="{{attachment.PicUrl}}" class="downloadIcon"></a>
                 <a ng-click="DeleteFile()">删除</a>
             </div>

@@ -217,6 +217,7 @@
     <Content Include="www\js\bootstrap-datetimepicker\bootstrap-datetimepicker.min.css" />
     <Content Include="www\js\bootstrap-datetimepicker\bootstrap-datetimepicker.min.js" />
     <Content Include="www\js\bootstrap-datetimepicker\bootstrap-datetimepicker.zh-CN.js" />
+    <Content Include="www\js\bootstrap-widgets-rewrite.js" />
     <Content Include="www\js\bootstrap.js" />
     <Content Include="www\js\bootstrap.min.js" />
     <Content Include="www\js\bootstro\bootstro.css" />

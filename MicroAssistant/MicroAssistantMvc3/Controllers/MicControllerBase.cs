@@ -14,8 +14,10 @@ namespace MicroAssistantMvc.Controllers
 {
     public class MicControllerBase :Controller,IController
     {
+        public const string CurrentTokenKey = "CurrentTokenCacheName";
+        public const string CurrentUserKey = "CurrentUserCacheName";
         #region token
-        private string currentToken;
+        protected string currentToken;
         public string token {
             get {
                 if (currentToken != null)
@@ -28,7 +30,7 @@ namespace MicroAssistantMvc.Controllers
                         {
                             FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(
                               Request.Cookies[FormsAuthentication.FormsCookieName].Value);
-                            currentToken = ticket.UserData;
+                            HttpContext.Items[CurrentTokenKey] = currentToken = ticket.UserData;
                         }
                         catch (Exception e)
                         {
@@ -56,6 +58,7 @@ namespace MicroAssistantMvc.Controllers
                 {
                     return null;
                 }
+
                 if (currentUser != null)
                     return currentUser;
 
@@ -64,6 +67,7 @@ namespace MicroAssistantMvc.Controllers
                     int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                     currentUser = SysUserAccessor.Instance.Get(userid);
                     currentUser.userFuns = SysFunctionAccessor.Instance.SearchSysUserRolePermisson(userid);
+                    HttpContext.Items[CurrentUserKey] = currentUser;
                 }
                 else
                 {

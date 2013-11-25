@@ -17,8 +17,8 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>#</th>
-                <th width="30%">客户名称</th>
+                <th width="5%"></th>
+                <th width="25%">客户名称</th>
                 <th width="25%">合同编号</th>
                 <th width="25%">本期应收金额/时间</th>
                 <th width="20%">&nbsp;</th>
@@ -27,35 +27,35 @@
         <tbody>
             <tr ng-repeat="receivableitem in receivables">
                 <td class="colorlight">{{$index+1}}</td>
-                <td>{{receivableitem.CustomerName}}</td>
-                <td >{{receivableitem.ContractNo}}</td>
-                <td><span class="money">{{receivableitem.Amount}}元</span><b class="colorBlue">{{parseJsonDate(receivableitem.ReceivedTime)|date:'yyyy/MM/dd'}}</b></td>
-                <td ><a href="" role="button" ng-click="ShowReceivableDetail(receivableitem)" >详情</a>{{receivableitem.IsAllRec?'':'|'}}<a href="" ng-hide="{{receivableitem.IsAllRec}}" ng-click="ShowReceivableDetail(receivableitem)" role="button" >确认收款</a></td>
+                <td class="colorlight">{{receivableitem.CustomerName}}</td>
+                <td class="colorlight">{{receivableitem.ContractNo}}</td>
+                <td class="colorlight"><span class="colorRed money">{{receivableitem.Amount}}元</span>{{parseJsonDate(receivableitem.ReceivedTime)|date:'yyyy/MM/dd'}}</td>
+                <td class="colorGray"><a href="" role="button" ng-click="ShowReceivableDetail(receivableitem)" >详情</a>{{receivableitem.IsAllRec?'':'|'}}<a href="" ng-hide="{{receivableitem.IsAllRec}}" ng-click="ShowReceivableDetail(receivableitem)" role="button" >确认收款</a></td>
             </tr>
         </tbody>
     </table>
 </div>
-<div class="tablePad" ng-show="steps=='payable'?'true':'false'" id="payablesList">
+<div class="tablePad finance_table" ng-show="steps=='payable'?'true':'false'" id="payablesList">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>#</th>
+                <th width="5%"></th>
                 <th width="30%">采购批次</th>
                 <th width="10%">单价</th>
                 <th width="15%">数量</th>
                 <th width="10%">总价</th>
-                <th width="20%">提交时间</th>
+                <th width="15%">提交时间</th>
                 <th width="15%">&nbsp;</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="payableitem in payables">
                 <td class="colorlight">{{$index+1}}</td>
-                <td>{{payableitem.PCode}}</td>
-                <td class="colorBlue">{{payableitem.Price}}</td>
-                <td>{{payableitem.PNum}} 件</td>
+                <td class="colorlight">{{payableitem.PCode}}</td>
+                <td class="colorRed">{{payableitem.Price}}元</td>
+                <td class="colorRed">{{payableitem.PNum}} 件</td>
                 <td class="colorRed">{{payableitem.Price*payableitem.PNum| currency:''}}</td>
-                <td>{{parseJsonDate(payableitem.CreateTime)|date:'yyyy/MM/dd'}}</td>
+                <td class="colorlight">{{parseJsonDate(payableitem.CreateTime)|date:'yyyy/MM/dd'}}</td>
                 <td class="colorGray"><a href="" ng-click="MakeSurePayable()" role="button"  ng-hide="payableitem.IsPay==2">确认付款</a>{{payableitem.IsPay==2?'已付款':''}}</td>
             </tr>
         </tbody>
