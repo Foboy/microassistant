@@ -54,9 +54,9 @@
         <thead>
             <tr>
                 <th></th>
-                <th width="10%">姓名</th>
+                <th width="15%">姓名</th>
                 <th width="15%">年龄</th>
-                <th width="15%">所属行业</th>
+                <th width="15%">性别</th>
                 <th width="20%">联系方式</th>
                 <th width="25%">所在地</th>
                 <th width="10%">&nbsp;</th>
@@ -72,7 +72,7 @@
                 </td>
                 <td class="colorg">{{personclientItem.Name}}</td>
                 <td>{{parseAgeFromBirthday(personclientItem.Birthday)}}</td>
-                <td>{{personclientItem.Industy}}</td>
+                <td>{{personclientItem.Sex==1?'男':'女'}}</td>
                 <td>
                     <p>{{personclientItem.Mobile||personclientItem.Phone||personclientItem.Email}}</p>
                 </td>

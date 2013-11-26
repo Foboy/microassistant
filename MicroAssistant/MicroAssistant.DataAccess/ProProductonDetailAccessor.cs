@@ -70,7 +70,7 @@ namespace MicroAssistant.DataAccess
             cmdLoadProProductonDetail = new MySqlCommand(@" select pay_time,p_d_id,price,p_num,p_code,create_time,user_id,p_id,ent_id,is_pay from pro_producton_detail 
 where (@EntId = 0 or ent_id = @EntId)
 and (@UserId = 0 or user_id = @UserId )  
-and (@PId = 0 or p_id = @PId)  
+and (@PId = 0 or p_id = @PId) {0}
 order by create_time desc
 limit @PageIndex,@PageSize");
             cmdLoadProProductonDetail.Parameters.Add("@pageIndex", MySqlDbType.Int32);
@@ -86,7 +86,7 @@ limit @PageIndex,@PageSize");
             cmdGetProProductonDetailCount = new MySqlCommand(@" select count(1) from pro_producton_detail 
 where (@EntId = 0 or ent_id = @EntId)
 and (@UserId = 0 or user_id = @UserId )  
-and (@PId = 0 or p_id = @PId)");
+and (@PId = 0 or p_id = @PId){0} ")  ;
             cmdGetProProductonDetailCount.Parameters.Add("@UserId", MySqlDbType.Int32);
             cmdGetProProductonDetailCount.Parameters.Add("@PId", MySqlDbType.Int32);
             cmdGetProProductonDetailCount.Parameters.Add("@EntId", MySqlDbType.Int32);
@@ -233,7 +233,7 @@ and (@PId = 0 or p_id = @PId)");
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<ProProductonDetail> Search(Int32 UserId, Int32 PId, Int32 EntId, int pageIndex, int pageSize)
+        public PageEntity<ProProductonDetail> Search(Int32 UserId, Int32 PId, Int32 EntId, int pageIndex, int pageSize,int type)
         {
             PageEntity<ProProductonDetail> returnValue = new PageEntity<ProProductonDetail>();
             MySqlConnection oc = ConnectManager.Create();
@@ -252,7 +252,13 @@ and (@PId = 0 or p_id = @PId)");
 
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-
+                string sqlText = string.Empty;
+                if (type == 1)//库存
+                {
+                    sqlText = "and is_pay=2 ";
+                }
+                _cmdLoadProProductonDetail.CommandText = string.Format(_cmdLoadProProductonDetail.CommandText, sqlText);
+                _cmdGetProProductonDetailCount.CommandText = string.Format(_cmdGetProProductonDetailCount.CommandText, sqlText);
                 MySqlDataReader reader = _cmdLoadProProductonDetail.ExecuteReader();
                 while (reader.Read())
                 {

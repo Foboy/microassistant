@@ -121,7 +121,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                         int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                         SysUser user = SysUserAccessor.Instance.Get(userid);
                         //获取应付款列表
-                        rmlist = ProProductonDetailAccessor.Instance.Search(0, 0, user.EntId, pageIndex, pageSize);
+                        rmlist = ProProductonDetailAccessor.Instance.Search(0, 0, user.EntId, pageIndex, pageSize,0);
 
                         result.Error = AppError.ERROR_SUCCESS;
                         result.Data = rmlist;
@@ -232,7 +232,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
         /// </summary>
         /// <param name="eid"></param>
         /// <returns></returns>
-        public JsonResult ConfirmPay(string PCode)
+        public JsonResult ConfirmPay(string PCode,int PId,int Num)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -249,6 +249,9 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                         return Res;
                     }
                     ProProductonDetailAccessor.Instance.ConfirmPay(PCode);
+                    //确认付款更新库存
+                    ProProduction pro = ProProductionAccessor.Instance.Get(PId);
+                    ProProductionAccessor.Instance.UpdateStockCount(PId, pro.StockCount + Num);
                     result.Error = AppError.ERROR_SUCCESS;
                 }
                 else

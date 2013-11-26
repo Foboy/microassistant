@@ -49,6 +49,7 @@ $sitecore.urls.add("salesChanceEdit", "/MarketingManagement/Marketing/EditMarket
 $sitecore.urls.add("salesChanceList", "/MarketingManagement/Marketing/SearchMarketingList"); 
 $sitecore.urls.add("salesChanceVisitsList", "/MarketingManagement/Marketing/GetVisitInfo");
 $sitecore.urls.add("salesAddChanceVisits", "/MarketingManagement/Marketing/ToVisit"); 
+$sitecore.urls.add("salesEditChanceVisits", "/MarketingManagement/Marketing/EditVisitInfo");
 $sitecore.urls.add("salesRateChange", "/MarketingManagement/Marketing/EditCustomerRate");
 $sitecore.urls.add("salesChanceVisitList", "/MarketingManagement/Marketing/SearchVisitInfoList");
 $sitecore.urls.add("salesGetMarketingCount", "/MarketingManagement/Marketing/GetMarketingCount");

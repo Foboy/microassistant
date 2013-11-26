@@ -81,7 +81,7 @@ function FinaceDetailCtrl($scope, $routeParams, $http, $location) {
         $("#makesurePayBox").modal('show');
     });
     $scope.makeSurePay = function () {
-        $http.post($sitecore.urls["makeSurePay"], { PCode: $scope.MakeItem.PCode }).success(function (data) {
+        $http.post($sitecore.urls["makeSurePay"], { PCode: $scope.MakeItem.PCode, PId: $scope.MakeItem.PId, Num: $scope.MakeItem.PNum }).success(function (data) {
             if (!data.Error) {
                 $("#makesurePayBox").modal('hide');
                 $scope.loadCurrentStepList($routeParams.pageIndex || 1);

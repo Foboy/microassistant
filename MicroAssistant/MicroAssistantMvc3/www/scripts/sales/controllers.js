@@ -22,7 +22,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 		                }
 		                $scope.ActPageIndex = $routeParams.pageIndex || 0;
 		                $scope.chances = data.Data.Items;
-		                $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!sales/chance/{0}');
+		                $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#sales/chance/{0}');
 		            }).
                     error(function (data, status, headers, config) {
                         $scope.chances = [];
@@ -35,7 +35,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 		                console.log(data);
 		                $scope.ActPageIndex = $routeParams.pageIndex || 0;
 		                $scope.cvisits = data.Data.Items;
-		                $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!sales/visit/{0}');
+		                $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#sales/visit/{0}');
 		            }).
                     error(function (data, status, headers, config) {
                         $scope.cvisits = [];
@@ -48,7 +48,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 			            console.log(data);
 			            $scope.ActPageIndex = $routeParams.pageIndex || 0;
 			            $scope.contracts = data.Data.Items;
-			            $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!sales/contract/{0}');
+			            $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#sales/contract/{0}');
 			        }).
                     error(function (data, status, headers, config) {
                         $scope.contracts = [];
@@ -60,7 +60,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 					console.log(data);
 				  $scope.ActPageIndex = $routeParams.pageIndex||1;
 				  $scope.afters = data;
-				  $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!sales/after/{0}');
+				  $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#sales/after/{0}');
 				}).
 				error(function(data, status, headers, config) {
 				  $scope.afters = [];
@@ -209,6 +209,10 @@ function SalesChanceDetailCtrl($scope, $routeParams, $http, $location, $filter) 
 function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
     var chance;
     $("#visitDetailBox").hide();
+    var emptyVisit = { VisitType: 1, Address: '' };
+
+    $scope.VisitNewNum = '初';
+    var $ratePanle,$addressPanle,$prisePanle;
 
     $scope.$on('EventVisitDetail', function (event, from) {
         console.log(from)
@@ -222,10 +226,9 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 
 		//加载机会数据
     });
-    
 
     $scope.visitFormReset = function () {
-        $scope.EditVisit = { VisitType: 1, Address: '' };
+        $scope.EditVisit = angular.copy(emptyVisit);
         $scope.SalesAddChanceVisitFrom.$setPristine();
     };
 	
@@ -245,6 +248,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	            else {
 	                $scope.IdmarketingChance = chance.IdmarketingChance;
 	                $scope.chance_visits = data.Data.Vlist.Items;
+	                $scope.VisitNewNum = $scope.parseVisitNum(($scope.chance_visits.length || 0) + 1);
 	            }
 	        }).
             error(function (data, status, headers, config) {
@@ -253,10 +257,60 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	    }
 	};
 	
-	$scope.selectVisitLocation = function(){
+	$scope.addVisitLocation = function (ev) {
+	    $scope.EditVisit.NewAddress = $scope.EditVisit.Address;
+	    if ($addressPanle) {
+	        $addressPanle.coolpopover('toggle');
+	    }
+	    else {
+	        $addressPanle = $(ev.target);
+	        $addressPanle.coolpopover({ content: $("#addressInputPanle"), placement: 'bottom', html: true, trigger: 'manual' });
+	        $addressPanle.coolpopover('show');
+	    }
+        /*
 		$("#salesVisitMapIframe").attr({src:'partials/others/locationselectmap.html?lat='+$scope.visit_lat+'&lng='+$scope.visit_lng})
 		$('#visitLocationSelectModal').modal('show');
+        */
 	};
+
+	$scope.newAddressSubmit = function () {
+	    if ($scope.SalesVisitAddressInputFrom.$valid) {
+	        $scope.showerror1 = false;
+	        $addressPanle.coolpopover('hide');
+	        $scope.EditVisit.Address = $scope.EditVisit.NewAddress;
+	    }
+	    else {
+	        $scope.showerror1 = true;
+	    }
+	}
+	$scope.newAddressCancel = function () {
+	    $addressPanle.coolpopover('hide');
+	}
+
+	$scope.addVisitPrise = function (ev) {
+	    $scope.EditVisit.NewAmount = $scope.EditVisit.Amount;
+	    if ($prisePanle) {
+	        $prisePanle.coolpopover('toggle');
+	    }
+	    else {
+	        $prisePanle = $(ev.target);
+	        $prisePanle.coolpopover({ content: $("#priceInputPanle"), placement: 'bottom', html: true, trigger: 'manual' });
+	        $prisePanle.coolpopover('show');
+	    }
+	};
+	$scope.newAmountSubmit = function () {
+	    if ($scope.SalesVisitPriceInputFrom.$valid) {
+	        $scope.showerror2 = false;
+	        $prisePanle.coolpopover('hide');
+	        $scope.EditVisit.Amount = $scope.EditVisit.NewAmount;
+	    }
+	    else {
+	        $scope.showerror2 = true;
+	    }
+	}
+	$scope.newAmountCancel = function () {
+	    $prisePanle.coolpopover('hide');
+	}
 
 	$scope.markAddressOnMap = function () {
 	    var address = $scope.parseAddress(this.visit.Address);
@@ -303,19 +357,36 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	$scope.addChanceVisit = function () {
 	    if ($scope.SalesAddChanceVisitFrom.$valid) {
 	        $scope.showerror = false;
-	        $http.post($sitecore.urls["salesAddChanceVisits"], { cid: chance.IdmarketingChance, visitType: $scope.EditVisit.VisitType, remark: $scope.EditVisit.Remark, amount: 0, address: $scope.combineAdderess() }).success(function (data) {
+	        $http.post(
+                $scope.EditVisit.IdmarketingVisit ? $sitecore.urls["salesEditChanceVisits"] : $sitecore.urls["salesAddChanceVisits"], {
+	            cid: chance.IdmarketingChance,
+	            vid: $scope.EditVisit.IdmarketingVisit,
+	            visitType: $scope.EditVisit.VisitType,
+	            remark: $scope.EditVisit.Remark,
+	            amount: $scope.EditVisit.Amount,
+	            address: $scope.combineAdderess()
+	        }).success(function (data) {
 	            console.log(data);
 	            if (data.Error) {
 	                alert(data.ErrorMessage);
 	            }
 	            else {
-	                var addedvisit = angular.copy($scope.EditVisit);
-	                addedvisit.Address = $scope.combineAdderess();
-	                $scope.chance_visits.unshift(addedvisit);
-	                $scope.addvisitpanleshow = false;
-	                $scope.visitFormReset();
-	                chance.LastVisitTime = new Date();
-	                chance.VisitNum = (chance.VisitNum || 0) + 1;
+	                if ($scope.EditVisit.IdmarketingVisit)
+	                {
+	                    angular.extend($scope.EditVisit_SourceObject, $scope.EditVisit);
+	                    $scope.EditVisit = angular.copy(emptyVisit);
+	                    $scope.addNewVisit();
+	                }
+                    else
+	                {
+	                    var addedvisit = angular.copy($scope.EditVisit);
+	                    addedvisit.Address = $scope.combineAdderess();
+	                    $scope.chance_visits.unshift(addedvisit);
+	                    $scope.addvisitpanleshow = false;
+	                    $scope.visitFormReset();
+	                    chance.LastVisitTime = new Date();
+	                    chance.VisitNum = (chance.VisitNum || 0) + 1;
+	                }
 	            }
 	        }).
             error(function (data, status, headers, config) {
@@ -326,20 +397,20 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	        $scope.showerror = true;
 	    }
 	};
-	$scope.changeRateShow = function () {
-	    if ($('#rateShowPanle').data('popover')) {
-	        $scope.changeRateCancel();
+
+
+	$scope.changeRateShow = function (ev) {
+	    if ($ratePanle) {
+	        $ratePanle.coolpopover('toggle');
 	    }
 	    else {
-	        $('#rateShowPanle').popover({ content: $("#salesRateEditePanle"), placement: 'bottom', html: true, trigger: 'manual' });
-	        $('#rateShowPanle').popover('show');
+	        $ratePanle = $(ev.target);
+	        $ratePanle.coolpopover({ content: $("#salesRateEditePanle"), placement: 'bottom', html: true, trigger: 'manual' });
+	        $ratePanle.coolpopover('show');
 	    }
 	}
 	$scope.changeRateCancel = function () {
-	    var parent = $("#salesRateEditePanle").parent();
-	    $('#salesRateEditePanleBox').append($("#salesRateEditePanle"));
-	    parent.append($("#salesRateEditePanle").clone());
-	    $('#rateShowPanle').popover('destroy');
+	    $ratePanle.coolpopover('hide');
 	};
 	$scope.changeRateSubmit = function () {
 	    if ($scope.chance.Rate == $scope.NewRate)
@@ -364,18 +435,30 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
             });
 	    }
 	};
+
+	$scope.parseVisitNum = function (index) {
+	    index = Math.abs(index);
+	    return (index == 1 ? '初' : '第' + $scope.parseNumberToChinese(index));
+	};
+
 	$scope.addNewVisit = function (ev) {
-	    $("#visitEditBox").prev('.li-boxs').show();
-	    $(ev.target).after($("#visitEditBox"));
+	    $scope.VisitNewNum = $scope.parseVisitNum(($scope.chance_visits.length || 0) + 1);
+	    $("#visitEditBox").siblings('.li-boxs').show();
+	    $('#newVisitEditContainer').append($("#visitEditBox"));
+	    $scope.visitFormReset();
 	    $scope.addvisitpanleshow = true;
 	};
 
 	$scope.addNewVisitCancel = function () {
-	    $("#visitEditBox").prev('.li-boxs').show();
+	    $("#visitEditBox").siblings('.li-boxs').show();
 	    $scope.addvisitpanleshow = false;
 	};
 
 	$scope.editExistVisit = function (ev) {
+	    $scope.VisitNewNum = $scope.parseVisitNum(this.$index - $scope.chance_visits.length);
+	    $scope.EditVisit = angular.copy(this.visit);
+	    $scope.EditVisit_SourceObject = this.visit;
+	    $("#visitEditBox").siblings('.li-boxs').show();
 	    $(ev.target).parents('.li-boxs').hide().after($("#visitEditBox"));
 	    $scope.addvisitpanleshow = true;
 	};
@@ -417,6 +500,28 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
     var chance;
     console.log('SalesChanceEditCtrl')
     console.log($element)
+    var customSource = [];
+    var selectCustomId = 0;
+
+    $('#salesChanceContactNameInput').change(function () {
+        var name = $(this).val();
+        console.log('matchname' + name);
+        var matched = false;
+        for (var i = 0; i < customSource.length; i++)
+        {
+            if (name == customSource[i].ContactUsername)
+            {
+                matched = true;
+                selectCustomId = customSource[i].CustomerEntId || customSource[i].CustomerPrivateId;
+                if ($.trim(name) != name)
+                {
+                    $(this).val($.trim(name));
+                }
+            }
+        }
+        selectCustomId = matched ? selectCustomId : 0;
+    });
+
     $scope.$on('EventAddChance', function (event, fromscope) {
         console.log("EventAddChance");
         console.log(fromscope);
@@ -433,11 +538,23 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
         }).success(function (data) {
             console.log(data)
             var datasource = [];
+            customSource = [];
             $scope.searchCustomers = data.Data;
             for (var i = 0; i < data.Data.length; i++)
             {
-                datasource.push(data.Data[i].ContactUsername);
+                var item = data.Data[i];
+                var samecount = 1;
+                for (var j = i + 1; j < data.Data.length; j++) {
+                    var sitem = data.Data[j];
+                    if (item.ContactUsername == sitem.ContactUsername) {
+                        samecount++;
+                        sitem.ContactUsername = sitem.ContactUsername + (new Array(samecount).join(' '));
+                    }
+                }
+                customSource.push(item);
+                datasource.push(item.ContactUsername);
             }
+            
             $('#salesChanceContactNameInput').data('typeahead', null);
             $('#salesChanceContactNameInput').typeahead({ source: datasource });
         }).
@@ -462,7 +579,7 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
                 phone: $scope.EditChance.Phone,
                 email: $scope.EditChance.Email,
                 qq: $scope.EditChance.Qq,
-                customerId: $scope.EditChance.UserId ||0
+                customerId: $scope.EditChance.UserId || selectCustomId
             }).success(function (data) {
                 console.log(data);
                 if (data.Error) {
