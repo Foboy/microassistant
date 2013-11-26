@@ -14,7 +14,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
             }
             $parent.ProductActPageIndex = pageIndex;
             $parent.products = data.Data.Items;
-            $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!product/' + catalogId + '/{0}');
+            $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#product/' + catalogId + '/{0}');
         }).
         error(function (data, status, headers, config) {
             $parent.products = [];
