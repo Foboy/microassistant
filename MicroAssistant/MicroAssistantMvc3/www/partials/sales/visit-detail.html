@@ -24,7 +24,7 @@
                             </div>
                             <div class="visit_title_btn">
                               <div class="sign-pact">
-                            	<a href="" class="hetong_btn">签订合同</a>
+                            	<a href="" class="hetong_btn" ng-click="addCurrentStepItem('contract')">签订合同</a>
                               </div>
                               <div class="rate-cur">
                                 <i class="rate-icon "></i>
@@ -123,7 +123,7 @@
                                             <div class="clearfix">
                                         	    <div class="visit-num">
                                             	    <span class="visit-num-title">{{parseVisitNum($index-chance_visits.length)}}次拜访</span>
-                                                    <span class="span2 visit_fs_mt"></span>
+                                                    <span class="span2 visit_fs_mt" ng-class="parseVisitIcon(visit.VisitType)"></span>
                                                 </div>
 
                                                 <div class="quote-info">

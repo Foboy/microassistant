@@ -354,6 +354,21 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	    }
 	};
 
+	$scope.parseVisitIcon = function (type) {
+	    type = type + "";
+	    switch (type)
+	    {
+	        case "1":
+	            return "visit_fs_phone";
+	        case "2":
+	            return "visit_fs_mt";
+	        case "3":
+	            return "visit_fs_zx";
+	        default:
+	            return "visit_fs_mt";
+	    }
+	};
+
 	$scope.addChanceVisit = function () {
 	    if ($scope.SalesAddChanceVisitFrom.$valid) {
 	        $scope.showerror = false;
@@ -363,7 +378,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	            vid: $scope.EditVisit.IdmarketingVisit,
 	            visitType: $scope.EditVisit.VisitType,
 	            remark: $scope.EditVisit.Remark,
-	            amount: $scope.EditVisit.Amount,
+	            amount: $scope.EditVisit.Amount || 0,
 	            address: $scope.combineAdderess()
 	        }).success(function (data) {
 	            console.log(data);

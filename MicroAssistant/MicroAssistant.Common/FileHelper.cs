@@ -40,6 +40,11 @@ namespace MicroAssistant.Common
             return string.Format("/UploadPicture/{0}/{1}/{2}/{3}", type.ToString(), time.ToString("yyyyMM"), objid, fileName);
         }
 
+        public static string GetRootSavePath()
+        {
+            return "/UploadPicture/";
+        }
+
         public static string GetFileSaveName(string fileExtention)
         {
             return Guid.NewGuid().ToString("N") + fileExtention;

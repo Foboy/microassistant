@@ -34,7 +34,8 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
                     
                     string itempath = FileHelper.GetFileSavePath(userid, fileType, null);
                     string itemfullpath = Server.MapPath(itempath);
-                    if (!System.IO.File.Exists(sourcePath) || (!sourcePath.StartsWith(itemfullpath) && !anymouseAllowAccess.IsMatch(sourcePath)))
+                    string rootpath = Server.MapPath(FileHelper.GetRootSavePath());
+                    if (!System.IO.File.Exists(sourcePath) || (!sourcePath.StartsWith(rootpath) && !anymouseAllowAccess.IsMatch(sourcePath)))
                     {
                         result.Error = AppError.ERROR_PERSON_NOT_FOUND;
                         result.ExMessage = result.ErrorMessage = "源文件不存在或没有访问权限";
