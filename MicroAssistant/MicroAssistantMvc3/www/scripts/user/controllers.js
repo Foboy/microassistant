@@ -29,12 +29,15 @@
                         else {
                             $scope.CurrentUser = data.Data;
                             var loadingUrl = 'index.html';
-
-                            if ($scope.hasPermission(27)) {
-                                loadingUrl = "index.html#/boss";
-                            }
-                            else {
-                                loadingUrl = "index.html";
+                            if ($scope.CurrentUser.userFuns.length == 0) { //判断未加入到企业的用户角色登陆初始化页面
+                                loadingUrl = "index.html#/mytimeshaft";
+                            } else {
+                                if ($scope.hasPermission(27)) {
+                                    loadingUrl = "index.html#/boss";
+                                }
+                                else {
+                                    loadingUrl = "index.html";
+                                }
                             }
                             $.pagePreLoading(loadingUrl, function () { window.location.href = loadingUrl; });
                         }

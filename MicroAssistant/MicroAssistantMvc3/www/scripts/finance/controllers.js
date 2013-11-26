@@ -17,7 +17,7 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
                     } else {
                         $scope.receivables = data.Data.Items;
                         $parent.receivableActPageIndex = pageIndex;
-                        $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!finance/' + $scope.steps + '/{0}');
+                        $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#finance/' + $scope.steps + '/{0}');
                     }
                 }).error(function (data, status, headers, config) {
                     $scope.receivables = [];
@@ -30,7 +30,7 @@ function FinanceMainCtrl($scope, $routeParams, $http, $location) {
                     } else {
                         $scope.payables = data.Data.Items;
                         $parent.payableActPageIndex = pageIndex;
-                        $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!finance/' + $scope.steps + '/{0}');
+                        $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#finance/' + $scope.steps + '/{0}');
                     }
                     
                 }).error(function (data, status, headers, config) {

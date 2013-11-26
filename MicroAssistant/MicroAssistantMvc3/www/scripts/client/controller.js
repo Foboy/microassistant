@@ -18,7 +18,7 @@
                     } else {
                         $scope.enterpriseclients = data.Data.Items;
                         $parent.enterpriseActPageIndex = pageIndex;
-                        $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!client/' + $scope.sorts + '/{0}');
+                        $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#client/' + $scope.sorts + '/{0}');
                     }
                 }).error(function (data, status, headers, config) {
                     $scope.enterpriseclients = [];
@@ -30,7 +30,7 @@
                     {
                         $scope.personalclients = data.Data.Items;
                         $parent.personalActPageIndex = pageIndex;
-                        $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!client/' + $scope.sorts + '/{0}');
+                        $parent.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#client/' + $scope.sorts + '/{0}');
                     }
                 }).error(function (data, status, headers, config) {
                     $scope.personalclients = [];
