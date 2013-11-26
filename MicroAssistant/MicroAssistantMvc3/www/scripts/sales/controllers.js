@@ -22,7 +22,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 		                }
 		                $scope.ActPageIndex = $routeParams.pageIndex || 0;
 		                $scope.chances = data.Data.Items;
-		                $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!sales/chance/{0}');
+		                $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#sales/chance/{0}');
 		            }).
                     error(function (data, status, headers, config) {
                         $scope.chances = [];
@@ -35,7 +35,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 		                console.log(data);
 		                $scope.ActPageIndex = $routeParams.pageIndex || 0;
 		                $scope.cvisits = data.Data.Items;
-		                $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!sales/visit/{0}');
+		                $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#sales/visit/{0}');
 		            }).
                     error(function (data, status, headers, config) {
                         $scope.cvisits = [];
@@ -48,7 +48,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 			            console.log(data);
 			            $scope.ActPageIndex = $routeParams.pageIndex || 0;
 			            $scope.contracts = data.Data.Items;
-			            $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!sales/contract/{0}');
+			            $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#sales/contract/{0}');
 			        }).
                     error(function (data, status, headers, config) {
                         $scope.contracts = [];
@@ -60,7 +60,7 @@ function SalesMainCtrl($scope, $routeParams, $http, $location){
 					console.log(data);
 				  $scope.ActPageIndex = $routeParams.pageIndex||1;
 				  $scope.afters = data;
-				  $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#!sales/after/{0}');
+				  $scope.pages = utilities.paging(data.Data.RecordsCount, pageIndex, 10, '#sales/after/{0}');
 				}).
 				error(function(data, status, headers, config) {
 				  $scope.afters = [];
@@ -354,6 +354,21 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	    }
 	};
 
+	$scope.parseVisitIcon = function (type) {
+	    type = type + "";
+	    switch (type)
+	    {
+	        case "1":
+	            return "visit_fs_phone";
+	        case "2":
+	            return "visit_fs_mt";
+	        case "3":
+	            return "visit_fs_zx";
+	        default:
+	            return "visit_fs_mt";
+	    }
+	};
+
 	$scope.addChanceVisit = function () {
 	    if ($scope.SalesAddChanceVisitFrom.$valid) {
 	        $scope.showerror = false;
@@ -363,7 +378,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	            vid: $scope.EditVisit.IdmarketingVisit,
 	            visitType: $scope.EditVisit.VisitType,
 	            remark: $scope.EditVisit.Remark,
-	            amount: $scope.EditVisit.Amount,
+	            amount: $scope.EditVisit.Amount || 0,
 	            address: $scope.combineAdderess()
 	        }).success(function (data) {
 	            console.log(data);
