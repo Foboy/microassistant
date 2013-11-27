@@ -665,7 +665,7 @@ function SalesContractEditCtrl($scope, $routeParams, $http, $location, $filter) 
             format: "yyyy/mm/dd",
             autoclose: true,
             todayBtn: true,
-            pickerPosition: "bottom-left"
+            pickerPosition: "top-left"
         })
         .on('changeDate', function (ev) {
             $scope.$apply(function () {

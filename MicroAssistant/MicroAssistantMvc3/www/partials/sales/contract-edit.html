@@ -64,8 +64,8 @@
             <div class="textpact" ng-repeat="attachment in EditContract.attachments">
                 <i class="textIcon"></i>
                 <div class="textNam" title="{{attachment.PicDescription}}">{{attachment.PicDescription| limitTo:8}}</div>
-                <a href="{{attachment.PicUrl}}" class="downloadIcon"></a>
-                <a ng-click="DeleteFile()">删除</a>
+                <a href="javascript:void(0)" ng-click="DeleteFile()" class="closeIcon"></a>
+                <!--<a ng-click="DeleteFile()">删除</a>-->
             </div>
             <div id="salesContractFileQueue"></div>
             <ul class="listContent">
