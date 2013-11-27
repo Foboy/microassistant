@@ -401,6 +401,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	                    $scope.visitFormReset();
 	                    chance.LastVisitTime = new Date();
 	                    chance.VisitNum = (chance.VisitNum || 0) + 1;
+	                    $scope.addNewVisit();
 	                }
 	            }
 	        }).
@@ -530,7 +531,11 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
                 selectCustomId = customSource[i].CustomerEntId || customSource[i].CustomerPrivateId;
                 if ($.trim(name) != name)
                 {
-                    $(this).val($.trim(name));
+                    var realname = $.trim(name);
+                    $(this).val(realname);
+                    //$scope.$apply(function () {
+                    //    $scope.EditChance.ContactName = realname;
+                    //});
                 }
             }
         }
@@ -548,6 +553,8 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
     });
 
     $scope.contactNameChange = function () {
+        if (!$scope.EditChance.ContactName || !$scope.EditChance.ContactName.length)
+            return;
         $http.post($scope.EditChance.CustomerType == 1 ? $sitecore.urls["salesSearchCustomerEntByName"] : $sitecore.urls["salesSearchCustomerPrivateByName"], {
             name: $scope.EditChance.ContactName
         }).success(function (data) {
@@ -570,8 +577,13 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
                 datasource.push(item.ContactUsername);
             }
             
-            $('#salesChanceContactNameInput').data('typeahead', null);
-            $('#salesChanceContactNameInput').typeahead({ source: datasource });
+            var typeahead = $('#salesChanceContactNameInput').data('typeahead');
+            if (typeahead) {
+                typeahead.source = datasource;
+            }
+            else {
+                $('#salesChanceContactNameInput').typeahead({ source: datasource });
+            }
         }).
         error(function (data, status, headers, config) {
 
@@ -581,6 +593,7 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
 
     $scope.SalesAddChanceSubmit = function () {
         console.log($scope.EditChance)
+        $scope.EditChance.ContactName = $('#salesChanceContactNameInput').val();
         if ($scope.SalesAddChanceForm.$valid) {
             $scope.showerror = false;
 
