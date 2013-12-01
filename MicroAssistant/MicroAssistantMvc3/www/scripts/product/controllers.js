@@ -47,7 +47,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
             if (catalogId) {
                 $scope.activeCat(catalogId, pageIndex);
             }
-            else {
+            else if ($parent.catalogs && $parent.catalogs.length) {
                 $scope.activeCat($parent.catalogs[0].PTypeId, pageIndex);
             }
         }

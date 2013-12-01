@@ -41,22 +41,22 @@
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="bin/MicroAssistant.Cache.dll">
-      <publishTime>12/01/2013 17:01:28</publishTime>
+      <publishTime>12/01/2013 22:29:45</publishTime>
     </File>
     <File Include="bin/MicroAssistant.Common.dll">
-      <publishTime>12/01/2013 17:01:29</publishTime>
+      <publishTime>12/01/2013 22:29:45</publishTime>
     </File>
     <File Include="bin/MicroAssistant.DataAccess.dll">
-      <publishTime>12/01/2013 17:01:31</publishTime>
+      <publishTime>12/01/2013 22:40:41</publishTime>
     </File>
     <File Include="bin/MicroAssistant.DataStructure.dll">
       <publishTime>12/01/2013 17:01:28</publishTime>
     </File>
     <File Include="bin/MicroAssistant.Meta.dll">
-      <publishTime>12/01/2013 17:01:29</publishTime>
+      <publishTime>12/01/2013 22:29:45</publishTime>
     </File>
     <File Include="bin/MicroAssistantMvc.dll">
-      <publishTime>12/01/2013 17:02:13</publishTime>
+      <publishTime>12/01/2013 22:40:41</publishTime>
     </File>
     <File Include="bin/MicroAssistantMvc3.dll">
       <publishTime>11/08/2013 01:05:39</publishTime>
@@ -335,7 +335,7 @@
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/01/2013 17:02:14</publishTime>
+      <publishTime>12/01/2013 22:40:42</publishTime>
     </File>
     <File Include="www/boss.html">
       <publishTime>11/12/2013 16:48:52</publishTime>
@@ -358,35 +358,44 @@
     <File Include="www/css/master.css">
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
+    <File Include="www/css/next.png">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/css/previous.png">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
     <File Include="www/enterprise-register.html">
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/404.png">
-      <publishTime>11/09/2013 13:02:18</publishTime>
+      <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/Adimg/h1.jpg">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/img/Adimg/tx.png">
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/arrowBg.png">
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/blue-bubble.png">
-      <publishTime>11/09/2013 13:02:18</publishTime>
+      <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/c-img-cover.png">
-      <publishTime>11/12/2013 09:04:09</publishTime>
+      <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/c-png-2-white.png">
-      <publishTime>11/09/2013 13:02:18</publishTime>
+      <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/c-png-2.png">
-      <publishTime>11/09/2013 13:02:18</publishTime>
+      <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/circleBG.png">
       <publishTime>11/07/2013 22:30:28</publishTime>
     </File>
     <File Include="www/img/funnel.png">
-      <publishTime>11/09/2013 13:02:18</publishTime>
+      <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/gb_tip_layer.png">
       <publishTime>11/26/2013 13:42:10</publishTime>
@@ -398,7 +407,10 @@
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/head.jpg">
-      <publishTime>11/09/2013 13:02:18</publishTime>
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/img/htsk.png">
+      <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/icon.png">
       <publishTime>11/26/2013 13:42:10</publishTime>
@@ -406,20 +418,38 @@
     <File Include="www/img/icon.psd">
       <publishTime>11/12/2013 21:25:32</publishTime>
     </File>
+    <File Include="www/img/loading.png">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
     <File Include="www/img/loading26.gif">
-      <publishTime>11/12/2013 09:04:09</publishTime>
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/img/logo1.png">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/img/logo2.png">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/img/next.png">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/img/previous.png">
+      <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/testpic.jpg">
-      <publishTime>11/09/2013 13:02:18</publishTime>
+      <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/time-axis.jpg">
-      <publishTime>11/09/2013 13:02:18</publishTime>
+      <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/time-box-ed.png">
-      <publishTime>11/09/2013 13:02:18</publishTime>
+      <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/img/time-box.png">
-      <publishTime>11/09/2013 13:02:18</publishTime>
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/img/timelinejh.png">
+      <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/index.html">
       <publishTime>11/26/2013 13:42:10</publishTime>
@@ -550,6 +580,9 @@
     <File Include="www/js/jscop/jquery.Jcrop.css">
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
+    <File Include="www/js/jscop/jquery.Jcrop.extend.js">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
     <File Include="www/js/jscop/jquery.Jcrop.js">
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
@@ -593,6 +626,102 @@
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/login.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-404.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-addclient_com.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-addclient_enterprise.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-addcom.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-addGoods_1.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-addGoods_2.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-addGoods_3.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-addpact.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-addprodut.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-addSalesChance.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-basicInfo.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-boss.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-changeEmail.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-changePassword.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-enterpriseInformation.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-financialManagement.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-financialManagement_pay.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-goodsInfo.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-index.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-inventory.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-loading.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-login.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-Payment.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-Paysucceed.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-peopleInfo.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-peopleInfo2.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-register.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-saleManagesvisit.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-salesManage.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-salesManagesign.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-staffManage.html">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/p-timeShaft.html">
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/partials/boss.html">
@@ -713,7 +842,7 @@
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/scripts/product/controllers.js">
-      <publishTime>11/26/2013 13:43:29</publishTime>
+      <publishTime>12/01/2013 22:40:12</publishTime>
     </File>
     <File Include="www/scripts/product/json/productCat.json">
       <publishTime>11/26/2013 13:42:10</publishTime>
@@ -737,6 +866,9 @@
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/web.config">
+      <publishTime>11/26/2013 13:42:10</publishTime>
+    </File>
+    <File Include="www/目录.html">
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
   </ItemGroup>
