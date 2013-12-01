@@ -118,6 +118,7 @@
     <Compile Include="Areas\SystemManagement\SystemManagementAreaRegistration.cs" />
     <Compile Include="Areas\UserManagement\Controllers\UserController.cs" />
     <Compile Include="Areas\UserManagement\UserManagementAreaRegistration.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MicControllerBase.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -200,7 +201,6 @@
     <Content Include="www\enterprise-register.html" />
     <Content Include="www\img\Adimg\h1.jpg" />
     <Content Include="www\img\arrowBg.png" />
-    <Content Include="www\img\circleBG.png" />
     <Content Include="www\img\gb_tip_layer.png" />
     <Content Include="www\img\glyphicons-halflings-white.png" />
     <Content Include="www\img\glyphicons-halflings.png" />
@@ -339,7 +339,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="www\img\icon.psd" />
     <Content Include="www\partials\product\help.json" />
     <Content Include="www\scripts\product\json\productCat.json" />
     <Content Include="www\scripts\product\json\productDetail.json" />
