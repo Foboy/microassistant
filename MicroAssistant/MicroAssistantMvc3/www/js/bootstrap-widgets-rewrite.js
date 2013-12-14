@@ -388,3 +388,44 @@
     })
 
 }(window.jQuery);
+
+//重写jquery animate
+!function ($) {
+
+    "use strict"; // jshint ;_;
+
+    var animate = $.fn.animate;
+
+    $.fn.animate = function () {
+        var args = Array.prototype.slice.call(arguments);;
+        var $this = $(this);
+        var isShow = false;
+        if ($this.hasClass("floatBox")) {
+            var css = args[0];
+            if (css.width == '0px' || css.width == '0')
+                isShow = false;
+            else
+                isShow = true;
+            var callback = args[args.length - 1];
+            if (typeof callback === "function") {
+                args[args.length - 1] = function () {
+                    if (isShow)
+                        $('body').css("overflow", "hiddden");
+                    else
+                        $('body').css("overflow", "scroll");
+                    callback.apply(this, arguments);
+                }
+            }
+            else {
+                args.push(function () {
+                    if (isShow)
+                        $('body').css("overflow", "hiddden");
+                    else
+                        $('body').css("overflow", "scroll");
+                });
+            }
+        }
+        return animate.apply(this, args);
+    }
+
+}(window.jQuery);
