@@ -28,7 +28,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             AdvancedResult<PageEntity<CustomerEnt>> result = new AdvancedResult<PageEntity<CustomerEnt>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
-                if (!CheckUserFunction("1001"))
+                if (!CheckUserFunction(7))
                 {
                     result.Error = AppError.ERROR_PERMISSION_FORBID;
                     Res.Data = result;
@@ -70,7 +70,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             AdvancedResult<PageEntity<CustomerPrivate>> result = new AdvancedResult<PageEntity<CustomerPrivate>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
-                if (!CheckUserFunction("1002"))
+                if (!CheckUserFunction(8))
                 {
                     result.Error = AppError.ERROR_PERMISSION_FORBID;
                     Res.Data = result;
@@ -109,7 +109,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             int _customerEntId = 0;
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
-                if (!CheckUserFunction("1003"))
+                if (!CheckUserFunction(9))
                 {
                     result.Error = AppError.ERROR_PERMISSION_FORBID;
                     Res.Data = result;
@@ -173,7 +173,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             int _pivid = 0;
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
-                if (!CheckUserFunction("1004"))
+                if (!CheckUserFunction(10))
                 {
                     result.Error = AppError.ERROR_PERMISSION_FORBID;
                     Res.Data = result;
@@ -236,7 +236,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             AdvancedResult<List<CustomerEnt>> result = new AdvancedResult<List<CustomerEnt>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
-                if (!CheckUserFunction("1001"))
+                if (!CheckUserFunction(7))
                 {
                     result.Error = AppError.ERROR_PERMISSION_FORBID;
                     Res.Data = result;
@@ -273,7 +273,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
             AdvancedResult<List<CustomerPrivate>> result = new AdvancedResult<List<CustomerPrivate>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
-                if (!CheckUserFunction("1002"))
+                if (!CheckUserFunction(8))
                 {
                     result.Error = AppError.ERROR_PERMISSION_FORBID;
                     Res.Data = result;

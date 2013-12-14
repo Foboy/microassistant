@@ -721,7 +721,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 }
                 else
                 {
-                    if (!CheckUserFunction("13"))
+                    if (!CheckUserFunction(25))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -781,7 +781,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 }
                 else
                 {
-                    if (!CheckUserFunction("13"))
+                    if (!CheckUserFunction(25))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;

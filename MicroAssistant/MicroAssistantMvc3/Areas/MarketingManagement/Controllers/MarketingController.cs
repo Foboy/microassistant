@@ -41,7 +41,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1202"))
+                    if (!CheckUserFunction(19))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -166,7 +166,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
                   
-                    if (!CheckUserFunction("1201"))
+                    if (!CheckUserFunction(18))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -177,12 +177,12 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                     UserType userType = UserType.User;
                     int sid =  CurrentUser.UserId;
 
-                    if (CheckUserFunction("18"))
+                    if (CheckUserFunction(27))
                     {
                         userType = UserType.Boss;
                         sid = CurrentUser.EntId;
                     }
-                    if (CheckUserFunction("13"))
+                    if (CheckUserFunction(25))
                     {
                         userType = UserType.Admin;
                         sid = CurrentUser.EntId;
@@ -220,7 +220,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1205"))
+                    if (!CheckUserFunction(22))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -261,7 +261,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1202"))
+                    if (!CheckUserFunction(19))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -339,7 +339,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1204"))
+                    if (!CheckUserFunction(21))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -389,7 +389,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1205"))
+                    if (!CheckUserFunction(22))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -428,7 +428,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
   
-                    if (!CheckUserFunction("1203"))
+                    if (!CheckUserFunction(20))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -439,12 +439,12 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                     UserType userType = UserType.User;
                     int sid = CurrentUser.UserId;
 
-                    if (CheckUserFunction("18"))
+                    if (CheckUserFunction(27))
                     {
                         userType = UserType.Boss;
                         sid = CurrentUser.EntId;
                     }
-                    if (CheckUserFunction("13"))
+                    if (CheckUserFunction(25))
                     {
                         userType = UserType.Admin;
                         sid = CurrentUser.EntId;
@@ -505,7 +505,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1204"))
+                    if (!CheckUserFunction(21))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -545,7 +545,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1204"))
+                    if (!CheckUserFunction(21))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -583,7 +583,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
 
-                    if (!CheckUserFunction("12"))
+                    if (!CheckUserFunction(17))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -594,12 +594,12 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                     UserType userType = UserType.User;
                     int sid = CurrentUser.UserId;
 
-                    if (CheckUserFunction("18"))
+                    if (CheckUserFunction(27))
                     {
                         userType = UserType.Boss;
                         sid = CurrentUser.EntId;
                     }
-                    if (CheckUserFunction("13"))
+                    if (CheckUserFunction(25))
                     {
                         userType = UserType.Admin;
                         sid = CurrentUser.EntId;

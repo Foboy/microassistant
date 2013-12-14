@@ -32,7 +32,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             AdvancedResult<PageEntity<ProProduction>> result = new AdvancedResult<PageEntity<ProProduction>>();
             try
             {
-                if (!CheckUserFunction("2013"))
+                if (!CheckUserFunction(5))
                 {
                     result.Error = AppError.ERROR_PERMISSION_FORBID;
                     Res.Data = result;
@@ -118,7 +118,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             AdvancedResult<ProProduction> result = new AdvancedResult<ProProduction>();
             try
             {
-                if (!CheckUserFunction("2012"))
+                if (!CheckUserFunction(4))
                 {
                     result.Error = AppError.ERROR_PERMISSION_FORBID;
                     Res.Data = result;
@@ -155,7 +155,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("2011"))
+                    if (!CheckUserFunction(30))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -210,7 +210,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("2011"))
+                    if (!CheckUserFunction(3))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -250,7 +250,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("2010"))
+                    if (!CheckUserFunction(2))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -299,7 +299,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("2010"))
+                    if (!CheckUserFunction(31))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -346,7 +346,13 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-
+                    if (!CheckUserFunction(2))
+                    {
+                        result.Error = AppError.ERROR_PERMISSION_FORBID;
+                        Res.Data = result;
+                        Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                        return Res;
+                    }
 
                     ptype.EntId = CurrentUser.EntId;
                     ptype.PicId = ptypepicid;
@@ -381,7 +387,7 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
             RespResult result = new RespResult();
             try
             {
-                if (!CheckUserFunction("2010"))
+                if (!CheckUserFunction(2))
                 {
                     result.Error = AppError.ERROR_PERMISSION_FORBID;
                     Res.Data = result;

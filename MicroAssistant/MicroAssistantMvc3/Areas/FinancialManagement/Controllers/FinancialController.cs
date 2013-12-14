@@ -33,7 +33,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                 {
                     if (CacheManagerFactory.GetMemoryManager().Contains(token))
                     {
-                        if (!CheckUserFunction("1101"))
+                        if (!CheckUserFunction(12))
                         {
                             result.Error = AppError.ERROR_PERMISSION_FORBID;
                             Res.Data = result;
@@ -110,7 +110,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                 {
                     if (CacheManagerFactory.GetMemoryManager().Contains(token))
                     {
-                        if (!CheckUserFunction("1102"))
+                        if (!CheckUserFunction(13))
                         {
                             result.Error = AppError.ERROR_PERMISSION_FORBID;
                             Res.Data = result;
@@ -157,7 +157,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                 {
                     if (CacheManagerFactory.GetMemoryManager().Contains(token))
                     {
-                        if (!CheckUserFunction("1103"))
+                        if (!CheckUserFunction(14))
                         {
                             result.Error = AppError.ERROR_PERMISSION_FORBID;
                             Res.Data = result;
@@ -201,7 +201,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
                 {
                     if (CacheManagerFactory.GetMemoryManager().Contains(token))
                     {
-                        if (!CheckUserFunction("1105"))
+                        if (!CheckUserFunction(16))
                         {
                             result.Error = AppError.ERROR_PERMISSION_FORBID;
                             Res.Data = result;
@@ -241,7 +241,7 @@ namespace MicroAssistantMvc.Areas.FinancialManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1104"))
+                    if (!CheckUserFunction(15))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;

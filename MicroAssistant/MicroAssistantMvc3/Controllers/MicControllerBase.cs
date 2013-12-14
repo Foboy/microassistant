@@ -82,14 +82,14 @@ namespace MicroAssistantMvc.Controllers
         /// <param name="userId"></param>
         /// <param name="functionCode"></param>
         /// <returns></returns>
-        protected bool CheckUserFunction(string functionCode)
+        protected bool CheckUserFunction(int functionId)
         {
             bool result = false;
             List<SysFunction> fs = CurrentUser.userFuns;
 
            foreach(SysFunction sf in fs)
            {
-               if(sf.FunctionCode==functionCode)
+               if (sf.IdsysFunction == functionId)
                {
                    result=true;
                }

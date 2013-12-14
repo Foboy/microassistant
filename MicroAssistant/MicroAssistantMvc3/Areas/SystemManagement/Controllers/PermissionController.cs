@@ -273,7 +273,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1301"))
+                    if (!CheckUserFunction(26))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -317,7 +317,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1301"))
+                    if (!CheckUserFunction(26))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -356,7 +356,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1301"))
+                    if (!CheckUserFunction(26))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
