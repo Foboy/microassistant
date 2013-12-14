@@ -194,7 +194,6 @@
     <Content Include="Config\Cache.config" />
     <Content Include="Areas\FileManagement\Views\Web.config" />
     <Content Include="Areas\BossManagement\Views\Web.config" />
-    <Content Include="RestPwd.html" />
     <Content Include="www\css\bootstrap-responsive.css" />
     <Content Include="www\css\bootstrap-responsive.min.css" />
     <Content Include="www\css\bootstrap.css" />
@@ -325,6 +324,7 @@
     <Content Include="www\partials\staffmangement.html" />
     <Content Include="www\partials\userinfo.html" />
     <Content Include="www\register.html" />
+    <Content Include="www\restpwd.html" />
     <Content Include="www\scripts\app.js" />
     <Content Include="www\scripts\client\controller.js" />
     <Content Include="www\scripts\core.js" />

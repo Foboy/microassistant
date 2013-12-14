@@ -904,15 +904,23 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             RespResult result = new RespResult();
             result.Error = AppError.ERROR_SUCCESS;
             string code = GetUserTokenByEmail(Email);
-            string EmailBody = HttpContext.Request.Url.Host + ":" + HttpContext.Request.Url.Port + "/www/";
-            try
+            if (!string.IsNullOrEmpty(code))
             {
-                EmailHelper.SendEamil(EmailBody, Email);
+
+                string EmailBody = HttpContext.Request.Url.Host + ":" + HttpContext.Request.Url.Port.ToString() + "/www/restpwd.html?token=" + code;
+                try
+                {
+                    EmailHelper.SendEamil(EmailBody, Email);
+                }
+                catch (Exception e)
+                {
+                    result.Error = AppError.ERROR_FAILED;
+                    result.ExMessage = e.ToString();
+                }
             }
-            catch (Exception e)
+            else
             {
                 result.Error = AppError.ERROR_FAILED;
-                result.ExMessage = e.ToString();
             }
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
