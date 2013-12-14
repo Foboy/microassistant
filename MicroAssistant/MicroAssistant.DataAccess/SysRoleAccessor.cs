@@ -28,6 +28,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdGetSysRole;
         private MySqlCommand cmdLoadEntRole;
         private MySqlCommand cmdDeleteByUserId;
+        private MySqlCommand cmdGetSysRoleByUserId;
 
         private SysRoleAccessor()
         {
@@ -135,6 +136,20 @@ where
 ");
             cmdLoadEntRole.Parameters.Add("@EntId", MySqlDbType.Int32);
 
+            #endregion
+
+            #region cmdGetSysRoleByUserId 获取某个用户所有角色列表信息
+            cmdGetSysRoleByUserId = new MySqlCommand(@"SELECT 
+        s.*
+    from
+        sys_role s
+    right JOIN (select 
+		r.role_id
+    from
+        sys_role_user r
+    WHERE
+        r.user_id = @UserId) p ON p.role_id = s.role_id");
+            cmdGetSysRoleByUserId.Parameters.Add("@UserId", MySqlDbType.Int32);
             #endregion
         }
 
@@ -422,6 +437,40 @@ where
             return returnValue;
         }
 
+        /// <summary>
+        /// 加载某个用户所有权限列表（包括所有级）
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public List<SysRole> SearchSysRolesByUserId(int userId)
+        {
+            MySqlConnection oc = ConnectManager.Create();
+            MySqlCommand _cmdGetSysRoleByUserId = cmdGetSysRoleByUserId.Clone() as MySqlCommand;
+            _cmdGetSysRoleByUserId.Connection = oc;
+            List<SysRole> returnValue = new List<SysRole>();
+            try
+            {
+
+                if (oc.State == ConnectionState.Closed)
+                    oc.Open();
+                _cmdGetSysRoleByUserId.Parameters["@UserId"].Value = userId;
+                MySqlDataReader reader = _cmdGetSysRoleByUserId.ExecuteReader();
+                while (reader.Read())
+                {
+                    returnValue.Add(new SysRole().BuildSampleEntity(reader));
+                }
+            }
+            finally
+            {
+                oc.Close();
+                oc.Dispose();
+                oc = null;
+                _cmdGetSysRoleByUserId.Dispose();
+                _cmdGetSysRoleByUserId = null;
+                GC.Collect();
+            }
+            return returnValue;
+        }
 
         private static readonly SysRoleAccessor instance = new SysRoleAccessor();
         public static SysRoleAccessor Instance
