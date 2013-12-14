@@ -276,6 +276,7 @@
     <Content Include="www\js\jscop\jquery.Jcrop.js" />
     <Content Include="www\js\jscop\jquery.Jcrop.min.css" />
     <Content Include="www\js\jscop\jquery.Jcrop.min.js" />
+    <Content Include="www\js\require.js" />
     <Content Include="www\js\showLoading\css\showLoading.css" />
     <Content Include="www\js\showLoading\images\loading-bars.gif" />
     <Content Include="www\js\showLoading\images\loading.gif" />
