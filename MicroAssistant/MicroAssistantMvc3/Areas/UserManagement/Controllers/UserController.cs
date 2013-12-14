@@ -818,28 +818,22 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 
         #region 找回密码
 
-        public JsonResult GetUserTokenByEmail(string email)
+        private string GetUserTokenByEmail(string email)
         {
-            var Res = new JsonResult();
-            AdvancedResult<string> result = new AdvancedResult<string>();
+            string token = string.Empty;
             try
             {
-
                 SysUser user = SysUserAccessor.Instance.GetSysUserByAcount(email);
-                string token = SecurityHelper.GetToken(user.UserId.ToString());
+                 token = SecurityHelper.GetToken(user.UserId.ToString());
                 CacheManagerFactory.GetMemoryManager().Set(token, user.UserId.ToString(), new TimeSpan(0, 30, 0));
-                result.Data = token;
-                result.Error = AppError.ERROR_SUCCESS;
 
             }
             catch (Exception e)
             {
-                result.Error = AppError.ERROR_FAILED;
-                result.ExMessage = e.ToString();
+   
             }
-            Res.Data = result;
-            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            return Res;
+
+            return token;
         }
 
         public JsonResult UpdateNewPwd(string userToken, string newPwd)
