@@ -903,9 +903,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             var Res = new JsonResult();
             RespResult result = new RespResult();
             result.Error = AppError.ERROR_SUCCESS;
-
-
-            string Code = GetUserTokenByEmail(Email).Data.ToString();
+            string code = GetUserTokenByEmail(Email);
             string EmailBody = Request.Url.AbsoluteUri ;
             try
             {
