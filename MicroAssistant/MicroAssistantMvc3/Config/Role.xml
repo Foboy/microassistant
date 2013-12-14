@@ -9,6 +9,8 @@
       <son name="查看入库清单" id="3"></son>
       <son name="产品详细页" id="4"></son>
       <son name="产品列表" id="5"></son>
+      <son name="添加采购单" id="30"></son>
+      <son name="编辑产品" id="31"></son>
     </father>
     <father name="客户信息" id="6">
       <son name="企业客户列表" id="7"></son>
@@ -49,7 +51,11 @@
    
   </role>
   <role name="销售部">
-   
+    <father name="产品管理" id="1">
+      <son name="查看入库清单" id="3"></son>
+      <son name="产品详细页" id="4"></son>
+      <son name="产品列表" id="5"></son>
+    </father>
     <father name="客户信息" id="6">
       <son name="企业客户列表" id="7"></son>
       <son name="个人客户列表" id="8"></son>
@@ -74,6 +80,8 @@
       <son name="查看入库清单" id="3"></son>
       <son name="产品详细页" id="4"></son>
       <son name="产品列表" id="5"></son>
+      <son name="添加采购单" id="30"></son>
+      <son name="编辑产品" id="31"></son>
     </father>
     <father name="客户信息" id="6">
       <son name="企业客户列表" id="7"></son>

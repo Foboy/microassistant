@@ -214,3 +214,28 @@ utilities.paging = function (recordCount, pageIndex, pageSize, url, linkCount) {
     }
     return pages;
 };
+//重写jquery animate
+!function ($) {
+
+    "use strict"; // jshint ;_;
+    
+    var animate = $.fn.animate;
+
+    $.fn.animate = function () {
+        var args = arguments;
+        var $this = $(this);
+        var overflow = 'scroll-y';
+
+        if (args.length > 0) {
+            var callback = args[args.length - 1];
+            if (typeof callback === "function") {
+                args[args.length - 1] = function () {
+                    $this.css({ 'overflow': overflow });
+                    callback.apply(this, arguments);
+                }
+            }
+        }
+        return animate.apply(this, args);
+    }
+
+}(window.jQuery);

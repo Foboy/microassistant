@@ -214,11 +214,11 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
         public JsonResult SearchRolesByUserID(int userId)
         {
             var Res = new JsonResult();
-            AdvancedResult<List<SysRoleUser>> result = new AdvancedResult<List<SysRoleUser>>();
+            AdvancedResult<List<SysRole>> result = new AdvancedResult<List<SysRole>>();
             try
             {
-                List<SysRoleUser> list = new List<SysRoleUser>();
-                //list = SysRoleUserAccessor.Instance.Search(0, 0, userId, 0, int.MaxValue).Items;
+                List<SysRole> list = new List<SysRole>();
+                list = SysRoleAccessor.Instance.SearchSysRolesByUserId(userId);
                 result.Error = AppError.ERROR_SUCCESS;
                 result.Data = list;
             }
@@ -273,7 +273,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1301"))
+                    if (!CheckUserFunction(26))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -317,7 +317,7 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1301"))
+                    if (!CheckUserFunction(26))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -356,13 +356,28 @@ namespace MicroAssistantMvc.Areas.SystemManagement.Controllers
             {
                 if (CacheManagerFactory.GetMemoryManager().Contains(token))
                 {
-                    if (!CheckUserFunction("1301"))
+                    if (!CheckUserFunction(26))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
                         Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                         return Res;
                     }
+
+                    //如果是管理员则不能修改角色
+                    List<SysRole> list = new List<SysRole>();
+                    list = SysRoleAccessor.Instance.SearchSysRolesByUserId(userId);
+                    foreach (SysRole sr in list)
+                    {
+                        if (sr.RoleName == "管理员")
+                        {
+                            result.Error = AppError.ERROR_PERMISSION_FORBID;
+                            Res.Data = result;
+                            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                            return Res;
+                        }
+                    }
+
                     if (roleId == -1)//移除全部权限
                     {
                         SysRoleUserAccessor.Instance.Delete(userId, CurrentUser.EntId);
