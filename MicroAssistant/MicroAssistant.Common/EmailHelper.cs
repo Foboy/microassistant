@@ -16,7 +16,7 @@ namespace MicroAssistant.Common
             myMail.To.Add(new MailAddress(Email));
             myMail.Subject = Config.Default["SystemEmailSubject"].ToString();
             myMail.SubjectEncoding = Encoding.UTF8;
-            myMail.Body = "this is a test email from QQ!";
+            myMail.Body = EmailBody;
             myMail.BodyEncoding = Encoding.UTF8;
             myMail.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
