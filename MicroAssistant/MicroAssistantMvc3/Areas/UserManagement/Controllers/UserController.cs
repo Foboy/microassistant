@@ -818,14 +818,68 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
 
         #region 找回密码
 
-        //public JsonResult GetUserIdByEmail(string email)
-        //{
-        //    string token = SecurityHelper.GetToken(i.ToString());
-        //    CacheManagerFactory.GetMemoryManager().Set(token, i.ToString(),new TimeSpan(0,30,0));
-        //}
+        public JsonResult GetUserTokenByEmail(string email)
+        {
+            var Res = new JsonResult();
+            AdvancedResult<string> result = new AdvancedResult<string>();
+            try
+            {
 
-        //public JsonResult UpdateNewPwd(int userId, string newPwd)
-        //{ }
+                SysUser user = SysUserAccessor.Instance.GetSysUserByAcount(email);
+                string token = SecurityHelper.GetToken(user.UserId.ToString());
+                CacheManagerFactory.GetMemoryManager().Set(token, user.UserId.ToString(), new TimeSpan(0, 30, 0));
+                result.Data = token;
+                result.Error = AppError.ERROR_SUCCESS;
+
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
+        public JsonResult UpdateNewPwd(string userToken, string newPwd)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(userToken))
+                {
+                    result.Error = AppError.ERROR_FAILED;
+                }
+                else
+                {
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(userToken));
+                    if (userid > 0)
+                    {
+                        SysUser olduser = SysUserAccessor.Instance.Get(userid);
+                        olduser.Pwd = SecurityHelper.MD5(newPwd);
+
+                        SysUserAccessor.Instance.Update(olduser);
+                        result.Error = AppError.ERROR_SUCCESS;
+
+                    }
+                    else
+                    {
+                        result.Error = AppError.ERROR_FAILED;
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
 
         #endregion
 
