@@ -25,56 +25,64 @@ namespace MicroAssistantMvc.Areas.FileManagement.Controllers
             var Res = new JsonResult();
             AdvancedResult<List<FileSaveResult>> result = new AdvancedResult<List<FileSaveResult>>();
             result.Data = new List<FileSaveResult>();
-            if (saveInfo != null)
+            try
             {
-                int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
-                if (userid > 0)
+                if (saveInfo != null)
                 {
-                    sourcePath = Server.MapPath(sourcePath);
-                    
-                    string itempath = FileHelper.GetFileSavePath(userid, fileType, null);
-                    string itemfullpath = Server.MapPath(itempath);
-                    string rootpath = Server.MapPath(FileHelper.GetRootSavePath());
-                    if (!System.IO.File.Exists(sourcePath) || (!sourcePath.StartsWith(rootpath) && !anymouseAllowAccess.IsMatch(sourcePath)))
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                    if (userid > 0)
                     {
-                        result.Error = AppError.ERROR_PERSON_NOT_FOUND;
-                        result.ExMessage = result.ErrorMessage = "源文件不存在或没有访问权限";
+                        sourcePath = Server.MapPath(sourcePath);
+
+                        string itempath = FileHelper.GetFileSavePath(userid, fileType, null);
+                        string itemfullpath = Server.MapPath(itempath);
+                        string rootpath = Server.MapPath(FileHelper.GetRootSavePath());
+                        if (!System.IO.File.Exists(sourcePath) || (!sourcePath.StartsWith(rootpath) && !anymouseAllowAccess.IsMatch(sourcePath)))
+                        {
+                            result.Error = AppError.ERROR_PERSON_NOT_FOUND;
+                            result.ExMessage = result.ErrorMessage = "源文件不存在或没有访问权限";
+                        }
+                        else
+                        {
+                            string saveName = FileHelper.GetFileSaveName(".png");
+                            foreach (FileSaveInfo item in saveInfo)
+                            {
+                                item.SavePrefix = item.SavePrefix != null ? item.SavePrefix : string.Empty;
+                                if (item.IsClipping == 1)
+                                {
+                                    FileHelper.ClipAndSaveFile(sourcePath, itemfullpath, item.SavePrefix + saveName, item);
+                                }
+                                else
+                                {
+                                    FileHelper.ThumbAndSaveFile(sourcePath, itemfullpath, item.SavePrefix + saveName, item);
+                                }
+                                result.Data.Add(new FileSaveResult()
+                                {
+                                    FileName = item.SavePrefix + saveName,
+                                    FilePath = itempath,
+                                    FileUrl = FileHelper.GetFileSavePath(userid, fileType, item.SavePrefix + saveName)
+                                });
+                            }
+
+                            result.Error = AppError.ERROR_SUCCESS;
+                            result.ErrorMessage = result.ExMessage = "成功";
+                        }
                     }
                     else
                     {
-                        string saveName = FileHelper.GetFileSaveName(".png");
-                        foreach (FileSaveInfo item in saveInfo)
-                        {
-                            item.SavePrefix = item.SavePrefix != null ? item.SavePrefix : string.Empty;
-                            if (item.IsClipping == 1)
-                            {
-                                FileHelper.ClipAndSaveFile(sourcePath, itemfullpath, item.SavePrefix + saveName, item);
-                            }
-                            else
-                            {
-                                FileHelper.ThumbAndSaveFile(sourcePath, itemfullpath, item.SavePrefix + saveName, item);
-                            }
-                            result.Data.Add(new FileSaveResult()
-                            {
-                                FileName = item.SavePrefix + saveName,
-                                FilePath = itempath,
-                                FileUrl = FileHelper.GetFileSavePath(userid, fileType, item.SavePrefix + saveName)
-                            });
-                        }
-
-                        result.Error = AppError.ERROR_SUCCESS;
-                        result.ErrorMessage = result.ExMessage = "成功";
+                        result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                        result.ExMessage = result.ErrorMessage = "用户未登陆，不允许进行该操作！";
                     }
                 }
                 else
                 {
-                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
-                    result.ExMessage = result.ErrorMessage = "用户未登陆，不允许进行该操作！";
+                    result.Error = AppError.ERROR_SUCCESS;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                result.Error = AppError.ERROR_SUCCESS;
+                result.ErrorMessage = result.ExMessage = ex.Message;
+                result.Error = AppError.ERROR_FAILED;
             }
             Res.Data = result;
             return Res;
