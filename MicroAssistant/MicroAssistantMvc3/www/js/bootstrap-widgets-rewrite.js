@@ -412,7 +412,7 @@
                     if (isShow)
                         $('body').css("overflow", "hidden");
                     else
-                        $('body').css("overflow", "scroll");
+                        $('body').css("overflow", "auto");
                     callback.apply(this, arguments);
                 }
             }
@@ -421,7 +421,7 @@
                     if (isShow)
                         $('body').css("overflow", "hidden");
                     else
-                        $('body').css("overflow", "scroll");
+                        $('body').css("overflow", "auto");
                 });
             }
         }
