@@ -410,7 +410,7 @@
             if (typeof callback === "function") {
                 args[args.length - 1] = function () {
                     if (isShow)
-                        $('body').css("overflow", "hiddden");
+                        $('body').css("overflow", "hidden");
                     else
                         $('body').css("overflow", "scroll");
                     callback.apply(this, arguments);
@@ -419,7 +419,7 @@
             else {
                 args.push(function () {
                     if (isShow)
-                        $('body').css("overflow", "hiddden");
+                        $('body').css("overflow", "hidden");
                     else
                         $('body').css("overflow", "scroll");
                 });
