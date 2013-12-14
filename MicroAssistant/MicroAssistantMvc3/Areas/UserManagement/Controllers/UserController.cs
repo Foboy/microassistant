@@ -816,7 +816,18 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             return Res;
         }
 
+        #region 找回密码
 
+        //public JsonResult GetUserIdByEmail(string email)
+        //{
+        //    string token = SecurityHelper.GetToken(i.ToString());
+        //    CacheManagerFactory.GetMemoryManager().Set(token, i.ToString(),new TimeSpan(0,30,0));
+        //}
+
+        //public JsonResult UpdateNewPwd(int userId, string newPwd)
+        //{ }
+
+        #endregion
 
         public RespResult GetOldPwd(string token)
         {
