@@ -171,7 +171,7 @@ a{text-decoration:none;}
 .navList li a{color:#6d6b6c;}
 .navList li .homeIcon,.navList li .productIcon,.navList li .clientIcon{float:left; margin:15px 0 0 18px;}
 .navList li .saleIcon,.navList li .financeIcon,.navList li .peopleIcon{float:left; margin:12px 0 0 18px;}
-.navList li .saleIcon{margin-top:15px; }
+.navList li .saleIcon{margin-top:15px; margin-left:11px; }
 .navList li p{float:left; width:125px; height:45px; line-height:45px; font-size:16px; text-align:center;  margin:0;}
 .navList li.cur,.navList li:hover{background:#1ABC9C; font-weight:bold;}
 .navList li:hover a,.navList li.cur a{color:#FFFFFF; text-decoration:none;}
@@ -353,7 +353,8 @@ left: -10px; top:0px;
 .contentbaifang { margin:20px 0 0 40px;}
 .chanceB-l{float:left; width:210px; height:100px; padding:5px; background:#FFFFFF; line-height:24px; font-size:14px; overflow:hidden;}
 .visit_title {display:block;height:80px; position:relative; width:740px;}
-.visit_line {display:block; width:720px; height:25px; position:relative; margin-top:-10px; margin-left:34px; border-left:3px solid #248FAF;}
+.visit_title img{ float:left;}
+.visit_line {display:block; width:700px; height:25px; position:relative; margin-top:-10px; margin-left:34px; border-left:3px solid #248FAF;}
 .visit_title_content { float:left; margin-left:15px; width:370px;}
 .visit_title_btn { float:right; margin-right:5px;}
 .visit_btn_img { background:url(../img/icon.png) no-repeat -179px -477px;}
@@ -416,7 +417,7 @@ left: -10px; top:0px;
 .ul-f2 li .add-visit .choice-right textarea{width:355px; height:65px; border-radius:0;}
 .ul-f2 li .add-visit .choice-right .text{width:367px; border-radius:0;}
 .choice-box{text-align:right; margin-right:20px; margin-top:20px; float:right;}
-.choice-box span{display:inline-block;}
+.choice-box a{background-color: #F25749;color: #FFFFFF;display: block;height: 25px;line-height: 25px;text-align: center;width: 60px;}
 .add_xuxian { float:left; width:400px;}
 .add_xuxian p{margin:8px 0px 0px 20px; font-size:12px; padding:0px;}
 .add_xuxian a:hover { text-decoration:none;}

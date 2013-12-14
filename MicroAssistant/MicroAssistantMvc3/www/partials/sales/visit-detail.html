@@ -14,7 +14,6 @@
             <div class="fCon clearfix" style="overflow:auto;">
                 <i class="arrR" ng-click="hideVisitDetail()"></i>
             	<div class="contentbaifang clearfix">
-                    <div class="chanceB-r">
                        <div class="visit_title">
                             <img src="img/timelinejh.png"/>
 
@@ -44,9 +43,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                        
-                       <!--<div class="visit_line"></div>-->
+                       <div class="visit_line"></div>
 
                        <ul class="ul-f2">
                         	<li class="clearfix">
@@ -86,7 +84,7 @@
                                                 <a href="" class="add_a grayLink" ng-click="addVisitPrise($event)"><i class="maker"></i>{{(EditVisit.Amount?(EditVisit.Amount| currency:'') : '添加报价')}}</a>
                                                 <p class="colorGray"><label>{{EditVisit.Address}}</label></p>
                                             </div>
-                                            <div class="choice-box"><span><a href="" ng-click="addChanceVisit()" class="btn btn-large btn-danger">保存 </a></span></div>
+                                            <div class="choice-box"><a href="" ng-click="addChanceVisit()" >保存 </a></div>
                                           </div>
                                             </form>
                                             <div class="hide">
