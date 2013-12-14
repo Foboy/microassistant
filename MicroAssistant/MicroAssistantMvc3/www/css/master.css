@@ -334,7 +334,7 @@ left: -10px; top:0px;
 /*===客户管理 END===*/
 
 /*=== 悬浮窗口 ===*/
-.floatBox{position:fixed; overflow-y:scroll; overflow-x:hidden; height:100%; z-index:999; background:#ECF0F5;width:100%;filter:alpha(opacity=98); /* IE */ -moz-opacity:0.98; /* Moz + FF */ opacity: 0.98;}
+.floatBox{position:fixed; overflow-y:scroll;height:100%; z-index:999; background:#ECF0F5;width:100%;filter:alpha(opacity=98); /* IE */ -moz-opacity:0.98; /* Moz + FF */ opacity: 0.98;}
 .floatBox .fCon{ z-index:1001;width:100%; right:0; top:0; height:100%;}
 .floatBox .fCon .arrR{ margin:10px;  margin:5px; left:1px; position:absolute;}
 .floatBox .fCon ul.ul-f1{list-style:none; float:left; margin:30px 0 0 0;}
@@ -365,8 +365,8 @@ left: -10px; top:0px;
 .sign-pact{width:140px; float:right;}
 .sign-pact a{width:140px; line-height:40px; height:40px; background-color:#F25749; color:#fff; display:block; text-align:center;}
 .sign-pact a:hover { text-decoration:none; color:#fff;}
-.rate-cur{float:right; margin-right:15px; background:#16A085;padding: 10px 10px 11px; cursor:pointer; }
-.rate-icon { float:left; background-position:-168px -466px; width:20px; height:20px;}
+.rate-cur{float:right; margin-right:15px; background:#16A085; height:40px; line-height:40px; width:150px; color:#fff; cursor:pointer; }
+.rate-icon { float:left; background-position:-168px -466px; width:20px; height:20px; margin:8px 5px 0px 5px;}
 .rate-show{position:relative; z-index:1005; width:130px; line-height:20px; font-size:16px; color:#FFFFFF; text-align:center;}
 .alter{text-align:center; width:140px; position:absolute; top:40px;}
 .alter b{display:inline-block; width:19px; height:7px; background:url(../img/icon.png) no-repeat -100px -254px;}

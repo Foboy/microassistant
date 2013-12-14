@@ -9,7 +9,7 @@
         </div>
       </div>
 </div>
-    	<div class="floatBox" id="visitDetailBox" style="width:0;right:0;top:50px;"  ng-controller="SalesVisitDetailCtrl">
+    	<div class="floatBox" id="visitDetailBox" style="width:0;right:0;top:0px;"  ng-controller="SalesVisitDetailCtrl">
         	<!--<div class="fBg"></div>-->
             <div class="fCon clearfix">
                 <i class="arrR" ng-click="hideVisitDetail()"></i>
@@ -26,11 +26,11 @@
                               <div class="sign-pact">
                             	<a href="" class="hetong_btn" ng-click="addCurrentStepItem('contract')">签订合同</a>
                               </div>
-                              <div class="rate-cur">
+                              <div class="rate-cur" ng-click="changeRateShow($event)">
                                 <i class="rate-icon "></i>
-                            	<div class="rate-show" ng-click="changeRateShow($event)">
+                            	<!--<div class="rate-show" ng-click="changeRateShow($event)">-->
                                 	当前赢率：{{chance.Rate}}%
-                                </div>   
+                                <!--</div>-->   
                                </div>
                         </div>
                         
