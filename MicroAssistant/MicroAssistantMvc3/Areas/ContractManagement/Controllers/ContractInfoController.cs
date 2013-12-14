@@ -31,7 +31,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
             AdvancedResult<PageEntity<ContractInfo>> result = new AdvancedResult<PageEntity<ContractInfo>>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
-                if (!CheckUserFunction("1206"))
+                if (!CheckUserFunction(23))
                 {
                     result.Error = AppError.ERROR_PERMISSION_FORBID;
                     Res.Data = result;
@@ -42,12 +42,12 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
                 UserType userType = UserType.User;
                 int sid = CurrentUser.UserId;
 
-                if (CheckUserFunction("18"))
+                if (CheckUserFunction(27))
                 {
                     userType = UserType.Boss;
                     sid = CurrentUser.EntId;
                 }
-                if (CheckUserFunction("13"))
+                if (CheckUserFunction(25))
                 {
                     userType = UserType.Admin;
                     sid = CurrentUser.EntId;
@@ -92,7 +92,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
             int _conid = 0;
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
-                if (!CheckUserFunction("1207"))
+                if (!CheckUserFunction(24))
                 {
                     result.Error = AppError.ERROR_PERMISSION_FORBID;
                     Res.Data = result;
@@ -188,7 +188,7 @@ namespace MicroAssistantMvc.Areas.ContractManagement.Controllers
             AdvancedResult<ContractInfo> result = new AdvancedResult<ContractInfo>();
             if (CacheManagerFactory.GetMemoryManager().Contains(token))
             {
-                if (!CheckUserFunction("1206"))
+                if (!CheckUserFunction(23))
                 {
                     result.Error = AppError.ERROR_PERMISSION_FORBID;
                     Res.Data = result;

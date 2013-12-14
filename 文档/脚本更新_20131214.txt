@@ -1,0 +1,3 @@
+INSERT INTO `microassistantdb`.`sys_function` (`idsys_function`, `function_name`, `father_id`, `function_code`, `level`) VALUES ('30', '添加采购单', '1', '2014', '2');
+
+INSERT INTO `microassistantdb`.`sys_function` (`idsys_function`, `function_name`, `father_id`, `function_code`, `level`) VALUES ('31', '编辑产品', '1', '2015', '2');
