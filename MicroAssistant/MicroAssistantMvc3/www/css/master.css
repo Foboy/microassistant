@@ -334,7 +334,7 @@ left: -10px; top:0px;
 /*===客户管理 END===*/
 
 /*=== 悬浮窗口 ===*/
-.floatBox{position:fixed; overflow-y:scroll;height:100%; z-index:999; background:#ECF0F5;width:100%;filter:alpha(opacity=98); /* IE */ -moz-opacity:0.98; /* Moz + FF */ opacity: 0.98;}
+.floatBox{position:fixed; overflow-y:auto;height:100%; z-index:999; background:#ECF0F5;width:100%;filter:alpha(opacity=98); /* IE */ -moz-opacity:0.98; /* Moz + FF */ opacity: 0.98;}
 .floatBox .fCon{ z-index:1001;width:100%; right:0; top:0; height:100%;}
 .floatBox .fCon .arrR{ margin:10px;  margin:5px; left:1px; position:absolute;}
 .floatBox .fCon ul.ul-f1{list-style:none; float:left; margin:30px 0 0 0;}
@@ -352,13 +352,13 @@ left: -10px; top:0px;
 .floatW900{width:900px;}
 .contentbaifang { margin:20px 0 0 40px;}
 .chanceB-l{float:left; width:210px; height:100px; padding:5px; background:#FFFFFF; line-height:24px; font-size:14px; overflow:hidden;}
-.visit_title {display:block;height:80px; position:relative;}
+.visit_title {display:block;height:80px; position:relative; width:740px;}
 .visit_line {display:block; width:720px; height:25px; position:relative; margin-top:-10px; margin-left:34px; border-left:3px solid #248FAF;}
 .visit_title_content { float:left; margin-left:15px; width:370px;}
 .visit_title_btn { float:right; margin-right:5px;}
 .visit_btn_img { background:url(../img/icon.png) no-repeat -179px -477px;}
 .visit_title_info { word-break:break-all; line-height:18px;}
-.chanceB-r{float:left;}
+.chanceB-r{float:left; }
 .chanceB-r img { float:left;}
 .title-f{width:auto; height:140px; border-left:3px solid #ccc; padding-left:15px;}
 .title-f h1{font-size:16px; margin:0; float:left;}
