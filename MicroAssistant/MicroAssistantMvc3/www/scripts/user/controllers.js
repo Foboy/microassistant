@@ -338,9 +338,9 @@ function StaffMangementCtrl($scope, $http, $location) {
     }
 }
 
-function UserForgotPwdMainCtrl($scope, $http, $location) {
+function UserForgotPwdMainCtrl($scope,$http, $location) {
+    ///忘记密码发送邮件
     $scope.SendEamilForCallBackPwd = function (data) {
-        
         if ($scope.UserForgotPwdForm.$valid) {
             $scope.showerror = false;
             $http.post($sitecore.urls["SendEamilForFogotPwd"], { Email: data.Email }).success(function (data) {
@@ -353,6 +353,36 @@ function UserForgotPwdMainCtrl($scope, $http, $location) {
         } else {
             $scope.showerror = true;
         }
+    }
+    ///收到邮件后修改密码
+    $scope.RestPwd = function (data)
+    {
+        if ($scope.UserRestPwdForm.$valid) {
+            if (data.NewPwd !== data.SurePwd) {
+                $scope.UserRestPwdForm.NewPwd.$valid = false;
+                alert("新密码和确认密码不一致", 'w');
+                $scope.showerror = true;
+            } else {
+                $scope.showerror = false;
+                $http.post($sitecore.urls["UpdateNewPwd"], { userToken: $scope.getUrlParam("token"), newPwd: data.NewPwd }).success(function (data) {
+                    if (!data.Error) {
+                        window.location.href = "login.html";
+                    } else { alert("修改密码失败", 'e'); }
+                }).error(function (data, status, headers, config) {
+                    alert("修改密码失败", 'e');
+                }).lock({ selector: '#UserRestPwdFormZone' });
+            }
+        } else {
+            $scope.showerror = true;
+        }
+    }
+    //获取url参数值
+    $scope.getUrlParam = function (name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)
+            return unescape(r[2]);
+        return null;
     }
 }
 function EnterPriseInfoCtrl($scope, $http, $location) {

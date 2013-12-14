@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmailType.cs" />
     <Compile Include="ErrorEnum.cs" />
     <Compile Include="LevelType.cs">
       <SubType>Code</SubType>

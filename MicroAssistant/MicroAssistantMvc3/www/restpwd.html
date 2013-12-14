@@ -1,10 +1,59 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html ng-app="ngLoadMask">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>微企助手-找回密码</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/flat-ui.css" rel="stylesheet" />
+    <link href="css/master.css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-loadmask.js"></script>
+    <script src="scripts/core.js"></script>
+    <script src="scripts/user/controllers.js"></script>
+    <link href="js/jquery-loadmask/jquery.loadmask.css" rel="stylesheet" />
+    <script src="js/jquery-loadmask/jquery.loadmask.js"></script>
+    <style type="text/css">
+        #form.showerror .ng-invalid {
+            border: 2px solid #fa787e;
+        }
+
+        #form .ng-invalid.ng-dirty {
+            border: 2px solid #f25749;
+        }
+
+        #form .ng-valid.ng-dirty {
+            border: 2px solid #1ABC9C;
+        }
+    </style>
 </head>
-<body>
-    1234532
+<body class="bg-blue" ng-controller="UserForgotPwdMainCtrl" id="UserRestPwdFormZone">
+    <div class="logo-box clearfix">
+        <div class="logo1"></div>
+        <div class="cp-box">
+            <a href="enterprise-register.html" class="blue-btn">企业注册</a>
+            <a href="register.html" class="blue-btn">员工注册</a>
+        </div>
+    </div>
+    <div class="main clearfix m-box">
+        <form name="UserRestPwdForm" id="form" ng-class="showerror?'showerror':''">
+            <div class="login-box">
+                <h1>重置密码</h1>
+                <div class="input-box">
+                    <span class="colorRed">*</span>
+                    <div class="icon-box"><i class="passw-icon"></i></div>
+                    <input type="password" name="NewPwd" ng-model="User.NewPwd" ng-minlength="6" ng-maxlength="16" ng-required="true" title="请输入新密码" placeholder="请输入新密码" />
+                </div>
+                <div class="input-box">
+                    <span class="colorRed">*</span>
+                    <div class="icon-box"><i class="passw-icon"></i></div>
+                    <input type="password" name="SurePwd" ng-model="User.SurePwd" ng-minlength="6" ng-maxlength="16" ng-required="true" title="请输入新密码" placeholder="请确认密码" />
+                </div>
+                <div class="sc-box"><a href="javascript:void(0)" ng-click="RestPwd(User)" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>
+            </div>
+        </form>
+    </div>
+    <div>
+    </div>
 </body>
 </html>

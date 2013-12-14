@@ -906,8 +906,10 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             string code = GetUserTokenByEmail(Email);
             if (!string.IsNullOrEmpty(code))
             {
-
-                string EmailBody = HttpContext.Request.Url.Host + ":" + HttpContext.Request.Url.Port.ToString() + "/www/restpwd.html?token=" + code;
+                string ResponseUrl ="http://"+HttpContext.Request.Url.Host + ":" + HttpContext.Request.Url.Port.ToString() + "/www/restpwd.html?token=" + code;
+                string emailtemplate = EmailTemplate.GetEmailTemplate(EmailType.ForgotPwd);
+                emailtemplate = string.Format(emailtemplate, Email, ResponseUrl);
+                string EmailBody = emailtemplate;
                 try
                 {
                     EmailHelper.SendEamil(EmailBody, Email);

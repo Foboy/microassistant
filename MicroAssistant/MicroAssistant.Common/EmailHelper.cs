@@ -10,10 +10,9 @@ namespace MicroAssistant.Common
 {
     public class EmailHelper
     {
-        public static void SendEamil(string EmailBody,string Email)
+        public static void SendEamil(string EmailBody, string Email)
         {
             MailMessage myMail = new MailMessage();
-
             myMail.From = new MailAddress(ConfigurationManager.AppSettings["SystemEamilAccount"]);
             myMail.To.Add(new MailAddress(Email));
             myMail.Subject = ConfigurationManager.AppSettings["SystemEmailSubject"];

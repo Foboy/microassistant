@@ -55,6 +55,8 @@
     <Compile Include="CookieHelper.cs" />
     <Compile Include="DBConvert.cs" />
     <Compile Include="EmailHelper.cs" />
+    <Compile Include="EmailTemplate.cs" />
+    <Compile Include="EmailType.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="SecurityHelper.cs" />

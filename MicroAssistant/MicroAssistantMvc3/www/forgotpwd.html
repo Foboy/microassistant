@@ -27,7 +27,7 @@
         }
     </style>
 </head>
-<body class="bg-blue" ng-controller="UserForgotPwdMainCtrl">
+<body class="bg-blue" ng-controller="UserForgotPwdMainCtrl" id="UserForgotPwdFormZone">
     <div class="logo-box clearfix">
         <div class="logo1"></div>
         <div class="cp-box">
@@ -35,8 +35,8 @@
             <a href="register.html" class="blue-btn">员工注册</a>
         </div>
     </div>
-    <div class="main clearfix m-box">
-        <form name="UserForgotPwdForm" id="form" ng-class="showerror?'showerror':''">
+    <div class="main clearfix m-box" >
+        <form name="UserForgotPwdForm" id="form"  ng-class="showerror?'showerror':''">
             <div class="login-box">
                 <h1>找回密码</h1>
                 <div class="input-box">
