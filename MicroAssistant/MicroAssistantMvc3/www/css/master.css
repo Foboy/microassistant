@@ -352,18 +352,18 @@ left: -10px; top:0px;
 .floatW900{width:900px;}
 .contentbaifang { margin:20px 0 0 40px;}
 .chanceB-l{float:left; width:210px; height:100px; padding:5px; background:#FFFFFF; line-height:24px; font-size:14px; overflow:hidden;}
-.visit_title {display:block; width:760px; height:80px; position:relative;}
+.visit_title {display:block;height:80px; position:relative;}
 .visit_line {display:block; width:720px; height:25px; position:relative; margin-top:-10px; margin-left:34px; border-left:3px solid #248FAF;}
-.visit_title_content { float:left; margin-left:15px; width:350px;}
+.visit_title_content { float:left; margin-left:15px; width:370px;}
 .visit_title_btn { float:right; margin-right:5px;}
 .visit_btn_img { background:url(../img/icon.png) no-repeat -179px -477px;}
 .visit_title_info { word-break:break-all; line-height:18px;}
-.chanceB-r{float:left;width:760px;}
+.chanceB-r{float:left;}
 .chanceB-r img { float:left;}
 .title-f{width:auto; height:140px; border-left:3px solid #ccc; padding-left:15px;}
 .title-f h1{font-size:16px; margin:0; float:left;}
-.sign-pact{width:140px; float:right;}
-.sign-pact a{width:140px; line-height:40px; height:40px; background-color:#F25749; color:#fff; display:block; text-align:center;}
+.sign-pact{width:100px; float:right;}
+.sign-pact a{width:100px; line-height:40px; height:40px; background-color:#F25749; color:#fff; display:block; text-align:center;}
 .sign-pact a:hover { text-decoration:none; color:#fff;}
 .rate-cur{float:right; margin-right:15px; background:#16A085; height:40px; line-height:40px; width:150px; color:#fff; cursor:pointer; }
 .rate-icon { float:left; background-position:-168px -466px; width:20px; height:20px; margin:8px 5px 0px 5px;}
