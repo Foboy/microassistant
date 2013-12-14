@@ -1,3 +1,42 @@
 INSERT INTO `microassistantdb`.`sys_function` (`idsys_function`, `function_name`, `father_id`, `function_code`, `level`) VALUES ('30', '添加采购单', '1', '2014', '2');
 
 INSERT INTO `microassistantdb`.`sys_function` (`idsys_function`, `function_name`, `father_id`, `function_code`, `level`) VALUES ('31', '编辑产品', '1', '2015', '2');
+
+
+INSERT INTO `microassistantdb`.`sys_role_function`
+(
+`role_id`,
+`function_id`,
+`ent_id`)
+select role_id,31,ent_id
+from sys_role
+where sys_role.role_name = '老板' and role_id not in
+(select role_id from sys_role_function where function_id=31);
+INSERT INTO `microassistantdb`.`sys_role_function`
+(
+`role_id`,
+`function_id`,
+`ent_id`)
+select role_id,30,ent_id
+from sys_role
+where sys_role.role_name = '老板' and role_id not in
+(select role_id from sys_role_function where function_id=30);
+
+INSERT INTO `microassistantdb`.`sys_role_function`
+(
+`role_id`,
+`function_id`,
+`ent_id`)
+select role_id,31,ent_id
+from sys_role
+where sys_role.role_name = '管理员' and role_id not in
+(select role_id from sys_role_function where function_id=31);
+INSERT INTO `microassistantdb`.`sys_role_function`
+(
+`role_id`,
+`function_id`,
+`ent_id`)
+select role_id,30,ent_id
+from sys_role
+where sys_role.role_name = '管理员' and role_id not in
+(select role_id from sys_role_function where function_id=30);
