@@ -220,11 +220,11 @@ utilities.paging = function (recordCount, pageIndex, pageSize, url, linkCount) {
     "use strict"; // jshint ;_;
     
     var animate = $.fn.animate;
-    console.log(animate);
+
     $.fn.animate = function () {
         var args = arguments;
         var $this = $(this);
-        var overflow = $this.css("overflow");
+        var overflow = 'scroll-y';
 
         if (args.length > 0) {
             var callback = args[args.length - 1];
