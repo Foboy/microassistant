@@ -147,7 +147,7 @@ function ProductDetailCtrl($scope, $routeParams, $http, $location) {
         console.log("EventShowPoductDetail");
         console.log(showproduct);
         product = showproduct;
-        $("#productDetailBox").animate({ width: "600px" }, 500);
+        $("#productDetailBox").animate({ width: "615px" }, 500);
         $scope.tabIndex = 1;
         if (!$scope.product || product.PId != $scope.product.PId) {
             $http.post($sitecore.urls["productDetail"], { pid: product.PId }).success(function (data) {

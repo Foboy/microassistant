@@ -7,7 +7,7 @@
         <div class="clearfix">
         <form name="SalesAddChanceForm" ng-class="showerror?'showerror':''">
         <ul class="listContent">
-        	<li><span class="span1">机会类型：</span><span>
+        	<li style="display:none;"><span class="span1">机会类型：</span><span>
                     <select class="span3" name="ChanceType" ng-model="EditChance.ChanceType" ng-required="true">
                         <option value="1" ng-selected="EditChance.ChanceType==1">新客户机会</option>
                         <option value="2" ng-selected="EditChance.ChanceType==2">老客户机会</option>
@@ -15,13 +15,13 @@
         	    </span>
         	</li>
         	<li><span class="span1">客户类型：</span><span>
-                    <select class="span3" name="CustomerType" ng-model="EditChance.CustomerType">
+                    <select class="span3" name="CustomerType" ng-model="EditChance.CustomerType" ng-change="customerTypeChange()">
                         <option value="1" ng-selected="EditChance.CustomerType==1">企业客户</option>
                         <option value="2" ng-selected="EditChance.CustomerType==2">个人客户</option>
 			        </select>
         	    </span>
         	</li>
-            <li><span class="span1">联系人：</span><span><input type="text" id="salesChanceContactNameInput" ng-model="EditChance.ContactName" value="" ng-required="true" placeholder="联系人" class="span3" data-provide="typeahead" autocomplete="off" ng-change="contactNameChange()" ></span></li>
+            <li><span class="span1">{{EditChance.CustomerType==1?'企业名称':'联系人'}}：</span><span><input type="text" id="salesChanceContactNameInput" ng-model="EditChance.ContactName" value="" ng-required="true" class="span3" data-provide="typeahead" autocomplete="off" ng-change="contactNameChange()" ></span></li>
             <li><span class="span1">机会描述：</span><span><textarea rows="3" name="PInfo" ng-model="EditChance.Remark" ng-required="true" placeholder="请输入机会描述" class="span3"></textarea></span></li>
             <li><span class="span1">联系方式：</span>
                 <span>
