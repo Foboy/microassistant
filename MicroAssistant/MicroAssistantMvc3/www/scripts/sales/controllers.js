@@ -525,7 +525,7 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
         var matched = false;
         for (var i = 0; i < customSource.length; i++)
         {
-            if (name == customSource[i].ContactUsername)
+            if (name == customSource[i].DisplayName)
             {
                 matched = true;
                 selectCustomId = customSource[i].CustomerEntId || customSource[i].CustomerPrivateId;
@@ -552,6 +552,12 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
         $('#addChanceModal').modal('show');
     });
 
+    $scope.customerTypeChange = function () {
+        customSource = [];
+        selectCustomId = 0;
+        $scope.EditChance.ContactName = '';
+    };
+
     $scope.contactNameChange = function () {
         if (!$scope.EditChance.ContactName || !$scope.EditChance.ContactName.length)
             return;
@@ -562,19 +568,33 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
             var datasource = [];
             customSource = [];
             $scope.searchCustomers = data.Data;
+
+            var displayNameParse = function (item) {
+                if (item.DisplayNameParsed)
+                    return;
+                if ($scope.EditChance.CustomerType == 1) {
+                    item.DisplayName = item.EntName;
+                }
+                else {
+                    item.DisplayName = item.Name;
+                }
+                item.DisplayNameParsed = true;
+            };
             for (var i = 0; i < data.Data.length; i++)
             {
                 var item = data.Data[i];
                 var samecount = 1;
+                displayNameParse(item);
                 for (var j = i + 1; j < data.Data.length; j++) {
                     var sitem = data.Data[j];
-                    if (item.ContactUsername == sitem.ContactUsername) {
+                    displayNameParse(sitem);
+                    if (item.DisplayName == sitem.DisplayName) {
                         samecount++;
-                        sitem.ContactUsername = sitem.ContactUsername + (new Array(samecount).join(' '));
+                        sitem.DisplayName = sitem.DisplayName + (new Array(samecount).join(' '));
                     }
                 }
                 customSource.push(item);
-                datasource.push(item.ContactUsername);
+                datasource.push(item.DisplayName);
             }
             
             var typeahead = $('#salesChanceContactNameInput').data('typeahead');
