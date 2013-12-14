@@ -903,8 +903,8 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             var Res = new JsonResult();
             RespResult result = new RespResult();
             result.Error = AppError.ERROR_SUCCESS;
-            string code = GetUserTokenByEmail(Email); 
-            string EmailBody = Request.Url.AbsoluteUri ;
+            string code = GetUserTokenByEmail(Email);
+            string EmailBody = HttpContext.Request.Url.Host + ":" + HttpContext.Request.Url.Port + "/www/";
             try
             {
                 EmailHelper.SendEamil(EmailBody, Email);

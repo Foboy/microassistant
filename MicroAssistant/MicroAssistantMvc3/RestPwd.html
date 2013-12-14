@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html ng-app="ngLoadMask">
+<head>
+    <title>微企助手-找回密码</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/flat-ui.css" rel="stylesheet" />
+    <link href="css/master.css" rel="stylesheet" />
+    <script src="js/jquery.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-loadmask.js"></script>
+    <script src="scripts/core.js"></script>
+    <script src="scripts/user/controllers.js"></script>
+    <link href="js/jquery-loadmask/jquery.loadmask.css" rel="stylesheet" />
+    <script src="js/jquery-loadmask/jquery.loadmask.js"></script>
+    <style type="text/css">
+        #form.showerror .ng-invalid {
+            border: 2px solid #fa787e;
+        }
+
+        #form .ng-invalid.ng-dirty {
+            border: 2px solid #f25749;
+        }
+
+        #form .ng-valid.ng-dirty {
+            border: 2px solid #1ABC9C;
+        }
+    </style>
+</head>
+<body class="bg-blue" ng-controller="UserForgotPwdMainCtrl">
+    <div class="logo-box clearfix">
+        <div class="logo1"></div>
+        <div class="cp-box">
+            <a href="enterprise-register.html" class="blue-btn">企业注册</a>
+            <a href="register.html" class="blue-btn">员工注册</a>
+        </div>
+    </div>
+    <div class="main clearfix m-box">
+        <form name="UserForgotPwdForm" id="form" ng-class="showerror?'showerror':''">
+            <div class="login-box">
+                <h1>找回密码</h1>
+                <div class="input-box">
+                    <div class="icon-box"><i class="peop-icon"></i></div>
+                    <input type="Email" name="Emial" ng-model="User.Email" ng-required="true" title="请输入登录邮箱" ng-pattern="/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/" placeholder="请输入登录邮箱" />
+                </div>
+                <div class="sc-box"><a href="javascript:void(0)" ng-click="SendEamilForCallBackPwd(User)" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>
+            </div>
+        </form>
+    </div>
+    <div>
+    </div>
+</body>
+</html>
+

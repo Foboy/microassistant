@@ -194,6 +194,7 @@
     <Content Include="Config\Cache.config" />
     <Content Include="Areas\FileManagement\Views\Web.config" />
     <Content Include="Areas\BossManagement\Views\Web.config" />
+    <Content Include="RestPwd.html" />
     <Content Include="www\css\bootstrap-responsive.css" />
     <Content Include="www\css\bootstrap-responsive.min.css" />
     <Content Include="www\css\bootstrap.css" />
