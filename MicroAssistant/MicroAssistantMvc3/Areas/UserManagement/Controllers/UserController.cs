@@ -721,7 +721,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 }
                 else
                 {
-                    if (!CheckUserFunction(25))
+                    if (!CheckUserFunction("13"))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -781,7 +781,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 }
                 else
                 {
-                    if (!CheckUserFunction(25))
+                    if (!CheckUserFunction("13"))
                     {
                         result.Error = AppError.ERROR_PERMISSION_FORBID;
                         Res.Data = result;
@@ -843,7 +843,29 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 发送邮件
+        /// </summary>
+        /// <param name="EmailBody">邮件内容</param>
+        /// <returns></returns>
+        public JsonResult SendEamil(string EmailBody, string Email)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            result.Error = AppError.ERROR_SUCCESS;
+            try
+            {
+                EmailHelper.SendEamil(EmailBody,Email);
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
         #region 私有方法
 
         private void WriteAuthCookie(string username, string token)
