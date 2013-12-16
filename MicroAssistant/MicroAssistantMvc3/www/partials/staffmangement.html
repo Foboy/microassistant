@@ -29,9 +29,10 @@
                     <p><span class="p-t colorlight">入职时间：</span><span>{{parseJsonDate(SysUser.CreateTime)|date:'yyyy/MM/dd' }}</span></p>
                     <p>
                         <span class="p-t colorlight">所属部门：</span><span>
-                            <select ng-model="SysUser.SelectedItem" ng-options="c.RoleName for c in SelectedOptions" ng-change="ChangeUserRole(SysUser.SelectedItem,SysUser)" >
+                            <select ng-show="CurrentUser.UserId==SysUser.UserId?'false':'true'" ng-model="SysUser.SelectedItem" ng-options="c.RoleName for c in SelectedOptions" ng-change="ChangeUserRole(SysUser.SelectedItem,SysUser)" >
                             </select>
                        </span>
+                        <span ng-show="CurrentUser.UserId==SysUser.UserId?'true':'false'">管理员</span>
                     </p>
                 </div>
             </div>
