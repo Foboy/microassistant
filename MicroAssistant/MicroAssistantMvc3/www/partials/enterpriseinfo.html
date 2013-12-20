@@ -2,6 +2,14 @@
 <div class="basicInfo" id="ChangeEnterprsieZone">
     <form name="ChangeEnterprsieForm" ng-class="showerror?'showerror':''">
         <ul class="ul-s1">
+             <li class="clearfix">
+                <span class="span1 colorlight">邮箱账号</span>
+                <span class="span2">{{CurrentUser.Email}}</span>
+				<span class="span3">
+                    <a class="colorGray" ng-href="#/changepassword" >修改密码</a>
+                    <a class="colorGray" ng-href="#/changeemail">修改邮箱</a>
+                </span>
+            </li>
             <li class="clearfix">
                 <span class="span1">企业名称</span>
                 <span class="span2">{{!Ntype?CurrentUser.UserName:''}}

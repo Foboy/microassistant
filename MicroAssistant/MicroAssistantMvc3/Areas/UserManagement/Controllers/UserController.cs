@@ -21,13 +21,13 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         // GET: /UserManagement/User
 
         #region IUserService 成员
-       /// <summary>
+        /// <summary>
         /// 企业注册
-       /// </summary>
-       /// <param name="entName">企业名称</param>
-       /// <param name="account"></param>
-       /// <param name="pwd"></param>
-       /// <returns></returns>
+        /// </summary>
+        /// <param name="entName">企业名称</param>
+        /// <param name="account"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
         public JsonResult EntRegister(string entName, string account, string pwd)
         {
             var Res = new JsonResult();
@@ -41,7 +41,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     Res.Data = result;
                     Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                     return Res;
-                    
+
                 }
                 SysUser lastuser = new SysUser();
                 string EntCode = GetEntCode(GenCode(6));
@@ -58,7 +58,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 int i = SysUserAccessor.Instance.Insert(user);
 
 
-                if (i>0)
+                if (i > 0)
                 {
                     SysUserAccessor.Instance.UpdateUserEntId(i, i);//更新所属企业ID
                     //初始化权限
@@ -87,7 +87,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="account">员工账号是邮箱格式</param>
         /// <param name="pwd"></param>
         /// <returns></returns>
-        public JsonResult UserRegister(string username,string account, string pwd, string entCode)
+        public JsonResult UserRegister(string username, string account, string pwd, string entCode)
         {
             var Res = new JsonResult();
             AdvancedResult<string> result = new AdvancedResult<string>();
@@ -101,7 +101,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
                     return Res;
                 }
-                
+
                 SysUser entUser = new SysUser();
                 SysUser user = new SysUser();
                 if (!string.IsNullOrEmpty(entCode))
@@ -341,7 +341,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="user">修改用户名，性别，密码，地址，qq，手机</param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public JsonResult EditeUserInfo(string username,int sex,int age)
+        public JsonResult EditeUserInfo(string username, int sex, int age)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -380,7 +380,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                         //    }
                         //}
                         //olduser.UserAccount = user.UserAccount;
-                        
+
                         //olduser.Pwd = user.Pwd;
                         //olduser.Province = user.Province;
                         //olduser.City = user.City;
@@ -451,19 +451,19 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                 }
                 else
                 {
-                        SysUser olduser = SysUserAccessor.Instance.Get(CurrentUser.UserId);
+                    SysUser olduser = SysUserAccessor.Instance.Get(CurrentUser.UserId);
 
-                        if (SecurityHelper.MD5(oldpwd) != olduser.Pwd)
-                        {
-                            result.Error = AppError.ERROR_FAILED;
-                        }
-                        else
-                        {
-                            olduser.Pwd = SecurityHelper.MD5(newpwd);
+                    if (SecurityHelper.MD5(oldpwd) != olduser.Pwd)
+                    {
+                        result.Error = AppError.ERROR_FAILED;
+                    }
+                    else
+                    {
+                        olduser.Pwd = SecurityHelper.MD5(newpwd);
 
-                            SysUserAccessor.Instance.Update(olduser);
-                            result.Error = AppError.ERROR_SUCCESS;
-                        }
+                        SysUserAccessor.Instance.Update(olduser);
+                        result.Error = AppError.ERROR_SUCCESS;
+                    }
 
                 }
             }
@@ -504,7 +504,8 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     else if (!CheckUserAccout(email).Data)
                     {
                         result.Error = AppError.ERROR_FAILED;
-                    }else
+                    }
+                    else
                     {
                         olduser.Email = email;
                         SysUserAccessor.Instance.Update(olduser);
@@ -551,10 +552,10 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
-     
+
 
         //关联企业
-        public JsonResult EditeUserEntCode(string username,string entCode)
+        public JsonResult EditeUserEntCode(string username, string entCode)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -709,7 +710,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="username"></param>
         /// <param name="entCode"></param>
         /// <returns></returns>
-        public JsonResult AdminEditEntCode(string entCode,int entId)
+        public JsonResult AdminEditEntCode(string entCode, int entId)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -791,7 +792,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
                     if (userid > 0)
                     {
-                      
+
                         SysUser olduser = SysUserAccessor.Instance.Get(entId);
                         //olduser.EntCode = entUser.EntCode;
                         olduser.UserName = entName;
@@ -892,23 +893,36 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             throw new NotImplementedException();
         }
         /// <summary>
-        /// 发送邮件
+        /// 发送邮件找回密码
         /// </summary>
         /// <param name="EmailBody">邮件内容</param>
+        /// <param name="Email">邮件接收收人Email</param>
         /// <returns></returns>
-        public JsonResult SendEamil(string EmailBody, string Email)
+        public JsonResult SendEamilForCallBackPwd(string Email)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
             result.Error = AppError.ERROR_SUCCESS;
-            try
+            string code = GetUserTokenByEmail(Email);
+            if (!string.IsNullOrEmpty(code))
             {
-                EmailHelper.SendEamil(EmailBody,Email);
+                string ResponseUrl ="http://"+HttpContext.Request.Url.Host + ":" + HttpContext.Request.Url.Port.ToString() + "/www/restpwd.html?token=" + code;
+                string emailtemplate = EmailTemplate.GetEmailTemplate(EmailType.ForgotPwd);
+                emailtemplate = string.Format(emailtemplate, Email, ResponseUrl);
+                string EmailBody = emailtemplate;
+                try
+                {
+                    EmailHelper.SendEamil(EmailBody, Email);
+                }
+                catch (Exception e)
+                {
+                    result.Error = AppError.ERROR_FAILED;
+                    result.ExMessage = e.ToString();
+                }
             }
-            catch (Exception e)
+            else
             {
                 result.Error = AppError.ERROR_FAILED;
-                result.ExMessage = e.ToString();
             }
             Res.Data = result;
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
@@ -943,55 +957,55 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         {
             try
             {
-            if (roleXmlModel == null)
-            {
-                string filePath = System.AppDomain.CurrentDomain.BaseDirectory + "Config/Role.xml";
-                if (System.IO.File.Exists(filePath) == false) throw new FileNotFoundException("默认权限模板配置文件没有找到", filePath);
-                string roleConfig = System.IO.File.ReadAllText(filePath);
-                roleXmlModel = new XmlDocument();
-                roleXmlModel.LoadXml(roleConfig);
-            }
-            int newadminId = 0;
+                if (roleXmlModel == null)
+                {
+                    string filePath = System.AppDomain.CurrentDomain.BaseDirectory + "Config/Role.xml";
+                    if (System.IO.File.Exists(filePath) == false) throw new FileNotFoundException("默认权限模板配置文件没有找到", filePath);
+                    string roleConfig = System.IO.File.ReadAllText(filePath);
+                    roleXmlModel = new XmlDocument();
+                    roleXmlModel.LoadXml(roleConfig);
+                }
+                int newadminId = 0;
 
-                    foreach (XmlNode rolenode in roleXmlModel.SelectNodes("//role"))
+                foreach (XmlNode rolenode in roleXmlModel.SelectNodes("//role"))
+                {
+                    string rolenodename = rolenode.Attributes["name"].Value;
+                    //添加企业角色
+                    SysRole erole = new SysRole();
+                    erole.EntId = entId;
+                    erole.FatherId = 0;
+                    erole.RoleName = rolenodename;
+                    int eroleid = SysRoleAccessor.Instance.Insert(erole);
+                    if (rolenodename == "管理员")
                     {
-                        string rolenodename = rolenode.Attributes["name"].Value;
-                           //添加企业角色
-                            SysRole erole=new SysRole();
-                            erole.EntId = entId;
-                            erole.FatherId = 0;
-                            erole.RoleName = rolenodename;
-                            int eroleid = SysRoleAccessor.Instance.Insert(erole);
-                            if (rolenodename == "管理员")
-                            {
-                                newadminId = eroleid;
-                            }
-                        foreach (XmlNode fathernode in rolenode.ChildNodes)
+                        newadminId = eroleid;
+                    }
+                    foreach (XmlNode fathernode in rolenode.ChildNodes)
+                    {
+                        string fnname = fathernode.Attributes["name"].Value;
+                        string fnid = fathernode.Attributes["id"].Value;
+                        //添加企业角色权限
+                        SysRoleFunction frf = new SysRoleFunction();
+                        frf.EntId = entId;
+                        frf.RoleId = eroleid;
+                        frf.FunctionId = Convert.ToInt32(fnid);
+                        SysRoleFunctionAccessor.Instance.Insert(frf);
+                        foreach (XmlNode sonnode in fathernode.ChildNodes)
                         {
-                            string fnname = fathernode.Attributes["name"].Value;
-                            string fnid = fathernode.Attributes["id"].Value;
-                            //添加企业角色权限
-                            SysRoleFunction frf = new SysRoleFunction();
-                            frf.EntId = entId;
-                            frf.RoleId = eroleid;
-                            frf.FunctionId = Convert.ToInt32(fnid);
-                            SysRoleFunctionAccessor.Instance.Insert(frf);
-                            foreach (XmlNode sonnode in fathernode.ChildNodes)
-                            {
-                                string sname = sonnode.Attributes["name"].Value;
-                                string sid = sonnode.Attributes["id"].Value;
-                                SysRoleFunction srf = new SysRoleFunction();
-                                srf.EntId = entId;
-                                srf.RoleId = eroleid;
-                                srf.FunctionId = Convert.ToInt32(sid);
-                                SysRoleFunctionAccessor.Instance.Insert(srf);
-                            }
+                            string sname = sonnode.Attributes["name"].Value;
+                            string sid = sonnode.Attributes["id"].Value;
+                            SysRoleFunction srf = new SysRoleFunction();
+                            srf.EntId = entId;
+                            srf.RoleId = eroleid;
+                            srf.FunctionId = Convert.ToInt32(sid);
+                            SysRoleFunctionAccessor.Instance.Insert(srf);
                         }
                     }
-                SysRoleUser ru=new SysRoleUser();
-                ru.EntId=entId;
-                ru.UserId=entId;
-                ru.RoleId=newadminId;
+                }
+                SysRoleUser ru = new SysRoleUser();
+                ru.EntId = entId;
+                ru.UserId = entId;
+                ru.RoleId = newadminId;
                 SysRoleUserAccessor.Instance.Insert(ru);
 
             }

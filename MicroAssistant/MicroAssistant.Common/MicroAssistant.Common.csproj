@@ -40,6 +40,7 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -51,14 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Config.settings</DependentUpon>
-    </Compile>
     <Compile Include="CookieHelper.cs" />
     <Compile Include="DBConvert.cs" />
     <Compile Include="EmailHelper.cs" />
+    <Compile Include="EmailTemplate.cs" />
+    <Compile Include="EmailType.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="SecurityHelper.cs" />
@@ -78,11 +76,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Config.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Config.Designer.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

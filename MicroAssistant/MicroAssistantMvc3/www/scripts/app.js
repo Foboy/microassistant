@@ -219,6 +219,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
             return 0;
         }
     }
+   
     //$scope.parseAge = function (datestr) {
     //    var birthday = new Date($scope.parseJsonDate(datestr).replace(/:/g, "\/"));
     //    var d = new Date();

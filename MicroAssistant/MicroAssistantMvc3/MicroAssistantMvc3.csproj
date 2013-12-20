@@ -203,6 +203,7 @@
     <Content Include="www\css\next.png" />
     <Content Include="www\css\previous.png" />
     <Content Include="www\enterprise-register.html" />
+    <Content Include="www\forgotpwd.html" />
     <Content Include="www\img\404.png" />
     <Content Include="www\img\Adimg\h1.jpg" />
     <Content Include="www\img\Adimg\tx.png" />
@@ -323,6 +324,7 @@
     <Content Include="www\partials\staffmangement.html" />
     <Content Include="www\partials\userinfo.html" />
     <Content Include="www\register.html" />
+    <Content Include="www\restpwd.html" />
     <Content Include="www\scripts\app.js" />
     <Content Include="www\scripts\client\controller.js" />
     <Content Include="www\scripts\core.js" />

@@ -55,7 +55,7 @@
         else {
             $scope.showerror = true;
         }
-        
+
     }
 
     $(document).keyup(function (e) {
@@ -119,7 +119,7 @@ function EnterpriseRegisterMainCtrl($scope, $http) {
                             $scope.EntCode = data.Data.EntCode;
                             $.fancybox.open($('#enterpriseCodePanle'), {
                                 'width': 370,
-                                'height':320,
+                                'height': 320,
                                 'closeBtn': false,
                                 helpers: {
                                     overlay: null
@@ -179,9 +179,9 @@ function UserMainCtrl($scope, $http, $location) {
         if ($scope.EditUserForm.$valid) {
             $http.post($sitecore.urls["EditCurrentUserInfo"], { username: data.UserName, nickname: data.UserAccount, sex: data.Sex, age: data.Age }).success(function (data) {
                 if (data.Error) {
-                    alert(data.ErrorMessage,'e');
+                    alert(data.ErrorMessage, 'e');
                 } else {
-                    alert("修改成功",'s');
+                    alert("修改成功", 's');
                 }
             }).error(function (data, status, headers, config) {
                 alert('error');
@@ -193,7 +193,7 @@ function UserMainCtrl($scope, $http, $location) {
         if ($scope.ChangePwdForm.$valid) {
             if (data.surepwd != data.newpwd) {
                 $scope.ChangePwdForm.newpwd.$valid = false;
-                alert("新密码和确认密码不一致",'w');
+                alert("新密码和确认密码不一致", 'w');
                 $scope.showerror = true;
             } else {
                 $scope.showerror = false;
@@ -219,14 +219,14 @@ function UserMainCtrl($scope, $http, $location) {
             $scope.showerror = false;
             $http.post($sitecore.urls["UpdateEmail"], { email: data.newemail, pwd: data.pwd }).success(function (data) {
                 if (data.Error) {
-                    alert(data.ErrorMessage,'e');
+                    alert(data.ErrorMessage, 'e');
                 } else {
-                    alert("修改成功",'s');
+                    alert("修改成功", 's');
                 }
                 console.log(data);
             }).
             error(function (data, status, headers, config) {
-                alert("error",'w')
+                alert("error", 'w')
             }).lock({ selector: '#ChangeEmailFormZone' });
 
         }
@@ -269,7 +269,7 @@ function AddCompanyCtrl($scope, $http, $location) {
                     $scope.LoadMyTimeShaft();
                 }
                 else {
-                    alert(data.ErrorMessage,'e');
+                    alert(data.ErrorMessage, 'e');
                 }
             }).
             error(function (data, status, headers, config) {
@@ -282,12 +282,12 @@ function AddCompanyCtrl($scope, $http, $location) {
     };
 }
 function StaffMangementCtrl($scope, $http, $location) {
-        $(".peop-box").live("mouseenter", function () {
-            $(this).find(".s-c").show();
-        });
-        $(".peop-box").live("mouseleave", function () {
-            $(this).find(".s-c").hide();
-        });
+    $(".peop-box").live("mouseenter", function () {
+        $(this).find(".s-c").show();
+    });
+    $(".peop-box").live("mouseleave", function () {
+        $(this).find(".s-c").hide();
+    });
     $scope.selectedRoleid = 0;
     $scope.SearchEntRole = function () {
         $http.post($sitecore.urls["SearchEntRole"], {}).success(function (data) {
@@ -337,6 +337,54 @@ function StaffMangementCtrl($scope, $http, $location) {
         })
     }
 }
+
+function UserForgotPwdMainCtrl($scope,$http, $location) {
+    ///忘记密码发送邮件
+    $scope.SendEamilForCallBackPwd = function (data) {
+        if ($scope.UserForgotPwdForm.$valid) {
+            $scope.showerror = false;
+            $http.post($sitecore.urls["SendEamilForFogotPwd"], { Email: data.Email }).success(function (data) {
+                if (!data.Error) {
+                    alert("邮件发送成功", 's');
+                } else { alert("邮件发送失败", 'e'); }
+            }).error(function (data, status, headers, config) {
+                alert("邮件发送失败", 'e');
+            }).lock({ selector: '#UserForgotPwdFormZone' });
+        } else {
+            $scope.showerror = true;
+        }
+    }
+    ///收到邮件后修改密码
+    $scope.RestPwd = function (data)
+    {
+        if ($scope.UserRestPwdForm.$valid) {
+            if (data.NewPwd !== data.SurePwd) {
+                $scope.UserRestPwdForm.NewPwd.$valid = false;
+                alert("新密码和确认密码不一致", 'w');
+                $scope.showerror = true;
+            } else {
+                $scope.showerror = false;
+                $http.post($sitecore.urls["UpdateNewPwd"], { userToken: $scope.getUrlParam("token"), newPwd: data.NewPwd }).success(function (data) {
+                    if (!data.Error) {
+                        window.location.href = "login.html";
+                    } else { alert("修改密码失败", 'e'); }
+                }).error(function (data, status, headers, config) {
+                    alert("修改密码失败", 'e');
+                }).lock({ selector: '#UserRestPwdFormZone' });
+            }
+        } else {
+            $scope.showerror = true;
+        }
+    }
+    //获取url参数值
+    $scope.getUrlParam = function (name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)
+            return unescape(r[2]);
+        return null;
+    }
+}
 function EnterPriseInfoCtrl($scope, $http, $location) {
     //修改企业code
     $scope.EditCurrentEntCode = function (data) {
@@ -344,10 +392,10 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
             $scope.showerror = false;
             $http.post($sitecore.urls["AdminEditEntCode"], { entCode: data.EntCode, entId: data.EntId }).success(function (data) {
                 if (!data.Error) {
-                    alert("修改成功",'s');
+                    alert("修改成功", 's');
                 } else { }
             }).error(function (data, status, headers, config) {
-                $scope.SysUsers = []; 
+                $scope.SysUsers = [];
             }).lock({ selector: '#ChangeEnterprsieZone' });
         } else {
             $scope.showerror = true;
@@ -359,7 +407,7 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
             $scope.showerror = false;
             $http.post($sitecore.urls["AdminEditEntName"], { entName: data.UserName, entId: data.EntId }).success(function (data) {
                 if (!data.Error) {
-                    alert("修改成功",'s');
+                    alert("修改成功", 's');
                 } else { }
             }).error(function (data, status, headers, config) {
                 $scope.SysUsers = [];
@@ -372,7 +420,7 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
     $scope.DeleteAllData = function () {
         $http.post($sitecore.urls["DeleteAllData"], {}).success(function (data) {
             if (!data.Error) {
-                alert("清除成功",'s');
+                alert("清除成功", 's');
             } else {
                 alert(data.ErrorMessage, 'e');
             }
