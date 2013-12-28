@@ -87,7 +87,8 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Controllers
                         pt.PTypeId = list.Items[i].PTypeId;
                         pt.PTypeName = list.Items[i].PTypeName;
                         pt.FatherId = list.Items[i].FatherId;
-                        pt.PicUrl = ResPicAccessor.Instance.Get(list.Items[0].PicId).PicUrl;
+                        //pt.PicUrl = ResPicAccessor.Instance.Get(list.Items[0].PicId).PicUrl;
+                        pt.PicId = list.Items[0].PicId;
                         ptlist.Add(pt);
                     }
                     result.Error = AppError.ERROR_SUCCESS;
