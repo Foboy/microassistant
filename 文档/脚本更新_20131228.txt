@@ -1,0 +1,43 @@
+CREATE TABLE `microassistantdb`.`sys_ent_extra` (
+  `idsys_ent_extra` INT NOT NULL AUTO_INCREMENT,
+  `ent_id` INT NOT NULL,
+   `artificial_person` VARCHAR(45) NOT NULL COMMENT '法人',
+  `registered_capital` VARCHAR(45) NOT NULL,
+  `date_of_establishment` DATETIME NOT NULL COMMENT '创建时间',
+  `address` VARCHAR(90) NULL COMMENT '详细地址',
+  `province` VARCHAR(45) NULL COMMENT '省',
+  `city` VARCHAR(45) NULL COMMENT '市',
+  `contact_phone` INT NULL COMMENT '联系电话',
+  `web` VARCHAR(45) NULL,
+  `weibo` VARCHAR(45) NULL,
+  `weixin` VARCHAR(45) NULL,
+  `main_business` VARCHAR(360) NULL,
+  PRIMARY KEY (`idsys_ent_extra`))
+COMMENT = '企业信息扩展表';
+
+CREATE TABLE `microassistantdb`.`sys_user_extra` (
+  `idsys_user_extra` INT NOT NULL AUTO_INCREMENT,
+  `diploma` VARCHAR(45) NULL COMMENT '学历',
+  `school` VARCHAR(45) NULL,
+  `major` VARCHAR(45) NULL,
+  `graduation_time` DATETIME NULL,
+  `detail` VARCHAR(360) NULL,
+  `sys_user_id` INT NOT NULL,
+  PRIMARY KEY (`idsys_user_extra`))
+COMMENT = '用户信息扩展表';
+ALTER TABLE `microassistantdb`.`sys_log` 
+CHANGE COLUMN `parameter` `parameter` VARCHAR(400) NULL DEFAULT NULL ;
+
+ALTER TABLE `microassistantdb`.`sys_log` 
+CHANGE COLUMN `parameter` `parameter` VARCHAR(400) NULL DEFAULT NULL ;
+CREATE TABLE `microassistantdb`.`marketing_after` (
+  `idmarketing_after` INT NOT NULL AUTO_INCREMENT,
+  `chance_id` INT NOT NULL,
+  `contract_id` INT NOT NULL,
+  `detail` VARCHAR(400) NULL,
+  `ent_id` INT NOT NULL,
+  `add_time` DATETIME NOT NULL,
+  `op_user_id` VARCHAR(45) NOT NULL COMMENT '跟进人ID',
+  `op_user_name` VARCHAR(45) NOT NULL COMMENT '跟进人名称',
+  PRIMARY KEY (`idmarketing_after`))
+COMMENT = '售后跟进';

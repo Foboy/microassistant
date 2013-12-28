@@ -7,7 +7,7 @@
 <%@ Property Name="NamespaceName" Type="System.String" Default="MicroAssistant.Meta" Optional="False" Category="Context" Description="The name of the namespace." %>
 <%@ Property Name="SourceTable" Type="SchemaExplorer.TableSchema" Category="Context" Description="Table that the typed DataSet should contain." %>
 <%@ Property Name="author" Type="System.String" Default="yangchao" Optional="False" Category="Context" %>
-<%@ Property Name="email" Type="System.String" Default="aaronyangchao@gmail.com" Optional="False" Category="Context" %>
+<%@ Property Name="email" Type="System.String" Default="66954011@qq.com" Optional="False" Category="Context" %>
 <script runat="template">
 private string GetTableName(string Name)
 {
