@@ -247,7 +247,7 @@ namespace MicroAssistantMvc.Areas.CustomerManagement.Controllers
                 try
                 {
                     List<CustomerEnt> list = new List<CustomerEnt>();
-                    list = CustomerEntAccessor.Instance.SearchCustomerEntByName(name);
+                    list = CustomerEntAccessor.Instance.SearchCustomerEntByName(name,CurrentUser.EntId);
                     result.Error = AppError.ERROR_SUCCESS;
                     result.Data = list;
 
