@@ -164,4 +164,4 @@
 })(jQuery);
 
 var oldAlert = alert;
-alert = $.showMsg;
+alert = window.alert = jQuery.showMsg;
