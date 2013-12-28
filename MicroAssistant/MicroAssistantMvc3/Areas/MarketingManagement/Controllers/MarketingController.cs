@@ -355,10 +355,12 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                     mv.VisitType=visitType;
                     mv.EntId = CurrentUser.EntId;
                    int i = MarketingVisitAccessor.Instance.Insert(mv);
+                   
 
                    if (i > 0)
                    {
                        MarketingChanceAccessor.Instance.UpdateisVisit(cid, 2);
+                       result.Id = i;
                        result.Error = AppError.ERROR_SUCCESS;
                    }
                    else
