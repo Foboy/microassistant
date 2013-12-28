@@ -371,6 +371,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 
 	$scope.addChanceVisit = function () {
 	    if ($scope.SalesAddChanceVisitFrom.$valid) {
+	        //console.log($scope.EditVisit)
 	        $scope.showerror = false;
 	        $http.post(
                 $scope.EditVisit.IdmarketingVisit ? $sitecore.urls["salesEditChanceVisits"] : $sitecore.urls["salesAddChanceVisits"], {
@@ -381,7 +382,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	            amount: $scope.EditVisit.Amount || 0,
 	            address: $scope.combineAdderess()
 	        }).success(function (data) {
-	            console.log(data);
+	            //console.log(data);
 	            if (data.Error) {
 	                alert(data.ErrorMessage);
 	            }
@@ -396,6 +397,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	                {
 	                    var addedvisit = angular.copy($scope.EditVisit);
 	                    addedvisit.Address = $scope.combineAdderess();
+	                    addedvisit.IdmarketingVisit = data.Id;
 	                    $scope.chance_visits.unshift(addedvisit);
 	                    $scope.addvisitpanleshow = false;
 	                    $scope.visitFormReset();
@@ -473,6 +475,7 @@ function SalesVisitDetailCtrl($scope, $routeParams, $http, $location) {
 	$scope.editExistVisit = function (ev) {
 	    $scope.VisitNewNum = $scope.parseVisitNum(this.$index - $scope.chance_visits.length);
 	    $scope.EditVisit = angular.copy(this.visit);
+	    //console.log($scope.EditVisit)
 	    $scope.EditVisit_SourceObject = this.visit;
 	    $("#visitEditBox").siblings('.li-boxs').show();
 	    $(ev.target).parents('.li-boxs').hide().after($("#visitEditBox"));
@@ -522,21 +525,29 @@ function SalesChanceEditCtrl($scope, $routeParams, $http, $location, $element) {
     $('#salesChanceContactNameInput').change(function () {
         var name = $(this).val();
         console.log('matchname' + name);
+        //var contactInfo = {Phone:'',Tel:'',Email:''};
         var matched = false;
         for (var i = 0; i < customSource.length; i++)
         {
-            if (name == customSource[i].DisplayName)
+            var custom = customSource[i];
+            if (name == custom.DisplayName)
             {
                 matched = true;
-                selectCustomId = customSource[i].CustomerEntId || customSource[i].CustomerPrivateId;
+                selectCustomId = custom.CustomerEntId || custom.CustomerPrivateId;
                 if ($.trim(name) != name)
                 {
                     var realname = $.trim(name);
                     $(this).val(realname);
-                    //$scope.$apply(function () {
-                    //    $scope.EditChance.ContactName = realname;
-                    //});
                 }
+                var contactInfo = {
+                    Phone: custom.ContactMobile || custom.Mobile,
+                    Tel: custom.ContactPhone || custom.Phone,
+                    Email: custom.ContactEmail || custom.Email,
+                    Qq: custom.ContactQq || custom.Qq
+                };
+                $scope.$apply(function () {
+                    angular.extend($scope.EditChance, contactInfo);
+                });
             }
         }
         selectCustomId = matched ? selectCustomId : 0;
