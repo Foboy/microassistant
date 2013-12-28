@@ -504,7 +504,7 @@ left: -10px; top:0px;
 .basicInfo .ul-s1 li .span1{ width:110px; background:#f5f5f5; text-align:center;}
 .basicInfo .ul-s1 li .span2{ width:300px; padding-left:20px;}
 .basicInfo .ul-s1 li .span3{ font-size:14px; color:#999999;}
-.basicInfo .ul-s1 li .span3 a{margin-right:20px; font-size:12px; text-decoration:none;}
+.basicInfo .ul-s1 li .span3 a{margin-right:20px; font-size:12px; text-decoration:none; cursor:pointer;}
 .basicInfo .ul-s1 li .span3 .t-p,.basicInfo .ul-s1 li .span2 .t-p{width:300px; border-radius:0; margin-left:20px; height:28px; margin-top:5px;}
 .basicInfo .ul-s1 li .span2 .t-p{width:235px; margin-left:0;}
 .basicInfo .ul-s1 li .span2 label{float:left; margin:30px 10px 0 0;}
@@ -629,4 +629,11 @@ left: -10px; top:0px;
 
 
 /*通讯录*/
-.addressbook_content {width:300px; background-color:#1ABC9C; float:right;}
+.addressbook_content {width:200px; background-color:#1ABC9C; right:0; height:100%; position:fixed;}
+.ab_title { color:#fff; font-size:18px; margin:5px 0 0 10px;}
+.addressbook_content ul { border-top:1px solid #ddd; list-style:none; padding:5px 0 0 10px; margin:0px;}
+.addressbook_content ul li {height:40px; line-height:40px; float:left; width:170px; margin-bottom:10px;}
+.addressbook_content ul img {float:left; width:30px; height:30px;  padding:5px;}
+.userinfo { float:left; height:40px; padding:2px 0 0 5px;}
+.username {font-size:14px; color:#34495E; font-weight:500; height:20px; line-height:20px;}
+.usermobile { font-size:12px; color:#fff; height:15px; line-height:15px;}
