@@ -5,6 +5,33 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
     $parent.ActCatalogId = 0;
     $parent.ProductActPageIndex = 1;
 
+    $scope.SelectedIconId = 1;
+    $scope.ProductTypeIcons = [
+        { css: 'icon-screen', id: 1 },
+        { css: 'icon-laptop', id: 2 },
+        { css: 'icon-mobile', id: 3 },
+        { css: 'icon-cogs', id: 4 },
+        { css: 'icon-bug', id: 5 },
+        { css: 'icon-aid', id: 6 },
+        { css: 'icon-food', id: 7 },
+        { css: 'icon-mug', id: 8 },
+        { css: 'icon-hammer', id: 9 },
+        { css: 'icon-insert-template', id: 10 },
+        { css: 'icon-table', id: 11 },
+        { css: 'icon-pen', id: 12 },
+        { css: 'icon-dice', id: 13 },
+        { css: 'icon-spinner', id: 14 },
+        { css: 'icon-tv', id: 15 },
+        { css: 'icon-flip', id: 16 },
+        { css: 'icon-truck', id: 17 },
+        { css: 'icon-signup', id: 18 },
+        { css: 'icon-new-tab', id: 19 }
+    ];
+
+    $scope.SelectedIconChange = function () {
+        $scope.SelectedIconId = this.icon.id;
+    }
+
     //获取产品列表
     $scope.getCatProducts = function (catalogId, pageIndex) {
         $http.get($sitecore.urls["productList"], { params: { typeid: catalogId, pageIndex: pageIndex - 1, pageSize: 10 } }).success(function (data) {
