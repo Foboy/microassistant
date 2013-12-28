@@ -200,8 +200,6 @@
     <Content Include="www\css\bootstrap.min.css" />
     <Content Include="www\css\flat-ui.css" />
     <Content Include="www\css\master.css" />
-    <Content Include="www\css\next.png" />
-    <Content Include="www\css\previous.png" />
     <Content Include="www\enterprise-register.html" />
     <Content Include="www\forgotpwd.html" />
     <Content Include="www\img\404.png" />

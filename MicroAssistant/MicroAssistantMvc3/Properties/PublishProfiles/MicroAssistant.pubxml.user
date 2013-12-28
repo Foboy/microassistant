@@ -11,352 +11,352 @@
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/BossManagement/Views/Web.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Areas/ContractManagement/Views/Web.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Areas/CustomerManagement/Views/Web.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Areas/FileManagement/Views/Web.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Areas/FinancialManagement/Views/Web.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Areas/MarketingManagement/Views/Web.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Areas/ProductManagement/Views/Web.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Areas/SystemManagement/Views/Web.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Areas/UserManagement/Views/Web.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="bin/CachemanAPI.dll">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:31</publishTime>
     </File>
     <File Include="bin/MicroAssistant.Cache.dll">
-      <publishTime>12/01/2013 22:29:45</publishTime>
+      <publishTime>12/26/2013 21:29:51</publishTime>
     </File>
     <File Include="bin/MicroAssistant.Common.dll">
-      <publishTime>12/01/2013 22:29:45</publishTime>
+      <publishTime>12/26/2013 21:29:52</publishTime>
     </File>
     <File Include="bin/MicroAssistant.DataAccess.dll">
-      <publishTime>12/01/2013 23:10:28</publishTime>
+      <publishTime>12/26/2013 21:29:54</publishTime>
     </File>
     <File Include="bin/MicroAssistant.DataStructure.dll">
-      <publishTime>12/01/2013 17:01:28</publishTime>
+      <publishTime>12/26/2013 21:29:51</publishTime>
     </File>
     <File Include="bin/MicroAssistant.Meta.dll">
-      <publishTime>12/01/2013 22:29:45</publishTime>
+      <publishTime>12/26/2013 21:29:52</publishTime>
     </File>
     <File Include="bin/MicroAssistantMvc.dll">
-      <publishTime>12/01/2013 23:10:28</publishTime>
+      <publishTime>12/26/2013 21:31:59</publishTime>
     </File>
     <File Include="bin/MicroAssistantMvc3.dll">
       <publishTime>11/08/2013 01:05:39</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
-      <publishTime>11/26/2013 13:42:11</publishTime>
+      <publishTime>11/23/2013 14:47:33</publishTime>
     </File>
     <File Include="bin/MySql.Data.dll">
-      <publishTime>11/26/2013 13:42:12</publishTime>
+      <publishTime>11/23/2013 14:47:33</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>11/26/2013 13:42:12</publishTime>
+      <publishTime>11/23/2013 14:47:33</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>11/26/2013 13:42:11</publishTime>
+      <publishTime>11/23/2013 14:47:33</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>11/26/2013 13:42:11</publishTime>
+      <publishTime>11/23/2013 14:47:33</publishTime>
     </File>
     <File Include="bin/System.Web.Providers.dll">
-      <publishTime>11/26/2013 13:42:11</publishTime>
+      <publishTime>11/23/2013 14:47:33</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>11/26/2013 13:42:11</publishTime>
+      <publishTime>11/23/2013 14:47:33</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
-      <publishTime>11/26/2013 13:42:11</publishTime>
+      <publishTime>11/23/2013 14:47:33</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.dll">
-      <publishTime>11/26/2013 13:42:11</publishTime>
+      <publishTime>11/23/2013 14:47:33</publishTime>
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
-      <publishTime>11/26/2013 13:42:11</publishTime>
+      <publishTime>11/23/2013 14:47:33</publishTime>
     </File>
     <File Include="bin/zh-Hans/System.Web.Providers.resources.dll">
-      <publishTime>11/26/2013 13:42:11</publishTime>
+      <publishTime>11/23/2013 14:47:33</publishTime>
     </File>
     <File Include="Config/Cache.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Config/Role.xml">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 12:04:53</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_222222_256x240.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_2e83ff_256x240.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_454545_256x240.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_888888_256x240.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-icons_cd0a0a_256x240.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery-ui.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.accordion.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.all.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.autocomplete.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.base.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.button.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.core.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.datepicker.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.dialog.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.progressbar.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.resizable.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.selectable.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.slider.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.tabs.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/jquery.ui.theme.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-bg_flat_0_aaaaaa_40x100.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-bg_flat_75_ffffff_40x100.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-bg_glass_55_fbf9ee_1x400.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-bg_glass_65_ffffff_1x400.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-bg_glass_75_dadada_1x400.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-bg_glass_75_e6e6e6_1x400.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-bg_glass_95_fef1ec_1x400.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-icons_222222_256x240.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-icons_2e83ff_256x240.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-icons_454545_256x240.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-icons_888888_256x240.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/images/ui-icons_cd0a0a_256x240.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery-ui.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.accordion.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.autocomplete.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.button.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.core.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.datepicker.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.dialog.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.progressbar.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.resizable.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.selectable.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.slider.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.tabs.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.theme.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/jquery-1.7.1.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/jquery-1.7.1.min.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/jquery-ui-1.8.20.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/jquery-ui-1.8.20.min.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.min.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/MicrosoftAjax.debug.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/MicrosoftAjax.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/MicrosoftMvcAjax.debug.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/MicrosoftMvcAjax.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/MicrosoftMvcValidation.debug.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/MicrosoftMvcValidation.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.5.3.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/01/2013 23:10:29</publishTime>
+      <publishTime>12/26/2013 21:31:59</publishTime>
     </File>
     <File Include="www/boss.html">
       <publishTime>11/12/2013 16:48:52</publishTime>
     </File>
     <File Include="www/css/bootstrap-responsive.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/css/bootstrap-responsive.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/css/bootstrap.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/css/bootstrap.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/css/flat-ui.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/css/master.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/26/2013 21:26:45</publishTime>
     </File>
     <File Include="www/css/next.png">
       <publishTime>11/26/2013 13:42:10</publishTime>
@@ -365,268 +365,274 @@
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/enterprise-register.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
+    </File>
+    <File Include="www/forgotpwd.html">
+      <publishTime>12/20/2013 10:39:33</publishTime>
     </File>
     <File Include="www/img/404.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/Adimg/h1.jpg">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/Adimg/tx.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/arrowBg.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/blue-bubble.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/c-img-cover.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/c-png-2-white.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/c-png-2.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/circleBG.png">
       <publishTime>11/07/2013 22:30:28</publishTime>
     </File>
     <File Include="www/img/funnel.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/gb_tip_layer.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/glyphicons-halflings-white.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/glyphicons-halflings.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/head.jpg">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/htsk.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/img/icon.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/img/icon.psd">
       <publishTime>11/12/2013 21:25:32</publishTime>
     </File>
     <File Include="www/img/loading.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/loading26.gif">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/logo1.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/logo2.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/next.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/previous.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/testpic.jpg">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/time-axis.jpg">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/time-box-ed.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/time-box.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/img/timelinejh.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/index.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/20/2013 10:39:33</publishTime>
     </File>
     <File Include="www/js/angular-animate.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/angular-loadmask.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/angular-route.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/angular-ui-router.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 15:40:47</publishTime>
     </File>
     <File Include="www/js/angular.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 12:24:43</publishTime>
     </File>
     <File Include="www/js/angular.pack.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/bootstrap-datetimepicker/bootstrap-datetimepicker.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/bootstrap-widgets-rewrite.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 15:25:09</publishTime>
     </File>
     <File Include="www/js/bootstrap.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/bootstrap.min.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/bootstro/bootstro.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/bootstro/bootstro.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox.msgbox.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 16:09:59</publishTime>
     </File>
     <File Include="www/js/fancybox/blank.gif">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/fancybox_loading%402x.gif">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/fancybox_loading.gif">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/fancybox_overlay.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/fancybox_sprite%402x.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/fancybox_sprite.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/helpers/fancybox_buttons.png">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/helpers/jquery.fancybox-buttons.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/helpers/jquery.fancybox-buttons.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/helpers/jquery.fancybox-media.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/helpers/jquery.fancybox-thumbs.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/helpers/jquery.fancybox-thumbs.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/jquery.fancybox.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 16:09:59</publishTime>
     </File>
     <File Include="www/js/fancybox/jquery.fancybox.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/fancybox/jquery.fancybox.pack.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jquery-drawing.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jquery-loadmask/demo/example.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jquery-loadmask/images/loading.gif">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jquery-loadmask/jquery.loadmask.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jquery-loadmask/jquery.loadmask.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jquery-loadmask/jquery.loadmask.min.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jquery-migrate-1.2.1.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jquery.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jscop/Jcrop.gif">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jscop/jquery.Jcrop.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jscop/jquery.Jcrop.extend.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jscop/jquery.Jcrop.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jscop/jquery.Jcrop.min.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/jscop/jquery.Jcrop.min.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
+    </File>
+    <File Include="www/js/require.js">
+      <publishTime>12/14/2013 12:24:43</publishTime>
     </File>
     <File Include="www/js/showLoading/css/showLoading.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/showLoading/images/loading-bars.gif">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/showLoading/images/loading.gif">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/showLoading/jquery.showLoading.example.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/showLoading/js/jquery-1.3.2.min.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/showLoading/js/jquery.showLoading.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/showLoading/js/jquery.showLoading.min.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/uploadify/jquery.uploadify.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/uploadify/uploadify.css">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/uploadify/uploadify.extention.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/js/uploadify/uploadify.swf">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/login.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/20/2013 10:39:33</publishTime>
     </File>
     <File Include="www/p-404.html">
       <publishTime>11/26/2013 13:42:10</publishTime>
@@ -725,151 +731,154 @@
       <publishTime>11/26/2013 13:42:10</publishTime>
     </File>
     <File Include="www/partials/boss.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/changeemail.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/partials/changeEntcode.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/partials/changepassword.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/partials/client.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/client/client-addenterprise.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/client/client-addpersonal.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/client/enterpriseclient-detail.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/client/personalclient-detail.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/enterpriseinfo.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/26/2013 21:26:45</publishTime>
     </File>
     <File Include="www/partials/finance.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/finance/makesure-pay.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/finance/receivables-detail.html">
-      <publishTime>11/27/2013 13:20:16</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/home.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/26/2013 21:26:45</publishTime>
     </File>
     <File Include="www/partials/main.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/mytimeshaft.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/partials/others/addcompany.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/partials/others/locationselectmap.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/partials/others/photocutter.html">
-      <publishTime>11/26/2013 21:38:24</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/product.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/product/help.json">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/partials/product/product-detail.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/product/product-edit.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 16:09:59</publishTime>
     </File>
     <File Include="www/partials/product/product-purchase.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 16:09:59</publishTime>
     </File>
     <File Include="www/partials/sales.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/sales/after-detail.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/partials/sales/chance-detail.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/sales/chance-edit.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 15:25:09</publishTime>
     </File>
     <File Include="www/partials/sales/contract-detail.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/partials/sales/contract-edit.html">
-      <publishTime>11/27/2013 13:56:57</publishTime>
+      <publishTime>12/14/2013 13:55:50</publishTime>
     </File>
     <File Include="www/partials/sales/visit-detail.html">
-      <publishTime>11/26/2013 22:20:54</publishTime>
+      <publishTime>12/20/2013 10:39:33</publishTime>
     </File>
     <File Include="www/partials/staffmangement.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/20/2013 10:39:33</publishTime>
     </File>
     <File Include="www/partials/userinfo.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 15:40:47</publishTime>
     </File>
     <File Include="www/register.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
+    </File>
+    <File Include="www/restpwd.html">
+      <publishTime>12/20/2013 10:39:33</publishTime>
     </File>
     <File Include="www/scripts/app.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/20/2013 10:39:33</publishTime>
     </File>
     <File Include="www/scripts/client/controller.js">
-      <publishTime>11/27/2013 13:20:16</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/scripts/core.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/20/2013 10:39:33</publishTime>
     </File>
     <File Include="www/scripts/finance/controllers.js">
-      <publishTime>11/27/2013 13:20:16</publishTime>
+      <publishTime>12/14/2013 11:44:26</publishTime>
     </File>
     <File Include="www/scripts/home/controllers.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/scripts/product/controllers.js">
-      <publishTime>12/01/2013 22:40:12</publishTime>
+      <publishTime>12/20/2013 10:39:33</publishTime>
     </File>
     <File Include="www/scripts/product/json/productCat.json">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/scripts/product/json/productDetail.json">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/scripts/product/json/productList.json">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/scripts/sales/controllers.js">
-      <publishTime>11/27/2013 13:55:03</publishTime>
+      <publishTime>12/14/2013 15:25:09</publishTime>
     </File>
     <File Include="www/scripts/user/bosscontrollers.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/scripts/user/controllers.js">
-      <publishTime>11/27/2013 13:20:16</publishTime>
+      <publishTime>12/20/2013 10:39:33</publishTime>
     </File>
     <File Include="www/scripts/utilities.js">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>12/14/2013 15:25:09</publishTime>
     </File>
     <File Include="www/web.config">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
     <File Include="www/目录.html">
-      <publishTime>11/26/2013 13:42:10</publishTime>
+      <publishTime>11/23/2013 14:47:32</publishTime>
     </File>
   </ItemGroup>
 </Project>
