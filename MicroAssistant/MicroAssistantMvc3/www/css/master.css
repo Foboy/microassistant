@@ -629,6 +629,11 @@ left: -10px; top:0px;
 
 
 /*通讯录*/
-.addressbook_content {width:300px; background-color:#1ABC9C; float:right;}
+.addressbook_content {width:200px; background-color:#1ABC9C; right:0; height:100%; position:fixed;}
 .ab_title { color:#fff; font-size:18px; margin:5px 0 0 10px;}
 .addressbook_content ul { border-top:1px solid #ddd; list-style:none; padding:5px 0 0 10px; margin:0px;}
+.addressbook_content ul li {height:40px; line-height:40px; float:left; width:170px; margin-bottom:10px;}
+.addressbook_content ul img {float:left; width:30px; height:30px;  padding:5px;}
+.userinfo { float:left; height:40px; padding:2px 0 0 5px;}
+.username {font-size:14px; color:#34495E; font-weight:500; height:20px; line-height:20px;}
+.usermobile { font-size:12px; color:#fff; height:15px; line-height:15px;}
