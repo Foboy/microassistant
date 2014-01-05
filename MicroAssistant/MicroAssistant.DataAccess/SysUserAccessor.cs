@@ -23,7 +23,7 @@ namespace MicroAssistant.DataAccess
         private MySqlCommand cmdDeleteSysUser;
         private MySqlCommand cmdUpdateSysUser;
         private MySqlCommand cmdLoadSysUser;
-        private MySqlCommand cmdLoadAllSysUser;
+        private MySqlCommand cmdLoadAllSysUserByEntId;
         private MySqlCommand cmdGetSysUserCount;
         private MySqlCommand cmdGetSysUser;
         private MySqlCommand cmdGetSysUserByAcount;
@@ -107,10 +107,10 @@ namespace MicroAssistant.DataAccess
 
             #endregion
 
-            #region cmdLoadAllSysUser
+            #region cmdLoadAllSysUserByEntId
 
-            cmdLoadAllSysUser = new MySqlCommand(" select ent_code, pic_id,birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user");
-
+            cmdLoadAllSysUserByEntId = new MySqlCommand(" select ent_code, pic_id,birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where ent_id = @EntId");
+            cmdLoadAllSysUserByEntId.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdGetSysUser
@@ -389,20 +389,21 @@ limit 0,1" );
         }
 
         /// <summary>
-        /// 获取全部数据
+        /// 通过企业ID获取企业用户
         /// </summary>
-        public List<SysUser> Search()
+        public List<SysUser> Search(int entId)
         {
             MySqlConnection oc = ConnectManager.Create();
-            MySqlCommand _cmdLoadAllSysUser = cmdLoadAllSysUser.Clone() as MySqlCommand;
-            _cmdLoadAllSysUser.Connection = oc; List<SysUser> returnValue = new List<SysUser>();
+            MySqlCommand _cmdLoadAllSysUserByEntId = cmdLoadAllSysUserByEntId.Clone() as MySqlCommand;
+            _cmdLoadAllSysUserByEntId.Connection = oc; List<SysUser> returnValue = new List<SysUser>();
             try
             {
-                _cmdLoadAllSysUser.CommandText = string.Format(_cmdLoadAllSysUser.CommandText, string.Empty);
+                _cmdLoadAllSysUserByEntId.Parameters["@EntId"].Value = entId;
+                _cmdLoadAllSysUserByEntId.CommandText = string.Format(_cmdLoadAllSysUserByEntId.CommandText, string.Empty);
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
 
-                MySqlDataReader reader = _cmdLoadAllSysUser.ExecuteReader();
+                MySqlDataReader reader = _cmdLoadAllSysUserByEntId.ExecuteReader();
                 while (reader.Read())
                 {
                     returnValue.Add(new SysUser().BuildSampleEntity(reader));
@@ -413,8 +414,8 @@ limit 0,1" );
                 oc.Close();
                 oc.Dispose();
                 oc = null;
-                _cmdLoadAllSysUser.Dispose();
-                _cmdLoadAllSysUser = null;
+                _cmdLoadAllSysUserByEntId.Dispose();
+                _cmdLoadAllSysUserByEntId = null;
                 GC.Collect();
             }
             return returnValue;
