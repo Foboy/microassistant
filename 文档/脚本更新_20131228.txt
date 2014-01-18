@@ -41,3 +41,5 @@ CREATE TABLE `microassistantdb`.`marketing_after` (
   `op_user_name` VARCHAR(45) NOT NULL COMMENT '跟进人名称',
   PRIMARY KEY (`idmarketing_after`))
 COMMENT = '售后跟进';
+ALTER TABLE `microassistantdb`.`sys_ent_extra` 
+CHANGE COLUMN `contact_phone` `contact_phone` VARCHAR(45) NULL DEFAULT NULL COMMENT '联系电话' ;

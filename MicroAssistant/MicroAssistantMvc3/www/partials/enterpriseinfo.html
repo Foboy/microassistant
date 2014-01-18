@@ -51,7 +51,7 @@
                        <li class="clearfix">
                 <span class="span1">成立日期</span>
                 <span class="span2">{{!Ntype?parseJsonDate(CurrentUser.entExtra.DateOfEstablishment,'yyyy/MM/dd'):''}}
-                <input type="text" name="DateOfEstablishment" ng-required="true" readonly="readonly" ng-pattern="/^(\d{4})(-|\/)(\d{1,2})\2(\d{1,2})$/" ng-model="CurrentUser.entExtra.DateOfEstablishment" id="DateOfEstablishmentControl" ng-show="Ntype?true:false" class="t-p" />
+                <input type="text" name="DateOfEstablishment" ng-required="true" readonly="readonly" ng-model="CurrentUser.entExtra.DateOfEstablishment" id="DateOfEstablishmentControl" ng-show="Ntype?true:false" class="t-p" />
                 </span>
                 <span class="span3">
                   
