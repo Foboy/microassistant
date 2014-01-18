@@ -183,15 +183,17 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
 
     $scope.parseJsonDate = function (datestr, format) {
         var date;
-
-        if (!datestr ||datestr=="/Date(-62135596800000)/") {
+        if (!datestr) {
             date = new Date();
         }
         else if (typeof datestr == 'object') {
             date = datestr;
         }
         else if (typeof datestr == 'string') {
-            if ((/Date/ig).test(datestr)) {
+            if (datestr == "/Date(-62135596800000)/") {
+                date = "";
+            }
+            else if ((/Date/ig).test(datestr)) {
                 datestr = datestr.replace(/\//g, '');
                 date = eval(datestr.replace(/Date\(([\-\d]+)\)/gi, "new Date($1)"));
                 //console.log(date);
