@@ -345,7 +345,9 @@ namespace MicroAssistant.DataAccess
                 _cmdGetMarketingChanceCount.Parameters["@IsVisit"].Value = IsVisit;
                 while (reader.Read())
                 {
-                    returnValue.Items.Add(new MarketingChance().BuildSampleEntity(reader));
+                    MarketingChance mc = new MarketingChance().BuildSampleEntity(reader);
+                    mc.UserName = SysUserAccessor.Instance.Get(mc.UserId).UserName;
+                    returnValue.Items.Add(mc);
                 }
                 reader.Close();
                 returnValue.RecordsCount = Convert.ToInt32( _cmdGetMarketingChanceCount.ExecuteScalar());

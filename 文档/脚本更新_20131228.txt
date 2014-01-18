@@ -43,3 +43,7 @@ CREATE TABLE `microassistantdb`.`marketing_after` (
 COMMENT = '售后跟进';
 ALTER TABLE `microassistantdb`.`sys_ent_extra` 
 CHANGE COLUMN `contact_phone` `contact_phone` VARCHAR(45) NULL DEFAULT NULL COMMENT '联系电话' ;
+ALTER TABLE `microassistantdb`.`sys_ent_extra` 
+CHANGE COLUMN `artificial_person` `artificial_person` VARCHAR(45) NULL COMMENT '法人' ,
+CHANGE COLUMN `registered_capital` `registered_capital` VARCHAR(45) NULL ,
+CHANGE COLUMN `date_of_establishment` `date_of_establishment` DATETIME NULL COMMENT '创建时间' ;

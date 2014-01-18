@@ -94,6 +94,12 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
+        /// 操作人
+        /// </summary>
+        public string UserName
+        { get; set; }
+
+        /// <summary>
         /// 1:未拜访 2：已拜访
         /// </summary>
         public Int32 IsVisit

@@ -28,5 +28,11 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Models
         /// </summary>
         public Int32 Rate
         { get; set; }
+
+        /// <summary>
+        /// 拜访工作人员名称
+        /// </summary>
+        public string UserName
+        { get; set; }
     }
 }

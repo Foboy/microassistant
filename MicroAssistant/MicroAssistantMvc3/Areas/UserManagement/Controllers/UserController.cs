@@ -950,8 +950,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="username"></param>
         /// <param name="entCode"></param>
         /// <returns></returns>
-        public JsonResult EditeEnt( string ArtificialPerson, string RegisteredCapital, DateTime DateOfEstablishment, string Address
-            , string Province, string City, string ContactPhone)
+        public JsonResult EditeEnt(string entName, string Address ,string ContactPhone)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();
@@ -967,13 +966,14 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     if (userid > 0)
                     {
                         SysUser olduser = SysUserAccessor.Instance.Get(userid);
+                        olduser.UserName = entName;
                         SysEntExtra entExtra = new SysEntExtra();
-                        entExtra.ArtificialPerson = ArtificialPerson;
-                        entExtra.RegisteredCapital = RegisteredCapital;
-                        entExtra.DateOfEstablishment = DateOfEstablishment;
+                        //entExtra.ArtificialPerson = ArtificialPerson;
+                        //entExtra.RegisteredCapital = RegisteredCapital;
+                        //entExtra.DateOfEstablishment = DateOfEstablishment;
                         entExtra.Address = Address;
-                        entExtra.Province = Province;
-                        entExtra.City = City;
+                        //entExtra.Province = Province;
+                        //entExtra.City = City;
                         entExtra.ContactPhone = ContactPhone;
                         //entExtra.Web = Web;
                         //entExtra.Weibo = Weibo;

@@ -263,7 +263,9 @@ namespace MicroAssistant.DataAccess
                 MySqlDataReader reader = _cmdLoadContractInfo.ExecuteReader();
                 while (reader.Read())
                 {
-                    returnValue.Items.Add(new ContractInfo().BuildSampleEntity(reader));
+                    ContractInfo cc = new ContractInfo().BuildSampleEntity(reader);
+                    cc.OwnerName = SysUserAccessor.Instance.Get(cc.OwnerId).UserName;
+                    returnValue.Items.Add(cc);
                 }
                 reader.Close();
                // _cmdGetContractInfoCount.Parameters["@EntId"].Value = EntId;

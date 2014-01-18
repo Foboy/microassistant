@@ -464,6 +464,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                        vm.Rate = clist.Items[i].Rate;
                        vm.Remark = clist.Items[i].Remark;
                        vm.IdmarketingChance = clist.Items[i].IdmarketingChance;
+                       vm.UserName = clist.Items[i].UserName;
                  
                       PageEntity<MarketingVisit> pmvlist =  MarketingVisitAccessor.Instance.Search(clist.Items[i].IdmarketingChance, 0, 100);
                       if (pmvlist.RecordsCount > 0)
