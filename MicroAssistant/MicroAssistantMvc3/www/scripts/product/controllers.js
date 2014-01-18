@@ -32,9 +32,14 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
         $scope.SelectedIconId = this.icon.id;
     }
 
-    $scope.pathTo = function (url)
-    {
-        $location.path(url);
+    $scope.parseCatalogCss = function(catalog) {
+        for (var i = 0; i < $scope.ProductTypeIcons.length; i++) {
+            if (catalog.PicId == $scope.ProductTypeIcons[i].id) {
+                catalog.css = $scope.ProductTypeIcons[i].css;
+                return;
+            }
+        }
+        catalog.css = 'icon-screen';
     }
 
     //获取产品列表
@@ -91,6 +96,9 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
                 }
                 console.log($parent.catalogs)
                 if ($parent.catalogs && $parent.catalogs.length) {
+                    for (var i = 0; i < $parent.catalogs.length; i++) {
+                        $scope.parseCatalogCss($parent.catalogs[i]);
+                    }
                     if (catalogId) {
                         $scope.activeCat(catalogId, pageIndex);
                     }
@@ -114,7 +122,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
     $scope.addCatalogSubmit = function () {
         if ($scope.ProductCatalogForm.$valid) {
             $scope.showerror = false;
-            $http.post($sitecore.urls["productAddCat"], { fatherid: 0, pTypeName: $scope.AddedCatalog.PTypeName, ptypepicid: $scope.AddedCatalog.PicId || 0 }).success(function (data) {
+            $http.post($sitecore.urls["productAddCat"], { fatherid: 0, pTypeName: $scope.AddedCatalog.PTypeName, ptypepicid: $scope.SelectedIconId || 0 }).success(function (data) {
                 console.log(data);
                 if (data.Error) {
                     alert(data.ErrorMessage);
@@ -123,7 +131,8 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
                     $parent.catalogs = $parent.catalogs || [];
                     var catalog = angular.copy($scope.AddedCatalog);
                     catalog.PTypeId = data.Id;
-                    catalog.PicId = $scope.AddedCatalog.PicId;
+                    catalog.PicId = $scope.SelectedIconId || 0;
+                    $scope.parseCatalogCss(catalog);
                     $parent.catalogs.push(catalog);
                     $location.path("/product/" + data.Id + "/1");
                     //$scope.catalogs = $scope.catalogs || [];
