@@ -182,9 +182,9 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     }
 
     $scope.parseJsonDate = function (datestr, format) {
-       
         var date;
-        if (!datestr) {
+
+        if (!datestr ||datestr=="/Date(-62135596800000)/") {
             date = new Date();
         }
         else if (typeof datestr == 'object') {
@@ -206,7 +206,6 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
         }
         if (format)
             return $filter('date')(date, format);
-        alert(date);
         return date;
     };
     //根据生日计算年龄

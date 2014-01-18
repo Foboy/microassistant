@@ -32,6 +32,15 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
         $scope.SelectedIconId = this.icon.id;
     }
 
+    $scope.parseCatalogCss = function(catalog) {
+        for (var i = 0; i < $scope.ProductTypeIcons.length; i++) {
+            if (id == $scope.ProductTypeIcons[i].id) {
+                catalog.css = $scope.ProductTypeIcons[i].css;
+                return;
+            }
+        }
+    }
+
     //获取产品列表
     $scope.getCatProducts = function (catalogId, pageIndex) {
         $http.get($sitecore.urls["productList"], { params: { typeid: catalogId, pageIndex: pageIndex - 1, pageSize: 10 } }).success(function (data) {
@@ -86,6 +95,9 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
                 }
                 console.log($parent.catalogs)
                 if ($parent.catalogs && $parent.catalogs.length) {
+                    for (var i = 0; i < $parent.catalogs.length; i++) {
+                        $scope.parseCatalogCss($parent.catalogs[i]);
+                    }
                     if (catalogId) {
                         $scope.activeCat(catalogId, pageIndex);
                     }
@@ -119,6 +131,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
                     var catalog = angular.copy($scope.AddedCatalog);
                     catalog.PTypeId = data.Id;
                     catalog.PicId = $scope.AddedCatalog.PicId;
+                    $scope.parseCatalogCss(catalog);
                     $parent.catalogs.push(catalog);
                     $location.path("/product/" + data.Id + "/1");
                     //$scope.catalogs = $scope.catalogs || [];

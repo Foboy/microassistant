@@ -1,7 +1,8 @@
         <h1 class="titSec">产品项目</h1>
         <ul class="clearfix goodsList">
             <li ng-repeat="catalog in catalogs"  ng-class="catalog.PTypeId==ActCatalogId?'cur':''">
-                <a ng-href="#/product/{{catalog.PTypeId}}/1"><em><i class="pcIcon"></i></em></a>
+                <!--<a ng-href="#/product/{{catalog.PTypeId}}/1"><em><i class="pcIcon"></i></em></a>-->
+                <a ng-href="#/product/{{catalog.PTypeId}}/1"><em ng-class="catalog.css"></em></a>
                 <p class="colorGrayadd">{{catalog.PTypeName}}</p>
                 <span class="arrowD"></span>
             </li>

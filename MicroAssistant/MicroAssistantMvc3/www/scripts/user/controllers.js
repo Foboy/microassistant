@@ -385,6 +385,11 @@ function UserForgotPwdMainCtrl($scope, $http, $location) {
     }
 }
 function EnterPriseInfoCtrl($scope, $http, $location) {
+    $scope.CheckNtype = function ()
+    {
+        $scope.Ntype = !($scope.Ntype);
+        !$scope.Ntype ? $scope.EditEnt($scope.CurrentUser) : $scope.InitDateControl($scope.CurrentUser)
+    }
     $scope.InitDateControl = function (data) {
         formdata = data;
         if (formdata) {
@@ -450,7 +455,6 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
     // string ArtificialPerson, string RegisteredCapital, DateTime DateOfEstablishment, string Address
     //   , string Province, string City, int ContactPhone, string Web, string Weibo, string Weixin, string MainBusiness
     $scope.EditEnt = function (data) {
-        debugger;
         if ($scope.ChangeEnterprsieForm.Name.$valid) {
             $scope.showerror = false;
             $http.post($sitecore.urls["EditEnt"], {
