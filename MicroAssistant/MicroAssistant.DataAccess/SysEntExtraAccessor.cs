@@ -49,8 +49,8 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateSysEntExtra
 
-            cmdUpdateSysEntExtra = new MySqlCommand(" update sys_ent_extra set ent_id = @EntId,artificial_person = @ArtificialPerson,registered_capital = @RegisteredCapital,date_of_establishment = @DateOfEstablishment,address = @Address,province = @Province,city = @City,contact_phone = @ContactPhone,web = @Web,weibo = @Weibo,weixin = @Weixin,main_business = @MainBusiness where idsys_ent_extra = @IdsysEntExtra");
-            cmdUpdateSysEntExtra.Parameters.Add("@IdsysEntExtra", MySqlDbType.Int32);
+            cmdUpdateSysEntExtra = new MySqlCommand(" update sys_ent_extra set artificial_person = @ArtificialPerson,registered_capital = @RegisteredCapital,date_of_establishment = @DateOfEstablishment,address = @Address,province = @Province,city = @City,contact_phone = @ContactPhone,web = @Web,weibo = @Weibo,weixin = @Weixin,main_business = @MainBusiness where ent_id = @EntId");
+        
             cmdUpdateSysEntExtra.Parameters.Add("@EntId", MySqlDbType.Int32);
             cmdUpdateSysEntExtra.Parameters.Add("@ArtificialPerson", MySqlDbType.String);
             cmdUpdateSysEntExtra.Parameters.Add("@RegisteredCapital", MySqlDbType.String);
@@ -68,8 +68,8 @@ namespace MicroAssistant.DataAccess
 
             #region cmdDeleteSysEntExtra
 
-            cmdDeleteSysEntExtra = new MySqlCommand(" delete from sys_ent_extra where idsys_ent_extra = @IdsysEntExtra");
-            cmdDeleteSysEntExtra.Parameters.Add("@IdsysEntExtra", MySqlDbType.Int32);
+            cmdDeleteSysEntExtra = new MySqlCommand(" delete from sys_ent_extra where ent_id = @EntId");
+            cmdDeleteSysEntExtra.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
             #region cmdLoadSysEntExtra
@@ -147,7 +147,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Delete(int IdsysEntExtra)
+        public bool Delete(int EntId)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdDeleteSysEntExtra = cmdDeleteSysEntExtra.Clone() as MySqlCommand;
@@ -157,7 +157,7 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                _cmdDeleteSysEntExtra.Parameters["@IdsysEntExtra"].Value = IdsysEntExtra;
+                _cmdDeleteSysEntExtra.Parameters["@EntId"].Value = EntId;
 
 
                 _cmdDeleteSysEntExtra.ExecuteNonQuery();
@@ -189,7 +189,6 @@ namespace MicroAssistant.DataAccess
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
 
-                _cmdUpdateSysEntExtra.Parameters["@IdsysEntExtra"].Value = e.IdsysEntExtra;
                 _cmdUpdateSysEntExtra.Parameters["@EntId"].Value = e.EntId;
                 _cmdUpdateSysEntExtra.Parameters["@ArtificialPerson"].Value = e.ArtificialPerson;
                 _cmdUpdateSysEntExtra.Parameters["@RegisteredCapital"].Value = e.RegisteredCapital;

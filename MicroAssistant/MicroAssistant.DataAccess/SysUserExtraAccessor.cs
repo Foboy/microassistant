@@ -43,8 +43,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdUpdateSysUserExtra
 
-            cmdUpdateSysUserExtra = new MySqlCommand(" update sys_user_extra set diploma = @Diploma,school = @School,major = @Major,graduation_time = @GraduationTime,detail = @Detail,sys_user_id = @SysUserId where idsys_user_extra = @IdsysUserExtra");
-            cmdUpdateSysUserExtra.Parameters.Add("@IdsysUserExtra", MySqlDbType.Int32);
+            cmdUpdateSysUserExtra = new MySqlCommand(" update sys_user_extra set diploma = @Diploma,school = @School,major = @Major,graduation_time = @GraduationTime,detail = @Detail where sys_user_id = @SysUserId");
             cmdUpdateSysUserExtra.Parameters.Add("@Diploma", MySqlDbType.String);
             cmdUpdateSysUserExtra.Parameters.Add("@School", MySqlDbType.String);
             cmdUpdateSysUserExtra.Parameters.Add("@Major", MySqlDbType.String);
@@ -56,8 +55,8 @@ namespace MicroAssistant.DataAccess
 
             #region cmdDeleteSysUserExtra
 
-            cmdDeleteSysUserExtra = new MySqlCommand(" delete from sys_user_extra where idsys_user_extra = @IdsysUserExtra");
-            cmdDeleteSysUserExtra.Parameters.Add("@IdsysUserExtra", MySqlDbType.Int32);
+            cmdDeleteSysUserExtra = new MySqlCommand(" delete from sys_user_extra where sys_user_id = @SysUserId");
+            cmdDeleteSysUserExtra.Parameters.Add("@SysUserId", MySqlDbType.Int32);
             #endregion
 
             #region cmdLoadSysUserExtra
@@ -129,7 +128,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="es">数据实体对象数组</param>
         /// <returns></returns>
         /// </summary>
-        public bool Delete(int IdsysUserExtra)
+        public bool Delete(int SysUserId)
         {
             MySqlConnection oc = ConnectManager.Create();
             MySqlCommand _cmdDeleteSysUserExtra = cmdDeleteSysUserExtra.Clone() as MySqlCommand;
@@ -139,7 +138,7 @@ namespace MicroAssistant.DataAccess
             {
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
-                _cmdDeleteSysUserExtra.Parameters["@IdsysUserExtra"].Value = IdsysUserExtra;
+                _cmdDeleteSysUserExtra.Parameters["@SysUserId"].Value = SysUserId;
 
 
                 _cmdDeleteSysUserExtra.ExecuteNonQuery();
@@ -171,7 +170,6 @@ namespace MicroAssistant.DataAccess
                 if (oc.State == ConnectionState.Closed)
                     oc.Open();
 
-                _cmdUpdateSysUserExtra.Parameters["@IdsysUserExtra"].Value = e.IdsysUserExtra;
                 _cmdUpdateSysUserExtra.Parameters["@Diploma"].Value = e.Diploma;
                 _cmdUpdateSysUserExtra.Parameters["@School"].Value = e.School;
                 _cmdUpdateSysUserExtra.Parameters["@Major"].Value = e.Major;

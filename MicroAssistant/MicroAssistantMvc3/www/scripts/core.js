@@ -35,6 +35,7 @@ $sitecore.urls.add("UpdateUserRole", "/SystemManagement/Permission/UpdateUserRol
 $sitecore.urls.add("GetUserInfoByID", "/UserManagement/User/GetUserInfoByID");//查询企业信息
 $sitecore.urls.add("DeleteAllData", "/BossManagement/Boss/DeleteAllData");//一键清空数据
 $sitecore.urls.add("SearchEntContactors", "/UserManagement/User/SearchEntContactors");//获取企业通讯录
+$sitecore.urls.add("EditeEnt", "/UserManagement/User/EditeEnt");//编辑企业名片
 
 
 $sitecore.urls.add("productCat", "/ProductManagement/Production/SearchProductTypeListByEntID");

@@ -428,5 +428,30 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
             alert(data.ErrorMessage, 'e');
         }).lock({ selector: '#ChangeEnterprsieZone' });
     }
+    //修改企业名片
+   // string ArtificialPerson, string RegisteredCapital, DateTime DateOfEstablishment, string Address
+        //   , string Province, string City, int ContactPhone, string Web, string Weibo, string Weixin, string MainBusiness
+    $scope.EditEnt = function (data) {
+        if ($scope.ChangeEnterprsieForm.Name.$valid) {
+            $scope.showerror = false;
+            $http.post($sitecore.urls["EditEnt"], {
+                ArtificialPerson: data.entExtra.ArtificialPerson
+            , RegisteredCapital: data.entExtra.RegisteredCapital
+            , DateOfEstablishment: data.entExtra.DateOfEstablishment
+            , Address: data.entExtra.Address
+            , Province: data.entExtra.Province
+            , City: data.entExtra.City
+            , ContactPhone: data.entExtra.ContactPhone
+            }).success(function (data) {
+                if (!data.Error) {
+                    alert("修改成功", 's');
+                } else { }
+            }).error(function (data, status, headers, config) {
+                $scope.SysUsers = [];
+            }).lock({ selector: '#ChangeEnterprsieZone' });
+        } else {
+            $scope.showerror = true;
+        }
+    }
   
 }
