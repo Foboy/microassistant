@@ -951,7 +951,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
         /// <param name="entCode"></param>
         /// <returns></returns>
         public JsonResult EditeEnt( string ArtificialPerson, string RegisteredCapital, DateTime DateOfEstablishment, string Address
-            , string Province, string City, int ContactPhone)
+            , string Province, string City, string ContactPhone)
         {
             var Res = new JsonResult();
             RespResult result = new RespResult();

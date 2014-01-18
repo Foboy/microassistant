@@ -66,7 +66,7 @@ namespace MicroAssistant.Meta
         /// <summary>
         /// 联系电话
         /// </summary>
-        public Int32 ContactPhone
+        public string ContactPhone
         { get; set; }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace MicroAssistant.Meta
             this.Address = DBConvert.ToString(reader["address"]);
             this.Province = DBConvert.ToString(reader["province"]);
             this.City = DBConvert.ToString(reader["city"]);
-            this.ContactPhone = DBConvert.ToInt32(reader["contact_phone"]);
+            this.ContactPhone = DBConvert.ToString(reader["contact_phone"]);
             this.Web = DBConvert.ToString(reader["web"]);
             this.Weibo = DBConvert.ToString(reader["weibo"]);
             this.Weixin = DBConvert.ToString(reader["weixin"]);
