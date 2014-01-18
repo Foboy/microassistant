@@ -34,11 +34,12 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
 
     $scope.parseCatalogCss = function(catalog) {
         for (var i = 0; i < $scope.ProductTypeIcons.length; i++) {
-            if (id == $scope.ProductTypeIcons[i].id) {
+            if (catalog.PicId == $scope.ProductTypeIcons[i].id) {
                 catalog.css = $scope.ProductTypeIcons[i].css;
                 return;
             }
         }
+        catalog.css = 'icon-screen';
     }
 
     //获取产品列表
