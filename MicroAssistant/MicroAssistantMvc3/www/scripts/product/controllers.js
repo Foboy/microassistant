@@ -122,7 +122,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
     $scope.addCatalogSubmit = function () {
         if ($scope.ProductCatalogForm.$valid) {
             $scope.showerror = false;
-            $http.post($sitecore.urls["productAddCat"], { fatherid: 0, pTypeName: $scope.AddedCatalog.PTypeName, ptypepicid: $scope.AddedCatalog.PicId || 0 }).success(function (data) {
+            $http.post($sitecore.urls["productAddCat"], { fatherid: 0, pTypeName: $scope.AddedCatalog.PTypeName, ptypepicid: $scope.SelectedIconId || 0 }).success(function (data) {
                 console.log(data);
                 if (data.Error) {
                     alert(data.ErrorMessage);
@@ -131,7 +131,7 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
                     $parent.catalogs = $parent.catalogs || [];
                     var catalog = angular.copy($scope.AddedCatalog);
                     catalog.PTypeId = data.Id;
-                    catalog.PicId = $scope.AddedCatalog.PicId;
+                    catalog.PicId = $scope.SelectedIconId || 0;
                     $scope.parseCatalogCss(catalog);
                     $parent.catalogs.push(catalog);
                     $location.path("/product/" + data.Id + "/1");
