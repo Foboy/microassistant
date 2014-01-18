@@ -974,7 +974,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                         entExtra.Address = Address;
                         entExtra.Province = Province;
                         entExtra.City = City;
-                        //entExtra.ContactPhone = ContactPhone;
+                        entExtra.ContactPhone = ContactPhone;
                         //entExtra.Web = Web;
                         //entExtra.Weibo = Weibo;
                         //entExtra.Weixin = Weixin;

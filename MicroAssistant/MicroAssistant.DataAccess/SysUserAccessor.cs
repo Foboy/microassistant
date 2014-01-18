@@ -109,7 +109,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllSysUserByEntId
 
-            cmdLoadAllSysUserByEntId = new MySqlCommand(" select ent_code, pic_id,birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where ent_id = @EntId");
+            cmdLoadAllSysUserByEntId = new MySqlCommand(" select ent_code, pic_id,birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where ent_id = @EntId and @EntId!=0");
             cmdLoadAllSysUserByEntId.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
