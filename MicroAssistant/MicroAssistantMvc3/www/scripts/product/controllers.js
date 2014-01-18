@@ -32,6 +32,11 @@ function ProductMainCtrl($scope, $routeParams, $http, $location) {
         $scope.SelectedIconId = this.icon.id;
     }
 
+    $scope.pathTo = function (url)
+    {
+        $location.path(url);
+    }
+
     //获取产品列表
     $scope.getCatProducts = function (catalogId, pageIndex) {
         $http.get($sitecore.urls["productList"], { params: { typeid: catalogId, pageIndex: pageIndex - 1, pageSize: 10 } }).success(function (data) {

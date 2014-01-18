@@ -185,13 +185,12 @@ a{text-decoration:none;}
 
 .conBox{position:relative; margin-left:170px;height:100%;background:#FFFFFF; max-width:1286px; top:50px;}
 .titSec{height:30px; line-height:30px; color:#34495e; font-size:20px; font-weight:normal; font-family:"微软雅黑"; padding:5px 0 10px 15px; margin:0;}
-.goodsList{border-bottom:4px solid #f25749; margin-left:0; padding-left:20px;}
+.goodsList{border-bottom:4px solid #f25749; margin-left:0; padding-left:20px; text-align:center;}
 .goodsList li{ text-align:center; float:left; list-style:none; margin:0 20px; cursor:pointer; height:90px; position:relative;}
-.goodsList li p a{color:#333333;}
 .goodsList li .arrowD{display:none;}
 .goodsList li.cur .arrowD{display:block; position:absolute; bottom:-9px; left:45%;}
-.goodsList li em{display:inline-block; width:65px; height:65px; background:url(../img/icon.png) -150px 0; margin-bottom:5px;}
-.goodsList li:hover em,.goodsList li.cur em{background-position:0 0;}
+.fonticon_list { width:65px; height:65px; line-height:65px; font-size:20px; color:#fff; margin:0 auto; text-align:center; background:url(../img/icon.png) -150px 0; margin-bottom:5px;}
+.goodsList li:hover .fonticon_list ,.goodsList li.cur .fonticon_list {background-position:0 0;}
 .goodsList li em .pcIcon{background-position:-261px -169px; width:39px; height:34px;margin-top:15px;}
 .goodsList li em .phoneIcon{background-position:-276px -60px; width:24px; height:45px;margin-top:10px;}
 
