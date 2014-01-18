@@ -28,55 +28,55 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 企业法人
         /// </summary>
         public String ArtificialPerson
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 注册资金
         /// </summary>
         public String RegisteredCapital
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 成立日期
         /// </summary>
         public DateTime DateOfEstablishment
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 地址
         /// </summary>
         public String Address
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 省
         /// </summary>
         public String Province
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 市
         /// </summary>
         public String City
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 联系电话
         /// </summary>
         public Int32 ContactPhone
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 官方网站
         /// </summary>
         public String Web
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 微博
         /// </summary>
         public String Weibo
         { get; set; }
@@ -88,7 +88,7 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 主营业务
         /// </summary>
         public String MainBusiness
         { get; set; }

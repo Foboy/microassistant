@@ -406,7 +406,18 @@ limit 0,1" );
                 MySqlDataReader reader = _cmdLoadAllSysUserByEntId.ExecuteReader();
                 while (reader.Read())
                 {
-                    returnValue.Add(new SysUser().BuildSampleEntity(reader));
+                    SysUser user = new SysUser().BuildSampleEntity(reader);
+                    user.userExtra = new SysUserExtra();
+                    user.entExtra = new SysEntExtra();
+                    if (user.Type == 1)
+                    {
+                        user.userExtra = SysUserExtraAccessor.Instance.Get(user.UserId);
+                    }
+                    else if (user.Type == 2)
+                    {
+                        user.entExtra = SysEntExtraAccessor.Instance.Get(user.EntId);
+                    }
+                    returnValue.Add(user);
                 }
             }
             finally
@@ -444,6 +455,16 @@ limit 0,1" );
                 {
                     reader.Read();
                     returnValue = new SysUser().BuildSampleEntity(reader);
+                    returnValue.userExtra = new SysUserExtra();
+                    returnValue.entExtra = new SysEntExtra();
+                    if (returnValue.Type == 1)
+                    {
+                        returnValue.userExtra = SysUserExtraAccessor.Instance.Get(returnValue.UserId);
+                    }
+                    else if (returnValue.Type == 2)
+                    {
+                        returnValue.entExtra = SysEntExtraAccessor.Instance.Get(returnValue.EntId);
+                    }
                 }
             }
             finally
@@ -481,6 +502,16 @@ limit 0,1" );
                 {
                     reader.Read();
                     returnValue = new SysUser().BuildSampleEntity(reader);
+                    returnValue.userExtra = new SysUserExtra();
+                    returnValue.entExtra = new SysEntExtra();
+                    if (returnValue.Type == 1)
+                    {
+                        returnValue.userExtra = SysUserExtraAccessor.Instance.Get(returnValue.UserId);
+                    }
+                    else if (returnValue.Type == 2)
+                    {
+                        returnValue.entExtra = SysEntExtraAccessor.Instance.Get(returnValue.EntId);
+                    }
                 }
             }
             finally
@@ -519,6 +550,16 @@ limit 0,1" );
                 {
                     reader.Read();
                     returnValue = new SysUser().BuildSampleEntity(reader);
+                    returnValue.userExtra = new SysUserExtra();
+                    returnValue.entExtra = new SysEntExtra();
+                    if (returnValue.Type == 1)
+                    {
+                        returnValue.userExtra = SysUserExtraAccessor.Instance.Get(returnValue.UserId);
+                    }
+                    else if (returnValue.Type == 2)
+                    {
+                        returnValue.entExtra = SysEntExtraAccessor.Instance.Get(returnValue.EntId);
+                    }
                 }
             }
             finally
@@ -565,7 +606,18 @@ limit 0,1" );
                 MySqlDataReader reader = _cmdLoadSysUserByRoleId.ExecuteReader();
                 while (reader.Read())
                 {
-                    returnValue.Add(new SysUser().BuildUserRoleEntity(reader));
+                    SysUser user = new SysUser().BuildUserRoleEntity(reader);
+                    user.userExtra = new SysUserExtra();
+                    user.entExtra = new SysEntExtra();
+                    if (user.Type == 1)
+                    {
+                        user.userExtra = SysUserExtraAccessor.Instance.Get(user.UserId);
+                    }
+                    else if (user.Type == 2)
+                    {
+                        user.entExtra = SysEntExtraAccessor.Instance.Get(user.EntId);
+                    }
+                    returnValue.Add(user);
                 }
             }
             finally
@@ -602,6 +654,16 @@ limit 0,1" );
                 {
                     reader.Read();
                     returnValue = new SysUser().BuildSampleEntity(reader);
+                    returnValue.userExtra = new SysUserExtra();
+                    returnValue.entExtra = new SysEntExtra();
+                    if (returnValue.Type == 1)
+                    {
+                        returnValue.userExtra = SysUserExtraAccessor.Instance.Get(returnValue.UserId);
+                    }
+                    else if (returnValue.Type == 2)
+                    {
+                        returnValue.entExtra = SysEntExtraAccessor.Instance.Get(returnValue.EntId);
+                    }
                 }
             }
             finally
@@ -639,6 +701,7 @@ limit 0,1" );
                 {
                     reader.Read();
                     returnValue = new SysUser().BuildSampleEntity(reader);
+                    returnValue.entExtra = SysEntExtraAccessor.Instance.Get(returnValue.EntId);
                 }
             }
             finally

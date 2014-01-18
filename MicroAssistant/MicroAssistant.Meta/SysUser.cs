@@ -121,6 +121,11 @@ namespace MicroAssistant.Meta
         public List<SysFunction> userFuns
         { get; set; }
 
+        public SysEntExtra entExtra
+        { get; set; }
+        public SysUserExtra userExtra
+        { get; set; }
+
 
         /// <summary>
         /// 从读取器向完整实例对象赋值

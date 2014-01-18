@@ -22,31 +22,31 @@ namespace MicroAssistant.Meta
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 学历
         /// </summary>
         public String Diploma
         { get; set; }
         
         /// <summary>
-        ///  
+        ///  毕业院校
         /// </summary>
         public String School
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 专业
         /// </summary>
         public String Major
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 毕业时间
         /// </summary>
         public DateTime GraduationTime
         { get; set; }
 
         /// <summary>
-        /// 
+        /// 自我简介
         /// </summary>
         public String Detail
         { get; set; }

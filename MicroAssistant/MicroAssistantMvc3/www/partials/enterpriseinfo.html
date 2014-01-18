@@ -28,9 +28,76 @@
                    <!-- <a class="grayLink" ng-click="Type=!Type;!Type?EditCurrentEntCode(CurrentUser):''">{{!Type?'编辑':'保存'}}</a>-->
                 </span>
             </li>
+            <!--string ArtificialPerson, string RegisteredCapital, DateTime DateOfEstablishment, string Address
+            , string Province, string City, int ContactPhone, string Web, string Weibo, string Weixin, string MainBusiness-->
+           <li class="clearfix">
+                <span class="span1">法人代表</span>
+                <span class="span2">{{!Ntype?CurrentUser.entExtra.ArtificialPerson:''}}
+                <input type="text" name="ArtificialPerson" ng-required="true" ng-model="CurrentUser.entExtra.ArtificialPerson" ng-show="Ntype?true:false" class="t-p" />
+                </span>
+                <span class="span3">
+                  
+                </span>
+            </li>
+                       <li class="clearfix">
+                <span class="span1">注册资金</span>
+                <span class="span2">{{!Ntype?CurrentUser.entExtra.RegisteredCapital:''}}
+                <input type="text" name="RegisteredCapital" ng-required="true" ng-model="CurrentUser.entExtra.RegisteredCapital" ng-show="Ntype?true:false" class="t-p" />
+                </span>
+                <span class="span3">
+                  
+                </span>
+            </li>
+                       <li class="clearfix">
+                <span class="span1">成立日期</span>
+                <span class="span2">{{!Ntype?CurrentUser.entExtra.DateOfEstablishment:''}}
+                <input type="text" name="DateOfEstablishment" ng-required="true" ng-model="CurrentUser.entExtra.DateOfEstablishment" ng-show="Ntype?true:false" class="t-p" />
+                </span>
+                <span class="span3">
+                  
+                </span>
+            </li>
+                       <li class="clearfix">
+                <span class="span1">省</span>
+                <span class="span2">{{!Ntype?CurrentUser.entExtra.Province:''}}
+                <input type="text" name="Province" ng-required="true" ng-model="CurrentUser.entExtra.Province" class="t-p" ng-show="Ntype?true:false" />
+                </span>
+                <span class="span3">
+                  
+                </span>
+            </li>
+             <li class="clearfix">
+                <span class="span1">市</span>
+                <span class="span2">{{!Ntype?CurrentUser.entExtra.City:''}}
+                <input type="text" name="City" ng-required="true" ng-model="CurrentUser.entExtra.City" class="t-p" ng-show="Ntype?true:false" />
+                </span>
+                <span class="span3">
+                  
+                </span>
+            </li>
+                       <li class="clearfix">
+                <span class="span1">详细地址</span>
+                <span class="span2">{{!Ntype?CurrentUser.entExtra.Address:''}}
+                <input type="text" name="Address" ng-required="true" ng-model="CurrentUser.entExtra.Address" class="t-p" ng-show="Ntype?true:false" />
+                </span>
+                <span class="span3">
+                  
+                </span>
+            </li>
+                       <li class="clearfix">
+                <span class="span1">联系电话</span>
+                <span class="span2">{{!Ntype?CurrentUser..entExtra.ContactPhone:''}}
+                <input type="text" name="ContactPhone" ng-required="true" ng-model="CurrentUser.entExtra.ContactPhone" class="t-p" ng-show="Ntype?true:false" />
+                </span>
+                <span class="span3">
+                  
+                </span>
+            </li>
+                    
             <li class="clearfix">
                 <span class="span1"></span>
                 <span class="clearBtn">
+                     <a class="colorGray" ng-click="Ntype=!Ntype;!Ntype?EditEnt(CurrentUser):''">{{!Ntype?'编辑':'保存'}}</a>
                     <a href="" ng-click="DeleteAllData()" class="btn btn-block btn-large">一键清空</a>
                 </span>
             </li>

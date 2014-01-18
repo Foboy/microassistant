@@ -154,11 +154,13 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             AdvancedResult<bool> result = new AdvancedResult<bool>();
             SysUser user = null;
             user = SysUserAccessor.Instance.GetSysUserByAcount(account.Trim());
-
+            
             try
             {
                 if (user != null)
                 {
+                   
+                    
                     result.Error = AppError.ERROR_PERSON_FOUND;
                     result.Data = true;
                 }
@@ -219,6 +221,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     }
                     else
                     {
+
                         string token = SecurityHelper.GetToken(user.UserId.ToString());
                         CacheManagerFactory.GetMemoryManager().Set(token, user.UserId);
                         result.Error = AppError.ERROR_SUCCESS;
@@ -928,6 +931,133 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
                     result.Error = AppError.ERROR_SUCCESS;
                 }
 
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
+        /// <summary>
+        /// 修改企业名片
+        ///    企业名称、法人代表、注册资金、成立日期、所在地（省市）、详细地址、
+        ///    联系电话、官方网站（可选）、官方微博（可选）、官方微信（可选）、主营业务（可选）
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="entCode"></param>
+        /// <returns></returns>
+        public JsonResult EditeEnt( string ArtificialPerson, string RegisteredCapital, DateTime DateOfEstablishment, string Address
+            , string Province, string City, int ContactPhone)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                    if (userid > 0)
+                    {
+                        SysUser olduser = SysUserAccessor.Instance.Get(userid);
+                        SysEntExtra entExtra = new SysEntExtra();
+                        entExtra.ArtificialPerson = ArtificialPerson;
+                        entExtra.RegisteredCapital = RegisteredCapital;
+                        entExtra.DateOfEstablishment = DateOfEstablishment;
+                        entExtra.Address = Address;
+                        entExtra.Province = Province;
+                        entExtra.City = City;
+                        //entExtra.ContactPhone = ContactPhone;
+                        //entExtra.Web = Web;
+                        //entExtra.Weibo = Weibo;
+                        //entExtra.Weixin = Weixin;
+                        //entExtra.MainBusiness = MainBusiness;
+                        entExtra.EntId = olduser.EntId;
+                        
+
+                        SysUserAccessor.Instance.Update(olduser);
+
+                        SysEntExtraAccessor.Instance.Delete(entExtra.EntId);
+
+                        SysEntExtraAccessor.Instance.Insert(entExtra);
+
+                        result.Error = AppError.ERROR_SUCCESS;
+
+                    }
+                    else
+                    {
+                        result.Error = AppError.ERROR_FAILED;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
+        /// <summary>
+        /// 完善员工信息
+        ///      姓名、出生日期、年龄（自动计算）、性别、联系电话、qq、电子邮件、
+        ///      联系地址、学历、毕业院校、专业、毕业时间、自我简介
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="entCode"></param>
+        /// <returns></returns>
+        public JsonResult EditeUser(string userName,DateTime birthday,int sex,string Mobile,int qq,string email,string address
+            , string Diploma, string School, string Major, DateTime GraduationTime, string Detail)
+        {
+            var Res = new JsonResult();
+            RespResult result = new RespResult();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+                    int userid = Convert.ToInt32(CacheManagerFactory.GetMemoryManager().Get(token));
+                    if (userid > 0)
+                    {
+                        SysUser olduser = SysUserAccessor.Instance.Get(userid);
+                        olduser.UserName = userName;
+                        olduser.Sex = sex;
+                        olduser.Birthday = birthday;
+                        olduser.Mobile = Mobile;
+                        olduser.Email = email;
+                        
+                        SysUserExtra userExtra = new SysUserExtra();
+                        userExtra.Diploma = Diploma;
+                        userExtra.School = School;
+                        userExtra.Major = Major;
+                        userExtra.GraduationTime = GraduationTime;
+                        userExtra.Detail = Detail;
+                        userExtra.SysUserId = olduser.UserId;
+
+                        SysUserAccessor.Instance.Update(olduser);
+                        SysUserExtraAccessor.Instance.Delete(olduser.UserId);
+                        SysUserExtraAccessor.Instance.Insert(userExtra);
+
+                        result.Error = AppError.ERROR_SUCCESS;
+
+                    }
+                    else
+                    {
+                        result.Error = AppError.ERROR_FAILED;
+                    }
+                }
             }
             catch (Exception e)
             {
