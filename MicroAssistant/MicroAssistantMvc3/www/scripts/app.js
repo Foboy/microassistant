@@ -182,7 +182,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
     }
 
     $scope.parseJsonDate = function (datestr, format) {
-        //console.log(typeof (new Date()));
+       
         var date;
         if (!datestr) {
             date = new Date();
@@ -206,6 +206,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
         }
         if (format)
             return $filter('date')(date, format);
+        alert(date);
         return date;
     };
     //根据生日计算年龄
