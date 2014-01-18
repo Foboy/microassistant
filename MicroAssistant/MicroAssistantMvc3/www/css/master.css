@@ -91,7 +91,7 @@ a{text-decoration:none;}
 
 /*=== 弹出框样式 ===*/
 .popup-header {border-bottom: 1px solid #EEEEEE; height: 35px;}
-.addm{width:530px; border-radius:0;}
+.addm{width:550px; border-radius:0;}
 .addProduct{width:720px;border-radius:0; height:400px;}
 .addProduct .modal-body{max-height:530px; padding:0;}
 .addcgd{width:550px;border-radius:0; height:330px;}
@@ -110,7 +110,7 @@ a{text-decoration:none;}
 .madeBox{width:570px; float:right;position:relative;}
 .listContent{padding:15px 0 0 20px; margin:0; }
 .peopleInfo{padding-left:20px;}
-.listContent li{list-style:none; line-height:40px; padding-bottom:20px;}
+.listContent li{list-style:none;padding-bottom:20px;}
 .listContent li span{}
 .listContent li span .addBtn{width:30px; margin-top:-8px;}
 .listContent li .span3{width:266px; border-radius:0; margin-right:10px;}
@@ -250,6 +250,9 @@ a{text-decoration:none;}
 .goodsIntro{width:100%; height:270px; border:1px solid #DDDDDD; background:#FFFFFF;}
 .goodsIntro .introCon{padding:15px;}
 .addcai {position:absolute;right:0px; text-decoration:none;}
+.fi_div { font-size:24px; color:#ddd; float:left; width:360px;}
+.icon_div { height:30px; width:30px; margin-right:10px; float:left; cursor:pointer;}
+.icon_div .selected {color:#E74C3C;}
 /*=== 产品详情页面 END ===*/
 
 /*=== 销售管理 ===*/
@@ -525,7 +528,7 @@ left: -10px; top:0px;
 .time-shaft li.old{background:url(../img/time-box-ed.png) no-repeat;}
 .time-shaft li.old h2{color:#666666;}
 .time-box .w-bg{background:#FFFFFF; width:20px; height:26px; position:absolute; left:260px; bottom:0;}
-.popupbox4{width:530px; min-height:250px;}
+.popupbox4{width:550px; min-height:280px;}
 .popupbox4 .saveBox{width:320px;}
 .saveprductCat_a { width:100px;height:15px; line-height:15px; text-align:center;text-decoration:none; margin-left:200px; padding:10px 30px;}
 
