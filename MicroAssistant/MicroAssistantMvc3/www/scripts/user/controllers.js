@@ -434,6 +434,7 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
         if ($scope.ChangeEnterprsieForm.Name.$valid) {
             $scope.showerror = false;
             $http.post($sitecore.urls["EditEnt"], {
+                entName:data.UserName,
                 Address: data.entExtra.Address
             , ContactPhone: data.entExtra.ContactPhone
             }).success(function (data) {

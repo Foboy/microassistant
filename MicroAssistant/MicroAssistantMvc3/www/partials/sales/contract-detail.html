@@ -34,7 +34,7 @@
                             <div class="sale_ht_datecontent">
                                 <i></i>
                                 <div class="sale_ht_dateinfo colorlight">合同收款时间：<span class="colorg">{{parseJsonDate(pay.PayTime,'yyyy/MM/dd')}}</span></div>
-								<div class="sale_ht_dateinfo colorlight">实际收款时间：<span class="colorRed">{{parseJsonDate(pay.ReceivedTime,'yyyy/MM/dd')}}</span></div>
+								<div class="sale_ht_dateinfo colorlight">实际收款时间：<span class="colorRed">{{parseJsonDate(pay.ReceivedTime,'yyyy/MM/dd')==""?"未收款":parseJsonDate(pay.ReceivedTime,'yyyy/MM/dd')}}</span></div>
                             </div>
                         </div>
                     </div>                           
