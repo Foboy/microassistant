@@ -40,7 +40,7 @@ namespace MicroAssistant.DataAccess
             cmdInsertSysEntExtra.Parameters.Add("@Address", MySqlDbType.String);
             cmdInsertSysEntExtra.Parameters.Add("@Province", MySqlDbType.String);
             cmdInsertSysEntExtra.Parameters.Add("@City", MySqlDbType.String);
-            cmdInsertSysEntExtra.Parameters.Add("@ContactPhone", MySqlDbType.Int32);
+            cmdInsertSysEntExtra.Parameters.Add("@ContactPhone", MySqlDbType.String);
             cmdInsertSysEntExtra.Parameters.Add("@Web", MySqlDbType.String);
             cmdInsertSysEntExtra.Parameters.Add("@Weibo", MySqlDbType.String);
             cmdInsertSysEntExtra.Parameters.Add("@Weixin", MySqlDbType.String);
@@ -58,7 +58,7 @@ namespace MicroAssistant.DataAccess
             cmdUpdateSysEntExtra.Parameters.Add("@Address", MySqlDbType.String);
             cmdUpdateSysEntExtra.Parameters.Add("@Province", MySqlDbType.String);
             cmdUpdateSysEntExtra.Parameters.Add("@City", MySqlDbType.String);
-            cmdUpdateSysEntExtra.Parameters.Add("@ContactPhone", MySqlDbType.Int32);
+            cmdUpdateSysEntExtra.Parameters.Add("@ContactPhone", MySqlDbType.String);
             cmdUpdateSysEntExtra.Parameters.Add("@Web", MySqlDbType.String);
             cmdUpdateSysEntExtra.Parameters.Add("@Weibo", MySqlDbType.String);
             cmdUpdateSysEntExtra.Parameters.Add("@Weixin", MySqlDbType.String);
@@ -223,7 +223,7 @@ namespace MicroAssistant.DataAccess
         /// <param name="pageSize">每页记录条数</param>
         /// <para>记录数必须大于0</para>
         /// </summary>
-        public PageEntity<SysEntExtra> Search(Int32 IdsysEntExtra, Int32 EntId, String ArtificialPerson, String RegisteredCapital, DateTime DateOfEstablishment, String Address, String Province, String City, Int32 ContactPhone, String Web, String Weibo, String Weixin, String MainBusiness, int pageIndex, int pageSize)
+        public PageEntity<SysEntExtra> Search(Int32 IdsysEntExtra, Int32 EntId, String ArtificialPerson, String RegisteredCapital, DateTime DateOfEstablishment, String Address, String Province, String City, String ContactPhone, String Web, String Weibo, String Weixin, String MainBusiness, int pageIndex, int pageSize)
         {
             PageEntity<SysEntExtra> returnValue = new PageEntity<SysEntExtra>();
             MySqlConnection oc = ConnectManager.Create();

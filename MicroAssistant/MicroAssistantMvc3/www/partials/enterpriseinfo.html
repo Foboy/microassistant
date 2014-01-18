@@ -50,8 +50,8 @@
             </li>
                        <li class="clearfix">
                 <span class="span1">成立日期</span>
-                <span class="span2">{{!Ntype?CurrentUser.entExtra.DateOfEstablishment:''}}
-                <input type="text" name="DateOfEstablishment" ng-required="true" ng-model="CurrentUser.entExtra.DateOfEstablishment" ng-show="Ntype?true:false" class="t-p" />
+                <span class="span2">{{!Ntype?parseJsonDate(CurrentUser.entExtra.DateOfEstablishment,'yyyy/MM/dd'):''}}
+                <input type="text" name="DateOfEstablishment" ng-required="true" readonly="readonly" ng-pattern="/^(\d{4})(-|\/)(\d{1,2})\2(\d{1,2})$/" ng-model="CurrentUser.entExtra.DateOfEstablishment" id="DateOfEstablishmentControl" ng-show="Ntype?true:false" class="t-p" />
                 </span>
                 <span class="span3">
                   
@@ -86,7 +86,7 @@
             </li>
                        <li class="clearfix">
                 <span class="span1">联系电话</span>
-                <span class="span2">{{!Ntype?CurrentUser..entExtra.ContactPhone:''}}
+                <span class="span2">{{!Ntype?CurrentUser.entExtra.ContactPhone:''}}
                 <input type="text" name="ContactPhone" ng-required="true" ng-model="CurrentUser.entExtra.ContactPhone" class="t-p" ng-show="Ntype?true:false" />
                 </span>
                 <span class="span3">
@@ -97,7 +97,7 @@
             <li class="clearfix">
                 <span class="span1"></span>
                 <span class="clearBtn">
-                     <a class="colorGray" ng-click="Ntype=!Ntype;!Ntype?EditEnt(CurrentUser):''">{{!Ntype?'编辑':'保存'}}</a>
+                     <a class="colorGray" ng-click="Ntype=!Ntype;!Ntype?EditEnt(CurrentUser):InitDateControl(CurrentUser)">{{!Ntype?'编辑':'保存'}}</a>
                     <a href="" ng-click="DeleteAllData()" class="btn btn-block btn-large">一键清空</a>
                 </span>
             </li>

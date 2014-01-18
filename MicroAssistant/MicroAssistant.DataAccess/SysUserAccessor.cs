@@ -109,7 +109,7 @@ namespace MicroAssistant.DataAccess
 
             #region cmdLoadAllSysUserByEntId
 
-            cmdLoadAllSysUserByEntId = new MySqlCommand(" select ent_code, pic_id,birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where ent_id = @EntId");
+            cmdLoadAllSysUserByEntId = new MySqlCommand(" select ent_code, pic_id,birthday,sex,user_id,user_name,user_account,pwd,mobile,email,create_time,end_time,ent_admin_id,is_enable,type,ent_id from sys_user where ent_id = @EntId and @EntId!=0");
             cmdLoadAllSysUserByEntId.Parameters.Add("@EntId", MySqlDbType.Int32);
             #endregion
 
@@ -417,6 +417,8 @@ limit 0,1" );
                     {
                         user.entExtra = SysEntExtraAccessor.Instance.Get(user.EntId);
                     }
+                    user.userExtra = user.userExtra == null ? new SysUserExtra() : user.userExtra;
+                    user.entExtra = user.entExtra == null ? new SysEntExtra() : user.entExtra; 
                     returnValue.Add(user);
                 }
             }
@@ -455,8 +457,7 @@ limit 0,1" );
                 {
                     reader.Read();
                     returnValue = new SysUser().BuildSampleEntity(reader);
-                    returnValue.userExtra = new SysUserExtra();
-                    returnValue.entExtra = new SysEntExtra();
+                   
                     if (returnValue.Type == 1)
                     {
                         returnValue.userExtra = SysUserExtraAccessor.Instance.Get(returnValue.UserId);
@@ -465,6 +466,8 @@ limit 0,1" );
                     {
                         returnValue.entExtra = SysEntExtraAccessor.Instance.Get(returnValue.EntId);
                     }
+                    returnValue.userExtra = returnValue.userExtra == null ? new SysUserExtra() : returnValue.userExtra;
+                    returnValue.entExtra = returnValue.entExtra == null ? new SysEntExtra() : returnValue.entExtra; 
                 }
             }
             finally
@@ -502,8 +505,6 @@ limit 0,1" );
                 {
                     reader.Read();
                     returnValue = new SysUser().BuildSampleEntity(reader);
-                    returnValue.userExtra = new SysUserExtra();
-                    returnValue.entExtra = new SysEntExtra();
                     if (returnValue.Type == 1)
                     {
                         returnValue.userExtra = SysUserExtraAccessor.Instance.Get(returnValue.UserId);
@@ -512,6 +513,8 @@ limit 0,1" );
                     {
                         returnValue.entExtra = SysEntExtraAccessor.Instance.Get(returnValue.EntId);
                     }
+                    returnValue.userExtra = returnValue.userExtra == null ? new SysUserExtra() : returnValue.userExtra;
+                    returnValue.entExtra = returnValue.entExtra == null ? new SysEntExtra() : returnValue.entExtra; 
                 }
             }
             finally
@@ -550,8 +553,6 @@ limit 0,1" );
                 {
                     reader.Read();
                     returnValue = new SysUser().BuildSampleEntity(reader);
-                    returnValue.userExtra = new SysUserExtra();
-                    returnValue.entExtra = new SysEntExtra();
                     if (returnValue.Type == 1)
                     {
                         returnValue.userExtra = SysUserExtraAccessor.Instance.Get(returnValue.UserId);
@@ -560,6 +561,8 @@ limit 0,1" );
                     {
                         returnValue.entExtra = SysEntExtraAccessor.Instance.Get(returnValue.EntId);
                     }
+                    returnValue.userExtra = returnValue.userExtra == null ? new SysUserExtra() : returnValue.userExtra;
+                    returnValue.entExtra = returnValue.entExtra == null ? new SysEntExtra() : returnValue.entExtra; 
                 }
             }
             finally
@@ -607,8 +610,6 @@ limit 0,1" );
                 while (reader.Read())
                 {
                     SysUser user = new SysUser().BuildUserRoleEntity(reader);
-                    user.userExtra = new SysUserExtra();
-                    user.entExtra = new SysEntExtra();
                     if (user.Type == 1)
                     {
                         user.userExtra = SysUserExtraAccessor.Instance.Get(user.UserId);
@@ -617,6 +618,8 @@ limit 0,1" );
                     {
                         user.entExtra = SysEntExtraAccessor.Instance.Get(user.EntId);
                     }
+                    user.userExtra = user.userExtra == null ? new SysUserExtra() : user.userExtra;
+                    user.entExtra = user.entExtra == null ? new SysEntExtra() : user.entExtra; 
                     returnValue.Add(user);
                 }
             }
@@ -654,8 +657,6 @@ limit 0,1" );
                 {
                     reader.Read();
                     returnValue = new SysUser().BuildSampleEntity(reader);
-                    returnValue.userExtra = new SysUserExtra();
-                    returnValue.entExtra = new SysEntExtra();
                     if (returnValue.Type == 1)
                     {
                         returnValue.userExtra = SysUserExtraAccessor.Instance.Get(returnValue.UserId);
@@ -664,6 +665,8 @@ limit 0,1" );
                     {
                         returnValue.entExtra = SysEntExtraAccessor.Instance.Get(returnValue.EntId);
                     }
+                    returnValue.userExtra = returnValue.userExtra == null ? new SysUserExtra() : returnValue.userExtra;
+                    returnValue.entExtra = returnValue.entExtra == null ? new SysEntExtra() : returnValue.entExtra; 
                 }
             }
             finally
@@ -702,6 +705,7 @@ limit 0,1" );
                     reader.Read();
                     returnValue = new SysUser().BuildSampleEntity(reader);
                     returnValue.entExtra = SysEntExtraAccessor.Instance.Get(returnValue.EntId);
+                    returnValue.entExtra = returnValue.entExtra == null ? new SysEntExtra() : returnValue.entExtra; 
                 }
             }
             finally
