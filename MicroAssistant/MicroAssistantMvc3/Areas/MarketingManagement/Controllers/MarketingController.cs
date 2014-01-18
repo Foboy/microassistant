@@ -26,7 +26,7 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
 
 
         /// <summary>
-        /// 添加销售机会（机会类型，客户类型，联系人，机会描述，联系方式{}，是否同步，token）返回（true/false）
+        /// 添加销售机会（机会类型，客户类型，联系人，机会描述，联系方式{}）返回（true/false）
         /// 客户类型分为：1:企业客户2:个人客户；默认为企业客户
         /// 新客户customerId 为0  旧客户customerId大于0
         /// </summary>
@@ -355,10 +355,12 @@ namespace MicroAssistantMvc.Areas.MarketingManagement.Controllers
                     mv.VisitType=visitType;
                     mv.EntId = CurrentUser.EntId;
                    int i = MarketingVisitAccessor.Instance.Insert(mv);
+                   
 
                    if (i > 0)
                    {
                        MarketingChanceAccessor.Instance.UpdateisVisit(cid, 2);
+                       result.Id = i;
                        result.Error = AppError.ERROR_SUCCESS;
                    }
                    else

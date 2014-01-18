@@ -18,37 +18,37 @@ USE `microassistantdb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `customer_ent`
+-- Table structure for table `sys_ent_extra`
 --
 
-DROP TABLE IF EXISTS `customer_ent`;
+DROP TABLE IF EXISTS `sys_ent_extra`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `customer_ent` (
-  `customer_ent_id` int(11) NOT NULL AUTO_INCREMENT,
-  `ent_name` varchar(45) DEFAULT NULL,
-  `industy` varchar(45) DEFAULT NULL COMMENT '行业',
-  `contact_username` varchar(45) DEFAULT NULL,
-  `contact_mobile` varchar(45) DEFAULT NULL,
-  `contact_phone` varchar(45) DEFAULT NULL,
-  `contact_email` varchar(45) DEFAULT NULL,
-  `contact_qq` varchar(45) DEFAULT NULL,
-  `address` varchar(45) DEFAULT NULL,
-  `detail` varchar(100) DEFAULT NULL,
-  `ent_id` int(11) NOT NULL COMMENT '销售所属企业ID，第一次写入后就不会改变',
-  `owner_id` int(11) NOT NULL COMMENT '所属销售ID',
-  PRIMARY KEY (`customer_ent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='企业客户';
+CREATE TABLE `sys_ent_extra` (
+  `idsys_ent_extra` int(11) NOT NULL AUTO_INCREMENT,
+  `ent_id` int(11) NOT NULL,
+  `artificial_person` varchar(45) NOT NULL COMMENT '法人',
+  `registered_capital` varchar(45) NOT NULL,
+  `date_of_establishment` datetime NOT NULL COMMENT '创建时间',
+  `address` varchar(90) DEFAULT NULL COMMENT '详细地址',
+  `province` varchar(45) DEFAULT NULL COMMENT '省',
+  `city` varchar(45) DEFAULT NULL COMMENT '市',
+  `contact_phone` int(11) DEFAULT NULL COMMENT '联系电话',
+  `web` varchar(45) DEFAULT NULL,
+  `weibo` varchar(45) DEFAULT NULL,
+  `weixin` varchar(45) DEFAULT NULL,
+  `main_business` varchar(360) DEFAULT NULL,
+  PRIMARY KEY (`idsys_ent_extra`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='企业信息扩展表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `customer_ent`
+-- Dumping data for table `sys_ent_extra`
 --
 
-LOCK TABLES `customer_ent` WRITE;
-/*!40000 ALTER TABLE `customer_ent` DISABLE KEYS */;
-INSERT INTO `customer_ent` VALUES (1,'444','99','444','444','444',NULL,'',NULL,'4444',14,14),(2,'ee',NULL,'ee','eee','eee','ee','eee',NULL,'eee',21,22),(3,'44',NULL,'44','44','44','44','44',NULL,'44',21,21),(4,'eaffdaf','dasfdasf','dafdsaf','dsafdasf','dasfd','asf','','asdfasfd','afdafdsa',14,14),(5,'dfadfadd','dfasfddd','dafdddd','asfdasfdd','','fdsafdsaddd','','fdsafdsafdddd','dsafdsafdsaddd',14,14);
-/*!40000 ALTER TABLE `customer_ent` ENABLE KEYS */;
+LOCK TABLES `sys_ent_extra` WRITE;
+/*!40000 ALTER TABLE `sys_ent_extra` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_ent_extra` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -60,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-01-04 15:50:12
+-- Dump completed on 2014-01-04 15:50:10

@@ -1,11 +1,11 @@
-﻿<div class="addressbook_content">
+﻿<div class="addressbook_content" ng-controller="HomeMainCtrl">
    <h2 class="ab_title">通信录</h2>
    <ul>
-       <li>
+       <li ng-repeat="EntContactor in EntContactors">
            <img src="img/Adimg/tx_min.png"/>
            <div class="userinfo">
-               <div class="username">王晓</div>
-               <div class="usermobile">13880639761</div>
+               <div class="username">{{EntContactor.UserName}}</div>
+               <div class="usermobile">{{EntContactor.Mobile}}</div>
            </div>
        </li>
    </ul>

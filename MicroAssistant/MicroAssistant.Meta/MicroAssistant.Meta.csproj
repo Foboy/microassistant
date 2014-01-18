@@ -49,6 +49,7 @@
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerEnt.cs" />
     <Compile Include="CustomerPrivate.cs" />
+    <Compile Include="MarketingAfter.cs" />
     <Compile Include="MarketingChance.cs" />
     <Compile Include="MarketingVisit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,12 +57,14 @@
     <Compile Include="ProProductionType.cs" />
     <Compile Include="ProProductonDetail.cs" />
     <Compile Include="ResPic.cs" />
+    <Compile Include="SysEntExtra.cs" />
     <Compile Include="SysFunction.cs" />
     <Compile Include="SysLog.cs" />
     <Compile Include="SysRole.cs" />
     <Compile Include="SysRoleFunction.cs" />
     <Compile Include="SysRoleUser.cs" />
     <Compile Include="SysUser.cs" />
+    <Compile Include="SysUserExtra.cs" />
     <Compile Include="SysUserTimemachine.cs" />
   </ItemGroup>
   <ItemGroup>

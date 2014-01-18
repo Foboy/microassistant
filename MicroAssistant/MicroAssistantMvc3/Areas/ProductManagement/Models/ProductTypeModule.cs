@@ -15,6 +15,12 @@ namespace MicroAssistantMvc.Areas.ProductManagement.Models
         { get; set; }
 
         /// <summary>
+        /// 产品图片ID
+        /// </summary>
+        public Int32 PicId
+        { get; set; }
+
+        /// <summary>
         ///产品类型名称 
         /// </summary>
         public String PTypeName

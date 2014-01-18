@@ -409,29 +409,7 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             return Res;
         }
 
-        /// <summary>
-        /// 获取所有用户信息
-        /// </summary>
-        /// <returns></returns>
-        public JsonResult GetUserAllInfo()
-        {
-            var Res = new JsonResult();
-            AdvancedResult<List<SysUser>> result = new AdvancedResult<List<SysUser>>();
-            try
-            {
-                List<SysUser> users = SysUserAccessor.Instance.Search();
-                result.Error = AppError.ERROR_SUCCESS;
-                result.Data = users;
-            }
-            catch (Exception e)
-            {
-                result.Error = AppError.ERROR_FAILED;
-                result.ExMessage = e.ToString();
-            }
-            Res.Data = result;
-            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            return Res;
-        }
+       
         /// <summary>
         /// 修改用户密码
         /// </summary>
@@ -928,6 +906,39 @@ namespace MicroAssistantMvc.Areas.UserManagement.Controllers
             Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return Res;
         }
+
+        /// <summary>
+        /// 获取企业通讯录
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult SearchEntContactors()
+        {
+            var Res = new JsonResult();
+            AdvancedResult<List<SysUser>> result = new AdvancedResult<List<SysUser>>();
+            try
+            {
+                if (!CacheManagerFactory.GetMemoryManager().Contains(token))
+                {
+                    result.Error = AppError.ERROR_PERSON_NOT_LOGIN;
+                }
+                else
+                {
+
+                    result.Data = SysUserAccessor.Instance.Search(CurrentUser.EntId);
+                    result.Error = AppError.ERROR_SUCCESS;
+                }
+
+            }
+            catch (Exception e)
+            {
+                result.Error = AppError.ERROR_FAILED;
+                result.ExMessage = e.ToString();
+            }
+            Res.Data = result;
+            Res.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return Res;
+        }
+
         #region 私有方法
 
         private void WriteAuthCookie(string username, string token)

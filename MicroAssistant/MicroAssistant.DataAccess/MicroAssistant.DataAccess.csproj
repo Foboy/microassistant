@@ -57,6 +57,7 @@
     <Compile Include="CustomerEntAccessor.cs" />
     <Compile Include="CustomerPrivateAccessor.cs" />
     <Compile Include="DataBase.cs" />
+    <Compile Include="MarketingAfterAccessor.cs" />
     <Compile Include="MarketingChanceAccessor.cs" />
     <Compile Include="MarketingVisitAccessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,12 +65,14 @@
     <Compile Include="ProProductionTypeAccessor.cs" />
     <Compile Include="ProProductonDetailAccessor.cs" />
     <Compile Include="ResPicAccessor.cs" />
+    <Compile Include="SysEntExtraAccessor.cs" />
     <Compile Include="SysFunctionAccessor.cs" />
     <Compile Include="SysLogAccessor.cs" />
     <Compile Include="SysRoleAccessor.cs" />
     <Compile Include="SysRoleFunctionAccessor.cs" />
     <Compile Include="SysRoleUserAccessor.cs" />
     <Compile Include="SysUserAccessor.cs" />
+    <Compile Include="SysUserExtraAccessor.cs" />
     <Compile Include="SysUserTimemachineAccessor.cs" />
     <Compile Include="BossAccessor.cs" />
   </ItemGroup>

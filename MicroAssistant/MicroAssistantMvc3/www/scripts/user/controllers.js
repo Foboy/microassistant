@@ -428,4 +428,5 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
             alert(data.ErrorMessage, 'e');
         }).lock({ selector: '#ChangeEnterprsieZone' });
     }
+  
 }
