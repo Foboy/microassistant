@@ -1,0 +1,37 @@
+﻿<aside id="main-menu" data-transition="left" >
+    <header>
+        <div class="headImg" style="position: relative;">
+            <img ng-src="{{HeadPicUrl}}" />
+            <img src="img/c-img-cover.png" style="position: absolute; top: 0; left: 0; cursor: pointer;" ng-click="setUserHeadImg()" />
+        </div>
+    </header>
+
+    <article class="list scroll active">
+        <ul>
+            <!-- Layout & Navigation -->
+            <li data-view-section="main" data-icon="home">
+                <strong>&nbsp;</strong>
+            </li>
+
+            <!-- List -->
+            <li data-view-section="product-list" data-async="partials/products/list.html" data-icon="shopping-cart">
+                <strong>&nbsp;</strong>
+            </li>
+
+            <!-- Forms -->
+            <li data-view-section="form" data-icon="user">
+                <strong>&nbsp;</strong>
+            </li>
+
+            <!-- Forms -->
+            <li data-view-section="form" data-icon="money">
+                <strong>&nbsp;</strong>
+            </li>
+
+            <!-- Asides -->
+            <li data-view-section="aside" data-async="static/sections/aside.html" data-icon="group">
+                <strong>&nbsp;</strong>
+            </li>
+        </ul>
+    </article>
+</aside>

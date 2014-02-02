@@ -1,0 +1,42 @@
+﻿<section id="sales-visit-create" data-transition="slide" ng-controller="SalesVisitCreateCtrl">
+    <header data-title="添加拜访" class="extended">
+        <nav>
+            <a href="javascript:void(0)"  ng-tap="createCancel($event)" data-icon="chevron-left"></a>
+        </nav>
+    </header>
+
+    <article id="sales-visit-create-article" class="indented scroll">
+        <div class="form">
+            <form name="SalesAddChanceVisitFrom">
+            <fieldset class="radius shadow">
+                <label>拜访方式：</label>
+                <label class="select ">
+                    <select class="custom" ng-model="EditVisit.VisitType">
+                        <option value="1">电话</option>
+                        <option value="2">面谈</option>
+                        <option value="3">在线联系</option>
+                    </select>
+                </label>
+            </fieldset>
+            <fieldset>
+                <label>报价：</label>
+                <input type="number" placeholder="" ng-model="EditVisit.Amount">
+            </fieldset>
+            <fieldset>
+                <textarea placeholder="拜访描述" ng-model="EditVisit.Remark"></textarea>
+            </fieldset>
+            <fieldset style="background-color:#fff;">
+                <span class="icon map-marker" style="position:inherit;top:inherit;right:inherit;"></span>
+                &nbsp;<span class="text small" ng-bind="EditVisit.Address" ng-tap="getGeoAddress()"></span>
+            </fieldset>
+            </form>
+        </div>
+    </article>
+    <footer>
+        <nav>
+            <a href="javascript:void(0)" ng-click="addChanceVisit()" class="footerbtn">
+                <span>保存</span>
+            </a>
+        </nav>
+    </footer>
+</section>

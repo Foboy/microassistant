@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"> 
+		<title>微企助手</title>
+		<link rel="stylesheet" type="text/css" href="components/navigation/css/component.css" />
+        <style type="text/css">
+            .icon-news::before { content: "\e600" }
+            .icon-home::before { content: "\e080" }
+            .icon-image::before { content: "\e602" }
+            .icon-upload::before { content: "\e603" }
+            .icon-star::before { content: "\e604" }
+            .icon-mail::before { content: "\e605" }
+            .icon-product::before {content:"\e050"}
+            .icon-sales::before {content:"\e07c"}
+            .icon-custom::before {content:"\e033"}
+            .icon-fina::before {content:"\e05e"}
+            .icon-lock::before { content: "\e606" }
+            .icon-chart-pie::before { content: "\e607" }
+        </style>
+		<!-- csstransforms3d-shiv-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes-load --> 
+		<script src="components/navigation/js/modernizr.custom.25376.js"></script>
+	</head>
+	<body style="margin:0;padding:0;">
+		<div id="perspective" class="perspective effect-airbnb" style="width:100%;height:100%;">
+			<div class="container" style="width:100%;height:100%;">
+				<div class="wrapper" style="width:100%;height:100%;"><!-- wrapper needed for scroll -->
+					<!-- Top Navigation -->
+                    <iframe src="main.html" style="width:100%;height:100%;border:none;" scrolling="no"></iframe>
+				</div><!-- wrapper -->
+			</div><!-- /container -->
+			<nav class="outer-nav left vertical">
+				<a href="javascript:void(0)" class="icon-home" onclick="menuToSection('main')">主页</a>
+				<a href="javascript:void(0)" class="icon-product" onclick="menuToSection('product-list','partials/products/list.html')">产品管理</a>
+				<a href="javascript:void(0)" class="icon-sales" onclick="menuToSection('sales-list','partials/sales/list.html')">销售管理</a>
+				<a href="javascript:void(0)" class="icon-fina" onclick="menuToSection('finance-list','partials/finance/list.html')">财务管理</a>
+				<a href="javascript:void(0)" class="icon-custom" onclick="menuToSection('client-list','partials/client/list.html')">客户管理</a>
+			</nav>
+		</div><!-- /perspective -->
+		<script src="components/navigation/js/classie.js"></script>
+		<script src="components/navigation/js/menu.js"></script>
+        <script type="text/javascript">
+
+            function menuToSection(id, src)
+            {
+                window.top.showSection(id, src);
+                window.top.hideMenu();
+            }
+        </script>
+	</body>
+</html>

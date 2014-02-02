@@ -1,0 +1,30 @@
+﻿<section id="product-list" data-transition="slide" ng-controller="ProductMainCtrl" data-pull="arrow-down">
+    <header data-title="产品管理" class="extended" style="height:82px;">
+        <nav>
+            <a href="#" ng-click="showMenu($event)" data-icon="menu"></a>
+        </nav>
+        <div class="groupbar-container">
+                <nav data-control="groupbar" ng-style="navStyle">
+                    <a href="#" ng-class="catalog.PTypeId==currentCatalogId?'active':''" ng-repeat="catalog in catalogs" ng-tap="activeCat(catalog.PTypeId,0)">
+                        <abbr>{{catalog.PTypeName}}</abbr>
+                    </a>
+                </nav>
+        </div>
+    </header>
+
+    <article id="product-list-article" class="active list indented scroll" ng-refresh="refreshList()">
+        <!-- ng-swipe-left="showAction(product.PId)"-->
+        <ul>
+            <li ng-repeat="product in products">
+                <a href="#">
+                    <a href="#" class="dynamic-button button small red on-right" ng-show="showActionsProduct == product.PId"><abbr>删除</abbr></a>
+                    <a href="#" class="dynamic-button button small red on-right" ng-show="showActionsProduct == product.PId" style="margin-right:5px;"><abbr>编辑</abbr></a>
+                    <strong>{{product.PName}}</strong>
+                    <small>库存: {{product.StockCount}} ,售价: {{product.MarketPrice| currency:''}}</small>
+                </a>
+            </li>
+        </ul>
+        <a href="#" ng-show="hasMoreProducts" class="button anchor margin bottom" ng-click="showMoreProducts()">更多</a>
+    </article>
+
+</section>

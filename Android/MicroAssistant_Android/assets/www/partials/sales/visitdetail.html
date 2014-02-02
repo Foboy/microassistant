@@ -1,0 +1,48 @@
+﻿<section id="sales-visit-detail" data-transition="slide" ng-controller="SalesVisitDetailCtrl">
+    <header data-title="" class="extended">
+        <nav>
+            <a href="javascript:void(0)"  ng-tap="loadSection('sales-visit-list')" data-icon="chevron-left"></a>
+        </nav>
+    </header>
+
+    <article id="sales-visit-detail-article" class="indented scroll list">
+                <div class="visitdetail">
+                    <div class="visitdetail_head">
+                        <img src="/www/img/adimg/tx.png" alt="" />
+                        <br />
+                        <span>王晓</span>
+                    </div>
+                    <div class="visitdetail_body">
+                        <div class="remark">
+                            <p>{{CurrentChance.Remark}}</p>
+                        </div>
+                        <div class="btn_bar">
+                            <div class="chance_rate">
+                                盈率：<span>{{CurrentChance.Rate}}</span>%
+                            </div>
+                            <div class="create_visit_btn">
+                                <button class="button small" ng-tap="visitToVisit($event)" data-icon="plus" data-label="添加拜访"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <ul style="padding:0.5em 0;">
+            <li class="big" ng-repeat="vtimes in visittimes">
+                <div class="vistdetaillistitem">
+                    <div class="times">
+                        <div>
+                            <span class="num">{{$index+1}}</span>
+                            <br />
+                            <span ng-bind="parseJsonDate(vtimes.VisitTime,'yyyy/MM/dd')"></span>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <div class="price"><span>报价：<span ng-bind="vtimes.Amount | currency:''"></span></span></div>
+                        <div class="content_remark"><span ng-bind="vtimes.Remark"></span></div>
+                        <div class="address"><span class="icon map-marker" style="position:inherit;top:inherit;right:inherit;"></span><span ng-bind="vtimes.Address"></span></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </article>
+</section>

@@ -1,0 +1,23 @@
+﻿<section id="sales-visit-list" data-transition="slide" ng-controller="SalesVisitMainCtrl" data-pull="arrow-down">
+    <header data-title="拜访" class="extended">
+        <nav>
+            <a href="javascript:void(0)"  ng-tap="loadSection('sales-list')" data-icon="chevron-left"></a>
+        </nav>
+    </header>
+
+        <article id="sales-visit-list-article" class="active list indented scroll" ng-refresh="refreshList()">
+            <ul id="sales-visit-list-ul">
+                <li ng-repeat="visit in visits" ng-tap="visitDetail($event)">
+                    <a href="javascript:void(0)">
+                        <a href="javascript:void(0)" ng-tap="visitToVisit($event)" class="on-right" style="font-size:2em;color:#F25749;">
+                            <span class="icon plus-sign"></span>
+                        </a>
+                        <strong>{{visit.Remark| limitTo:15}}</strong>
+                        <small>最近: {{parseJsonDate(visit.LastVisitTime,'yyyy/MM/dd')}}</small>
+                    </a>
+                </li>
+
+            </ul>
+            <a href="#" ng-show="hasMoreRecords" class="button anchor margin bottom" ng-click="showMoreRecords()">更多</a>
+        </article>
+</section>

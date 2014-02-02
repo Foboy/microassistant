@@ -1,0 +1,26 @@
+﻿<section id="account-register" data-transition="slide">
+    <article class="active splash"  ng-controller="UserRegisterMainCtrl">
+        <img src="img/logo1.png" class="logo"/>
+        <div class="form">
+            <form name="UserRegisterForm" id="form" ng-class="showerror?'showerror':''">
+            
+            <fieldset class="radius-top" data-icon="user">
+                <input type="text" ng-model="User.name"  ng-required="true" title="请输入昵称"  placeholder="请输入昵称"/>
+            </fieldset>
+            <fieldset class="radius-top" data-icon="user">
+                <input type="email" name="emial" ng-model="User.email" ng-required="true"  placeholder="请输入邮箱" id="txt-signup-name" value="">
+            </fieldset>
+            <fieldset class="radius-bottom shadow" data-icon="lock">
+                <input type="password" name="pwd" ng-model="User.pwd" maxlength="18" ng-required="true"  placeholder="请输入密码" id="txt-signup-password" value="">
+            </fieldset>
+            <fieldset class="radius-bottom shadow" data-icon="lock">
+                <input type="text" ng-model="User.enterprise"  title="请输入企业代号"  placeholder="请输入企业代号"/>
+            </fieldset>
+            <br/>
+            <button class="anchor" data-icon="lock" data-icon="user" href="javascript:void(0)" ng-click="UserRegister()" data-label="注册"></button>
+            <button data-view-section="account-login" class="secondary anchor" data-icon="home" data-label="登陆"></button>
+            </form>
+        </div>
+        <span class="copyright text thin">Copyright (C) 2013-2014 - <span class="text bold">微企助手</span></span>
+    </article>
+</section>

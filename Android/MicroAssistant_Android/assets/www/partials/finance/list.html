@@ -1,0 +1,41 @@
+﻿<section id="finance-list" data-transition="slide" ng-controller="FinanceMainCtrl" data-pull="arrow-down">
+    <header data-title="财务管理" class="extended" style="height:82px;">
+        <nav>
+            <a href="#" ng-click="showMenu($event)" data-icon="menu"></a>
+        </nav>
+        <div class="groupbar-container">
+                <nav data-control="groupbar">
+                    <a href="#" ng-class="steps=='receivable'?'active':''" ng-click="changeStep('receivable')">
+                        <abbr>应收款</abbr>
+                    </a>
+                    <a href="#"  ng-class="steps=='payable'?'active':''" ng-click="changeStep('payable')">
+                        <abbr>应付款</abbr>
+                    </a>
+                </nav>
+        </div>
+    </header>
+
+<article id="finance-list-article" class="active list indented scroll" ng-refresh="refreshList()">
+        <ul ng-show="steps=='receivable'">
+            <li ng-repeat="receivableitem in receivables">
+                <a href="#">
+                    <strong>{{receivableitem.CustomerName| limitTo:15}}</strong>
+                    <small>应收金额: {{receivableitem.Amount}}元 ,合同编号: {{receivableitem.ContractNo}} ,时间: {{parseJsonDate(receivableitem.ReceivedTime)|date:'yyyy/MM/dd'}}</small>
+                </a>
+            </li>
+
+        </ul>
+        <ul ng-show="steps=='payable'">
+
+            <li ng-repeat="payableitem in payables">
+                <a href="#">
+                    <strong>{{payableitem.PCode}}</strong>
+                    <small>单价: {{payableitem.Price| currency:''}},数量: {{payableitem.PNum}} ,总价: {{payableitem.Price*payableitem.PNum| currency:''}} ,提交时间: {{parseJsonDate(payableitem.CreateTime)|date:'yyyy/MM/dd'}}</small>
+                </a>
+            </li>
+
+        </ul>
+    <a href="#" ng-show="hasMoreRecords" class="button anchor margin bottom" ng-click="showMoreRecords()">更多</a>
+</article>
+
+</section>
