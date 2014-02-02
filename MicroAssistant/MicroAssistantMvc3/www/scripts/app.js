@@ -1,4 +1,4 @@
-﻿angular.module('microassistant', ['ngRoute','ui.router', 'ngLoadMask']).
+﻿angular.module('microassistant', ['ngRoute', 'ui.router', 'ngLoadMask']).
   //config(['$provide', '$routeProvider', '$locationProvider',function ($provide, $routeProvider, $locationProvider) {
   //    $routeProvider
   //        .when('/home', { templateUrl: 'partials/home.html', controller: HomeMainCtrl })
@@ -16,7 +16,7 @@
   //    $locationProvider.hashPrefix('!');
 
 //}]).value('$anchorScroll', angular.noop);
- config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRouterProvider', function ($provide, $httpProvider,$routeProvider, $stateProvider, $urlRouterProvider) {
+ config(['$provide', '$httpProvider', '$routeProvider', '$stateProvider', '$urlRouterProvider', function ($provide, $httpProvider, $routeProvider, $stateProvider, $urlRouterProvider) {
 
      $routeProvider
         .when('/home', { template: '', controller: function () { } })
@@ -67,8 +67,7 @@
          return {
              'response': function (response) {
                  if (response && typeof response.data === 'object') {
-                     if (response.data.Error == 11)
-                     {
+                     if (response.data.Error == 11) {
                          setTimeout(function () { window.location.href = 'login.html'; }, 3000);
                      }
                  }
@@ -76,7 +75,7 @@
              }
          };
      });
-    }])
+ }])
     .value('$anchorScroll', angular.noop)
     .run(
       ['$rootScope', '$state', '$stateParams',
@@ -172,26 +171,28 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
         if (num >= 10 && num < 20) {
             result += '十';
         }
-        else if (num >= 20)
-        {
+        else if (num >= 20) {
             result += chinese.charAt(Math.floor(num / 10) - 1) + '十';
         }
-        if ((num % 10) >0)
+        if ((num % 10) > 0)
             result += chinese.charAt((num % 10) - 1);
         return result;
     }
 
     $scope.parseJsonDate = function (datestr, format) {
         var date;
-
-        if (!datestr ||datestr=="/Date(-62135596800000)/") {
+        debugger;
+        if (!datestr) {
             date = new Date();
         }
         else if (typeof datestr == 'object') {
             date = datestr;
         }
         else if (typeof datestr == 'string') {
-            if ((/Date/ig).test(datestr)) {
+            if (datestr == "/Date(-62135596800000)/") {
+                date = "";
+            }
+            else if ((/Date/ig).test(datestr)) {
                 datestr = datestr.replace(/\//g, '');
                 date = eval(datestr.replace(/Date\(([\-\d]+)\)/gi, "new Date($1)"));
                 //console.log(date);
@@ -219,7 +220,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
             return 0;
         }
     }
-   
+
     //$scope.parseAge = function (datestr) {
     //    var birthday = new Date($scope.parseJsonDate(datestr).replace(/:/g, "\/"));
     //    var d = new Date();
@@ -241,8 +242,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
         });
     });
 
-    $scope.PLog = function(obj)
-    {
+    $scope.PLog = function (obj) {
         console.log(obj);
     }
 
@@ -253,8 +253,7 @@ function MainCtrl($scope, $routeParams, $http, $location, $filter) {
         }
         $scope.CurrentUser = data.Data;
         $scope.permissionCheck();
-        if (data.Data.PicId > 0)
-        {
+        if (data.Data.PicId > 0) {
             $http.post($sitecore.urls["GetPic"], { picid: data.Data.PicId }).success(function (picdata) {
                 $scope.HeadPicUrl = picdata.Data.PicUrl;
             }).

@@ -42,10 +42,11 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th width="35%">机会描述</th>
+                  <th width="25%">机会描述</th>
                   <th width="15%">企业/个人客户</th>
                   <th width="17%">联系方式</th>
                   <th width="15%">创建时间</th>
+                    <th width="10%">操作人</th>
                   <th width="18%">&nbsp;</th>
                 </tr>
               </thead>
@@ -56,6 +57,7 @@
                   <td >{{chance.ContactName}}</td>
                   <td >{{chance.Phone||chance.Tel||chance.Email||chance.Qq}}</td>
                   <td>{{parseJsonDate(chance.AddTime,'yyyy/MM/dd')}}</td>
+                    <td>{{chance.UserName}}</td>
                   <td class="colorGray"><a href="" role="button" ng-click="showChanceDetail()">详情</a>|
                       <a role="button" href="" ng-click="editChance()">编辑</a>|
                       <a href="" ng-click="showVisitDetail()" role="button">主动拜访</a></td>
@@ -69,9 +71,10 @@
                 <tr>
                   <th></th>
                   <th width="30%">机会描述</th>
-                  <th width="20%">共拜访</th>
-                  <th width="20%">赢率</th>
+                  <th width="10%">共拜访</th>
+                  <th width="10%">赢率</th>
                   <th width="15%">最近一次拜访</th>
+                    <th width="20%">操作人</th>
                   <th width="15%">&nbsp;</th>
                 </tr>
               </thead>
@@ -82,6 +85,7 @@
                   <td >{{cvisit.VisitNum}}次</td>
                   <td >{{cvisit.Rate}}%</td>
                   <td>{{parseJsonDate(cvisit.LastVisitTime,'yyyy/MM/dd')}}</td>
+                    <td>{{cvisit.UserName}}</td>
                   <td class="colorGray"><a href="" role="button" ng-click="showVisitDetail()">详情</a>|<a href="" role="button" ng-click="addCurrentStepItem('contract')">签订合同</a></td>
                 </tr>
               </tbody>
@@ -92,11 +96,12 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th width="25%">合同名称</th>
+                  <th width="20%">合同名称</th>
                   <th width="20%">合同编号</th>
-                  <th width="15%">客户</th>
+                  <th width="10%">客户</th>
                   <th width="12%">合同金额</th>
                   <th width="18%">合同时间</th>
+                     <th width="10%">操作人</th>
                   <th width="10%">&nbsp;</th>
                 </tr>
               </thead>
@@ -108,7 +113,8 @@
                   <td >{{contract.CustomerName}}</td>
                   <td class="colorRed">{{contract.Amount | currency:''}}</td>
                   <td class="colorlight font12">{{parseJsonDate(contract.StartTime,'yyyy/MM/dd')}}<span>至</span>{{parseJsonDate(contract.EndTime,'yyyy/MM/dd')}}</td>
-                  <td class="colorGray"><a href="" role="button" ng-click="showContractDetail()">详情</a></td>
+                    <td >{{contract.OwnerName}}</td>
+                    <td class="colorGray"><a href="" role="button" ng-click="showContractDetail()">详情</a></td>
                 </tr>
               </tbody>
             </table>

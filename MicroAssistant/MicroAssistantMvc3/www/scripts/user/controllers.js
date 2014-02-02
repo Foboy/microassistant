@@ -385,30 +385,6 @@ function UserForgotPwdMainCtrl($scope, $http, $location) {
     }
 }
 function EnterPriseInfoCtrl($scope, $http, $location) {
-    $scope.CheckNtype = function ()
-    {
-        $scope.Ntype = !($scope.Ntype);
-        !$scope.Ntype ? $scope.EditEnt($scope.CurrentUser) : $scope.InitDateControl($scope.CurrentUser)
-    }
-    $scope.InitDateControl = function (data) {
-        formdata = data;
-        if (formdata) {
-            $scope.CurrentUser = angular.copy(formdata);
-            $scope.CurrentUser.entExtra.DateOfEstablishment = $scope.parseJsonDate($scope.CurrentUser.entExtra.DateOfEstablishment, 'yyyy/MM/dd');
-            $("#DateOfEstablishmentControl").datetimepicker({
-                minView: 2,
-                language: 'zh-CN',
-                format: "yyyy/mm/dd",
-                autoclose: true,
-                todayBtn: true,
-                pickerPosition: "bottom-left"
-            }).on('changeDate', function (ev) {
-                $scope.$apply(function () {
-                    $scope.CurrentUser.entExtra.DateOfEstablishment = ev.target.value;
-                });
-            });
-        }
-    }
     //修改企业code
     $scope.EditCurrentEntCode = function (data) {
         if ($scope.ChangeEnterprsieForm.Code.$valid) {
@@ -454,16 +430,12 @@ function EnterPriseInfoCtrl($scope, $http, $location) {
     //修改企业名片
     // string ArtificialPerson, string RegisteredCapital, DateTime DateOfEstablishment, string Address
     //   , string Province, string City, int ContactPhone, string Web, string Weibo, string Weixin, string MainBusiness
-    $scope.EditEnt = function (data) {
+    $scope.EditEntInfo = function (data) {
         if ($scope.ChangeEnterprsieForm.Name.$valid) {
             $scope.showerror = false;
             $http.post($sitecore.urls["EditEnt"], {
-                ArtificialPerson: data.entExtra.ArtificialPerson
-            , RegisteredCapital: data.entExtra.RegisteredCapital
-            , DateOfEstablishment: data.entExtra.DateOfEstablishment
-            , Address: data.entExtra.Address
-            , Province: data.entExtra.Province
-            , City: data.entExtra.City
+                entName:data.UserName,
+                Address: data.entExtra.Address
             , ContactPhone: data.entExtra.ContactPhone
             }).success(function (data) {
                 if (!data.Error) {

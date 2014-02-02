@@ -2,11 +2,11 @@
 <div class="basicInfo" id="ChangeEnterprsieZone">
     <form name="ChangeEnterprsieForm" ng-class="showerror?'showerror':''">
         <ul class="ul-s1">
-             <li class="clearfix">
+            <li class="clearfix">
                 <span class="span1 colorlight">邮箱账号</span>
                 <span class="span2">{{CurrentUser.Email}}</span>
-				<span class="span3">
-                    <a class="colorGray" ng-href="#/changepassword" >修改密码</a>
+                <span class="span3">
+                    <a class="colorGray" ng-href="#/changepassword">修改密码</a>
                     <a class="colorGray" ng-href="#/changeemail">修改邮箱</a>
                 </span>
             </li>
@@ -16,7 +16,7 @@
                 <input type="text" ng-required="true" name="Name" ng-model="CurrentUser.UserName" ng-show="Ntype?true:false" class="t-p" />
                 </span>
                 <span class="span3">
-                    <a class="colorGray" ng-click="Ntype=!Ntype;!Ntype?EditCurrentUserName(CurrentUser):''">{{!Ntype?'编辑':'保存'}}</a>
+                    <a class="colorGray" ng-click="Ntype=!Ntype;!Ntype?EditEntInfo(CurrentUser):''">{{!Ntype?'编辑':'保存'}}</a>
                 </span>
             </li>
             <li class="clearfix">
@@ -25,79 +25,28 @@
                 <input type="text" ng-pattern="/^[A-Za-z0-9]+$/" ng-maxlength="6" name="Code" ng-required="true" ng-model="CurrentUser.EntCode" ng-show="Type?true:false" class="t-p">
                 </span>
                 <span class="span3">
-                   <!-- <a class="grayLink" ng-click="Type=!Type;!Type?EditCurrentEntCode(CurrentUser):''">{{!Type?'编辑':'保存'}}</a>-->
+                    <!-- <a class="grayLink" ng-click="Type=!Type;!Type?EditCurrentEntCode(CurrentUser):''">{{!Type?'编辑':'保存'}}</a>-->
                 </span>
             </li>
             <!--string ArtificialPerson, string RegisteredCapital, DateTime DateOfEstablishment, string Address
             , string Province, string City, int ContactPhone, string Web, string Weibo, string Weixin, string MainBusiness-->
-           <li class="clearfix">
-                <span class="span1">法人代表</span>
-                <span class="span2">{{!Ntype?CurrentUser.entExtra.ArtificialPerson:''}}
-                <input type="text" name="ArtificialPerson" ng-required="true" ng-model="CurrentUser.entExtra.ArtificialPerson" ng-show="Ntype?true:false" class="t-p" />
-                </span>
-                <span class="span3">
-                  
-                </span>
-            </li>
-                       <li class="clearfix">
-                <span class="span1">注册资金</span>
-                <span class="span2">{{!Ntype?CurrentUser.entExtra.RegisteredCapital:''}}
-                <input type="text" name="RegisteredCapital" ng-required="true" ng-model="CurrentUser.entExtra.RegisteredCapital" ng-show="Ntype?true:false" class="t-p" />
-                </span>
-                <span class="span3">
-                  
-                </span>
-            </li>
-                       <li class="clearfix">
-                <span class="span1">成立日期</span>
-                <span class="span2">{{!Ntype?parseJsonDate(CurrentUser.entExtra.DateOfEstablishment,'yyyy/MM/dd'):''}}
-                <input type="text" name="DateOfEstablishment" ng-required="true" readonly="readonly" ng-model="CurrentUser.entExtra.DateOfEstablishment" id="DateOfEstablishmentControl" ng-show="Ntype?true:false" class="t-p" />
-                </span>
-                <span class="span3">
-                  
-                </span>
-            </li>
-                       <li class="clearfix">
-                <span class="span1">省</span>
-                <span class="span2">{{!Ntype?CurrentUser.entExtra.Province:''}}
-                <input type="text" name="Province" ng-required="true" ng-model="CurrentUser.entExtra.Province" class="t-p" ng-show="Ntype?true:false" />
-                </span>
-                <span class="span3">
-                  
-                </span>
-            </li>
-             <li class="clearfix">
-                <span class="span1">市</span>
-                <span class="span2">{{!Ntype?CurrentUser.entExtra.City:''}}
-                <input type="text" name="City" ng-required="true" ng-model="CurrentUser.entExtra.City" class="t-p" ng-show="Ntype?true:false" />
-                </span>
-                <span class="span3">
-                  
-                </span>
-            </li>
-                       <li class="clearfix">
+            <li class="clearfix">
                 <span class="span1">详细地址</span>
-                <span class="span2">{{!Ntype?CurrentUser.entExtra.Address:''}}
-                <input type="text" name="Address" ng-required="true" ng-model="CurrentUser.entExtra.Address" class="t-p" ng-show="Ntype?true:false" />
+                <span class="span2">{{!AddressType?CurrentUser.entExtra.Address:''}}
+                <input type="text" name="Address" ng-required="true" ng-model="CurrentUser.entExtra.Address" class="t-p" ng-show="AddressType?true:false" />
                 </span>
-                <span class="span3">
-                  
-                </span>
+                <span class="span3"><a class="colorGray" ng-click="AddressType=!AddressType;!AddressType?EditEntInfo(CurrentUser):''"">{{!AddressType?'编辑':'保存'}}</a></span>
             </li>
-                       <li class="clearfix">
+            <li class="clearfix">
                 <span class="span1">联系电话</span>
-                <span class="span2">{{!Ntype?CurrentUser.entExtra.ContactPhone:''}}
-                <input type="text" name="ContactPhone" ng-required="true" ng-model="CurrentUser.entExtra.ContactPhone" class="t-p" ng-show="Ntype?true:false" />
+                <span class="span2">{{!ContactPhoneType?CurrentUser.entExtra.ContactPhone:''}}
+                <input type="text" name="ContactPhone" ng-required="true" ng-model="CurrentUser.entExtra.ContactPhone" class="t-p" ng-show="ContactPhoneType?true:false" />
                 </span>
-                <span class="span3">
-                  
-                </span>
+                <span class="span3"><a class="colorGray" ng-click="ContactPhoneType=!ContactPhoneType;!ContactPhoneType?EditEntInfo(CurrentUser):''"">{{!ContactPhoneType?'编辑':'保存'}}</a></span>
             </li>
-                    
             <li class="clearfix">
                 <span class="span1"></span>
                 <span class="clearBtn">
-                     <a class="colorGray" ng-click="CheckNtype()">{{!Ntype?'编辑':'保存'}}</a>
                     <a href="" ng-click="DeleteAllData()" class="btn btn-block btn-large">一键清空</a>
                 </span>
             </li>
