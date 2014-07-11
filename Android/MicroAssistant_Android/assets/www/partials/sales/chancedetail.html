@@ -1,0 +1,42 @@
+﻿<section id="sales-chance-detail" data-transition="slide" ng-controller="SalesChanceDetailCtrl">
+    <header data-title="销售详情" class="extended">
+        <nav>
+            <a href="javascript:void(0)"  ng-tap="loadSection('sales-chance-list')" data-icon="chevron-left"></a>
+        </nav>
+    </header>
+
+    <article id="sales-chance-detail-article" class="indented scroll list">
+        <ul style="background-color:#fff;border:solid 1px #999;margin:5px;">
+            <li>
+                <p class="text small">
+                    <span class="gray">企业/个人：</span>
+                    <span ng-bind="CurrentChance.ContactName"></span>
+                </p>
+            </li>
+            <li>
+                <p class="text small">
+                    <span class="gray">联系方式：</span>
+                    <span>{{CurrentChance.Phone||CurrentChance.Tel||CurrentChance.Email||CurrentChance.Qq}}</span>
+                </p>
+            </li>
+            <li>
+                <p class="text small">
+                    <span class="gray">创建时间：</span>
+                    <span>{{parseJsonDate(CurrentChance.AddTime,'yyyy/MM/dd')}}</span>
+                </p>
+            </li>
+            <li style="border-bottom:none;">
+                <p class="text small">
+                    {{CurrentChance.Remark}}
+                </p>
+            </li>
+        </ul>
+    </article>
+    <footer>
+        <nav>
+            <a href="javascript:void(0)"  ng-tap="chanceToVisit($event)" class="footerbtn">
+                <span>主动拜访</span>
+            </a>
+        </nav>
+    </footer>
+</section>

@@ -1,0 +1,90 @@
+﻿<section id="sales-contract-detail" data-transition="slide" ng-controller="SalesChanceDetailCtrl">
+    <header data-title="合同" class="extended">
+        <nav>
+            <a href="javascript:void(0)"  ng-tap="loadSection('sales-contract-list')" data-icon="chevron-left"></a>
+        </nav>
+    </header>
+    <nav data-control="groupbar">
+        <a href="#" data-view-article="sales-contract-detail-info" data-label="合同详情" class="active"></a>
+        <a href="#" data-view-article="sales-contract-detail-pay" data-label="合同动态"></a>
+    </nav>
+    <article id="sales-contract-detail-info" class="indented scroll list">
+        <ul style="background-color:#fff;border:solid 1px #999;margin:5px;">
+            <li>
+                <p class="text small">
+                    <span class="gray">合同名称：</span>
+                    <span ng-bind="CurrentContract.CName"></span>
+                </p>
+            </li>
+            <li>
+                <p class="text small">
+                    <span class="gray">编号：</span>
+                    <span ng-bind="CurrentContract.ContractNo"></span>
+                </p>
+            </li>
+            <li>
+                <p class="text small">
+                    <span class="gray">客户：</span>
+                    <span ng-bind="CurrentContract.CustomerName"></span>
+                </p>
+            </li>
+            <li>
+                <p class="text small">
+                    <span class="gray">金额：</span>
+                    <span ng-bind="CurrentContract.Amount"></span>
+                </p>
+            </li>
+            <li>
+                <p class="text small">
+                    <span class="gray">付款方式：</span>
+                    <span ng-bind="CurrentContract.Howtopay==0?'一次结清':'分期付款'"></span>
+                </p>
+            </li>
+            <li>
+                <p class="text small">
+                    <span class="gray">有效期：</span>
+                    <span ng-bind="parseJsonDate(CurrentContract.EndTime,'yyyy/MM/dd')"></span>
+                </p>
+            </li>
+            <li>
+                <p class="text small">
+                    <span class="gray">承办人：</span>
+                    <span ng-bind="CurrentContract.OwnerName"></span>
+                </p>
+            </li>
+            <li>
+                <p class="text small">
+                    <span class="gray">合同签订：</span>
+                    <span ng-bind="parseJsonDate(CurrentContract.ContractTime,'yyyy/MM/dd')"></span>
+                </p>
+            </li>
+            <li>
+                <p class="text small">
+                    <span class="gray">附件：</span>
+                    <span>暂不支持附件查阅</span>
+                </p>
+            </li>
+        </ul>
+    </article>
+    <article id="sales-contract-detail-pay" class="indented scroll list">
+        <div>
+            合同共<span ng-bind="CurrentContract.Howtopay==0?1:CurrentContract.HowtopayList.length"></span>期
+        </div>
+        <ul style="padding:0.5em 0;">
+            <li class="big" ng-repeat="pay in CurrentContract.HowtopayList">
+                <div class="vistdetaillistitem">
+                    <div class="times">
+                        <div>
+                            <span class="num">{{$index+1}}</span>
+                        </div>
+                    </div>
+                    <div class="content" style="padding:0.5em;">
+                        <span>合同收款时间：{{parseJsonDate(pay.PayTime,'yyyy/MM/dd')}}</span>
+                        <br />
+                        <span>实际收款时间：{{parseJsonDate(pay.ReceivedTime,'yyyy/MM/dd')}}</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </article>
+</section>

@@ -1,0 +1,47 @@
+﻿<h1 class="titSec">基本信息</h1>
+<form ng-class="showerror?'showerror':''" id="EditUserFormZone" name="EditUserForm">
+    <div class="basicInfo">
+        <ul class="ul-s1">
+            <li class="clearfix">
+                <span class="span1 colorlight">邮箱账号</span>
+                <span class="span2">{{UserInfo.Email}}</span>
+				<span class="span3">
+                    <a class="colorGray" ng-href="#/changepassword" >修改密码</a>
+                    <a class="colorGray" ng-href="#/changeemail">修改邮箱</a>
+                </span>
+            </li>
+            <!--<li class="clearfix">
+                <span class="span1">昵称</span>
+                <span class="span2">
+                    <input type="text" name="UserAccount" ng-model="UserInfo.UserAccount" />
+                </span>
+            </li>-->
+            <li class="clearfix">
+                <span class="span1 colorlight">真实姓名</span>
+                <span class="span2">
+                    <input type="text" name="UserName" ng-model="UserInfo.UserName" class="t-p"></span>
+                
+            </li>
+            <li class="clearfix">
+                <span class="span1 colorlight">性别</span>
+                <span class="span2">
+                    <label class="radio checked">
+                        <input type="radio" ng-model="UserInfo.Sex" value="1" data-toggle="radio">男
+                    </label>
+                    <label class="radio checked">
+                        <input type="radio" ng-model="UserInfo.Sex" data-toggle="radio" value="2">女
+                    </label>
+                </span>
+            </li>
+            <li class="clearfix">
+                <span class="span1 colorlight">年龄</span>
+                <span class="span2">
+                    <!--45-->
+                    <input type="text" name="Age" ng-model="UserInfo.Age" class="t-p"></span>
+            </li>
+        </ul>
+    </div>
+	<div class="save-btn">
+            <a class="btn btn-primary" href="" ng-click="EditUserInfo(UserInfo)">保存</a>
+        </div>
+</form>

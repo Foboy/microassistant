@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html ng-app="ngLoadMask">
+  <head>
+    <title>微企助手-企业注册</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/flat-ui.css" rel="stylesheet" media="screen">
+    <link href="css/master.css" rel="stylesheet" media="screen">
+      <script src="js/jquery.js"></script>
+    <script src="js/angular.js"></script>
+      <script src="js/angular-loadmask.js"></script>
+    <script src="scripts/core.js"></script>
+    <script src="scripts/user/controllers.js"></script>
+    <link href="js/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <script src="js/fancybox/jquery.fancybox.js"></script>
+    <script src="js/fancybox.msgbox.js"></script>
+    <link href="js/jquery-loadmask/jquery.loadmask.css" rel="stylesheet" />
+    <script src="js/jquery-loadmask/jquery.loadmask.js"></script>
+    <style type="text/css">
+        #form.showerror .ng-invalid {
+            border:2px solid #fa787e;
+        }
+
+        #form .ng-invalid.ng-dirty {
+           border:2px solid #f25749;
+        }
+
+        #form .ng-valid.ng-dirty {
+            border:2px solid #1ABC9C;
+        }
+    </style>
+  </head>
+  <body class="bg-blue" ng-controller="EnterpriseRegisterMainCtrl">
+	<div class="logo-box clearfix">
+	<div class="logo1"></div>
+	<div class="cp-box">
+            <p><a href="login.html"  class="blue-btn">登录</a></p>
+        </div>
+	</div>
+    <div class="main clearfix m-box">
+    	
+    	<div class="login-box" id="loginBox">
+            <form name="EnterpriseRegisterForm" id="form" ng-class="showerror?'showerror':''">
+        	    <h1>企业注册</h1>
+                <div class="input-box">
+            	    <div class="icon-box"><i class="passw-icon"></i></div>
+                    <input type="text" ng-model="Enterprise.name" ng-required="true" title="请输入企业名称"  placeholder="请输入企业名称"/>
+                </div>
+                <div class="input-box">
+            	    <span class="colorRed">*</span>
+            	    <div class="icon-box"><i class="peop-icon"></i></div>
+                    <input type="email" ng-model="Enterprise.email"  ng-required="true" title="请输入邮箱"  placeholder="请输入邮箱"/>
+                </div>
+                <div class="input-box">
+            	    <span class="colorRed">*</span>
+            	    <div class="icon-box"><i class="passw-icon"></i></div>
+                    <input type="password" ng-model="Enterprise.pwd"  ng-required="true" title="请输入密码"  placeholder="请输入密码"/>
+                </div>
+                <!--<div class="input-box">
+                    <span class="alert alert-danger" ng-show="LoginErrors&&LoginErrors.length" style="margin-left:60px;">{{LoginErrors}}</span>
+                </div>-->
+                <div class="sc-box"><a href="javascript:void(0)" ng-click="EnterpriseRegister()" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>   
+             </form>         
+        </div>
+    </div>
+      <div id="enterpriseCodePanle" style="display:none;width:370px;height:320;">
+          <p class="success_title">恭喜您已成功注册企业！</p>
+          <p class="success_title">您的企业代码为：<span class="success_info">{{EntCode}}</span></p>
+          <a class="enter_i" href="" ng-click="loginToSystem()">登陆系统</a>
+      </div>
+  </body>
+</html>

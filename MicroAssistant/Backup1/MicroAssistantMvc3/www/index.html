@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html ng-app="microassistant" ng-cloak>
+<head>
+    <title>微企助手</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/flat-ui.css" rel="stylesheet" media="screen">
+    <link href="css/master.css" rel="stylesheet" media="screen">
+    <link href="fontsicon/style.css" rel="stylesheet" media="screen" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-migrate-1.2.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap-widgets-rewrite.js"></script>
+    <script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <link href="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular-ui-router.js"></script>
+    <script src="js/angular-loadmask.js"></script>
+    <script src="scripts/utilities.js"></script>
+    <script src="scripts/core.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/user/controllers.js"></script>
+    <script src="scripts/finance/controllers.js"></script>
+    <script src="scripts/product/controllers.js"></script>
+    <script src="scripts/sales/controllers.js"></script>
+    <script src="scripts/finance/controllers.js"></script>
+    <script src="scripts/home/controllers.js"></script>
+    <script src="scripts/client/controller.js"></script>
+    <script src="scripts/user/bosscontrollers.js"></script>
+    <script src="js/uploadify/jquery.uploadify.js"></script>
+    <script src="js/uploadify/uploadify.extention.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/bootstro/bootstro.css">
+    <script src="js/bootstro/bootstro.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/uploadify/uploadify.css">
+    <link href="js/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <script src="js/fancybox/jquery.fancybox.js"></script>
+    <script src="js/fancybox.msgbox.js"></script>
+    <link href="js/jquery-loadmask/jquery.loadmask.css" rel="stylesheet" />
+    <script src="js/jquery-loadmask/jquery.loadmask.js"></script>
+    <style type="text/css">
+        .showerror .ng-invalid {
+            border-color: #fa787e;
+        }
+
+        .ng-invalid.ng-dirty {
+            border-color: #fa787e;
+        }
+
+        .ng-valid.ng-dirty {
+            border-color: #1ABC9C;
+        }
+    </style>
+</head>
+<body ng-controller="MainCtrl">
+    <div class="navbar">
+        <div class="main clearfix">
+			<div class="logo2"></div>
+            <div class="user-name" id="myinfodiv"  ng-mouseenter="RightMenuMouserEnter()" ng-mouseleave="RightMenuMouseLeave()">
+                <span>{{CurrentUser.UserName}}</span><i></i>
+                <ul class="u-info-list" style="display: none" id="uinfolist">
+                    <li ng-show="!staffManagementPerission"><a ng-href="#/user"  class="writeLink">基本资料</a></li>
+                    <li ng-show="!staffManagementPerission"><a ng-href="#/mytimeshaft" class="writeLink" >我的时间轴</a></li>
+                    <li ng-show="staffManagementPerission"><a ng-href="#/staffmangement" class="writeLink" >我的员工管理</a></li>
+                    <li ng-show="enterpriseManagementPerission"><a ng-href="#/enterpriseinfo" class="writeLink" >企业名片信息</a></li>
+                    <li ng-show="bossPerission"><a href="boss.html" class="writeLink" >老板模式</a></li>
+                    <li><a ng-click="UserLoginOut()" class="writeLink">退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div ui-view>
+
+    </div>
+    <div ng-view></div>
+</body>
+</html>

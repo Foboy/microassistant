@@ -1,0 +1,145 @@
+<div id="visitLocationSelectModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myAPModalLabel">选择地点</h3>
+      </div>
+      <div class="modal-body" style="width:850px;">
+        <div class="popupBox clearfix"  style="width:850px;">
+            <iframe id="salesVisitMapIframe" src="" style="width:850px;height:500px;border:none;"></iframe>
+        </div>
+      </div>
+</div>
+    	<div class="floatBox" id="visitDetailBox" style="width:0;right:0;top:0px;"  ng-controller="SalesVisitDetailCtrl">
+        	<!--<div class="fBg"></div>-->
+            <div class="fCon clearfix" style="overflow:auto;">
+                <i class="arrR" ng-click="hideVisitDetail()"></i>
+            	<div class="contentbaifang clearfix">
+                       <div class="visit_title">
+                            <img src="img/timelinejh.png"/>
+
+                            <div class="visit_title_content">
+                                <h4 class="colorRed">销售机会描述</h4>
+                                <div class="colorlight visit_title_info ">{{chance.Remark}}</div>
+                            </div>
+                            <div class="visit_title_btn">
+                              <div class="sign-pact">
+                            	<a href="" class="hetong_btn" ng-click="addCurrentStepItem('contract')">签订合同</a>
+                              </div>
+                              <div class="rate-cur" ng-click="changeRateShow($event)">
+                                <i class="rate-icon "></i>
+                            	<!--<div class="rate-show" ng-click="changeRateShow($event)">-->
+                                	当前赢率：{{chance.Rate}}%
+                                <!--</div>-->   
+                               </div>
+                        </div>
+                        
+                    	<div class="hide">
+                                <div class="rate-show" id="salesRateEditePanle" style="width:200px; height:27px; line-height:27px;">
+                                    <form name="SalesRateChangeFrom">
+                                        <input type="text" ng-model="NewRate" ng-required="true" style="width:100px; float:left; height:25px;display:inline; padding:0px; margin:0px; border-radius:0px; border:1px solid #ccc;" />
+                                        <a href="javascript:void(0)" class="yl_a_btn" ng-click="changeRateSubmit()">保存</a>
+                                        <a href="javascript:void(0)" class="yl_a_btn_canle" ng-click="changeRateCancel()">取消</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                       
+                       <div class="visit_line"></div>
+
+                       <ul class="ul-f2">
+                        	<li class="clearfix">
+                            	<div class="li-timeb colorBlue">
+                                	<span class="cir-w" ng-click="addNewVisit($event)"></span>
+                                </div>
+                                <div class="li-conb" id="newVisitEditContainer">
+                                    <!--<i class="add_i"></i>
+                                    <div class="jiantou_bg"> 
+                                        <a href="" class="" ng-click="addNewVisit($event)">点击添加新的拜访记录</a>
+                                    </div>-->
+                                	
+									<div class="li-boxs add-visit clearfix" id="visitEditBox">
+										<i class="jiantou_i"></i>
+										<div class="clearfix">
+                                        	<div class="visit-num">
+                                            	<span class="visit-num-title">{{VisitNewNum}}次拜访</span>
+                                            </div>
+                                        </div>
+										<div class="clearfix">
+                                            <form name ="SalesAddChanceVisitFrom" ng-class="showerror?'showerror':''">
+                                          <div class="add_content">
+											<div class="choice-left">
+												<label class="colorlight"><input type="radio" name="visitType" value="1" ng-model="EditVisit.VisitType"/>电话</label>
+                                                <label class="colorlight"><input type="radio" name="visitType" value="2" ng-model="EditVisit.VisitType"/>面谈</label>
+												<label class="colorlight"><input type="radio" name="visitType" value="3" ng-model="EditVisit.VisitType"/>在线联系</label>
+                                                <input type="text" ng-model="visit_lat" style="display:none;" />
+                                                <input type="text" ng-model="visit_lng" style="display:none;" />
+											</div>
+                                            <div class="choice-right">
+												<textarea class="miaoshuborder"  ng-model="EditVisit.Remark"></textarea>
+											</div>
+                                          </div>
+                                          <div class="add_content_btn ">
+                                            <div class="add_xuxian">
+                                                <a href="" class="add_a grayLink" ng-click="addVisitLocation($event)"><i class="maker"></i>添加地点</a>
+                                                <a href="" class="add_a grayLink" ng-click="addVisitPrise($event)"><i class="maker"></i>{{(EditVisit.Amount?(EditVisit.Amount| currency:'') : '添加报价')}}</a>
+                                                <p class="colorGray"><label>{{EditVisit.Address}}</label></p>
+                                            </div>
+                                            <div class="choice-box"><a href="" ng-click="addChanceVisit()" >保存 </a></div>
+                                          </div>
+                                            </form>
+                                            <div class="hide">
+                                                <div id="addressInputPanle" style="width:250px; height:27px; line-height:27px;">
+                                                    <form name="SalesVisitAddressInputFrom" ng-class="showerror1?'showerror':''">
+                                                        <input type="text" ng-model="EditVisit.NewAddress" ng-required="true"  style="width:150px; float:left; height:25px;display:inline; padding:0px; margin:0px; border-radius:0px; border:1px solid #ccc;" />
+                                                        <a href="javascript:void(0)" class="yl_a_btn" ng-click="newAddressSubmit()">保存</a>
+                                                        <a href="javascript:void(0)" class="yl_a_btn_canle" ng-click="newAddressCancel()">取消</a>
+                                                    </form>
+                                                </div>
+                                                <div id="priceInputPanle" style="width:200px; height:27px; line-height:27px;">
+                                                    <form name="SalesVisitPriceInputFrom" ng-class="showerror2?'showerror':''">
+                                                        <input type="number" ng-model="EditVisit.NewAmount" ng-required="true"  style="width:100px; float:left; height:25px;display:inline; padding:0px; margin:0px; border-radius:0px; border:1px solid #ccc;" />
+                                                        <a href="javascript:void(0)" class="yl_a_btn" ng-click="newAmountSubmit()">保存</a>
+                                                        <a href="javascript:void(0)" class="yl_a_btn_canle" ng-click="newAmountCancel()">取消</a>
+                                                    </form>
+                                                </div>
+                                            </div>
+										</div>
+										
+									</div>
+                                </div>
+                            </li>
+                            <li class="clearfix" ng-repeat="visit in chance_visits">
+                                <div>
+                            	    <div class="visit_time">{{parseJsonDate(visit.VisitTime,'yyyy/MM/dd')}}</div>
+                                    <div class="li-conb">
+                                	    <div class="li-boxs">
+                                    	    <i class="jiantou_i"></i>
+										    <div class="liedit-close-box">
+											    <input type="button" class="editIcon2" ng-click="editExistVisit($event)"/>
+											    <input type="button" class="closeIcon"/>
+										    </div>
+                                            <div class="clearfix">
+                                        	    <div class="visit-num">
+                                            	    <span class="visit-num-title">{{parseVisitNum($index-chance_visits.length)}}次拜访</span>
+                                                    <span class="span2 visit_fs_mt" ng-class="parseVisitIcon(visit.VisitType)"></span>
+                                                </div>
+
+                                                <div class="quote-info">
+                                            	    报价：<span class="colorRed">{{visit.Amount | currency:''}}</span>
+                                                </div>
+                                            </div>
+                                            <p class="visit_info">{{visit.Remark}}</p>
+										    <div class="li-address">
+                                              <i class="maker_info"></i><!-- ng-click="markAddressOnMap()"-->
+                                              <span class="address_info">{{parseAddress(visit.Address).address}}</span>
+
+										    </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                </div>                
+            </div>
+        </div>

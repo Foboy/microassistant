@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html ng-app="ngLoadMask">
+  <head>
+    <title>微企助手-注册</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/flat-ui.css" rel="stylesheet" media="screen">
+    <link href="css/master.css" rel="stylesheet" media="screen">
+      <script src="js/jquery.js"></script>
+    <script src="js/angular.js"></script>
+      <script src="js/angular-loadmask.js"></script>
+    <script src="scripts/core.js"></script>
+    <script src="scripts/user/controllers.js"></script>
+    <link href="js/jquery-loadmask/jquery.loadmask.css" rel="stylesheet" />
+    <script src="js/jquery-loadmask/jquery.loadmask.js"></script>
+    <style type="text/css">
+        #form.showerror .ng-invalid {
+            border:2px solid #fa787e;
+        }
+
+        #form .ng-invalid.ng-dirty {
+            border:2px solid #f25749;
+        }
+
+        #form .ng-valid.ng-dirty {
+            border:2px solid #1ABC9C;
+        }
+    </style>
+  </head>
+  <body class="bg-blue" ng-controller="UserRegisterMainCtrl">
+	<div class="logo-box clearfix">
+	<div class="logo1"></div>
+	<div class="cp-box">
+            <p><a href="login.html"  class="blue-btn">登录</a></p>
+        </div>
+	</div>
+    <div class="main clearfix m-box">
+    	
+    	<div class="login-box" id="loginBox">
+            <form name="UserRegisterForm" id="form" ng-class="showerror?'showerror':''">
+        	    <h1>员工注册</h1>
+                <div class="input-box">
+            	    <span class="colorRed">*</span>
+            	    <div class="icon-box"><i class="peop-icon"></i></div>
+                    <input type="text" ng-model="User.name"  ng-required="true" title="请输入昵称"  placeholder="请输入昵称"/>
+                </div>
+                <div class="input-box">
+            	    <span class="colorRed">*</span>
+            	    <div class="icon-box"><i class="email-icon"></i></div>
+                    <input type="email" ng-model="User.email"  ng-required="true" title="请输入邮箱"  placeholder="请输入邮箱"/>
+                </div>
+                <div class="input-box">
+            	    <span class="colorRed">*</span>
+            	    <div class="icon-box"><i class="passw-icon"></i></div>
+                    <input type="password" ng-model="User.pwd"  ng-required="true" title="请输入密码"  placeholder="请输入密码"/>
+                </div>
+                <div class="input-box">
+            	    <div class="icon-box"><i class="num-icon"></i></div>
+                    <input type="text" ng-model="User.enterprise"  title="请输入企业代号"  placeholder="请输入企业代号"/>
+                </div>
+                <!--<div class="input-box">
+                    <span class="alert alert-danger" ng-show="LoginErrors&&LoginErrors.length" style="margin-left:60px;">{{LoginErrors}}</span>
+                </div>-->
+                <div class="sc-box"><a href="javascript:void(0)" ng-click="UserRegister()" class="btn btn-large btn-block btn-danger"><i class="drawIcon"></i></a></div>   
+             </form>         
+        </div>
+    </div>
+  </body>
+</html>

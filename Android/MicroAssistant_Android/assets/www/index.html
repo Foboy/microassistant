@@ -1,10 +1,10 @@
-<!doctype html>
-<html>
+﻿<!doctype html>
+<html ng-app="microassistant">
 <head>
     <meta charset="utf-8">
-    <title>Lungo 2.1 - SDK</title>
+    <title>微企助手</title>
     <meta name="description" content="">
-    <meta name="author" content="Javier Jiménez Villar (@soyjavi)">
+    <meta name="author" content="cray (285025600@qq.com)">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,132 +12,190 @@
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="cleartype" content="on">
 
-    <!-- iPhone -->
-    <link href="http://cdn.tapquo.com/lungo/icon-57.png" sizes="57x57" rel="apple-touch-icon">
-    <link href="http://cdn.tapquo.com/lungo/startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px)
-             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-
-    <!-- iPhone (Retina) -->
-    <link href="http://cdn.tapquo.com/lungo/icon-114.png" sizes="114x114" rel="apple-touch-icon">
-    <link href="http://cdn.tapquo.com/lungo/startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px)
-             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-
-    <!-- iPhone 5 -->
-    <link href="http://cdn.tapquo.com/lungo/startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px)
-             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-
-    <!-- iPad -->
-    <link href="http://cdn.tapquo.com/lungo/icon-72.png" sizes="72x72" rel="apple-touch-icon">
-    <link href="http://cdn.tapquo.com/lungo/startup-image-768x1004.png" media="(device-width: 768px) and (device-height: 1024px)
-             and (orientation: portrait)
-             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-    <link href="http://cdn.tapquo.com/lungo/startup-image-748x1024.png" media="(device-width: 768px) and (device-height: 1024px)
-             and (orientation: landscape)
-             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
-
-    <!-- iPad (Retina) -->
-    <link href="http://cdn.tapquo.com/lungo/icon-144.png" sizes="144x144" rel="apple-touch-icon">
-    <link href="http://cdn.tapquo.com/lungo/startup-image-1536x2008.png" media="(device-width: 768px) and (device-height: 1024px)
-             and (orientation: portrait)
-             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-    <link href="http://cdn.tapquo.com/lungo/startup-image-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px)
-             and (orientation: landscape)
-             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="components/lungo/lungo.css">
+    <link rel="stylesheet" href="components/lungo/lungo.theme.css">
     <link rel="stylesheet" href="components/lungo/lungo.icon.css">
-    <link rel="stylesheet" href="components/lungo/lungo.icon.brand.css">
-    <link rel="stylesheet" href="components/lungo/lungo.css">
-
-    <link rel="stylesheet" href="components/lungo/theme.lungo.css" id="theme-stylesheet">
-
     <!-- App Stylesheet -->
-    <link rel="stylesheet" href="stylesheets/app.css">
+    <link href="css/app.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="components/navigation/css/component.css" />
+    <link href="components/navigation/css/lungo.css" rel="stylesheet" />
+    <link href="components/navigation/css/lungo.theme.css" rel="stylesheet" />
+	<!--csstransforms3d-shiv-cssclasses-prefixed-teststyles-testprop-testallprops-prefixes-domprefixes-load --> 
+	<script src="components/navigation/js/modernizr.custom.25376.js"></script>
 </head>
 
-<body class="app">
-    <section id="main" data-transition="">
+<body ng-controller="MainCtrl" class="perspective effect-airbnb">
+    <div id="contentWraper" class="container"></div>
+    <section id="account-login" data-transition="slide">
+        <article class="active splash"  ng-controller="UserLoginMainCtrl">
+            <img src="img/logo1.png" class="logo"/>
+            <div class="form">
+                <form name="UserLoginForm" id="form" ng-class="showerror?'showerror':''">
+                <fieldset class="radius-top" data-icon="user">
+                    <input type="email" name="emial" ng-model="User.email" ng-required="true"  placeholder="请输入邮箱" id="txt-signup-name" value="">
+                </fieldset>
+                <fieldset class="radius-bottom shadow" data-icon="lock">
+                    <input type="password" name="pwd" ng-model="User.pwd" maxlength="18" ng-required="true"  placeholder="请输入密码" id="txt-signup-password" value="">
+                </fieldset>
+                <br/>
+                <button class="anchor" data-icon="lock" data-icon="user" href="javascript:void(0)" ng-click="UserLogin()" data-label="登陆"></button>
+                <button data-view-section="account-register" data-async="partials/account/register.html" class="secondary anchor" data-icon="home" data-label="员工注册"></button>
+                <button data-view-section="account-entregister" data-async="partials/account/ent-register.html" class="secondary anchor" data-icon="home" data-label="企业注册"></button>
+                </form>
+            </div>
+            <span class="copyright text thin">Copyright (C) 2013-2014 - <span class="text bold">微企助手</span></span>
+        </article>
+    </section>
+    <section id="main" data-transition="slide">
         <header>
-            <nav class="left">
-                <a href="#features" data-router="aside" data-icon="menu"></a>
+            <nav>
+                <a href="javascript:void(0)" ng-tap="showMenu($event)" data-icon="menu"></a>
             </nav>
-            <img src="http://cdn.tapquo.com/lungo/logo.png" class="title centered">
-            <nav class="right">
-                <a href="#" data-action="twitter" class="button theme" data-icon="brand twitter"></a>
-                <!-- <a href="#" class="button theme" data-icon="share" data-label="Share"></a> -->
+            <!--<img src="img/logo2.png" class="title centered">-->
+            <nav class="on-right">
+                <a href="javascript:void(0)"  ><abbr class="text tiny "></abbr></a>
             </nav>
         </header>
 
-        <article id="main-article" class="active list indented scroll">
-            <ul>
-                <li class="dark">
-                    <strong>
-                    A framework for developers who want to design, build and share cross device apps.
-                </strong>
-                </li>
-                <li class="feature">
-                    <strong>HTML5 Optimized Apps</strong>
-                    Lungo Framework supports open web standards, such as HTML5, CSS3 and JavaScript. It brings consistent browser environment across mobiles, tvs and desktop devices.
-                </li>
-                <li class="feature">
-                    <strong>Powerfull JavaScript API</strong>
-                    Each new line of code in Lungo is welcome, we hope that Developers and restless minds help us to improve day by day this humble project.
-                </li>
-                <li class="feature">
-                    <strong>Multi-Device full support</strong>
-                    Is known that create apps for each platform is expensive, this situation is increased by the arrival of tablets and SmartTVs. Lungo will suit all of them creating a unique and amazing UX.
-                </li>
-                <li class="feature">
-                    <strong>Open Source Project</strong>
-                    Each new line of code in Lungo is welcome, we hope that Developers and restless minds help us to improve day by day this humble project.
-                </li>
-                <li>
-                    <a href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Flungo.tapquo.com%2F&text=@lungojs a framework for developers who want to design, build and share cross device apps" data-icon="brand twitter" target="_blank" class="button anchor theme" data-label="Tweet me"></a>
-                </li>
-            </ul>
-        </article>
-
-        <article id="environment" class="list">
-            <ul>
-                <li id="os" class="dark" data-icon="mobile">
-                    <strong>Desktop</strong>
-                    <small>unknown</small>
-                </li>
-                <li id="resolution" data-icon="picture">
-                    <strong>0p x 0p</strong>
-                    <small>Screen Resolution</small>
-                </li>
-                <li id="navigator" data-icon="brand html5">
-                    <strong>webkit</strong>
-                    <small>Mobile: </small>
-                </li>
-            </ul>
+        <article id="main-article" class="active splash">
+            <img src="img/logo1.png" class="logo"/>
+            <p>
+                欢迎使用微企助手！
+            </p>
+            <p>
+                {{env}}
+            </p>
+            <span class="copyright text thin">Copyright (C) 2013-2014 - <span class="text bold">微企助手</span></span>
+            <div style="display:none;">
+                <a href="javascript:void(0)" id="tempLazyloadLink"></a>
+            </div>
         </article>
     </section>
-
+            <nav class="outer-nav left vertical">
+				<a href="javascript:void(0)" class="icon-home" ng-click="menuToSection('main')">主页</a>
+				<a href="javascript:void(0)" class="icon-product" ng-click="menuToSection('product-list','partials/products/list.html')">产品管理</a>
+				<a href="javascript:void(0)" class="icon-sales" ng-click="menuToSection('sales-list','partials/sales/list.html')">销售管理</a>
+				<a href="javascript:void(0)" class="icon-fina" ng-click="menuToSection('finance-list','partials/finance/list.html')">财务管理</a>
+				<a href="javascript:void(0)" class="icon-custom" ng-click="menuToSection('client-list','partials/client/list.html')">客户管理</a>
+			</nav>
     <!-- Lungo dependencies -->
+    <!--<script src="components/jquery.js"></script>-->
     <script src="components/quojs/quo.js"></script>
     <script src="components/lungo/lungo.js"></script>
-
+    <script src="components/lungo-fixed.js"></script>
+    <script src="components/angular/angular.js"></script>
+    <script src="components/angular/angular-touch.js"></script>
+    <script src="components/angular/angular-animate.js"></script>
+    <script src="components/lungo-angular.js"></script>
+    <!--<script src="components/lungo-angular-bridge.js"></script>-->
     <!-- LungoJS - Sandbox App -->
-    <script>
-        Lungo.init({
-            name: 'Kitchen Sink',
-            version: '2.1',
-            resources: ['app/sections/pull.html',
-                        'app/sections/notification.html',
-                        'app/sections/carousel.html',
-                        'app/sections/touchevents.html',
-                        'app/asides/features.html']
-        });
+    <script src="scripts/core.js"></script>
+    <script src="scripts/server-models.js"></script>
+    <script src="scripts/models/usermodel.js"></script>
+    <script src="scripts/models/respicmodel.js"></script>
+    <script src="scripts/models/productmodel.js"></script>
+    <script src="scripts/models/salesmodel.js"></script>
+    <script src="scripts/models/financemodel.js"></script>
+    <script src="scripts/models/clientmodel.js"></script>
+    <script src="scripts/account/controllers.js"></script>
+    <script src="scripts/product/controllers.js"></script>
+    <script src="scripts/sales/controllers.js"></script>
+    <script src="scripts/finance/controllers.js"></script>
+    <script src="scripts/client/controller.js"></script>
+    <script src="scripts/app.js"></script>
+	<script src="components/navigation/js/menu.js"></script>
+    <script type="text/javascript">
+        (function () {
+            var link = Lungo.dom('#tempLazyloadLink');
+
+            var sectionDicts = [];
+
+            var registerSection = function(name,id,src){
+                sectionDicts[name] = { id: id, src: src };
+            };
+
+            var showSection = function (id, src) {
+                link.data('view-section', id);
+                if (!Lungo.dom('#' + id).length)
+                    link.data('async', src);
+                else
+                    link.removeAttr('data-async');
+                link.trigger('tap');
+            };
+
+            angular.loadSection = function (name) {
+                var section = sectionDicts[name];
+                showSection(section.id, section.src);
+            };
+            registerSection('sales-list', 'sales-list', 'partials/sales/list.html');
+            registerSection('sales-chance-detail', 'sales-chance-detail', 'partials/sales/chancedetail.html');
+            registerSection('sales-chance-list', 'sales-chance-list', 'partials/sales/chancelist.html');
+            registerSection('sales-visit-create', 'sales-visit-create', 'partials/sales/visitcreate.html');
+            registerSection('sales-visit-detail', 'sales-visit-detail', 'partials/sales/visitdetail.html');
+            registerSection('sales-visit-list', 'sales-visit-list', 'partials/sales/visitlist.html');
+            registerSection('sales-contract-list', 'sales-contract-list', 'partials/sales/contractlist.html');
+            registerSection('sales-contract-detail', 'sales-contract-detail', 'partials/sales/contractdetail.html');
+        })();
     </script>
-    <script src="app/app.js"></script>
-    <script src="app/events.notification.js"></script>
-    <script src="app/events.touch.js"></script>
-    <script src="app/events.pull.js"></script>
-    <script src="app/events.carousel.js"></script>
-    <script src="app/events.trigger.js"></script>
-    <script src="app/events.themeroller.js"></script>
+    <script>
+        var MicroAssistantApp = {};
+        MicroAssistantApp.pull = function (selector) {
+            if (MicroAssistantApp[selector])
+                return;
+            MicroAssistantApp[selector] = new Lungo.Element.Pull(selector, {
+                onPull: "",
+                onRelease: "",
+                onRefresh: "",
+                callback: function () {
+                    //alert("Pull & Refresh completed!");
+                    Lungo.dom(selector).trigger('pullrefresh');
+                    MicroAssistantApp[selector].hide();
+                }
+            });
+        };
+        Lungo.init({
+            name: 'microassistant',
+            version: '1.0',
+            resources: [],
+            history: false
+        });
+        Lungo.Events.init({
+            'load section#product-list': function (event) {
+                MicroAssistantApp.pull('section#product-list article');
+            },
+            'load section#finance-list': function (event) {
+                MicroAssistantApp.pull('section#finance-list article');
+            },
+            'load section#client-list': function (event) {
+                MicroAssistantApp.pull('section#client-list article');
+            },
+            'load section#sales-chance-list': function (event) {
+                MicroAssistantApp.pull('section#sales-chance-list article');
+            },
+            'load section#sales-visit-list': function (event) {
+                MicroAssistantApp.pull('section#sales-visit-list article');
+            },
+            'load section#sales-contract-list': function (event) {
+                MicroAssistantApp.pull('section#sales-contract-list article');
+            }
+        });
+        /*
+        (function () {
+            var pulllist = [
+            'section#product-list',
+            'section#finance-list',
+            'section#client-list',
+            'section#client-list'
+            ];
+
+            for (var i = 0; i < pulllist.length; i++) {
+                Lungo.dom(pulllist[i]).trigger('load');
+            }
+        })();*/
+    </script>
+    <!--<script src="cordova.js"></script>
+    <script src="http://192.168.1.7:8080/target/target-script-min.js#anonymous"></script>-->
 </body>
 </html>
+

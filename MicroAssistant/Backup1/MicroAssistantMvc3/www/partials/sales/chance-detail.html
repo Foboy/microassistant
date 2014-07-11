@@ -1,0 +1,71 @@
+    	<div class="floatBox" id="chanceDetailBox" style="width:0;right:0;top:0px;">
+        	<!--<div class="fBg"></div>-->
+            <div class="fCon clearfix" ng-controller="SalesChanceDetailCtrl">
+                <i class="arrR" ng-click="hideChanceDetail()"></i>
+                <!--<a class="addcai btn btn-large btn-block btn-primary" title="编辑机会"  ></a>-->
+                <form name="salesChanceDetailForm">
+            	  <ul class="chance_ht_ul clearfix">
+                	<li class="clearfix">
+                        <span class="draw_title">客户类型：</span>
+                        <span class="draw_content draw_content_width_chance" ng-hide="CustomerTypeEdit">{{chance.CustomerType==1?'企业客户':'个人客户'}}</span>
+                        <!--<select class="span3" name="CustomerType" ng-model="chance.CustomerType" ng-show="CustomerTypeEdit">
+                            <option value="1">企业客户</option>
+                            <option value="2">个人客户</option>
+			            </select>-->
+                        <!--<i class="editIcon" ng-click="CustomerTypeEdit=!CustomerTypeEdit"></i></li>-->
+                    </li>
+                    <li class="clearfix">
+                        <span class="draw_title">机会类型：</span>
+                        <span class="draw_content draw_content_width_chance" ng-hide="ChanceTypeEdit">{{chance.ChanceType==1?'新客户机会':'老客户机会'}}</span>
+                        <!--<select class="span3" name="ChanceType" ng-model="chance.ChanceType" ng-show="ChanceTypeEdit
+                            <option value="1">新客户机会</option>
+                            <option value="2">老客户机会</option>
+			            </select>-->
+                        <!--<i class="editIcon" ng-click="ChanceTypeEdit=!ChanceTypeEdit"></i>-->
+                    </li>
+                    <li class="clearfix">
+                        <span class="draw_title">机会描述：</span>
+                        <span class="draw_content draw_content_width_chance">{{chance.Remark}}</span>
+                        <!--<textarea style="width:170px; height:120px; border-radius:0;" ng-required="true" ng-model="chance.Remark" ng-show="RemarkEdit"></textarea>-->
+                        <!--<i class="editIcon" ng-click="RemarkEdit=!RemarkEdit"></i>-->
+                    </li>
+                    <li class="clearfix">
+                        <span class="draw_title">联系人：</span>
+                        <span class="draw_content draw_content_width_chance" ng-hide="ContactNameEdit">{{chance.ContactName}}</span>
+                        <!--<input type="text" ng-model="chance.ContactName" ng-show="ContactNameEdit" value="" ng-required="true" placeholder="联系人">-->
+                        <!--<i class="editIcon" ng-click="ContactNameEdit=!ContactNameEdit"></i>-->
+                    </li>
+                    <li class="clearfix">
+                        <span class="draw_title">手机：</span>
+                        <span class="draw_content draw_content_width_chance" ng-hide="PhoneEdit">{{chance.Phone}}</span>
+                        <!--<input type="text" ng-model="chance.Phone" value="" ng-show="PhoneEdit" placeholder="手机" class="span3">-->
+                        <!--<i class="editIcon" ng-click="PhoneEdit=!PhoneEdit"></i>-->
+                    </li>
+                    <li class="clearfix">
+                        <span class="draw_title">座机：</span>
+                        <span class="draw_content draw_content_width_chance" ng-hide="TelEdit">{{chance.Tel}}</span>
+                        <!--<input type="text" ng-model="chance.Tel" value="" ng-show="TelEdit" placeholder="座机" class="span3">-->
+                        <!--<i class="editIcon" ng-click="TelEdit=!TelEdit"></i>-->
+                    </li>
+                    <li class="clearfix">
+                        <span class="draw_title">邮箱：</span>
+                        <span class="draw_content draw_content_width_chance" ng-hide="EmailEdit">{{chance.Email}}</span>
+                        <!--<input type="text" ng-model="chance.Email" ng-show="EmailEdit" value="" placeholder="E-mail" class="span3">-->
+                        <!--<i class="editIcon" ng-click="EmailEdit=!EmailEdit"></i>-->
+                    </li>
+                    <li class="clearfix">
+                        <span class="draw_title">录入时间：</span>
+                        <span class="draw_content draw_content_width_chance" ng-hide="AddTimeEdit">{{chance.FormatAddTime}}</span>
+                        <!--<input type="text" ng-model="chance.FormatAddTime" ng-show="AddTimeEdit" value="" class="span3 form_datetime">-->
+                        <!--<i class="editIcon" ng-click="AddTimeEdit=!AddTimeEdit"></i>-->
+                    </li>
+                    <!--<li class="clearfix"><span class="conS"><a href="#">添加其他联系方式</a></span></li>-->
+
+                </ul>
+                </form>
+                <div class="chance_bf_btn clearfix">
+                    <!--<a href="" class="btn btn-large btn-block btn-danger" ng-show="chanceDetailHasChanged()" ng-click="SalesChanceDetailSubmit()">保存修改</a>-->
+                    <a href="" class="btn btn-block btn-danger" ng-click="visit()">拜访该客户</a>
+				</div>
+            </div>
+        </div>

@@ -1,0 +1,20 @@
+﻿<section id="sales-contract-list" data-transition="slide" ng-controller="SalesContractMainCtrl" data-pull="arrow-down">
+    <header data-title="合同" class="extended">
+        <nav>
+            <a href="javascript:void(0)"  ng-tap="loadSection('sales-list')" data-icon="chevron-left"></a>
+        </nav>
+    </header>
+
+        <article id="sales-contract-list-article" class="active list indented scroll" ng-refresh="refreshList()">
+            <ul id="sales-contract-list-ul">
+                <li ng-repeat="contract in contracts">
+                    <a href="javascript:void(0)" ng-tap="contractDetail($event)">
+                        <strong>{{contract.CName| limitTo:15}}</strong>
+                        <small>联系人: {{contract.CustomerName}} ,创建时间: {{parseJsonDate(chance.AddTime,'yyyy/MM/dd')}}</small>
+                    </a>
+                </li>
+
+            </ul>
+            <a href="#" ng-show="hasMoreRecords" class="button anchor margin bottom" ng-click="showMoreRecords()">更多</a>
+        </article>
+</section>

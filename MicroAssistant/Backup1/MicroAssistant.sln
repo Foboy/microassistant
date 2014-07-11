@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.Cache", "MicroAssistant.Cache\MicroAssistant.Cache.csproj", "{4DC26C0C-A269-4189-B5AC-739F957E2068}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.Common", "MicroAssistant.Common\MicroAssistant.Common.csproj", "{1EBF64EA-0FDE-4408-9513-A7F3C4C5FB0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.DataAccess", "MicroAssistant.DataAccess\MicroAssistant.DataAccess.csproj", "{F9E29E2D-30C2-4B33-92F8-5876B40ABDE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.DataStructure", "MicroAssistant.DataStructure\MicroAssistant.DataStructure.csproj", "{BAD691E1-98E4-4130-9696-0832DD8949D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistant.Meta", "MicroAssistant.Meta\MicroAssistant.Meta.csproj", "{626060A8-1116-4E49-A252-D3FB4503E096}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6F07C90B-9AEE-42FB-972B-A767309312DF}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroAssistantMvc3", "MicroAssistantMvc3\MicroAssistantMvc3.csproj", "{A6045587-DD55-41CE-8DCE-A94DB03217EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DC26C0C-A269-4189-B5AC-739F957E2068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC26C0C-A269-4189-B5AC-739F957E2068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC26C0C-A269-4189-B5AC-739F957E2068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC26C0C-A269-4189-B5AC-739F957E2068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EBF64EA-0FDE-4408-9513-A7F3C4C5FB0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EBF64EA-0FDE-4408-9513-A7F3C4C5FB0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EBF64EA-0FDE-4408-9513-A7F3C4C5FB0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EBF64EA-0FDE-4408-9513-A7F3C4C5FB0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E29E2D-30C2-4B33-92F8-5876B40ABDE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E29E2D-30C2-4B33-92F8-5876B40ABDE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E29E2D-30C2-4B33-92F8-5876B40ABDE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E29E2D-30C2-4B33-92F8-5876B40ABDE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAD691E1-98E4-4130-9696-0832DD8949D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAD691E1-98E4-4130-9696-0832DD8949D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAD691E1-98E4-4130-9696-0832DD8949D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAD691E1-98E4-4130-9696-0832DD8949D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{626060A8-1116-4E49-A252-D3FB4503E096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{626060A8-1116-4E49-A252-D3FB4503E096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{626060A8-1116-4E49-A252-D3FB4503E096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{626060A8-1116-4E49-A252-D3FB4503E096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6045587-DD55-41CE-8DCE-A94DB03217EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6045587-DD55-41CE-8DCE-A94DB03217EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6045587-DD55-41CE-8DCE-A94DB03217EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6045587-DD55-41CE-8DCE-A94DB03217EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

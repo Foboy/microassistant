@@ -1,0 +1,47 @@
+﻿    <div id="userHeadImageSelectModal" class="modal hide fade" style="width: 820px; height: 400px;overflow:hidden" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myAPModalLabel">选择头像</h3>
+        </div>
+        <div class="modal-body" style="width: 800px; height: 400px; ">
+            <div class="popupBox clearfix" style="width: 800px;height: 400px;min-height:400px;">
+                <iframe id="salesUserHeadImageIframe" src="" style="width: 800px; height: 400px; border: none;overflow:hidden"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="Nav">
+        <div class="headImg" style="position: relative;">
+            <img ng-src="{{HeadPicUrl}}" />
+            <img src="img/c-img-cover.png" style="position: absolute; top: 20px; left: 55px; cursor: pointer;" ng-click="setUserHeadImg()" />
+        </div>
+        <ul class="navList">
+            <li ng-class="page=='home'?'cur':''">
+                <a ng-href="#/home" class="homeIcon"></a>
+                <p><a ng-href="#/home">主页</a></p>
+            </li>
+            <li ng-class="page=='product'?'cur':''" ng-show="productPermission">
+                <a ng-href="#/product" class="productIcon"></a>
+                <p><a ng-href="#/product">产品管理</a></p>
+            </li>
+            <li ng-class="page=='sales'?'cur':''" ng-show="salesPermission">
+                <a ng-href="#/sales" class="saleIcon"></a>
+                <p><a ng-href="#/sales">销售管理</a></p>
+            </li>
+            <li ng-class="page=='finance'?'cur':''" ng-show="financePermission">
+                <a ng-href="#/finance" class="financeIcon"></a>
+                <p><a ng-href="#/finance">财务管理</a></p>
+            </li>
+            <li ng-class="page=='client'?'cur':''" ng-show="clientPermission">
+                <a ng-href="#/client" class="clientIcon"></a>
+                <p><a ng-href="#/client">客户管理</a></p>
+            </li>
+<!--            <li ng-class="page=='user'?'cur':''">
+                <a ng-href="#/user" class="peopleIcon"></a>
+                <p><a ng-href="#/user">个人管理</a></p>
+            </li>-->
+        </ul>
+    </div>
+    <div class="conBox">
+        <div ui-view>
+        </div>
+    </div>

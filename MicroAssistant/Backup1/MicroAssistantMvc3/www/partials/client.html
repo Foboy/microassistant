@@ -1,0 +1,97 @@
+﻿<h1 class="titSec">客户资料</h1>
+<ul class="clearfix goodsList">
+    <li ng-class="sorts=='enterprise'?'cur':''">
+        <a ng-href="#/client/enterprise/0"><em><i class="com-pIcon"></i></em></a>
+        <p><a ng-href="#/client/enterprise/0">企业客户</a></p>
+        <span class="arrowD"></span>
+    </li>
+    <li ng-class="sorts=='personal'?'cur':''">
+        <a ng-href="#/client/personal/0"><em><i class="sim-pIcon"></i></em></a>
+        <p><a ng-href="#/client/personal/0">个人客户</a></p>
+        <span class="arrowD"></span>
+    </li>
+</ul>
+<div class="searchBox">
+    <span class="padd">
+        <a class="btn btn-large btn-block btn-primary" ng-click="sorts=='enterprise'? ShowAddEnterpriseForm():ShowAddPersonalForm()">新增客户</a>
+    </span>
+</div>
+<!--企业客户信息区域-->
+<div class="tablePad" id="EClientList" ng-show="sorts=='enterprise'?'true':'false'">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th width="20%">名称</th>
+                <th width="15%">所属行业</th>
+                <th width="10%">联系人</th>
+                <th width="20%">联系方式</th>
+                <th width="20%">地址</th>
+                <th width="10%">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="enterpriseclientItem in enterpriseclients">
+                <td class="colorlight">{{$index+1}}</td>
+                <td class="colorg">{{enterpriseclientItem.EntName}}</td>
+                <td>{{enterpriseclientItem.Industy}}</td>
+                <td>{{enterpriseclientItem.ContactUsername}}</td>
+                <td>
+                    <p>{{enterpriseclientItem.ContactMobile||enterpriseclientItem.ContactPhone||enterpriseclientItem.ContactEmail}}</p>
+                </td>
+                <td>{{enterpriseclientItem.Address}}</td>
+                <td class="colorGray">
+                    <a href="" ng-click="ShowEnterpriseClientDetail(enterpriseclientItem)" role="button">查看</a>|
+                    <a href="" ng-click="ShowAddEnterpriseForm()" role="button">编辑</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!--个人客户信息区域-->
+<div class="tablePad" ng-show="sorts=='personal'?'true':'false'" id="PClientList">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th width="15%">姓名</th>
+                <th width="15%">年龄</th>
+                <th width="15%">性别</th>
+                <th width="20%">联系方式</th>
+                <th width="25%">所在地</th>
+                <th width="10%">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="personclientItem in personalclients">
+                <td class="colorlight">
+                    <!--<div class="t-himg">
+                        <img src="img/Adimg/h1.jpg">
+                        <i class="b-i"></i>
+                  </div>-->
+                </td>
+                <td class="colorg">{{personclientItem.Name}}</td>
+                <td>{{parseAgeFromBirthday(personclientItem.Birthday)}}</td>
+                <td>{{personclientItem.Sex==1?'男':'女'}}</td>
+                <td>
+                    <p>{{personclientItem.Mobile||personclientItem.Phone||personclientItem.Email}}</p>
+                </td>
+                <td>{{personclientItem.Address}}</td>
+                <td class="colorGray"><a href="" ng-click="ShowPersonalClientDetail(personclientItem)" role="button">查看</a>|<a href="" ng-click="ShowAddPersonalForm()" role="button">编辑</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="pagination">
+    <ul>
+        <li class="previous" ng-repeat="page in pages | filter:'pre'"><a ng-href="{{page.url}}">
+            <img src="img/previous.png" /></a></li>
+        <li ng-class="page.active?'active':''" ng-repeat="page in pages | filter:'page'"><a ng-href="{{page.url}}">{{page.index}}</a></li>
+        <li class="next" ng-repeat="page in pages | filter:'next'"><a ng-href="{{page.url}}">
+            <img src="img/next.png" /></a></li>
+    </ul>
+</div>
+<div ng-include="sorts=='enterprise'?'partials/client/client-addenterprise.html':'partials/client/client-addpersonal.html'"></div>
+<div ng-include="sorts=='enterprise'?'partials/client/enterpriseclient-detail.html':'partials/client/personalclient-detail.html'"></div>
+

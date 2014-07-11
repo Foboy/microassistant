@@ -1,0 +1,41 @@
+﻿<section id="client-list" data-transition="slide" ng-controller="ClientMainCtrl" data-pull="arrow-down">
+    <header data-title="客户管理" class="extended" style="height:82px;">
+        <nav>
+            <a href="#" ng-click="showMenu($event)" data-icon="menu"></a>
+        </nav>
+        <div class="groupbar-container">
+                <nav data-control="groupbar">
+                    <a href="#" ng-class="sorts=='enterprise'?'active':''" ng-click="changeSorts('enterprise')">
+                        <abbr>企业客户</abbr>
+                    </a>
+                    <a href="#"  ng-class="sorts=='personal'?'active':''" ng-click="changeSorts('personal')">
+                        <abbr>个人客户</abbr>
+                    </a>
+                </nav>
+        </div>
+    </header>
+
+<article id="client-list-article" class="active list indented scroll" ng-refresh="refreshList()">
+        <ul ng-show="sorts=='enterprise'">
+            <li ng-repeat="enterpriseclientItem in enterpriseclients">
+                <a href="#">
+                    <strong>{{enterpriseclientItem.EntName}}</strong>
+                    <small>所属行业: {{enterpriseclientItem.Industy}} ,联系人: {{enterpriseclientItem.ContactUsername}} ,联系方式: {{enterpriseclientItem.ContactMobile||enterpriseclientItem.ContactPhone||enterpriseclientItem.ContactEmail}}</small>
+                </a>
+            </li>
+
+        </ul>
+        <ul ng-show="sorts=='personal'">
+
+            <li ng-repeat="personclientItem in personalclients">
+                <a href="#">
+                    <strong>{{personclientItem.Name}}</strong>
+                    <small>年龄: {{parseAgeFromBirthday(personclientItem.Birthday)}},性别: {{personclientItem.Sex==1?'男':'女'}} ,联系方式: {{personclientItem.Mobile||personclientItem.Phone||personclientItem.Email}}</small>
+                </a>
+            </li>
+
+        </ul>
+    <a href="#" ng-show="hasMoreRecords" class="button anchor margin bottom" ng-click="showMoreRecords()">更多</a>
+</article>
+
+</section>

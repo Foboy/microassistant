@@ -1,0 +1,68 @@
+﻿<div class="floatBox" id="receivablesDetailBox" style="width:0px; right: 0; top: 0;">
+    <!--<div class="fBg"></div>-->
+    <div class="fCon clearfix" ng-controller="FinaceDetailCtrl">
+        <i class="arrR" ng-click="hideReceivableDetail()" ></i>
+       <!-- <ul class="pact-ul clearfix">
+            <li ng-class="tabIndex==1?'cur':''" ng-click="tabIndex=1">合同详情</li>
+            <li ng-class="tabIndex==2?'cur':''" ng-click="tabIndex=2">合同动态</li>
+        </ul>-->
+      <!-- <br /> <div class="comTitle">四川新迎顺信息技术有限公司</div>-->
+        <ul class="finance_info_ul" >
+            <li class="clearfix"><span class="draw_title">合同名字：</span><span class="draw_content draw_content_width_c">{{receivableDetailInfos.CName}}
+            </span></li>
+            <li class="clearfix"><span class=" draw_title">合同编号：</span><span class="draw_content draw_content_width_c">{{receivableDetailInfos.ContractNo}}
+            </span></li>
+            <li class="clearfix"><span class=" draw_title">合同总额：</span><span class="draw_content draw_content_width_c">{{receivableDetailInfos.Amount | currency:''}}</span></li>
+            <li class="clearfix"><span class=" draw_title">合同签署日期：</span><span class="draw_content draw_content_width_c">{{parseJsonDate(receivableDetailInfos.ContractTime,'yyyy/MM/dd')}}</span></li>
+            <li class="clearfix"><span class=" draw_title">合同承办人：</span><span class="draw_content draw_content_width_c">{{receivableDetailInfos.OwnerName}}
+            </span></li>
+            <li class="clearfix"><span class=" draw_title">合同联系人：</span><span class="draw_content draw_content_width_c">{{receivableDetailInfos.CustomerName}}
+            </span></li>
+            <li class="clearfix"><span class=" draw_title">联系方式：</span><span class="draw_conten draw_content_width_ct">{{receivableDetailInfos.Chance.Tel}}
+            </span></li>
+        </ul>
+        <div class="finance_info_timeline">
+          <img class="finance_htimg" src="img/htsk.png" />
+          <div  ng-repeat="howpayItem in howpaylists" ng-class="howpayItem.Isreceived==1?'clearfix cur':'clearfix '" >
+              <div class="ht_date">{{$index+1}}期</div>
+              <div class="ht_content clearfix">
+                    <div class="ht_datecontent">
+                        <i></i>
+                        <div class="ht_dateinfo colorlight">合同收款时间:
+                           <span class="colorRed">{{parseJsonDate(howpayItem.PayTime,'yyyy/MM/dd')}}</span>
+                        </div>
+                        <div class="ht_dateinfo colorlight" ng-show="howpayItem.Isreceived==2">实际收款时间:
+                            <span class="colorRed">{{parseJsonDate(howpayItem.ReceivedTime,'yyyy/MM/dd')}}</span>
+                        </div>
+                        <div class="ht_datebtn" ng-show="howpayItem.Isreceived==1">
+                            <a ng-click="makeSureTimesReceivable(howpayItem)" href="">确认收款</a>
+                        </div>
+                    </div>
+                </div>
+            
+            <!--<li ng-class="howpayItem.Isreceived==1?'clearfix cur':'clearfix '">
+                <div class="li-timeb colorRed">
+                    {{$index+1}}期
+                            <span class="cir-w"><i></i></span>
+                </div>
+                <div class="li-conb">
+                    <div class="li-boxs">
+                        <i></i>
+                        <div class="tim-list">
+                            <div class="colorBlue">收款时间：</div>
+                           {{parseJsonDate(howpayItem.PayTime,'yyyy/MM/dd')}}
+                        </div>
+                        <div class="tim-list" ng-show="howpayItem.Isreceived==2">
+                            <div class="colorBlue">实际收款时间：</div>
+                            <span class="colorRed">{{parseJsonDate(howpayItem.ReceivedTime,'yyyy/MM/dd')}}</span>
+                        </div>
+                        <div class="tim-list" ng-show="howpayItem.Isreceived==1">
+                            <a ng-click="makeSureTimesReceivable(howpayItem)" href="">确认收款</a>
+                        </div>
+                    </div>
+                </div>
+            </li>-->
+        </div>
+    </div>
+   </div>
+</div>

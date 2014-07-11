@@ -1,0 +1,76 @@
+<div class="floatBox pactBox prouBox" id="productDetailBox" ng-controller="ProductDetailCtrl" style="width:0; right:0;top:0px;">
+<!--        	<div class="fBg"></div>-->
+           <div class="fCon clearfix"  ng-controller="ProductDetailCtrl">
+                <i class="arrR" ng-click="hideProductDetail()"></i>
+                <a class="addcai btn btn-large btn-block btn-primary" title="添加采购单"  ng-click="addPurchase()">添加采购单</a>
+                <ul class="pact-ul clearfix">
+                	<li ng-class="tabIndex==1?'cur':''" ng-click="productInfo()">产品信息</li>
+                    <li ng-class="tabIndex==2?'cur':''" ng-click="productStore()">入库信息</li>
+                    <li ng-class="tabIndex==3?'cur':''" ng-click="productPurchase()">采购单</li>
+                </ul>
+                
+            	<ul class="ul-f1" ng-show="tabIndex==1">
+                	<li class="clearfix"><span  class="colorBlue namS">产品名称：</span><span class="conS colorblack">{{product.PName}}</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">产品分类：</span><span class="conS colorblack">{{product.PName}}</span></li>
+                    <li class="clearfix"><span class="colorBlue namS">市场售价：</span><span class="colorRed conS ">{{product.MarketPrice}}<span class="pinfolast">元</span></span></li>
+                    <li class="clearfix"><span class="colorBlue namS">最低售价：</span><span class="conS colorRed">{{product.LowestPrice}}<span class="pinfolast">元</span></span></li>
+                    <li class="clearfix"><span class="colorBlue namS">当前库存：</span><span class="conS colorblack">{{product.StockCount}}<span class="pinfolast">{{product.Unit}}</span></span></li>
+                    <li class="clearfix"><span class="colorBlue namS">产品描述：</span><span class="s-text conS colorblack">{{product.PInfo}}</span></li>
+                </ul> 
+                <div class="basicProfit" ng-show="tabIndex==1">
+                    <span class="colorwhite">市场售价利润率：</span>
+                    <span class="colorwhite">{{((product.MarketPrice - product.LowestPrice)*100/product.LowestPrice) | currency:''}}%</span>
+                 </div>
+                <div class="tablePad" ng-show="tabIndex==2">
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th width="5%"></label></th>
+                          <th width="30%">采购批次</th>
+                          <th width="15%">单价</th>
+                          <th width="10%">数量</th>
+                          <th width="20%">采购总价</th>
+                          <th width="20%">录入时间</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr  ng-repeat="store in stores">
+                          <td class="colorlight">{{$index+1}}</td>
+                          <td class="colorlight">{{store.PCode}}</td>
+                          <td class="colorRed ">{{store.Price| currency:''}}</td>
+                          <td class="colorlight">{{store.PNum}}</td>
+                          <td class="colorRed ">{{(store.PNum || 0)*(store.Price||0)| currency:''}}</td>
+                          <td class="colorlight">{{parseJsonDate(store.CreateTime,'yyyy/MM/dd')}}</td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                </div>   
+                 <div class="tablePad" ng-show="tabIndex==3">
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th width="5%"></th>
+                          <th width="30%">采购批次</th>
+                          <th width="15%">单价</th>
+                          <th width="10%">数量</th>
+                          <th width="20%">采购总价123</th>
+                          <th width="20%">入库时间</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr  ng-repeat="purchase in purchases">
+                          <td class="colorlight">{{$index+1}}</td>
+                          <td class="colorlight">{{purchase.PCode}}</td>
+                          <td class="colorRed ">{{purchase.Price| currency:''}}</td>
+                          <td class="colorlight">{{purchase.PNum}}</td>
+                          <td class="colorRed ">{{(purchase.PNum || 0)*(purchase.Price||0)| currency:''}}</td>
+                          <td class="colorlight">{{parseJsonDate(purchase.CreateTime,'yyyy/MM/dd')}}</td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                </div>
+                       
+            </div>
+        </div>

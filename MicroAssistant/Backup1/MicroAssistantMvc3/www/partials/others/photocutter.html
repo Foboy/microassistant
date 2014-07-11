@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>头像上传</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script src="../../js/jquery.js"></script>
+    <script src="../../scripts/core.js"></script>
+    <script src="../../scripts/utilities.js"></script>
+    <script src="../../js/jscop/jquery.Jcrop.js"></script>
+    <script src="../../js/jscop/jquery.Jcrop.extend.js"></script>
+    <script src="../../js/uploadify/jquery.uploadify.js"></script>
+    <script src="../../js/uploadify/uploadify.extention.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../js/uploadify/uploadify.css">
+    <script type="text/javascript">
+
+        jQuery(document).ready(function () {
+            var jcrop_api;
+            var sourceUrl;
+            var startLeft, startTop, clipWidth, clipHeight;
+            $('#imgLoad').bind('load', function () {
+                if (jcrop_api)
+                {
+                    jcrop_api.destroy();
+                }
+
+
+                var img = $(this);
+                var imgWidth = img.width();
+                var imgHeight = img.height();
+                var imgSrc = img.attr('src');
+                img.attr('src', '');
+                sourceUrl = imgSrc;
+
+                var boundx,
+                    boundy,
+
+
+                    $container = $('#container'),
+                    $photowraper = $('#photo-wraper'),
+                    $photo = $('#photo-wraper img'),
+                    $preview = $('#preview-pane'),
+                    $pcnt = $('#preview-pane .preview-container'),
+                    $pimg = $('#preview-pane .preview-container img'),
+                    $circle = $('<img src="../../img/c-png-2.png" style="position: absolute;z-index: 350" />'),
+
+                    xsize = $pcnt.width(),
+                    ysize = $pcnt.height(),
+                    widthScale = imgWidth / $container.width(),
+                    heightScale = imgHeight / $container.height();
+
+                $pimg.attr('src', imgSrc);
+                $photo.attr('src', imgSrc);
+                    
+                var disWidth, disHeight, selectWidth, selectHeight;
+                    //if (widthScale > 1 || heightScale > 1) {
+                        if (widthScale > heightScale) {
+                            disWidth = $container.width() - 4;
+                            disHeight = parseInt(imgHeight / widthScale);
+                            selectWidth = disHeight;
+                            selectHeight = disHeight;
+                        } else {
+                            disWidth = parseInt(imgWidth / heightScale);
+                            disHeight = $container.height() - 4;
+                            selectWidth = disWidth;
+                            selectHeight = disWidth;
+                        }
+                    //}
+                    //else {
+
+                    //    disWidth = imgWidth;
+                    //    disHeight = imgHeight;
+                    //    selectWidth = $container.height() - 4;
+                    //    selectHeight = $container.height() - 4;
+                    //}
+                    $photo.css({ width: disWidth + "px", height: disHeight + "px" });
+                    $photowraper.css({ width: disWidth + "px", height: disHeight + "px",'margin':Math.floor(($container.height() - 4 - disHeight) / 2)+'px auto' });
+
+                    var selectLeft = Math.floor((disWidth - selectWidth) / 2), selectTop = Math.floor((disHeight - selectHeight) / 2);
+
+                    $photo.Jcrop({
+                        onChange: updatePreview,
+                        onSelect: updatePreview,
+                        setSelect: [0,0,1,1],
+                        aspectRatio: 1
+                    }, function () {
+
+                        var bounds = this.getBounds();
+                        boundx = bounds[0];
+                        boundy = bounds[1];
+
+                        jcrop_api = this;
+                        jcrop_api.animateTo([selectLeft, selectTop, selectLeft + selectWidth, selectTop + selectHeight]);
+                        $('#photo-wraper .jcrop-hline').parent().append($circle);
+                    });
+
+                    function updatePreview(c) {
+                        if (parseInt(c.w) > 0) {
+                            var rx = xsize / c.w;
+                            var ry = ysize / c.h;
+
+                            var scale = imgWidth / boundx;
+                            startLeft = Math.floor(scale * c.x);
+                            startTop = Math.floor(scale * c.y);
+                            clipWidth = Math.floor(scale * c.w);
+                            clipHeight = Math.floor(scale * c.h);
+
+                            $circle.css({ width: c.w + 'px', height: c.h + 'px' })
+                            $pimg.css({
+                                width: Math.round(rx * boundx) + 'px',
+                                height: Math.round(ry * boundy) + 'px',
+                                marginLeft: '-' + Math.round(rx * c.x) + 'px',
+                                marginTop: '-' + Math.round(ry * c.y) + 'px'
+                            });
+                        }
+                    };
+
+            });
+
+            $("#imgLoad").attr('src', '/www/img/Adimg/tx.png');
+            $('#selected_btn').cuploadify({
+                'formData': {
+                    saveSource: 0,
+                    fileType: 0
+                },
+                'swf': '../../js/uploadify/uploadify.swf',
+                'uploader': $sitecore.urls["UploadFile"],
+                'height': 70,
+                'width': 190,
+                'auto': true,
+                'queueID': 'queue',
+                'fileTypeDesc':'图片文件',
+                'fileTypeExts':'*.jpg;*.gif;*.jpeg;*.png',
+                onUploadSuccess: function (file, data, response) {
+                    var data = $.parseJSON(data);
+                    if (data.Error) {
+                        alert(data.ErrorMessage);
+                    }
+                    else {
+                        $("#imgLoad").attr('src', data.Data.PicUrl);
+                    }
+                }
+            });
+
+            $('#reselect_btn').click(function () {
+                if (sourceUrl && clipWidth && clipHeight) {
+                    $.post($sitecore.urls["SourceFileClipOrThumb"], utilities.mvcParamMatch({
+                        sourcePath: sourceUrl, fileType: 2, saveInfo: [{
+                            IsClipping: 1,
+                            SavePrefix: '',
+                            StartLeft: startLeft,
+                            StartTop: startTop,
+                            Width: clipWidth,
+                            Height: clipHeight,
+                            SaveWidth: 200,
+                            SaveHeight: 200
+                        }]
+                    }), function (data) {
+                        if (data.Error) {
+                            alert(data.ErrorMessage);
+                        }
+                        else {
+                            $.post($sitecore.urls["AddPic"], { sourcePath: data.Data[0].FileUrl, picType: 2 }, function (picdata) {
+                                if (picdata.Error) {
+                                    alert(picdata.ErrorMessage);
+                                }
+                                else {
+                                    $.post($sitecore.urls["EditeUserHeadImg"], { picId: picdata.Data.PicId }, function (userdata) {
+                                        utilities.fireiframelistener("event:userHeadImageSeted", data.Data[0].FileUrl);
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+                else if (!sourceUrl) {
+                    alert("请上传本地图片!")
+                }
+                else {
+                    alert("请选取头像区域!")
+                }
+            });
+        });
+</script>
+    <link href="../../js/jscop/jquery.Jcrop.css" rel="stylesheet" />
+
+    <style type="text/css">
+
+        #preview-pane {
+            position:relative;
+            padding: 6px;
+            border: 1px rgba(0,0,0,.4) solid;
+            background-color: white;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+            -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+        }
+
+
+        #preview-pane .preview-container {
+            width: 180px;
+            height: 180px;
+            overflow: hidden;
+        }
+    .btn{display:block;width:120px;height:30px;text-align:center;font-size: 16px;line-height: 30px;color:#fff;text-decoration: none;}
+    .selected{background-color:#16A085;}
+	.reselect{background-color:#e74c3c;}	
+    </style>
+
+</head>
+<body style="margin:1px 1px;">
+    <div style="width: 750px; height: 380px;">
+        <div style="width: 500px; height:360px; border: 1px solid #666; float: left;  overflow: hidden;" id="container">
+            <div  id="photo-wraper" style="margin:0 auto;border:solid 1px #999; ">
+                <img src="../../img/testpic.jpg" alt="" />
+            </div>
+        </div>
+        <div style="width: 200px; height: 360px; margin-left: 20px;  float: right;">
+            <div id="preview-pane" style="width:180px;margin:10px 0;">
+                <img src="../../img/c-png-2-white.png" alt="" style="width:180px;height:180px;position:absolute;" />
+                <div class="preview-container">
+                    <img src="../../img/testpic.jpg" class="jcrop-preview" alt="Preview" />
+                </div>
+            </div>
+            <a href="javascript:void(0)" id="selected_btn" class="btn selected">本地照片</a>
+            <div id="queue"></div>
+            <a href="javascript:void(0)" id="reselect_btn" class="btn selected" style="margin: 20px 0;">保存头像</a>
+        </div>
+    </div>
+    <div style="filter:alpha(opacity=0); -moz-opacity:0;-khtml-opacity: 0;opacity: 0;">
+        <img src="" id ="imgLoad" />
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,79 @@
+        <h1 class="titSec">产品项目</h1>
+        <ul class="clearfix goodsList">
+            <li ng-repeat="catalog in catalogs"  ng-class="catalog.PTypeId==ActCatalogId?'cur':''">
+                <!--<a ng-href="#/product/{{catalog.PTypeId}}/1"><em><i class="pcIcon"></i></em></a>-->
+                <a ng-href="#/product/{{catalog.PTypeId}}/1"><em ng-class="catalog.css"></em></a>
+                <p class="colorGrayadd">{{catalog.PTypeName}}</p>
+                <span class="arrowD"></span>
+            </li>
+            <li>
+                <div class="addG bootstro" id="add_catalog_btn" ng-click="addCatalog()">添加</div>
+            </li>
+        </ul>
+<div id="productCatalogAddModal" class="addm modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="clearfix popupbox4">
+       <div class="m-modal-header modal-header">
+         <h3 id="myAPModalLabel">添加分类</h3>
+         <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+        <form name="ProductCatalogForm" ng-class="showerror?'showerror':''">
+        <ul class="listContent peopleInfo pact-w" style="float:left;">
+        	<li class="clearfix"><span class="span1">分类图片：</span>
+                <div class="fi_div">
+                    <div class="icon_div" ng-repeat="icon in ProductTypeIcons">
+                        <span ng-class="SelectedIconId==icon.id?icon.css+' selected':icon.css" ng-click="SelectedIconChange()"></span>
+                    </div>
+                </div>
+        	</li>
+            <li class="clearfix"><span class="span1">分类名称：</span><span>
+                <input type="text" ng-model="AddedCatalog.PTypeName" ng-required="true" value="" class="span3"></span>
+        	</li>
+        </ul>
+        <a href="" class="saveprductCat_a btn btn-block btn-danger" ng-click="addCatalogSubmit()">保存</a>
+        </form>
+    </div>
+</div>
+        <div class="searchBox">
+            <span class="padd"><a class="btn btn-large btn-block btn-primary" id="add_product_btn" ng-click="editProduct()">新增产品</a></span>
+            <!--<input type="button" class="addBtn bootstro" id="add_product_btn" ng-click="editProduct()"/>-->
+            <!--<input type="button" class="delBtn"/>-->
+            <!--<span class="seCon"><input type="text" class="setext" placeholder="Type something…"><input type="button" class="seBtn"/></span>-->
+        </div>
+        <div class="tablePad" id="productListBox" style="min-height:200px;">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th width="5%"></th>
+                  <th width="35%">产品名称</th>
+                  <!--<th width="10%">成本价格</th>-->
+                  <th width="10%">售价</th>
+                  <th width="10%">最低售价</th>
+                  <th width="10%">当前库存</th>
+                  <th width="30%">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="product in products">
+                  <td class="colorlight">{{$index+1}}</td>
+                  <td>{{product.PName}}</td>
+                  <!--<td class="colorBlue">8300.00</td>-->
+                  <td class="colorRed">{{product.MarketPrice| currency:''}}<span class="pinfolast colorlight">元</span></td>
+                  <td class="colorRed">{{product.LowestPrice| currency:''}}<span class="pinfolast colorlight">元</span></td>
+                  <td>{{product.StockCount}}</td>
+                  <td class="colorGray"><a href="" role="button" ng-click="showProductDetail()">查看</a>|
+                  <a role="button" href="" ng-click="editProduct()">编辑产品资料</a>|
+                  <a role="button" href="" ng-click="addPurchase()">添加采购单</a></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <ul>
+              <li class="previous" ng-repeat="page in pages | filter:'pre'"><a ng-href="{{page.url}}"><img src="img/previous.png" /></a></li>
+              <li ng-class="page.active?'active':''" ng-repeat="page in pages | filter:'page'"><a ng-href="{{page.url}}">{{page.index}}</a></li>
+              <li class="next" ng-repeat="page in pages | filter:'next'"><a ng-href="{{page.url}}"><img src="img/next.png" /></a></li>
+            </ul>
+        </div>
+	<div ng-include="'partials/product/product-detail.html'"></div>
+    <div ng-include="'partials/product/product-edit.html'"></div>
+    <div ng-include="'partials/product/product-purchase.html'"></div>
